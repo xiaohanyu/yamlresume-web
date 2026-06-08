@@ -6,7 +6,7 @@ O núcleo de um currículo é o conteúdo, mas o design também é importante. M
 
 Ao contrário de outros geradores de currículo, o YAMLResume fornece uma solução de design pronta a usar, que permite aos utilizadores concentrar-se no conteúdo do currículo enquanto geram currículos de aspeto profissional com uma composição tipográfica perfeita em píxeis.
 
-A partir da v0.8.0, o YAMLResume suporta múltiplos layouts e múltiplos motores de saída (LaTeX e Markdown) através da matriz `layouts`.
+A partir da v0.8.0, o YAMLResume suporta múltiplos layouts e vários motores de saída (LaTeX, Markdown, HTML e DOCX) através da matriz `layouts`.
 
 Aqui está um exemplo de configuração de layout num ficheiro `resume.yml`:
 
@@ -40,6 +40,16 @@ layouts:
     href="./layouts/sections"
     title="Secções"
     description="Personalize as secções do currículo"
+  />
+  <Card
+    href="./layouts/docx"
+    title="Motor DOCX"
+    description="Gere currículos em Microsoft Word"
+  />
+  <Card
+    href="./layouts/html"
+    title="Motor HTML"
+    description="Gere currículos HTML prontos para a web"
   />
   <Card
     href="./layouts/latex"

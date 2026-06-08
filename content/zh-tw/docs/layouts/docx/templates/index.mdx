@@ -1,0 +1,42 @@
+---
+title: 模板
+---
+
+YAMLResume 提供開箱即用的 DOCX 模板，您可以使用 `yamlresume templates list` 命令列出所有模板。
+
+```console
+$ yamlresume templates list
+
+| layouts.[].template | Engine | Template Name | Description                                                         |
+| ------------------- | ------ | ------------- | ------------------------------------------------------------------- |
+| calm                | docx   | Calm          | Clean and minimalist design suitable for all professionals.         |
+| jake                | latex  | Jake's Resume | A simple, straight-forward resume template based on Jake's Resume   |
+| moderncv-banking    | latex  | ModernCV Banking | ModernCV template with banking style                             |
+| moderncv-casual     | latex  | ModernCV Casual  | ModernCV template with casual style                              |
+| moderncv-classic    | latex  | ModernCV Classic | ModernCV template with classic style                             |
+| calm                | html   | Calm             | Clean and minimalist design suitable for all professionals.      |
+| vscode              | html   | VS Code          | Dark theme inspired by Visual Studio Code, tailored for developers. |
+```
+
+默認情況下，YAMLResume 使用 [calm](./templates/calm) 模板作為 DOCX 輸出。您可以通過設定 YAML 履歷中的 `layouts.[].template` 來更改模板。
+
+```yml lineNumbers title="resume.yml"
+content:
+  # ...
+
+layouts:
+  - engine: docx
+    # ...
+    template: calm # [!code highlight]
+    # ...
+```
+
+查看以下模板以了解更多詳情：
+
+<Cards>
+  <Card
+    href="/zh-tw/docs/layouts/docx/templates/calm"
+    title="Calm"
+    description="一個乾淨、現代的 DOCX 模板"
+  />
+</Cards>

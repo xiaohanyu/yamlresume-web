@@ -1,0 +1,57 @@
+---
+title: Calm
+---
+
+## Implementación
+
+Calm es una plantilla DOCX limpia y moderna inspirada en la plantilla LaTeX
+moderncv. Presenta un diseño minimalista con separación clara de secciones y un
+layout elegante optimizado para Microsoft Word y procesadores de texto
+compatibles.
+
+Por debajo del capó, la plantilla utiliza:
+
+- **Generación OOXML**: Construida sobre el paquete npm
+  [`docx`](https://www.npmjs.com/package/docx), construyendo un AST de nodos de
+documento y serializándolos a un binario OOXML basado en ZIP
+- **Tipografía**: Tamaños de fuente personalizables entre 10pt y 12pt
+- **Layout de Dos Columnas**: Títulos de entradas a la izquierda, fechas y URLs
+a la derecha
+- **Hipervínculos Clicables**: Las URLs externas y direcciones de email se
+renderizan como links clicables
+- **Soporte de Markdown**: Los campos de resumen se analizan como Markdown para
+formateo de texto enriquecido
+
+## Configuración
+
+```yml lineNumbers title="resume.yml"
+content:
+  # ...
+
+layouts:
+  - engine: docx
+    template: calm    # [!code highlight]
+    typography:
+      fontSize: 11pt
+```
+
+## Funcionalidades
+
+- **Diseño Limpio**: Layout minimalista enfocado en la legibilidad del contenido
+- **Tipografía Profesional**: Etiquetas en negrita y detalles en cursiva para
+jerarquía visual
+- **Formato Editable**: Documento Word nativo que puede abrirse y editarse en
+Microsoft Word, Google Docs, LibreOffice y WPS Office
+- **Optimizado para Impresión**: Optimizado para impresión con márgenes de página
+y tipografía adecuados
+- **Secciones Personalizables**: Ordenación y nomenclatura flexibles de secciones
+- **Soporte de Iconos**: Iconos emoji opcionales para información de contacto
+(mejor visualizados en Microsoft Office)
+
+## Vista Previa
+
+![Calm Template in Microsoft Word](/static/images/docs/layouts/docx/templates/calm.png)
+
+Tenga en cuenta que la vista previa puede verse diferente en otros procesadores
+de texto, y algunas funcionalidades (como iconos emoji) pueden no renderizarse
+correctamente fuera de Microsoft Word.

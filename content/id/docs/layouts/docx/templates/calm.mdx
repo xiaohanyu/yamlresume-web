@@ -1,0 +1,56 @@
+---
+title: Calm
+---
+
+## Implementasi
+
+Calm adalah template DOCX yang bersih dan modern yang terinspirasi dari template
+LaTeX moderncv. Template ini menampilkan desain minimalis dengan pemisahan
+bagian yang jelas dan tata letak elegan yang dioptimalkan untuk Microsoft Word
+dan pengolah kata yang kompatibel.
+
+Di balik layar, template menggunakan:
+
+- **Generasi OOXML**: Dibangun di atas package npm
+  [`docx`](https://www.npmjs.com/package/docx), membangun AST dari node dokumen
+  dan men-serialiskannya ke biner OOXML berbasis ZIP
+- **Tipografi**: Ukuran font yang dapat disesuaikan mulai dari 10pt hingga 12pt
+- **Tata Letak Dua Kolom**: Judul entri di sebelah kiri, tanggal dan URL di
+  sebelah kanan
+- **Hyperlink Dapat Diklik**: URL eksternal dan alamat email dirender sebagai
+  tautan yang dapat diklik
+- **Dukungan Markdown**: Field ringkasan di-parse sebagai Markdown untuk
+  format teks kaya
+
+## Konfigurasi
+
+```yml lineNumbers title="resume.yml"
+content:
+  # ...
+
+layouts:
+  - engine: docx
+    template: calm    # [!code highlight]
+    typography:
+      fontSize: 11pt
+```
+
+## Fitur
+
+- **Desain Bersih**: Tata letak minimalis yang berfokus pada keterbacaan konten
+- **Tipografi Profesional**: Label tebal dan detail miring untuk hierarki visual
+- **Format Dapat Diedit**: Dokumen Word asli yang dapat dibuka dan diedit di
+  Microsoft Word, Google Docs, LibreOffice, dan WPS Office
+- **Ramah Cetak**: Dioptimalkan untuk pencetakan dengan margin halaman dan
+  tipografi yang tepat
+- **Bagian Dapat Disesuaikan**: Urutan dan penamaan bagian yang fleksibel
+- **Dukungan Ikon**: Ikon emoji opsional untuk informasi kontak (terbaik
+  dilihat di Microsoft Office)
+
+## Pratinjau
+
+![Calm Template in Microsoft Word](/static/images/docs/layouts/docx/templates/calm.png)
+
+Harap dicatat bahwa pratinjau mungkin terlihat berbeda di pengolah kata lain,
+dan beberapa fitur (seperti ikon emoji) mungkin tidak dirender dengan benar di
+luar Microsoft Word.

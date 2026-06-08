@@ -6,7 +6,7 @@ title: 佈局
 
 與其他履歷生成器不同，YAMLResume 提供了開箱即用的佈局解決方案，允許用戶專注於履歷的內容，同時生成具有像素完美佈局和排版的專業履歷。
 
-從 v0.8.0 開始，YAMLResume 通過 `layouts` 陣列支援多種佈局和多種輸出引擎（LaTeX 和 Markdown）。
+從 v0.8.0 開始，YAMLResume 通過 `layouts` 陣列支援多種佈局和多種輸出引擎。
 
 以下是 `resume.yml` 文件中佈局配置的示例：
 
@@ -35,10 +35,12 @@ layouts:
 
 ## 引擎
 
-YAMLResume 目前支援兩種引擎：
+YAMLResume 目前支援四種引擎：
 
 - [LaTeX](./layouts/latex)：生成高品質 PDF 履歷。
 - [Markdown](./layouts/markdown)：生成純 Markdown 履歷。
+- [HTML](./layouts/html)：生成乾淨、適用於網路的 HTML 版本履歷。
+- [DOCX](./layouts/docx)：生成 Microsoft Word 文件。
 
 ## 了解更多
 
@@ -57,5 +59,15 @@ YAMLResume 目前支援兩種引擎：
     href="./layouts/markdown"
     title="Markdown 引擎"
     description="生成 Markdown 履歷"
+  />
+  <Card
+    href="./layouts/html"
+    title="HTML 引擎"
+    description="生成 HTML 履歷"
+  />
+  <Card
+    href="./layouts/docx"
+    title="DOCX 引擎"
+    description="生成 Microsoft Word 文件"
   />
 </Cards>

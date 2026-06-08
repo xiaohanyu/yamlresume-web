@@ -1,0 +1,141 @@
+---
+title: Moteur DOCX
+---
+
+Le moteur DOCX génère des documents Microsoft Word à partir de votre fichier YAML
+de CV. Cela est particulièrement utile lorsque vous devez partager votre CV dans
+un format modifiable ou le soumettre à des systèmes qui exigent des documents Word.
+
+## Configuration
+
+Pour utiliser le moteur DOCX, spécifiez `engine: docx` dans votre configuration
+de mise en page.
+
+```yml lineNumbers
+layouts:
+  - engine: docx
+    template: calm
+    # ... autres options
+```
+
+## Page
+
+L'option `page` vous permet de personnaliser les paramètres de page, tels que le
+format du papier, les marges et l'affichage des numéros de page.
+
+```yml lineNumbers
+layouts:
+  - engine: docx
+    page:
+      showPageNumbers: true
+      # a4 ou letter
+      paperSize: a4
+      margins:
+        top: 2.5cm
+        left: 1.5cm
+        right: 1.5cm
+        bottom: 2.5cm
+```
+
+## Sections
+
+L'option `sections` vous permet de personnaliser les titres de section et leur
+ordre. Pour plus d'informations, voir la [documentation des
+sections](./sections).
+
+```yml lineNumbers
+layouts:
+  - engine: docx
+    sections:
+      aliases:
+        work: "Expérience Professionnelle"
+        education: "Éducation"
+        skills: "Compétences"
+      order:
+        - basics
+        - work
+        - education
+```
+
+## Modèles
+
+L'option `template` vous permet de choisir parmi une variété de modèles. Chaque
+modèle a un design et une mise en page uniques. Vous pouvez trouver une liste
+des modèles disponibles dans la [documentation des modèles](./docx/templates).
+
+```yml lineNumbers
+layouts:
+  - engine: docx
+    template: calm
+```
+
+## Typographie
+
+L'option `typography` vous permet de personnaliser les styles de police utilisés
+dans votre CV.
+
+### Taille de la police
+
+L'option `fontSize` vous permet de définir la taille de police de base pour le
+document. Le moteur DOCX prend en charge les tailles de police de `10pt` à
+`12pt`.
+
+| Valeur   | Description |
+| -------- | ----------- |
+| `10pt`   | Petite      |
+| `10.5pt` | Compacte    |
+| `11pt`   | Normale     |
+| `11.5pt` | Moyenne     |
+| `12pt`   | Grande      |
+
+### Famille de polices
+
+L'option `fontFamily` vous permet de spécifier le nom de la police à utiliser
+dans la sortie DOCX. La police doit être disponible sur le système où le
+document est ouvert.
+
+```yml lineNumbers
+layouts:
+  - engine: docx
+    typography:
+      fontFamily: Arial
+```
+
+### Interligne
+
+L'option `lineSpacing` vous permet d'ajuster l'interligne (leading) du document.
+YAMLResume utilise des valeurs sémantiques qui sont mappées vers des
+implémentations spécifiques au moteur :
+
+| Valeur    | Description                     |
+| --------- | ------------------------------- |
+| `tight`   | Interligne compact              |
+| `snug`    | Légèrement plus d'espace que tight |
+| `normal`  | Lisibilité équilibrée (par défaut) |
+| `relaxed` | Plus d'espace entre les lignes  |
+| `loose`   | Mise en page très aérée         |
+
+## Avancé
+
+L'option `advanced` vous permet de configurer des paramètres avancés pour le
+moteur DOCX.
+
+### Afficher les URLs
+
+L'option `showUrls` contrôle l'affichage des URLs brutes dans le document.
+Lorsqu'elle est activée, les URLs des institutions, entreprises, projets, etc.
+sont affichées sous forme d'hyperliens cliquables.
+
+### Afficher les icônes
+
+L'option `showIcons` contrôle l'affichage des icônes emoji pour les informations
+de contact et la localisation. Lorsqu'elle est activée, des icônes comme le
+téléphone et l'email sont affichées à côté du texte.
+
+```yml lineNumbers
+layouts:
+  - engine: docx
+    advanced:
+      showUrls: true
+      showIcons: true
+```

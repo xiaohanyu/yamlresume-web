@@ -1,0 +1,43 @@
+---
+title: Calm
+---
+
+## 実装
+
+Calm は、moderncv LaTeX テンプレートにインスパイアされたクリーンでモダンな DOCX テンプレートです。ミニマリストなデザインで、明確なセクション分離と、Microsoft Word および互換性のあるワードプロセッサ向けに最適化されたエレガントなレイアウトが特徴です。
+
+内部的には、このテンプレートは以下を使用しています：
+
+- **OOXML 生成**: [`docx`](https://www.npmjs.com/package/docx) npm パッケージをベースに、ドキュメントノードの AST を構築し、ZIP ベースの OOXML バイナリにシリアライズします
+- **タイポグラフィ**: `10pt` から `12pt` までのカスタマイズ可能なフォントサイズ
+- **2 カラムレイアウト**: 左側にエントリタイトル、右側に日付と URL
+- **クリック可能なハイパーリンク**: 外部 URL とメールアドレスがクリック可能なリンクとしてレンダリングされます
+- **Markdown サポート**: サマリーフィールドは Markdown として解析され、リッチテキストフォーマットが可能です
+
+## 設定
+
+```yml lineNumbers title="resume.yml"
+content:
+  # ...
+
+layouts:
+  - engine: docx
+    template: calm    # [!code highlight]
+    typography:
+      fontSize: 11pt
+```
+
+## 機能
+
+- **クリーンなデザイン**: コンテンツの可読性に焦点を当てたミニマリストなレイアウト
+- **プロフェッショナルなタイポグラフィ**: 視覚的階層のための太字ラベルと斜体の詳細
+- **編集可能な形式**: Microsoft Word、Google Docs、LibreOffice、WPS Office で開いて編集できるネイティブ Word ドキュメント
+- **印刷に最適**: 適切なページ余白とタイポグラフィで印刷に最適化されています
+- **カスタマイズ可能なセクション**: 柔軟なセクション順序と命名
+- **アイコンサポート**: 連絡先情報のオプションの絵文字アイコン（Microsoft Office で最適に表示されます）
+
+## プレビュー
+
+![Calm Template in Microsoft Word](/static/images/docs/layouts/docx/templates/calm.png)
+
+プレビューは他のワードプロセッサでは見た目が異なる場合があり、一部の機能（絵文字アイコンなど）は Microsoft Word 以外では正しくレンダリングされない場合があることにご注意ください。

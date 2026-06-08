@@ -1,0 +1,45 @@
+---
+title: Modèles
+---
+
+YAMLResume fournit des modèles DOCX prêts à l'emploi, vous pouvez lister tous les
+modèles avec la commande `yamlresume templates list`.
+
+```console
+$ yamlresume templates list
+
+| layouts.[].template | Engine | Template Name | Description                                                         |
+| ------------------- | ------ | ------------- | ------------------------------------------------------------------- |
+| calm                | docx   | Calm          | Clean and minimalist design suitable for all professionals.         |
+| jake                | latex  | Jake's Resume | A simple, straight-forward resume template based on Jake's Resume   |
+| moderncv-banking    | latex  | ModernCV Banking | ModernCV template with banking style                             |
+| moderncv-casual     | latex  | ModernCV Casual  | ModernCV template with casual style                              |
+| moderncv-classic    | latex  | ModernCV Classic | ModernCV template with classic style                             |
+| calm                | html   | Calm             | Clean and minimalist design suitable for all professionals.      |
+| vscode              | html   | VS Code          | Dark theme inspired by Visual Studio Code, tailored for developers. |
+```
+
+Par défaut, YAMLResume utilise le modèle [calm](./templates/calm) pour la sortie
+DOCX. Vous pouvez changer le modèle en définissant `layouts.[].template` dans
+votre CV YAML.
+
+```yml lineNumbers title="resume.yml"
+content:
+  # ...
+
+layouts:
+  - engine: docx
+    # ...
+    template: calm # [!code highlight]
+    # ...
+```
+
+Consultez les modèles suivants pour plus de détails :
+
+<Cards>
+  <Card
+    href="/fr/docs/layouts/docx/templates/calm"
+    title="Calm"
+    description="Un modèle DOCX propre et moderne"
+  />
+</Cards>

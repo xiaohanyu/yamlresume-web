@@ -1,0 +1,139 @@
+---
+title: Motor DOCX
+---
+
+El motor DOCX genera documentos de Microsoft Word a partir de su archivo YAML de
+currículum. Esto es particularmente útil cuando necesita compartir su currículum
+en un formato editable o enviarlo a sistemas que requieren documentos de Word.
+
+## Configuración
+
+Para usar el motor DOCX, especifique `engine: docx` en su configuración de
+diseño.
+
+```yml lineNumbers
+layouts:
+  - engine: docx
+    template: calm
+    # ... otras opciones
+```
+
+## Página
+
+La opción `page` le permite personalizar la configuración de la página, como el
+tamaño del papel, los márgenes y si debe mostrar números de página.
+
+```yml lineNumbers
+layouts:
+  - engine: docx
+    page:
+      showPageNumbers: true
+      # a4 o letter
+      paperSize: a4
+      margins:
+        top: 2.5cm
+        left: 1.5cm
+        right: 1.5cm
+        bottom: 2.5cm
+```
+
+## Secciones
+
+La opción `sections` le permite personalizar los títulos de las secciones y su
+orden. Para obtener más información, consulte la [documentación de
+secciones](./sections).
+
+```yml lineNumbers
+layouts:
+  - engine: docx
+    sections:
+      aliases:
+        work: "Experiencia Profesional"
+        education: "Educación"
+        skills: "Habilidades"
+      order:
+        - basics
+        - work
+        - education
+```
+
+## Plantillas
+
+La opción `template` le permite elegir entre una variedad de plantillas. Cada
+plantilla tiene un diseño y una disposición únicos. Puede encontrar una lista de
+plantillas disponibles en la [documentación de plantillas](./docx/templates).
+
+```yml lineNumbers
+layouts:
+  - engine: docx
+    template: calm
+```
+
+## Tipografía
+
+La opción `typography` le permite personalizar los estilos de fuente utilizados
+en su currículum.
+
+### Tamaño de Fuente
+
+La opción `fontSize` le permite establecer el tamaño de fuente base para el
+documento. El motor DOCX admite tamaños de fuente desde `10pt` hasta `12pt`.
+
+| Valor    | Descripción |
+| -------- | ----------- |
+| `10pt`   | Pequeño       |
+| `10.5pt` | Compacto     |
+| `11pt`   | Normal      |
+| `11.5pt` | Medio      |
+| `12pt`   | Grande       |
+
+### Familia de Fuentes
+
+La opción `fontFamily` le permite especificar el nombre de la fuente a utilizar
+en la salida DOCX. La fuente debe estar disponible en el sistema donde se abre el
+documento.
+
+```yml lineNumbers
+layouts:
+  - engine: docx
+    typography:
+      fontFamily: Arial
+```
+
+### Espaciado de Línea
+
+La opción `lineSpacing` le permite ajustar el espaciado de línea (interlineado)
+del documento. YAMLResume usa valores semánticos que se mapean a
+implementaciones específicas del motor:
+
+| Valor      | Descripción                     |
+| ---------- | ------------------------------- |
+| `tight`    | Espaciado compacto                 |
+| `snug`     | Un poco más de espacio que tight  |
+| `normal`   | Legibilidad equilibrada (predeterminado)  |
+| `relaxed`  | Más espacio entre líneas |
+| `loose`    | Diseño muy espacioso            |
+
+## Avanzado
+
+La opción `advanced` le permite configurar ajustes avanzados del DOCX.
+
+### Mostrar URLs
+
+La opción `showUrls` controla si debe mostrar URLs brutas en el documento.
+Cuando está habilitada, las URLs de instituciones, empresas, proyectos, etc. se
+muestran como hipervínculos clicables.
+
+### Mostrar Iconos
+
+La opción `showIcons` controla si debe mostrar iconos emoji para la información
+de contacto y la ubicación. Cuando está habilitada, iconos como teléfono y
+correo electrónico se muestran junto al texto.
+
+```yml lineNumbers
+layouts:
+  - engine: docx
+    advanced:
+      showUrls: true
+      showIcons: true
+```

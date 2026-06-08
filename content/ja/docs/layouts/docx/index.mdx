@@ -1,0 +1,121 @@
+---
+title: DOCX エンジン
+---
+
+DOCX エンジンは、履歴書の YAML ファイルから Microsoft Word ドキュメントを生成します。これは編集可能な形式で履歴書を共有する必要がある場合や、Word ドキュメントを要求するシステムに提出する場合に特に便利です。
+
+## 設定
+
+DOCX エンジンを使用するには、レイアウト設定で `engine: docx` を指定してください。
+
+```yml lineNumbers
+layouts:
+  - engine: docx
+    template: calm
+    # ... その他のオプション
+```
+
+## ページ
+
+`page` オプションにより、用紙サイズ、余白、ページ番号の表示有無などのページ設定をカスタマイズできます。
+
+```yml lineNumbers
+layouts:
+  - engine: docx
+    page:
+      showPageNumbers: true
+      # a4 or letter
+      paperSize: a4
+      margins:
+        top: 2.5cm
+        left: 1.5cm
+        right: 1.5cm
+        bottom: 2.5cm
+```
+
+## セクション
+
+`sections` オプションにより、セクションタイトルとその順序をカスタマイズできます。詳細については [セクション文書](./sections) をご覧ください。
+
+```yml lineNumbers
+layouts:
+  - engine: docx
+    sections:
+      aliases:
+        work: "Professional Experience"
+        education: "Education"
+        skills: "Skills"
+      order:
+        - basics
+        - work
+        - education
+```
+
+## テンプレート
+
+`template` オプションにより、様々なテンプレートから選択できます。各テンプレートには独特のデザインとレイアウトがあります。利用可能なテンプレートのリストは [テンプレート文書](./docx/templates) で確認できます。
+
+```yml lineNumbers
+layouts:
+  - engine: docx
+    template: calm
+```
+
+## タイポグラフィ
+
+`typography` オプションを使用すると、履歴書で使用されるフォントスタイルをカスタマイズできます。
+
+### フォントサイズ
+
+`fontSize` オプションを使用すると、ドキュメントの基本フォントサイズを設定できます。DOCX エンジンは `10pt` から `12pt` までのフォントサイズをサポートしています。
+
+| 値       | 説明       |
+| -------- | ---------- |
+| `10pt`   | 小         |
+| `10.5pt` | コンパクト |
+| `11pt`   | 標準       |
+| `11.5pt` | 中         |
+| `12pt`   | 大         |
+
+### フォントファミリー
+
+`fontFamily` オプションを使用すると、DOCX 出力で使用するフォント名を指定できます。フォントは、ドキュメントを開くシステムで利用可能である必要があります。
+
+```yml lineNumbers
+layouts:
+  - engine: docx
+    typography:
+      fontFamily: Arial
+```
+
+### 行間
+
+`lineSpacing` オプションを使用すると、ドキュメントの行間（leading）を調整できます。YAMLResume はエンジン固有の実装にマッピングされるセマンティック値を使用します：
+
+| 値        | 説明                                   |
+| --------- | -------------------------------------- |
+| `tight`   | コンパクトな間隔                       |
+| `snug`    | tight よりわずかに多いスペース         |
+| `normal`  | バランスの取れた読みやすさ（デフォルト）|
+| `relaxed` | 行間に更多のスペース                   |
+| `loose`   | 非常にゆったりとしたレイアウト         |
+
+## 高度な設定
+
+`advanced` オプションにより、DOCX の高度な設定を行うことができます。
+
+### URL の表示
+
+`showUrls` オプションは、ドキュメントに生の URL を表示するかどうかを制御します。有効にすると、機関、企業、プロジェクトなどの URL がクリック可能なハイパーリンクとして表示されます。
+
+### アイコンの表示
+
+`showIcons` オプションは、連絡先情報と場所に絵文字アイコンを表示するかどうかを制御します。有効にすると、電話やメールの記号などのアイコンがテキストの横に表示されます。
+
+```yml lineNumbers
+layouts:
+  - engine: docx
+    advanced:
+      showUrls: true
+      showIcons: true
+```

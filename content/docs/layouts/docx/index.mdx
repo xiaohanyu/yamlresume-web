@@ -1,0 +1,135 @@
+---
+title: DOCX Engine
+---
+
+The DOCX engine generates Microsoft Word documents from your resume YAML file.
+This is particularly useful when you need to share your resume in an editable
+format or submit it to systems that require Word documents.
+
+## Configuration
+
+To use the DOCX engine, specify `engine: docx` in your layout configuration.
+
+```yml lineNumbers
+layouts:
+  - engine: docx
+    template: calm
+    # ... other options
+```
+
+## Page
+
+The `page` option allows you to customize the page settings, such as the paper
+size, margins and whether to show page numbers.
+
+```yml lineNumbers
+layouts:
+  - engine: docx
+    page:
+      showPageNumbers: true
+      # a4 or letter
+      paperSize: a4
+      margins:
+        top: 2.5cm
+        left: 1.5cm
+        right: 1.5cm
+        bottom: 2.5cm
+```
+
+## Sections
+
+The `sections` option allows you to customize the section titles and their
+order. For more information, see the [sections documentation](./sections).
+
+```yml lineNumbers
+layouts:
+  - engine: docx
+    sections:
+      aliases:
+        work: "Professional Experience"
+        education: "Education"
+        skills: "Skills"
+      order:
+        - basics
+        - work
+        - education
+```
+
+## Templates
+
+The `template` option allows you to choose from a variety of templates. Each
+template has a unique design and layout. You can find a list of available
+templates in the [templates documentation](./docx/templates).
+
+```yml lineNumbers
+layouts:
+  - engine: docx
+    template: calm
+```
+
+## Typography
+
+The `typography` option allows you to customize font styles used in your resume.
+
+### Font Size
+
+The `fontSize` option allows you to set the base font size for the document. The
+DOCX engine supports font sizes from `10pt` to `12pt`.
+
+| Value    | Description |
+| -------- | ----------- |
+| `10pt`   | Small       |
+| `10.5pt` | Compact     |
+| `11pt`   | Normal      |
+| `11.5pt` | Medium      |
+| `12pt`   | Large       |
+
+### Font Family
+
+The `fontFamily` option allows you to specify the font name to use in DOCX
+output. The font must be available on the system where the document is opened.
+
+```yml lineNumbers
+layouts:
+  - engine: docx
+    typography:
+      fontFamily: Arial
+```
+
+### Line Spacing
+
+The `lineSpacing` option allows you to adjust the line spacing (leading) of the
+document. YAMLResume uses semantic values that map to engine-specific
+implementations:
+
+| Value      | Description                     |
+| ---------- | ------------------------------- |
+| `tight`    | Compact spacing                 |
+| `snug`     | Slightly more space than tight  |
+| `normal`   | Balanced readability (default)  |
+| `relaxed`  | More breathing room between lines |
+| `loose`    | Very spacious layout            |
+
+## Advanced
+
+The `advanced` option allows you to configure advanced DOCX settings.
+
+### Show URLs
+
+The `showUrls` option controls whether to display raw URLs in the document.
+When enabled, URLs for institutions, companies, projects, etc. are shown as
+clickable hyperlinks.
+
+### Show Icons
+
+The `showIcons` option controls whether to display emoji icons for contact
+information and location. When enabled, icons like phone and email symbols are
+shown alongside the text.
+
+```yml lineNumbers
+layouts:
+  - engine: docx
+    advanced:
+      showUrls: true
+      showIcons: true
+```

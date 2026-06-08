@@ -6,7 +6,7 @@ title: 布局
 
 与其他简历生成器不同，YAMLResume 提供了开箱即用的布局解决方案，允许用户专注于简历的内容，同时生成具有像素完美布局和排版的专业简历。
 
-从 v0.8.0 开始，YAMLResume 通过 `layouts` 数组支持多种布局和多种输出引擎（LaTeX 和 Markdown）。
+从 v0.8.0 开始，YAMLResume 通过 `layouts` 数组支持多种布局和多种输出引擎。
 
 以下是 `resume.yml` 文件中布局配置的示例：
 
@@ -35,10 +35,12 @@ layouts:
 
 ## 引擎
 
-YAMLResume 目前支持两种引擎：
+YAMLResume 目前支持四种引擎：
 
 - [LaTeX](./layouts/latex)：生成高质量 PDF 简历。
 - [Markdown](./layouts/markdown)：生成纯 Markdown 简历。
+- [HTML](./layouts/html)：生成干净、适用于网络的 HTML 版本简历。
+- [DOCX](./layouts/docx)：生成 Microsoft Word 文档。
 
 ## 了解更多
 
@@ -57,5 +59,15 @@ YAMLResume 目前支持两种引擎：
     href="./layouts/markdown"
     title="Markdown 引擎"
     description="生成 Markdown 简历"
+  />
+  <Card
+    href="./layouts/html"
+    title="HTML 引擎"
+    description="生成 HTML 简历"
+  />
+  <Card
+    href="./layouts/docx"
+    title="DOCX 引擎"
+    description="生成 Microsoft Word 文档"
   />
 </Cards>

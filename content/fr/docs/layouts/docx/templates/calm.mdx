@@ -1,0 +1,57 @@
+---
+title: Calm
+---
+
+## Implémentation
+
+Calm est un modèle DOCX propre et moderne inspiré du modèle LaTeX moderncv. Il
+présente un design minimaliste avec une séparation claire des sections et une
+mise en page élégante optimisée pour Microsoft Word et les traitements de texte
+compatibles.
+
+En interne, le modèle utilise :
+
+- **Génération OOXML** : Basé sur le package npm
+  [`docx`](https://www.npmjs.com/package/docx), construisant un AST de nœuds de
+  document et les sérialisant en un binaire OOXML basé sur ZIP
+- **Typographie** : Tailles de police personnalisables allant de 10pt à 12pt
+- **Mise en page à deux colonnes** : Titres d'entrée à gauche, dates et URLs à
+  droite
+- **Hyperliens cliquables** : Les URLs externes et les adresses email sont
+  rendues sous forme de liens cliquables
+- **Support Markdown** : Les champs de résumé sont analysés comme Markdown pour
+  un formatage de texte enrichi
+
+## Configuration
+
+```yml lineNumbers title="resume.yml"
+content:
+  # ...
+
+layouts:
+  - engine: docx
+    template: calm    # [!code highlight]
+    typography:
+      fontSize: 11pt
+```
+
+## Fonctionnalités
+
+- **Design épuré** : Mise en page minimaliste axée sur la lisibilité du contenu
+- **Typographie professionnelle** : Étiquettes en gras et détails en italique
+  pour la hiérarchie visuelle
+- **Format modifiable** : Document Word natif pouvant être ouvert et modifié
+  dans Microsoft Word, Google Docs, LibreOffice et WPS Office
+- **Optimisé pour l'impression** : Optimisé pour l'impression avec des marges
+  de page et une typographie appropriées
+- **Sections personnalisables** : Ordre et nommage flexibles des sections
+- **Support des icônes** : Icônes emoji optionnelles pour les informations de
+  contact (mieux visualisées dans Microsoft Office)
+
+## Aperçu
+
+![Calm Template in Microsoft Word](/static/images/docs/layouts/docx/templates/calm.png)
+
+Veuillez noter que l'aperçu peut être différent dans d'autres traitements de
+texte, et certaines fonctionnalités (comme les icônes emoji) peuvent ne pas
+s'afficher correctement en dehors de Microsoft Word.

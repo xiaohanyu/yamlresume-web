@@ -1,0 +1,43 @@
+---
+title: Calm
+---
+
+## 實現
+
+Calm 是一個靈感來自 moderncv LaTeX 模板的乾淨、現代的 DOCX 模板。它以極簡主義設計為特色，具有清晰的章節分隔和針對 Microsoft Word 及相容文字處理器最佳化的優雅佈局。
+
+在底層，該模板使用：
+
+- **OOXML 生成**: 基於 [`docx`](https://www.npmjs.com/package/docx) npm 套件，構建文件節點的 AST 並將其序列化為基於 ZIP 的 OOXML 二進制檔案
+- **排版**: 可自定義的字體大小，範圍從 `10pt` 到 `12pt`
+- **雙欄佈局**: 左側為條目標題，右側為日期和 URL
+- **可點擊的超連結**: 外部 URL 和電子郵件地址渲染為可點擊的連結
+- **Markdown 支援**: 摘要欄位被解析為 Markdown，以實現富文字格式
+
+## 配置
+
+```yml lineNumbers title="resume.yml"
+content:
+  # ...
+
+layouts:
+  - engine: docx
+    template: calm    # [!code highlight]
+    typography:
+      fontSize: 11pt
+```
+
+## 功能
+
+- **簡潔設計**: 專注於內容可讀性的極簡佈局
+- **專業排版**: 粗體標籤和斜體細節，實現視覺層次
+- **可編輯格式**: 可在 Microsoft Word、Google Docs、LibreOffice 和 WPS Office 中打開和編輯的原生 Word 文件
+- **列印友好**: 通過適當的頁面邊距和排版最佳化列印效果
+- **可自定義章節**: 靈活的章節順序和命名
+- **圖標支援**: 聯繫資訊的可選表情圖標（在 Microsoft Office 中查看效果最佳）
+
+## 預覽
+
+![Calm Template in Microsoft Word](/static/images/docs/layouts/docx/templates/calm.png)
+
+請注意，預覽在其他文字處理器中可能看起來不同，某些功能（如表情圖標）可能在 Microsoft Word 之外無法正確渲染。

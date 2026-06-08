@@ -1,0 +1,56 @@
+---
+title: Calm
+---
+
+## Implementação
+
+Calm é um modelo DOCX limpo e moderno inspirado no modelo LaTeX moderncv.
+Apresenta um design minimalista com separação clara de secções e um layout
+elegante otimizado para Microsoft Word e processadores de texto compatíveis.
+
+Por baixo do capô, o modelo utiliza:
+
+- **Geração OOXML**: Construído com base no pacote npm
+  [`docx`](https://www.npmjs.com/package/docx), construindo uma AST de nós de
+documento e serializando-os para um binário OOXML baseado em ZIP
+- **Tipografia**: Tamanhos de fonte personalizáveis entre 10pt e 12pt
+- **Layout de Duas Colunas**: Títulos de entradas à esquerda, datas e URLs à
+direita
+- **Hiperligações Clicáveis**: URLs externos e endereços de email são
+renderizados como links clicáveis
+- **Suporte a Markdown**: Os campos de resumo são analisados como Markdown para
+formatação de texto rico
+
+## Configuração
+
+```yml lineNumbers title="resume.yml"
+content:
+  # ...
+
+layouts:
+  - engine: docx
+    template: calm    # [!code highlight]
+    typography:
+      fontSize: 11pt
+```
+
+## Funcionalidades
+
+- **Design Limpo**: Layout minimalista focado na legibilidade do conteúdo
+- **Tipografia Profissional**: Etiquetas em negrito e detalhes em itálico para
+hierarquia visual
+- **Formato Editável**: Documento Word nativo que pode ser aberto e editado no
+Microsoft Word, Google Docs, LibreOffice e WPS Office
+- **Otimizado para Impressão**: Otimizado para impressão com margens de página
+e tipografia adequadas
+- **Secções Personalizáveis**: Ordenação e nomenclatura flexíveis de secções
+- **Suporte a Ícones**: Ícones emoji opcionais para informação de contacto
+(melhor visualizados no Microsoft Office)
+
+## Pré-visualização
+
+![Calm Template in Microsoft Word](/static/images/docs/layouts/docx/templates/calm.png)
+
+Por favor note que a pré-visualização pode parecer diferente noutros
+processadores de texto, e algumas funcionalidades (como ícones emoji) podem não
+ser renderizadas corretamente fora do Microsoft Word.

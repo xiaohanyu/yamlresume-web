@@ -1,0 +1,121 @@
+---
+title: DOCX 引擎
+---
+
+DOCX 引擎從您的履歷 YAML 檔案生成 Microsoft Word 文件。這特別適用於需要以可編輯格式分享履歷，或將其提交到要求 Word 文件的系統時。
+
+## 配置
+
+要使用 DOCX 引擎，請在佈局配置中指定 `engine: docx`。
+
+```yml lineNumbers
+layouts:
+  - engine: docx
+    template: calm
+    # ... 其他選項
+```
+
+## 頁面
+
+`page` 選項允許您自定義頁面設置，例如紙張大小、頁邊距以及是否顯示頁碼。
+
+```yml lineNumbers
+layouts:
+  - engine: docx
+    page:
+      showPageNumbers: true
+      # a4 or letter
+      paperSize: a4
+      margins:
+        top: 2.5cm
+        left: 1.5cm
+        right: 1.5cm
+        bottom: 2.5cm
+```
+
+## 章節
+
+`sections` 選項允許您自定義章節標題及其順序。更多資訊，請參見[章節文件](./sections)。
+
+```yml lineNumbers
+layouts:
+  - engine: docx
+    sections:
+      aliases:
+        work: "Professional Experience"
+        education: "Education"
+        skills: "Skills"
+      order:
+        - basics
+        - work
+        - education
+```
+
+## 模板
+
+`template` 選項允許您從各種模板中選擇。每個模板都有獨特的設計和佈局。您可以在[模板文件](./docx/templates)中找到可用模板的列表。
+
+```yml lineNumbers
+layouts:
+  - engine: docx
+    template: calm
+```
+
+## 排版
+
+`typography` 選項允許您自定義履歷中使用的字體樣式。
+
+### 字體大小
+
+`fontSize` 選項允許您設置文件的基本字體大小。DOCX 引擎支援從 `10pt` 到 `12pt` 的字體大小。
+
+| 值       | 描述       |
+| -------- | ---------- |
+| `10pt`   | 小         |
+| `10.5pt` | 緊湊       |
+| `11pt`   | 正常       |
+| `11.5pt` | 中等       |
+| `12pt`   | 大         |
+
+### 字體家族
+
+`fontFamily` 選項允許您指定 DOCX 輸出中使用的字體名稱。字體必須在打開文件的系統上可用。
+
+```yml lineNumbers
+layouts:
+  - engine: docx
+    typography:
+      fontFamily: Arial
+```
+
+### 行距
+
+`lineSpacing` 選項允許您調整文件的行距。YAMLResume 使用語義值，這些值會映射到特定於引擎的實現：
+
+| 值        | 描述                                   |
+| --------- | -------------------------------------- |
+| `tight`   | 緊湊間距                               |
+| `snug`    | 比 tight 稍多的空間                    |
+| `normal`  | 均衡的可讀性（默認）                   |
+| `relaxed` | 行之間更多呼吸空間                     |
+| `loose`   | 非常寬鬆的佈局                         |
+
+## 進階設置
+
+`advanced` 選項允許您配置 DOCX 的進階設置。
+
+### 顯示 URL
+
+`showUrls` 選項控制是否在文件中顯示原始 URL。啟用後，機構、公司、項目等的 URL 將顯示為可點擊的超連結。
+
+### 顯示圖標
+
+`showIcons` 選項控制是否為聯繫信息和位置顯示表情圖標。啟用後，電話和郵件符號等圖標將顯示在文字旁邊。
+
+```yml lineNumbers
+layouts:
+  - engine: docx
+    advanced:
+      showUrls: true
+      showIcons: true
+```

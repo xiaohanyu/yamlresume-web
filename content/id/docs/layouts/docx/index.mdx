@@ -1,0 +1,138 @@
+---
+title: Mesin DOCX
+---
+
+Mesin DOCX menghasilkan dokumen Microsoft Word dari file YAML resume Anda. Ini
+sangat berguna ketika Anda perlu membagikan resume dalam format yang dapat
+diedit atau mengirimkannya ke sistem yang memerlukan dokumen Word.
+
+## Konfigurasi
+
+Untuk menggunakan mesin DOCX, tentukan `engine: docx` dalam konfigurasi tata
+letak Anda.
+
+```yml lineNumbers
+layouts:
+  - engine: docx
+    template: calm
+    # ... opsi lainnya
+```
+
+## Halaman
+
+Opsi `page` memungkinkan Anda menyesuaikan pengaturan halaman, seperti ukuran
+kertas, margin, dan apakah akan menampilkan nomor halaman.
+
+```yml lineNumbers
+layouts:
+  - engine: docx
+    page:
+      showPageNumbers: true
+      # a4 atau letter
+      paperSize: a4
+      margins:
+        top: 2.5cm
+        left: 1.5cm
+        right: 1.5cm
+        bottom: 2.5cm
+```
+
+## Bagian
+
+Opsi `sections` memungkinkan Anda menyesuaikan judul bagian dan urutannya. Untuk
+informasi lebih lanjut, lihat [dokumentasi bagian](./sections).
+
+```yml lineNumbers
+layouts:
+  - engine: docx
+    sections:
+      aliases:
+        work: "Pengalaman Profesional"
+        education: "Pendidikan"
+        skills: "Keterampilan"
+      order:
+        - basics
+        - work
+        - education
+```
+
+## Template
+
+Opsi `template` memungkinkan Anda memilih dari berbagai template. Setiap
+template memiliki desain dan tata letak yang unik. Anda dapat menemukan daftar
+template yang tersedia di [dokumentasi template](./docx/templates).
+
+```yml lineNumbers
+layouts:
+  - engine: docx
+    template: calm
+```
+
+## Tipografi
+
+Opsi `typography` memungkinkan Anda menyesuaikan gaya font yang digunakan dalam
+resume Anda.
+
+### Ukuran Font
+
+Opsi `fontSize` memungkinkan Anda mengatur ukuran font dasar untuk dokumen.
+Mesin DOCX mendukung ukuran font dari `10pt` hingga `12pt`.
+
+| Nilai    | Deskripsi |
+| -------- | --------- |
+| `10pt`   | Kecil     |
+| `10.5pt` | Ringkas   |
+| `11pt`   | Normal    |
+| `11.5pt` | Sedang    |
+| `12pt`   | Besar     |
+
+### Keluarga Font
+
+Opsi `fontFamily` memungkinkan Anda menentukan nama font yang akan digunakan
+dalam output DOCX. Font harus tersedia di sistem tempat dokumen dibuka.
+
+```yml lineNumbers
+layouts:
+  - engine: docx
+    typography:
+      fontFamily: Arial
+```
+
+### Spasi Baris
+
+Opsi `lineSpacing` memungkinkan Anda menyesuaikan spasi baris (leading) dokumen.
+YAMLResume menggunakan nilai semantik yang dipetakan ke implementasi spesifik
+mesin:
+
+| Nilai     | Deskripsi                       |
+| --------- | ------------------------------- |
+| `tight`   | Spasi ringkas                   |
+| `snug`    | Sedikit lebih banyak ruang dari tight |
+| `normal`  | Keseimbangan keterbacaan (default) |
+| `relaxed` | Lebih banyak ruang antar baris  |
+| `loose`   | Tata letak sangat ruang         |
+
+## Lanjutan
+
+Opsi `advanced` memungkinkan Anda mengonfigurasi pengaturan lanjutan untuk mesin
+DOCX.
+
+### Menampilkan URL
+
+Opsi `showUrls` mengontrol apakah akan menampilkan URL mentah dalam dokumen.
+Ketika diaktifkan, URL untuk institusi, perusahaan, proyek, dll. ditampilkan
+sebagai hyperlink yang dapat diklik.
+
+### Menampilkan Ikon
+
+Opsi `showIcons` mengontrol apakah akan menampilkan ikon emoji untuk informasi
+kontak dan lokasi. Ketika diaktifkan, ikon seperti telepon dan email ditampilkan
+bersama teks.
+
+```yml lineNumbers
+layouts:
+  - engine: docx
+    advanced:
+      showUrls: true
+      showIcons: true
+```

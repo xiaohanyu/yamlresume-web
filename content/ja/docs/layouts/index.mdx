@@ -6,7 +6,7 @@ title: レイアウト
 
 他の履歴書ジェネレーターとは異なり、YAMLResume はすぐに使えるレイアウトソリューションを提供し、ユーザーが履歴書のコンテンツに集中しながら、ピクセルパーフェクトなレイアウトとタイポグラフィでプロフェッショナルな履歴書を生成できるようにします。
 
-v0.8.0 以降、YAMLResume は `layouts` 配列を通じて、複数のレイアウトと複数の出力エンジン (LaTeX および Markdown) をサポートしています。
+v0.8.0 以降、YAMLResume は `layouts` 配列を通じて、複数のレイアウトと複数の出力エンジンをサポートしています。
 
 以下は `resume.yml` ファイルでのレイアウト設定の例です：
 
@@ -35,10 +35,12 @@ layouts:
 
 ## エンジン
 
-YAMLResume は現在、2 つのエンジンをサポートしています。
+YAMLResume は現在、4 つのエンジンをサポートしています。
 
 - [LaTeX](./layouts/latex): 高品質な PDF 履歴書を生成します。
 - [Markdown](./layouts/markdown): プレーンな Markdown 履歴書を生成します。
+- [HTML](./layouts/html): クリーンでウェブ対応の HTML 履歴書を生成します。
+- [DOCX](./layouts/docx): Microsoft Word ドキュメントを生成します。
 
 ## 詳細情報
 
@@ -57,5 +59,15 @@ YAMLResume は現在、2 つのエンジンをサポートしています。
     href="./layouts/markdown"
     title="Markdown エンジン"
     description="Markdown 履歴書を生成"
+  />
+  <Card
+    href="./layouts/html"
+    title="HTML エンジン"
+    description="HTML 履歴書を生成"
+  />
+  <Card
+    href="./layouts/docx"
+    title="DOCX エンジン"
+    description="Microsoft Word ドキュメントを生成"
   />
 </Cards>

@@ -1,0 +1,54 @@
+---
+title: Calm
+---
+
+## Implementation
+
+Calm is a clean and modern DOCX template inspired by the moderncv LaTeX
+template. It features a minimalist design with clear section separation and an
+elegant layout optimized for Microsoft Word and compatible word processors.
+
+Under the hood, the template uses:
+
+- **OOXML Generation**: Built on the [`docx`](https://www.npmjs.com/package/docx)
+  npm package, constructing an AST of document nodes and serializing them to a
+  ZIP-based OOXML binary
+- **Typography**: Customizable font sizes ranging from 10pt to 12pt
+- **Two-Column Layout**: Entry titles on the left, dates and URLs on the right
+- **Clickable Hyperlinks**: External URLs and email addresses are rendered as
+  clickable links
+- **Markdown Support**: Summary fields are parsed as Markdown for rich text
+  formatting
+
+## Configuration
+
+```yml lineNumbers title="resume.yml"
+content:
+  # ...
+
+layouts:
+  - engine: docx
+    template: calm    # [!code highlight]
+    typography:
+      fontSize: 11pt
+```
+
+## Features
+
+- **Clean Design**: Minimalist layout focused on content readability
+- **Professional Typography**: Bold labels and italic details for visual hierarchy
+- **Editable Format**: Native Word document that can be opened and edited in
+  Microsoft Word, Google Docs, LibreOffice, and WPS Office
+- **Print-Friendly**: Optimized for printing with proper page margins and
+  typography
+- **Customizable Sections**: Flexible section ordering and naming
+- **Icon Support**: Optional emoji icons for contact information (best viewed in
+  Microsoft Office)
+
+## Preview
+
+![Calm Template in Microsoft Word](/static/images/docs/layouts/docx/templates/calm.png)
+
+Please note that the preview may look different in other word processors, and
+some features (like emoji icons) may not render correctly outside of Microsoft
+Word.
