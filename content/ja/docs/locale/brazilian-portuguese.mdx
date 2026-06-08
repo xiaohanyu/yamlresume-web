@@ -1,0 +1,499 @@
+---
+title: ブラジルポルトガル語
+---
+
+ブラジルポルトガル語（_português brasileiro_）は、[俗ラテン語](https://en.wikipedia.org/wiki/Vulgar_Latin)から派生したロマンス語で、南アメリカ最大かつ[ポルトガル語圏](https://en.wikipedia.org/wiki/Lusophone)最大の国であるブラジルの公用語です。ポルトガル語とスペイン語は、密接に関連する[ロマンス語](https://en.wikipedia.org/wiki/Romance_languages)として多くの類似点を共有しているため、YAMLResumeの共通基盤のほとんどをブラジルポルトガル語に再利用できます。
+
+## 言語学
+
+### 文字セット
+
+ブラジルポルトガル語は、26文字（`a-z`）の[ラテン
+アルファベット](https://en.wikipedia.org/wiki/Latin_alphabet)を使用します。
+スペイン語とは異なり、ポルトガル語には `ñ` の文字がありません。代わりに、
+鼻音化された同等のものは `nh` と表記されます。ポルトガル語は強勢、鼻音化、
+発音を示すために複数のダイアクリティカルマークを使用します：
+
+| Feature                | English Character Set             | Brazilian Portuguese Character Set                                                                                          |
+| ---------------------- | --------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| **Alphabet**           | 26 letters (`a-z`)                | 26 letters (`a-z`)                                                                                                          |
+| **Diacritics**         | None                              | Includes acute (`á`, `é`, `í`, `ó`, `ú`), circumflex (`â`, `ê`, `ô`), grave (`à`), tilde (`ã`, `õ`), and diaeresis (`ü`)    |
+| **Special Characters** | Limited to basic Latin characters | Includes `ç` (c-cedilha), which is not considered a separate letter but a variant of `c`                                     |
+
+英語とブラジルポルトガル語の書記体系の主な違い：
+
+- **ダイアクリティカルマーク**：ポルトガル語では、強勢や発音の変化を示すいくつかの
+  記号を使用します。例えば、アキュートアクセント（`é`）は開母音を示し、
+  サーカムフレックス（`ê`）は閉母音を示し、チルダ（`ã`、`õ`）は鼻音化を示します。
+- **セディーユ**：`ç`（c-セディーユ）はポルトガル語特有で、`a`、`o`、`u` の前にのみ
+  現れます（例：_caça_、_aço_、_açúcar_）。
+- **逆疑問符・逆感嘆符なし**：スペイン語とは異なり、ポルトガル語では逆疑問符（`¿`）
+  や逆感嘆符（`¡`）を使用しません。
+
+## 慣用表現
+
+### 日付
+
+ポルトガル語では曜日と月は大文字になりません。例えば、英語の「Sep 2021」は
+ブラジルポルトガル語では「set 2021」と翻訳されます。省略形の月名は通常、
+ピリオドが続きます（例：`jan.`）。
+
+YAMLResumeは月のみを使用するため、翻訳表：
+
+| 英語           | ブラジルポルトガル語|
+| --------------- | -------------------- |
+| January (Jan)   | janeiro (jan.)       |
+| February (Feb)  | fevereiro (fev.)     |
+| March (Mar)     | março (mar.)         |
+| April (Apr)     | abril (abr.)         |
+| May (May)       | maio (mai.)          |
+| June (Jun)      | junho (jun.)         |
+| July (Jul)      | julho (jul.)         |
+| August (Aug)    | agosto (ago.)        |
+| September (Sep) | setembro (set.)      |
+| October (Oct)   | outubro (out.)       |
+| November (Nov)  | novembro (nov.)      |
+| December (Dec)  | dezembro (dez.)      |
+
+### 大文字化
+
+ポルトガル語はスペイン語と同様の保守的な大文字化ルールに従います。月、曜日、
+言語、国籍は小文字です。ドイツ語とは異なり、ポルトガル語ではすべての名詞を
+大文字にしません。
+
+YAMLResumeは内部で、すべての履歴書テンプレートに固定のオプションと用語セットを
+採用しています。例えば、YAMLResumeの履歴書テンプレートの言語は
+[LinkedInの言語能力オプション](https://www.linkedin.com/pulse/language-proficiency-linkedin-duaa-ali/)を採用しています：
+
+- Elementary Proficiency
+- Limited Working Proficiency
+- Minimum Professional Proficiency
+- Full Professional Proficiency
+- Native or Bilingual Proficiency
+
+これらはブラジルポルトガル語に以下のように翻訳されます：
+
+- Proficiência Básica
+- Proficiência Profissional Limitada
+- Proficiência Profissional Mínima
+- Proficiência Profissional Fluente
+- Nativo ou Bilíngue
+
+最初の単語のみが大文字になります。
+
+## 組版
+
+### 句読点
+
+ブラジルポルトガル語は英語といくつかの句読点の規則を共有していますが、
+いくつかの違いがあります：
+
+- **引用符**：英語と同様に、ブラジルポルトガル語ではピリオドとコンマは
+  引用符の内側に配置されます。
+- **逆符号**：スペイン語とは異なり、ポルトガル語では逆疑問符（`¿`）や
+  逆感嘆符（`¡`）を使用**しません**。
+- **シリアルコンマ**：ポルトガル語ではリスト内の「e」の前にシリアルコンマを
+  使用しません（例：「maçãs, laranjas e bananas」）。スペイン語と同様です。
+- **数値形式**：英語では小数点としてピリオドを使用しますが（例：3.14）、
+  ポルトガル語ではコンマを使用します（例：3,14）。千の位には、ポルトガル語では
+  ピリオドを使用します（例：1.000）。
+
+## 翻訳
+
+YAMLResumeは、ブラジルポルトガル語の履歴書で使用されるさまざまなオプションと
+用語について、以下の翻訳を採用しています。
+
+### 学位
+
+| 英語          | ブラジルポルトガル語 |
+| ------------- | -------------------- |
+| Middle School | Ensino Fundamental   |
+| High School   | Ensino Médio         |
+| Diploma       | Diploma              |
+| Associate     | Tecnólogo            |
+| Bachelor      | Bacharelado          |
+| Master        | Mestrado             |
+| Doctor        | Doutorado            |
+
+### 言語
+
+| 英語      | ブラジルポルトガル語 |
+| ---------- | -------------------- |
+| Afrikaans  | Africander           |
+| Albanian   | Albanês              |
+| Amharic    | Amárico              |
+| Arabic     | Árabe                |
+| Azerbaijani| Azerbaijano          |
+| Belarusian | Bielorrusso          |
+| Bengali    | Bengali              |
+| Bhojpuri   | Bhojpuri             |
+| Bulgarian  | Búlgaro              |
+| Burmese    | Birmanês             |
+| Cantonese  | Cantonês             |
+| Catalan    | Catalão              |
+| Chinese    | Chinês               |
+| Croatian   | Croata               |
+| Czech      | Tcheco               |
+| Danish     | Dinamarquês          |
+| Dutch      | Holandês             |
+| English    | Inglês               |
+| Estonian   | Estoniano            |
+| Farsi      | Persa                |
+| Filipino   | Filipino             |
+| Finnish    | Finlandês            |
+| French     | Francês              |
+| German     | Alemão               |
+| Greek      | Grego                |
+| Gujarati   | Guzerate             |
+| Hausa      | Hausa                |
+| Hebrew     | Hebraico             |
+| Hindi      | Hindi                |
+| Hungarian  | Húngaro              |
+| Icelandic  | Islandês             |
+| Igbo       | Igbo                 |
+| Indonesian | Indonésio            |
+| Irish      | Irlandês             |
+| Italian    | Italiano             |
+| Japanese   | Japonês              |
+| Javanese   | Javanês              |
+| Kazakh     | Cazaque              |
+| Khmer      | Khmer                |
+| Korean     | Coreano              |
+| Lahnda     | Lahnda               |
+| Latvian    | Letão                |
+| Lithuanian | Lituano              |
+| Malay      | Malaio               |
+| Mandarin   | Mandarim             |
+| Marathi    | Marathi              |
+| Nepali     | Nepalês              |
+| Norwegian  | Norueguês            |
+| Oromo      | Oromo                |
+| Pashto     | Pashto               |
+| Polish     | Polonês              |
+| Portuguese | Português            |
+| Romanian   | Romeno               |
+| Russian    | Russo                |
+| Serbian    | Sérvio               |
+| Shona      | Shona                |
+| Sinhala    | Cingalês             |
+| Slovak     | Eslovaco             |
+| Slovene    | Esloveno             |
+| Somali     | Somali               |
+| Spanish    | Espanhol             |
+| Sundanese  | Sundanês             |
+| Swahili    | Suaíli               |
+| Swedish    | Sueco                |
+| Tagalog    | Tagalo               |
+| Tamil      | Tamil                |
+| Telugu     | Telugo               |
+| Thai       | Tailandês            |
+| Turkish    | Turco                |
+| Ukrainian  | Ucraniano            |
+| Urdu       | Urdu                 |
+| Uzbek      | Uzbeque              |
+| Vietnamese | Vietnamita           |
+| Yoruba     | Ioruba               |
+| Zulu       | Zulu                 |
+
+### 言語能力レベル
+
+| 英語                            | ブラジルポルトガル語              |
+| -------------------------------- | --------------------------------- |
+| Elementary Proficiency           | Proficiência Básica               |
+| Limited Working Proficiency      | Proficiência Profissional Limitada|
+| Minimum Professional Proficiency | Proficiência Profissional Mínima  |
+| Full Professional Proficiency    | Proficiência Profissional Fluente |
+| Native or Bilingual Proficiency  | Nativo ou Bilíngue                |
+
+### 場所（国と地域）
+
+| 英語                                 | ブラジルポルトガル語                      |
+| ------------------------------------ | ------------------------------------------ |
+| Afghanistan                          | Afeganistão                                |
+| Aland Islands                        | Ilhas Aland                                |
+| Albania                              | Albania                                    |
+| Algeria                              | Argélia                                    |
+| American Samoa                       | Samoa Americana                            |
+| Andorra                              | Andorra                                    |
+| Angola                               | Angola                                     |
+| Anguilla                             | Anguilla                                   |
+| Antarctica                           | Antártica                                  |
+| Antigua And Barbuda                  | Antigua e Barbuda                          |
+| Argentina                            | Argentina                                  |
+| Armenia                              | Armênia                                    |
+| Aruba                                | Aruba                                      |
+| Australia                            | Austrália                                  |
+| Austria                              | Áustria                                    |
+| Azerbaijan                           | Azerbaijão                                 |
+| Bahrain                              | Bahrain                                    |
+| Bangladesh                           | Bangladesh                                 |
+| Barbados                             | Barbados                                   |
+| Belarus                              | Belarus                                    |
+| Belgium                              | Bélgica                                    |
+| Belize                               | Belize                                     |
+| Benin                                | Benim                                      |
+| Bermuda                              | Bermuda                                    |
+| Bhutan                               | Butão                                      |
+| Bolivia                              | Bolivia                                    |
+| Bonaire, Sint Eustatius and Saba     | Bonaire, Sint Eustatius and Saba           |
+| Bosnia and Herzegovina               | Bósnia e Herzegovina                       |
+| Botswana                             | Botswana                                   |
+| Bouvet Island                        | Bouvet Island                              |
+| Brazil                               | Brasil                                     |
+| British Indian Ocean Territory       | Território Britânico do Oceano Índico      |
+| Brunei                               | Brunei                                     |
+| Bulgaria                             | Bulgária                                   |
+| Burkina Faso                         | Burkina Faso                               |
+| Burundi                              | Burundi                                    |
+| Cambodia                             | Camboja                                    |
+| Cameroon                             | Camarões                                   |
+| Canada                               | Canadá                                     |
+| Cape Verde                           | Cabo Verde                                 |
+| Cayman Islands                       | Ilhas Cayman                               |
+| Central African Republic             | República Centro-Africana                  |
+| Chad                                 | Chad                                       |
+| Chile                                | Chile                                      |
+| China                                | China                                      |
+| Christmas Island                     | Ilha Christmas                             |
+| Cocos (Keeling) Islands              | Ilhas Cocos (Keeling)                      |
+| Colombia                             | Colômbia                                   |
+| Comoros                              | Comores                                    |
+| Congo                                | Congo                                      |
+| Cook Islands                         | Ilhas Cook                                 |
+| Costa Rica                           | Costa Rica                                 |
+| Cote D'Ivoire (Ivory Coast)          | Costa do Marfim                            |
+| Croatia                              | Croácia                                    |
+| Cuba                                 | Cuba                                       |
+| Curaçao                              | Curaçao                                    |
+| Cyprus                               | Chipre                                     |
+| Czech Republic                       | República Tcheca                           |
+| Democratic Republic of the Congo     | República Democrática do Congo             |
+| Denmark                              | Dinamarca                                  |
+| Djibouti                             | Djibuti                                    |
+| Dominica                             | Dominica                                   |
+| Dominican Republic                   | República Dominicana                       |
+| East Timor                           | Timor-Leste                                |
+| Ecuador                              | Equador                                    |
+| Egypt                                | Egito                                      |
+| El Salvador                          | El Salvador                                |
+| Equatorial Guinea                    | Guiné Equatorial                           |
+| Eritrea                              | Eritrea                                    |
+| Estonia                              | Estonia                                    |
+| Ethiopia                             | Etiópia                                    |
+| Falkland Islands                     | Ilhas Malvinas                             |
+| Faroe Islands                        | Ilhas Faroe                                |
+| Fiji Islands                         | Fiji                                       |
+| Finland                              | Finlândia                                  |
+| France                               | França                                     |
+| French Guiana                        | Guiana Francesa                            |
+| French Polynesia                     | Polinésia Francesa                         |
+| French Southern Territories          | Territórios Franceses do Sul               |
+| Gabon                                | Gabon                                      |
+| Gambia The                           | Gâmbia                                     |
+| Georgia                              | Geórgia                                    |
+| Germany                              | Alemanha                                   |
+| Ghana                                | Gana                                       |
+| Gibraltar                            | Gibraltar                                  |
+| Greece                               | Grécia                                     |
+| Greenland                            | Groenlândia                                |
+| Grenada                              | Grenada                                    |
+| Guadeloupe                           | Guadeloupe                                 |
+| Guam                                 | Guam                                       |
+| Guatemala                            | Guatemala                                  |
+| Guernsey and Alderney                | Guernsey and Alderney                      |
+| Guinea                               | Guinea                                     |
+| Guinea-Bissau                        | Guiné-Bissau                               |
+| Guyana                               | Guyana                                     |
+| Haiti                                | Haiti                                      |
+| Heard Island and McDonald Islands    | Ilha Heard e Ilhas McDonald                |
+| Honduras                             | Honduras                                   |
+| Hong Kong S.A.R.                     | Hong Kong S.A.R.                           |
+| Hungary                              | Hungria                                    |
+| Iceland                              | Islândia                                   |
+| India                                | Índia                                      |
+| Indonesia                            | Indonesia                                  |
+| Iran                                 | Irã                                        |
+| Iraq                                 | Iraque                                     |
+| Ireland                              | Irlanda                                    |
+| Israel                               | Israel                                     |
+| Italy                                | Itália                                     |
+| Jamaica                              | Jamaica                                    |
+| Japan                                | Japão                                      |
+| Jersey                               | Jersey                                     |
+| Jordan                               | Jordânia                                   |
+| Kazakhstan                           | Cazaquistão                                |
+| Kenya                                | Kenya                                      |
+| Kiribati                             | Kiribati                                   |
+| Kosovo                               | Kosovo                                     |
+| Kuwait                               | Kuwait                                     |
+| Kyrgyzstan                           | Quirguistão                                |
+| Laos                                 | Laos                                       |
+| Latvia                               | Letônia                                    |
+| Lebanon                              | Líbano                                     |
+| Lesotho                              | Lesotho                                    |
+| Liberia                              | Liberia                                    |
+| Libya                                | Líbia                                      |
+| Liechtenstein                        | Liechtenstein                              |
+| Lithuania                            | Lituânia                                   |
+| Luxembourg                           | Luxemburgo                                 |
+| Macau S.A.R.                         | Macau                                      |
+| Madagascar                           | Madagascar                                 |
+| Malawi                               | Malawi                                     |
+| Malaysia                             | Malásia                                    |
+| Maldives                             | Maldivas                                   |
+| Mali                                 | Mali                                       |
+| Malta                                | Malta                                      |
+| Man (Isle of)                        | Ilha de Man                                |
+| Marshall Islands                     | Ilhas Marshall                             |
+| Martinique                           | Martinique                                 |
+| Mauritania                           | Mauritania                                 |
+| Mauritius                            | Maurício                                   |
+| Mayotte                              | Mayotte                                    |
+| Mexico                               | México                                     |
+| Micronesia                           | Micronésia                                 |
+| Moldova                              | Moldávia                                   |
+| Monaco                               | Mônaco                                     |
+| Mongolia                             | Mongólia                                   |
+| Montenegro                           | Montenegro                                 |
+| Montserrat                           | Montserrat                                 |
+| Morocco                              | Marrocos                                   |
+| Mozambique                           | Moçambique                                 |
+| Myanmar                              | Myanmar                                    |
+| Namibia                              | Namibia                                    |
+| Nauru                                | Nauru                                      |
+| Nepal                                | Nepal                                      |
+| Netherlands                          | Países Baixos                              |
+| New Caledonia                        | Nova Caledônia                             |
+| New Zealand                          | Nova Zelândia                              |
+| Nicaragua                            | Nicarágua                                  |
+| Niger                                | Níger                                      |
+| Nigeria                              | Nigeria                                    |
+| Niue                                 | Niue                                       |
+| Norfolk Island                       | Ilha Norfolk                               |
+| North Korea                          | Coreia do Norte                            |
+| North Macedonia                      | Macedônia do Norte                         |
+| Northern Mariana Islands             | Ilhas Marianas do Norte                    |
+| Norway                               | Noruega                                    |
+| Oman                                 | Oman                                       |
+| Pakistan                             | Pakistan                                   |
+| Palau                                | Palau                                      |
+| Palestinian Territory Occupied       | Território Palestino Ocupado               |
+| Panama                               | Panama                                     |
+| Papua new Guinea                     | Papua-Nova Guiné                           |
+| Paraguay                             | Paraguay                                   |
+| Peru                                 | Peru                                       |
+| Philippines                          | Filipinas                                  |
+| Pitcairn Island                      | Ilha Pitcairn                              |
+| Poland                               | Polônia                                    |
+| Portugal                             | Portugal                                   |
+| Puerto Rico                          | Porto Rico                                 |
+| Qatar                                | Qatar                                      |
+| Reunion                              | Reunião                                    |
+| Romania                              | Romênia                                    |
+| Russia                               | Rússia                                     |
+| Rwanda                               | Ruanda                                     |
+| Saint Helena                         | Santa Helena                               |
+| Saint Kitts And Nevis                | São Cristóvão e Nevis                      |
+| Saint Lucia                          | Santa Lúcia                                |
+| Saint Pierre and Miquelon            | São Pedro e Miquelão                       |
+| Saint Vincent And The Grenadines     | São Vicente e Granadinas                   |
+| Saint-Barthelemy                     | Saint-Barthelemy                           |
+| Saint-Martin (French part)           | Saint-Martin (French part)                 |
+| Samoa                                | Samoa                                      |
+| San Marino                           | San Marino                                 |
+| Sao Tome and Principe                | São Tomé e Príncipe                        |
+| Saudi Arabia                         | Arábia Saudita                             |
+| Senegal                              | Senegal                                    |
+| Serbia                               | Sérvia                                     |
+| Seychelles                           | Seicheles                                  |
+| Sierra Leone                         | Sierra Leone                               |
+| Singapore                            | Singapura                                  |
+| Sint Maarten (Dutch part)            | Sint Maarten (Dutch part)                  |
+| Slovakia                             | Eslováquia                                 |
+| Slovenia                             | Eslovênia                                  |
+| Solomon Islands                      | Ilhas Salomão                              |
+| Somalia                              | Somalia                                    |
+| South Africa                         | África do Sul                              |
+| South Georgia                        | Geórgia do Sul                             |
+| South Korea                          | Coreia do Sul                              |
+| South Sudan                          | Sudão do Sul                               |
+| Spain                                | Espanha                                    |
+| Sri Lanka                            | Sri Lanka                                  |
+| Sudan                                | Sudan                                      |
+| Suriname                             | Suriname                                   |
+| Svalbard And Jan Mayen Islands       | Svalbard And Jan Mayen Islands             |
+| Swaziland                            | Swaziland                                  |
+| Sweden                               | Suécia                                     |
+| Switzerland                          | Suíça                                      |
+| Syria                                | Síria                                      |
+| Taiwan                               | Taiwan                                     |
+| Tajikistan                           | Tajikistan                                 |
+| Tanzania                             | Tanzania                                   |
+| Thailand                             | Tailândia                                  |
+| The Bahamas                          | Bahamas                                    |
+| Togo                                 | Togo                                       |
+| Tokelau                              | Tokelau                                    |
+| Tonga                                | Tonga                                      |
+| Trinidad And Tobago                  | Trinidad e Tobago                          |
+| Tunisia                              | Tunisia                                    |
+| Türkiye                              | Turquia                                    |
+| Turkmenistan                         | Turcomenistão                              |
+| Turks And Caicos Islands             | Ilhas Turks e Caicos                       |
+| Tuvalu                               | Tuvalu                                     |
+| Uganda                               | Uganda                                     |
+| Ukraine                              | Ucrânia                                    |
+| United Arab Emirates                 | Emirados Árabes Unidos                     |
+| United Kingdom                       | Reino Unido                                |
+| United States                        | Estados Unidos                             |
+| United States Minor Outlying Islands | Ilhas Menores Distantes dos Estados Unidos |
+| Uruguay                              | Uruguay                                    |
+| Uzbekistan                           | Uzbekistan                                 |
+| Vanuatu                              | Vanuatu                                    |
+| Vatican City State (Holy See)        | Cidade do Vaticano                         |
+| Venezuela                            | Venezuela                                  |
+| Vietnam                              | Vietnam                                    |
+| Virgin Islands (British)             | Ilhas Virgens Britânicas                   |
+| Virgin Islands (US)                  | Ilhas Virgens Americanas                   |
+| Wallis And Futuna Islands            | Wallis e Futuna                            |
+| Western Sahara                       | Saara Ocidental                            |
+| Yemen                                | Iêmen                                      |
+| Zambia                               | Zambia                                     |
+| Zimbabwe                             | Zimbábue                                   |
+
+### セクション名
+
+| 英語         | ブラジルポルトガル語  |
+| ------------ | ---------------------- |
+| Awards       | Prêmios                |
+| Basics       | Informações Básicas    |
+| Certificates | Certificados           |
+| Education    | Formação               |
+| Interests    | Interesses             |
+| Languages    | Idiomas                |
+| Location     | Localização            |
+| Profiles     | Perfis                 |
+| Projects     | Projetos               |
+| Publications | Publicações            |
+| References   | Referências            |
+| Skills       | Competências           |
+| Volunteer    | Voluntariado           |
+| Work         | Experiência Profissional|
+
+### スキルレベル
+
+| 英語         | ブラジルポルトガル語 |
+| ------------ | -------------------- |
+| Novice       | Novato               |
+| Beginner     | Iniciante            |
+| Intermediate | Intermediário        |
+| Advanced     | Avançado             |
+| Expert       | Especialista         |
+| Master       | Mestre               |
+
+### オプションと用語
+
+| 英語     | ブラジルポルトガル語 |
+| -------- | ---------------------- |
+| Courses  | Cursos                 |
+| Keywords | Palavras-chave         |
+| Score    | Nota                   |
