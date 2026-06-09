@@ -18,8 +18,8 @@ importers:
         specifier: ^1.6.1
         version: 1.6.1(next@15.5.10(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react@19.2.0)
       '@yamlresume/playground':
-        specifier: ^0.13.0
-        version: 0.13.0(monaco-editor@0.55.1)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(tailwindcss@4.1.13)
+        specifier: ^0.13.1
+        version: 0.13.1(monaco-editor@0.55.1)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(tailwindcss@4.1.13)
       class-variance-authority:
         specifier: ^0.7.1
         version: 0.7.1
@@ -1401,12 +1401,12 @@ packages:
       vue-router:
         optional: true
 
-  '@yamlresume/core@0.13.0':
-    resolution: {integrity: sha512-8U8btYsL1sWnmExgknRghrMPr8q5OgvzvfAY7rcVllivmItcpZUh1TCQ37d3djCUCiFAliFw2Hmlu+67dZc8lg==}
+  '@yamlresume/core@0.13.1':
+    resolution: {integrity: sha512-bvuBORWuXQRh6thN4aaqlnDqDaRRWUqxCg0Py5NI63mZOYCUGxT/mTcL3aGcIPAarPuaMkwu2tG01WfdAw69+g==}
     engines: {node: '>=20.0.0'}
 
-  '@yamlresume/playground@0.13.0':
-    resolution: {integrity: sha512-f9qGT1NufQN9DOGNClmaRNpG2yh1zkqUsxbzJMY7HNhE22/ZhhpIepI0ynFroiNJSKCsqpxtzVeBAox2sB3Aow==}
+  '@yamlresume/playground@0.13.1':
+    resolution: {integrity: sha512-56yiKjM1QJkonQKT+SLtwCf4sB0u4udYLSAa7ysG0eYLmHmDv8x0K82FMqVb9kJKRVkywpIyCN+axSHIb9wulw==}
     peerDependencies:
       react: '>=18'
       react-dom: '>=18'
@@ -1473,8 +1473,8 @@ packages:
   balanced-match@1.0.2:
     resolution: {integrity: sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==}
 
-  brace-expansion@2.0.2:
-    resolution: {integrity: sha512-Jt0vHyM+jmUBqojB7E1NIYadt0vI0Qxjxd2TErW94wDz+E2LAm5vKMXXwg6ZZBTHPuUlDgQHKXvjGBdfcF1ZDQ==}
+  brace-expansion@2.1.1:
+    resolution: {integrity: sha512-WR1cURNjuvBLMZBMbqM0UoE+WAfdUcEV1ccD8PVBVOI+Z3ND4+SZbN8RsfT2bMuG1qwz5RFvPukSZm5fF2D5eA==}
 
   braces@3.0.3:
     resolution: {integrity: sha512-yQbXgO/OSZVD2IsiLlro+7Hf6Q18EJrKSEsdoMzKePKXct3gvD8oLcOQdIzGupr5Fj+EDe8gO/lxc1BzfMpxvA==}
@@ -2198,9 +2198,8 @@ packages:
     engines: {node: '>=14'}
     hasBin: true
 
-  js-cookie@3.0.5:
-    resolution: {integrity: sha512-cEiJEAEoIbWfCZYKWhVwFuvPX1gETRYPw6LlaTKoxD3s2AkXzkCjnp6h0V77ozyqj0jakteJ4YqDJT830+lVGw==}
-    engines: {node: '>=14'}
+  js-cookie@3.0.8:
+    resolution: {integrity: sha512-yeJd4aNAdYZQjaon2bpD/Gb0B/omw7HQOsynXXcOiWVCacbBcPlgn8S/d1X6blFSaHao7ozqtW7NZW19xpCtIw==}
 
   js-tokens@4.0.0:
     resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==}
@@ -2929,6 +2928,11 @@ packages:
 
   semver@7.7.4:
     resolution: {integrity: sha512-vFKC2IEtQnVhpT78h1Yp8wzwrf8CM+MzKMHGJZfBtzhZNycRFnXsHk6E5TxIkkMsgNS7mdX3AGB7x2QM2di4lA==}
+    engines: {node: '>=10'}
+    hasBin: true
+
+  semver@7.8.3:
+    resolution: {integrity: sha512-wnilbGyMxzbY7dNOl7jpKbLSjcfeweJWU5j4+u5qW+6/wuGD9KzIGOyZnQVSBM9E7DtWaaH3CyHkppYrKYoxwg==}
     engines: {node: '>=10'}
     hasBin: true
 
@@ -4464,7 +4468,7 @@ snapshots:
       next: 15.5.10(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       react: 19.2.0
 
-  '@yamlresume/core@0.13.0':
+  '@yamlresume/core@0.13.1':
     dependencies:
       docx: 9.7.1
       escape-latex: 1.2.0
@@ -4477,11 +4481,11 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@yamlresume/playground@0.13.0(monaco-editor@0.55.1)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(tailwindcss@4.1.13)':
+  '@yamlresume/playground@0.13.1(monaco-editor@0.55.1)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(tailwindcss@4.1.13)':
     dependencies:
       '@monaco-editor/react': 4.7.0(monaco-editor@0.55.1)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       '@tabler/icons-react': 3.44.0(react@19.2.0)
-      '@yamlresume/core': 0.13.0
+      '@yamlresume/core': 0.13.1
       clsx: 2.1.1
       docx-preview: 0.3.7
       jszip: 3.10.1
@@ -4543,7 +4547,7 @@ snapshots:
 
   balanced-match@1.0.2: {}
 
-  brace-expansion@2.0.2:
+  brace-expansion@2.1.1:
     dependencies:
       balanced-match: 1.0.2
 
@@ -4937,7 +4941,7 @@ snapshots:
       '@one-ini/wasm': 0.1.1
       commander: 10.0.1
       minimatch: 9.0.9
-      semver: 7.7.4
+      semver: 7.8.3
 
   emoji-regex@10.5.0: {}
 
@@ -5339,10 +5343,10 @@ snapshots:
       config-chain: 1.1.13
       editorconfig: 1.0.7
       glob: 10.5.0
-      js-cookie: 3.0.5
+      js-cookie: 3.0.8
       nopt: 7.2.1
 
-  js-cookie@3.0.5: {}
+  js-cookie@3.0.8: {}
 
   js-tokens@4.0.0: {}
 
@@ -5982,7 +5986,7 @@ snapshots:
 
   minimatch@9.0.9:
     dependencies:
-      brace-expansion: 2.0.2
+      brace-expansion: 2.1.1
 
   minimist@1.2.8: {}
 
@@ -6361,6 +6365,8 @@ snapshots:
       compute-scroll-into-view: 3.1.1
 
   semver@7.7.4: {}
+
+  semver@7.8.3: {}
 
   setimmediate@1.0.5: {}
 
