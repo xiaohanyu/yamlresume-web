@@ -1,0 +1,171 @@
+---
+title: "YAMLResume v0.13: Motor DOCX y Portugués Brasileño"
+description:
+  "YAMLResume v0.13 introduce un nuevo motor de renderizado DOCX para generar
+  documentos de Microsoft Word, añade soporte para el idioma portugués brasileño,
+  e incluye varias correcciones de errores y mejoras."
+author: Xiao Hanyu
+profile: https://x.com/xiaohanyu1988
+date: 2026-06-08
+---
+
+Nos complace anunciar [YAMLResume
+v0.13](https://github.com/yamlresume/yamlresume/releases/tag/v0.13.0). Esta
+versión introduce un nuevo [motor de renderizado DOCX](/es/docs/layouts/docx) para
+generar documentos de Microsoft Word, añade soporte para [portugués
+brasileño](/es/docs/locale/brazilian-portuguese), trae etiquetas en negrita y
+palabras clave a las plantillas DOCX, e incluye varias correcciones de errores y
+mejoras.
+
+## Nuevo Motor: DOCX
+
+La característica más importante de esta versión es el nuevo [motor de
+renderizado DOCX](/es/docs/layouts/docx). Ahora puedes generar documentos de
+Microsoft Word directamente desde tu archivo YAML de currículum.
+
+El motor DOCX está construido sobre el paquete npm
+[`docx`](https://www.npmjs.com/package/docx), que construye un AST de nodos de
+documento (Párrafos, TextRuns, Tablas, etc.) y los serializa a un binario OOXML
+basado en ZIP.
+
+### Plantilla Calm para DOCX
+
+La primera plantilla DOCX disponible es **Calm**, inspirada en la plantilla
+moderncv de LaTeX y que coincide con el diseño visual de la plantilla Calm de
+HTML con un limpio diseño de dos columnas.
+
+```yml lineNumbers
+layouts:
+  - engine: docx
+    template: calm   # [!code highlight]
+```
+
+La plantilla Calm de DOCX admite casi las mismas opciones de personalización que
+otros motores, incluyendo tamaño de fuente, espaciado de línea y márgenes de
+página.
+
+Aquí hay una configuración de ejemplo:
+
+```yml lineNumbers
+layouts:
+  - engine: docx
+    page:
+      showPageNumbers: true
+      # a4 or letter
+      paperSize: a4
+      margins:
+        top: 2.5cm
+        left: 1.5cm
+        right: 1.5cm
+        bottom: 2.5cm
+    typography:
+      fontFamily: Arial
+      fontSize: 11pt
+      lineSpacing: normal
+    advanced:
+      showUrls: true
+      showIcons: true
+    sections:
+      aliases:
+        work: "Professional Experience"
+        education: "Education"
+        skills: "Skills"
+      order:
+        - basics
+        - work
+        - education
+```
+
+Aquí tienes una vista previa de la plantilla Calm de DOCX en Microsoft Word:
+
+![Plantilla Calm en Microsoft Word](/static/images/docs/layouts/docx/templates/calm.webp)
+
+### Soporte CLI
+
+Como siempre, puedes listar todas las plantillas y motores disponibles con:
+
+```console
+$ yamlresume templates list
+
+| layouts.[].template | Engine | Template Name    | Description                                                         |
+| ------------------- | ------ | ---------------- | ------------------------------------------------------------------- |
+| jake                | latex  | Jake's Resume    | A simple, straight-forward resume template based on Jake's Resume   |
+| moderncv-banking    | latex  | ModernCV Banking | ModernCV template with banking style                                |
+| moderncv-casual     | latex  | ModernCV Casual  | ModernCV template with casual style                                 |
+| moderncv-classic    | latex  | ModernCV Classic | ModernCV template with classic style                                |
+| calm                | html   | Calm             | Clean and minimalist design suitable for all professionals.         |
+| vscode              | html   | VS Code          | Dark theme inspired by Visual Studio Code, tailored for developers. |
+| calm                | docx   | Calm             | Clean and minimalist design suitable for all professionals.         |
+```
+
+### Vista Previa del Playground
+
+El [playground](/es/playground) ahora admite vista previa de DOCX, permitiéndote
+ver la salida de tu documento de Word en tiempo real mientras editas tu
+currículum.
+
+![YAMLResume Playground - DOCX](/static/images/blog/v0.13/yamlresume-playground-docx.webp)
+
+## Soporte de Idioma Portugués Brasileño
+
+YAMLResume continúa expandiendo su internacionalización. Estamos añadiendo
+portugués brasileño (português brasileiro), el idioma oficial de Brasil — el
+país más grande de Sudamérica y del mundo lusófono.
+
+Esto eleva nuestro número de idiomas soportados a diez:
+
+- [Inglés (en)](/es/docs/locale/english)
+- [Chino (zh-hans, zh-hant-tw, zh-hant-hk)](/es/docs/locale/chinese)
+- [Español (es)](/es/docs/locale/spanish)
+- [Francés (fr)](/es/docs/locale/french)
+- [Noruego (no)](/es/docs/locale/norwegian)
+- [Holandés (nl)](/es/docs/locale/dutch)
+- [Japonés (ja)](/es/docs/locale/japanese)
+- [Alemán (de)](/es/docs/locale/german)
+- [Indonesio (id)](/es/docs/locale/indonesian)
+- [Portugués Brasileño (pt-BR)](/es/docs/locale/brazilian-portuguese)
+
+Para generar tu currículum en portugués brasileño:
+
+```yml lineNumbers
+locale:
+  language: pt-BR
+```
+
+Todas las [opciones predefinidas](/es/docs/compiler/types#enum-types) se
+traducirán automáticamente al portugués brasileño.
+
+## Correcciones de Errores
+
+### Importación de JSON Resume
+
+- `json2yamlresume` ahora preserva el campo `summary` para entradas de trabajo,
+  proyectos y voluntariado al convertir desde el formato JSON Resume
+
+### Mejoras en Enlaces (v0.12.3)
+
+- Se añadió la opción `showUrls` para mostrar u ocultar URLs en plantillas LaTeX
+- Los números de teléfono en la plantilla Jake ahora usan el prefijo `tel:` href
+- Las URLs en plantillas moderncv ahora están subrayadas para mejor visibilidad
+
+### Correcciones de CLI e Idioma (v0.12.1--v0.12.2)
+
+- La bandera `--timeout` ahora funciona correctamente con `yamlresume build`
+- Se mejoró la redacción de la palabra clave "presente" en todos los idiomas
+- Se corrigió la compatibilidad de fontawesome7 con instalaciones antiguas de
+  TeX Live 2022
+
+## Actualiza Hoy
+
+Obtén la última versión:
+
+```console
+$ npm install -g yamlresume@latest
+# o
+$ brew upgrade yamlresume
+```
+
+## Crédito
+
+Como siempre, agradecemos tus comentarios y contribuciones en
+[GitHub](https://github.com/yamlresume/yamlresume). ¡Feliz construcción!

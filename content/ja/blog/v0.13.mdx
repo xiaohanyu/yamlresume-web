@@ -1,0 +1,163 @@
+---
+title: "YAMLResume v0.13: DOCXエンジンとブラジルポルトガル語"
+description:
+  "YAMLResume v0.13では、Microsoft Word出力用の新しいDOCXレンダリングエンジンを導入し、
+  ブラジルポルトガル語のサポートを追加し、さまざまなバグ修正と改善が含まれています。"
+author: Xiao Hanyu
+profile: https://x.com/xiaohanyu1988
+date: 2026-06-08
+---
+
+[YAMLResume
+v0.13](https://github.com/yamlresume/yamlresume/releases/tag/v0.13.0)のリリースを
+お知らせいたします。このバージョンでは、Microsoft Word文書を生成するための新しい
+[DOCXレンダリングエンジン](/ja/docs/layouts/docx)を導入し、[ブラジル
+ポルトガル語](/ja/docs/locale/brazilian-portuguese)サポートを追加、DOCXテンプレートに
+太字ラベルとキーワードをもたらし、さまざまなバグ修正と改善が含まれています。
+
+## 新エンジン: DOCX
+
+このリリースの最大の機能は、新しい[DOCXレンダリングエンジン](/ja/docs/layouts/docx)です。
+履歴書のYAMLファイルから直接Microsoft Word文書を生成できるようになりました。
+
+DOCXエンジンは、ドキュメントノード（Paragraphs、TextRuns、Tablesなど）のASTを構築し、
+ZIPベースのOOXMLバイナリにシリアライズするnpmパッケージ
+[`docx`](https://www.npmjs.com/package/docx)の上に構築されています。
+
+### DOCX用Calmテンプレート
+
+最初に利用可能なDOCXテンプレートは**Calm**です。LaTeXのmoderncvテンプレートに
+インスパイアされ、クリーンな2カラムレイアウトでHTMLのCalmテンプレートのビジュアル
+デザインと一致しています。
+
+```yml lineNumbers
+layouts:
+  - engine: docx
+    template: calm   # [!code highlight]
+```
+
+DOCX Calmテンプレートは、フォントサイズ、行間隔、ページマージンなど、他のエンジンと
+ほぼ同じカスタマイズオプションをサポートしています。
+
+設定例を以下に示します：
+
+```yml lineNumbers
+layouts:
+  - engine: docx
+    page:
+      showPageNumbers: true
+      # a4 or letter
+      paperSize: a4
+      margins:
+        top: 2.5cm
+        left: 1.5cm
+        right: 1.5cm
+        bottom: 2.5cm
+    typography:
+      fontFamily: Arial
+      fontSize: 11pt
+      lineSpacing: normal
+    advanced:
+      showUrls: true
+      showIcons: true
+    sections:
+      aliases:
+        work: "Professional Experience"
+        education: "Education"
+        skills: "Skills"
+      order:
+        - basics
+        - work
+        - education
+```
+
+Microsoft WordでのDOCX Calmテンプレートのプレビューを以下に示します：
+
+![Microsoft WordでのCalmテンプレート](/static/images/docs/layouts/docx/templates/calm.webp)
+
+### CLIサポート
+
+いつものように、利用可能なすべてのテンプレートとエンジンは以下のコマンドで一覧表示できます：
+
+```console
+$ yamlresume templates list
+
+| layouts.[].template | Engine | Template Name    | Description                                                         |
+| ------------------- | ------ | ---------------- | ------------------------------------------------------------------- |
+| jake                | latex  | Jake's Resume    | A simple, straight-forward resume template based on Jake's Resume   |
+| moderncv-banking    | latex  | ModernCV Banking | ModernCV template with banking style                                |
+| moderncv-casual     | latex  | ModernCV Casual  | ModernCV template with casual style                                 |
+| moderncv-classic    | latex  | ModernCV Classic | ModernCV template with classic style                                |
+| calm                | html   | Calm             | Clean and minimalist design suitable for all professionals.         |
+| vscode              | html   | VS Code          | Dark theme inspired by Visual Studio Code, tailored for developers. |
+| calm                | docx   | Calm             | Clean and minimalist design suitable for all professionals.         |
+```
+
+### Playgroundプレビュー
+
+[Playground](/ja/playground)はDOCXプレビューをサポートするようになり、履歴書を編集しながら
+Word文書の出力をリアルタイムで確認できます。
+
+![YAMLResume Playground - DOCX](/static/images/blog/v0.13/yamlresume-playground-docx.webp)
+
+## ブラジルポルトガル語サポート
+
+YAMLResumeは国際化を拡大し続けています。ブラジル——南米最大でポルトガル語圏最大の国——の
+公用語であるブラジルポルトガル語（português brasileiro）を追加しています。
+
+これにより、サポートされている言語の数は10つになりました：
+
+- [英語 (en)](/ja/docs/locale/english)
+- [中国語 (zh-hans, zh-hant-tw, zh-hant-hk)](/ja/docs/locale/chinese)
+- [スペイン語 (es)](/ja/docs/locale/spanish)
+- [フランス語 (fr)](/ja/docs/locale/french)
+- [ノルウェー語 (no)](/ja/docs/locale/norwegian)
+- [オランダ語 (nl)](/ja/docs/locale/dutch)
+- [日本語 (ja)](/ja/docs/locale/japanese)
+- [ドイツ語 (de)](/ja/docs/locale/german)
+- [インドネシア語 (id)](/ja/docs/locale/indonesian)
+- [ブラジルポルトガル語 (pt-BR)](/ja/docs/locale/brazilian-portuguese)
+
+ブラジルポルトガル語で履歴書を生成するには：
+
+```yml lineNumbers
+locale:
+  language: pt-BR
+```
+
+すべての[事前定義オプション](/ja/docs/compiler/types#enum-types)は自動的にブラジル
+ポルトガル語に翻訳されます。
+
+## バグ修正
+
+### JSON Resumeインポート
+
+- `json2yamlresume`は、JSON Resume形式からの変換時に、work、projects、volunteerの
+  エントリの`summary`フィールドを保持するようになりました
+
+### リンクの改善 (v0.12.3)
+
+- LaTeXテンプレートでURLを表示または非表示にする`showUrls`オプションを追加
+- Jakeテンプレートの電話番号は、`tel:` hrefプレフィックスを使用するようになりました
+- moderncvテンプレートのURLは、視認性を向上させるために下線が付くようになりました
+
+### CLIとロケールの修正 (v0.12.1--v0.12.2)
+
+- `--timeout`フラグが`yamlresume build`で正しく機能するようになりました
+- 各ロケールで"present"キーワードの表現を改善
+- 古いTeX Live 2022インストールとのfontawesome7互換性を修正
+
+## 今すぐアップグレード
+
+最新バージョンを取得：
+
+```console
+$ npm install -g yamlresume@latest
+# または
+$ brew upgrade yamlresume
+```
+
+## クレジット
+
+いつものように、[GitHub](https://github.com/yamlresume/yamlresume)でのフィードバックと
+貢献をお待ちしています。Happy building!

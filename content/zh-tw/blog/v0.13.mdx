@@ -1,0 +1,159 @@
+---
+title: "YAMLResume v0.13：DOCX 引擎與巴西葡萄牙語"
+description:
+  "YAMLResume v0.13 引入了全新的 DOCX 渲染引擎用於生成 Microsoft Word 文件，新增巴西
+  葡萄牙語支援，並包含各種錯誤修復和改進。"
+author: Xiao Hanyu
+profile: https://x.com/xiaohanyu1988
+date: 2026-06-08
+---
+
+我們很高興地宣佈 [YAMLResume
+v0.13](https://github.com/yamlresume/yamlresume/releases/tag/v0.13.0) 正式發布。
+此版本引入了全新的 [DOCX 渲染引擎](/zh-tw/docs/layouts/docx) 用於生成 Microsoft
+Word 文件，新增[巴西葡萄牙語](/zh-tw/docs/locale/brazilian-portuguese)支援，為 DOCX
+範本帶來了粗體標籤和關鍵詞，以及各種錯誤修復和改進。
+
+## 新引擎：DOCX
+
+此版本最大的功能是全新的 [DOCX 渲染引擎](/zh-tw/docs/layouts/docx)。現在你可以直接從
+履歷 YAML 檔案生成 Microsoft Word 文件。
+
+DOCX 引擎建構在 npm 套件
+[`docx`](https://www.npmjs.com/package/docx) 之上，它建構文件節點（段落、文字執行、
+表格等）的 AST，並將其序列化為基於 ZIP 的 OOXML 二進位檔案。
+
+### DOCX 的 Calm 範本
+
+首個可用的 DOCX 範本是 **Calm**，靈感來自 LaTeX 的 moderncv 範本，並與 HTML Calm 範本
+的視覺設計相匹配，採用乾淨的雙欄版面。
+
+```yml lineNumbers
+layouts:
+  - engine: docx
+    template: calm   # [!code highlight]
+```
+
+DOCX Calm 範本支援與其他引擎幾乎相同的自訂選項，包括字型大小、行間距和頁面邊界。
+
+以下是範例設定：
+
+```yml lineNumbers
+layouts:
+  - engine: docx
+    page:
+      showPageNumbers: true
+      # a4 or letter
+      paperSize: a4
+      margins:
+        top: 2.5cm
+        left: 1.5cm
+        right: 1.5cm
+        bottom: 2.5cm
+    typography:
+      fontFamily: Arial
+      fontSize: 11pt
+      lineSpacing: normal
+    advanced:
+      showUrls: true
+      showIcons: true
+    sections:
+      aliases:
+        work: "Professional Experience"
+        education: "Education"
+        skills: "Skills"
+      order:
+        - basics
+        - work
+        - education
+```
+
+以下是 DOCX Calm 範本在 Microsoft Word 中的預覽：
+
+![Microsoft Word 中的 Calm 範本](/static/images/docs/layouts/docx/templates/calm.webp)
+
+### CLI 支援
+
+像往常一樣，你可以使用以下命令列出所有可用的範本和引擎：
+
+```console
+$ yamlresume templates list
+
+| layouts.[].template | Engine | Template Name    | Description                                                         |
+| ------------------- | ------ | ---------------- | ------------------------------------------------------------------- |
+| jake                | latex  | Jake's Resume    | A simple, straight-forward resume template based on Jake's Resume   |
+| moderncv-banking    | latex  | ModernCV Banking | ModernCV template with banking style                                |
+| moderncv-casual     | latex  | ModernCV Casual  | ModernCV template with casual style                                 |
+| moderncv-classic    | latex  | ModernCV Classic | ModernCV template with classic style                                |
+| calm                | html   | Calm             | Clean and minimalist design suitable for all professionals.         |
+| vscode              | html   | VS Code          | Dark theme inspired by Visual Studio Code, tailored for developers. |
+| calm                | docx   | Calm             | Clean and minimalist design suitable for all professionals.         |
+```
+
+### Playground 預覽
+
+[Playground](/zh-tw/playground) 現在支援 DOCX 預覽，讓你在編輯履歷時即時查看 Word
+文件輸出。
+
+![YAMLResume Playground - DOCX](/static/images/blog/v0.13/yamlresume-playground-docx.webp)
+
+## 巴西葡萄牙語支援
+
+YAMLResume 持續擴展其國際化支援。我們新增巴西葡萄牙語（português brasileiro），這是
+巴西——南美洲最大且葡萄牙語世界最大的國家——的官方語言。
+
+這使我們的支援語言數量達到十種：
+
+- [英語 (en)](/zh-tw/docs/locale/english)
+- [中文 (zh-hans, zh-hant-tw, zh-hant-hk)](/zh-tw/docs/locale/chinese)
+- [西班牙語 (es)](/zh-tw/docs/locale/spanish)
+- [法語 (fr)](/zh-tw/docs/locale/french)
+- [挪威語 (no)](/zh-tw/docs/locale/norwegian)
+- [荷蘭語 (nl)](/zh-tw/docs/locale/dutch)
+- [日語 (ja)](/zh-tw/docs/locale/japanese)
+- [德語 (de)](/zh-tw/docs/locale/german)
+- [印尼語 (id)](/zh-tw/docs/locale/indonesian)
+- [巴西葡萄牙語 (pt-BR)](/zh-tw/docs/locale/brazilian-portuguese)
+
+使用巴西葡萄牙語生成履歷：
+
+```yml lineNumbers
+locale:
+  language: pt-BR
+```
+
+所有[預定義選項](/zh-tw/docs/compiler/types#enum-types)將自動翻譯為巴西葡萄牙語。
+
+## 錯誤修復
+
+### JSON Resume 匯入
+
+- `json2yamlresume` 在從 JSON Resume 格式轉換時，現在會保留 work、projects 和
+  volunteer 條目的 `summary` 欄位
+
+### 連結改進 (v0.12.3)
+
+- 新增 `showUrls` 選項，用於在 LaTeX 範本中顯示或隱藏 URL
+- Jake 範本中的電話號碼現在使用 `tel:` href 前置詞
+- moderncv 範本中的 URL 現在新增底線以提高可見性
+
+### CLI 和本地化修復 (v0.12.1--v0.12.2)
+
+- `--timeout` 旗標現在可以與 `yamlresume build` 正常運作
+- 改進了各語言中 "present" 關鍵詞的表述
+- 修復了 fontawesome7 與舊版 TeX Live 2022 安裝的相容性問題
+
+## 立即升級
+
+取得最新版本：
+
+```console
+$ npm install -g yamlresume@latest
+# 或
+$ brew upgrade yamlresume
+```
+
+## 致謝
+
+一如既往，我們歡迎你在 [GitHub](https://github.com/yamlresume/yamlresume) 上
+提供回饋和貢獻。祝建構愉快！

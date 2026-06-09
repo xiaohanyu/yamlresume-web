@@ -1,0 +1,171 @@
+---
+title: "YAMLResume v0.13: Mesin DOCX & Portugis Brasil"
+description:
+  "YAMLResume v0.13 memperkenalkan mesin rendering DOCX baru untuk menghasilkan
+  dokumen Microsoft Word, menambah dukungan bahasa Portugis Brasil, dan
+  mencakup berbagai perbaikan bug dan peningkatan."
+author: Xiao Hanyu
+profile: https://x.com/xiaohanyu1988
+date: 2026-06-08
+---
+
+Kami dengan senang mengumumkan [YAMLResume
+v0.13](https://github.com/yamlresume/yamlresume/releases/tag/v0.13.0). Rilis ini
+memperkenalkan [mesin rendering DOCX](/id/docs/layouts/docx) yang sepenuhnya baru
+untuk menghasilkan dokumen Microsoft Word, menambah dukungan [bahasa Portugis
+Brasil](/id/docs/locale/brazilian-portuguese), membawa label tebal dan kata kunci
+ke template DOCX, dan mencakup berbagai perbaikan bug dan peningkatan.
+
+## Mesin Baru: DOCX
+
+Fitur terbesar dalam rilis ini adalah [mesin rendering DOCX](/id/docs/layouts/docx)
+yang baru. Anda sekarang dapat menghasilkan dokumen Microsoft Word secara
+langsung dari file resume YAML Anda.
+
+Mesin DOCX dibangun di atas paket npm
+[`docx`](https://www.npmjs.com/package/docx), yang membangun AST dari node
+dokumen (Paragraf, TextRun, Tabel, dll.) dan menserialisasikannya ke biner
+OOXML berbasis ZIP.
+
+### Template Calm untuk DOCX
+
+Template DOCX pertama yang tersedia adalah **Calm**, terinspirasi oleh template
+moderncv LaTeX dan cocok dengan desain visual template Calm HTML dengan tata
+letak dua kolom yang bersih.
+
+```yml lineNumbers
+layouts:
+  - engine: docx
+    template: calm   # [!code highlight]
+```
+
+Template Calm DOCX mendukung hampir opsi penyesuaian yang sama dengan mesin
+lainnya, termasuk ukuran font, spasi baris, dan margin halaman.
+
+Berikut adalah contoh konfigurasi:
+
+```yml lineNumbers
+layouts:
+  - engine: docx
+    page:
+      showPageNumbers: true
+      # a4 or letter
+      paperSize: a4
+      margins:
+        top: 2.5cm
+        left: 1.5cm
+        right: 1.5cm
+        bottom: 2.5cm
+    typography:
+      fontFamily: Arial
+      fontSize: 11pt
+      lineSpacing: normal
+    advanced:
+      showUrls: true
+      showIcons: true
+    sections:
+      aliases:
+        work: "Professional Experience"
+        education: "Education"
+        skills: "Skills"
+      order:
+        - basics
+        - work
+        - education
+```
+
+Berikut adalah pratinjau template Calm DOCX di Microsoft Word:
+
+![Template Calm di Microsoft Word](/static/images/docs/layouts/docx/templates/calm.webp)
+
+### Dukungan CLI
+
+Seperti biasa, Anda dapat mencantumkan semua template dan mesin yang tersedia
+dengan:
+
+```console
+$ yamlresume templates list
+
+| layouts.[].template | Engine | Template Name    | Description                                                         |
+| ------------------- | ------ | ---------------- | ------------------------------------------------------------------- |
+| jake                | latex  | Jake's Resume    | A simple, straight-forward resume template based on Jake's Resume   |
+| moderncv-banking    | latex  | ModernCV Banking | ModernCV template with banking style                                |
+| moderncv-casual     | latex  | ModernCV Casual  | ModernCV template with casual style                                 |
+| moderncv-classic    | latex  | ModernCV Classic | ModernCV template with classic style                                |
+| calm                | html   | Calm             | Clean and minimalist design suitable for all professionals.         |
+| vscode              | html   | VS Code          | Dark theme inspired by Visual Studio Code, tailored for developers. |
+| calm                | docx   | Calm             | Clean and minimalist design suitable for all professionals.         |
+```
+
+### Pratinjau Playground
+
+[Playground](/id/playground) sekarang mendukung pratinjau DOCX, memungkinkan Anda
+melihat output dokumen Word Anda secara real-time saat Anda mengedit resume.
+
+![YAMLResume Playground - DOCX](/static/images/blog/v0.13/yamlresume-playground-docx.webp)
+
+## Dukungan Bahasa Portugis Brasil
+
+YAMLResume terus memperluas internasionalisasinya. Kami menambahkan bahasa
+Portugis Brasil (português brasileiro), bahasa resmi Brasil — negara terbesar di
+Amerika Selatan dan dunia berbahasa Portugis.
+
+Ini membawa jumlah bahasa yang kami dukung menjadi sepuluh:
+
+- [Inggris (en)](/id/docs/locale/english)
+- [Tionghoa (zh-hans, zh-hant-tw, zh-hant-hk)](/id/docs/locale/chinese)
+- [Spanyol (es)](/id/docs/locale/spanish)
+- [Prancis (fr)](/id/docs/locale/french)
+- [Norwegia (no)](/id/docs/locale/norwegian)
+- [Belanda (nl)](/id/docs/locale/dutch)
+- [Jepang (ja)](/id/docs/locale/japanese)
+- [Jerman (de)](/id/docs/locale/german)
+- [Indonesia (id)](/id/docs/locale/indonesian)
+- [Portugis Brasil (pt-BR)](/id/docs/locale/brazilian-portuguese)
+
+Untuk menghasilkan curriculum vitae Anda dalam bahasa Portugis Brasil:
+
+```yml lineNumbers
+locale:
+  language: pt-BR
+```
+
+Semua [opsi yang telah ditentukan](/id/docs/compiler/types#enum-types) akan
+ diterjemahkan secara otomatis ke bahasa Portugis Brasil.
+
+## Perbaikan Bug
+
+### Impor JSON Resume
+
+- `json2yamlresume` sekarang melestarikan bidang `summary` untuk entri kerja,
+  proyek, dan sukarelawan saat mengonversi dari format JSON Resume
+
+### Peningkatan Tautan (v0.12.3)
+
+- Menambahkan opsi `showUrls` untuk menampilkan atau menyembunyikan URL di
+template LaTeX
+- Nomor telepon di template Jake sekarang menggunakan prefiks `tel:` href
+- URL di template moderncv sekarang digarisbawahi untuk visibilitas yang lebih
+  baik
+
+### Perbaikan CLI dan Lokal (v0.12.1--v0.12.2)
+
+- Bendera `--timeout` sekarang berfungsi dengan benar dengan `yamlresume build`
+- Ditingkatkan penulisan kata kunci "present" di semua bahasa
+- Diperbaiki kompatibilitas fontawesome7 dengan instalasi TeX Live 2022 yang
+  lebih lama
+
+## Tingkatkan Hari Ini
+
+Dapatkan versi terbaru:
+
+```console
+$ npm install -g yamlresume@latest
+# atau
+$ brew upgrade yamlresume
+```
+
+## Kredit
+
+Seperti biasa, kami menyambut umpan balik dan kontribusi Anda di
+[GitHub](https://github.com/yamlresume/yamlresume). Selamat membangun!

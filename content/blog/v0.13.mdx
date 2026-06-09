@@ -1,0 +1,167 @@
+---
+title: "YAMLResume v0.13: DOCX Engine & Brazilian Portuguese"
+description:
+  "YAMLResume v0.13 introduces a new DOCX rendering engine for Microsoft Word
+  output, adds Brazilian Portuguese language support, and includes various bug
+  fixes and improvements."
+author: Xiao Hanyu
+profile: https://x.com/xiaohanyu1988
+date: 2026-06-08
+---
+
+We're excited to announce [YAMLResume
+v0.13](https://github.com/yamlresume/yamlresume/releases/tag/v0.13.0). This
+release introduces a brand new [DOCX rendering engine](/docs/layouts/docx) for
+generating Microsoft Word documents, adds [Brazilian
+Portuguese](/docs/locale/brazilian-portuguese) language support, brings
+bold labels and keywords to DOCX templates, and includes various bug fixes and
+improvements.
+
+## New Engine: DOCX
+
+The biggest feature in this release is the new [DOCX rendering
+engine](/docs/layouts/docx). You can now generate Microsoft Word documents
+directly from your resume YAML file.
+
+The DOCX engine is built on top of the [`docx`](https://www.npmjs.com/package/docx)
+npm package, which constructs an AST of document nodes (Paragraphs, TextRuns,
+Tables, etc.) and serializes them to a ZIP-based OOXML binary.
+
+### Calm Template for DOCX
+
+The first DOCX template available is **Calm**, inspired by latex moderncv
+template and matching the visual design of the HTML Calm template with a clean
+two-column layout.
+
+```yml lineNumbers
+layouts:
+  - engine: docx
+    template: calm   # [!code highlight]
+```
+
+The DOCX Calm template supports almost the same customization options as other
+engines, including font size, line spacing, and page margins.
+
+Here is a sample configuration:
+
+```yml lineNumbers
+layouts:
+  - engine: docx
+    page:
+      showPageNumbers: true
+      # a4 or letter
+      paperSize: a4
+      margins:
+        top: 2.5cm
+        left: 1.5cm
+        right: 1.5cm
+        bottom: 2.5cm
+    typography:
+      fontFamily: Arial
+      fontSize: 11pt
+      lineSpacing: normal
+    advanced:
+      showUrls: true
+      showIcons: true
+    sections:
+      aliases:
+        work: "Professional Experience"
+        education: "Education"
+        skills: "Skills"
+      order:
+        - basics
+        - work
+        - education
+```
+
+Here's a preview of the DOCX Calm template in Microsoft Word:
+
+![Calm Template in Microsoft Word](/static/images/docs/layouts/docx/templates/calm.webp)
+
+### CLI Support
+
+As always, you can list all available templates and engines with:
+
+```console
+$ yamlresume templates list
+
+| layouts.[].template | Engine | Template Name    | Description                                                         |
+| ------------------- | ------ | ---------------- | ------------------------------------------------------------------- |
+| jake                | latex  | Jake's Resume    | A simple, straight-forward resume template based on Jake's Resume   |
+| moderncv-banking    | latex  | ModernCV Banking | ModernCV template with banking style                                |
+| moderncv-casual     | latex  | ModernCV Casual  | ModernCV template with casual style                                 |
+| moderncv-classic    | latex  | ModernCV Classic | ModernCV template with classic style                                |
+| calm                | html   | Calm             | Clean and minimalist design suitable for all professionals.         |
+| vscode              | html   | VS Code          | Dark theme inspired by Visual Studio Code, tailored for developers. |
+| calm                | docx   | Calm             | Clean and minimalist design suitable for all professionals.         |
+```
+
+### Playground Preview
+
+The [playground](/playground) now supports DOCX preview, allowing you to see
+your Word document output in real time as you edit your resume.
+
+![YAMLResume Playground - DOCX](/static/images/blog/v0.13/yamlresume-playground-docx.webp)
+
+## Brazilian Portuguese Language Support
+
+YAMLResume continues to expand its internationalization. We're adding Brazilian
+Portuguese (português brasileiro), the official language of Brazil -- the
+largest country in South America and the Lusophone world.
+
+This brings our supported language count to ten:
+
+- [English (en)](/docs/locale/english)
+- [Chinese (zh-hans, zh-hant-tw, zh-hant-hk)](/docs/locale/chinese)
+- [Spanish (es)](/docs/locale/spanish)
+- [French (fr)](/docs/locale/french)
+- [Norwegian (no)](/docs/locale/norwegian)
+- [Dutch (nl)](/docs/locale/dutch)
+- [Japanese (ja)](/docs/locale/japanese)
+- [German (de)](/docs/locale/german)
+- [Indonesian (id)](/docs/locale/indonesian)
+- [Brazilian Portuguese (pt-BR)](/docs/locale/brazilian-portuguese)
+
+To generate your resume in Brazilian Portuguese:
+
+```yml lineNumbers
+locale:
+  language: pt-BR
+```
+
+All [predefined options](/docs/compiler/types#enum-types) will be translated
+automatically to Brazilian Portuguese.
+
+## Bug Fixes
+
+### JSON Resume Import
+
+- `json2yamlresume` now preserves the `summary` field for work, projects, and
+  volunteer entries when converting from JSON Resume format
+
+### Link Improvements (v0.12.3)
+
+- Added `showUrls` option to show or hide URLs in LaTeX templates
+- Phone numbers in Jake's template now use `tel:` href prefix
+- URLs in moderncv templates are now underlined for better visibility
+
+### CLI and Locale Fixes (v0.12.1--v0.12.2)
+
+- The `--timeout` flag now works correctly with `yamlresume build`
+- Improved wording of the "present" keyword across locales
+- Fixed fontawesome7 compatibility with older TeX Live 2022 installations
+
+## Upgrade Today
+
+Get the latest version:
+
+```console
+$ npm install -g yamlresume@latest
+# or
+$ brew upgrade yamlresume
+```
+
+## Credit
+
+As always, we welcome your feedback and contributions on
+[GitHub](https://github.com/yamlresume/yamlresume). Happy building!
