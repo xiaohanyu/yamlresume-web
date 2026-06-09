@@ -222,7 +222,7 @@ Define la configuración general de validación del layout.
 
 | Prop        | Tipo                                                                                         | Requerido | Reglas de validación            |
 | ----------- | -------------------------------------------------------------------------------------------- | --------- | ------------------------------- |
-| `layouts[]` | [`HtmlLayoutSchema`](#htmllayoutschema) \| [`LatexLayoutSchema`](#latexlayoutschema) \| [`MarkdownLayoutSchema`](#markdownlayoutschema) | ⬜️       | Array de configuraciones layout |
+| `layouts[]` | [`DocxLayoutSchema`](#docxlayoutschema) \| [`HtmlLayoutSchema`](#htmllayoutschema) \| [`LatexLayoutSchema`](#latexlayoutschema) \| [`MarkdownLayoutSchema`](#markdownlayoutschema) | ⬜️       | Array de configuraciones layout |
 
 #### Esquemas de Layout Comunes
 
@@ -341,6 +341,57 @@ Valida la configuración del layout Markdown.
 | `engine`    | `'markdown'`                        | ✅        | Debe ser "markdown"                         |
 | `sections?` | [`SectionsSchema`](#sectionsschema) | ⬜️       | Ver [esquema de secciones](#sectionsschema) |
 
+#### DocxLayoutSchema
+
+Valida la configuración del layout DOCX.
+
+| Prop          | Tipo                                                  | Requerido | Reglas de validación                                      |
+| ------------- | ----------------------------------------------------- | --------- | --------------------------------------------------------- |
+| `engine`      | `'docx'`                                              | ✅        | Debe ser "docx"                                           |
+| `advanced?`   | [`DocxAdvancedSchema`](#docxadvancedschema)           | ⬜️       | Ver [esquema avanzado](#docxadvancedschema)               |
+| `page?`       | [`DocxPageSchema`](#docxpageschema)                   | ⬜️       | Ver [esquema de página](#docxpageschema)                  |
+| `sections?`   | [`SectionsSchema`](#sectionsschema)                   | ⬜️       | Ver [esquema de secciones](#sectionsschema)               |
+| `template?`   | [`DocxTemplate`](#docxtemplate)                       | ⬜️       | Debe estar en [opciones de plantilla](#docxtemplate)      |
+| `typography?` | [`DocxTypographySchema`](#docxtypographyschema)       | ⬜️       | Ver [esquema de tipografía](#docxtypographyschema)        |
+
+##### DocxAdvancedSchema
+
+Valida opciones de configuración avanzada de DOCX.
+
+| Prop         | Tipo      | Requerido | Reglas de validación |
+| ------------ | --------- | --------- | -------------------- |
+| `showIcons?` | `boolean` | ⬜️       | true/false           |
+| `showUrls?`  | `boolean` | ⬜️       | true/false           |
+
+##### DocxPageSchema
+
+Valida opciones a nivel de página para la presentación del documento.
+
+| Prop               | Tipo                   | Requerido | Reglas de validación                               |
+| ------------------ | ---------------------- | --------- | -------------------------------------------------- |
+| `margins?`         | [`MarginsSchema`](#marginsschema) | ⬜️       | Ver [esquema de márgenes](#marginsschema)          |
+| `paperSize?`       | [`DocxPaperSize`](#docxpapersize) | ⬜️       | Debe estar en [opciones de tamaño de papel](#docxpapersize) |
+| `showPageNumbers?` | `boolean`              | ⬜️       | true/false                                         |
+
+##### DocxTypographySchema
+
+Valida opciones tipográficas para el formato del documento.
+
+| Prop          | Tipo                              | Requerido | Reglas de validación                                           |
+| ------------- | --------------------------------- | --------- | ---------------------------------------------------------- |
+| `fontSize?`   | [`DocxFontSize`](#docxfontsize)   | ⬜️       | Debe estar en [opciones de tamaño de fuente](#docxfontsize) |
+| `fontFamily?` | `string`                          | ⬜️       | Una lista de familias de fuentes separada por comas.       |
+| `lineSpacing?`| [`LineSpacing`](#linespacing)     | ⬜️       | Debe ser una de las [opciones de espaciado de línea](#linespacing) |
+
+### Esquema de Familia de Fuente DOCX
+
+Valida nombres de familias de fuentes para salida DOCX.
+
+**Reglas de validación:**
+
+- Debe ser un nombre de familia de fuentes válido disponible en el sistema de destino
+- Ejemplos: `Arial`, `Times New Roman`, `Calibri`
+
 ## Enum Validation Schemas
 
 ### Country
@@ -398,6 +449,33 @@ Tipo unión que incluye todas las posibles opciones de redes sociales.
 
 - Must be one of the predefined network options
 - Examples: `GitHub`, `LinkedIn`, `Twitter`, `Facebook`, `Instagram`
+
+### DocxFontSize
+
+Tipo unión que incluye todas las posibles opciones de tamaño de fuente DOCX.
+
+**Reglas de validación:**
+
+- Debe ser uno de: `10pt`, `10.5pt`, `11pt`, `11.5pt`, `12pt`
+- `10pt` es el tamaño de fuente por defecto
+
+### DocxPaperSize
+
+Tipo unión que incluye todas las posibles opciones de tamaño de papel DOCX.
+
+**Reglas de validación:**
+
+- Debe ser uno de: `a4`, `letter`
+- `a4` es el tamaño de papel por defecto
+
+### DocxTemplate
+
+Tipo unión que incluye todas las posibles opciones de plantilla DOCX.
+
+**Reglas de validación:**
+
+- Debe ser uno de: `calm`
+- Ver también: [templates](/es/docs/layouts/docx/templates)
 
 ### HtmlFontSize
 

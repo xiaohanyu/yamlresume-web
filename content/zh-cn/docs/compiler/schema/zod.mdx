@@ -218,7 +218,7 @@ YAMLResume 采用 [zod](https://zod.dev) 在运行时验证简历数据。
 
 | 属性        | 类型                                                                                         | 必需 | 验证规则            |
 | ----------- | -------------------------------------------------------------------------------------------- | -------- | ------------------------------- |
-| `layouts[]` | [`HtmlLayoutSchema`](#htmllayoutschema) \| [`LatexLayoutSchema`](#latexlayoutschema) \| [`MarkdownLayoutSchema`](#markdownlayoutschema) | ⬜       | 布局配置数组。 |
+| `layouts[]` | [`DocxLayoutSchema`](#docxlayoutschema) \| [`HtmlLayoutSchema`](#htmllayoutschema) \| [`LatexLayoutSchema`](#latexlayoutschema) \| [`MarkdownLayoutSchema`](#markdownlayoutschema) | ⬜       | 布局配置数组。 |
 
 #### 通用布局模式
 
@@ -337,6 +337,48 @@ YAMLResume 采用 [zod](https://zod.dev) 在运行时验证简历数据。
 | `engine`    | `'markdown'`                        | ✅       | 必须是 "markdown"                       |
 | `sections?` | [`SectionsSchema`](#sectionsschema) | ⬜       | 参见[分节模式](#sectionsschema) |
 
+#### DocxLayoutSchema
+
+验证 DOCX 布局配置。
+
+| 属性          | 类型                                                  | 必需 | 验证规则                                      |
+| ------------- | ----------------------------------------------------- | -------- | --------------------------------------------------------- |
+| `engine`      | `'docx'`                                              | ✅       | 必须是 "docx"                                        |
+| `advanced?`   | [`DocxAdvancedSchema`](#docxadvancedschema)           | ⬜       | 参见[高级模式](#docxadvancedschema)            |
+| `page?`       | [`DocxPageSchema`](#docxpageschema)                   | ⬜       | 参见[页面模式](#docxpageschema)                    |
+| `sections?`   | [`SectionsSchema`](#sectionsschema)                   | ⬜       | 参见[分节模式](#sectionsschema)                |
+| `template?`   | [`DocxTemplate`](#docxtemplate)                       | ⬜       | 必须来自预定义的[模板选项](#docxtemplate) |
+| `typography?` | [`DocxTypographySchema`](#docxtypographyschema)       | ⬜       | 参见[排版模式](#docxtypographyschema)        |
+
+##### DocxAdvancedSchema
+
+验证 DOCX 的高级配置选项。
+
+| 属性         | 类型      | 必需 | 验证规则 |
+| ------------ | --------- | -------- | -------- |
+| `showIcons?` | `boolean` | ⬜       | true/false       |
+| `showUrls?`  | `boolean` | ⬜       | true/false       |
+
+##### DocxPageSchema
+
+验证 DOCX 的页面级设置。
+
+| 属性               | 类型                   | 必需 | 验证规则                               |
+| ------------------ | ---------------------- | -------- | ---------------------------------------------- |
+| `margins?`         | [`MarginsSchema`](#marginsschema) | ⬜       | 参见[页边距模式](#marginsschema)           |
+| `paperSize?`       | [`DocxPaperSize`](#docxpapersize) | ⬜       | 必须来自预定义的[纸张大小选项](#docxpapersize) |
+| `showPageNumbers?` | `boolean`              | ⬜       | true/false                                     |
+
+##### DocxTypographySchema
+
+验证 DOCX 的排版设置。
+
+| 属性          | 类型                              | 必需 | 验证规则                                           |
+| ------------- | --------------------------------- | -------- | ---------------------------------------------------------- |
+| `fontSize?`   | [`DocxFontSize`](#docxfontsize)   | ⬜       | 必须来自预定义的[字体大小选项](#docxfontsize) |
+| `fontFamily?` | `string`                          | ⬜       | 逗号分隔的字体家族列表。                   |
+| `lineSpacing?`| [`LineSpacing`](#linespacing)     | ⬜       | 必须来自预定义的[行间距选项](#linespacing) |
+
 ## 原始验证模式
 
 ### 电子邮件模式
@@ -412,6 +454,15 @@ YAMLResume 采用 [zod](https://zod.dev) 在运行时验证简历数据。
 - 必须是正数后跟有效单位：cm、pt 或 in
 - 示例：`2.5cm`、`1in`、`72pt`、`0.5cm`、`12pt`
 
+### DOCX 字体家族模式
+
+验证 DOCX 输出的字体家族名称。
+
+**验证规则：**
+
+- 必须是目标系统上可用的有效字体家族名称
+- 示例：`Arial`、`Times New Roman`、`Calibri`
+
 ## 枚举验证模式
 
 ### 国家
@@ -479,6 +530,33 @@ YAMLResume 采用 [zod](https://zod.dev) 在运行时验证简历数据。
 - 必须是以下之一：`moderncv-banking`、`moderncv-casual`、`moderncv-classic`
 - 必须是以下之一：`moderncv-banking`、`moderncv-casual`、`moderncv-classic`
 - 另请参阅：[模板](/zh-cn/docs/layouts/latex/templates)
+
+### DocxFontSize
+
+所有可能 DOCX 字体大小选项的联合类型。
+
+**验证规则：**
+
+- 必须是以下之一：`10pt`、`10.5pt`、`11pt`、`11.5pt`、`12pt`
+- `10pt` 是默认字体大小
+
+### DocxPaperSize
+
+所有可能 DOCX 纸张大小选项的联合类型。
+
+**验证规则：**
+
+- 必须是以下之一：`a4`、`letter`
+- `a4` 是默认纸张大小
+
+### DocxTemplate
+
+所有可能 DOCX 模板选项的联合类型。
+
+**验证规则：**
+
+- 必须是以下之一：`calm`
+- 另请参阅：[模板](/zh-cn/docs/layouts/docx/templates)
 
 ### HtmlFontSize
 

@@ -220,7 +220,7 @@ Mendefinisikan konfigurasi validasi tata letak keseluruhan.
 
 | Kolom        | Tipe                                                                                         | Wajib | Aturan Validasi                |
 | ----------- | -------------------------------------------------------------------------------------------- | -------- | ------------------------------- |
-| `layouts[]` | [`HtmlLayoutSchema`](#htmllayoutschema) \| [`LatexLayoutSchema`](#latexlayoutschema) \| [`MarkdownLayoutSchema`](#markdownlayoutschema) | ⬜       | Array konfigurasi tata letak. |
+| `layouts[]` | [`DocxLayoutSchema`](#docxlayoutschema) \| [`HtmlLayoutSchema`](#htmllayoutschema) \| [`LatexLayoutSchema`](#latexlayoutschema) \| [`MarkdownLayoutSchema`](#markdownlayoutschema) | ⬜       | Beberapa konfigurasi tata letak output. |
 
 #### Common Layout Schemas
 
@@ -339,6 +339,48 @@ Memvalidasi konfigurasi tata letak Markdown.
 | `engine`    | `'markdown'`                        | ✅       | Harus "markdown"                     |
 | `sections?` | [`SectionsSchema`](#sectionsschema) | ⬜       | Lihat [skema sections](#sectionsschema) |
 
+#### DocxLayoutSchema
+
+Memvalidasi konfigurasi tata letak DOCX.
+
+| Kolom          | Tipe                                                  | Wajib | Aturan Validasi                                      |
+| ------------- | ----------------------------------------------------- | -------- | ----------------------------------------------------- |
+| `engine`      | `'docx'`                                              | ✅       | Harus "docx"                                        |
+| `advanced?`   | [`DocxAdvancedSchema`](#docxadvancedschema)           | ⬜       | Lihat [skema lanjutan](#docxadvancedschema)            |
+| `page?`       | [`DocxPageSchema`](#docxpageschema)                   | ⬜       | Lihat [skema halaman](#docxpageschema)                    |
+| `sections?`   | [`SectionsSchema`](#sectionsschema)                   | ⬜       | Lihat [skema bagian](#sectionsschema)                |
+| `template?`   | [`DocxTemplate`](#docxtemplate)                       | ⬜       | Harus dari [opsi template](#docxtemplate) yang telah ditentukan |
+| `typography?` | [`DocxTypographySchema`](#docxtypographyschema)       | ⬜       | Lihat [skema tipografi](#docxtypographyschema)        |
+
+##### DocxAdvancedSchema
+
+Memvalidasi opsi konfigurasi DOCX lanjutan.
+
+| Kolom         | Tipe      | Wajib | Aturan Validasi |
+| ------------ | --------- | -------- | ---------------- |
+| `showIcons?` | `boolean` | ⬜       | true/false       |
+| `showUrls?`  | `boolean` | ⬜       | true/false       |
+
+##### DocxPageSchema
+
+Memvalidasi pengaturan tingkat halaman untuk presentasi dokumen.
+
+| Kolom               | Tipe                   | Wajib | Aturan Validasi                               |
+| ------------------ | ---------------------- | -------- | ---------------------------------------------- |
+| `margins?`         | [`MarginsSchema`](#marginsschema) | ⬜       | Lihat [skema margins](#marginsschema)           |
+| `paperSize?`       | [`DocxPaperSize`](#docxpapersize) | ⬜       | Harus dari [opsi ukuran kertas](#docxpapersize) yang telah ditentukan |
+| `showPageNumbers?` | `boolean`              | ⬜       | true/false                                     |
+
+##### DocxTypographySchema
+
+Memvalidasi pengaturan tipografi untuk pemformatan dokumen.
+
+| Kolom          | Tipe                              | Wajib | Aturan Validasi                                           |
+| ------------- | --------------------------------- | -------- | ---------------------------------------------------------- |
+| `fontSize?`   | [`DocxFontSize`](#docxfontsize)   | ⬜       | Harus dari [opsi ukuran font](#docxfontsize) yang telah ditentukan |
+| `fontFamily?` | `string`                          | ⬜       | Daftar keluarga font yang dipisahkan koma.                   |
+| `lineSpacing?`| [`LineSpacing`](#linespacing)     | ⬜       | Harus dari [opsi spasi baris](#linespacing) yang telah ditentukan |
+
 ## Skema Validasi Primitif
 
 ### Email Schema
@@ -414,6 +456,15 @@ Memvalidasi string ukuran margin dengan persyaratan unit.
 - Harus angka positif diikuti unit yang valid: cm, pt, atau in
 - Contoh: `2.5cm`, `1in`, `72pt`, `0.5cm`, `12pt`
 
+### DOCX Font Family Schema
+
+Memvalidasi nama keluarga font untuk output DOCX.
+
+**Aturan Validasi:**
+
+- Harus nama keluarga font yang valid yang tersedia di sistem target
+- Contoh: `Arial`, `Times New Roman`, `Calibri`
+
 ## Skema Validasi Enum
 
 ### Country
@@ -471,6 +522,33 @@ Union type untuk semua opsi jaringan sosial possible.
 
 - Harus salah satu dari opsi jaringan yang telah ditentukan
 - Contoh: `GitHub`, `LinkedIn`, `Twitter`, `Facebook`, `Instagram`
+
+### DocxFontSize
+
+Union type untuk semua opsi ukuran font DOCX possible.
+
+**Aturan Validasi:**
+
+- Harus salah satu dari: `10pt`, `10.5pt`, `11pt`, `11.5pt`, `12pt`
+- `10pt` adalah ukuran font default
+
+### DocxPaperSize
+
+Union type untuk semua opsi ukuran kertas DOCX possible.
+
+**Aturan Validasi:**
+
+- Harus salah satu dari: `a4`, `letter`
+- `a4` adalah ukuran kertas default
+
+### DocxTemplate
+
+Union type untuk semua opsi template DOCX possible.
+
+**Aturan Validasi:**
+
+- Harus salah satu dari: `calm`
+- Lihat juga: [templates](/id/docs/layouts/docx/templates)
 
 ### HtmlFontSize
 

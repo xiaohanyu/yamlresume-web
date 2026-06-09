@@ -60,9 +60,10 @@ flowchart LR
 
 subgraph Layouts
 direction TB
-B1[LatexLayout]
-B2[MarkdownLayout]
-B3[HtmlLayout]
+B1[DocxLayout]
+B2[HtmlLayout]
+B3[LatexLayout]
+B4[MarkdownLayout]
 end
 
 subgraph Content
@@ -83,6 +84,7 @@ A --> D
 B --> B1
 B --> B2
 B --> B3
+B --> B4
 C --> C1
 C --> C2
 C --> C3
@@ -295,7 +297,7 @@ Tableau d'éléments de mise en page prenant en charge plusieurs formats de sort
 
 | Prop        | Type                                                                 | Requis | Description                            |
 | ----------- | -------------------------------------------------------------------- | ------ | -------------------------------------- |
-| `layouts[]` | [`LatexLayout`](#latexlayout) \| [`MarkdownLayout`](#markdownlayout) | ⬜     | Configurations de mise en page multiples. |
+| `layouts[]` | [`DocxLayout`](#docxlayout) \| [`HtmlLayout`](#htmllayout) \| [`LatexLayout`](#latexlayout) \| [`MarkdownLayout`](#markdownlayout) | ⬜     | Configurations de mise en page multiples. |
 
 #### Types de Mise en Page Courants
 
@@ -406,6 +408,48 @@ Configuration de mise en page Markdown.
 | `engine`    | `'markdown'`            | ✅     | Le moteur pour générer le CV.           |
 | `sections?` | [`Sections`](#sections) | ⬜     | Définit les paramètres de personnalisation de section. |
 
+#### DocxLayout
+
+Configuration de mise en page DOCX.
+
+| Prop          | Type                                  | Requis | Description                                           |
+| ------------- | ------------------------------------- | ------ | ----------------------------------------------------- |
+| `engine`      | `'docx'`                              | ✅     | Le moteur pour générer le CV.                         |
+| `advanced?`   | [`DocxAdvanced`](#docxadvanced)       | ⬜     | Définit les options de configuration avancées.        |
+| `page?`       | [`DocxPage`](#docxpage)               | ⬜     | Définit les paramètres au niveau de la page.          |
+| `sections?`   | [`Sections`](#sections)               | ⬜     | Définit les paramètres de personnalisation de section.|
+| `template?`   | [`DocxTemplate`](#docxtemplate)       | ⬜     | Définit le modèle sélectionné.                        |
+| `typography?` | [`DocxTypography`](#docxtypography)   | ⬜     | Définit les paramètres typographiques.                |
+
+##### DocxAdvanced
+
+Définit les options de configuration avancées pour DOCX.
+
+| Prop         | Type      | Requis | Description                                                  |
+| ------------ | --------- | ------ | ------------------------------------------------------------ |
+| `showIcons?` | `boolean` | ⬜     | Indique s'il faut afficher les icônes pour les liens et les profils. |
+| `showUrls?`  | `boolean` | ⬜     | Indique s'il faut afficher les URL brutes ou les masquer derrière un texte raisonnable. |
+
+##### DocxPage
+
+Définit les paramètres au niveau de la page pour la présentation du document.
+
+| Prop               | Type                   | Requis | Description                                     |
+| ------------------ | ---------------------- | ------ | ----------------------------------------------- |
+| `margins?`         | [`Margins`](#margins)  | ⬜     | Définit les paramètres de marges de page.       |
+| `paperSize?`       | [`DocxPaperSize`](#docxpapersize) | ⬜     | Définit la taille du papier.                    |
+| `showPageNumbers?` | `boolean`              | ⬜     | Indique s'il faut afficher les numéros de page. |
+
+##### DocxTypography
+
+Définit les paramètres typographiques pour le formatage du document.
+
+| Prop          | Type                                | Requis | Description                              |
+| ------------- | ----------------------------------- | ------ | --------------------------------------- |
+| `fontSize?`   | [`DocxFontSize`](#docxfontsize)     | ⬜     | Taille de police de base pour le document. |
+| `fontFamily?` | `string`                            | ⬜     | Une liste de familles de polices séparées par des virgules. |
+| `lineSpacing?`| [`LineSpacing`](#linespacing)       | ⬜     | Interligne pour le document.            |
+
 ## Types d'Énumération
 
 ### Enums de Contenu
@@ -456,6 +500,31 @@ Un type union pour tous les niveaux de maîtrise de compétences possibles.
 Un type union pour toutes les options de réseaux sociaux possibles.
 
 ### Enums de Mise en Page
+
+#### DocxFontSize
+
+Un type union pour toutes les options de taille de police DOCX possibles.
+
+- `10pt` - taille de police 10pt (par défaut)
+- `10.5pt` - taille de police 10.5pt
+- `11pt` - taille de police 11pt
+- `11.5pt` - taille de police 11.5pt
+- `12pt` - taille de police 12pt
+
+#### DocxPaperSize
+
+Un type union pour toutes les options de taille de papier DOCX possibles.
+
+- `a4` (par défaut)
+- `letter`
+
+#### DocxTemplate
+
+Un type union pour toutes les options de modèles DOCX possibles.
+
+Voir aussi : [modèles](/fr/docs/layouts/docx/templates)
+
+- `calm`
 
 #### HtmlFontSize
 

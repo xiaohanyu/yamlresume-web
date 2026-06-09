@@ -60,9 +60,10 @@ Berikut adalah diagram tingkat tinggi dari struktur resume:
 
  subgraph Layouts
  direction TB
- B1[LatexLayout]
- B2[MarkdownLayout]
- B3[HtmlLayout]
+ B1[DocxLayout]
+ B2[HtmlLayout]
+ B3[LatexLayout]
+ B4[MarkdownLayout]
  end
 
  subgraph Content
@@ -83,6 +84,7 @@ Berikut adalah diagram tingkat tinggi dari struktur resume:
  B --> B1
  B --> B2
  B --> B3
+ B --> B4
  C --> C1
  C --> C2
  C --> C3
@@ -295,7 +297,7 @@ Array item tata letak yang mendukung berbagai format output.
 
 | Kolom        | Tipe                                                                 | Wajib | Deskripsi                            |
 | ----------- | -------------------------------------------------------------------- | -------- | -------------------------------------- |
-| `layouts[]` | [`LatexLayout`](#latexlayout) \| [`MarkdownLayout`](#markdownlayout) | ⬜       | Beberapa konfigurasi tata letak output. |
+| `layouts[]` | [`DocxLayout`](#docxlayout) \| [`HtmlLayout`](#htmllayout) \| [`LatexLayout`](#latexlayout) \| [`MarkdownLayout`](#markdownlayout) | ⬜       | Beberapa konfigurasi tata letak output. |
 
 #### Common Layout Types
 
@@ -406,6 +408,48 @@ Konfigurasi tata letak Markdown.
 | `engine`    | `'markdown'`            | ✅       | Mesin untuk menghasilkan resume.      |
 | `sections?` | [`Sections`](#sections) | ⬜       | Mendefinisikan pengaturan kustomisasi bagian. |
 
+#### DocxLayout
+
+Konfigurasi tata letak DOCX.
+
+| Kolom          | Tipe                                  | Wajib | Deskripsi                                           |
+| ------------- | ------------------------------------- | -------- | ----------------------------------------------------- |
+| `engine`      | `'docx'`                              | ✅       | Mesin untuk menghasilkan resume.                    |
+| `advanced?`   | [`DocxAdvanced`](#docxadvanced)       | ⬜       | Mendefinisikan opsi konfigurasi lanjutan.               |
+| `page?`       | [`DocxPage`](#docxpage)               | ⬜       | Mendefinisikan pengaturan tingkat halaman untuk presentasi dokumen.|
+| `sections?`   | [`Sections`](#sections)               | ⬜       | Mendefinisikan pengaturan kustomisasi bagian.               |
+| `template?`   | [`DocxTemplate`](#docxtemplate)       | ⬜       | Mendefinisikan template yang dipilih.                        |
+| `typography?` | [`DocxTypography`](#docxtypography)   | ⬜       | Mendefinisikan pengaturan tipografi untuk pemformatan dokumen.  |
+
+##### DocxAdvanced
+
+Mendefinisikan opsi konfigurasi DOCX lanjutan.
+
+| Kolom         | Tipe      | Wajib | Deskripsi                                          |
+| ------------ | --------- | -------- | ---------------------------------------------------- |
+| `showIcons?` | `boolean` | ⬜       | Apakah menampilkan ikon untuk tautan dan profil.     |
+| `showUrls?`  | `boolean` | ⬜       | Apakah menampilkan URL mentah atau menyembunyikannya di balik teks yang masuk akal. |
+
+##### DocxPage
+
+Mendefinisikan pengaturan tingkat halaman DOCX untuk presentasi dokumen.
+
+| Kolom               | Tipe                   | Wajib | Deskripsi                          |
+| ------------------ | ---------------------- | -------- | ------------------------------------ |
+| `margins?`         | [`Margins`](#margins)  | ⬜       | Mendefinisikan pengaturan margin halaman.        |
+| `paperSize?`       | [`DocxPaperSize`](#docxpapersize) | ⬜       | Mendefinisikan ukuran kertas.              |
+| `showPageNumbers?` | `boolean`              | ⬜       | Apakah menampilkan nomor halaman.     |
+
+##### DocxTypography
+
+Mendefinisikan pengaturan tipografi DOCX untuk pemformatan dokumen.
+
+| Kolom          | Tipe                                | Wajib | Deskripsi                      |
+| ------------- | ----------------------------------- | -------- | -------------------------------- |
+| `fontSize?`   | [`DocxFontSize`](#docxfontsize)     | ⬜       | Ukuran font dasar untuk dokumen. |
+| `fontFamily?` | `string`                            | ⬜       | Daftar keluarga font yang dipisahkan koma. |
+| `lineSpacing?`| [`LineSpacing`](#linespacing)       | ⬜       | Spasi baris untuk dokumen.   |
+
 ## Enum Tipe
 
 ### Content Enum
@@ -456,6 +500,31 @@ Union type untuk semua level keterampilan possible.
 Union type untuk semua opsi jaringan sosial possible.
 
 ### Layout Enum
+
+#### DocxFontSize
+
+Union type untuk semua opsi ukuran font DOCX possible.
+
+- `10pt` - ukuran font 10pt (default)
+- `10.5pt` - ukuran font 10.5pt
+- `11pt` - ukuran font 11pt
+- `11.5pt` - ukuran font 11.5pt
+- `12pt` - ukuran font 12pt
+
+#### DocxPaperSize
+
+Union type untuk semua opsi ukuran kertas DOCX possible.
+
+- `a4` (default)
+- `letter`
+
+#### DocxTemplate
+
+Union type untuk semua opsi template DOCX possible.
+
+Lihat juga: [templates](/id/docs/layouts/docx/templates)
+
+- `calm`
 
 #### HtmlFontSize
 

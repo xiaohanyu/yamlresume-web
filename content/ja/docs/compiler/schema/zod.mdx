@@ -218,7 +218,7 @@ YAMLResume は [zod](https://zod.dev) を採用して実行時に履歴書デー
 
 | 属性        | タイプ                                                                                         | 必須 | 検証ルール            |
 | ----------- | -------------------------------------------------------------------------------------------- | -------- | ------------------------------- |
-| `layouts[]` | [`HtmlLayoutSchema`](#htmllayoutschema) \| [`LatexLayoutSchema`](#latexlayoutschema) \| [`MarkdownLayoutSchema`](#markdownlayoutschema) | ⬜       | レイアウト設定の配列。 |
+| `layouts[]` | [`DocxLayoutSchema`](#docxlayoutschema) \| [`HtmlLayoutSchema`](#htmllayoutschema) \| [`LatexLayoutSchema`](#latexlayoutschema) \| [`MarkdownLayoutSchema`](#markdownlayoutschema) | ⬜       | レイアウト設定の配列。 |
 
 #### 一般的なレイアウトスキーマ
 
@@ -337,6 +337,48 @@ Markdown レイアウト設定を検証します。
 | `engine`    | `'markdown'`                        | ✅       | "markdown" でなければなりません                       |
 | `sections?` | [`SectionsSchema`](#sectionsschema) | ⬜       | [セクションスキーマ](#sectionsschema) を参照 |
 
+#### DocxLayoutSchema
+
+DOCX レイアウト設定を検証します。
+
+| 属性          | タイプ                                                  | 必須 | 検証ルール                                      |
+| ------------- | ----------------------------------------------------- | -------- | ----------------------------------------------------- |
+| `engine`      | `'docx'`                                              | ✅       | "docx" でなければなりません                                        |
+| `advanced?`   | [`DocxAdvancedSchema`](#docxadvancedschema)           | ⬜       | [高度なスキーマ](#docxadvancedschema) を参照                |
+| `page?`       | [`DocxPageSchema`](#docxpageschema)                   | ⬜       | [ページスキーマ](#docxpageschema) を参照                   |
+| `sections?`   | [`SectionsSchema`](#sectionsschema)                   | ⬜       | [セクションスキーマ](#sectionsschema) を参照                |
+| `template?`   | [`DocxTemplate`](#docxtemplate)                       | ⬜       | 事前定義された[テンプレートオプション](#docxtemplate) からである必要があります |
+| `typography?` | [`DocxTypographySchema`](#docxtypographyschema)       | ⬜       | [タイポグラフィスキーマ](#docxtypographyschema) を参照      |
+
+##### DocxAdvancedSchema
+
+DOCX の高度な設定オプションを検証します。
+
+| 属性         | タイプ      | 必須 | 検証ルール |
+| ------------ | --------- | -------- | ---------- |
+| `showIcons?` | `boolean` | ⬜       | true/false |
+| `showUrls?`  | `boolean` | ⬜       | true/false |
+
+##### DocxPageSchema
+
+文書プレゼンテーションのページレベル設定を検証します。
+
+| 属性               | タイプ                   | 必須 | 検証ルール                 |
+| ------------------ | ---------------------- | -------- | ------------------------------------ |
+| `margins?`         | [`MarginsSchema`](#marginsschema) | ⬜       | [マージンスキーマ](#marginsschema) を参照 |
+| `paperSize?`       | [`DocxPaperSize`](#docxpapersize) | ⬜       | 事前定義された[用紙サイズオプション](#docxpapersize) からである必要があります |
+| `showPageNumbers?` | `boolean`              | ⬜       | true/false                           |
+
+##### DocxTypographySchema
+
+文書フォーマットのタイポグラフィ設定を検証します。
+
+| 属性          | タイプ                              | 必須 | 検証ルール                                            |
+| ------------- | --------------------------------- | -------- | ----------------------------------------------------- |
+| `fontSize?`   | [`DocxFontSize`](#docxfontsize)   | ⬜       | 事前定義された[フォントサイズオプション](#docxfontsize) からである必要があります |
+| `fontFamily?` | `string`                          | ⬜       | フォントファミリーのカンマ区切りリスト。                   |
+| `lineSpacing?`| [`LineSpacing`](#linespacing)     | ⬜       | 事前定義された[行間オプション](#linespacing) からである必要があります |
+
 ## プリミティブ検証スキーマ
 
 ### メールスキーマ
@@ -412,6 +454,15 @@ Markdown レイアウト設定を検証します。
 - 有効な単位（cm、pt、in）が続く正数である必要があります
 - 例：`2.5cm`、`1in`、`72pt`、`0.5cm`、`12pt`
 
+### DOCX フォントファミリースキーマ
+
+DOCX 出力用のフォントファミリー名を検証します。
+
+**検証ルール：**
+
+- ターゲットシステムで利用可能な有効なフォントファミリー名である必要があります
+- 例：`Arial`、`Times New Roman`、`Calibri`
+
 ## 列挙検証スキーマ
 
 ### 国
@@ -470,13 +521,39 @@ Markdown レイアウト設定を検証します。
 - 事前定義されたネットワークオプションの 1 つである必要があります
 - 例：`GitHub`、`LinkedIn`、`Twitter`、`Facebook`、`Instagram`
 
+### DocxFontSize
+
+すべての可能な DOCX フォントサイズオプションのユニオンタイプ。
+
+**検証ルール：**
+
+- 以下のいずれかである必要があります：`10pt`、`10.5pt`、`11pt`、`11.5pt`、`12pt`
+- `10pt` がデフォルトフォントサイズです
+
+### DocxPaperSize
+
+すべての可能な DOCX 用紙サイズオプションのユニオンタイプ。
+
+**検証ルール：**
+
+- 以下のいずれかである必要があります：`a4`、`letter`
+- `a4` がデフォルトの用紙サイズです
+
+### DocxTemplate
+
+すべての可能な DOCX テンプレートオプションのユニオンタイプ。
+
+**検証ルール：**
+
+- 以下のいずれかである必要があります：`calm`
+- 参照：[テンプレート](/ja/docs/layouts/docx/templates)
+
 ### LatexTemplate
 
 すべての可能なテンプレートオプションのユニオンタイプ。
 
 **検証ルール：**
 
-- 以下のいずれかである必要があります：`moderncv-banking`、`moderncv-casual`、`moderncv-classic`
 - 以下のいずれかである必要があります：`moderncv-banking`、`moderncv-casual`、`moderncv-classic`
 - 参照：[テンプレート](/ja/docs/layouts/latex/templates)
 

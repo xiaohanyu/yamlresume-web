@@ -50,9 +50,10 @@ flowchart LR
 
 subgraph Layouts
 direction TB
-B1[LatexLayout]
-B2[MarkdownLayout]
-B3[HtmlLayout]
+B1[DocxLayout]
+B2[HtmlLayout]
+B3[LatexLayout]
+B4[MarkdownLayout]
 end
 
 subgraph Content
@@ -73,6 +74,7 @@ A --> D
 B --> B1
 B --> B2
 B --> B3
+B --> B4
 C --> C1
 C --> C2
 C --> C3
@@ -285,7 +287,7 @@ C --> C8
 
 | 属性        | タイプ                                                                 | 必須 | 説明                            |
 | ----------- | -------------------------------------------------------------------- | -------- | -------------------------------------- |
-| `layouts[]` | [`LatexLayout`](#latexlayout) \| [`MarkdownLayout`](#markdownlayout) | ⬜       | 複数の出力レイアウト設定。 |
+| `layouts[]` | [`DocxLayout`](#docxlayout) \| [`HtmlLayout`](#htmllayout) \| [`LatexLayout`](#latexlayout) \| [`MarkdownLayout`](#markdownlayout) | ⬜       | 複数の出力レイアウト設定。 |
 
 #### 一般的なレイアウトタイプ
 
@@ -396,6 +398,48 @@ Markdown レイアウト設定。
 | `engine`    | `'markdown'`            | ✅       | 履歴書を生成するエンジン。      |
 | `sections?` | [`Sections`](#sections) | ⬜       | セクションのカスタマイズ設定を定義します。 |
 
+#### DocxLayout
+
+DOCX レイアウト設定。
+
+| 属性          | タイプ                                  | 必須 | 説明                                           |
+| ------------- | ------------------------------------- | -------- | ----------------------------------------------------- |
+| `engine`      | `'docx'`                              | ✅       | 履歴書を生成するエンジン。                    |
+| `advanced?`   | [`DocxAdvanced`](#docxadvanced)       | ⬜       | 高度な設定オプションを定義します。               |
+| `page?`       | [`DocxPage`](#docxpage)               | ⬜       | 文書プレゼンテーションのページレベル設定を定義します。|
+| `sections?`   | [`Sections`](#sections)               | ⬜       | セクションのカスタマイズ設定を定義します。               |
+| `template?`   | [`DocxTemplate`](#docxtemplate)       | ⬜       | 選択されたテンプレートを定義します。                        |
+| `typography?` | [`DocxTypography`](#docxtypography)   | ⬜       | 文書フォーマットのタイポグラフィ設定を定義します。  |
+
+##### DocxAdvanced
+
+DOCX の高度な設定オプションを定義します。
+
+| 属性         | タイプ      | 必須 | 説明                                                         |
+| ------------ | --------- | -------- | ------------------------------------------------------------ |
+| `showIcons?` | `boolean` | ⬜       | リンクとプロフィールのアイコンを表示するかどうか。 |
+| `showUrls?`  | `boolean` | ⬜       | 生の URL を表示するか、適切なテキストの背後に隠すか。 |
+
+##### DocxPage
+
+DOCX の文書プレゼンテーションのページレベル設定を定義します。
+
+| 属性               | タイプ                   | 必須 | 説明                      |
+| ------------------ | ---------------------- | -------- | -------------------------------- |
+| `margins?`         | [`Margins`](#margins)  | ⬜       | ページマージン設定を定義します。    |
+| `paperSize?`       | [`DocxPaperSize`](#docxpapersize) | ⬜       | 用紙サイズを定義します。 |
+| `showPageNumbers?` | `boolean`              | ⬜       | ページ番号を表示するかどうか。 |
+
+##### DocxTypography
+
+DOCX の文書フォーマットのタイポグラフィ設定を定義します。
+
+| 属性          | タイプ                                | 必須 | 説明                        |
+| ------------- | ----------------------------------- | -------- | -------------------------------- |
+| `fontSize?`   | [`DocxFontSize`](#docxfontsize)     | ⬜       | 文書の基本フォントサイズ。 |
+| `fontFamily?` | `string`                            | ⬜       | 使用するフォントファミリーのカンマ区切りリスト。 |
+| `lineSpacing?`| [`LineSpacing`](#linespacing)       | ⬜       | 文書の行間。           |
+
 ## 列挙タイプ
 
 ### コンテンツ Enum
@@ -446,6 +490,31 @@ Markdown レイアウト設定。
 すべての可能なソーシャルネットワークオプションのユニオンタイプ。
 
 ### レイアウト Enum
+
+#### DocxFontSize
+
+すべての可能な DOCX フォントサイズオプションのユニオンタイプ。
+
+- `10pt` - 10pt フォントサイズ（デフォルト）
+- `10.5pt` - 10.5pt フォントサイズ
+- `11pt` - 11pt フォントサイズ
+- `11.5pt` - 11.5pt フォントサイズ
+- `12pt` - 12pt フォントサイズ
+
+#### DocxPaperSize
+
+すべての可能な DOCX 用紙サイズオプションのユニオンタイプ。
+
+- `a4` (デフォルト)
+- `letter`
+
+#### DocxTemplate
+
+すべての可能な DOCX テンプレートオプションのユニオンタイプ。
+
+参照：[テンプレート](/ja/docs/layouts/docx/templates)
+
+- `calm`
 
 #### HtmlFontSize
 

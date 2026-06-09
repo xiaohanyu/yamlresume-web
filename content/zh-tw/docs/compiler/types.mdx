@@ -52,9 +52,10 @@ flowchart LR
 
 subgraph Layouts
 direction TB
-B1[LatexLayout]
-B2[MarkdownLayout]
-B3[HtmlLayout]
+B1[DocxLayout]
+B2[HtmlLayout]
+B3[LatexLayout]
+B4[MarkdownLayout]
 end
 
 subgraph Content
@@ -75,6 +76,7 @@ A --> D
 B --> B1
 B --> B2
 B --> B3
+B --> B4
 C --> C1
 C --> C2
 C --> C3
@@ -287,7 +289,7 @@ C --> C8
 
 | 屬性        | 類型                                                                 | 必需 | 描述                            |
 | ----------- | -------------------------------------------------------------------- | -------- | -------------------------------------- |
-| `layouts[]` | [`LatexLayout`](#latexlayout) \| [`MarkdownLayout`](#markdownlayout) | ⬜       | 多個輸出佈局配置。 |
+| `layouts[]` | [`DocxLayout`](#docxlayout) \| [`HtmlLayout`](#htmllayout) \| [`LatexLayout`](#latexlayout) \| [`MarkdownLayout`](#markdownlayout) | ⬜       | 多個輸出佈局配置。 |
 
 #### 通用佈局類型
 
@@ -398,6 +400,48 @@ Markdown 佈局配置。
 | `engine`    | `'markdown'`            | ✅       | 生成履歷的引擎。      |
 | `sections?` | [`Sections`](#sections) | ⬜       | 定義分節自定義設置。 |
 
+#### DocxLayout
+
+DOCX 佈局配置。
+
+| 屬性          | 類型                                  | 必需 | 描述                                           |
+| ------------- | ------------------------------------- | -------- | ----------------------------------------------------- |
+| `engine`      | `'docx'`                              | ✅       | 生成履歷的引擎。                    |
+| `advanced?`   | [`DocxAdvanced`](#docxadvanced)       | ⬜       | 定義進階配置選項。               |
+| `page?`       | [`DocxPage`](#docxpage)               | ⬜       | 定義文件演示的頁面級設置。|
+| `sections?`   | [`Sections`](#sections)               | ⬜       | 定義分節自定義設置。               |
+| `template?`   | [`DocxTemplate`](#docxtemplate)       | ⬜       | 定義選定的模板。                        |
+| `typography?` | [`DocxTypography`](#docxtypography)   | ⬜       | 定義文件格式的排版設置。  |
+
+##### DocxAdvanced
+
+定義 DOCX 的進階配置選項。
+
+| 屬性         | 類型      | 必需 | 描述                                                         |
+| ------------ | --------- | -------- | ------------------------------------------------------------ |
+| `showIcons?` | `boolean` | ⬜       | 是否顯示連結和社交主页的圖示。 |
+| `showUrls?`  | `boolean` | ⬜       | 是否顯示原始 URL 或將其隱藏在合理的文字後面。 |
+
+##### DocxPage
+
+定義 DOCX 的文件演示頁面級設置。
+
+| 屬性               | 類型                   | 必需 | 描述                      |
+| ------------------ | ---------------------- | -------- | -------------------------------- |
+| `margins?`         | [`Margins`](#margins)  | ⬜       | 定義頁邊距設置。    |
+| `paperSize?`       | [`DocxPaperSize`](#docxpapersize) | ⬜       | 定義紙張大小。 |
+| `showPageNumbers?` | `boolean`              | ⬜       | 是否顯示頁碼。 |
+
+##### DocxTypography
+
+定義 DOCX 的文件格式排版設置。
+
+| 屬性          | 類型                                | 必需 | 描述                        |
+| ------------- | ----------------------------------- | -------- | -------------------------------- |
+| `fontSize?`   | [`DocxFontSize`](#docxfontsize)     | ⬜       | 文件的基礎字體大小。 |
+| `fontFamily?` | `string`                            | ⬜       | 要使用的逗號分隔的字體家族列表。 |
+| `lineSpacing?`| [`LineSpacing`](#linespacing)       | ⬜       | 文件的行距。        |
+
 ## 枚舉類型
 
 ### 內容 Enum
@@ -448,6 +492,31 @@ Markdown 佈局配置。
 所有可能社交網路選項的聯合類型。
 
 ### 佈局 Enum
+
+#### DocxFontSize
+
+所有可能 DOCX 字體大小選項的聯合類型。
+
+- `10pt` - 10pt 字體大小（預設）
+- `10.5pt` - 10.5pt 字體大小
+- `11pt` - 11pt 字體大小
+- `11.5pt` - 11.5pt 字體大小
+- `12pt` - 12pt 字體大小
+
+#### DocxPaperSize
+
+所有可能 DOCX 紙張大小選項的聯合類型。
+
+- `a4` (預設)
+- `letter`
+
+#### DocxTemplate
+
+所有可能 DOCX 模板選項的聯合類型。
+
+另請參閱：[模板](/zh-tw/docs/layouts/docx/templates)
+
+- `calm`
 
 #### HtmlFontSize
 

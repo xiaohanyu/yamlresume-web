@@ -220,7 +220,7 @@ Defines the overall layout validation configuration.
 
 | Prop        | Type                                                                                         | Required | Validation Rules                |
 | ----------- | -------------------------------------------------------------------------------------------- | -------- | ------------------------------- |
-| `layouts[]` | [`HtmlLayoutSchema`](#htmllayoutschema) \| [`LatexLayoutSchema`](#latexlayoutschema) \| [`MarkdownLayoutSchema`](#markdownlayoutschema) | ⬜       | Array of layout configurations. |
+| `layouts[]` | [`DocxLayoutSchema`](#docxlayoutschema) \| [`HtmlLayoutSchema`](#htmllayoutschema) \| [`LatexLayoutSchema`](#latexlayoutschema) \| [`MarkdownLayoutSchema`](#markdownlayoutschema) | ⬜       | Array of layout configurations. |
 
 #### Common Layout Schemas
 
@@ -339,6 +339,48 @@ Validates Markdown layout configuration.
 | `engine`    | `'markdown'`                        | ✅       | Must be "markdown"                     |
 | `sections?` | [`SectionsSchema`](#sectionsschema) | ⬜       | See [sections schema](#sectionsschema) |
 
+#### DocxLayoutSchema
+
+Validates DOCX layout configuration.
+
+| Prop          | Type                                                  | Required | Validation Rules                                      |
+| ------------- | ----------------------------------------------------- | -------- | ----------------------------------------------------- |
+| `engine`      | `'docx'`                                              | ✅       | Must be "docx"                                        |
+| `advanced?`   | [`DocxAdvancedSchema`](#docxadvancedschema)           | ⬜       | See [advanced schema](#docxadvancedschema)            |
+| `page?`       | [`DocxPageSchema`](#docxpageschema)                   | ⬜       | See [page schema](#docxpageschema)                    |
+| `sections?`   | [`SectionsSchema`](#sectionsschema)                   | ⬜       | See [sections schema](#sectionsschema)                |
+| `template?`   | [`DocxTemplate`](#docxtemplate)                       | ⬜       | Must be from predefined [template options](#docxtemplate) |
+| `typography?` | [`DocxTypographySchema`](#docxtypographyschema)       | ⬜       | See [typography schema](#docxtypographyschema)        |
+
+##### DocxAdvancedSchema
+
+Validates advanced DOCX configuration options.
+
+| Prop         | Type      | Required | Validation Rules |
+| ------------ | --------- | -------- | ---------------- |
+| `showIcons?` | `boolean` | ⬜       | true/false       |
+| `showUrls?`  | `boolean` | ⬜       | true/false       |
+
+##### DocxPageSchema
+
+Validates page-level settings for document presentation.
+
+| Prop               | Type                   | Required | Validation Rules                               |
+| ------------------ | ---------------------- | -------- | ---------------------------------------------- |
+| `margins?`         | [`MarginsSchema`](#marginsschema) | ⬜       | See [margins schema](#marginsschema)           |
+| `paperSize?`       | [`DocxPaperSize`](#docxpapersize) | ⬜       | Must be from predefined [paper size options](#docxpapersize) |
+| `showPageNumbers?` | `boolean`              | ⬜       | true/false                                     |
+
+##### DocxTypographySchema
+
+Validates typography settings for document formatting.
+
+| Prop          | Type                              | Required | Validation Rules                                           |
+| ------------- | --------------------------------- | -------- | ---------------------------------------------------------- |
+| `fontSize?`   | [`DocxFontSize`](#docxfontsize)   | ⬜       | Must be from predefined [font size options](#docxfontsize) |
+| `fontFamily?` | `string`                          | ⬜       | A comma-separated list of font families.                   |
+| `lineSpacing?`| [`LineSpacing`](#linespacing)     | ⬜       | Must be from predefined [line spacing options](#linespacing) |
+
 ## Primitive Validation Schemas
 
 ### Email Schema
@@ -414,6 +456,15 @@ Validates margin size strings with unit requirements.
 - Must be a positive number followed by valid units: cm, pt, or in
 - Examples: `2.5cm`, `1in`, `72pt`, `0.5cm`, `12pt`
 
+### DOCX Font Family Schema
+
+Validates font family names for DOCX output.
+
+**Validation Rules:**
+
+- Must be a valid font family name available on the target system
+- Examples: `Arial`, `Times New Roman`, `Calibri`
+
 ## Enum Validation Schemas
 
 ### Country
@@ -471,6 +522,33 @@ A union type for all possible social network options.
 
 - Must be one of the predefined network options
 - Examples: `GitHub`, `LinkedIn`, `Twitter`, `Facebook`, `Instagram`
+
+### DocxFontSize
+
+A union type for all possible DOCX font size options.
+
+**Validation Rules:**
+
+- Must be one of: `10pt`, `10.5pt`, `11pt`, `11.5pt`, `12pt`
+- `10pt` is the default font size
+
+### DocxPaperSize
+
+A union type for all possible DOCX paper size options.
+
+**Validation Rules:**
+
+- Must be one of: `a4`, `letter`
+- `a4` is the default paper size
+
+### DocxTemplate
+
+A union type for all possible DOCX template options.
+
+**Validation Rules:**
+
+- Must be one of: `calm`
+- See also: [templates](/docs/layouts/docx/templates)
 
 ### HtmlFontSize
 

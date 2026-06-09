@@ -60,9 +60,10 @@ flowchart LR
 
 subgraph Layouts
 direction TB
-B1[LatexLayout]
-B2[MarkdownLayout]
-B3[HtmlLayout]
+B1[DocxLayout]
+B2[HtmlLayout]
+B3[LatexLayout]
+B4[MarkdownLayout]
 end
 
 subgraph Content
@@ -83,6 +84,7 @@ A --> D
 B --> B1
 B --> B2
 B --> B3
+B --> B4
 C --> C1
 C --> C2
 C --> C3
@@ -295,7 +297,7 @@ Array of layout items supporting multiple output formats.
 
 | Prop        | Type                                                                 | Required | Description                            |
 | ----------- | -------------------------------------------------------------------- | -------- | -------------------------------------- |
-| `layouts[]` | [`LatexLayout`](#latexlayout) \| [`MarkdownLayout`](#markdownlayout) | ⬜       | Multiple output layout configurations. |
+| `layouts[]` | [`DocxLayout`](#docxlayout) \| [`HtmlLayout`](#htmllayout) \| [`LatexLayout`](#latexlayout) \| [`MarkdownLayout`](#markdownlayout) | ⬜       | Multiple output layout configurations. |
 
 #### Common Layout Types
 
@@ -406,6 +408,48 @@ Markdown layout configuration.
 | `engine`    | `'markdown'`            | ✅       | The engine to generate the resume.      |
 | `sections?` | [`Sections`](#sections) | ⬜       | Defines section customization settings. |
 
+#### DocxLayout
+
+DOCX layout configuration.
+
+| Prop          | Type                                  | Required | Description                                           |
+| ------------- | ------------------------------------- | -------- | ----------------------------------------------------- |
+| `engine`      | `'docx'`                              | ✅       | The engine to generate the resume.                    |
+| `advanced?`   | [`DocxAdvanced`](#docxadvanced)       | ⬜       | Defines advanced configuration options.               |
+| `page?`       | [`DocxPage`](#docxpage)               | ⬜       | Defines page-level settings for document presentation.|
+| `sections?`   | [`Sections`](#sections)               | ⬜       | Defines section customization settings.               |
+| `template?`   | [`DocxTemplate`](#docxtemplate)       | ⬜       | Defines the selected template.                        |
+| `typography?` | [`DocxTypography`](#docxtypography)   | ⬜       | Defines typography settings for document formatting.  |
+
+##### DocxAdvanced
+
+Defines advanced DOCX configuration options.
+
+| Prop         | Type      | Required | Description                                          |
+| ------------ | --------- | -------- | ---------------------------------------------------- |
+| `showIcons?` | `boolean` | ⬜       | Whether to display icons for links and profiles.     |
+| `showUrls?`  | `boolean` | ⬜       | Whether to show raw URLs or hide them behind reasonable text. |
+
+##### DocxPage
+
+Defines DOCX page-level settings for document presentation.
+
+| Prop               | Type                   | Required | Description                          |
+| ------------------ | ---------------------- | -------- | ------------------------------------ |
+| `margins?`         | [`Margins`](#margins)  | ⬜       | Defines page margin settings.        |
+| `paperSize?`       | [`DocxPaperSize`](#docxpapersize) | ⬜       | Defines the paper size.              |
+| `showPageNumbers?` | `boolean`              | ⬜       | Whether to display page numbers.     |
+
+##### DocxTypography
+
+Defines DOCX typography settings for document formatting.
+
+| Prop          | Type                                | Required | Description                      |
+| ------------- | ----------------------------------- | -------- | -------------------------------- |
+| `fontSize?`   | [`DocxFontSize`](#docxfontsize)     | ⬜       | Base font size for the document. |
+| `fontFamily?` | `string`                            | ⬜       | A comma-separated list of font families to use. |
+| `lineSpacing?`| [`LineSpacing`](#linespacing)       | ⬜       | Line spacing for the document.   |
+
 ## Enum Types
 
 ### Content Enums
@@ -456,6 +500,31 @@ A union type for all possible skill proficiency levels.
 A union type for all possible social network options.
 
 ### Layout Enums
+
+#### DocxFontSize
+
+A union type for all possible DOCX font size options.
+
+- `10pt` - 10pt font size (default)
+- `10.5pt` - 10.5pt font size
+- `11pt` - 11pt font size
+- `11.5pt` - 11.5pt font size
+- `12pt` - 12pt font size
+
+#### DocxPaperSize
+
+A union type for all possible DOCX paper size options.
+
+- `a4` (default)
+- `letter`
+
+#### DocxTemplate
+
+A union type for all possible DOCX template options.
+
+See also: [templates](/docs/layouts/docx/templates)
+
+- `calm`
 
 #### HtmlFontSize
 

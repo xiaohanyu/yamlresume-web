@@ -218,7 +218,7 @@ YAMLResume 採用 [zod](https://zod.dev) 在執行時驗證履歷資料。
 
 | 屬性        | 類型                                                                                         | 必需 | 驗證規則            |
 | ----------- | -------------------------------------------------------------------------------------------- | -------- | ------------------------------- |
-| `layouts[]` | [`HtmlLayoutSchema`](#htmllayoutschema) \| [`LatexLayoutSchema`](#latexlayoutschema) \| [`MarkdownLayoutSchema`](#markdownlayoutschema) | ⬜       | 佈局配置陣列。 |
+| `layouts[]` | [`DocxLayoutSchema`](#docxlayoutschema) \| [`HtmlLayoutSchema`](#htmllayoutschema) \| [`LatexLayoutSchema`](#latexlayoutschema) \| [`MarkdownLayoutSchema`](#markdownlayoutschema) | ⬜       | 佈局配置陣列。 |
 
 #### 通用佈局模式
 
@@ -337,6 +337,48 @@ YAMLResume 採用 [zod](https://zod.dev) 在執行時驗證履歷資料。
 | `engine`    | `'markdown'`                        | ✅       | 必須是 "markdown"                       |
 | `sections?` | [`SectionsSchema`](#sectionsschema) | ⬜       | 參見[分節模式](#sectionsschema) |
 
+#### DocxLayoutSchema
+
+驗證 DOCX 佈局配置。
+
+| 屬性          | 類型                                                  | 必需 | 驗證規則                                      |
+| ------------- | ----------------------------------------------------- | -------- | ----------------------------------------------------- |
+| `engine`      | `'docx'`                                              | ✅       | 必須是 "docx"                                        |
+| `advanced?`   | [`DocxAdvancedSchema`](#docxadvancedschema)           | ⬜       | 參見[進階模式](#docxadvancedschema)            |
+| `page?`       | [`DocxPageSchema`](#docxpageschema)                   | ⬜       | 參見[頁面模式](#docxpageschema)                    |
+| `sections?`   | [`SectionsSchema`](#sectionsschema)                   | ⬜       | 參見[分節模式](#sectionsschema)                |
+| `template?`   | [`DocxTemplate`](#docxtemplate)                       | ⬜       | 必須來自預定義的[模板選項](#docxtemplate) |
+| `typography?` | [`DocxTypographySchema`](#docxtypographyschema)       | ⬜       | 參見[排版模式](#docxtypographyschema)        |
+
+##### DocxAdvancedSchema
+
+驗證 DOCX 的進階配置選項。
+
+| 屬性         | 類型      | 必需 | 驗證規則 |
+| ------------ | --------- | -------- | ---------------- |
+| `showIcons?` | `boolean` | ⬜       | true/false       |
+| `showUrls?`  | `boolean` | ⬜       | true/false       |
+
+##### DocxPageSchema
+
+驗證文件演示的頁面級設置。
+
+| 屬性               | 類型                   | 必需 | 驗證規則                               |
+| ------------------ | ---------------------- | -------- | ---------------------------------------------- |
+| `margins?`         | [`MarginsSchema`](#marginsschema) | ⬜       | 參見[頁邊距模式](#marginsschema)           |
+| `paperSize?`       | [`DocxPaperSize`](#docxpapersize) | ⬜       | 必須來自預定義的[紙張大小選項](#docxpapersize) |
+| `showPageNumbers?` | `boolean`              | ⬜       | true/false                                     |
+
+##### DocxTypographySchema
+
+驗證文件格式的排版設置。
+
+| 屬性          | 類型                              | 必需 | 驗證規則                                           |
+| ------------- | --------------------------------- | -------- | ---------------------------------------------------------- |
+| `fontSize?`   | [`DocxFontSize`](#docxfontsize)   | ⬜       | 必須來自預定義的[字體大小選項](#docxfontsize) |
+| `fontFamily?` | `string`                          | ⬜       | 逗號分隔的字體家族列表。                   |
+| `lineSpacing?`| [`LineSpacing`](#linespacing)     | ⬜       | 必須來自預定義的[行距選項](#linespacing) |
+
 ## 原始驗證模式
 
 ### 電子郵件模式
@@ -412,6 +454,15 @@ YAMLResume 採用 [zod](https://zod.dev) 在執行時驗證履歷資料。
 - 必須是正數後跟有效單位：cm、pt 或 in
 - 示例：`2.5cm`、`1in`、`72pt`、`0.5cm`、`12pt`
 
+### DOCX 字體家族模式
+
+驗證 DOCX 輸出的字體家族名稱。
+
+**驗證規則：**
+
+- 必須是目標系統上可用的有效字體家族名稱
+- 示例：`Arial`、`Times New Roman`、`Calibri`
+
 ## 枚舉驗證模式
 
 ### 國家
@@ -479,6 +530,33 @@ YAMLResume 採用 [zod](https://zod.dev) 在執行時驗證履歷資料。
 - 必須是以下之一：`moderncv-banking`、`moderncv-casual`、`moderncv-classic`
 - 必須是以下之一：`moderncv-banking`、`moderncv-casual`、`moderncv-classic`
 - 另請參閱：[模板](/zh-tw/docs/layouts/latex/templates)
+
+### DocxFontSize
+
+所有可能 DOCX 字體大小選項的聯合類型。
+
+**驗證規則：**
+
+- 必須是以下之一：`10pt`、`10.5pt`、`11pt`、`11.5pt`、`12pt`
+- `10pt` 是預設字體大小
+
+### DocxPaperSize
+
+所有可能 DOCX 紙張大小選項的聯合類型。
+
+**驗證規則：**
+
+- 必須是以下之一：`a4`、`letter`
+- `a4` 是預設紙張大小
+
+### DocxTemplate
+
+所有可能 DOCX 模板選項的聯合類型。
+
+**驗證規則：**
+
+- 必須是以下之一：`calm`
+- 另請參閱：[模板](/zh-tw/docs/layouts/docx/templates)
 
 ### HtmlFontSize
 
