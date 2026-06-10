@@ -28,20 +28,29 @@ export function NewsChannel() {
           <IconSpeakerphone size={20} stroke={1.5} />
           <div className="text-sm text-fd-foreground">
             <Link
-              href={getLocalizedUrl('/blog/v0.12', language)}
+              href={getLocalizedUrl('/blog/v0.13', language)}
               className="underline font-semibold"
             >
-              YAMLResume v0.12
+              YAMLResume v0.13
             </Link>{' '}
-            is here! New Jake's Resume template, Indonesian language support,
-            year-only dates, and line spacing customization. Check out the{' '}
+            is here! New{' '}
             <Link
-              href={getLocalizedUrl('/blog/v0.12', language)}
+              href={getLocalizedUrl('/docs/layouts/docx', language)}
               className="underline"
             >
-              release notes
-            </Link>{' '}
-            for more details.
+              DOCX rendering engine
+            </Link>
+            ,{' '}
+            <Link
+              href={getLocalizedUrl(
+                '/docs/locale/brazilian-portuguese',
+                language
+              )}
+              className="underline"
+            >
+              Brazilian Portuguese language support
+            </Link>
+            , and various bug fixes.
           </div>
         </div>
       </div>
