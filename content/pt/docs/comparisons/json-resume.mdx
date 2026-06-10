@@ -2,10 +2,10 @@
 title: YAMLResume VS JSON Resume
 ---
 
-[JSON Resume](https://jsonresume.org) é um pioneiro na criação de um padrão aberto
-para um formato de dados estruturado para currículos. Seu primeiro [lançamento
-oficial](https://jsonresume.org/blog/first-official-release) foi em 31 de julho
-de 2014—há mais de 10 anos.
+[JSON Resume](https://jsonresume.org) é um pioneiro na criação de um padrão
+aberto para um formato de dados estruturado para currículos. Seu primeiro
+[lançamento oficial](https://jsonresume.org/blog/first-official-release) foi em
+31 de julho de 2014—há mais de 10 anos.
 
 Do site oficial:
 
@@ -30,36 +30,34 @@ reconhecimento da necessidade de um formato de currículo padronizado na
 indústria de tecnologia.
 ```
 
-JSON Resume fez um excelente trabalho ao estabelecer um padrão aberto para
-dados estruturados de currículos. No entanto, ele é **apenas dados**—especifica
-como estruturar seu currículo em JSON, mas não oferece uma solução opinativa
-para transformar esses dados em um documento bonito e profissionalmente
-composto.
+JSON Resume fez um excelente trabalho ao estabelecer um padrão aberto para dados
+estruturados de currículos. No entanto, ele é **apenas dados**—especifica como
+estruturar seu currículo em JSON, mas não oferece uma solução opinativa para
+transformar esses dados em um documento bonito e profissionalmente composto.
 
-YAMLResume é profundamente inspirado pelo [JSON Resume](https://jsonresume.org/) e
-adota uma abordagem mais **opinativa e completa**. Veja como eles se
-comparam:
+YAMLResume é profundamente inspirado pelo [JSON Resume](https://jsonresume.org/)
+e adota uma abordagem mais **opinativa e completa**. Veja como eles se comparam:
 
 ## Comparação de Funcionalidades
 
-| Funcionalidade           | YAMLResume                                                                                                           | JSON Resume                                                  |
-| ------------------------ | -------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
-| **Formato de Dados**     | YAML                                                                                                                 | JSON                                                         |
-| **Internacionalização**  | [10 idiomas](/pt/docs/locale) integrados                                                                             | Nenhum                                                       |
-| **Suporte a Rich Text**  | Um conjunto selecionado de [sintaxe rich text em Markdown](/pt/docs/content/rich-text) em campos `summary`           | Nenhum                                                       |
-| **Validação de Schema**  | [Validação estrita de schema](/pt/docs/compiler/schema) com [compilador](/pt/docs/compiler/architecture) + integração com IDE | [Validação básica de JSON Schema](https://jsonresume.org/schema) |
-| **Personalização de Fonte**    | [Família de fonte, tamanho de fonte, espaçamento entre linhas](/pt/docs/layouts/latex), etc.                          | Nenhum                                                       |
-| **Personalização de Layout**   | [Margens da página, números de página, tamanho do papel](/pt/docs/layouts/latex#page), etc.                           | Nenhum                                                       |
-| **Personalização de Seções**   | [Aliases](/pt/docs/layouts/sections/aliases) e [reordenação](/pt/docs/layouts/sections/reorder)                       | Nenhum                                                       |
-| **Motor de Composição**        | [HTML](/pt/docs/layouts/html), [Markdown](/pt/docs/layouts/markdown), [LaTeX](/pt/docs/layouts/latex)                 | HTML                                                         |
-| **Formatos de Saída**          | HTML, Markdown, LaTeX/PDF                                                                                            | [HTML e PDF](https://github.com/jsonresume/resume-cli)       |
-| **Templates**                  | múltiplos templates oficiais [LaTeX](/pt/docs/layouts/latex/templates) e [HTML](/pt/docs/layouts/html/templates)      | Dezenas de [temas HTML](https://jsonresume.org/themes)       |
-| **Modo Dev**                   | [Modo dev](/pt/docs/cli#dev) com reconstrução automática                                                             | Sim                                                          |
-| **Ferramenta de Conversão**    | [json2yamlresume](/pt/docs/ecosystem/json2yamlresume) ajuda a converter JSON Resume para YAMLResume                   | N/A                                                          |
-| **Suporte a Docker**           | [Imagem Docker oficial](/pt/docs/contributing/docker) com LaTeX e YAMLResume pré-instalados                           | Nenhum                                                       |
-| **GitHub Action**              | [GitHub Action oficial](https://github.com/yamlresume/action) para CI/CD                                              | Nenhum                                                       |
-| **Homebrew**                   | [Fórmula Homebrew](https://formulae.brew.sh/formula/yamlresume) para instalação fácil no macOS e Linux               | Nenhum                                                       |
-| **Playground Web**             | [Playground](/pt/playground) web interativo                                                                           | Nenhum                                                       |
+| Funcionalidade               | YAMLResume                                                                                                                           | JSON Resume                                                      |
+| ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------- |
+| **Formato de Dados**         | YAML                                                                                                                                 | JSON                                                             |
+| **Internacionalização**      | [10 idiomas](/pt/docs/locale) integrados                                                                                             | Nenhum                                                           |
+| **Suporte a Rich Text**      | Um conjunto selecionado de [sintaxe rich text em Markdown](/pt/docs/content/rich-text) em campos `summary`                           | Nenhum                                                           |
+| **Validação de Schema**      | [Validação estrita de schema](/pt/docs/compiler/schema) com [compilador](/pt/docs/compiler/architecture) + integração com IDE        | [Validação básica de JSON Schema](https://jsonresume.org/schema) |
+| **Personalização de Fonte**  | [Família de fonte, tamanho de fonte, espaçamento entre linhas](/pt/docs/layouts/latex), etc.                                         | Nenhum                                                           |
+| **Personalização de Layout** | [Margens da página, números de página, tamanho do papel](/pt/docs/layouts/latex#page), etc.                                          | Nenhum                                                           |
+| **Personalização de Seções** | [Aliases](/pt/docs/layouts/sections/aliases) e [reordenação](/pt/docs/layouts/sections/reorder)                                      | Nenhum                                                           |
+| **Motor de Composição**      | [DOCX](/pt/docs/layouts/docx), [HTML](/pt/docs/layouts/html), [LaTeX](/pt/docs/layouts/latex), [Markdown](/pt/docs/layouts/markdown) | HTML                                                             |
+| **Formatos de Saída**        | DOCX, HTML, LaTeX/PDF, Markdown                                                                                                      | [HTML e PDF](https://github.com/jsonresume/resume-cli)           |
+| **Templates**                | múltiplos templates oficiais [LaTeX](/pt/docs/layouts/latex/templates) e [HTML](/pt/docs/layouts/html/templates)                     | Dezenas de [temas HTML](https://jsonresume.org/themes)           |
+| **Modo Dev**                 | [Modo dev](/pt/docs/cli#dev) com reconstrução automática                                                                             | Sim                                                              |
+| **Ferramenta de Conversão**  | [json2yamlresume](/pt/docs/ecosystem/json2yamlresume) ajuda a converter JSON Resume para YAMLResume                                  | N/A                                                              |
+| **Suporte a Docker**         | [Imagem Docker oficial](/pt/docs/contributing/docker) com LaTeX e YAMLResume pré-instalados                                          | Nenhum                                                           |
+| **GitHub Action**            | [GitHub Action oficial](https://github.com/yamlresume/action) para CI/CD                                                             | Nenhum                                                           |
+| **Homebrew**                 | [Fórmula Homebrew](https://formulae.brew.sh/formula/yamlresume) para instalação fácil no macOS e Linux                               | Nenhum                                                           |
+| **Playground Web**           | [Playground](/pt/playground) web interativo                                                                                          | Nenhum                                                           |
 
 ## Principais Diferenças Explicadas
 
@@ -82,7 +80,8 @@ plana:
 
 YAMLResume vem com um [schema Zod muito abrangente](/pt/docs/compiler/schema),
 com o qual pode validar seu currículo em tempo de compilação e impor segurança
-de tipos, correção de formato com [mensagens de erro no estilo clang](/pt/docs/cli#validate):
+de tipos, correção de formato com
+[mensagens de erro no estilo clang](/pt/docs/cli#validate):
 
 Por exemplo, para o seguinte currículo que contém um email inválido, um nome de
 cidade muito curto e um tamanho de fonte fora do intervalo:
@@ -170,20 +169,21 @@ Validação de Formato no VS Code:
   src="/static/videos/docs/compiler/schema/json/json-schema-format-validation-field-error.mp4"
 />
 
-Por outro lado, JSON Resume oferece [validação básica de JSON
-Schema](https://jsonresume.org/schema) que verifica a estrutura, mas oferece
-validação semântica limitada—sem relatório de erro em tempo de compilação com
-números de linha, sem integração com IDE e sem verificações de regras de
-negócio como tamanhos mínimos de string ou validação de valores enumerados.
+Por outro lado, JSON Resume oferece
+[validação básica de JSON Schema](https://jsonresume.org/schema) que verifica a
+estrutura, mas oferece validação semântica limitada—sem relatório de erro em
+tempo de compilação com números de linha, sem integração com IDE e sem
+verificações de regras de negócio como tamanhos mínimos de string ou validação
+de valores enumerados.
 
 #### Rich Text
 
-YAMLResume suporta um [conjunto limitado de sintaxe
-Markdown](/pt/docs/content/rich-text) (negrito, itálico, links, listas e
-parágrafos) em campos `summary` em todas as seções que possuem campos `summary`.
-Isso permite que você enfatize conquistas importantes ou estruture
-responsabilidades com listas aninhadas sem depender de regras de renderização
-específicas de temas.
+YAMLResume suporta um
+[conjunto limitado de sintaxe Markdown](/pt/docs/content/rich-text) (negrito,
+itálico, links, listas e parágrafos) em campos `summary` em todas as seções que
+possuem campos `summary`. Isso permite que você enfatize conquistas importantes
+ou estruture responsabilidades com listas aninhadas sem depender de regras de
+renderização específicas de temas.
 
 Uma das razões centrais para adotar YAML em vez de JSON é que **a sintaxe de
 string multi-linha do YAML torna muito mais fácil escrever e ler conteúdo rich
@@ -228,10 +228,10 @@ especialmente para resumos mais longos com múltiplos parágrafos e listas
 aninhadas.
 
 JSON Resume não tem opinião sobre formatação—seus campos `summary` são apenas
-texto simples. Qualquer estilo é deixado inteiramente para temas individuais,
-o que significa que os mesmos dados de currículo podem renderizar de forma
-diferente (ou perder a estrutura semântica inteiramente) dependendo de qual
-tema você escolher.
+texto simples. Qualquer estilo é deixado inteiramente para temas individuais, o
+que significa que os mesmos dados de currículo podem renderizar de forma
+diferente (ou perder a estrutura semântica inteiramente) dependendo de qual tema
+você escolher.
 
 #### Campos padronizados
 
@@ -240,8 +240,8 @@ validados em tempo de compilação e traduzidos em todos os idiomas suportados:
 
 - **Graus de educação** (`Middle School`, `High School`, `Bachelor`, `Master`,
   `Doctor`, etc.)
-- **Níveis de habilidade** (`Novice`, `Beginner`, `Intermediate`, `Advanced`, `Expert`,
-  `Master`)
+- **Níveis de habilidade** (`Novice`, `Beginner`, `Intermediate`, `Advanced`,
+  `Expert`, `Master`)
 - **Fluência em idiomas** (`Elementary` até `Native`)
 - **Países e regiões** (traduzidos para cada idioma suportado)
 
@@ -264,6 +264,8 @@ JSON Resume para na camada de dados. Ele diz como estruturar seu currículo em
 JSON, mas deixa a renderização inteiramente de lado. YAMLResume fornece um
 pipeline completo e opinativo do fonte YAML até a saída polida:
 
+- **[Motor DOCX](/pt/docs/layouts/docx)**: Documentos Microsoft Word para fácil
+  edição e compartilhamento
 - **[Motor HTML](/pt/docs/layouts/html)**: Currículos responsivos e prontos para
   web com metadados SEO
 - **[Motor Markdown](/pt/docs/layouts/markdown)**: Texto limpo para LLMs,
@@ -271,7 +273,7 @@ pipeline completo e opinativo do fonte YAML até a saída polida:
 - **[Motor LaTeX](/pt/docs/layouts/latex)**: PDFs pixel-perfeitos com tipografia
   profissional
 
-Um único comando `yamlresume build` pode gerar os três formatos a partir do
+Um único comando `yamlresume build` pode gerar os quatro formatos a partir do
 mesmo arquivo fonte.
 
 YAMLResume também fornece um rico conjunto de opções de personalização de layout
@@ -279,9 +281,9 @@ que vão além do que JSON Resume oferece.
 
 #### Personalização de página
 
-YAMLResume oferece controle total sobre o [layout físico da
-página](/pt/docs/layouts/latex#page), o que é crítico para a saída PDF do motor
-LaTeX, onde a formatação precisa importa:
+YAMLResume oferece controle total sobre o
+[layout físico da página](/pt/docs/layouts/latex#page), o que é crítico para a
+saída PDF do motor LaTeX, onde a formatação precisa importa:
 
 - **Tamanho do papel**: Escolha entre A4 (padrão) e US Letter para corresponder
   aos padrões regionais
@@ -291,15 +293,15 @@ LaTeX, onde a formatação precisa importa:
 - **Números de página**: Ative ou desative números de página, e controle sua
   posição e estilo para currículos de múltiplas páginas
 
-Essas configurações são especialmente importantes para o [motor
-LaTeX](/pt/docs/layouts/latex), onde até pequenos ajustes de margem podem afetar
-significativamente como o conteúdo flui entre as páginas.
+Essas configurações são especialmente importantes para o
+[motor LaTeX](/pt/docs/layouts/latex), onde até pequenos ajustes de margem podem
+afetar significativamente como o conteúdo flui entre as páginas.
 
 #### Personalização de tipografia
 
-YAMLResume oferece [controles semânticos de
-tipografia](/pt/docs/layouts/latex#typography) que mapeiam para implementações
-específicas do motor:
+YAMLResume oferece
+[controles semânticos de tipografia](/pt/docs/layouts/latex#typography) que
+mapeiam para implementações específicas do motor:
 
 - **Família de fonte**: Especifique uma lista priorizada de nomes de fontes
   (ex.: `"Merriweather, serif"`) que funciona como o `font-family` do CSS para
@@ -391,13 +393,13 @@ simples tradução:
 
 - **Idiomas CJK** ([Chinese](/pt/docs/locale/chinese#punctuations),
   [Japanese](/pt/docs/locale/japanese#punctuations)): Usam marcas de pontuação
-  de largura total (`、` para vírgula, `：` para dois-pontos) para corresponder à
-  largura dos caracteres
+  de largura total (`、` para vírgula, `：` para dois-pontos) para corresponder
+  à largura dos caracteres
 - **[French](/pt/docs/locale/french#punctuations)**: Adiciona espaços
   inquebráveis antes da pontuação alta (`:` `!` `?`) e usa aspas angulares
   (`« »`) para citações
-- **[German](/pt/docs/locale/german#punctuations)**: Usa aspas baixa-alta
-  (`„“`) ou aspas angulares voltadas para dentro (`»«`)
+- **[German](/pt/docs/locale/german#punctuations)**: Usa aspas baixa-alta (`„“`)
+  ou aspas angulares voltadas para dentro (`»«`)
 - **[Spanish](/pt/docs/locale/spanish#punctuations)**: Suporta marcas de
   pontuação invertidas (`¿` `¡`)
 
@@ -440,9 +442,8 @@ localidade para corresponder às expectativas culturais de cada idioma.
 
 #### Personalização do babel LaTeX
 
-YAMLResume configura o [pacote LaTeX
-babel](https://latex3.github.io/babel/) para cada idioma suportado para garantir
-composição correta na saída PDF:
+YAMLResume configura o [pacote LaTeX babel](https://latex3.github.io/babel/)
+para cada idioma suportado para garantir composição correta na saída PDF:
 
 - **Regras de hifenização**: Quebra de palavras específica do idioma
 - **Formatos de data**: Strings de data localizadas em documentos gerados
@@ -460,10 +461,10 @@ Resume.
 
 YAMLResume fornece funcionalidades modernas de DX que JSON Resume não tem:
 
-- **`yamlresume new`**: Crie um novo currículo a partir de um template oficial em
-  um comando
-- **`yamlresume build`**: Compile seu currículo em HTML, Markdown e PDF de uma
-  só vez
+- **`yamlresume new`**: Crie um novo currículo a partir de um template oficial
+  em um comando
+- **`yamlresume build`**: Compile seu currículo em DOCX, HTML, Markdown e PDF de
+  uma só vez
 - **`yamlresume dev`**: [Modo de observação](/pt/blog/dev-mode) que reconstrói
   seu currículo a cada salvamento
 - **`yamlresume doctor`**: Diagnostique seu ambiente LaTeX e configuração de
@@ -471,13 +472,14 @@ YAMLResume fornece funcionalidades modernas de DX que JSON Resume não tem:
 - **`yamlresume validate`**: Verifique seu currículo sem compilar
 - **`yamlresume languages list`**: Liste todos os idiomas suportados e seus
   códigos de localidade
-- **`yamlresume templates list`**: Liste todos os templates disponíveis para cada
-  motor
+- **`yamlresume templates list`**: Liste todos os templates disponíveis para
+  cada motor
 
 YAMLResume trata seu currículo como código. O [compilador](/pt/docs/compiler)
 integrado analisa seu YAML, valida contra um schema Zod abrangente, transforma
-os dados e gera a saída—detectando erros antecipadamente com [diagnósticos no
-estilo clang](/pt/blog/yamlresume-compiler) como mencionado anteriormente.
+os dados e gera a saída—detectando erros antecipadamente com
+[diagnósticos no estilo clang](/pt/blog/yamlresume-compiler) como mencionado
+anteriormente.
 
 ## Ecossistema e Comunidade
 
@@ -497,10 +499,10 @@ mais plano de nível superior do YAMLResume.
 
 ### Docker
 
-YAMLResume fornece uma [imagem Docker
-oficial](https://hub.docker.com/r/yamlresume/yamlresume) com todas as
-dependências pré-instaladas, incluindo Node.js, LaTeX e fontes recomendadas.
-Isso torna fácil começar sem instalação local:
+YAMLResume fornece uma
+[imagem Docker oficial](https://hub.docker.com/r/yamlresume/yamlresume) com
+todas as dependências pré-instaladas, incluindo Node.js, LaTeX e fontes
+recomendadas. Isso torna fácil começar sem instalação local:
 
 ```bash
 docker run --rm -v $(pwd):/home/yamlresume yamlresume/yamlresume new my-resume.yml
@@ -512,8 +514,8 @@ ambiente inteiramente para os usuários.
 ### Homebrew
 
 YAMLResume está disponível via
-[Homebrew](https://formulae.brew.sh/formula/yamlresume) para usuários de macOS
-e Linux:
+[Homebrew](https://formulae.brew.sh/formula/yamlresume) para usuários de macOS e
+Linux:
 
 ```bash
 brew install yamlresume
@@ -524,9 +526,10 @@ Homebrew e deve ser instalado via npm.
 
 ### GitHub Action
 
-YAMLResume fornece uma [GitHub Action
-oficial](https://github.com/yamlresume/action) para pipelines de CI/CD. Você
-pode automaticamente compilar e fazer commit de PDFs de currículo a cada push:
+YAMLResume fornece uma
+[GitHub Action oficial](https://github.com/yamlresume/action) para pipelines de
+CI/CD. Você pode automaticamente compilar e fazer commit de PDFs de currículo a
+cada push:
 
 ```yaml
 - uses: yamlresume/action@v0.2.3
@@ -545,14 +548,15 @@ comunidade.
 YAMLResume fornece um [playground](/pt/playground) web interativo onde você pode
 editar seu currículo em tempo real e ver pré-visualizações instantâneas em todos
 os formatos de saída suportados. O playground é construído sobre o componente
-React [`@yamlresume/playground`](https://www.npmjs.com/package/@yamlresume/playground)
+React
+[`@yamlresume/playground`](https://www.npmjs.com/package/@yamlresume/playground)
 e possui:
 
 - **Editor YAML ao vivo**: Editor baseado no Monaco com realce de sintaxe YAML e
   [validação de schema](/pt/docs/compiler/schema/json)
 - **Pré-visualização em tempo real**: Renderização instantânea para layouts
-  [HTML](/pt/docs/layouts/html), [Markdown](/pt/docs/layouts/markdown) e
-  [LaTeX](/pt/docs/layouts/latex)
+  [DOCX](/pt/docs/layouts/docx), [HTML](/pt/docs/layouts/html),
+  [LaTeX](/pt/docs/layouts/latex) e [Markdown](/pt/docs/layouts/markdown)
 - **Opções de exportação**: Baixe, copie ou imprima seu currículo diretamente do
   navegador
 - **Design responsivo**: Layout de painel dividido no desktop, interface com
@@ -561,8 +565,8 @@ e possui:
 O playground é útil para prototipar rapidamente designs de currículo, testar
 configurações de layout ou compartilhar rascunhos de currículo sem precisar de
 um ambiente de desenvolvimento local. Como o playground roda inteiramente no
-navegador, você pode usá-lo em qualquer dispositivo sem instalar Node.js,
-LaTeX ou quaisquer outras dependências.
+navegador, você pode usá-lo em qualquer dispositivo sem instalar Node.js, LaTeX
+ou quaisquer outras dependências.
 
 JSON Resume não tem playground interativo equivalente—usuários devem instalar a
 CLI e configurar um ambiente local para pré-visualizar temas.

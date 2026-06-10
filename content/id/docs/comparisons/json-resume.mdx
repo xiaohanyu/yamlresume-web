@@ -2,9 +2,10 @@
 title: YAMLResume VS JSON Resume
 ---
 
-[JSON Resume](https://jsonresume.org) adalah pelopor dalam membangun standar	erbuka untuk format data terstruktur untuk resume. Rilis [resmi
-pertama](https://jsonresume.org/blog/first-official-release)-nya pada tanggal 31 Juli
-2014—lebih dari 10 tahun yang lalu.
+[JSON Resume](https://jsonresume.org) adalah pelopor dalam membangun standar
+erbuka untuk format data terstruktur untuk resume. Rilis
+[resmi pertama](https://jsonresume.org/blog/first-official-release)-nya pada
+tanggal 31 Juli 2014—lebih dari 10 tahun yang lalu.
 
 Dari situs web resminya:
 
@@ -27,57 +28,61 @@ milestones were driven by community contributions and the growing recognition of
 the need for a standardized resume format in the tech industry.
 ```
 
-JSON Resume melakukan pekerjaan yang sangat baik dalam menetapkan standar terbuka untuk data resume terstruktur. Namun, ini hanya **berupa data**—ia
-menentukan cara menyusun resume dalam JSON tetapi tidak memberikan solusi
-yang berpendapat untuk mengubah data tersebut menjadi dokumen yang indah dan
+JSON Resume melakukan pekerjaan yang sangat baik dalam menetapkan standar
+terbuka untuk data resume terstruktur. Namun, ini hanya **berupa data**—ia
+menentukan cara menyusun resume dalam JSON tetapi tidak memberikan solusi yang
+berpendapat untuk mengubah data tersebut menjadi dokumen yang indah dan
 profesional secara typesetting.
 
 YAMLResume sangat terinspirasi oleh [JSON Resume](https://jsonresume.org/) dan
-mengambil pendekatan yang lebih **berpendapat, baterai-termasuk**.
-Berikut adalah perbandingannya:
+mengambil pendekatan yang lebih **berpendapat, baterai-termasuk**. Berikut
+adalah perbandingannya:
 
 ## Perbandingan Fitur
 
-| Fitur                     | YAMLResume                                                                                                       | JSON Resume                                                   |
-| ------------------------- | ---------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------- |
-| **Format Data**           | YAML                                                                                                             | JSON                                                          |
-| **Internasionalisasi**    | [10 bahasa](/id/docs/locale) bawaan                                                                                | Tidak ada                                                     |
-| **Dukungan Teks Kaya**    | Sekumpulan [sintaks teks kaya Markdown](/id/docs/content/rich-text) di bidang `summary`                           | Tidak ada                                                     |
-| **Validasi Skema**        | [Validasi skema ketat](/id/docs/compiler/schema) dengan [compiler](/id/docs/compiler/architecture) + integrasi IDE | [Validasi JSON Schema dasar](https://jsonresume.org/schema)   |
-| **Kustomisasi Font**      | [Keluarga font, ukuran font, jarak baris](/id/docs/layouts/latex), dll                                            | Tidak ada                                                     |
-| **Kustomisasi Tata Letak**| [Margin halaman, nomor halaman, ukuran kertas](/id/docs/layouts/latex#page), dll                                  | Tidak ada                                                     |
-| **Kustomisasi Bagian**    | [Alias](/id/docs/layouts/sections/aliases) dan [pengurutan ulang](/id/docs/layouts/sections/reorder)              | Tidak ada                                                     |
-| **Mesin Typesetting**     | [HTML](/id/docs/layouts/html), [Markdown](/id/docs/layouts/markdown), [LaTeX](/id/docs/layouts/latex)             | HTML                                                          |
-| **Format Output**         | HTML, Markdown, LaTeX/PDF                                                                                       | [HTML dan PDF](https://github.com/jsonresume/resume-cli)      |
-| **Template**              | Beberapa template [LaTeX](/id/docs/layouts/latex/templates) dan [HTML](/id/docs/layouts/html/templates) resmi     | Puluhan [tema HTML](https://jsonresume.org/themes)            |
-| **Mode Dev**              | [Mode dev](/id/docs/cli#dev) dengan pembangunan otomatis                                                          | Ya                                                            |
-| **Alat Konversi**         | [json2yamlresume](/id/docs/ecosystem/json2yamlresume) membantu mengkonversi JSON Resume ke YAMLResume             | N/A                                                           |
-| **Dukungan Docker**       | [Gambar docker resmi](/id/docs/contributing/docker) dengan LaTeX dan YAMLResume yang sudah terinstal              | Tidak ada                                                     |
-| **GitHub Action**         | [GitHub action resmi](https://github.com/yamlresume/action) untuk CI/CD                                           | Tidak ada                                                     |
-| **Homebrew**              | [Formula Homebrew](https://formulae.brew.sh/formula/yamlresume) untuk instalasi mudah di macOS dan Linux        | Tidak ada                                                     |
-| **Taman Bermain Web**     | [Taman bermain](/id/playground) berbasis web interaktif                                                             | Tidak ada                                                     |
+| Fitur                      | YAMLResume                                                                                                                           | JSON Resume                                                 |
+| -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------- |
+| **Format Data**            | YAML                                                                                                                                 | JSON                                                        |
+| **Internasionalisasi**     | [10 bahasa](/id/docs/locale) bawaan                                                                                                  | Tidak ada                                                   |
+| **Dukungan Teks Kaya**     | Sekumpulan [sintaks teks kaya Markdown](/id/docs/content/rich-text) di bidang `summary`                                              | Tidak ada                                                   |
+| **Validasi Skema**         | [Validasi skema ketat](/id/docs/compiler/schema) dengan [compiler](/id/docs/compiler/architecture) + integrasi IDE                   | [Validasi JSON Schema dasar](https://jsonresume.org/schema) |
+| **Kustomisasi Font**       | [Keluarga font, ukuran font, jarak baris](/id/docs/layouts/latex), dll                                                               | Tidak ada                                                   |
+| **Kustomisasi Tata Letak** | [Margin halaman, nomor halaman, ukuran kertas](/id/docs/layouts/latex#page), dll                                                     | Tidak ada                                                   |
+| **Kustomisasi Bagian**     | [Alias](/id/docs/layouts/sections/aliases) dan [pengurutan ulang](/id/docs/layouts/sections/reorder)                                 | Tidak ada                                                   |
+| **Mesin Typesetting**      | [DOCX](/id/docs/layouts/docx), [HTML](/id/docs/layouts/html), [LaTeX](/id/docs/layouts/latex), [Markdown](/id/docs/layouts/markdown) | HTML                                                        |
+| **Format Output**          | DOCX, HTML, LaTeX/PDF, Markdown                                                                                                      | [HTML dan PDF](https://github.com/jsonresume/resume-cli)    |
+| **Template**               | Beberapa template [LaTeX](/id/docs/layouts/latex/templates) dan [HTML](/id/docs/layouts/html/templates) resmi                        | Puluhan [tema HTML](https://jsonresume.org/themes)          |
+| **Mode Dev**               | [Mode dev](/id/docs/cli#dev) dengan pembangunan otomatis                                                                             | Ya                                                          |
+| **Alat Konversi**          | [json2yamlresume](/id/docs/ecosystem/json2yamlresume) membantu mengkonversi JSON Resume ke YAMLResume                                | N/A                                                         |
+| **Dukungan Docker**        | [Gambar docker resmi](/id/docs/contributing/docker) dengan LaTeX dan YAMLResume yang sudah terinstal                                 | Tidak ada                                                   |
+| **GitHub Action**          | [GitHub action resmi](https://github.com/yamlresume/action) untuk CI/CD                                                              | Tidak ada                                                   |
+| **Homebrew**               | [Formula Homebrew](https://formulae.brew.sh/formula/yamlresume) untuk instalasi mudah di macOS dan Linux                             | Tidak ada                                                   |
+| **Taman Bermain Web**      | [Taman bermain](/id/playground) berbasis web interaktif                                                                              | Tidak ada                                                   |
 
 ## Perbedaan Kunci Dijelaskan
 
-Jika kita harus memilih satu kata untuk merangkum perbedaan antara YAMLResume dan
-JSON Resume, kata itu adalah **berpendapat**. JSON Resume adalah standar data yang
-definisikan cara menyusun resume dalam JSON, tetapi ia membiarkan hampir semuanya
-terserah kepada Anda. YAMLResume mengambil pendekatan yang lebih berpendapat,
-baterai-termasuk yang tidak hanya menyediakan format data tetapi juga seperangkat
-alat yang kaya untuk memvalidasi, menyesuaikan, merender, dan mendistribusikan
-resume Anda di berbagai format dan bahasa.
+Jika kita harus memilih satu kata untuk merangkum perbedaan antara YAMLResume
+dan JSON Resume, kata itu adalah **berpendapat**. JSON Resume adalah standar
+data yang definisikan cara menyusun resume dalam JSON, tetapi ia membiarkan
+hampir semuanya terserah kepada Anda. YAMLResume mengambil pendekatan yang lebih
+berpendapat, baterai-termasuk yang tidak hanya menyediakan format data tetapi
+juga seperangkat alat yang kaya untuk memvalidasi, menyesuaikan, merender, dan
+mendistribusikan resume Anda di berbagai format dan bahasa.
 
 ### Konten
 
-YAMLResume dan JSON Resume memiliki struktur konten yang serupa, tetapi YAMLResume
-memperluas model data dengan validasi skema yang lebih kuat, bidang yang lebih
-standar, dukungan teks kaya di bidang `summary`, dan struktur yang lebih datar:
+YAMLResume dan JSON Resume memiliki struktur konten yang serupa, tetapi
+YAMLResume memperluas model data dengan validasi skema yang lebih kuat, bidang
+yang lebih standar, dukungan teks kaya di bidang `summary`, dan struktur yang
+lebih datar:
 
 #### Validasi skema yang lebih kuat
 
-YAMLResume dilengkapi dengan [skema Zod yang sangat komprehensif](/id/docs/compiler/schema),
-dengan skema tersebut dapat memvalidasi resume Anda pada waktu kompilasi dan
-menegakkan keamanan tipe, kebenaran format dengan [pesan kesalahan gaya clang](/id/docs/cli#validate):
+YAMLResume dilengkapi dengan
+[skema Zod yang sangat komprehensif](/id/docs/compiler/schema), dengan skema
+tersebut dapat memvalidasi resume Anda pada waktu kompilasi dan menegakkan
+keamanan tipe, kebenaran format dengan
+[pesan kesalahan gaya clang](/id/docs/cli#validate):
 
 Misalnya, untuk resume berikut yang memiliki email tidak valid, nama kota yang
 terlalu pendek, dan ukuran font di luar rentang:
@@ -125,8 +130,8 @@ layouts:
       fontSize: 13pt #[!code highlight]
 ```
 
-`yamlresume validate` akan menunjukkan daftar potensi kesalahan, dengan informasi
-posisi yang jelas:
+`yamlresume validate` akan menunjukkan daftar potensi kesalahan, dengan
+informasi posisi yang jelas:
 
 ```console
 $ yamlresume validate my-resume.yml
@@ -165,17 +170,19 @@ Validasi Format di VS Code:
   src="/static/videos/docs/compiler/schema/json/json-schema-format-validation-field-error.mp4"
 />
 
-Di sisi lain, JSON Resume menyediakan [validasi JSON Schema
-dasar](https://jsonresume.org/schema) yang memeriksa struktur tetapi menawarkan
-validasi semantik yang terbatas—tidak ada pelaporan kesalahan saat kompilasi
-dengan nomor baris, tidak ada integrasi IDE, dan tidak ada pemeriksaan aturan
-bisnis seperti panjang string minimum atau validasi nilai terenumerasi.
+Di sisi lain, JSON Resume menyediakan
+[validasi JSON Schema dasar](https://jsonresume.org/schema) yang memeriksa
+struktur tetapi menawarkan validasi semantik yang terbatas—tidak ada pelaporan
+kesalahan saat kompilasi dengan nomor baris, tidak ada integrasi IDE, dan tidak
+ada pemeriksaan aturan bisnis seperti panjang string minimum atau validasi nilai
+terenumerasi.
 
 #### Teks Kaya
 
-YAMLResume mendukung [sekumpulan sintaks Markdown terbatas](/id/docs/content/rich-text)
-(tebal, miring, tautan, daftar, dan paragraf) di bidang `summary` di semua bagian
-yang memiliki bidang `summary`. Ini memungkinkan Anda untuk menekankan pencapaian
+YAMLResume mendukung
+[sekumpulan sintaks Markdown terbatas](/id/docs/content/rich-text) (tebal,
+miring, tautan, daftar, dan paragraf) di bidang `summary` di semua bagian yang
+memiliki bidang `summary`. Ini memungkinkan Anda untuk menekankan pencapaian
 kunci atau menyusun tanggung jawab dengan daftar bersarang tanpa bergantung pada
 aturan rendering tema-spesifik.
 
@@ -205,7 +212,8 @@ Berikut adalah PDF yang dihasilkan dengan mesin LaTeX:
 
 ![Rich Text Support in Summary Field](/static/images/docs/content/rich-text/rich-text-support-in-summary-field.webp)
 
-Berikut adalah konten yang sama dengan sintaks teks kaya yang dinyatakan dalam JSON:
+Berikut adalah konten yang sama dengan sintaks teks kaya yang dinyatakan dalam
+JSON:
 
 ```json lineNumbers
 {
@@ -233,8 +241,8 @@ divalidasi pada waktu kompilasi dan diterjemahkan di semua lokal yang didukung:
 
 - **Gelar pendidikan** (`Middle School`, `High School`, `Bachelor`, `Master`,
   `Doctor`, dll.)
-- **Tingkat keterampilan** (`Novice`, `Beginner`, `Intermediate`, `Advanced`, `Expert`,
-  `Master`)
+- **Tingkat keterampilan** (`Novice`, `Beginner`, `Intermediate`, `Advanced`,
+  `Expert`, `Master`)
 - **Kefasihan bahasa** (`Elementary` hingga `Native`)
 - **Negara dan wilayah** (diterjemahkan ke dalam setiap bahasa yang didukung)
 
@@ -248,8 +256,8 @@ diteruskan apa adanya, meninggalkan konsistensi dan pelokalan kepada pengguna.
 
 YAMLResume menempatkan kunci `location` dan `profiles` sosial di tingkat atas,
 terpisah dari `basics`, yang menyederhanakan model data dan membuatnya lebih
-selaras dan konsisten di semua bagian. JSON Resume menyusunnya di bawah `basics`,
-yang dapat menyebabkan struktur data yang lebih kompleks.
+selaras dan konsisten di semua bagian. JSON Resume menyusunnya di bawah
+`basics`, yang dapat menyebabkan struktur data yang lebih kompleks.
 
 ### Tata Letak
 
@@ -258,11 +266,16 @@ dalam JSON tetapi membiarkan rendering sepenuhnya kepada Anda. YAMLResume
 menyediakan pipeline yang lengkap dan berpendapat dari sumber YAML ke output
 yang dipoles:
 
-- **[Mesin HTML](/id/docs/layouts/html)**: Resume yang responsif dan siap web dengan metadata SEO
-- **[Mesin Markdown](/id/docs/layouts/markdown)**: Teks bersih untuk LLM, sistem ATS, dan situs statis
-- **[Mesin LaTeX](/id/docs/layouts/latex)**: PDF yang sempurna secara piksel dengan tipografi profesional
+- **[Mesin DOCX](/id/docs/layouts/docx)**: Dokumen Microsoft Word untuk
+  pengeditan dan berbagi yang mudah
+- **[Mesin HTML](/id/docs/layouts/html)**: Resume yang responsif dan siap web
+  dengan metadata SEO
+- **[Mesin LaTeX](/id/docs/layouts/latex)**: PDF yang sempurna secara piksel
+  dengan tipografi profesional
+- **[Mesin Markdown](/id/docs/layouts/markdown)**: Teks bersih untuk LLM, sistem
+  ATS, dan situs statis
 
-Satu perintah `yamlresume build` dapat menghasilkan ketiga format dari file
+Satu perintah `yamlresume build` dapat menghasilkan keempat format dari file
 sumber yang sama.
 
 YAMLResume juga menyediakan seperangkat opsi kustomisasi tata letak yang kaya
@@ -270,32 +283,33 @@ yang melebihi apa yang ditawarkan JSON Resume.
 
 #### Kustomisasi halaman
 
-YAMLResume memberi Anda kontrol penuh atas [tata letak halaman
-fisik](/id/docs/layouts/latex#page), yang sangat penting untuk output PDF mesin
-LaTeX di mana pemformatan yang tepat sangat penting:
+YAMLResume memberi Anda kontrol penuh atas
+[tata letak halaman fisik](/id/docs/layouts/latex#page), yang sangat penting
+untuk output PDF mesin LaTeX di mana pemformatan yang tepat sangat penting:
 
 - **Ukuran kertas**: Pilih antara A4 (default) dan US Letter untuk mencocokkan
   standar regional
 - **Margin halaman**: Tetapkan atas, bawah, kiri, dan kanan secara independen
-  dalam sentimeter (mis., `left: 1.5cm`, `top: 2.5cm`) untuk mengontrol
-  ruang kosong dan kepadatan konten
-- **Nomor halaman**: Aktifkan atau nonaktifkan nomor halaman, dan kontrol
-  posisi serta gayanya untuk resume multi-halaman
+  dalam sentimeter (mis., `left: 1.5cm`, `top: 2.5cm`) untuk mengontrol ruang
+  kosong dan kepadatan konten
+- **Nomor halaman**: Aktifkan atau nonaktifkan nomor halaman, dan kontrol posisi
+  serta gayanya untuk resume multi-halaman
 
-Pengaturan ini sangat penting untuk [mesin LaTeX](/id/docs/layouts/latex), di mana
-bahkan penyesuaian margin kecil dapat secara signifikan memengaruhi cara konten
-mengalir di seluruh halaman.
+Pengaturan ini sangat penting untuk [mesin LaTeX](/id/docs/layouts/latex), di
+mana bahkan penyesuaian margin kecil dapat secara signifikan memengaruhi cara
+konten mengalir di seluruh halaman.
 
 #### Kustomisasi tipografi
 
-YAMLResume menyediakan [kontrol tipografi
-semantik](/id/docs/layouts/latex#typography) yang dipetakan ke implementasi
-spesifik mesin:
+YAMLResume menyediakan
+[kontrol tipografi semantik](/id/docs/layouts/latex#typography) yang dipetakan
+ke implementasi spesifik mesin:
 
 - **Keluarga font**: Tentukan daftar nama font yang diprioritaskan (mis.,
   `"Merriweather, serif"`) yang berfungsi seperti `font-family` CSS untuk HTML
   atau pemilihan font XeTeX untuk LaTeX
-- **Ukuran font**: LaTeX mendukung 10pt, 11pt, atau 12pt; HTML mendukung 14px hingga 20px
+- **Ukuran font**: LaTeX mendukung 10pt, 11pt, atau 12pt; HTML mendukung 14px
+  hingga 20px
 - **Jarak baris**: Pilih dari lima tingkat semantik—`tight`, `snug`, `normal`,
   `relaxed`, atau `loose`—untuk mengontrol kepadatan konten tanpa menghitung
   nilai leading secara manual, mendukung mesin LaTeX dan HTML
@@ -306,22 +320,23 @@ resume Anda secara drastis.
 
 #### Kustomisasi bagian
 
-YAMLResume memungkinkan Anda membentuk kembali struktur resume melalui [alias
-bagian](/id/docs/layouts/sections/aliases) dan [pengurutan ulang
-bagian](/id/docs/layouts/sections/reorder) tanpa menyentuh data yang mendasarinya:
+YAMLResume memungkinkan Anda membentuk kembali struktur resume melalui
+[alias bagian](/id/docs/layouts/sections/aliases) dan
+[pengurutan ulang bagian](/id/docs/layouts/sections/reorder) tanpa menyentuh
+data yang mendasarinya:
 
 - **Alias bagian**: Ganti judul bagian default untuk salah satu dari 12 bagian
   yang dapat dialiaskan. Ubah "Work" menjadi "Professional Experience",
   "Education" menjadi "Academic Background", atau "Skills" menjadi "Technical
-  Proficiencies" untuk mencocokkan industri atau preferensi pribadi Anda.
-  Alias mendukung 2–128 karakter dan kembali ke default khusus lokal jika tidak
-disediakan.
+  Proficiencies" untuk mencocokkan industri atau preferensi pribadi Anda. Alias
+  mendukung 2–128 karakter dan kembali ke default khusus lokal jika tidak
+  disediakan.
 - **Pengurutan ulang bagian**: Ubah urutan presentasi bagian dengan daftar
   `order` yang sederhana. Tempatkan `skills` sebelum `work`, sorot
-  `publications` dan `awards` untuk peran akademik, atau awali dengan
-  `projects` untuk resume bergaya portofolio. Bagian yang tidak secara eksplisit
-didasarkan akan ditambahkan dalam urutan defaultnya, dan bagian kosong secara
-otomatis disaring.
+  `publications` dan `awards` untuk peran akademik, atau awali dengan `projects`
+  untuk resume bergaya portofolio. Bagian yang tidak secara eksplisit didasarkan
+  akan ditambahkan dalam urutan defaultnya, dan bagian kosong secara otomatis
+  disaring.
 
 JSON Resume mendefinisikan struktur bagian dalam skema tetapi tidak menawarkan
 mekanisme untuk mengganti nama atau mengurutkan ulang bagian—presentasi terkunci
@@ -334,9 +349,9 @@ Pada saat penulisan, YAMLResume mendukung 10 bahasa secara langsung
 [Spanish](/id/docs/locale/spanish), [French](/id/docs/locale/french),
 [Norwegian](/id/docs/locale/norwegian), [Dutch](/id/docs/locale/dutch),
 [Japanese](/id/docs/locale/japanese), [German](/id/docs/locale/german),
-[Indonesian](/id/docs/locale/indonesian), dll.) dengan terjemahan bawaan
-header bagian, nama negara dan berbagai istilah, format alamat dan tanggal
-idiomatis, konfigurasi LaTeX terbaik, dll.
+[Indonesian](/id/docs/locale/indonesian), dll.) dengan terjemahan bawaan header
+bagian, nama negara dan berbagai istilah, format alamat dan tanggal idiomatis,
+konfigurasi LaTeX terbaik, dll.
 
 Anda dapat menggunakan `yamlresume languages list` untuk melihat semua bahasa
 yang didukung:
@@ -370,15 +385,15 @@ YAMLResume juga menyediakan data yang lebih standar untuk berbagai bidang:
   (`Bachelor`, `Master`, `Doctor`, dll.) untuk pemformatan yang konsisten
 - **Tingkat keterampilan**: YAMLResume menyediakan tingkat keterampilan yang
   telah ditentukan sebelumnya (`Novice` hingga `Master`) untuk presentasi yang
-standar
+  standar
 - **Kefasihan bahasa**: YAMLResume menstandarisasi tingkat kefasihan
   (`Elementary` hingga `Native`) di semua lokal yang didukung
 
 #### Tanda baca
 
 YAMLResume secara otomatis menggunakan tanda baca yang sesuai lokal dalam resume
-yang dihasilkan. Bahasa yang berbeda memiliki aturan tanda baca yang berbeda yang
-melampaui terjemahan sederhana:
+yang dihasilkan. Bahasa yang berbeda memiliki aturan tanda baca yang berbeda
+yang melampaui terjemahan sederhana:
 
 - **Bahasa CJK** ([Chinese](/id/docs/locale/chinese#punctuations),
   [Japanese](/id/docs/locale/japanese#punctuations)): Menggunakan tanda baca
@@ -402,10 +417,13 @@ YAMLResume memformat tanggal sesuai dengan konvensi khusus lokal daripada
 menggunakan format global tunggal:
 
 - **English**: "Jun 2018 – Present" (bulan yang disingkat, pemisah en-dash)
-- **Chinese**: "2018年6月至今" (tahun pertama, karakter lebar penuh, pemisah "至")
-- **Japanese**: "2016年10月～2018年1月" (tilde lebar penuh sebagai pemisah rentang)
+- **Chinese**: "2018年6月至今" (tahun pertama, karakter lebar penuh, pemisah
+  "至")
+- **Japanese**: "2016年10月～2018年1月" (tilde lebar penuh sebagai pemisah
+  rentang)
 - **German**: Nama bulan yang diawali huruf kapital ("Januar", "Februar")
-- **French**: Bulan yang disingkat dengan huruf kecil dan titik ("janv.", "févr.")
+- **French**: Bulan yang disingkat dengan huruf kecil dan titik ("janv.",
+  "févr.")
 - **Spanish**: Bulan yang disingkat dengan huruf kecil ("ene", "feb")
 
 Nama bulan, pengurutan tanggal, dan pemisah rentang semuanya beradaptasi secara
@@ -416,42 +434,49 @@ otomatis ke bahasa yang dipilih.
 YAMLResume menyesuaikan presentasi alamat untuk mencocokkan konvensi lokal:
 
 - **English**: Address → City → State → Country (paling spesifik ke paling umum)
-- **Chinese**: Country → Region → City → Address (paling umum ke paling spesifik)
-- **German**: Street + House Number, kemudian Postal Code sebelum City ("Musterstraße
-  123, 10115 Berlin")
+- **Chinese**: Country → Region → City → Address (paling umum ke paling
+  spesifik)
+- **German**: Street + House Number, kemudian Postal Code sebelum City
+  ("Musterstraße 123, 10115 Berlin")
 - **Japanese**: Country → Region (Prefecture) → City → Address → Postal Code
 
-Komponen alamat diurutkan ulang secara otomatis berdasarkan lokal untuk
-cocok dengan harapan budaya untuk setiap bahasa.
+Komponen alamat diurutkan ulang secara otomatis berdasarkan lokal untuk cocok
+dengan harapan budaya untuk setiap bahasa.
 
 #### Kustomisasi LaTeX babel
 
-YAMLResume mengonfigurasi [paket LaTeX
-babel](https://latex3.github.io/babel/) untuk setiap bahasa yang didukung untuk
-memastikan typesetting yang tepat dalam output PDF:
+YAMLResume mengonfigurasi [paket LaTeX babel](https://latex3.github.io/babel/)
+untuk setiap bahasa yang didukung untuk memastikan typesetting yang tepat dalam
+output PDF:
 
 - **Aturan pemenggalan kata**: Pemenggalan kata khusus bahasa
-- **Format tanggal**: String tanggal yang dilokalisasi dalam dokumen yang dihasilkan
+- **Format tanggal**: String tanggal yang dilokalisasi dalam dokumen yang
+  dihasilkan
 - **Tipografi**: Aturan spasi dan tanda baca khusus bahasa
 - **Penanganan karakter**: Dukungan yang tepat untuk diakritik, ligatur, dan
   karakter khusus (mis., ß Jerman, ç Prancis, ñ Spanyol)
 
-Misalnya, konfigurasi French babel memungkinkan penanganan yang tepat dari
-spasi non-breaking tipis sebelum titik dua, sementara German babel memastikan
-pola pemenggalan yang benar untuk kata-kata majemuk. Tingkat penyempurnaan
-tipografi ini tidak tersedia dalam ekosistem HTML-only JSON Resume.
+Misalnya, konfigurasi French babel memungkinkan penanganan yang tepat dari spasi
+non-breaking tipis sebelum titik dua, sementara German babel memastikan pola
+pemenggalan yang benar untuk kata-kata majemuk. Tingkat penyempurnaan tipografi
+ini tidak tersedia dalam ekosistem HTML-only JSON Resume.
 
 ### Pengalaman Pengembang
 
 YAMLResume menyediakan fitur DX modern yang tidak dimiliki JSON Resume:
 
 - **`yamlresume new`**: Buat resume baru dari template resmi dalam satu perintah
-- **`yamlresume build`**: Bangun resume Anda menjadi HTML, Markdown, dan PDF dalam satu kali jalan
-- **`yamlresume dev`**: [Mode watch](/id/blog/dev-mode) yang membangun ulang resume Anda pada setiap simpan
-- **`yamlresume doctor`**: Diagnosis lingkungan LaTeX dan pengaturan font Anda, memudahkan pemecahan masalah
+- **`yamlresume build`**: Bangun resume Anda menjadi DOCX, HTML, Markdown, dan
+  PDF dalam satu kali jalan
+- **`yamlresume dev`**: [Mode watch](/id/blog/dev-mode) yang membangun ulang
+  resume Anda pada setiap simpan
+- **`yamlresume doctor`**: Diagnosis lingkungan LaTeX dan pengaturan font Anda,
+  memudahkan pemecahan masalah
 - **`yamlresume validate`**: Periksa resume Anda tanpa membangun
-- **`yamlresume languages list`**: Daftar semua bahasa yang didukung dan kode lokalnya
-- **`yamlresume templates list`**: Daftar semua template yang tersedia untuk setiap mesin
+- **`yamlresume languages list`**: Daftar semua bahasa yang didukung dan kode
+  lokalnya
+- **`yamlresume templates list`**: Daftar semua template yang tersedia untuk
+  setiap mesin
 
 YAMLResume memperlakukan resume Anda sebagai kode. [Compiler](/id/docs/compiler)
 bawaan mengurai YAML Anda, memvalidasinya terhadap skema Zod yang komprehensif,
@@ -464,7 +489,8 @@ sebelumnya.
 ### json2yamlresume
 
 Jika Anda memiliki JSON Resume yang sudah ada, Anda dapat mengkonversinya ke
-YAMLResume menggunakan alat CLI [`json2yamlresume`](/id/docs/ecosystem/json2yamlresume):
+YAMLResume menggunakan alat CLI
+[`json2yamlresume`](/id/docs/ecosystem/json2yamlresume):
 
 ```console
 $ npm install -g json2yamlresume
@@ -477,10 +503,10 @@ atas YAMLResume yang lebih datar.
 
 ### Docker
 
-YAMLResume menyediakan [gambar Docker
-resmi](https://hub.docker.com/r/yamlresume/yamlresume) dengan semua dependensi
-yang sudah terinstal, termasuk Node.js, LaTeX, dan font yang direkomendasikan.
-Ini memudahkan untuk memulai tanpa instalasi lokal:
+YAMLResume menyediakan
+[gambar Docker resmi](https://hub.docker.com/r/yamlresume/yamlresume) dengan
+semua dependensi yang sudah terinstal, termasuk Node.js, LaTeX, dan font yang
+direkomendasikan. Ini memudahkan untuk memulai tanpa instalasi lokal:
 
 ```bash
 docker run --rm -v $(pwd):/home/yamlresume yamlresume/yamlresume new my-resume.yml
@@ -504,9 +530,10 @@ memiliki formula Homebrew dan harus diinstal melalui npm.
 
 ### GitHub Action
 
-YAMLResume menyediakan [GitHub Action
-resmi](https://github.com/yamlresume/action) untuk pipeline CI/CD. Anda dapat
-secara otomatis membangun dan melakukan commit PDF resume pada setiap push:
+YAMLResume menyediakan
+[GitHub Action resmi](https://github.com/yamlresume/action) untuk pipeline
+CI/CD. Anda dapat secara otomatis membangun dan melakukan commit PDF resume pada
+setiap push:
 
 ```yaml
 - uses: yamlresume/action@v0.2.3
@@ -524,22 +551,25 @@ tersedia.
 
 YAMLResume menyediakan [playground](/id/playground) berbasis web interaktif
 dimana Anda dapat mengedit resume Anda secara real time dan melihat pratinjau
-instan di semua format output yang didukung. Playground dibangun di atas komponen
-React [`@yamlresume/playground`](https://www.npmjs.com/package/@yamlresume/playground)
+instan di semua format output yang didukung. Playground dibangun di atas
+komponen React
+[`@yamlresume/playground`](https://www.npmjs.com/package/@yamlresume/playground)
 dan memiliki fitur:
 
-- **Editor YAML Langsung**: Editor berbasis Monaco dengan penyorotan sintaks YAML dan
-  [validasi skema](/id/docs/compiler/schema/json)
-- **Pratinjau Real-time**: Rendering instan untuk tata letak [HTML](/id/docs/layouts/html),
-  [Markdown](/id/docs/layouts/markdown), dan [LaTeX](/id/docs/layouts/latex)
+- **Editor YAML Langsung**: Editor berbasis Monaco dengan penyorotan sintaks
+  YAML dan [validasi skema](/id/docs/compiler/schema/json)
+- **Pratinjau Real-time**: Rendering instan untuk tata letak
+  [DOCX](/id/docs/layouts/docx), [HTML](/id/docs/layouts/html),
+  [LaTeX](/id/docs/layouts/latex), dan [Markdown](/id/docs/layouts/markdown)
 - **Opsi Ekspor**: Unduh, salin, atau cetak resume Anda langsung dari browser
-- **Desain Responsif**: Tata letak panel terpisah di desktop, antarmuka ber-tab di mobile
+- **Desain Responsif**: Tata letak panel terpisah di desktop, antarmuka ber-tab
+  di mobile
 
-Playground berguna untuk dengan cepat membuat prototipe desain resume,
-menguji konfigurasi tata letak, atau berbagi draf resume tanpa memerlukan
-lingkungan pengembangan lokal. Karena playground berjalan sepenuhnya di browser,
-Anda dapat menggunakannya di perangkat apa pun tanpa menginstal Node.js, LaTeX,
-atau dependensi lainnya.
+Playground berguna untuk dengan cepat membuat prototipe desain resume, menguji
+konfigurasi tata letak, atau berbagi draf resume tanpa memerlukan lingkungan
+pengembangan lokal. Karena playground berjalan sepenuhnya di browser, Anda dapat
+menggunakannya di perangkat apa pun tanpa menginstal Node.js, LaTeX, atau
+dependensi lainnya.
 
 JSON Resume tidak memiliki playground interaktif yang setara—pengguna harus
 menginstal CLI dan menyiapkan lingkungan lokal untuk melihat pratinjau tema.
