@@ -1,0 +1,269 @@
+\documentclass[a4paper, serif, 10pt]{moderncv}
+
+%% moderncv
+% style and color
+\moderncvstyle{banking}
+\moderncvcolor{black}
+
+%% page layout/margins
+\usepackage[top=2.5cm, bottom=2.5cm, left=1.5cm, right=1.5cm]{geometry}
+
+\nopagenumbers{}
+
+%% Babel config for Spanish language
+% \usepackage[spanish]{babel} has some conflicting issues with moderncv
+% so we have to use enable the following options to make it work
+%
+% ref:
+% - https://tex.stackexchange.com/a/140161/36007
+\usepackage[spanish,es-lcroman]{babel}
+
+%% fontspec
+\usepackage{fontspec}
+
+\IfFontExistsTF{Linux Libertine}{
+  \setmainfont[Ligatures={TeX, Common}, Numbers=OldStyle]{Linux Libertine}
+}{}
+\IfFontExistsTF{Linux Libertine O}{
+  \setmainfont[Ligatures={TeX, Common}, Numbers=OldStyle]{Linux Libertine O}
+}{}
+
+%% CTeX
+% CJK support, used to show CJK characters in the resume
+%
+% - fontset=none: disable builtin fontset but instead set the CJK font manually
+% - heading=false: disable ctex heading
+% - punct=kaiming: use kaiming punctuations styles for CJK
+% - scheme=plain: use plain scheme, do not override \normalsize font size
+% - space=auto: space settings for CJK characters
+%
+% ref:
+% - http://ctan.mirrorcatalogs.com/language/chinese/ctex/ctex.pdf
+\usepackage[UTF8, heading=false, punct=kaiming, scheme=plain, space=auto]{ctex}
+
+\IfFontExistsTF{Noto Serif CJK SC}{
+  \setCJKmainfont{Noto Serif CJK SC}
+}{}
+\IfFontExistsTF{Noto Sans CJK SC}{
+  \setCJKsansfont{Noto Sans CJK SC}
+}{}
+
+%% line spacing
+\usepackage{setspace}
+\setstretch{1.125}
+
+%% URL styling - use normal text instead of monospace
+\urlstyle{same}
+
+% Auto-underline all links
+% Defer until \begin{document} so hyperref is already loaded
+\AtBeginDocument{%
+  \let\oldhref\href
+  \renewcommand{\href}[2]{\oldhref{#1}{\underline{#2}}}%
+}
+
+%% Patch \httplink and \httpslink to handle full URLs
+% The original moderncv macros always prepend http:// or https:// to URLs.
+% This causes issues when the URL already has a protocol (e.g., https://example.com)
+% resulting in malformed URLs like https://https://example.com.
+% This patch checks if the URL already contains "://" and uses it directly if so.
+% Note: We use \str_set:Nx (x-expansion) to expand macros like \@homepage first.
+\ExplSyntaxOn
+\str_new:N \g_yamlresume_url_str
+
+\RenewDocumentCommand{\httpslink}{O{}m}{
+  \str_set:Nx \g_yamlresume_url_str {#2}
+  \str_if_in:NnTF \g_yamlresume_url_str {://}
+    { \url{#2} }
+    { \url{https://#2} }
+}
+
+\RenewDocumentCommand{\httplink}{O{}m}{
+  \str_set:Nx \g_yamlresume_url_str {#2}
+  \str_if_in:NnTF \g_yamlresume_url_str {://}
+    { \url{#2} }
+    { \url{http://#2} }
+}
+\ExplSyntaxOff
+
+\name{Carlos Mendoza Ruiz}{}
+\title{Ejecutivo de Cuentas Senior | Ventas B2B SaaS}
+\phone[mobile]{+34 612 345 678}
+\email{carlos.mendoza@ventaspro.es}
+\homepage{https://www.carlosmendoza.es}
+
+\address{Calle de Serrano 45, Madrid, Comunidad de Madrid, España, 28001}{}{}
+
+\extrainfo{{\small \faLinkedin}\ \href{https://www.linkedin.com/in/carlosmendozaruiz}{@carlosmendozaruiz} {} {} {} • {} {} {} 
+{\small \faTwitter}\ \href{https://twitter.com/carlosmendoza\_es}{@carlosmendoza\_es}}
+
+\begin{document}
+
+\maketitle
+
+\section{Información básica}
+
+\cvline{}{Ejecutivo de cuentas con más de 7 años de experiencia en ventas B2B y SaaS, especializado en la gestión del ciclo completo de ventas y en la construcción de relaciones duraderas con grandes cuentas.
+%
+\begin{itemize}
+\item Historial comprobado de superación de cuotas anuales superiores a 1,2 M€.
+\item Experto en prospección, negociación y cierre de acuerdos con responsables de decisión de alto nivel.
+\item Dominio de Salesforce, HubSpot y LinkedIn Sales Navigator para la gestión del embudo de ventas y la previsión comercial.
+\item Apasionado por las ventas consultivas y el desarrollo de equipos comerciales de alto rendimiento.
+\end{itemize}}
+\section{Educación}
+
+\cventry{sept 2012–jun 2016}
+        {Licenciatura, Administración y Dirección de Empresas, Puntuación: 8.7}
+        {Universidad Complutense de Madrid}
+        {\url{https://www.ucm.es}}
+        {}
+        {\begin{itemize}
+\item Formación sólida en estrategias de ventas, análisis de mercados y gestión de equipos comerciales.
+\item Participación en el programa de prácticas en el departamento comercial de una consultora tecnológica.
+\item Trabajo de fin de grado sobre optimización de embudos de ventas B2B, calificado con matrícula de honor.
+\end{itemize}
+\textbf{Cursos}: Dirección Comercial, Marketing Estratégico, Negociación Comercial, Análisis Financiero, Gestión de Recursos Humanos, Comportamiento Organizacional, Estadística Aplicada a la Empresa}
+\section{Experiencia laboral}
+
+\cventry{ene 2021 hasta la fecha}
+        {Ejecutivo de Cuentas Senior}
+        {Soluciones CloudSales}
+        {\url{https://www.solucionescloudsales.es}}
+        {}
+        {\begin{itemize}
+\item Gestioné una cartera de más de 40 grandes cuentas del sector tecnológico, con un valor medio anual de 180.000 €.
+\item Superé la cuota anual en un 145\%, 132\% y 158\% durante los últimos tres ejercicios fiscales.
+\item Lideré la estrategia de ventas consultivas, coordinando equipos de preventa, producto y legal para cerrar acuerdos complejos.
+\item Implementé un manual de ventas que redujo el ciclo de venta en un 22\% y aumentó la tasa de cierre en un 18\%.
+\item Fui mentor de dos ejecutivos junior, ambos alcanzaron el 100\% de su cuota en el primer año.
+\end{itemize}
+\textbf{Palabras clave}: Ventas B2B, SaaS, Gestión de cuentas, Negociación, CRM}
+
+\cventry{feb 2018–dic 2020}
+        {Ejecutivo de Cuentas}
+        {Innova Software Ibérica}
+        {\url{https://www.innovasoftware.es}}
+        {}
+        {\begin{itemize}
+\item Responsable del ciclo completo de ventas para pymes y medianas empresas, desde la prospección hasta el cierre y la renovación.
+\item Generé más de 2,5 M€ en ingresos recurrentes anuales (ARR) mediante la venta de licencias y servicios de implantación.
+\item Aumenté la retención de clientes en un 30\% gracias a un seguimiento proactivo y a la identificación de oportunidades de venta adicional.
+\item Colaboré con el equipo de mercadotecnia en la creación de campañas de generación de oportunidades que duplicaron las oportunidades cualificadas.
+\end{itemize}
+\textbf{Palabras clave}: Prospección, Salesforce, Cierre de ventas, Métricas, Venta adicional}
+
+\cventry{jul 2016–ene 2018}
+        {Representante de Ventas}
+        {Grupo Comercial Mediterráneo}
+        {\url{https://www.grupomediterraneo.es}}
+        {}
+        {\begin{itemize}
+\item Atendí una cartera de más de 200 clientes minoristas, realizando visitas comerciales y gestión telefónica.
+\item Incrementé las ventas de la zona asignada en un 25\% durante el primer año mediante técnicas de venta cruzada.
+\item Negocié condiciones comerciales, descuentos y plazos de entrega, mejorando el margen bruto en un 12\%.
+\item Utilicé el CRM corporativo para registrar oportunidades, previsión de ventas y seguimiento postventa.
+\end{itemize}
+\textbf{Palabras clave}: Ventas directas, CRM, Atención al cliente, Ventas cruzadas}
+\section{Idiomas}
+
+\cvline{Español}{Competencia nativa o bilingüe \hfill \textbf{Palabras clave}: Nativo}
+\cvline{Inglés}{Competencia profesional plena \hfill \textbf{Palabras clave}: C1, Negociación, Presentaciones}
+\cvline{Francés}{Competencia limitada de trabajo \hfill \textbf{Palabras clave}: A2, Conversación básica}
+\section{Competencias}
+
+\cvline{Ventas B2B}{Experto \hfill \textbf{Palabras clave}: Negociación, Prospección, Cierre de ventas, Cuentas clave, Venta adicional}
+\cvline{CRM y Herramientas}{Avanzado \hfill \textbf{Palabras clave}: Salesforce, HubSpot, LinkedIn Sales Navigator, Excel avanzado}
+\cvline{Habilidades Comerciales}{Experto \hfill \textbf{Palabras clave}: Presentaciones, Comunicación, Gestión del tiempo, Trabajo en equipo, Liderazgo}
+\section{Premios}
+
+\cventry{dic 2023}
+        {Soluciones CloudSales}
+        {Mejor Ejecutivo de Cuentas del Año}
+        {}
+        {}
+        {Reconocimiento por superar el 150\% de la cuota anual y por liderar la mayor operación de grandes cuentas del año, valorada en 450.000 €.}
+
+\cventry{nov 2019}
+        {Innova Software Ibérica}
+        {Premio a la Excelencia en Ventas}
+        {}
+        {}
+        {Otorgado por alcanzar el primer puesto en el ranking de ventas durante tres trimestres consecutivos y por mejorar la satisfacción del cliente.}
+\section{Certificados}
+
+\cventry{mar 2021}
+        {Salesforce}
+        {Consultor Certificado en Salesforce Sales Cloud}
+        {\url{https://trailhead.salesforce.com/es/certification}}
+        {}
+        {}
+
+\cventry{jun 2020}
+        {HubSpot Academy}
+        {Certificación en Software de Ventas de HubSpot}
+        {\url{https://academy.hubspot.com/courses/sales-software}}
+        {}
+        {}
+
+\cventry{sept 2019}
+        {ESADE}
+        {Certificación en Negociación Avanzada}
+        {\url{https://www.esade.edu}}
+        {}
+        {}
+\section{Publicaciones}
+
+\cventry{feb 2023}
+        {Cómo construir relaciones comerciales duraderas en SaaS}
+        {Revista Ventas \& Marketing}
+        {\url{https://www.ventasymarketing.es/articulos/relaciones-comerciales-saas}}
+        {}
+        {\begin{itemize}
+\item Artículo sobre estrategias de retención y expansión de cuentas en empresas de software.
+\item Incluye tácticas de venta consultiva y ejemplos de éxito en el mercado ibérico.
+\end{itemize}}
+\section{Proyectos}
+
+\cventry{mar 2022–ago 2022}
+        {Diseño e implementación de un manual de ventas consultivas para el equipo comercial de Soluciones CloudSales.}
+        {Manual de Ventas Consultivas}
+        {}
+        {}
+        {\begin{itemize}
+\item Documenté el proceso de venta, desde la prospección hasta el cierre, con metodologías MEDDIC y SPIN Selling.
+\item Formé a 12 comerciales en la nueva metodología, logrando un aumento del 18\% en la tasa de cierre.
+\item Integré el manual en Salesforce, automatizando tareas de seguimiento y generación de informes.
+\end{itemize}
+\textbf{Palabras clave}: Ventas consultivas, Manual de ventas, Formación, MEDDIC}
+
+\cventry{ene 2020–jun 2020}
+        {Campaña para recuperar clientes inactivos de Innova Software Ibérica mediante segmentación y ofertas personalizadas.}
+        {Campaña de Reactivación de Clientes Inactivos}
+        {}
+        {}
+        {\begin{itemize}
+\item Analicé la base de datos de clientes y segmenté por sector, tamaño y motivo de baja.
+\item Diseñé una secuencia de contacto multicanal (correo electrónico, teléfono y LinkedIn) con mensajes personalizados.
+\item Recuperé 38 cuentas, generando 320.000 € en ingresos adicionales en seis meses.
+\end{itemize}
+\textbf{Palabras clave}: Reactivación, Segmentación, Multicanal, Marketing por correo}
+\section{Intereses}
+
+\cvline{Deportes}{Carrera, Pádel, Senderismo}
+\cvline{Música}{Guitarra, Conciertos}
+\cvline{Viajes}{Europa, Latinoamérica, Gastronomía}
+\section{Voluntariado}
+
+\cventry{sept 2019 hasta la fecha}
+        {Mentor de Ventas}
+        {Fundación Emprende Joven}
+        {\url{https://www.emprendejoven.es}}
+        {}
+        {\begin{itemize}
+\item Ejercí como mentor de jóvenes emprendedores en la validación comercial de sus ideas de negocio.
+\item Impartí talleres sobre prospección, propuesta de valor y técnicas de negociación.
+\item Ayudé a más de 15 proyectos a conseguir sus primeros clientes y validar su modelo de negocio.
+\end{itemize}}
+    
+\end{document}

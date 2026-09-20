@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="zh-hans">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="generator" content="YAMLResume (https://yamlresume.dev)">
+
+
+  <title>张伟 Resume</title>
+  <style>
+    :root {
+      --text-font-size: 16px;
+      --text-font-family: var(--text-default-font-family);
+      --line-height: 1.5;
+    }
+
+    /* Modified from: https://www.joshwcomeau.com/css/custom-css-reset/ */
+
+    /* 1. Use a more-intuitive box-sizing model */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    /* 2. Remove default margin */
+    *:not(dialog) {
+      margin: 0;
+    }
+
+    body {
+      /* 3. Improve text rendering */
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    :root {
+      --border-color: #d0d0d0;
+
+      /* text colors */
+      --text-color-primary: #000000;
+      --text-color-secondary: #333333;
+
+      /* spacing */
+      --spacing-xss: 2px;
+      --spacing-xs: 4px;
+      --spacing-sm: 8px;
+      --spacing-md: 12px;
+      --spacing-lg: 16px;
+      --spacing-xl: 24px;
+      --spacing-xxl: 40px;
+      --spacing-xxxl: 80px;
+
+      /* font sizes */
+      --font-size-xs: 0.8rem;
+      --font-size-sm: 0.9rem;
+      --font-size-md: 1rem;
+      --font-size-lg: 1.1rem;
+      --font-size-xl: 1.25rem;
+      --font-size-xxl: 2.5rem;
+
+      /* layout */
+      --page-max-width: 900px;
+
+      /* typography */
+      --text-default-font-family:
+        -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu,
+        Cantarell, sans-serif;
+    }
+
+    html {
+      font-size: var(--text-font-size);
+    }
+
+    body {
+      /* font & text */
+      color: var(--text-color-primary);
+      font-family: var(--text-font-family);
+      /* this variable is defined by `typography.fontSize` in resume html layout */
+      text-autospace: normal;
+
+      /* layout */
+      line-height: var(--line-height);
+      max-width: var(--page-max-width);
+      margin: 0 auto;
+      padding: var(--spacing-xxxl) var(--spacing-xxl) var(--spacing-xxl);
+    }
+
+    /* header */
+    .resume-header {
+      margin-bottom: var(--spacing-xxl);
+      text-align: center;
+    }
+
+    .resume-name {
+      font-size: var(--font-size-xxl);
+      font-weight: 600;
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .resume-headline {
+      font-size: var(--font-size-lg);
+      margin-bottom: var(--spacing-md);
+    }
+
+    /* contact info */
+    .resume-contact-info {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      column-gap: var(--spacing-lg);
+      row-gap: var(--spacing-xs);
+      margin-top: var(--spacing-sm);
+    }
+
+    .resume-contact-icon,
+    .resume-contact-label {
+      margin-right: var(--spacing-sm);
+      vertical-align: middle;
+    }
+
+    /* links: modern typographic style */
+    a {
+      color: var(--text-color-primary);
+      text-decoration: underline;
+      text-decoration-color: var(--border-color);
+      text-underline-offset: 3px;
+      text-decoration-thickness: 1px;
+      text-decoration-skip-ink: auto;
+      transition: text-decoration-color 0.2s;
+    }
+
+    a:hover {
+      text-decoration-color: var(--text-color-primary);
+    }
+
+    /* sections */
+    .resume-section {
+      margin-bottom: var(--spacing-xl);
+    }
+
+    .resume-section-title {
+      font-size: var(--font-size-xl);
+      font-weight: 500;
+      margin-bottom: var(--spacing-md);
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: var(--spacing-xs);
+    }
+
+    /* entries */
+    .resume-entry {
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .resume-entry:last-child {
+      margin-bottom: 0;
+    }
+
+    .resume-entry-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .resume-entry-title {
+      font-weight: 500;
+      margin-bottom: var(--spacing-xss);
+    }
+
+    .resume-entry-summary p,
+    .resume-summary-content p {
+      margin-bottom: var(--spacing-xs);
+    }
+
+    /* lists */
+    .resume-entry-summary ul,
+    .resume-entry-summary ol,
+    .resume-summary-content ul,
+    .resume-summary-content ol {
+      padding-left: var(--spacing-lg);
+      list-style-type: circle;
+    }
+
+    /* labeled lists (courses, keywords, etc.) */
+    .resume-labeled-list span {
+      font-weight: 500;
+    }
+
+    /* skills grid */
+    .resume-skill-item,
+    .resume-language-item {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .resume-skill-name,
+    .resume-language-name {
+      font-weight: 500;
+    }
+
+    .resume-skill-level,
+    .resume-language-fluency {
+      font-weight: 400;
+    }
+
+    /* mobile */
+    @media (max-width: 768px) {
+      body {
+        padding: var(--spacing-xl);
+      }
+
+      .resume-header {
+        margin-bottom: var(--spacing-xl);
+      }
+
+      .resume-contact-info {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .resume-entry-header {
+        flex-wrap: wrap;
+      }
+    }
+
+    /* footer */
+    .resume-footer {
+      margin-top: var(--spacing-xxl);
+      padding-top: var(--spacing-xl);
+      border-top: 1px solid var(--border-color);
+      font-size: var(--font-size-sm);
+      color: var(--text-color-secondary);
+    }
+
+    @media print {
+      .resume-footer {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="resume-header">
+    <h1 class="resume-name">张伟</h1>
+    <p class="resume-headline">资深客户经理 | 企业级 SaaS 销售专家</p>
+    <div class="resume-contact-info">
+      <span class="resume-contact-item"><span class="resume-contact-icon">📧</span><a href="mailto:zhangwei.sales@example.com" class="resume-contact-link">zhangwei.sales@example.com</a></span>
+      <span class="resume-contact-item"><span class="resume-contact-icon">📞</span>+86 138 1234 5678</span>
+      <span class="resume-contact-item"><span class="resume-contact-icon">🔗</span><a href="https://www.linkedin.com/in/zhangwei-sales" class="resume-contact-link">https://www.linkedin.com/in/zhangwei-sales</a></span>
+    </div>
+    <div class="resume-contact-info resume-location-info">
+      <span class="resume-contact-item"><span class="resume-contact-icon">📍</span>中国，上海，上海，上海市浦东新区世纪大道100号，200120</span>
+    </div>
+    <div class="resume-contact-info resume-profiles-info">
+      <span class="resume-contact-item"><span class="resume-contact-label">LinkedIn</span>: <a href="https://www.linkedin.com/in/zhangwei-sales" class="resume-contact-link">@zhangwei-sales</a></span>
+      <span class="resume-contact-item"><span class="resume-contact-label">Zhihu</span>: <a href="https://www.zhihu.com/people/zhangwei-sales" class="resume-contact-link">@zhangwei-sales</a></span>
+    </div>
+  </header>
+  <section class="resume-section" id="summary" data-section="summary">
+    <h2 class="resume-section-title">简介</h2>
+    <div class="resume-section-content">
+      <div class="resume-summary-content">
+        <ul>
+          <li>
+            <p>拥有8年以上企业级软件与云计算销售经验，擅长从0到1开拓大客户并实现规模化收入增长</p>
+          </li>
+          <li>
+            <p>精通顾问式销售和复杂解决方案销售，能够深入理解客户业务痛点并制定定制化方案</p>
+          </li>
+          <li>
+            <p>具备出色的商务谈判和跨部门协作能力，多次主导千万级项目的投标与合同签署</p>
+          </li>
+          <li>
+            <p>熟悉销售漏斗管理、客户分层和销售预测，善于利用数据驱动销售决策</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="education" data-section="education">
+    <h2 class="resume-section-title">教育背景</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="education-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.shufe.edu.cn/">上海财经大学</a></div>
+            <div class="resume-entry-organization">学士，市场营销，成绩：3.8/4.0</div>
+          </div>
+          <div class="resume-entry-date">2011年9月–2015年7月</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>系统学习市场营销理论与实务，多次获得校级奖学金</p>
+            </li>
+            <li>
+              <p>担任市场营销协会副会长，组织校园营销大赛和名企参访活动</p>
+            </li>
+            <li>
+              <p>毕业论文《社交媒体对消费者购买决策的影响》获评优秀毕业论文</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>课程</span>：市场营销学、消费者行为学、商务谈判、销售管理、经济学原理、统计学、广告学、数字营销</div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="work" data-section="work">
+    <h2 class="resume-section-title">工作经历</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="work-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.aliyun.com">阿里云计算有限公司</a></div>
+            <div class="resume-entry-organization">高级客户经理</div>
+          </div>
+          <div class="resume-entry-date">2021年1月至今</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>负责华东区制造、零售行业大客户的云计算与数字化解决方案销售，年度销售目标1.2亿元</p>
+            </li>
+            <li>
+              <p>开拓并维护20余家头部企业客户，包括3家世界500强，实现新客户收入占比超过40%</p>
+            </li>
+            <li>
+              <p>主导多个千万级云平台迁移和数据中台项目，协调售前、产品和交付团队确保项目落地</p>
+            </li>
+            <li>
+              <p>建立客户分层和销售漏斗管理体系，通过数据分析优化商机转化率，商机转化率提升25%</p>
+            </li>
+            <li>
+              <p>指导并培养2名初级客户经理，帮助团队整体业绩达成率提升至120%</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>关键字</span>：大客户销售、云计算、解决方案销售、商务谈判、销售管理</div>
+      </div>
+      <div class="resume-entry" id="work-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://cloud.tencent.com">腾讯云计算（北京）有限责任公司</a></div>
+            <div class="resume-entry-organization">客户经理</div>
+          </div>
+          <div class="resume-entry-date">2017年7月–2020年12月</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>负责华东区互联网和金融行业客户的云产品销售，累计完成合同额超过8000万元</p>
+            </li>
+            <li>
+              <p>从0到1开拓新客户52家，其中千万级客户6家，连续三年超额完成销售指标</p>
+            </li>
+            <li>
+              <p>深入理解客户业务场景，提供包括云服务器、数据库、CDN和安全产品的组合方案</p>
+            </li>
+            <li>
+              <p>与渠道合作伙伴建立紧密合作，通过生态渠道贡献了30%以上的新增收入</p>
+            </li>
+            <li>
+              <p>参与制定行业销售策略和标准化销售工具包，提升团队整体销售效率</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>关键字</span>：云销售、互联网客户、渠道合作、客户开拓</div>
+      </div>
+      <div class="resume-entry" id="work-3">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.yonyou.com">用友网络科技股份有限公司</a></div>
+            <div class="resume-entry-organization">销售代表</div>
+          </div>
+          <div class="resume-entry-date">2015年7月–2017年6月</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>负责中小企业ERP软件的销售工作，完成从线索挖掘、需求调研到合同签署的全流程</p>
+            </li>
+            <li>
+              <p>累计签约客户120余家，年度销售额从入职第一年的80万元增长至第二年的200万元</p>
+            </li>
+            <li>
+              <p>通过电话营销、行业展会和客户转介绍等方式开拓新客户，建立稳定的销售管道</p>
+            </li>
+            <li>
+              <p>协助实施团队完成客户上线和售后维护，客户满意度保持在95%以上</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>关键字</span>：ERP、中小企业、电话销售、客户维护</div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="languages" data-section="languages">
+    <h2 class="resume-section-title">语言</h2>
+    <div class="resume-section-content">
+      <div class="resume-languages-list">
+        <div class="resume-language-item">
+          <div class="resume-language-name">中文<span class="resume-language-fluency">：母语或双语水平</span></div>
+          <div>
+            <div class="resume-labeled-list"><span>关键字</span>：普通话、商务写作</div>
+          </div>
+        </div>
+        <div class="resume-language-item">
+          <div class="resume-language-name">英语<span class="resume-language-fluency">：完全专业水平</span></div>
+          <div>
+            <div class="resume-labeled-list"><span>关键字</span>：商务谈判、英文邮件、演示汇报</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="skills" data-section="skills">
+    <h2 class="resume-section-title">专业技能</h2>
+    <div class="resume-section-content">
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">企业级销售<span class="resume-skill-level">：专家</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>关键字</span>：顾问式销售、大客户管理、销售预测、合同谈判、客户关系管理</div>
+        </div>
+      </div>
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">云计算与SaaS<span class="resume-skill-level">：高级</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>关键字</span>：IaaS、PaaS、SaaS、混合云、数字化转型</div>
+        </div>
+      </div>
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">销售工具<span class="resume-skill-level">：高级</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>关键字</span>：Salesforce、CRM、Excel、PowerPoint、数据分析</div>
+        </div>
+      </div>
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">商务沟通<span class="resume-skill-level">：专家</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>关键字</span>：演讲、谈判、跨部门协作、项目管理、方案展示</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="awards" data-section="awards">
+    <h2 class="resume-section-title">荣誉</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="awards-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title">年度销售冠军</div>
+            <div class="resume-entry-organization">阿里云计算有限公司</div>
+          </div>
+          <div class="resume-entry-date">2023年12月</div>
+        </div>
+        <div class="resume-entry-summary">
+          <p>在2023年度实现个人销售业绩1.2亿元，完成率150%，位列全国销售团队第一。</p>
+        </div>
+      </div>
+      <div class="resume-entry" id="awards-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title">最佳新客户开拓奖</div>
+            <div class="resume-entry-organization">腾讯云计算（北京）有限责任公司</div>
+          </div>
+          <div class="resume-entry-date">2019年12月</div>
+        </div>
+        <div class="resume-entry-summary">
+          <p>全年开拓新客户48家，其中千万级客户5家，新客户收入贡献占比超过60%。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="certificates" data-section="certificates">
+    <h2 class="resume-section-title">证书</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="certificates-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.aliyun.com/certification">阿里云云计算销售专家认证</a></div>
+            <div class="resume-entry-organization">阿里云</div>
+          </div>
+          <div class="resume-entry-date">2022年3月</div>
+        </div>
+      </div>
+      <div class="resume-entry" id="certificates-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://trailhead.salesforce.com/credentials/salescloudconsultant">Salesforce Certified Sales Cloud Consultant</a></div>
+            <div class="resume-entry-organization">Salesforce</div>
+          </div>
+          <div class="resume-entry-date">2021年6月</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="publications" data-section="publications">
+    <h2 class="resume-section-title">出版刊物</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="publications-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.salesmanagement.com.cn/article/123">数字化转型下的企业级销售策略</a></div>
+            <div class="resume-entry-organization">销售与管理</div>
+          </div>
+          <div class="resume-entry-date">2023年8月</div>
+        </div>
+        <div class="resume-entry-summary">
+          <p>本文探讨了云计算与SaaS企业在数字化转型浪潮中的销售策略，包括客户分层、顾问式销售和生态渠道建设，并结合实际案例分析了如何提升大客户销售转化率。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="references" data-section="references">
+    <h2 class="resume-section-title">引荐</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="references-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="mailto:liqiang@example.com">李强</a></div>
+            <div class="resume-entry-organization">阿里云华东区销售总监</div>
+          </div>
+          <div>+86 139 8765 4321</div>
+        </div>
+        <div class="resume-entry-summary">
+          <p>张伟在阿里云工作期间表现出色，具备极强的客户洞察力和商务谈判能力，是团队中不可或缺的销售骨干。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="projects" data-section="projects">
+    <h2 class="resume-section-title">项目</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="projects-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.aliyun.com/solutions/manufacturing">某大型制造企业云平台迁移项目</a></div>
+            <div class="resume-entry-description">为某大型制造企业提供云平台迁移与数字化解决方案，合同金额超过2000万元。</div>
+          </div>
+          <div class="resume-entry-date">2022年3月–2022年9月</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>负责客户需求调研、方案制定和商务谈判</p>
+            </li>
+            <li>
+              <p>协调售前、交付和产品团队，确保项目按时上线</p>
+            </li>
+            <li>
+              <p>项目上线后客户续约率100%，并追加采购数据中台产品</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>关键字</span>： 云计算、制造业、数字化转型、大客户销售</div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="interests" data-section="interests">
+    <h2 class="resume-section-title">兴趣爱好</h2>
+    <div class="resume-section-content">
+      <div class="resume-interest-item"><span class="resume-interest-name">运动</span>：跑步、游泳、篮球</div>
+      <div class="resume-interest-item"><span class="resume-interest-name">阅读</span>：商业、历史、科技</div>
+      <div class="resume-interest-item"><span class="resume-interest-name">旅行</span>：自驾、摄影、美食</div>
+    </div>
+  </section>
+  <section class="resume-section" id="volunteer" data-section="volunteer">
+    <h2 class="resume-section-title">志愿服务</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="volunteer-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.shyes.org/">上海青年企业家协会</a></div>
+            <div class="resume-entry-organization">志愿者导师</div>
+          </div>
+          <div class="resume-entry-date">2019年9月–2023年12月</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>为大学生和初创企业提供销售与职业发展指导</p>
+            </li>
+            <li>
+              <p>参与组织行业分享会和招聘活动</p>
+            </li>
+            <li>
+              <p>帮助5名学员获得知名企业销售岗位offer</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer class="resume-footer">Generated by <a href="https://yamlresume.dev">YAMLResume</a></footer>
+</body>
+
+</html>

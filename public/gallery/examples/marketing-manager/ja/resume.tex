@@ -1,0 +1,271 @@
+\documentclass[a4paper, serif, 10pt]{moderncv}
+
+%% moderncv
+% style and color
+\moderncvstyle{banking}
+\moderncvcolor{black}
+
+% renew moderncv command to adapt for CJK colon
+\renewcommand*{\cvitem}[3][.25em]{%
+  \ifstrempty{#2}{}{\hintstyle{#2}：}{#3}%
+  \par\addvspace{#1}}
+
+\renewcommand*{\cvitemwithcomment}[4][.25em]{%
+  \savebox{\cvitemwithcommentmainbox}{\ifstrempty{#2}{}{\hintstyle{#2}：}#3}%
+  \setlength{\cvitemwithcommentmainlength}{\widthof{\usebox{\cvitemwithcommentmainbox}}}%
+  \setlength{\cvitemwithcommentcommentlength}{\maincolumnwidth-\separatorcolumnwidth-\cvitemwithcommentmainlength}%
+  \begin{minipage}[t]{\cvitemwithcommentmainlength}\usebox{\cvitemwithcommentmainbox}\end{minipage}%
+  \hfill% fill of \separatorcolumnwidth
+  \begin{minipage}[t]{\cvitemwithcommentcommentlength}\raggedleft\small\itshape#4\end{minipage}%
+  \par\addvspace{#1}}
+
+%% page layout/margins
+\usepackage[top=2.5cm, bottom=2.5cm, left=1.5cm, right=1.5cm]{geometry}
+
+\nopagenumbers{}
+
+%% Babel config for English language
+\usepackage[english]{babel}
+
+%% fontspec
+\usepackage{fontspec}
+
+\IfFontExistsTF{Linux Libertine}{
+  \setmainfont[Ligatures={TeX, Common}, Numbers=Lining, ItalicFont=Linux Libertine]{Linux Libertine}
+}{}
+\IfFontExistsTF{Linux Libertine O}{
+  \setmainfont[Ligatures={TeX, Common}, Numbers=Lining, ItalicFont=Linux Libertine O]{Linux Libertine O}
+}{}
+
+%% CTeX
+% CJK support, used to show CJK characters in the resume
+%
+% - fontset=none: disable builtin fontset but instead set the CJK font manually
+% - heading=false: disable ctex heading
+% - punct=kaiming: use kaiming punctuations styles for CJK
+% - scheme=plain: use plain scheme, do not override \normalsize font size
+% - space=auto: space settings for CJK characters
+%
+% ref:
+% - http://ctan.mirrorcatalogs.com/language/chinese/ctex/ctex.pdf
+\usepackage[UTF8, heading=false, punct=kaiming, scheme=plain, space=auto]{ctex}
+
+\IfFontExistsTF{Noto Serif CJK SC}{
+  \setCJKmainfont{Noto Serif CJK SC}
+}{}
+\IfFontExistsTF{Noto Sans CJK SC}{
+  \setCJKsansfont{Noto Sans CJK SC}
+}{}
+
+%% line spacing
+\usepackage{setspace}
+\setstretch{1.125}
+
+%% URL styling - use normal text instead of monospace
+\urlstyle{same}
+
+% Auto-underline all links
+% Defer until \begin{document} so hyperref is already loaded
+\AtBeginDocument{%
+  \let\oldhref\href
+  \renewcommand{\href}[2]{\oldhref{#1}{\underline{#2}}}%
+}
+
+%% Patch \httplink and \httpslink to handle full URLs
+% The original moderncv macros always prepend http:// or https:// to URLs.
+% This causes issues when the URL already has a protocol (e.g., https://example.com)
+% resulting in malformed URLs like https://https://example.com.
+% This patch checks if the URL already contains "://" and uses it directly if so.
+% Note: We use \str_set:Nx (x-expansion) to expand macros like \@homepage first.
+\ExplSyntaxOn
+\str_new:N \g_yamlresume_url_str
+
+\RenewDocumentCommand{\httpslink}{O{}m}{
+  \str_set:Nx \g_yamlresume_url_str {#2}
+  \str_if_in:NnTF \g_yamlresume_url_str {://}
+    { \url{#2} }
+    { \url{https://#2} }
+}
+
+\RenewDocumentCommand{\httplink}{O{}m}{
+  \str_set:Nx \g_yamlresume_url_str {#2}
+  \str_if_in:NnTF \g_yamlresume_url_str {://}
+    { \url{#2} }
+    { \url{http://#2} }
+}
+\ExplSyntaxOff
+
+\name{佐藤 美咲}{}
+\title{マーケティングマネージャー | デジタルマーケティング戦略}
+\phone[mobile]{+81 90-1234-5678}
+\email{misaki.sato@example.com}
+\homepage{https://www.example.com/misaki-sato}
+
+\address{日本、東京都、渋谷区、東京都渋谷区神宮前1-2-3、150-0001}{}{}
+
+\extrainfo{{\small \faLinkedin}\ \href{https://www.linkedin.com/in/misaki-sato}{@misaki-sato} {} {} {} • {} {} {} 
+{\small \faTwitter}\ \href{https://twitter.com/misaki\_marketing}{@misaki\_marketing}}
+
+\begin{document}
+
+\maketitle
+
+\section{基本情報}
+
+\cvline{}{\begin{itemize}
+\item デジタルマーケティングとブランド戦略を中心に8年以上の経験を持つマーケティングマネージャー
+\item B2B/B2C両領域で、市場調査から施策立案、実行、分析までの一連のプロセスをリード
+\item データドリブンな意思決定とクロスファンクショナルなチームマネジメントを得意とする
+\item SEO/SEM、SNS、コンテンツマーケティング、CRMを活用した集客と顧客エンゲージメントに強み
+\item マーケティング予算の最適配分とROI改善を通じて、売上成長に貢献
+\end{itemize}}
+\section{学歴}
+
+\cventry{2012年4月～2016年3月}
+        {学士、商学部 マーケティング専攻、成績：3.7}
+        {慶應義塾大学}
+        {\url{https://www.keio.ac.jp/}}
+        {}
+        {\begin{itemize}
+\item マーケティングと経営学を中心に履修し、消費者インサイトとデータ分析の基礎を習得
+\item ゼミでは企業との共同研究に参加し、新商品の市場投入戦略を提案
+\item 卒業論文では「ソーシャルメディアが消費者購買行動に与える影響」をテーマに研究
+\end{itemize}
+\textbf{コース}：マーケティング原理、消費者行動論、市場調査、ブランド戦略、統計学、経営戦略、デジタルマーケティング}
+\section{職歴}
+
+\cventry{2021年4月～現在}
+        {マーケティングマネージャー}
+        {株式会社ネクストブリッジ}
+        {\url{https://www.nextbridge.co.jp}}
+        {}
+        {\begin{itemize}
+\item マーケティング部門のマネージャーとして、5名のチームをリードし年間マーケティング戦略を策定
+\item 市場調査と競合分析に基づき、ターゲットセグメントの再定義とポジショニングを刷新
+\item デジタル広告、SEO、コンテンツ、SNSを統合したキャンペーンを実行し、リード獲得数を前年比150\%に増加
+\item マーケティング予算を四半期ごとに見直し、ROIを20\%改善
+\item 営業部門と連携し、リードナーチャリング施策を構築して商談化率を向上
+\end{itemize}
+\textbf{キーワード}：マーケティング戦略、チームマネジメント、デジタル広告、ROI改善、リード獲得}
+
+\cventry{2018年4月～2021年3月}
+        {デジタルマーケティングスペシャリスト}
+        {株式会社デジタルシフト}
+        {\url{https://www.digitalshift.co.jp}}
+        {}
+        {\begin{itemize}
+\item B2B SaaS企業において、SEO/SEM、メールマーケティング、Webinarを活用した集客を担当
+\item コンテンツマーケティング戦略を立案し、オーガニックトラフィックを2年間で200\%増加
+\item Google AnalyticsとCRMデータを連携し、顧客行動に基づくパーソナライズ施策を実施
+\item マーケティングオートメーションを導入し、リードスコアリングとナーチャリングを自動化
+\item 広告代理店と連携し、キャンペーンごとのクリエイティブ改善とA/Bテストを実施
+\end{itemize}
+\textbf{キーワード}：SEO、SEM、コンテンツマーケティング、MA、データ分析}
+
+\cventry{2016年4月～2018年3月}
+        {マーケティングアシスタント}
+        {株式会社クリエイティブワークス}
+        {\url{https://www.creativeworks.co.jp}}
+        {}
+        {\begin{itemize}
+\item マーケティングキャンペーンの企画・運用をサポートし、SNSアカウントの運用を担当
+\item プレスリリースの作成とメディアリレーションを通じて、ブランド認知度の向上に貢献
+\item イベントや展示会の企画・運営を補助し、リード獲得と顧客接点の創出を支援
+\item 市場調査データの収集・分析を行い、レポートを作成してチームに共有
+\end{itemize}
+\textbf{キーワード}：SNS運用、PR、イベント企画、市場調査}
+\section{言語}
+
+\cvline{日本語}{ネイティブ・母国語レベル \hfill \textbf{キーワード}：日本語}
+\cvline{英語}{完全な実務レベル \hfill \textbf{キーワード}：TOEIC 920、ビジネス英会話}
+\section{スキル}
+
+\cvline{マーケティング戦略}{エキスパート \hfill \textbf{キーワード}：市場調査、競合分析、ブランド戦略、ポジショニング、KPI設計}
+\cvline{デジタルマーケティング}{上級 \hfill \textbf{キーワード}：SEO、SEM、SNS広告、コンテンツマーケティング、メールマーケティング}
+\cvline{データ分析・CRM}{上級 \hfill \textbf{キーワード}：Google Analytics、CRM、マーケティングオートメーション、A/Bテスト、データ可視化}
+\cvline{マネジメント}{上級 \hfill \textbf{キーワード}：チームマネジメント、予算管理、プロジェクト管理、クロスファンクショナル連携}
+\section{受賞・表彰}
+
+\cventry{2023年12月}
+        {株式会社ネクストブリッジ}
+        {年間最優秀マーケティングチーム賞}
+        {}
+        {}
+        {\begin{itemize}
+\item 統合マーケティングキャンペーンの成果が評価され、社内表彰を受賞
+\item リード獲得数とブランド認知度の大幅な向上に貢献
+\end{itemize}}
+
+\cventry{2017年11月}
+        {日本マーケティング協会}
+        {デジタルマーケティングコンテスト 優秀賞}
+        {}
+        {}
+        {\begin{itemize}
+\item 若手マーケター向けコンテストにおいて、データ活用型キャンペーンを提案し優秀賞を受賞
+\end{itemize}}
+\section{資格・免状}
+
+\cventry{2023年6月}
+        {Google}
+        {Google Analytics 4 認定資格}
+        {\url{https://skillshop.exceedlms.com/student/catalog}}
+        {}
+        {}
+
+\cventry{2022年9月}
+        {HubSpot Academy}
+        {HubSpot コンテンツマーケティング認定}
+        {\url{https://academy.hubspot.com/courses/content-marketing}}
+        {}
+        {}
+
+\cventry{2015年11月}
+        {日本商工会議所}
+        {日商簿記検定2級}
+        {}
+        {}
+        {}
+\section{出版・著作}
+
+\cventry{2023年3月}
+        {データドリブン時代のブランド構築術}
+        {マーケティングジャーナル}
+        {\url{https://www.example.com/publications/data-driven-branding}}
+        {}
+        {\begin{itemize}
+\item 顧客データと市場インサイトを活用したブランド戦略の最新手法を解説
+\item B2B/B2C企業の事例を交え、実践的なフレームワークを提示
+\end{itemize}}
+\section{プロジェクト}
+
+\cventry{2022年4月～2022年9月}
+        {新製品の市場投入に向けた統合マーケティングキャンペーン}
+        {統合マーケティングキャンペーン「Next Wave」}
+        {\url{https://www.example.com/projects/next-wave}}
+        {}
+        {\begin{itemize}
+\item ターゲット顧客の再定義からクリエイティブ制作、メディアプランニングまでを統括
+\item デジタルとオフラインを組み合わせ、認知度を45\%向上、リード数を目標比130\%達成
+\item キャンペーン後の顧客満足度調査でNPSが15ポイント改善
+\end{itemize}
+\textbf{キーワード}：統合マーケティング、新製品投入、ブランド認知}
+\section{興味・関心}
+
+\cvline{旅行}{海外旅行、温泉}
+\cvline{読書}{マーケティング、ビジネス書、心理学}
+\cvline{ランニング}{フルマラソン、ジョギング}
+\section{ボランティア活動}
+
+\cventry{2020年6月～現在}
+        {メンター}
+        {一般社団法人マーケティング支援ネットワーク}
+        {\url{https://www.example.org/marketing-support}}
+        {}
+        {\begin{itemize}
+\item スタートアップや小規模事業者向けに、デジタルマーケティングの無料相談を担当
+\item マーケティング戦略の立案やSNS運用のアドバイスを通じて、地域企業の成長を支援
+\item 定期的な勉強会を企画し、若手マーケターのスキルアップに貢献
+\end{itemize}}
+    
+\end{document}

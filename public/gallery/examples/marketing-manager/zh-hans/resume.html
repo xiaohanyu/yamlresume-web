@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="zh-hans">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="generator" content="YAMLResume (https://yamlresume.dev)">
+
+
+  <title>张雅琳 Resume</title>
+  <style>
+    :root {
+      --text-font-size: 16px;
+      --text-font-family: var(--text-default-font-family);
+      --line-height: 1.5;
+    }
+
+    /* Modified from: https://www.joshwcomeau.com/css/custom-css-reset/ */
+
+    /* 1. Use a more-intuitive box-sizing model */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    /* 2. Remove default margin */
+    *:not(dialog) {
+      margin: 0;
+    }
+
+    body {
+      /* 3. Improve text rendering */
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    :root {
+      --border-color: #d0d0d0;
+
+      /* text colors */
+      --text-color-primary: #000000;
+      --text-color-secondary: #333333;
+
+      /* spacing */
+      --spacing-xss: 2px;
+      --spacing-xs: 4px;
+      --spacing-sm: 8px;
+      --spacing-md: 12px;
+      --spacing-lg: 16px;
+      --spacing-xl: 24px;
+      --spacing-xxl: 40px;
+      --spacing-xxxl: 80px;
+
+      /* font sizes */
+      --font-size-xs: 0.8rem;
+      --font-size-sm: 0.9rem;
+      --font-size-md: 1rem;
+      --font-size-lg: 1.1rem;
+      --font-size-xl: 1.25rem;
+      --font-size-xxl: 2.5rem;
+
+      /* layout */
+      --page-max-width: 900px;
+
+      /* typography */
+      --text-default-font-family:
+        -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu,
+        Cantarell, sans-serif;
+    }
+
+    html {
+      font-size: var(--text-font-size);
+    }
+
+    body {
+      /* font & text */
+      color: var(--text-color-primary);
+      font-family: var(--text-font-family);
+      /* this variable is defined by `typography.fontSize` in resume html layout */
+      text-autospace: normal;
+
+      /* layout */
+      line-height: var(--line-height);
+      max-width: var(--page-max-width);
+      margin: 0 auto;
+      padding: var(--spacing-xxxl) var(--spacing-xxl) var(--spacing-xxl);
+    }
+
+    /* header */
+    .resume-header {
+      margin-bottom: var(--spacing-xxl);
+      text-align: center;
+    }
+
+    .resume-name {
+      font-size: var(--font-size-xxl);
+      font-weight: 600;
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .resume-headline {
+      font-size: var(--font-size-lg);
+      margin-bottom: var(--spacing-md);
+    }
+
+    /* contact info */
+    .resume-contact-info {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      column-gap: var(--spacing-lg);
+      row-gap: var(--spacing-xs);
+      margin-top: var(--spacing-sm);
+    }
+
+    .resume-contact-icon,
+    .resume-contact-label {
+      margin-right: var(--spacing-sm);
+      vertical-align: middle;
+    }
+
+    /* links: modern typographic style */
+    a {
+      color: var(--text-color-primary);
+      text-decoration: underline;
+      text-decoration-color: var(--border-color);
+      text-underline-offset: 3px;
+      text-decoration-thickness: 1px;
+      text-decoration-skip-ink: auto;
+      transition: text-decoration-color 0.2s;
+    }
+
+    a:hover {
+      text-decoration-color: var(--text-color-primary);
+    }
+
+    /* sections */
+    .resume-section {
+      margin-bottom: var(--spacing-xl);
+    }
+
+    .resume-section-title {
+      font-size: var(--font-size-xl);
+      font-weight: 500;
+      margin-bottom: var(--spacing-md);
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: var(--spacing-xs);
+    }
+
+    /* entries */
+    .resume-entry {
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .resume-entry:last-child {
+      margin-bottom: 0;
+    }
+
+    .resume-entry-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .resume-entry-title {
+      font-weight: 500;
+      margin-bottom: var(--spacing-xss);
+    }
+
+    .resume-entry-summary p,
+    .resume-summary-content p {
+      margin-bottom: var(--spacing-xs);
+    }
+
+    /* lists */
+    .resume-entry-summary ul,
+    .resume-entry-summary ol,
+    .resume-summary-content ul,
+    .resume-summary-content ol {
+      padding-left: var(--spacing-lg);
+      list-style-type: circle;
+    }
+
+    /* labeled lists (courses, keywords, etc.) */
+    .resume-labeled-list span {
+      font-weight: 500;
+    }
+
+    /* skills grid */
+    .resume-skill-item,
+    .resume-language-item {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .resume-skill-name,
+    .resume-language-name {
+      font-weight: 500;
+    }
+
+    .resume-skill-level,
+    .resume-language-fluency {
+      font-weight: 400;
+    }
+
+    /* mobile */
+    @media (max-width: 768px) {
+      body {
+        padding: var(--spacing-xl);
+      }
+
+      .resume-header {
+        margin-bottom: var(--spacing-xl);
+      }
+
+      .resume-contact-info {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .resume-entry-header {
+        flex-wrap: wrap;
+      }
+    }
+
+    /* footer */
+    .resume-footer {
+      margin-top: var(--spacing-xxl);
+      padding-top: var(--spacing-xl);
+      border-top: 1px solid var(--border-color);
+      font-size: var(--font-size-sm);
+      color: var(--text-color-secondary);
+    }
+
+    @media print {
+      .resume-footer {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="resume-header">
+    <h1 class="resume-name">张雅琳</h1>
+    <p class="resume-headline">市场营销经理 | 品牌增长与数字营销专家</p>
+    <div class="resume-contact-info">
+      <span class="resume-contact-item"><span class="resume-contact-icon">📧</span><a href="mailto:yalin.zhang@example.com" class="resume-contact-link">yalin.zhang@example.com</a></span>
+      <span class="resume-contact-item"><span class="resume-contact-icon">📞</span>+86 138 1234 5678</span>
+      <span class="resume-contact-item"><span class="resume-contact-icon">🔗</span><a href="https://www.zhangyalin.com" class="resume-contact-link">https://www.zhangyalin.com</a></span>
+    </div>
+    <div class="resume-contact-info resume-location-info">
+      <span class="resume-contact-item"><span class="resume-contact-icon">📍</span>中国，上海市，上海，浦东新区世纪大道 100 号，200120</span>
+    </div>
+    <div class="resume-contact-info resume-profiles-info">
+      <span class="resume-contact-item"><span class="resume-contact-label">LinkedIn</span>: <a href="https://www.linkedin.com/in/yalinzhang" class="resume-contact-link">@yalinzhang</a></span>
+      <span class="resume-contact-item"><span class="resume-contact-label">Medium</span>: <a href="https://medium.com/@yalinzhang" class="resume-contact-link">@yalinzhang</a></span>
+    </div>
+  </header>
+  <section class="resume-section" id="summary" data-section="summary">
+    <h2 class="resume-section-title">简介</h2>
+    <div class="resume-section-content">
+      <div class="resume-summary-content">
+        <ul>
+          <li>
+            <p>8 年市场营销经验，专注于企业级与快消行业的品牌增长、数字营销与整合传播</p>
+          </li>
+          <li>
+            <p>擅长制定市场策略、管理千万级预算，并通过数据驱动优化获客与转化</p>
+          </li>
+          <li>
+            <p>具备跨部门协作与团队管理能力，曾带领 6 人团队实现有效线索增长 180%</p>
+          </li>
+          <li>
+            <p>熟悉国内外主流营销平台与工具，能够快速适应不同市场环境</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="education" data-section="education">
+    <h2 class="resume-section-title">教育背景</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="education-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.fudan.edu.cn">复旦大学</a></div>
+            <div class="resume-entry-organization">硕士，市场营销，成绩：3.8/4.0</div>
+          </div>
+          <div class="resume-entry-date">2014年9月–2017年6月</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>主修市场营销，系统学习消费者洞察、品牌战略与数据驱动决策</p>
+            </li>
+            <li>
+              <p>毕业论文聚焦社交媒体对年轻消费者购买意愿的影响</p>
+            </li>
+            <li>
+              <p>获得校级优秀研究生奖学金</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>课程</span>：消费者行为学、市场调研与数据分析、品牌管理、数字营销策略、整合营销传播、商业统计学</div>
+      </div>
+      <div class="resume-entry" id="education-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.shisu.edu.cn">上海外国语大学</a></div>
+            <div class="resume-entry-organization">学士，国际商务，成绩：3.6/4.0</div>
+          </div>
+          <div class="resume-entry-date">2010年9月–2014年6月</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>辅修英语，具备良好的跨文化沟通能力</p>
+            </li>
+            <li>
+              <p>参与校园国际文化节市场推广工作</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>课程</span>：国际市场营销、商务英语、跨文化沟通、经济学原理</div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="work" data-section="work">
+    <h2 class="resume-section-title">工作经历</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="work-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.yuntu-tech.com">云图科技</a></div>
+            <div class="resume-entry-organization">高级市场营销经理</div>
+          </div>
+          <div class="resume-entry-date">2021年3月至今</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>负责企业级软件服务产品线整体市场策略，管理年度预算 1200 万元</p>
+            </li>
+            <li>
+              <p>带领 6 人团队执行内容营销、搜索引擎优化与营销、行业活动与渠道合作</p>
+            </li>
+            <li>
+              <p>将有效线索数量提升 180%，客户获取成本降低 25%，投资回报率提升至 4.2</p>
+            </li>
+            <li>
+              <p>搭建营销自动化与归因体系，实现线索到收入的闭环追踪</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>关键字</span>：企业级营销、增长策略、营销自动化、团队管理</div>
+      </div>
+      <div class="resume-entry" id="work-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.xingchao.com">星潮互动</a></div>
+            <div class="resume-entry-organization">市场营销经理</div>
+          </div>
+          <div class="resume-entry-date">2017年7月–2021年2月</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>负责快消品牌社交媒体与关键意见领袖营销，运营粉丝超 300 万</p>
+            </li>
+            <li>
+              <p>策划多个爆款话题，单次活动曝光量超 8000 万</p>
+            </li>
+            <li>
+              <p>与产品、销售团队协作，推动新品上市首月销售额破千万</p>
+            </li>
+            <li>
+              <p>管理代理商与媒体采购，优化投放效率</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>关键字</span>：社交媒体、关键意见领袖营销、品牌传播、预算管理</div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="languages" data-section="languages">
+    <h2 class="resume-section-title">语言</h2>
+    <div class="resume-section-content">
+      <div class="resume-languages-list">
+        <div class="resume-language-item">
+          <div class="resume-language-name">中文<span class="resume-language-fluency">：母语或双语水平</span></div>
+          <div>
+            <div class="resume-labeled-list"><span>关键字</span>：普通话</div>
+          </div>
+        </div>
+        <div class="resume-language-item">
+          <div class="resume-language-name">英语<span class="resume-language-fluency">：完全专业水平</span></div>
+          <div>
+            <div class="resume-labeled-list"><span>关键字</span>：雅思 7.5、商务谈判</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="skills" data-section="skills">
+    <h2 class="resume-section-title">专业技能</h2>
+    <div class="resume-section-content">
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">市场营销<span class="resume-skill-level">：专家</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>关键字</span>：品牌战略、市场调研、整合营销、内容营销、活动策划</div>
+        </div>
+      </div>
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">数字营销<span class="resume-skill-level">：高级</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>关键字</span>：搜索引擎优化、搜索引擎营销、信息流广告、社交媒体营销、营销自动化、数据分析</div>
+        </div>
+      </div>
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">工具与平台<span class="resume-skill-level">：高级</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>关键字</span>：谷歌分析、HubSpot、百度统计、巨量引擎、Salesforce</div>
+        </div>
+      </div>
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">管理与协作<span class="resume-skill-level">：高级</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>关键字</span>：团队领导、跨部门协作、项目管理、预算控制、供应商管理</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="awards" data-section="awards">
+    <h2 class="resume-section-title">荣誉</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="awards-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title">年度最佳营销团队奖</div>
+            <div class="resume-entry-organization">云图科技</div>
+          </div>
+          <div class="resume-entry-date">2023年1月</div>
+        </div>
+        <div class="resume-entry-summary">
+          <p>表彰在企业级增长营销与品牌建设方面的突出贡献，带领团队实现年度业绩目标 130%。</p>
+        </div>
+      </div>
+      <div class="resume-entry" id="awards-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title">数字营销创新金奖</div>
+            <div class="resume-entry-organization">中国数字营销协会</div>
+          </div>
+          <div class="resume-entry-date">2020年11月</div>
+        </div>
+        <div class="resume-entry-summary">
+          <p>凭借“城市夜跑计划”整合营销案例获得行业金奖，活动覆盖 20 个城市，参与人数超 5 万。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="certificates" data-section="certificates">
+    <h2 class="resume-section-title">证书</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="certificates-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://skillshop.exceedlms.com/student/catalog">谷歌分析 4 认证</a></div>
+            <div class="resume-entry-organization">谷歌</div>
+          </div>
+          <div class="resume-entry-date">2022年5月</div>
+        </div>
+      </div>
+      <div class="resume-entry" id="certificates-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://academy.hubspot.com/courses/content-marketing">内容营销认证</a></div>
+            <div class="resume-entry-organization">HubSpot 学院</div>
+          </div>
+          <div class="resume-entry-date">2021年8月</div>
+        </div>
+      </div>
+      <div class="resume-entry" id="certificates-3">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://yingxiao.baidu.com">百度营销认证</a></div>
+            <div class="resume-entry-organization">百度</div>
+          </div>
+          <div class="resume-entry-date">2020年3月</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="publications" data-section="publications">
+    <h2 class="resume-section-title">出版刊物</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="publications-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.example.com/publication">社交媒体时代企业级品牌内容营销策略研究</a></div>
+            <div class="resume-entry-organization">中国市场学会</div>
+          </div>
+          <div class="resume-entry-date">2022年10月</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>分析企业级品牌如何通过内容营销建立思想领导力</p>
+            </li>
+            <li>
+              <p>提出基于客户旅程的内容矩阵模型</p>
+            </li>
+            <li>
+              <p>被多家行业媒体转载引用</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="projects" data-section="projects">
+    <h2 class="resume-section-title">项目</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="projects-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.yuntu-tech.com/brand">云图科技品牌焕新项目</a></div>
+            <div class="resume-entry-description">为企业级软件服务企业完成品牌升级与官网重构，覆盖 6 个国际市场</div>
+          </div>
+          <div class="resume-entry-date">2022年1月–2022年9月</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>主导品牌定位、视觉识别与官网改版</p>
+            </li>
+            <li>
+              <p>统一全球市场传播口径，提升品牌认知度 45%</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>关键字</span>： 品牌升级、官网改版、全球化</div>
+      </div>
+      <div class="resume-entry" id="projects-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.xingchao.com/campaign">双十一整合营销战役</a></div>
+            <div class="resume-entry-description">快消品牌双十一全渠道整合营销活动</div>
+          </div>
+          <div class="resume-entry-date">2020年10月–2020年11月</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>统筹社交媒体、直播与电商站内投放</p>
+            </li>
+            <li>
+              <p>实现成交总额 3200 万元，同比增长 90%</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>关键字</span>： 电商营销、直播、整合传播</div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="interests" data-section="interests">
+    <h2 class="resume-section-title">兴趣爱好</h2>
+    <div class="resume-section-content">
+      <div class="resume-interest-item"><span class="resume-interest-name">内容创作</span>：写作、播客、摄影</div>
+      <div class="resume-interest-item"><span class="resume-interest-name">运动</span>：跑步、瑜伽、徒步</div>
+    </div>
+  </section>
+  <section class="resume-section" id="volunteer" data-section="volunteer">
+    <h2 class="resume-section-title">志愿服务</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="volunteer-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.shyoungmarketers.org">上海青年营销人协会</a></div>
+            <div class="resume-entry-organization">志愿者导师</div>
+          </div>
+          <div class="resume-entry-date">2019年9月–2023年6月</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>为大学生提供市场营销职业规划与技能辅导</p>
+            </li>
+            <li>
+              <p>组织行业分享会与公益讲座 20 余场</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="resume-entry" id="volunteer-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.ruraledu.org">乡村教育发展基金会</a></div>
+            <div class="resume-entry-organization">品牌传播志愿者</div>
+          </div>
+          <div class="resume-entry-date">2018年3月–2020年12月</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>协助策划公益募捐活动，累计筹款 80 万元</p>
+            </li>
+            <li>
+              <p>负责社交媒体内容撰写与传播</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer class="resume-footer">Generated by <a href="https://yamlresume.dev">YAMLResume</a></footer>
+</body>
+
+</html>

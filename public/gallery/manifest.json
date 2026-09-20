@@ -1,6 +1,158 @@
 {
-  "generatedAt": "2026-09-02T01:50:08.742Z",
+  "generatedAt": "2026-09-20T12:38:24.439Z",
   "samples": [
+    {
+      "id": "account-executive",
+      "category": "Sales",
+      "position": "account executive",
+      "tags": [
+        "sales",
+        "business-development",
+        "client-relationships",
+        "crm",
+        "negotiation"
+      ],
+      "languages": [
+        "de",
+        "en",
+        "es",
+        "fr",
+        "id",
+        "ja",
+        "nl",
+        "no",
+        "pt-br",
+        "zh-hans",
+        "zh-hant-hk",
+        "zh-hant-tw"
+      ],
+      "i18n": {
+        "de": {
+          "title": "Kundenbetreuer",
+          "description": "Ein Muster-Lebenslauf für einen Kundenbetreuer mit Ausbildung, Berufserfahrung, Fähigkeiten, Projekten und Zertifizierungen für Vertriebs- und Kundenmanagementrollen."
+        },
+        "en": {
+          "title": "Account Executive",
+          "description": "A sample account executive resume showcasing education, work experience, skills, projects, and certifications for sales and client management roles."
+        },
+        "es": {
+          "title": "Ejecutivo de cuentas",
+          "description": "Un ejemplo de currículum de ejecutivo de cuentas que muestra educación, experiencia laboral, habilidades, proyectos y certificaciones para roles de ventas y gestión de clientes."
+        },
+        "fr": {
+          "title": "Responsable de comptes",
+          "description": "Un exemple de CV de responsable de comptes présentant formation, expérience professionnelle, compétences, projets et certifications pour des postes de vente et de gestion client."
+        },
+        "id": {
+          "title": "Eksekutif Akun",
+          "description": "Contoh resume eksekutif akun yang menampilkan pendidikan, pengalaman kerja, keterampilan, proyek, dan sertifikasi untuk peran penjualan dan manajemen klien."
+        },
+        "ja": {
+          "title": "アカウントエグゼクティブ",
+          "description": "営業や顧客管理の職種向けに、学歴、職務経歴、スキル、プロジェクト、資格を紹介するアカウントエグゼクティブの履歴書サンプル。"
+        },
+        "nl": {
+          "title": "Accountmanager",
+          "description": "Een voorbeeld-cv van een accountmanager met opleiding, werkervaring, vaardigheden, projecten en certificeringen voor sales- en klantmanagementrollen."
+        },
+        "no": {
+          "title": "Kundeansvarlig",
+          "description": "Et eksempel på en CV for kundeansvarlig som viser utdanning, arbeidserfaring, ferdigheter, prosjekter og sertifiseringer for salgs- og kundehåndteringsroller."
+        },
+        "pt-br": {
+          "title": "Executivo de contas",
+          "description": "Um exemplo de currículo de executivo de contas que apresenta formação, experiência profissional, habilidades, projetos e certificações para funções de vendas e gestão de clientes."
+        },
+        "zh-hans": {
+          "title": "客户经理",
+          "description": "一份客户经理简历示例，展示教育背景、工作经验、技能、项目以及销售和客户管理职位的认证。"
+        },
+        "zh-hant-hk": {
+          "title": "客戶經理",
+          "description": "一份客戶經理履歷範例，展示教育背景、工作經驗、技能、項目以及銷售和客戶管理職位的認證。"
+        },
+        "zh-hant-tw": {
+          "title": "客戶經理",
+          "description": "一份客戶經理履歷範例，展示教育背景、工作經驗、技能、專案以及銷售和客戶管理職位的認證。"
+        }
+      }
+    },
+    {
+      "id": "customer-success-manager",
+      "category": "Customer Success",
+      "position": "customer success manager",
+      "tags": [
+        "customer-success",
+        "account-management",
+        "client-relationships",
+        "crm",
+        "retention"
+      ],
+      "languages": [
+        "de",
+        "en",
+        "es",
+        "fr",
+        "id",
+        "ja",
+        "nl",
+        "no",
+        "pt-br",
+        "zh-hans",
+        "zh-hant-hk",
+        "zh-hant-tw"
+      ],
+      "i18n": {
+        "de": {
+          "title": "Customer-Success-Manager",
+          "description": "Dieser Musterlebenslauf für einen Customer-Success-Manager zeigt Ausbildung, Berufserfahrung, Fähigkeiten, Projekte und Zertifizierungen."
+        },
+        "en": {
+          "title": "Customer Success Manager",
+          "description": "This sample resume for a Customer Success Manager showcases education, work experience, skills, projects, and certifications."
+        },
+        "es": {
+          "title": "Gerente de Éxito del Cliente",
+          "description": "Esta muestra de currículum para un Gerente de Éxito del Cliente incluye educación, experiencia laboral, habilidades, proyectos y certificaciones."
+        },
+        "fr": {
+          "title": "Responsable de la réussite client",
+          "description": "Cet exemple de CV pour un Responsable de la réussite client présente la formation, l'expérience professionnelle, les compétences, les projets et les certifications."
+        },
+        "id": {
+          "title": "Manajer Keberhasilan Pelanggan",
+          "description": "Contoh resume untuk Manajer Keberhasilan Pelanggan ini menampilkan pendidikan, pengalaman kerja, keterampilan, proyek, dan sertifikasi."
+        },
+        "ja": {
+          "title": "カスタマーサクセスマネージャー",
+          "description": "このカスタマーサクセスマネージャー向けの履歴書サンプルでは、学歴、職務経歴、スキル、プロジェクト、資格を紹介しています。"
+        },
+        "nl": {
+          "title": "Klantsuccesmanager",
+          "description": "Dit voorbeeld-cv voor een klantsuccesmanager toont opleiding, werkervaring, vaardigheden, projecten en certificeringen."
+        },
+        "no": {
+          "title": "Kundesuksessansvarlig",
+          "description": "Denne eksempel-CV-en for en kundesuksessansvarlig viser utdanning, arbeidserfaring, ferdigheter, prosjekter og sertifiseringer."
+        },
+        "pt-br": {
+          "title": "Gerente de Sucesso do Cliente",
+          "description": "Este exemplo de currículo para Gerente de Sucesso do Cliente mostra formação, experiência profissional, habilidades, projetos e certificações."
+        },
+        "zh-hans": {
+          "title": "客户成功经理",
+          "description": "这份客户成功经理简历示例展示了教育背景、工作经验、技能、项目和认证。"
+        },
+        "zh-hant-hk": {
+          "title": "客戶成功經理",
+          "description": "這份客戶成功經理履歷範本展示教育背景、工作經驗、技能、項目和認證。"
+        },
+        "zh-hant-tw": {
+          "title": "客戶成功經理",
+          "description": "這份客戶成功經理履歷範例展示教育背景、工作經驗、技能、專案和證照。"
+        }
+      }
+    },
     {
       "id": "data-analyst",
       "category": "Data Analytics",
@@ -154,6 +306,158 @@
       }
     },
     {
+      "id": "devops-engineer",
+      "category": "Engineering",
+      "position": "devops engineer",
+      "tags": [
+        "devops",
+        "ci-cd",
+        "cloud-infrastructure",
+        "kubernetes",
+        "automation"
+      ],
+      "languages": [
+        "de",
+        "en",
+        "es",
+        "fr",
+        "id",
+        "ja",
+        "nl",
+        "no",
+        "pt-br",
+        "zh-hans",
+        "zh-hant-hk",
+        "zh-hant-tw"
+      ],
+      "i18n": {
+        "de": {
+          "title": "DevOps-Ingenieur",
+          "description": "Ein Muster-Lebenslauf für einen DevOps-Ingenieur mit Ausbildung, Berufserfahrung, Fähigkeiten, Projekten und Zertifizierungen in CI/CD-Pipelines, Cloud-Infrastruktur und Automatisierung."
+        },
+        "en": {
+          "title": "DevOps Engineer",
+          "description": "A sample DevOps Engineer resume showcasing education, work experience, skills, projects, and certifications in CI/CD pipelines, cloud infrastructure, and automation."
+        },
+        "es": {
+          "title": "Ingeniero DevOps",
+          "description": "Un currículum de ejemplo de Ingeniero DevOps que muestra formación, experiencia laboral, habilidades, proyectos y certificaciones en pipelines CI/CD, infraestructura en la nube y automatización."
+        },
+        "fr": {
+          "title": "Ingénieur DevOps",
+          "description": "Un exemple de CV d'Ingénieur DevOps présentant formation, expérience professionnelle, compétences, projets et certifications en pipelines CI/CD, infrastructure cloud et automatisation."
+        },
+        "id": {
+          "title": "Insinyur DevOps",
+          "description": "Contoh resume Insinyur DevOps yang menampilkan pendidikan, pengalaman kerja, keterampilan, proyek, dan sertifikasi dalam pipeline CI/CD, infrastruktur cloud, dan otomatisasi."
+        },
+        "ja": {
+          "title": "DevOpsエンジニア",
+          "description": "CI/CDパイプライン、クラウドインフラ、自動化に関する学歴、職務経歴、スキル、プロジェクト、資格を紹介するDevOpsエンジニアの履歴書サンプルです。"
+        },
+        "nl": {
+          "title": "DevOps-engineer",
+          "description": "Een voorbeeld-cv van een DevOps-engineer met opleiding, werkervaring, vaardigheden, projecten en certificeringen in CI/CD-pipelines, cloudinfrastructuur en automatisering."
+        },
+        "no": {
+          "title": "DevOps-ingeniør",
+          "description": "En eksempel-CV for DevOps-ingeniør som viser utdanning, arbeidserfaring, ferdigheter, prosjekter og sertifiseringer innen CI/CD-pipelines, skytjenester og automatisering."
+        },
+        "pt-br": {
+          "title": "Engenheiro DevOps",
+          "description": "Um exemplo de currículo de Engenheiro DevOps apresentando formação, experiência profissional, habilidades, projetos e certificações em pipelines CI/CD, infraestrutura em nuvem e automação."
+        },
+        "zh-hans": {
+          "title": "DevOps 工程师",
+          "description": "一份 DevOps 工程师简历样本，展示教育背景、工作经历、技能、项目以及 CI/CD 流水线、云基础设施和自动化方面的认证。"
+        },
+        "zh-hant-hk": {
+          "title": "DevOps 工程師",
+          "description": "一份 DevOps 工程師履歷範本，展示教育背景、工作經驗、技能、項目，以及 CI/CD 管道、雲端基礎架構與自動化方面的認證。"
+        },
+        "zh-hant-tw": {
+          "title": "DevOps 工程師",
+          "description": "一份 DevOps 工程師履歷範本，展示教育背景、工作經驗、技能、專案，以及 CI/CD 流程、雲端基礎架構與自動化方面的認證。"
+        }
+      }
+    },
+    {
+      "id": "marketing-manager",
+      "category": "Marketing",
+      "position": "marketing manager",
+      "tags": [
+        "marketing",
+        "campaign-management",
+        "brand-strategy",
+        "digital-marketing",
+        "team-leadership"
+      ],
+      "languages": [
+        "de",
+        "en",
+        "es",
+        "fr",
+        "id",
+        "ja",
+        "nl",
+        "no",
+        "pt-br",
+        "zh-hans",
+        "zh-hant-hk",
+        "zh-hant-tw"
+      ],
+      "i18n": {
+        "de": {
+          "title": "Marketingmanager",
+          "description": "Ein Beispiel-Lebenslauf als Marketingmanager mit Ausbildung, Berufserfahrung, Fähigkeiten, Projekten und Zertifizierungen, mit Fokus auf Kampagnenstrategie, Markenwachstum und Teamführung."
+        },
+        "en": {
+          "title": "Marketing Manager",
+          "description": "A sample marketing manager resume showcasing education, work experience, skills, projects, and certifications, with a focus on campaign strategy, brand growth, and team leadership."
+        },
+        "es": {
+          "title": "Gerente de Marketing",
+          "description": "Un ejemplo de currículum de gerente de marketing que muestra educación, experiencia laboral, habilidades, proyectos y certificaciones, con enfoque en estrategia de campañas, crecimiento de marca y liderazgo de equipos."
+        },
+        "fr": {
+          "title": "Responsable Marketing",
+          "description": "Un exemple de CV de responsable marketing présentant formation, expérience professionnelle, compétences, projets et certifications, axé sur la stratégie de campagne, la croissance de la marque et le leadership d'équipe."
+        },
+        "id": {
+          "title": "Manajer Pemasaran",
+          "description": "Contoh resume manajer pemasaran yang menampilkan pendidikan, pengalaman kerja, keterampilan, proyek, dan sertifikasi, dengan fokus pada strategi kampanye, pertumbuhan merek, dan kepemimpinan tim."
+        },
+        "ja": {
+          "title": "マーケティングマネージャー",
+          "description": "教育、職務経験、スキル、プロジェクト、資格を紹介するマーケティングマネージャーの履歴書サンプル。キャンペーン戦略、ブランド成長、チームリーダーシップに焦点を当てています。"
+        },
+        "nl": {
+          "title": "Marketingmanager",
+          "description": "Een voorbeeld-cv van een marketingmanager met opleiding, werkervaring, vaardigheden, projecten en certificeringen, met focus op campagnestrategie, merkgroei en teamleiderschap."
+        },
+        "no": {
+          "title": "Markedsføringssjef",
+          "description": "Et eksempel på en CV for markedsføringssjef som viser utdanning, arbeidserfaring, ferdigheter, prosjekter og sertifiseringer, med fokus på kampanjestrategi, merkevarevekst og teamledelse."
+        },
+        "pt-br": {
+          "title": "Gerente de Marketing",
+          "description": "Um exemplo de currículo de gerente de marketing que mostra formação, experiência profissional, habilidades, projetos e certificações, com foco em estratégia de campanha, crescimento da marca e liderança de equipe."
+        },
+        "zh-hans": {
+          "title": "市场营销经理",
+          "description": "一份市场营销经理简历示例，展示教育背景、工作经验、技能、项目和认证，重点关注活动策略、品牌增长和团队领导力。"
+        },
+        "zh-hant-hk": {
+          "title": "市場營銷經理",
+          "description": "一份市場營銷經理履歷範例，展示教育背景、工作經驗、技能、項目及認證，重點關注活動策略、品牌增長和團隊領導力。"
+        },
+        "zh-hant-tw": {
+          "title": "行銷經理",
+          "description": "一份行銷經理履歷範例，展示教育背景、工作經驗、技能、專案與認證，著重於活動策略、品牌成長與團隊領導。"
+        }
+      }
+    },
+    {
       "id": "product-manager",
       "category": "Product",
       "position": "product manager",
@@ -226,6 +530,81 @@
         "zh-hant-tw": {
           "title": "產品經理",
           "description": "範例履歷，展示產品經理的教育背景、工作經驗、產品技能、專案作品集和認證。"
+        }
+      }
+    },
+    {
+      "id": "project-manager",
+      "category": "Management",
+      "position": "project manager",
+      "tags": [
+        "project-management",
+        "agile",
+        "leadership",
+        "stakeholder-management"
+      ],
+      "languages": [
+        "de",
+        "en",
+        "es",
+        "fr",
+        "id",
+        "ja",
+        "nl",
+        "no",
+        "pt-br",
+        "zh-hans",
+        "zh-hant-hk",
+        "zh-hant-tw"
+      ],
+      "i18n": {
+        "de": {
+          "title": "Projektmanager",
+          "description": "Beispiel-Lebenslauf für eine Projektmanager-Rolle mit Ausbildung, Berufserfahrung, Fähigkeiten, Projekten und Zertifizierungen."
+        },
+        "en": {
+          "title": "Project Manager",
+          "description": "Sample resume for a project manager role, showcasing education, work experience, skills, projects, and certifications."
+        },
+        "es": {
+          "title": "Gerente de Proyectos",
+          "description": "Currículum de ejemplo para un puesto de gerente de proyectos, que muestra educación, experiencia laboral, habilidades, proyectos y certificaciones."
+        },
+        "fr": {
+          "title": "Chef de projet",
+          "description": "Exemple de CV pour un poste de chef de projet, présentant formation, expérience professionnelle, compétences, projets et certifications."
+        },
+        "id": {
+          "title": "Manajer Proyek",
+          "description": "Contoh resume untuk posisi manajer proyek, menampilkan pendidikan, pengalaman kerja, keterampilan, proyek, dan sertifikasi."
+        },
+        "ja": {
+          "title": "プロジェクトマネージャー",
+          "description": "プロジェクトマネージャー職の履歴書サンプル。学歴、職務経歴、スキル、プロジェクト、資格を紹介します。"
+        },
+        "nl": {
+          "title": "Projectmanager",
+          "description": "Voorbeeld-cv voor een functie als projectmanager, met opleiding, werkervaring, vaardigheden, projecten en certificeringen."
+        },
+        "no": {
+          "title": "Prosjektleder",
+          "description": "Eksempel på CV for en prosjektlederstilling, som viser utdanning, arbeidserfaring, ferdigheter, prosjekter og sertifiseringer."
+        },
+        "pt-br": {
+          "title": "Gerente de Projetos",
+          "description": "Currículo de exemplo para uma função de gerente de projetos, mostrando formação, experiência profissional, habilidades, projetos e certificações."
+        },
+        "zh-hans": {
+          "title": "项目经理",
+          "description": "项目经理职位的简历样本，展示教育背景、工作经验、技能、项目和证书。"
+        },
+        "zh-hant-hk": {
+          "title": "項目經理",
+          "description": "項目經理職位的履歷樣本，展示教育背景、工作經驗、技能、項目及證書。"
+        },
+        "zh-hant-tw": {
+          "title": "專案經理",
+          "description": "專案經理職位的履歷範例，展示教育背景、工作經驗、技能、專案和證照。"
         }
       }
     },

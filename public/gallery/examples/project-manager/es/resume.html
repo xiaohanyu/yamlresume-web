@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="generator" content="YAMLResume (https://yamlresume.dev)">
+
+
+  <title>Lucía Fernández Gómez Resume</title>
+  <style>
+    :root {
+      --text-font-size: 16px;
+      --text-font-family: var(--text-default-font-family);
+      --line-height: 1.5;
+    }
+
+    /* Modified from: https://www.joshwcomeau.com/css/custom-css-reset/ */
+
+    /* 1. Use a more-intuitive box-sizing model */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    /* 2. Remove default margin */
+    *:not(dialog) {
+      margin: 0;
+    }
+
+    body {
+      /* 3. Improve text rendering */
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    :root {
+      --border-color: #d0d0d0;
+
+      /* text colors */
+      --text-color-primary: #000000;
+      --text-color-secondary: #333333;
+
+      /* spacing */
+      --spacing-xss: 2px;
+      --spacing-xs: 4px;
+      --spacing-sm: 8px;
+      --spacing-md: 12px;
+      --spacing-lg: 16px;
+      --spacing-xl: 24px;
+      --spacing-xxl: 40px;
+      --spacing-xxxl: 80px;
+
+      /* font sizes */
+      --font-size-xs: 0.8rem;
+      --font-size-sm: 0.9rem;
+      --font-size-md: 1rem;
+      --font-size-lg: 1.1rem;
+      --font-size-xl: 1.25rem;
+      --font-size-xxl: 2.5rem;
+
+      /* layout */
+      --page-max-width: 900px;
+
+      /* typography */
+      --text-default-font-family:
+        -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu,
+        Cantarell, sans-serif;
+    }
+
+    html {
+      font-size: var(--text-font-size);
+    }
+
+    body {
+      /* font & text */
+      color: var(--text-color-primary);
+      font-family: var(--text-font-family);
+      /* this variable is defined by `typography.fontSize` in resume html layout */
+      text-autospace: normal;
+
+      /* layout */
+      line-height: var(--line-height);
+      max-width: var(--page-max-width);
+      margin: 0 auto;
+      padding: var(--spacing-xxxl) var(--spacing-xxl) var(--spacing-xxl);
+    }
+
+    /* header */
+    .resume-header {
+      margin-bottom: var(--spacing-xxl);
+      text-align: center;
+    }
+
+    .resume-name {
+      font-size: var(--font-size-xxl);
+      font-weight: 600;
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .resume-headline {
+      font-size: var(--font-size-lg);
+      margin-bottom: var(--spacing-md);
+    }
+
+    /* contact info */
+    .resume-contact-info {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      column-gap: var(--spacing-lg);
+      row-gap: var(--spacing-xs);
+      margin-top: var(--spacing-sm);
+    }
+
+    .resume-contact-icon,
+    .resume-contact-label {
+      margin-right: var(--spacing-sm);
+      vertical-align: middle;
+    }
+
+    /* links: modern typographic style */
+    a {
+      color: var(--text-color-primary);
+      text-decoration: underline;
+      text-decoration-color: var(--border-color);
+      text-underline-offset: 3px;
+      text-decoration-thickness: 1px;
+      text-decoration-skip-ink: auto;
+      transition: text-decoration-color 0.2s;
+    }
+
+    a:hover {
+      text-decoration-color: var(--text-color-primary);
+    }
+
+    /* sections */
+    .resume-section {
+      margin-bottom: var(--spacing-xl);
+    }
+
+    .resume-section-title {
+      font-size: var(--font-size-xl);
+      font-weight: 500;
+      margin-bottom: var(--spacing-md);
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: var(--spacing-xs);
+    }
+
+    /* entries */
+    .resume-entry {
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .resume-entry:last-child {
+      margin-bottom: 0;
+    }
+
+    .resume-entry-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .resume-entry-title {
+      font-weight: 500;
+      margin-bottom: var(--spacing-xss);
+    }
+
+    .resume-entry-summary p,
+    .resume-summary-content p {
+      margin-bottom: var(--spacing-xs);
+    }
+
+    /* lists */
+    .resume-entry-summary ul,
+    .resume-entry-summary ol,
+    .resume-summary-content ul,
+    .resume-summary-content ol {
+      padding-left: var(--spacing-lg);
+      list-style-type: circle;
+    }
+
+    /* labeled lists (courses, keywords, etc.) */
+    .resume-labeled-list span {
+      font-weight: 500;
+    }
+
+    /* skills grid */
+    .resume-skill-item,
+    .resume-language-item {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .resume-skill-name,
+    .resume-language-name {
+      font-weight: 500;
+    }
+
+    .resume-skill-level,
+    .resume-language-fluency {
+      font-weight: 400;
+    }
+
+    /* mobile */
+    @media (max-width: 768px) {
+      body {
+        padding: var(--spacing-xl);
+      }
+
+      .resume-header {
+        margin-bottom: var(--spacing-xl);
+      }
+
+      .resume-contact-info {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .resume-entry-header {
+        flex-wrap: wrap;
+      }
+    }
+
+    /* footer */
+    .resume-footer {
+      margin-top: var(--spacing-xxl);
+      padding-top: var(--spacing-xl);
+      border-top: 1px solid var(--border-color);
+      font-size: var(--font-size-sm);
+      color: var(--text-color-secondary);
+    }
+
+    @media print {
+      .resume-footer {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="resume-header">
+    <h1 class="resume-name">Lucía Fernández Gómez</h1>
+    <p class="resume-headline">Gerente de Proyectos Senior | PMP | Transformación Digital</p>
+    <div class="resume-contact-info">
+      <span class="resume-contact-item"><span class="resume-contact-icon">📧</span><a href="mailto:lucia.fernandez@email.com" class="resume-contact-link">lucia.fernandez@email.com</a></span>
+      <span class="resume-contact-item"><span class="resume-contact-icon">📞</span>+34 612 345 678</span>
+      <span class="resume-contact-item"><span class="resume-contact-icon">🔗</span><a href="https://www.luciafernandez-pm.com" class="resume-contact-link">https://www.luciafernandez-pm.com</a></span>
+    </div>
+    <div class="resume-contact-info resume-location-info">
+      <span class="resume-contact-item"><span class="resume-contact-icon">📍</span>Calle de Alcalá 123, 4º B, Madrid, Comunidad de Madrid, España, 28010</span>
+    </div>
+    <div class="resume-contact-info resume-profiles-info">
+      <span class="resume-contact-item"><span class="resume-contact-label">LinkedIn</span>: <a href="https://www.linkedin.com/in/luciafernandez-pm" class="resume-contact-link">@luciafernandez-pm</a></span>
+      <span class="resume-contact-item"><span class="resume-contact-label">GitHub</span>: <a href="https://github.com/luciafernandez" class="resume-contact-link">@luciafernandez</a></span>
+      <span class="resume-contact-item"><span class="resume-contact-label">Twitter</span>: <a href="https://twitter.com/lucia_pm" class="resume-contact-link">@lucia_pm</a></span>
+    </div>
+  </header>
+  <section class="resume-section" id="summary" data-section="summary">
+    <h2 class="resume-section-title">Información básica</h2>
+    <div class="resume-section-content">
+      <div class="resume-summary-content">
+        <p>Gerente de Proyectos con más de 8 años de experiencia liderando proyectos tecnológicos y de transformación digital en sectores como banca, retail y salud. Especializada en metodologías ágiles (Scrum, Kanban) y en la gestión integral del ciclo de vida del proyecto, desde la definición de requisitos hasta la entrega y el cierre.</p>
+        <ul>
+          <li>
+            <p>Lideré equipos multidisciplinares de hasta 25 personas, alcanzando una tasa de entrega del 95% dentro del plazo y presupuesto.</p>
+          </li>
+          <li>
+            <p>Gestioné presupuestos de hasta 2,5 M€, optimizando costes en un 18% mediante la renegociación con proveedores y la mejora de procesos.</p>
+          </li>
+          <li>
+            <p>Certificada PMP, Scrum Master y ITIL Foundation, con sólida experiencia en gestión de stakeholders y comunicación ejecutiva.</p>
+          </li>
+          <li>
+            <p>Apasionada por la mejora continua y la adopción de herramientas digitales para la gestión de proyectos (Jira, Asana, MS Project).</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="education" data-section="education">
+    <h2 class="resume-section-title">Educación</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="education-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.upm.es">Universidad Politécnica de Madrid</a></div>
+            <div class="resume-entry-organization">Maestría, Dirección de Proyectos, Puntuación: 9.2</div>
+          </div>
+          <div class="resume-entry-date">sept 2017–jul 2019</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Formación avanzada en dirección y gestión de proyectos complejos</p>
+            </li>
+            <li>
+              <p>Proyecto fin de máster: implantación de PMO en una empresa del sector retail</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Cursos</span>: Gestión de Proyectos Ágiles, Planificación y Control de Proyectos, Gestión de Riesgos, Liderazgo de Equipos, Finanzas para Gerentes de Proyecto, Metodologías PMBOK</div>
+      </div>
+      <div class="resume-entry" id="education-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.us.es">Universidad de Sevilla</a></div>
+            <div class="resume-entry-organization">Licenciatura, Administración y Dirección de Empresas, Puntuación: 8.7</div>
+          </div>
+          <div class="resume-entry-date">sept 2011–jun 2015</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Base sólida en administración, finanzas y gestión empresarial</p>
+            </li>
+            <li>
+              <p>Participación en programas de intercambio internacional</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Cursos</span>: Contabilidad Financiera, Dirección Estratégica, Gestión de Operaciones, Comportamiento Organizacional, Marketing</div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="work" data-section="work">
+    <h2 class="resume-section-title">Experiencia laboral</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="work-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://telefonicatech.com">Telefónica Tech</a></div>
+            <div class="resume-entry-organization">Gerente de Proyectos Senior</div>
+          </div>
+          <div class="resume-entry-date">mar 2021 hasta la fecha</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Lideré un portfolio de 12 proyectos de transformación digital con un presupuesto total de 2,5 M€.</p>
+            </li>
+            <li>
+              <p>Implementé marcos ágiles híbridos (Scrum + Kanban) que redujeron el time-to-market en un 30%.</p>
+            </li>
+            <li>
+              <p>Coordiné equipos multidisciplinares de hasta 25 personas distribuidas en 4 países.</p>
+            </li>
+            <li>
+              <p>Gestioné la relación con stakeholders ejecutivos, presentando informes de progreso y métricas KPI.</p>
+            </li>
+            <li>
+              <p>Implanté una PMO que estandarizó procesos y mejoró la trazabilidad de los proyectos.</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Palabras clave</span>: Scrum, Kanban, Gestión de riesgos, Presupuestos, PMO, Stakeholders</div>
+      </div>
+      <div class="resume-entry" id="work-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.santander.com">Banco Santander</a></div>
+            <div class="resume-entry-organization">Gerente de Proyectos</div>
+          </div>
+          <div class="resume-entry-date">sept 2019–feb 2021</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Dirigí proyectos de desarrollo de software bancario bajo metodología Agile, con equipos de 10-15 personas.</p>
+            </li>
+            <li>
+              <p>Gestioné el ciclo completo de vida de los proyectos: análisis, planificación, ejecución, seguimiento y cierre.</p>
+            </li>
+            <li>
+              <p>Elaboré planes de proyecto, cronogramas y matrices de riesgos, asegurando el cumplimiento de plazos y presupuestos.</p>
+            </li>
+            <li>
+              <p>Facilité ceremonias ágiles (daily stand-ups, sprint planning, retrospectivas) y eliminé impedimentos.</p>
+            </li>
+            <li>
+              <p>Colaboré con product owners y equipos técnicos para priorizar el backlog y entregar valor de forma continua.</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Palabras clave</span>: Agile, Scrum, Jira, Backlog, Banca, Gestión de proyectos</div>
+      </div>
+      <div class="resume-entry" id="work-3">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.accenture.com">Accenture</a></div>
+            <div class="resume-entry-organization">Analista de Proyectos</div>
+          </div>
+          <div class="resume-entry-date">sept 2015–ago 2017</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Apoyé la gestión de proyectos de consultoría tecnológica para clientes del sector público y privado.</p>
+            </li>
+            <li>
+              <p>Realicé seguimiento de hitos, elaboración de informes de estado y coordinación de reuniones con clientes.</p>
+            </li>
+            <li>
+              <p>Participé en la definición de alcance, estimación de esfuerzos y control de cambios.</p>
+            </li>
+            <li>
+              <p>Contribuí a la implantación de herramientas de gestión como MS Project y Confluence.</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Palabras clave</span>: MS Project, Confluence, Consultoría, Informes, Control de cambios</div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="languages" data-section="languages">
+    <h2 class="resume-section-title">Idiomas</h2>
+    <div class="resume-section-content">
+      <div class="resume-languages-list">
+        <div class="resume-language-item">
+          <div class="resume-language-name">Español<span class="resume-language-fluency">: Competencia nativa o bilingüe</span></div>
+          <div>
+            <div class="resume-labeled-list"><span>Palabras clave</span>: Español nativo</div>
+          </div>
+        </div>
+        <div class="resume-language-item">
+          <div class="resume-language-name">Inglés<span class="resume-language-fluency">: Competencia profesional plena</span></div>
+          <div>
+            <div class="resume-labeled-list"><span>Palabras clave</span>: TOEFL 105, Certificado C1</div>
+          </div>
+        </div>
+        <div class="resume-language-item">
+          <div class="resume-language-name">Francés<span class="resume-language-fluency">: Competencia limitada de trabajo</span></div>
+          <div>
+            <div class="resume-labeled-list"><span>Palabras clave</span>: DELF B1</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="skills" data-section="skills">
+    <h2 class="resume-section-title">Competencias</h2>
+    <div class="resume-section-content">
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">Gestión de Proyectos<span class="resume-skill-level">: Experto</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>Palabras clave</span>: PMBOK, Planificación, Presupuestos, Gestión de riesgos, Cronogramas</div>
+        </div>
+      </div>
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">Metodologías Ágiles<span class="resume-skill-level">: Avanzado</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>Palabras clave</span>: Scrum, Kanban, Lean, SAFe, Design Thinking</div>
+        </div>
+      </div>
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">Herramientas<span class="resume-skill-level">: Avanzado</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>Palabras clave</span>: Jira, Confluence, MS Project, Asana, Trello, Monday.com</div>
+        </div>
+      </div>
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">Liderazgo y Comunicación<span class="resume-skill-level">: Experto</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>Palabras clave</span>: Liderazgo de equipos, Negociación, Comunicación ejecutiva, Gestión de stakeholders</div>
+        </div>
+      </div>
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">Análisis y Datos<span class="resume-skill-level">: Intermedio</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>Palabras clave</span>: Power BI, Excel avanzado, SQL, Métricas KPI</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="awards" data-section="awards">
+    <h2 class="resume-section-title">Premios</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="awards-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title">Premio a la Excelencia en Gestión de Proyectos</div>
+            <div class="resume-entry-organization">PMI Madrid</div>
+          </div>
+          <div class="resume-entry-date">nov 2023</div>
+        </div>
+        <div class="resume-entry-summary">
+          <p>Reconocimiento por la dirección del proyecto de transformación digital con mayor impacto en el sector bancario.</p>
+        </div>
+      </div>
+      <div class="resume-entry" id="awards-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title">Empleada del Año</div>
+            <div class="resume-entry-organization">Telefónica Tech</div>
+          </div>
+          <div class="resume-entry-date">dic 2022</div>
+        </div>
+        <div class="resume-entry-summary">
+          <p>Distinción por liderazgo excepcional y resultados sobresalientes en la gestión de proyectos estratégicos.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="certificates" data-section="certificates">
+    <h2 class="resume-section-title">Certificados</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="certificates-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.pmi.org/certifications/project-management-pmp">Project Management Professional (PMP)</a></div>
+            <div class="resume-entry-organization">Project Management Institute</div>
+          </div>
+          <div class="resume-entry-date">jun 2020</div>
+        </div>
+      </div>
+      <div class="resume-entry" id="certificates-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.scrum.org/professional-scrum-master-i-certification">Professional Scrum Master I (PSM I)</a></div>
+            <div class="resume-entry-organization">Scrum.org</div>
+          </div>
+          <div class="resume-entry-date">feb 2021</div>
+        </div>
+      </div>
+      <div class="resume-entry" id="certificates-3">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.axelos.com/certifications/itil-certifications">ITIL Foundation</a></div>
+            <div class="resume-entry-organization">AXELOS</div>
+          </div>
+          <div class="resume-entry-date">sept 2019</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="publications" data-section="publications">
+    <h2 class="resume-section-title">Publicaciones</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="publications-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.revistadeproyectos.es/guia-pmo-agil">Guía práctica para la implantación de una PMO ágil</a></div>
+            <div class="resume-entry-organization">Revista de Dirección de Proyectos</div>
+          </div>
+          <div class="resume-entry-date">may 2022</div>
+        </div>
+        <div class="resume-entry-summary">
+          <p>Artículo que describe un marco práctico para implantar una oficina de proyectos ágil en organizaciones medianas.</p>
+        </div>
+      </div>
+      <div class="resume-entry" id="publications-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.congresoproyectos.org/metricas-valor">Métricas de valor en proyectos de transformación digital</a></div>
+            <div class="resume-entry-organization">Congreso Internacional de Gestión de Proyectos</div>
+          </div>
+          <div class="resume-entry-date">oct 2021</div>
+        </div>
+        <div class="resume-entry-summary">
+          <p>Ponencia sobre indicadores clave para medir el retorno de inversión en iniciativas de transformación digital.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="projects" data-section="projects">
+    <h2 class="resume-section-title">Proyectos</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="projects-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.telefonicatech.com/proyectos/pm-tool">Plataforma de Gestión de Proyectos Interna</a></div>
+            <div class="resume-entry-description">Desarrollo de una herramienta interna para centralizar la gestión de proyectos y recursos.</div>
+          </div>
+          <div class="resume-entry-date">ene 2022–dic 2022</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Lideré el proyecto desde la definición de requisitos hasta el despliegue en producción.</p>
+            </li>
+            <li>
+              <p>Coordiné un equipo de 8 desarrolladores, 2 diseñadores y 1 analista de negocio.</p>
+            </li>
+            <li>
+              <p>Implementé integraciones con Jira y Power BI para la automatización de informes.</p>
+            </li>
+            <li>
+              <p>Reduje el tiempo de reporting semanal en un 60%.</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Palabras clave</span>: Jira, Power BI, Gestión de proyectos, Automatización</div>
+      </div>
+      <div class="resume-entry" id="projects-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.santander.com/onboarding-digital">Transformación Digital del Proceso de Onboarding</a></div>
+            <div class="resume-entry-description">Digitalización del proceso de incorporación de clientes para una entidad bancaria.</div>
+          </div>
+          <div class="resume-entry-date">mar 2020–ene 2021</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Dirigí la implementación de un flujo digital de onboarding con firma electrónica.</p>
+            </li>
+            <li>
+              <p>Reduje el tiempo de alta de clientes de 5 días a 2 horas.</p>
+            </li>
+            <li>
+              <p>Gestioné la coordinación entre equipos de negocio, IT, legal y cumplimiento normativo.</p>
+            </li>
+            <li>
+              <p>Aseguré el cumplimiento de la normativa KYC y GDPR.</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Palabras clave</span>: Transformación digital, Banca, KYC, GDPR, Onboarding</div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="interests" data-section="interests">
+    <h2 class="resume-section-title">Intereses</h2>
+    <div class="resume-section-content">
+      <div class="resume-interest-item"><span class="resume-interest-name">Deporte</span>: Senderismo, Natación, Yoga</div>
+      <div class="resume-interest-item"><span class="resume-interest-name">Voluntariado</span>: Mentoría, Formación</div>
+      <div class="resume-interest-item"><span class="resume-interest-name">Lectura</span>: Novela histórica, Ensayo</div>
+      <div class="resume-interest-item"><span class="resume-interest-name">Viajes</span>: Asia, Europa</div>
+    </div>
+  </section>
+  <section class="resume-section" id="volunteer" data-section="volunteer">
+    <h2 class="resume-section-title">Voluntariado</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="volunteer-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.fundacionintegra.org">Fundación Integra</a></div>
+            <div class="resume-entry-organization">Mentora de Proyectos Sociales</div>
+          </div>
+          <div class="resume-entry-date">sept 2021–jun 2023</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Acompaño a organizaciones sin ánimo de lucro en la planificación y ejecución de proyectos sociales.</p>
+            </li>
+            <li>
+              <p>Facilito talleres de gestión de proyectos y metodologías ágiles adaptadas al tercer sector.</p>
+            </li>
+            <li>
+              <p>Ayudo a definir indicadores de impacto y a mejorar la sostenibilidad de las iniciativas.</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="resume-entry" id="volunteer-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://pmi-madrid.es">PMI Madrid Chapter</a></div>
+            <div class="resume-entry-organization">Voluntaria en Comité de Eventos</div>
+          </div>
+          <div class="resume-entry-date">ene 2018–dic 2020</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Colaboré en la organización de congresos y jornadas de gestión de proyectos.</p>
+            </li>
+            <li>
+              <p>Gestioné la logística y coordinación de ponentes para eventos con más de 300 asistentes.</p>
+            </li>
+            <li>
+              <p>Apoyé la comunicación y difusión en redes sociales.</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer class="resume-footer">Generated by <a href="https://yamlresume.dev">YAMLResume</a></footer>
+</body>
+
+</html>

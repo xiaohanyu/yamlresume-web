@@ -1,0 +1,281 @@
+\documentclass[a4paper, serif, 10pt]{moderncv}
+
+%% moderncv
+% style and color
+\moderncvstyle{banking}
+\moderncvcolor{black}
+
+%% page layout/margins
+\usepackage[top=2.5cm, bottom=2.5cm, left=1.5cm, right=1.5cm]{geometry}
+
+\nopagenumbers{}
+
+%% Babel config for Dutch language
+% ref:
+% - https://latex3.github.io/babel/guides/locale-dutch.html
+\usepackage[dutch]{babel}
+
+%% fontspec
+\usepackage{fontspec}
+
+\IfFontExistsTF{Linux Libertine}{
+  \setmainfont[Ligatures={TeX, Common}, Numbers=OldStyle]{Linux Libertine}
+}{}
+\IfFontExistsTF{Linux Libertine O}{
+  \setmainfont[Ligatures={TeX, Common}, Numbers=OldStyle]{Linux Libertine O}
+}{}
+
+%% CTeX
+% CJK support, used to show CJK characters in the resume
+%
+% - fontset=none: disable builtin fontset but instead set the CJK font manually
+% - heading=false: disable ctex heading
+% - punct=kaiming: use kaiming punctuations styles for CJK
+% - scheme=plain: use plain scheme, do not override \normalsize font size
+% - space=auto: space settings for CJK characters
+%
+% ref:
+% - http://ctan.mirrorcatalogs.com/language/chinese/ctex/ctex.pdf
+\usepackage[UTF8, heading=false, punct=kaiming, scheme=plain, space=auto]{ctex}
+
+\IfFontExistsTF{Noto Serif CJK SC}{
+  \setCJKmainfont{Noto Serif CJK SC}
+}{}
+\IfFontExistsTF{Noto Sans CJK SC}{
+  \setCJKsansfont{Noto Sans CJK SC}
+}{}
+
+%% line spacing
+\usepackage{setspace}
+\setstretch{1.125}
+
+%% URL styling - use normal text instead of monospace
+\urlstyle{same}
+
+% Auto-underline all links
+% Defer until \begin{document} so hyperref is already loaded
+\AtBeginDocument{%
+  \let\oldhref\href
+  \renewcommand{\href}[2]{\oldhref{#1}{\underline{#2}}}%
+}
+
+%% Patch \httplink and \httpslink to handle full URLs
+% The original moderncv macros always prepend http:// or https:// to URLs.
+% This causes issues when the URL already has a protocol (e.g., https://example.com)
+% resulting in malformed URLs like https://https://example.com.
+% This patch checks if the URL already contains "://" and uses it directly if so.
+% Note: We use \str_set:Nx (x-expansion) to expand macros like \@homepage first.
+\ExplSyntaxOn
+\str_new:N \g_yamlresume_url_str
+
+\RenewDocumentCommand{\httpslink}{O{}m}{
+  \str_set:Nx \g_yamlresume_url_str {#2}
+  \str_if_in:NnTF \g_yamlresume_url_str {://}
+    { \url{#2} }
+    { \url{https://#2} }
+}
+
+\RenewDocumentCommand{\httplink}{O{}m}{
+  \str_set:Nx \g_yamlresume_url_str {#2}
+  \str_if_in:NnTF \g_yamlresume_url_str {://}
+    { \url{#2} }
+    { \url{http://#2} }
+}
+\ExplSyntaxOff
+
+\name{Maarten van der Meer}{}
+\title{Senior Projectmanager met 10+ jaar ervaring in digitale transformatie}
+\phone[mobile]{+31 6 12345678}
+\email{m.vandermeer@example.com}
+\homepage{https://www.maartenvandermeer.nl}
+
+\address{Keizersgracht 123, Amsterdam, Noord-Holland, Nederland, 1015 CJ}{}{}
+
+\extrainfo{{\small \faLinkedin}\ \href{https://www.linkedin.com/in/maarten-van-der-meer}{@maarten-van-der-meer} {} {} {} • {} {} {} 
+{\small \faMedium}\ \href{https://medium.com/@maartenvandermeer}{@maartenvandermeer}}
+
+\begin{document}
+
+\maketitle
+
+\section{Basis Informatie}
+
+\cvline{}{Ervaren projectmanager met meer dan 10 jaar ervaring in het leiden van complexe, multidisciplinaire projecten. Gespecialiseerd in digitale transformatie, agile methodieken en belanghebbendenmanagement.
+%
+\begin{itemize}
+\item Leidt projecten van initiatie tot oplevering, binnen scope, budget en tijd.
+\item Sterk in het verbinden van business en IT, met oog voor mens en resultaat.
+\item Gecertificeerd in PRINCE2, PMP en Scrum, en bedreven in Jira, Confluence en MS Project.
+\item Coacht en motiveert teams om gezamenlijke doelen te behalen.
+\end{itemize}}
+\section{Opleidingen}
+
+\cventry{sep 2008–jul 2014}
+        {Master, Technische Bestuurskunde, Score: 8.2}
+        {Technische Universiteit Delft}
+        {\url{https://www.tudelft.nl}}
+        {}
+        {\begin{itemize}
+\item Afgestudeerd met specialisatie in project- en programmamanagement.
+\item Ontwikkelde vaardigheden in kwantitatieve analyse, besluitvorming en procesverbetering.
+\item Thesis over de invloed van agile werken op publieke projecten.
+\end{itemize}
+\textbf{Cursussen}: Projectmanagement, Risicomanagement, Operations Research, Financieel Management, Verandermanagement, Systeemkunde}
+
+\cventry{sep 2004–jun 2008}
+        {Bachelor, Bestuurskunde, Score: 7.8}
+        {Universiteit van Amsterdam}
+        {\url{https://www.uva.nl}}
+        {}
+        {\begin{itemize}
+\item Basis gelegd in bestuurskunde, organisatiekunde en beleidsanalyse.
+\item Actief in studievereniging en organisatie van congressen.
+\end{itemize}
+\textbf{Cursussen}: Bestuur en Politiek, Organisatietheorie, Methoden van Onderzoek, Economie}
+\section{Werkervaring}
+
+\cventry{mrt 2020–Heden}
+        {Senior Projectmanager}
+        {ING}
+        {\url{https://www.ing.com}}
+        {}
+        {\begin{itemize}
+\item Verantwoordelijk voor een portfolio van digitale transformatieprojecten met een totale waarde van EUR 8 miljoen.
+\item Leidt multidisciplinaire teams van 15+ professionals, waaronder ontwikkelaars, data-analisten en zakelijke consultants.
+\item Implementeerde een agile manier van werken, wat leidde tot 30\% snellere oplevering en hogere klanttevredenheid.
+\item Beheert risico's, budgetten en planningen, en rapporteert aan de stuurgroep.
+\item Zorgt voor heldere communicatie en afstemming tussen business, IT en externe leveranciers.
+\end{itemize}
+\textbf{Trefwoorden}: Agile, Scrum, Digitaal, Belanghebbenden, Risicobeheer}
+
+\cventry{jan 2016–feb 2020}
+        {Projectmanager}
+        {Philips}
+        {\url{https://www.philips.com}}
+        {}
+        {\begin{itemize}
+\item Leidde productontwikkelingsprojecten in de gezondheidszorgtechnologie, van concept tot marktlancering.
+\item Werkte samen met R\&D, marketing en regelgevende zaken om naleving en tijdige oplevering te waarborgen.
+\item Introduceerde Scrum en verbeterde de voorspelbaarheid van opleveringen met 25\%.
+\item Beheerde een projectbudget van EUR 3 miljoen en een team van 10 projectleden.
+\end{itemize}
+\textbf{Trefwoorden}: Productontwikkeling, Gezondheidszorg, Scrum, Budgetbeheer}
+
+\cventry{sep 2014–dec 2015}
+        {Junior Projectmanager}
+        {KPN}
+        {\url{https://www.kpn.com}}
+        {}
+        {\begin{itemize}
+\item Ondersteunde senior projectmanagers bij telecom-infrastructuurprojecten.
+\item Coördineerde planningen, vergaderingen en rapportages voor interne en externe belanghebbenden.
+\item Droeg bij aan de uitrol van glasvezelnetwerken in Noord-Holland.
+\end{itemize}
+\textbf{Trefwoorden}: Telecom, Planning, Rapportage, Glasvezel}
+\section{Talen}
+
+\cvline{Nederlands}{Moedertaal of tweetalige vaardigheid}
+\cvline{Engels}{Volledige professionele vaardigheid \hfill \textbf{Trefwoorden}: IELTS 8.0, Zakelijk vloeiend}
+\cvline{Duits}{Beperkte werkvaardigheid \hfill \textbf{Trefwoorden}: Goethe B1, Basiskennis}
+\section{Vaardigheden}
+
+\cvline{Projectmanagement}{Expert \hfill \textbf{Trefwoorden}: Agile, Scrum, PRINCE2, Waterval, Jira, MS Project}
+\cvline{Belanghebbendenmanagement}{Geavanceerd \hfill \textbf{Trefwoorden}: Communicatie, Onderhandelen, Rapportage, Workshops, Verandermanagement}
+\cvline{Technisch}{Geavanceerd \hfill \textbf{Trefwoorden}: SQL, Python, Power BI, Confluence, Azure DevOps}
+\cvline{Leiderschap}{Expert \hfill \textbf{Trefwoorden}: Coaching, Teambuilding, Motiveren, Conflicthantering}
+\section{Onderscheidingen}
+
+\cventry{nov 2022}
+        {PMI Netherlands Chapter}
+        {Projectmanager van het Jaar}
+        {}
+        {}
+        {\begin{itemize}
+\item Erkend voor uitmuntend leiderschap en innovatie in projectmanagement.
+\item Bijzondere vermelding voor het succesvol opleveren van een complex digitaal transformatieprogramma.
+\end{itemize}}
+
+\cventry{jun 2021}
+        {ING}
+        {Beste Innovatieproject}
+        {}
+        {}
+        {\begin{itemize}
+\item Toegekend voor de ontwikkeling van een realtime klantdashboard dat de Net Promoter Score met 15 punten verhoogde.
+\end{itemize}}
+\section{Certificaten}
+
+\cventry{mei 2018}
+        {AXELOS}
+        {PRINCE2 Practitioner}
+        {\url{https://www.axelos.com/certifications/prince2}}
+        {}
+        {}
+
+\cventry{sep 2020}
+        {Project Management Institute}
+        {Projectmanagement Professional (PMP)}
+        {\url{https://www.pmi.org/certifications/project-management-pmp}}
+        {}
+        {}
+
+\cventry{mrt 2017}
+        {Scrum Alliance}
+        {Gecertificeerd ScrumMaster}
+        {\url{https://www.scrumalliance.org/get-certified/scrum-master-track/certified-scrummaster}}
+        {}
+        {}
+\section{Publicaties}
+
+\cventry{apr 2021}
+        {Agile projectmatig werken in de publieke sector}
+        {Management \& Organisatie}
+        {\url{https://www.managementenorganisatie.nl/agile-publieke-sector}}
+        {}
+        {\begin{itemize}
+\item Onderzoek naar de toepassing van agile methodieken binnen overheidsprojecten.
+\item Biedt praktische handvatten voor projectmanagers in een politiek-bestuurlijke context.
+\end{itemize}}
+\section{Projecten}
+
+\cventry{feb 2021–dec 2022}
+        {Een organisatiebreed programma om de digitale dienstverlening van ING te moderniseren en te versnellen.}
+        {Digitale Transformatie ING}
+        {}
+        {}
+        {\begin{itemize}
+\item Leidde de implementatie van een nieuw digitaal klantplatform voor 2 miljoen klanten.
+\item Verantwoordelijk voor planning, budget, risicobeheer en afstemming met belanghebbenden.
+\item Resultaat: 30\% snellere klantinteracties en 20\% lagere operationele kosten.
+\end{itemize}
+\textbf{Trefwoorden}: Digitale Transformatie, Klantplatform, Agile}
+
+\cventry{mei 2019–nov 2019}
+        {Een data-gedreven dashboard voor het meten en rapporteren van duurzaamheidsprestaties.}
+        {Duurzaamheidsmonitor Philips}
+        {}
+        {}
+        {\begin{itemize}
+\item Ontwikkelde een monitor om de CO2-uitstoot van productielocaties direct te volgen.
+\item Werkte samen met duurzaamheidsteam en data-ingenieurs.
+\item Resultaat: inzicht in 15\% reductie van energieverbruik.
+\end{itemize}
+\textbf{Trefwoorden}: Duurzaamheid, Data, Dashboard}
+\section{Interesses}
+
+\cvline{Sport}{Hardlopen, Wielrennen, Zwemmen}
+\cvline{Cultuur}{Musea, Literatuur, Reizen}
+\section{Vrijwilligerswerk}
+
+\cventry{sep 2017–Heden}
+        {Mentor}
+        {PMI Netherlands Chapter}
+        {\url{https://www.pmi-netherlands-chapter.org}}
+        {}
+        {\begin{itemize}
+\item Begeleidt startende projectmanagers bij hun professionele ontwikkeling.
+\item Organiseert maandelijkse netwerkbijeenkomsten en workshops over projectmanagement.
+\item Geeft presentaties over agile leiderschap en belanghebbendenmanagement.
+\end{itemize}}
+    
+\end{document}

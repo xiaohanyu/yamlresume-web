@@ -1,0 +1,277 @@
+\documentclass[a4paper, serif, 10pt]{moderncv}
+
+%% moderncv
+% style and color
+\moderncvstyle{banking}
+\moderncvcolor{black}
+
+%% page layout/margins
+\usepackage[top=2.5cm, bottom=2.5cm, left=1.5cm, right=1.5cm]{geometry}
+
+\nopagenumbers{}
+
+%% Babel config for Indonesian (Bahasa Indonesia) language
+% ref:
+% - https://latex3.github.io/babel/guides/locale-indonesian.html
+\usepackage[indonesian]{babel}
+
+%% fontspec
+\usepackage{fontspec}
+
+\IfFontExistsTF{Linux Libertine}{
+  \setmainfont[Ligatures={TeX, Common}, Numbers=OldStyle]{Linux Libertine}
+}{}
+\IfFontExistsTF{Linux Libertine O}{
+  \setmainfont[Ligatures={TeX, Common}, Numbers=OldStyle]{Linux Libertine O}
+}{}
+
+%% CTeX
+% CJK support, used to show CJK characters in the resume
+%
+% - fontset=none: disable builtin fontset but instead set the CJK font manually
+% - heading=false: disable ctex heading
+% - punct=kaiming: use kaiming punctuations styles for CJK
+% - scheme=plain: use plain scheme, do not override \normalsize font size
+% - space=auto: space settings for CJK characters
+%
+% ref:
+% - http://ctan.mirrorcatalogs.com/language/chinese/ctex/ctex.pdf
+\usepackage[UTF8, heading=false, punct=kaiming, scheme=plain, space=auto]{ctex}
+
+\IfFontExistsTF{Noto Serif CJK SC}{
+  \setCJKmainfont{Noto Serif CJK SC}
+}{}
+\IfFontExistsTF{Noto Sans CJK SC}{
+  \setCJKsansfont{Noto Sans CJK SC}
+}{}
+
+%% line spacing
+\usepackage{setspace}
+\setstretch{1.125}
+
+%% URL styling - use normal text instead of monospace
+\urlstyle{same}
+
+% Auto-underline all links
+% Defer until \begin{document} so hyperref is already loaded
+\AtBeginDocument{%
+  \let\oldhref\href
+  \renewcommand{\href}[2]{\oldhref{#1}{\underline{#2}}}%
+}
+
+%% Patch \httplink and \httpslink to handle full URLs
+% The original moderncv macros always prepend http:// or https:// to URLs.
+% This causes issues when the URL already has a protocol (e.g., https://example.com)
+% resulting in malformed URLs like https://https://example.com.
+% This patch checks if the URL already contains "://" and uses it directly if so.
+% Note: We use \str_set:Nx (x-expansion) to expand macros like \@homepage first.
+\ExplSyntaxOn
+\str_new:N \g_yamlresume_url_str
+
+\RenewDocumentCommand{\httpslink}{O{}m}{
+  \str_set:Nx \g_yamlresume_url_str {#2}
+  \str_if_in:NnTF \g_yamlresume_url_str {://}
+    { \url{#2} }
+    { \url{https://#2} }
+}
+
+\RenewDocumentCommand{\httplink}{O{}m}{
+  \str_set:Nx \g_yamlresume_url_str {#2}
+  \str_if_in:NnTF \g_yamlresume_url_str {://}
+    { \url{#2} }
+    { \url{http://#2} }
+}
+\ExplSyntaxOff
+
+\name{Dewi Anggraini}{}
+\title{Manajer Keberhasilan Pelanggan}
+\phone[mobile]{+62 812-3456-7890}
+\email{dewi.anggraini@example.com}
+\homepage{https://dewanggraini.id}
+
+\address{Jl. Sudirman No. 45, Jakarta, DKI Jakarta, Indonesia, 12190}{}{}
+
+\extrainfo{{\small \faLinkedin}\ \href{https://www.linkedin.com/in/dewianggraini}{@dewianggraini} {} {} {} • {} {} {} 
+{\small \faTwitter}\ \href{https://twitter.com/dewianggraini}{@dewianggraini} {} {} {} • {} {} {} 
+{\small \faInstagram}\ \href{https://www.instagram.com/dewianggraini}{@dewianggraini}}
+
+\begin{document}
+
+\maketitle
+
+\section{Informasi Dasar}
+
+\cvline{}{\begin{itemize}
+\item Manajer Keberhasilan Pelanggan dengan pengalaman 7+ tahun dalam membangun hubungan pelanggan jangka panjang dan meningkatkan retensi.
+\item Terampil dalam onboarding pelanggan, analisis data, dan strategi pengurangan churn untuk klien enterprise.
+\item Berpengalaman memimpin tim lintas fungsi dan menggunakan CRM seperti Salesforce dan Zendesk.
+\item Bersemangat menciptakan pengalaman pelanggan yang positif dan mendorong pertumbuhan pendapatan melalui adopsi produk.
+\end{itemize}}
+\section{Pendidikan}
+
+\cventry{Sep 2014–Jul 2018}
+        {Sarjana, Ilmu Komunikasi, Nilai: 3.75}
+        {Universitas Indonesia}
+        {\url{https://www.ui.ac.id}}
+        {}
+        {\begin{itemize}
+\item Lulus dengan predikat cum laude dan fokus pada komunikasi bisnis serta perilaku konsumen.
+\item Aktif dalam organisasi kemahasiswaan sebagai koordinator hubungan alumni.
+\item Menyelesaikan skripsi tentang pengaruh layanan pelanggan terhadap loyalitas.
+\end{itemize}
+\textbf{Mata Kuliah}: Komunikasi Interpersonal, Manajemen Hubungan Pelanggan, Psikologi Konsumen, Riset Pemasaran, Komunikasi Organisasi, Strategi Komunikasi Digital}
+\section{Pengalaman Kerja}
+
+\cventry{Jan 2021–Sekarang}
+        {Manajer Keberhasilan Pelanggan}
+        {PT Solusi Digital Nusantara}
+        {\url{https://www.solusidigital.co.id}}
+        {}
+        {\begin{itemize}
+\item Memimpin tim 8 Customer Success Manager untuk portofolio 120+ klien enterprise dengan nilai ARR Rp 50 miliar.
+\item Meningkatkan retensi pelanggan dari 82\% menjadi 94\% dalam 18 bulan melalui program onboarding terstruktur dan business review triwulanan.
+\item Mengembangkan playbook keberhasilan pelanggan yang menurunkan waktu onboarding rata-rata dari 45 hari menjadi 21 hari.
+\item Berkolaborasi dengan tim produk dan penjualan untuk mengidentifikasi peluang upsell, menghasilkan pertumbuhan pendapatan 27\% YoY.
+\item Menganalisis data NPS dan CSAT untuk mengidentifikasi area perbaikan, meningkatkan skor NPS dari 32 menjadi 58.
+\end{itemize}
+\textbf{Kata Kunci}: Retensi Pelanggan, Onboarding, CRM, Analisis Data, Kepemimpinan Tim}
+
+\cventry{Agu 2018–Des 2020}
+        {Spesialis Keberhasilan Pelanggan}
+        {PT Karya Inovasi Bangsa}
+        {\url{https://www.karyainovasi.co.id}}
+        {}
+        {\begin{itemize}
+\item Mengelola 60+ akun pelanggan UMKM dan menengah, memastikan adopsi produk dan kepuasan pelanggan.
+\item Merancang kampanye edukasi pelanggan yang meningkatkan penggunaan fitur utama sebesar 40\%.
+\item Menangani eskalasi pelanggan dengan resolusi 95\% dalam waktu kurang dari 24 jam.
+\item Membuat laporan kinerja pelanggan bulanan dan merekomendasikan strategi perbaikan.
+\end{itemize}
+\textbf{Kata Kunci}: Akun Pelanggan, Adopsi Produk, Edukasi, Eskalasi}
+
+\cventry{Jul 2016–Jul 2018}
+        {Staf Dukungan Pelanggan}
+        {PT Media Cipta Global}
+        {\url{https://www.mediacipta.co.id}}
+        {}
+        {\begin{itemize}
+\item Menjawab pertanyaan pelanggan melalui telepon, email, dan obrolan langsung dengan tingkat kepuasan 90\%.
+\item Mendokumentasikan masalah pelanggan dan bekerja sama dengan tim teknis untuk penyelesaian.
+\item Membantu dalam pelatihan karyawan baru mengenai prosedur dukungan pelanggan.
+\end{itemize}
+\textbf{Kata Kunci}: Dukungan Pelanggan, Komunikasi, Dokumentasi}
+\section{Bahasa}
+
+\cvline{Indonesia}{Bahasa Ibu / Bilingual \hfill \textbf{Kata Kunci}: Bahasa Ibu}
+\cvline{Inggris}{Tingkat Profesional Penuh \hfill \textbf{Kata Kunci}: TOEFL 105, IELTS 7.5}
+\cvline{Mandarin}{Tingkat Kerja Terbatas \hfill \textbf{Kata Kunci}: HSK 3}
+\section{Keahlian}
+
+\cvline{Manajemen Hubungan Pelanggan}{Ahli \hfill \textbf{Kata Kunci}: CRM, Salesforce, Zendesk, HubSpot, Retensi}
+\cvline{Analisis Data}{Mahir \hfill \textbf{Kata Kunci}: Excel, SQL, Tableau, Metrik CS, NPS}
+\cvline{Komunikasi}{Ahli \hfill \textbf{Kata Kunci}: Presentasi, Negosiasi, Bahasa Indonesia, Bahasa Inggris}
+\cvline{Kepemimpinan}{Mahir \hfill \textbf{Kata Kunci}: Manajemen Tim, Mentoring, Kolaborasi Lintas Fungsi}
+\section{Penghargaan}
+
+\cventry{Des 2022}
+        {PT Solusi Digital Nusantara}
+        {Karyawan Terbaik Tahun 2022}
+        {}
+        {}
+        {Diberikan kepada manajer yang menunjukkan kinerja luar biasa dalam meningkatkan retensi pelanggan dan kepemimpinan tim.}
+
+\cventry{Nov 2020}
+        {PT Karya Inovasi Bangsa}
+        {Penghargaan Inovasi Layanan Pelanggan}
+        {}
+        {}
+        {Mengakui kontribusi dalam merancang program edukasi pelanggan yang meningkatkan adopsi produk secara signifikan.}
+\section{Sertifikat}
+
+\cventry{Mar 2022}
+        {SuccessCOACHING}
+        {Certified Customer Success Manager (CCSM)}
+        {\url{https://www.successcoaching.com/certification}}
+        {}
+        {}
+
+\cventry{Jan 2021}
+        {Salesforce}
+        {Salesforce Certified Administrator}
+        {\url{https://trailhead.salesforce.com/certification}}
+        {}
+        {}
+\section{Publikasi}
+
+\cventry{Jun 2021}
+        {Meningkatkan Loyalitas Pelanggan di Era Digital}
+        {Jurnal Manajemen Indonesia}
+        {\url{https://jurnalmanajemen.id/artikel/loyalitas-digital}}
+        {}
+        {\begin{itemize}
+\item Artikel ini membahas strategi keberhasilan pelanggan untuk mempertahankan loyalitas di pasar digital yang kompetitif.
+\item Menekankan pentingnya personalisasi dan komunikasi proaktif.
+\end{itemize}}
+\section{Referensi}
+
+\cventry{\emaillink[ratna.sari@ui.ac.id]{ratna.sari@ui.ac.id}}
+        {Dosen Pembimbing Akademik}
+        {Dr. Ratna Sari}
+        {+62 811-2233-4455}
+        {}
+        {Dewi adalah pribadi yang berdedikasi dan memiliki kemampuan komunikasi yang sangat baik. Ia mampu memimpin tim dan menyelesaikan masalah pelanggan dengan efektif.}
+\section{Proyek}
+
+\cventry{Feb 2021–Agu 2021}
+        {Program onboarding terstruktur untuk klien enterprise}
+        {Program Onboarding Pelanggan Enterprise}
+        {\url{https://www.solusidigital.co.id/onboarding}}
+        {}
+        {\begin{itemize}
+\item Merancang dan meluncurkan program onboarding 30-60-90 hari yang meningkatkan waktu adopsi.
+\item Mengintegrasikan modul pelatihan dan sesi konsultasi.
+\item Mencapai skor kepuasan pelanggan 4.8/5.
+\end{itemize}
+\textbf{Kata Kunci}: Onboarding, Enterprise, Pelatihan}
+
+\cventry{Mar 2022–Nov 2022}
+        {Dashboard analitik untuk memantau kesehatan pelanggan secara real-time}
+        {Dashboard Kesehatan Pelanggan}
+        {\url{https://www.solusidigital.co.id/dashboard}}
+        {}
+        {\begin{itemize}
+\item Mengembangkan dashboard dengan metrik penggunaan produk, tiket dukungan, dan NPS.
+\item Membantu tim CS mengidentifikasi risiko churn lebih awal.
+\item Meningkatkan efisiensi tim sebesar 30\%.
+\end{itemize}
+\textbf{Kata Kunci}: Dashboard, Analitik, Churn}
+\section{Minat}
+
+\cvline{Membaca}{Buku Bisnis, Psikologi, Pengembangan Diri}
+\cvline{Menulis}{Blog, Artikel, Jurnal}
+\cvline{Traveling}{Kuliner, Budaya, Alam}
+\section{Kegiatan Sukarela}
+
+\cventry{Jan 2022–Sekarang}
+        {Mentor Keberhasilan Pelanggan}
+        {Komunitas Pelanggan Indonesia}
+        {\url{https://www.komunitaspelanggan.id}}
+        {}
+        {\begin{itemize}
+\item Memberikan mentoring kepada profesional muda yang ingin berkarir di bidang keberhasilan pelanggan.
+\item Mengadakan workshop tentang strategi retensi dan komunikasi pelanggan.
+\item Membantu mengorganisir acara networking tahunan.
+\end{itemize}}
+    
+
+\cventry{Agu 2019–Des 2020}
+        {Relawan Pengajar}
+        {Yayasan Pendidikan Anak Bangsa}
+        {\url{https://www.yayasanpendidikan.org}}
+        {}
+        {\begin{itemize}
+\item Mengajar keterampilan komunikasi dan literasi digital untuk siswa sekolah menengah.
+\item Merancang kurikulum sederhana untuk pengembangan soft skills.
+\end{itemize}}
+    
+\end{document}

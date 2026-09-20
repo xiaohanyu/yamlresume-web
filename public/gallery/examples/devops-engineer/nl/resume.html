@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="generator" content="YAMLResume (https://yamlresume.dev)">
+
+
+  <title>Thomas de Vries Resume</title>
+  <style>
+    :root {
+      --text-font-size: 16px;
+      --text-font-family: var(--text-default-font-family);
+      --line-height: 1.5;
+    }
+
+    /* Modified from: https://www.joshwcomeau.com/css/custom-css-reset/ */
+
+    /* 1. Use a more-intuitive box-sizing model */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    /* 2. Remove default margin */
+    *:not(dialog) {
+      margin: 0;
+    }
+
+    body {
+      /* 3. Improve text rendering */
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    :root {
+      --border-color: #d0d0d0;
+
+      /* text colors */
+      --text-color-primary: #000000;
+      --text-color-secondary: #333333;
+
+      /* spacing */
+      --spacing-xss: 2px;
+      --spacing-xs: 4px;
+      --spacing-sm: 8px;
+      --spacing-md: 12px;
+      --spacing-lg: 16px;
+      --spacing-xl: 24px;
+      --spacing-xxl: 40px;
+      --spacing-xxxl: 80px;
+
+      /* font sizes */
+      --font-size-xs: 0.8rem;
+      --font-size-sm: 0.9rem;
+      --font-size-md: 1rem;
+      --font-size-lg: 1.1rem;
+      --font-size-xl: 1.25rem;
+      --font-size-xxl: 2.5rem;
+
+      /* layout */
+      --page-max-width: 900px;
+
+      /* typography */
+      --text-default-font-family:
+        -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu,
+        Cantarell, sans-serif;
+    }
+
+    html {
+      font-size: var(--text-font-size);
+    }
+
+    body {
+      /* font & text */
+      color: var(--text-color-primary);
+      font-family: var(--text-font-family);
+      /* this variable is defined by `typography.fontSize` in resume html layout */
+      text-autospace: normal;
+
+      /* layout */
+      line-height: var(--line-height);
+      max-width: var(--page-max-width);
+      margin: 0 auto;
+      padding: var(--spacing-xxxl) var(--spacing-xxl) var(--spacing-xxl);
+    }
+
+    /* header */
+    .resume-header {
+      margin-bottom: var(--spacing-xxl);
+      text-align: center;
+    }
+
+    .resume-name {
+      font-size: var(--font-size-xxl);
+      font-weight: 600;
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .resume-headline {
+      font-size: var(--font-size-lg);
+      margin-bottom: var(--spacing-md);
+    }
+
+    /* contact info */
+    .resume-contact-info {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      column-gap: var(--spacing-lg);
+      row-gap: var(--spacing-xs);
+      margin-top: var(--spacing-sm);
+    }
+
+    .resume-contact-icon,
+    .resume-contact-label {
+      margin-right: var(--spacing-sm);
+      vertical-align: middle;
+    }
+
+    /* links: modern typographic style */
+    a {
+      color: var(--text-color-primary);
+      text-decoration: underline;
+      text-decoration-color: var(--border-color);
+      text-underline-offset: 3px;
+      text-decoration-thickness: 1px;
+      text-decoration-skip-ink: auto;
+      transition: text-decoration-color 0.2s;
+    }
+
+    a:hover {
+      text-decoration-color: var(--text-color-primary);
+    }
+
+    /* sections */
+    .resume-section {
+      margin-bottom: var(--spacing-xl);
+    }
+
+    .resume-section-title {
+      font-size: var(--font-size-xl);
+      font-weight: 500;
+      margin-bottom: var(--spacing-md);
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: var(--spacing-xs);
+    }
+
+    /* entries */
+    .resume-entry {
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .resume-entry:last-child {
+      margin-bottom: 0;
+    }
+
+    .resume-entry-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .resume-entry-title {
+      font-weight: 500;
+      margin-bottom: var(--spacing-xss);
+    }
+
+    .resume-entry-summary p,
+    .resume-summary-content p {
+      margin-bottom: var(--spacing-xs);
+    }
+
+    /* lists */
+    .resume-entry-summary ul,
+    .resume-entry-summary ol,
+    .resume-summary-content ul,
+    .resume-summary-content ol {
+      padding-left: var(--spacing-lg);
+      list-style-type: circle;
+    }
+
+    /* labeled lists (courses, keywords, etc.) */
+    .resume-labeled-list span {
+      font-weight: 500;
+    }
+
+    /* skills grid */
+    .resume-skill-item,
+    .resume-language-item {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .resume-skill-name,
+    .resume-language-name {
+      font-weight: 500;
+    }
+
+    .resume-skill-level,
+    .resume-language-fluency {
+      font-weight: 400;
+    }
+
+    /* mobile */
+    @media (max-width: 768px) {
+      body {
+        padding: var(--spacing-xl);
+      }
+
+      .resume-header {
+        margin-bottom: var(--spacing-xl);
+      }
+
+      .resume-contact-info {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .resume-entry-header {
+        flex-wrap: wrap;
+      }
+    }
+
+    /* footer */
+    .resume-footer {
+      margin-top: var(--spacing-xxl);
+      padding-top: var(--spacing-xl);
+      border-top: 1px solid var(--border-color);
+      font-size: var(--font-size-sm);
+      color: var(--text-color-secondary);
+    }
+
+    @media print {
+      .resume-footer {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="resume-header">
+    <h1 class="resume-name">Thomas de Vries</h1>
+    <p class="resume-headline">DevOps Engineer | Cloudinfrastructuur &amp; Automatisering</p>
+    <div class="resume-contact-info">
+      <span class="resume-contact-item"><span class="resume-contact-icon">📧</span><a href="mailto:thomas.devries@example.com" class="resume-contact-link">thomas.devries@example.com</a></span>
+      <span class="resume-contact-item"><span class="resume-contact-icon">📞</span>+31 20 123 4567</span>
+      <span class="resume-contact-item"><span class="resume-contact-icon">🔗</span><a href="https://thomasdevries.dev" class="resume-contact-link">https://thomasdevries.dev</a></span>
+    </div>
+    <div class="resume-contact-info resume-location-info">
+      <span class="resume-contact-item"><span class="resume-contact-icon">📍</span>Keizersgracht 123, Amsterdam, Noord-Holland, Nederland, 1015 CJ</span>
+    </div>
+    <div class="resume-contact-info resume-profiles-info">
+      <span class="resume-contact-item"><span class="resume-contact-label">LinkedIn</span>: <a href="https://www.linkedin.com/in/thomasdevries" class="resume-contact-link">@thomasdevries</a></span>
+      <span class="resume-contact-item"><span class="resume-contact-label">GitHub</span>: <a href="https://github.com/thomasdevries" class="resume-contact-link">@thomasdevries</a></span>
+      <span class="resume-contact-item"><span class="resume-contact-label">Stack Overflow</span>: <a href="https://stackoverflow.com/users/12345678/thomasdevries" class="resume-contact-link">@thomasdevries</a></span>
+    </div>
+  </header>
+  <section class="resume-section" id="summary" data-section="summary">
+    <h2 class="resume-section-title">Basis Informatie</h2>
+    <div class="resume-section-content">
+      <div class="resume-summary-content">
+        <ul>
+          <li>
+            <p>Ervaren DevOps Engineer met meer dan 8 jaar ervaring in het automatiseren van cloudinfrastructuur en het bouwen van betrouwbare CI/CD-pipelines.</p>
+          </li>
+          <li>
+            <p>Diepgaande kennis van AWS, Azure, Kubernetes, Terraform en GitOps.</p>
+          </li>
+          <li>
+            <p>Gepassioneerd door platform engineering, observability en het verhogen van de ontwikkelsnelheid van teams.</p>
+          </li>
+          <li>
+            <p>Sterke communicatieve vaardigheden en ervaring met het begeleiden van multidisciplinaire teams.</p>
+          </li>
+        </ul>
+        <p>Ik werk graag aan de snijlijn van infrastructuur en softwareontwikkeling, waarbij ik processen continu verbeter en operationele kosten verlaag zonder in te leveren op betrouwbaarheid.</p>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="education" data-section="education">
+    <h2 class="resume-section-title">Opleidingen</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="education-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.tudelft.nl/">Technische Universiteit Delft</a></div>
+            <div class="resume-entry-organization">Master, Computerwetenschappen, Score: 8.5</div>
+          </div>
+          <div class="resume-entry-date">sep 2016–jul 2018</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Afstudeerrichting Cloud &amp; Distributed Systems</p>
+            </li>
+            <li>
+              <p>Thesis over automatische schaalvergroting van containerplatforms in hybride clouds</p>
+            </li>
+            <li>
+              <p>Cum laude afgestudeerd</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Cursussen</span>: Gedistribueerde systemen, Cloud computing, Netwerktechnologie, Operationele systemen, Softwarearchitectuur, Beveiliging van informatiesystemen</div>
+      </div>
+      <div class="resume-entry" id="education-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.hva.nl/">Hogeschool van Amsterdam</a></div>
+            <div class="resume-entry-organization">Bachelor, Informatica, Score: 8.0</div>
+          </div>
+          <div class="resume-entry-date">sep 2012–jun 2016</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Minor in Cloud &amp; Virtualisatie</p>
+            </li>
+            <li>
+              <p>Stage bij een hostingprovider voor geautomatiseerde deployments</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Cursussen</span>: Programmeren in Python, Linux systeembeheer, Databases, Netwerken, IT-beveiliging</div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="work" data-section="work">
+    <h2 class="resume-section-title">Werkervaring</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="work-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.rabobank.nl/">Rabobank</a></div>
+            <div class="resume-entry-organization">Senior DevOps Engineer</div>
+          </div>
+          <div class="resume-entry-date">jan 2022–Heden</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Verantwoordelijk voor het ontwerpen en beheren van een multi-cloud platform op AWS en Azure.</p>
+            </li>
+            <li>
+              <p>Geautomatiseerde CI/CD-pipelines met GitLab CI en Argo CD, waardoor releases van dagen naar minuten gingen.</p>
+            </li>
+            <li>
+              <p>Infrastructure as Code met Terraform en Ansible voor meer dan 200 applicaties.</p>
+            </li>
+            <li>
+              <p>Implementatie van observability met Prometheus, Grafana en Loki.</p>
+            </li>
+            <li>
+              <p>Begeleiden van een team van 6 DevOps engineers en bevorderen van kennisdeling.</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Trefwoorden</span>: AWS, Azure, Terraform, Kubernetes, GitLab CI, Observability</div>
+      </div>
+      <div class="resume-entry" id="work-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.kpn.com/">KPN</a></div>
+            <div class="resume-entry-organization">DevOps Engineer</div>
+          </div>
+          <div class="resume-entry-date">aug 2018–dec 2021</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Beheerde Kubernetes-clusters en ontwikkelde Helm-charts voor interne microservices.</p>
+            </li>
+            <li>
+              <p>Bouwde CI/CD-pipelines met Jenkins en later GitHub Actions.</p>
+            </li>
+            <li>
+              <p>Automatiseerde serverprovisioning met Ansible en Packer.</p>
+            </li>
+            <li>
+              <p>Verhoogde beschikbaarheid van diensten naar 99,95% door monitoring en alerting.</p>
+            </li>
+            <li>
+              <p>Samenwerking met ontwikkelteams om security en compliance te integreren in de pipeline.</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Trefwoorden</span>: Kubernetes, Jenkins, Ansible, Packer, Prometheus</div>
+      </div>
+      <div class="resume-entry" id="work-3">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.infosupport.com/">Info Support</a></div>
+            <div class="resume-entry-organization">Systeembeheerder / DevOps</div>
+          </div>
+          <div class="resume-entry-date">sep 2015–jul 2018</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Beheer van Linux- en Windows-servers voor zakelijke klanten.</p>
+            </li>
+            <li>
+              <p>Introductie van geautomatiseerde configuratie met Puppet.</p>
+            </li>
+            <li>
+              <p>Migratie van on-premises workloads naar AWS.</p>
+            </li>
+            <li>
+              <p>Opzetten van basis monitoring met Nagios en later Zabbix.</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Trefwoorden</span>: Linux, Windows Server, Puppet, AWS, Nagios</div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="languages" data-section="languages">
+    <h2 class="resume-section-title">Talen</h2>
+    <div class="resume-section-content">
+      <div class="resume-languages-list">
+        <div class="resume-language-item">
+          <div class="resume-language-name">Nederlands<span class="resume-language-fluency">: Moedertaal of tweetalige vaardigheid</span></div>
+          <div>
+            <div class="resume-labeled-list"><span>Trefwoorden</span>: Moedertaal</div>
+          </div>
+        </div>
+        <div class="resume-language-item">
+          <div class="resume-language-name">Engels<span class="resume-language-fluency">: Volledige professionele vaardigheid</span></div>
+          <div>
+            <div class="resume-labeled-list"><span>Trefwoorden</span>: Professioneel werkzaam, TOEIC 950</div>
+          </div>
+        </div>
+        <div class="resume-language-item">
+          <div class="resume-language-name">Duits<span class="resume-language-fluency">: Beperkte werkvaardigheid</span></div>
+          <div>
+            <div class="resume-labeled-list"><span>Trefwoorden</span>: Basiskennis, A2</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="skills" data-section="skills">
+    <h2 class="resume-section-title">Vaardigheden</h2>
+    <div class="resume-section-content">
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">Cloudplatformen<span class="resume-skill-level">: Expert</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>Trefwoorden</span>: AWS, Azure, Google Cloud</div>
+        </div>
+      </div>
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">Containers &amp; Orchestratie<span class="resume-skill-level">: Expert</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>Trefwoorden</span>: Kubernetes, Docker, Helm, OpenShift</div>
+        </div>
+      </div>
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">Infrastructure as Code<span class="resume-skill-level">: Geavanceerd</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>Trefwoorden</span>: Terraform, Ansible, Pulumi, CloudFormation</div>
+        </div>
+      </div>
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">CI/CD &amp; Automatisering<span class="resume-skill-level">: Expert</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>Trefwoorden</span>: GitLab CI, Jenkins, GitHub Actions, Argo CD</div>
+        </div>
+      </div>
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">Monitoring &amp; Observability<span class="resume-skill-level">: Geavanceerd</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>Trefwoorden</span>: Prometheus, Grafana, Loki, ELK Stack</div>
+        </div>
+      </div>
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">Programmeertalen &amp; Scripting<span class="resume-skill-level">: Geavanceerd</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>Trefwoorden</span>: Python, Bash, Go, PowerShell</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="awards" data-section="awards">
+    <h2 class="resume-section-title">Onderscheidingen</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="awards-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title">DevOps Team van het Jaar</div>
+            <div class="resume-entry-organization">Rabobank</div>
+          </div>
+          <div class="resume-entry-date">nov 2023</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Toegekend voor het succesvol migreren van kritische applicaties naar een geautomatiseerd multi-cloud platform.</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="resume-entry" id="awards-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title">Beste Afstudeerproject</div>
+            <div class="resume-entry-organization">Technische Universiteit Delft</div>
+          </div>
+          <div class="resume-entry-date">jul 2018</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Prijs voor onderzoek naar automatische schaalvergroting van containerplatforms.</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="certificates" data-section="certificates">
+    <h2 class="resume-section-title">Certificaten</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="certificates-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://aws.amazon.com/certification/certified-devops-engineer-professional/">AWS Certified DevOps Engineer - Professional</a></div>
+            <div class="resume-entry-organization">AWS</div>
+          </div>
+          <div class="resume-entry-date">mrt 2023</div>
+        </div>
+      </div>
+      <div class="resume-entry" id="certificates-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.cncf.io/certification/cka/">Certified Kubernetes Administrator (CKA)</a></div>
+            <div class="resume-entry-organization">CNCF</div>
+          </div>
+          <div class="resume-entry-date">jun 2021</div>
+        </div>
+      </div>
+      <div class="resume-entry" id="certificates-3">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.hashicorp.com/certification/terraform-associate">HashiCorp Certified: Terraform Associate</a></div>
+            <div class="resume-entry-organization">HashiCorp</div>
+          </div>
+          <div class="resume-entry-date">sep 2022</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="publications" data-section="publications">
+    <h2 class="resume-section-title">Publicaties</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="publications-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.dutchdevopsjournal.nl/zero-trust-cloud-native">Zero Trust in cloud-native omgevingen</a></div>
+            <div class="resume-entry-organization">Dutch DevOps Journal</div>
+          </div>
+          <div class="resume-entry-date">mei 2023</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Artikel over het implementeren van een Zero Trust-architectuur in Kubernetes-omgevingen.</p>
+            </li>
+            <li>
+              <p>Gepubliceerd in het vaktijdschrift Dutch DevOps Journal.</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="projects" data-section="projects">
+    <h2 class="resume-section-title">Projecten</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="projects-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://github.com/thomasdevries/platform-engine">Platform Engine</a></div>
+            <div class="resume-entry-description">Inner source platform voor self-service cloudinfrastructuur</div>
+          </div>
+          <div class="resume-entry-date">mrt 2022–okt 2023</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Ontwikkelde een self-service platform waarmee ontwikkelteams binnen 10 minuten een productieklare omgeving konden aanvragen.</p>
+            </li>
+            <li>
+              <p>Gebruikt Terraform, Kubernetes en Crossplane voor infrastructure provisioning.</p>
+            </li>
+            <li>
+              <p>Verlaagde de doorlooptijd van omgevingen met 70%.</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Trefwoorden</span>: Platform Engineering, Self-service, Crossplane, Kubernetes</div>
+      </div>
+      <div class="resume-entry" id="projects-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://github.com/thomasdevries/gitops-migratie">GitOps-migratie</a></div>
+            <div class="resume-entry-description">Migratie van push-based naar pull-based deployments</div>
+          </div>
+          <div class="resume-entry-date">jan 2021–dec 2021</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Introduceerde Argo CD voor declaratieve deployments.</p>
+            </li>
+            <li>
+              <p>Verhoogde de deployment-frequentie en verlaagde de foutmarge.</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Trefwoorden</span>: GitOps, Argo CD, Kubernetes</div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="interests" data-section="interests">
+    <h2 class="resume-section-title">Interesses</h2>
+    <div class="resume-section-content">
+      <div class="resume-interest-item"><span class="resume-interest-name">Sport</span>: Hardlopen, Wielrennen, Zwemmen</div>
+      <div class="resume-interest-item"><span class="resume-interest-name">Muziek</span>: Gitaar, Piano</div>
+      <div class="resume-interest-item"><span class="resume-interest-name">Open source</span>: Kubernetes, Terraform, CNCF</div>
+    </div>
+  </section>
+  <section class="resume-section" id="volunteer" data-section="volunteer">
+    <h2 class="resume-section-title">Vrijwilligerswerk</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="volunteer-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.devopsnederland.nl/">DevOps Nederland</a></div>
+            <div class="resume-entry-organization">Community Organizer</div>
+          </div>
+          <div class="resume-entry-date">jan 2019–Heden</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Organiseer maandelijkse meetups en workshops over DevOps, cloud en Kubernetes.</p>
+            </li>
+            <li>
+              <p>Verantwoordelijk voor sprekers, locatie en community-opbouw.</p>
+            </li>
+            <li>
+              <p>Groei van de community van 300 naar 1200 leden.</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer class="resume-footer">Generated by <a href="https://yamlresume.dev">YAMLResume</a></footer>
+</body>
+
+</html>

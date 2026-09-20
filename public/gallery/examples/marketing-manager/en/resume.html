@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="generator" content="YAMLResume (https://yamlresume.dev)">
+
+
+  <title>Jordan Ellis Resume</title>
+  <style>
+    :root {
+      --text-font-size: 16px;
+      --text-font-family: var(--text-default-font-family);
+      --line-height: 1.5;
+    }
+
+    /* Modified from: https://www.joshwcomeau.com/css/custom-css-reset/ */
+
+    /* 1. Use a more-intuitive box-sizing model */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    /* 2. Remove default margin */
+    *:not(dialog) {
+      margin: 0;
+    }
+
+    body {
+      /* 3. Improve text rendering */
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    :root {
+      --border-color: #d0d0d0;
+
+      /* text colors */
+      --text-color-primary: #000000;
+      --text-color-secondary: #333333;
+
+      /* spacing */
+      --spacing-xss: 2px;
+      --spacing-xs: 4px;
+      --spacing-sm: 8px;
+      --spacing-md: 12px;
+      --spacing-lg: 16px;
+      --spacing-xl: 24px;
+      --spacing-xxl: 40px;
+      --spacing-xxxl: 80px;
+
+      /* font sizes */
+      --font-size-xs: 0.8rem;
+      --font-size-sm: 0.9rem;
+      --font-size-md: 1rem;
+      --font-size-lg: 1.1rem;
+      --font-size-xl: 1.25rem;
+      --font-size-xxl: 2.5rem;
+
+      /* layout */
+      --page-max-width: 900px;
+
+      /* typography */
+      --text-default-font-family:
+        -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu,
+        Cantarell, sans-serif;
+    }
+
+    html {
+      font-size: var(--text-font-size);
+    }
+
+    body {
+      /* font & text */
+      color: var(--text-color-primary);
+      font-family: var(--text-font-family);
+      /* this variable is defined by `typography.fontSize` in resume html layout */
+      text-autospace: normal;
+
+      /* layout */
+      line-height: var(--line-height);
+      max-width: var(--page-max-width);
+      margin: 0 auto;
+      padding: var(--spacing-xxxl) var(--spacing-xxl) var(--spacing-xxl);
+    }
+
+    /* header */
+    .resume-header {
+      margin-bottom: var(--spacing-xxl);
+      text-align: center;
+    }
+
+    .resume-name {
+      font-size: var(--font-size-xxl);
+      font-weight: 600;
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .resume-headline {
+      font-size: var(--font-size-lg);
+      margin-bottom: var(--spacing-md);
+    }
+
+    /* contact info */
+    .resume-contact-info {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      column-gap: var(--spacing-lg);
+      row-gap: var(--spacing-xs);
+      margin-top: var(--spacing-sm);
+    }
+
+    .resume-contact-icon,
+    .resume-contact-label {
+      margin-right: var(--spacing-sm);
+      vertical-align: middle;
+    }
+
+    /* links: modern typographic style */
+    a {
+      color: var(--text-color-primary);
+      text-decoration: underline;
+      text-decoration-color: var(--border-color);
+      text-underline-offset: 3px;
+      text-decoration-thickness: 1px;
+      text-decoration-skip-ink: auto;
+      transition: text-decoration-color 0.2s;
+    }
+
+    a:hover {
+      text-decoration-color: var(--text-color-primary);
+    }
+
+    /* sections */
+    .resume-section {
+      margin-bottom: var(--spacing-xl);
+    }
+
+    .resume-section-title {
+      font-size: var(--font-size-xl);
+      font-weight: 500;
+      margin-bottom: var(--spacing-md);
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: var(--spacing-xs);
+    }
+
+    /* entries */
+    .resume-entry {
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .resume-entry:last-child {
+      margin-bottom: 0;
+    }
+
+    .resume-entry-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .resume-entry-title {
+      font-weight: 500;
+      margin-bottom: var(--spacing-xss);
+    }
+
+    .resume-entry-summary p,
+    .resume-summary-content p {
+      margin-bottom: var(--spacing-xs);
+    }
+
+    /* lists */
+    .resume-entry-summary ul,
+    .resume-entry-summary ol,
+    .resume-summary-content ul,
+    .resume-summary-content ol {
+      padding-left: var(--spacing-lg);
+      list-style-type: circle;
+    }
+
+    /* labeled lists (courses, keywords, etc.) */
+    .resume-labeled-list span {
+      font-weight: 500;
+    }
+
+    /* skills grid */
+    .resume-skill-item,
+    .resume-language-item {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .resume-skill-name,
+    .resume-language-name {
+      font-weight: 500;
+    }
+
+    .resume-skill-level,
+    .resume-language-fluency {
+      font-weight: 400;
+    }
+
+    /* mobile */
+    @media (max-width: 768px) {
+      body {
+        padding: var(--spacing-xl);
+      }
+
+      .resume-header {
+        margin-bottom: var(--spacing-xl);
+      }
+
+      .resume-contact-info {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .resume-entry-header {
+        flex-wrap: wrap;
+      }
+    }
+
+    /* footer */
+    .resume-footer {
+      margin-top: var(--spacing-xxl);
+      padding-top: var(--spacing-xl);
+      border-top: 1px solid var(--border-color);
+      font-size: var(--font-size-sm);
+      color: var(--text-color-secondary);
+    }
+
+    @media print {
+      .resume-footer {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="resume-header">
+    <h1 class="resume-name">Jordan Ellis</h1>
+    <p class="resume-headline">Senior Marketing Manager | Brand Strategist | Growth Marketing</p>
+    <div class="resume-contact-info">
+      <span class="resume-contact-item"><span class="resume-contact-icon">📧</span><a href="mailto:jordan.ellis@marketingpro.com" class="resume-contact-link">jordan.ellis@marketingpro.com</a></span>
+      <span class="resume-contact-item"><span class="resume-contact-icon">📞</span>(415) 555-0138</span>
+      <span class="resume-contact-item"><span class="resume-contact-icon">🔗</span><a href="https://www.jordanellis.com" class="resume-contact-link">https://www.jordanellis.com</a></span>
+    </div>
+    <div class="resume-contact-info resume-location-info">
+      <span class="resume-contact-item"><span class="resume-contact-icon">📍</span>482 Market Street, Suite 900, San Francisco, California, United States, 94105</span>
+    </div>
+    <div class="resume-contact-info resume-profiles-info">
+      <span class="resume-contact-item"><span class="resume-contact-label">LinkedIn</span>: <a href="https://www.linkedin.com/in/jordanellis" class="resume-contact-link">@jordanellis</a></span>
+      <span class="resume-contact-item"><span class="resume-contact-label">Twitter</span>: <a href="https://twitter.com/jordanellis" class="resume-contact-link">@jordanellis</a></span>
+      <span class="resume-contact-item"><span class="resume-contact-label">Medium</span>: <a href="https://medium.com/@jordanellis" class="resume-contact-link">@jordanellis</a></span>
+    </div>
+  </header>
+  <section class="resume-section" id="summary" data-section="summary">
+    <h2 class="resume-section-title">Basics</h2>
+    <div class="resume-section-content">
+      <div class="resume-summary-content">
+        <ul>
+          <li>
+            <p>Integrated marketing leader with 8+ years of experience developing and executing data-driven campaigns across digital, social, and traditional channels.</p>
+          </li>
+          <li>
+            <p>Proven track record of increasing brand awareness, generating qualified leads, and driving revenue growth for B2B and B2C companies.</p>
+          </li>
+          <li>
+            <p>Skilled in building and mentoring high-performing marketing teams, managing budgets up to $2M, and collaborating with cross-functional stakeholders.</p>
+          </li>
+          <li>
+            <p>Adept at leveraging analytics, CRM, and marketing automation tools to optimize performance and inform strategic decisions.</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="education" data-section="education">
+    <h2 class="resume-section-title">Education</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="education-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.northwestern.edu/">Northwestern University</a></div>
+            <div class="resume-entry-organization">Master, Integrated Marketing Communications, Score: 3.95</div>
+          </div>
+          <div class="resume-entry-date">Sep 2016–Jun 2018</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Graduated with distinction and received the Dean&#39;s Scholarship for academic excellence.</p>
+            </li>
+            <li>
+              <p>Completed capstone project on omnichannel customer journey mapping for a national retail brand.</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Courses</span>: Consumer Insight and Analytics, Brand Communication, Digital Marketing Strategy, Marketing Finance, Strategic Communications, Media Planning</div>
+      </div>
+      <div class="resume-entry" id="education-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.berkeley.edu/">University of California, Berkeley</a></div>
+            <div class="resume-entry-organization">Bachelor, Marketing and Business Administration, Score: 3.8</div>
+          </div>
+          <div class="resume-entry-date">Aug 2012–May 2016</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Served as Marketing Director for the student business association, growing membership by 30%.</p>
+            </li>
+            <li>
+              <p>Completed internship with a local startup, developing social media and content marketing playbooks.</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Courses</span>: Principles of Marketing, Consumer Behavior, Business Analytics, Microeconomics, Statistics, Organizational Behavior</div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="work" data-section="work">
+    <h2 class="resume-section-title">Work</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="work-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.brightwavedigital.com">Brightwave Digital</a></div>
+            <div class="resume-entry-organization">Senior Marketing Manager</div>
+          </div>
+          <div class="resume-entry-date">Jan 2022–Present</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Lead a team of 6 marketing professionals to plan and execute integrated campaigns for 12+ B2B and B2C clients.</p>
+            </li>
+            <li>
+              <p>Developed and managed annual marketing budgets exceeding $2M, consistently delivering ROI above 300%.</p>
+            </li>
+            <li>
+              <p>Spearheaded a brand refresh and website redesign that increased organic traffic by 65% and lead conversion by 28%.</p>
+            </li>
+            <li>
+              <p>Implemented marketing automation workflows in HubSpot, reducing manual tasks by 40% and improving lead nurturing.</p>
+            </li>
+            <li>
+              <p>Built a reporting framework using Google Analytics, Tableau, and Salesforce to track KPIs and present insights to C-suite.</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Keywords</span>: Integrated Marketing, Budget Management, Marketing Automation, Team Leadership, ROI Optimization</div>
+      </div>
+      <div class="resume-entry" id="work-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.northstarconsumer.com">Northstar Consumer Goods</a></div>
+            <div class="resume-entry-organization">Marketing Manager</div>
+          </div>
+          <div class="resume-entry-date">Mar 2019–Dec 2021</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Managed product marketing for a portfolio of 15+ consumer packaged goods, generating $18M in annual revenue.</p>
+            </li>
+            <li>
+              <p>Launched 8 new products from concept to market, achieving average first-year sales targets of 115%.</p>
+            </li>
+            <li>
+              <p>Led consumer research and segmentation studies to inform positioning, messaging, and media mix.</p>
+            </li>
+            <li>
+              <p>Partnered with sales and e-commerce teams to develop promotional calendars and retail activation programs.</p>
+            </li>
+            <li>
+              <p>Grew social media following by 120% through influencer partnerships and user-generated content campaigns.</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Keywords</span>: Product Marketing, Consumer Research, Go-to-Market, E-commerce, Influencer Marketing</div>
+      </div>
+      <div class="resume-entry" id="work-3">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.sparkandco.com">Spark &amp; Co.</a></div>
+            <div class="resume-entry-organization">Marketing Specialist</div>
+          </div>
+          <div class="resume-entry-date">Jun 2018–Feb 2019</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Executed email marketing campaigns with open rates 22% above industry benchmarks.</p>
+            </li>
+            <li>
+              <p>Assisted in the development of content marketing strategy, producing blog posts, whitepapers, and case studies.</p>
+            </li>
+            <li>
+              <p>Coordinated trade show and event marketing logistics, generating 500+ qualified leads.</p>
+            </li>
+            <li>
+              <p>Analyzed campaign performance and prepared monthly reports for senior management.</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Keywords</span>: Email Marketing, Content Marketing, Event Marketing, Analytics</div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="languages" data-section="languages">
+    <h2 class="resume-section-title">Languages</h2>
+    <div class="resume-section-content">
+      <div class="resume-languages-list">
+        <div class="resume-language-item">
+          <div class="resume-language-name">English<span class="resume-language-fluency">: Native or Bilingual Proficiency</span></div>
+          <div>
+            <div class="resume-labeled-list"><span>Keywords</span>: TOEFL 115, Business Writing</div>
+          </div>
+        </div>
+        <div class="resume-language-item">
+          <div class="resume-language-name">Spanish<span class="resume-language-fluency">: Full Professional Proficiency</span></div>
+          <div>
+            <div class="resume-labeled-list"><span>Keywords</span>: DELE B2</div>
+          </div>
+        </div>
+        <div class="resume-language-item">
+          <div class="resume-language-name">French<span class="resume-language-fluency">: Limited Working Proficiency</span></div>
+          <div>
+            <div class="resume-labeled-list"><span>Keywords</span>: Conversational</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="skills" data-section="skills">
+    <h2 class="resume-section-title">Skills</h2>
+    <div class="resume-section-content">
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">Marketing Strategy<span class="resume-skill-level">: Expert</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>Keywords</span>: Brand Positioning, Go-to-Market, Competitive Analysis, Customer Segmentation</div>
+        </div>
+      </div>
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">Digital Marketing<span class="resume-skill-level">: Advanced</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>Keywords</span>: SEO, SEM, PPC, Email Marketing, Content Marketing</div>
+        </div>
+      </div>
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">Analytics &amp; CRM<span class="resume-skill-level">: Advanced</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>Keywords</span>: Google Analytics, HubSpot, Salesforce, Tableau, A/B Testing</div>
+        </div>
+      </div>
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">Social Media<span class="resume-skill-level">: Expert</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>Keywords</span>: LinkedIn, Instagram, TikTok, Hootsuite, Sprout Social</div>
+        </div>
+      </div>
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">Project Management<span class="resume-skill-level">: Advanced</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>Keywords</span>: Agile, Asana, Jira, Budgeting, Cross-functional</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="awards" data-section="awards">
+    <h2 class="resume-section-title">Awards</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="awards-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title">Marketer of the Year</div>
+            <div class="resume-entry-organization">Brightwave Digital</div>
+          </div>
+          <div class="resume-entry-date">Nov 2023</div>
+        </div>
+        <div class="resume-entry-summary">
+          <p>Recognized for leading an integrated campaign that increased lead generation by 42% and exceeded revenue targets by 18%.</p>
+        </div>
+      </div>
+      <div class="resume-entry" id="awards-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title">Excellence in Brand Strategy</div>
+            <div class="resume-entry-organization">Northstar Consumer Goods</div>
+          </div>
+          <div class="resume-entry-date">Apr 2021</div>
+        </div>
+        <div class="resume-entry-summary">
+          <p>Awarded for successful rebranding initiative across 5 product lines, resulting in a 25% increase in brand recall.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="certificates" data-section="certificates">
+    <h2 class="resume-section-title">Certificates</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="certificates-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://skillshop.exceedlms.com/student/catalog">Google Analytics Certified Professional</a></div>
+            <div class="resume-entry-organization">Google</div>
+          </div>
+          <div class="resume-entry-date">Jan 2023</div>
+        </div>
+      </div>
+      <div class="resume-entry" id="certificates-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://academy.hubspot.com/courses/inbound-marketing">HubSpot Inbound Marketing Certification</a></div>
+            <div class="resume-entry-organization">HubSpot Academy</div>
+          </div>
+          <div class="resume-entry-date">Mar 2022</div>
+        </div>
+      </div>
+      <div class="resume-entry" id="certificates-3">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://digitalmarketinginstitute.com/certifications">Certified Digital Marketing Professional</a></div>
+            <div class="resume-entry-organization">Digital Marketing Institute</div>
+          </div>
+          <div class="resume-entry-date">Jul 2021</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="publications" data-section="publications">
+    <h2 class="resume-section-title">Publications</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="publications-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.journalofdigitalmarketing.com/articles/omnichannel-retail">The Future of Omnichannel Retail Marketing</a></div>
+            <div class="resume-entry-organization">Journal of Digital Marketing</div>
+          </div>
+          <div class="resume-entry-date">Sep 2022</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Examines how brands can create seamless customer experiences across online and offline channels.</p>
+            </li>
+            <li>
+              <p>Provides a framework for measuring omnichannel campaign effectiveness and attribution.</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="resume-entry" id="publications-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.marketingprofs.com/articles/data-driven-personalization-b2b">Data-Driven Personalization in B2B Marketing</a></div>
+            <div class="resume-entry-organization">MarketingProfs</div>
+          </div>
+          <div class="resume-entry-date">Feb 2021</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Explores practical applications of predictive analytics for lead scoring and segmentation.</p>
+            </li>
+            <li>
+              <p>Includes a case study on increasing conversion rates through personalized content.</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="projects" data-section="projects">
+    <h2 class="resume-section-title">Projects</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="projects-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.brightwavedigital.com/case-studies/greenleaf">GreenLeaf Product Launch</a></div>
+            <div class="resume-entry-description">Integrated launch campaign for an eco-friendly home care line.</div>
+          </div>
+          <div class="resume-entry-date">Mar 2023–Sep 2023</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Led a cross-functional team of 8 to plan and execute a multi-channel launch.</p>
+            </li>
+            <li>
+              <p>Achieved 150% of first-quarter sales target and a 25% increase in brand awareness.</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Keywords</span>: Product Launch, Integrated Campaign, Sustainability</div>
+      </div>
+      <div class="resume-entry" id="projects-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.northstarconsumer.com/case-studies/loyalty">Customer Loyalty Revamp</a></div>
+            <div class="resume-entry-description">Redesigned loyalty program to improve retention and engagement.</div>
+          </div>
+          <div class="resume-entry-date">Jun 2020–Nov 2020</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Implemented tiered rewards and personalized offers based on purchase history.</p>
+            </li>
+            <li>
+              <p>Increased repeat purchase rate by 18% and member engagement by 32%.</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Keywords</span>: Retention, CRM, Personalization</div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="interests" data-section="interests">
+    <h2 class="resume-section-title">Interests</h2>
+    <div class="resume-section-content">
+      <div class="resume-interest-item"><span class="resume-interest-name">Professional Development</span>: Marketing Podcasts, Industry Conferences, Case Studies</div>
+      <div class="resume-interest-item"><span class="resume-interest-name">Outdoor Activities</span>: Hiking, Cycling, Photography</div>
+      <div class="resume-interest-item"><span class="resume-interest-name">Community</span>: Mentoring, Nonprofit Marketing, Volunteering</div>
+    </div>
+  </section>
+  <section class="resume-section" id="volunteer" data-section="volunteer">
+    <h2 class="resume-section-title">Volunteer</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="volunteer-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.sffoodbank.org/">San Francisco Food Bank</a></div>
+            <div class="resume-entry-organization">Marketing Volunteer</div>
+          </div>
+          <div class="resume-entry-date">Jan 2019–Dec 2023</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Developed a social media content calendar to raise awareness for hunger relief.</p>
+            </li>
+            <li>
+              <p>Helped organize the annual fundraising gala that exceeded the donation goal by 20%.</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="resume-entry" id="volunteer-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://girlswhocode.com/">Girls Who Code</a></div>
+            <div class="resume-entry-organization">Workshop Mentor</div>
+          </div>
+          <div class="resume-entry-date">Sep 2020–Present</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Mentored high school students in digital marketing and personal branding workshops.</p>
+            </li>
+            <li>
+              <p>Coordinated guest speaker sessions with local marketing professionals.</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer class="resume-footer">Generated by <a href="https://yamlresume.dev">YAMLResume</a></footer>
+</body>
+
+</html>

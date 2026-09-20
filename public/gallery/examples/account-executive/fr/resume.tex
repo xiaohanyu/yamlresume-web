@@ -1,0 +1,272 @@
+\documentclass[a4paper, serif, 10pt]{moderncv}
+
+%% moderncv
+% style and color
+\moderncvstyle{banking}
+\moderncvcolor{black}
+
+%% page layout/margins
+\usepackage[top=2.5cm, bottom=2.5cm, left=1.5cm, right=1.5cm]{geometry}
+
+\nopagenumbers{}
+
+%% Babel config for French language
+% ref:
+% - https://latex3.github.io/babel/guides/locale-french.html
+\usepackage[french]{babel}
+
+%% fontspec
+\usepackage{fontspec}
+
+\IfFontExistsTF{Linux Libertine}{
+  \setmainfont[Ligatures={TeX, Common}, Numbers=OldStyle]{Linux Libertine}
+}{}
+\IfFontExistsTF{Linux Libertine O}{
+  \setmainfont[Ligatures={TeX, Common}, Numbers=OldStyle]{Linux Libertine O}
+}{}
+
+%% CTeX
+% CJK support, used to show CJK characters in the resume
+%
+% - fontset=none: disable builtin fontset but instead set the CJK font manually
+% - heading=false: disable ctex heading
+% - punct=kaiming: use kaiming punctuations styles for CJK
+% - scheme=plain: use plain scheme, do not override \normalsize font size
+% - space=auto: space settings for CJK characters
+%
+% ref:
+% - http://ctan.mirrorcatalogs.com/language/chinese/ctex/ctex.pdf
+\usepackage[UTF8, heading=false, punct=kaiming, scheme=plain, space=auto]{ctex}
+
+\IfFontExistsTF{Noto Serif CJK SC}{
+  \setCJKmainfont{Noto Serif CJK SC}
+}{}
+\IfFontExistsTF{Noto Sans CJK SC}{
+  \setCJKsansfont{Noto Sans CJK SC}
+}{}
+
+%% line spacing
+\usepackage{setspace}
+\setstretch{1.125}
+
+%% URL styling - use normal text instead of monospace
+\urlstyle{same}
+
+% Auto-underline all links
+% Defer until \begin{document} so hyperref is already loaded
+\AtBeginDocument{%
+  \let\oldhref\href
+  \renewcommand{\href}[2]{\oldhref{#1}{\underline{#2}}}%
+}
+
+%% Patch \httplink and \httpslink to handle full URLs
+% The original moderncv macros always prepend http:// or https:// to URLs.
+% This causes issues when the URL already has a protocol (e.g., https://example.com)
+% resulting in malformed URLs like https://https://example.com.
+% This patch checks if the URL already contains "://" and uses it directly if so.
+% Note: We use \str_set:Nx (x-expansion) to expand macros like \@homepage first.
+\ExplSyntaxOn
+\str_new:N \g_yamlresume_url_str
+
+\RenewDocumentCommand{\httpslink}{O{}m}{
+  \str_set:Nx \g_yamlresume_url_str {#2}
+  \str_if_in:NnTF \g_yamlresume_url_str {://}
+    { \url{#2} }
+    { \url{https://#2} }
+}
+
+\RenewDocumentCommand{\httplink}{O{}m}{
+  \str_set:Nx \g_yamlresume_url_str {#2}
+  \str_if_in:NnTF \g_yamlresume_url_str {://}
+    { \url{#2} }
+    { \url{http://#2} }
+}
+\ExplSyntaxOff
+
+\name{Camille Laurent}{}
+\title{Account Executive | Spécialiste de la vente SaaS B2B}
+\phone[mobile]{+33 6 12 34 56 78}
+\email{camille.laurent@example.fr}
+\homepage{https://www.camillelaurent.fr}
+
+\address{45 rue de la Boétie, Paris, Île-de-France, France, 75008}{}{}
+
+\extrainfo{{\small \faLinkedin}\ \href{https://www.linkedin.com/in/camillelaurent}{@camillelaurent} {} {} {} • {} {} {} 
+{\small \faTwitter}\ \href{https://twitter.com/camille\_laurent}{@camille\_laurent}}
+
+\begin{document}
+
+\maketitle
+
+\section{Informations de base}
+
+\cvline{}{\begin{itemize}
+\item Account Executive avec plus de 5 ans d'expérience dans la vente de solutions SaaS B2B.
+\item Expertise dans la gestion du cycle de vente complet, de la prospection à la signature.
+\item Capacité à dépasser les objectifs : 150 \% du quota atteint en 2023.
+\item Passionné par la relation client et la construction de partenariats durables.
+\item Maîtrise des outils CRM (Salesforce, HubSpot) et des méthodologies de vente (MEDDIC, SPIN).
+\end{itemize}}
+\section{Formation}
+
+\cventry{sept. 2017–juil. 2019}
+        {Master, Management Commercial et Négociation, Score : Mention Très Bien}
+        {Université Paris-Dauphine}
+        {\url{https://www.dauphine.psl.eu/}}
+        {}
+        {\begin{itemize}
+\item Formation d'excellence orientée vers la vente et la négociation.
+\item Projets pratiques en partenariat avec des entreprises du CAC 40.
+\item Mémoire sur l'optimisation du cycle de vente SaaS.
+\end{itemize}
+\textbf{Cours} : Négociation commerciale avancée, Stratégie d'entreprise, Marketing B2B, Gestion de la relation client, Analyse financière, Droit des affaires}
+
+\cventry{sept. 2014–juin 2017}
+        {Licence, Économie et Gestion, Score : Mention Bien}
+        {Université Paris 1 Panthéon-Sorbonne}
+        {\url{https://www.pantheonsorbonne.fr/}}
+        {}
+        {\begin{itemize}
+\item Solides bases en économie et gestion d'entreprise.
+\item Engagement associatif au sein du bureau des étudiants.
+\item Semestre d'échange à l'Université de Montréal.
+\end{itemize}
+\textbf{Cours} : Microéconomie, Macroéconomie, Comptabilité, Statistiques, Marketing, Management}
+\section{Expérience professionnelle}
+
+\cventry{janv. 2023–Present}
+        {Account Executive}
+        {Leaflow}
+        {\url{https://www.leaflow.fr}}
+        {}
+        {\begin{itemize}
+\item Gestion d'un portefeuille de 80 comptes PME/ETI avec un quota annuel de 1,2 M€.
+\item Développement du territoire français par la prospection ciblée et les partenariats.
+\item Négociation et closing de contrats SaaS complexes (cycle de vente de 3 à 6 mois).
+\item Collaboration étroite avec les équipes marketing, produit et customer success.
+\item Dépassement du quota à 150 \% en 2023 et 120 \% en 2024.
+\end{itemize}
+\textbf{Mots-clés} : Prospection, Négociation, SaaS, CRM, Closing}
+
+\cventry{mars 2020–déc. 2022}
+        {Account Executive}
+        {Datavance}
+        {\url{https://www.datavance.fr}}
+        {}
+        {\begin{itemize}
+\item Vente de solutions de data intelligence auprès de grands comptes (CAC 40).
+\item Élaboration de stratégies de compte et gestion de cycles de vente longs (6 à 12 mois).
+\item Atteinte de 110 \% du quota en 2021 et 130 \% en 2022.
+\item Participation à la refonte du playbook commercial et formation des nouveaux arrivants.
+\end{itemize}
+\textbf{Mots-clés} : Grands Comptes, Data, Méddic, Négociation, Prévisions}
+
+\cventry{sept. 2019–févr. 2020}
+        {Business Developer}
+        {CloudNova}
+        {\url{https://www.cloudnova.fr}}
+        {}
+        {\begin{itemize}
+\item Prospection téléphonique et digitale pour générer des opportunités qualifiées.
+\item Organisation de démonstrations produit et suivi des leads jusqu'à la signature.
+\item Contribution à l'augmentation de 40 \% du pipeline commercial en 6 mois.
+\end{itemize}
+\textbf{Mots-clés} : Prospection, Leads, Qualification, Salesforce}
+\section{Langues}
+
+\cvline{Français}{Niveau natif ou bilingue \hfill \textbf{Mots-clés} : Langue maternelle}
+\cvline{Anglais}{Niveau professionnel complet \hfill \textbf{Mots-clés} : TOEIC 950, Négociation internationale}
+\cvline{Espagnol}{Niveau de travail limité \hfill \textbf{Mots-clés} : Conversationnel}
+\section{Compétences}
+
+\cvline{Vente et Négociation}{Expert \hfill \textbf{Mots-clés} : Prospection, Closing, Négociation, Gestion de portefeuille, Upsell}
+\cvline{Outils CRM}{Avancé \hfill \textbf{Mots-clés} : Salesforce, HubSpot, Pipedrive, LinkedIn Sales Navigator}
+\cvline{Analyse Commerciale}{Avancé \hfill \textbf{Mots-clés} : Prévisions, KPI, Reporting, Tableaux de bord}
+\cvline{Communication}{Expert \hfill \textbf{Mots-clés} : Présentations, Relation client, Écoute active, Négociation}
+\section{Récompenses}
+
+\cventry{janv. 2024}
+        {Leaflow}
+        {Président's Club 2023}
+        {}
+        {}
+        {\begin{itemize}
+\item Récompense pour avoir dépassé 150 \% du quota annuel.
+\item Génération de plus de 1,2 M€ de revenus nouveaux.
+\end{itemize}}
+
+\cventry{déc. 2022}
+        {Datavance}
+        {Meilleur Vendeur de l'Année}
+        {}
+        {}
+        {\begin{itemize}
+\item Classé n°1 sur 25 commerciaux.
+\item Taux de satisfaction client de 98 \%.
+\end{itemize}}
+\section{Certificats}
+
+\cventry{mars 2021}
+        {Salesforce}
+        {Salesforce Certified Sales Cloud Consultant}
+        {\url{https://trailhead.salesforce.com/}}
+        {}
+        {}
+
+\cventry{juin 2020}
+        {HubSpot}
+        {HubSpot Inbound Sales Certification}
+        {\url{https://academy.hubspot.com/}}
+        {}
+        {}
+\section{Publications}
+
+\cventry{oct. 2022}
+        {Optimiser la prospection B2B à l'ère du numérique}
+        {Revue Française du Marketing}
+        {\url{https://www.revue-marketing.fr/}}
+        {}
+        {\begin{itemize}
+\item Article sur les stratégies de prospection multicanale.
+\item Analyse de l'utilisation de l'IA pour qualifier les leads.
+\end{itemize}}
+\section{Projets}
+
+\cventry{janv. 2023–juin 2023}
+        {Projet d'optimisation du cycle de vente pour réduire le temps de closing de 30 \%.}
+        {Refonte du processus de vente}
+        {}
+        {}
+        {\begin{itemize}
+\item Mise en place d'un nouveau playbook commercial.
+\item Formation des équipes et intégration d'outils d'automatisation.
+\end{itemize}
+\textbf{Mots-clés} : Processus, Vente, Automatisation}
+
+\cventry{sept. 2021–déc. 2022}
+        {Lancement d'un programme d'upsell et de cross-sell pour les comptes stratégiques.}
+        {Programme de fidélisation client}
+        {}
+        {}
+        {\begin{itemize}
+\item Augmentation du chiffre d'affaires de 25 \% sur le portefeuille existant.
+\item Déploiement d'une campagne de réengagement personnalisée.
+\end{itemize}
+\textbf{Mots-clés} : Fidélisation, Upsell, Stratégie}
+\section{Centres d'intérêt}
+
+\cvline{Sports}{Course à pied, Tennis, Randonnée}
+\cvline{Culture}{Lecture, Cinéma, Voyages}
+\section{Bénévolat}
+
+\cventry{sept. 2021–juin 2023}
+        {Mentor commercial}
+        {Association Vente Solidaire}
+        {\url{https://www.ventesolidaire.fr/}}
+        {}
+        {\begin{itemize}
+\item Accompagnement de jeunes entrepreneurs dans la structuration de leur stratégie commerciale.
+\item Préparation aux pitchs et aide à la prospection.
+\end{itemize}}
+    
+\end{document}

@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="generator" content="YAMLResume (https://yamlresume.dev)">
+
+
+  <title>Mariana Alves de Souza Resume</title>
+  <style>
+    :root {
+      --text-font-size: 16px;
+      --text-font-family: var(--text-default-font-family);
+      --line-height: 1.5;
+    }
+
+    /* Modified from: https://www.joshwcomeau.com/css/custom-css-reset/ */
+
+    /* 1. Use a more-intuitive box-sizing model */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    /* 2. Remove default margin */
+    *:not(dialog) {
+      margin: 0;
+    }
+
+    body {
+      /* 3. Improve text rendering */
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    :root {
+      --border-color: #d0d0d0;
+
+      /* text colors */
+      --text-color-primary: #000000;
+      --text-color-secondary: #333333;
+
+      /* spacing */
+      --spacing-xss: 2px;
+      --spacing-xs: 4px;
+      --spacing-sm: 8px;
+      --spacing-md: 12px;
+      --spacing-lg: 16px;
+      --spacing-xl: 24px;
+      --spacing-xxl: 40px;
+      --spacing-xxxl: 80px;
+
+      /* font sizes */
+      --font-size-xs: 0.8rem;
+      --font-size-sm: 0.9rem;
+      --font-size-md: 1rem;
+      --font-size-lg: 1.1rem;
+      --font-size-xl: 1.25rem;
+      --font-size-xxl: 2.5rem;
+
+      /* layout */
+      --page-max-width: 900px;
+
+      /* typography */
+      --text-default-font-family:
+        -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu,
+        Cantarell, sans-serif;
+    }
+
+    html {
+      font-size: var(--text-font-size);
+    }
+
+    body {
+      /* font & text */
+      color: var(--text-color-primary);
+      font-family: var(--text-font-family);
+      /* this variable is defined by `typography.fontSize` in resume html layout */
+      text-autospace: normal;
+
+      /* layout */
+      line-height: var(--line-height);
+      max-width: var(--page-max-width);
+      margin: 0 auto;
+      padding: var(--spacing-xxxl) var(--spacing-xxl) var(--spacing-xxl);
+    }
+
+    /* header */
+    .resume-header {
+      margin-bottom: var(--spacing-xxl);
+      text-align: center;
+    }
+
+    .resume-name {
+      font-size: var(--font-size-xxl);
+      font-weight: 600;
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .resume-headline {
+      font-size: var(--font-size-lg);
+      margin-bottom: var(--spacing-md);
+    }
+
+    /* contact info */
+    .resume-contact-info {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      column-gap: var(--spacing-lg);
+      row-gap: var(--spacing-xs);
+      margin-top: var(--spacing-sm);
+    }
+
+    .resume-contact-icon,
+    .resume-contact-label {
+      margin-right: var(--spacing-sm);
+      vertical-align: middle;
+    }
+
+    /* links: modern typographic style */
+    a {
+      color: var(--text-color-primary);
+      text-decoration: underline;
+      text-decoration-color: var(--border-color);
+      text-underline-offset: 3px;
+      text-decoration-thickness: 1px;
+      text-decoration-skip-ink: auto;
+      transition: text-decoration-color 0.2s;
+    }
+
+    a:hover {
+      text-decoration-color: var(--text-color-primary);
+    }
+
+    /* sections */
+    .resume-section {
+      margin-bottom: var(--spacing-xl);
+    }
+
+    .resume-section-title {
+      font-size: var(--font-size-xl);
+      font-weight: 500;
+      margin-bottom: var(--spacing-md);
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: var(--spacing-xs);
+    }
+
+    /* entries */
+    .resume-entry {
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .resume-entry:last-child {
+      margin-bottom: 0;
+    }
+
+    .resume-entry-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .resume-entry-title {
+      font-weight: 500;
+      margin-bottom: var(--spacing-xss);
+    }
+
+    .resume-entry-summary p,
+    .resume-summary-content p {
+      margin-bottom: var(--spacing-xs);
+    }
+
+    /* lists */
+    .resume-entry-summary ul,
+    .resume-entry-summary ol,
+    .resume-summary-content ul,
+    .resume-summary-content ol {
+      padding-left: var(--spacing-lg);
+      list-style-type: circle;
+    }
+
+    /* labeled lists (courses, keywords, etc.) */
+    .resume-labeled-list span {
+      font-weight: 500;
+    }
+
+    /* skills grid */
+    .resume-skill-item,
+    .resume-language-item {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .resume-skill-name,
+    .resume-language-name {
+      font-weight: 500;
+    }
+
+    .resume-skill-level,
+    .resume-language-fluency {
+      font-weight: 400;
+    }
+
+    /* mobile */
+    @media (max-width: 768px) {
+      body {
+        padding: var(--spacing-xl);
+      }
+
+      .resume-header {
+        margin-bottom: var(--spacing-xl);
+      }
+
+      .resume-contact-info {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .resume-entry-header {
+        flex-wrap: wrap;
+      }
+    }
+
+    /* footer */
+    .resume-footer {
+      margin-top: var(--spacing-xxl);
+      padding-top: var(--spacing-xl);
+      border-top: 1px solid var(--border-color);
+      font-size: var(--font-size-sm);
+      color: var(--text-color-secondary);
+    }
+
+    @media print {
+      .resume-footer {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="resume-header">
+    <h1 class="resume-name">Mariana Alves de Souza</h1>
+    <p class="resume-headline">Gerente de Marketing Digital e Estratégia de Marca</p>
+    <div class="resume-contact-info">
+      <span class="resume-contact-item"><span class="resume-contact-icon">📧</span><a href="mailto:mariana.souza@marketing.com.br" class="resume-contact-link">mariana.souza@marketing.com.br</a></span>
+      <span class="resume-contact-item"><span class="resume-contact-icon">📞</span>+55 11 98765-4321</span>
+      <span class="resume-contact-item"><span class="resume-contact-icon">🔗</span><a href="https://www.marianasouza.com.br" class="resume-contact-link">https://www.marianasouza.com.br</a></span>
+    </div>
+    <div class="resume-contact-info resume-location-info">
+      <span class="resume-contact-item"><span class="resume-contact-icon">📍</span>Av. Paulista, 1000 - Bela Vista, São Paulo, SP, Brasil, 01310-100</span>
+    </div>
+    <div class="resume-contact-info resume-profiles-info">
+      <span class="resume-contact-item"><span class="resume-contact-label">LinkedIn</span>: <a href="https://www.linkedin.com/in/marianasouza" class="resume-contact-link">@marianasouza</a></span>
+      <span class="resume-contact-item"><span class="resume-contact-label">Medium</span>: <a href="https://medium.com/@marianasouza" class="resume-contact-link">@marianasouza</a></span>
+    </div>
+  </header>
+  <section class="resume-section" id="summary" data-section="summary">
+    <h2 class="resume-section-title">Informações Básicas</h2>
+    <div class="resume-section-content">
+      <div class="resume-summary-content">
+        <p>Gerente de marketing com mais de 8 anos de experiência em estratégias digitais, branding e growth para empresas de tecnologia e varejo. Especialista em planejamento de campanhas multicanal, análise de dados e liderança de equipes de alta performance.</p>
+        <ul>
+          <li>
+            <p>Aumento de 45% no ROI de campanhas pagas em 12 meses.</p>
+          </li>
+          <li>
+            <p>Gestão de orçamentos anuais superiores a R$ 5 milhões.</p>
+          </li>
+          <li>
+            <p>Implementação de cultura data-driven com CRM e automação de marketing.</p>
+          </li>
+          <li>
+            <p>Liderança de equipes multidisciplinares de até 12 pessoas.</p>
+          </li>
+        </ul>
+        <p>Busco novos desafios para conectar marcas a públicos estratégicos e gerar crescimento sustentável.</p>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="education" data-section="education">
+    <h2 class="resume-section-title">Formação</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="education-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www5.usp.br/">Universidade de São Paulo</a></div>
+            <div class="resume-entry-organization">Mestrado, Marketing, Nota: 9.1</div>
+          </div>
+          <div class="resume-entry-date">mar. de 2016–dez. de 2017</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Dissertação sobre personalização de campanhas digitais em e-commerce.</p>
+            </li>
+            <li>
+              <p>Publicação de artigo em congresso nacional de marketing.</p>
+            </li>
+            <li>
+              <p>Média geral 9.1, com destaque em projetos aplicados.</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Cursos</span>: Comportamento do Consumidor, Pesquisa de Mercado, Marketing Digital, Branding e Gestão de Marca, Análise Estatística para Marketing, Estratégia de Preços, Comunicação Integrada</div>
+      </div>
+      <div class="resume-entry" id="education-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://fgv.br/">Fundação Getulio Vargas</a></div>
+            <div class="resume-entry-organization">Bacharelado, Administração de Empresas, Nota: 8.7</div>
+          </div>
+          <div class="resume-entry-date">fev. de 2010–dez. de 2014</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Formação sólida em administração com foco em marketing.</p>
+            </li>
+            <li>
+              <p>Participação em empresa júnior na área de consultoria de marketing.</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Cursos</span>: Teoria Geral da Administração, Marketing, Finanças Corporativas, Estatística, Gestão de Pessoas</div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="work" data-section="work">
+    <h2 class="resume-section-title">Experiência Profissional</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="work-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.technova.com.br">TechNova Brasil</a></div>
+            <div class="resume-entry-organization">Gerente de Marketing</div>
+          </div>
+          <div class="resume-entry-date">jan. de 2020–Atual</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Lidero equipe de 12 profissionais de marketing, design e conteúdo.</p>
+            </li>
+            <li>
+              <p>Responsável por estratégia de marca, campanhas digitais e geração de demanda.</p>
+            </li>
+            <li>
+              <p>Implementei modelo de atribuição multicanal que aumentou em 45% a eficiência do investimento.</p>
+            </li>
+            <li>
+              <p>Geri orçamento anual de R$ 5,2 milhões com ROI médio de 3,8x.</p>
+            </li>
+            <li>
+              <p>Desenvolvi parcerias com influenciadores e mídia para expansão de mercado.</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Palavras-chave</span>: Branding, Growth, Liderança, Data-driven, Performance</div>
+      </div>
+      <div class="resume-entry" id="work-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.varejomais.com.br">VarejoMais</a></div>
+            <div class="resume-entry-organization">Analista de Marketing Sênior</div>
+          </div>
+          <div class="resume-entry-date">jun. de 2017–dez. de 2019</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Planejei e executei campanhas de mídia paga em Google Ads, Meta Ads e LinkedIn Ads.</p>
+            </li>
+            <li>
+              <p>Reduzi o custo por aquisição em 30% em 8 meses.</p>
+            </li>
+            <li>
+              <p>Criei estratégias de CRM e automação que elevaram a retenção em 22%.</p>
+            </li>
+            <li>
+              <p>Analisei métricas e apresentei relatórios executivos mensais.</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Palavras-chave</span>: Mídia Paga, CRM, SEO, Analytics, E-commerce</div>
+      </div>
+      <div class="resume-entry" id="work-3">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.criativaz.com.br">Agência CriativaZ</a></div>
+            <div class="resume-entry-organization">Analista de Marketing</div>
+          </div>
+          <div class="resume-entry-date">ago. de 2015–mai. de 2017</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Atendi contas de varejo e tecnologia, desenvolvendo planos de comunicação.</p>
+            </li>
+            <li>
+              <p>Gerenciei redes sociais e produzi conteúdo para blogs e newsletters.</p>
+            </li>
+            <li>
+              <p>Auxiliei no planejamento de eventos e lançamentos de produtos.</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Palavras-chave</span>: Social Media, Conteúdo, Eventos, Planejamento</div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="languages" data-section="languages">
+    <h2 class="resume-section-title">Idiomas</h2>
+    <div class="resume-section-content">
+      <div class="resume-languages-list">
+        <div class="resume-language-item">
+          <div class="resume-language-name">Português<span class="resume-language-fluency">: Nativo ou Bilíngue</span></div>
+          <div>
+            <div class="resume-labeled-list"><span>Palavras-chave</span>: Nativo</div>
+          </div>
+        </div>
+        <div class="resume-language-item">
+          <div class="resume-language-name">Inglês<span class="resume-language-fluency">: Proficiência Profissional Fluente</span></div>
+          <div>
+            <div class="resume-labeled-list"><span>Palavras-chave</span>: TOEIC 950, Reuniões internacionais</div>
+          </div>
+        </div>
+        <div class="resume-language-item">
+          <div class="resume-language-name">Espanhol<span class="resume-language-fluency">: Proficiência Profissional Limitada</span></div>
+          <div>
+            <div class="resume-labeled-list"><span>Palavras-chave</span>: Conversação básica</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="skills" data-section="skills">
+    <h2 class="resume-section-title">Competências</h2>
+    <div class="resume-section-content">
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">Estratégia de Marketing<span class="resume-skill-level">: Especialista</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>Palavras-chave</span>: Planejamento, Branding, Posicionamento, Go-to-market</div>
+        </div>
+      </div>
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">Marketing Digital<span class="resume-skill-level">: Avançado</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>Palavras-chave</span>: Google Ads, Meta Ads, LinkedIn Ads, SEO, SEM</div>
+        </div>
+      </div>
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">Análise de Dados<span class="resume-skill-level">: Avançado</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>Palavras-chave</span>: Google Analytics 4, Power BI, SQL, Testes A/B, CRM</div>
+        </div>
+      </div>
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">Liderança<span class="resume-skill-level">: Avançado</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>Palavras-chave</span>: Gestão de Equipes, Mentoria, Agile Marketing, Comunicação</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="awards" data-section="awards">
+    <h2 class="resume-section-title">Prêmios</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="awards-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title">Profissional de Marketing do Ano</div>
+            <div class="resume-entry-organization">Associação Brasileira de Marketing</div>
+          </div>
+          <div class="resume-entry-date">nov. de 2023</div>
+        </div>
+        <div class="resume-entry-summary">
+          <p>Reconhecimento pelo impacto estratégico em campanhas de growth e liderança de equipe de alta performance.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="certificates" data-section="certificates">
+    <h2 class="resume-section-title">Certificados</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="certificates-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://skillshop.exceedlms.com/student/catalog">Google Analytics 4 Certification</a></div>
+            <div class="resume-entry-organization">Google</div>
+          </div>
+          <div class="resume-entry-date">mar. de 2023</div>
+        </div>
+      </div>
+      <div class="resume-entry" id="certificates-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://academy.hubspot.com/courses">HubSpot Marketing Hub Certificate</a></div>
+            <div class="resume-entry-organization">HubSpot Academy</div>
+          </div>
+          <div class="resume-entry-date">jun. de 2022</div>
+        </div>
+      </div>
+      <div class="resume-entry" id="certificates-3">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.facebook.com/business/learn/certification">Meta Certified Digital Marketing Associate</a></div>
+            <div class="resume-entry-organization">Meta</div>
+          </div>
+          <div class="resume-entry-date">set. de 2021</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="publications" data-section="publications">
+    <h2 class="resume-section-title">Publicações</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="publications-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.revistabrasileirademarketing.com.br">Personalização de Campanhas Digitais no E-commerce Brasileiro</a></div>
+            <div class="resume-entry-organization">Revista Brasileira de Marketing</div>
+          </div>
+          <div class="resume-entry-date">out. de 2018</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Estudo sobre o impacto da personalização em taxas de conversão.</p>
+            </li>
+            <li>
+              <p>Análise de dados de mais de 50 mil sessões em lojas virtuais.</p>
+            </li>
+            <li>
+              <p>Recomendações práticas para gestores de marketing.</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="references" data-section="references">
+    <h2 class="resume-section-title">Referências</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="references-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="mailto:ricardo.menezes@usp.br">Dr. Ricardo Menezes</a></div>
+            <div class="resume-entry-organization">Professor Orientador de Mestrado</div>
+          </div>
+          <div>+55 11 91234-5678</div>
+        </div>
+        <div class="resume-entry-summary">
+          <p>Mariana demonstra excelência estratégica e capacidade de liderança. Sua visão analítica e criatividade geram resultados consistentes.</p>
+        </div>
+      </div>
+      <div class="resume-entry" id="references-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="mailto:camila.torres@technova.com.br">Camila Torres</a></div>
+            <div class="resume-entry-organization">Diretora de Vendas</div>
+          </div>
+          <div>+55 11 99876-5432</div>
+        </div>
+        <div class="resume-entry-summary">
+          <p>Trabalhei diretamente com Mariana por 4 anos. É uma líder inspiradora, focada em dados e resultados.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="projects" data-section="projects">
+    <h2 class="resume-section-title">Projetos</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="projects-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.technova.com.br/vivamais">Campanha &quot;Viva Mais&quot;</a></div>
+            <div class="resume-entry-description">Campanha integrada de branding e performance para lançamento de linha de produtos.</div>
+          </div>
+          <div class="resume-entry-date">mar. de 2023–jun. de 2023</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Coordenei criação, mídia, influenciadores e assessoria de imprensa.</p>
+            </li>
+            <li>
+              <p>Resultado: 120% da meta de leads em 3 meses.</p>
+            </li>
+            <li>
+              <p>Aumento de 35% no reconhecimento de marca na região Sudeste.</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Palavras-chave</span>: Lançamento, Branding, Leads</div>
+      </div>
+      <div class="resume-entry" id="projects-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.varejomais.com.br/fidelidade">Programa de Fidelidade VarejoMais+</a></div>
+            <div class="resume-entry-description">Reestruturação do programa de fidelidade com foco em personalização.</div>
+          </div>
+          <div class="resume-entry-date">jan. de 2018–dez. de 2019</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Implementei segmentação comportamental e automação de e-mail marketing.</p>
+            </li>
+            <li>
+              <p>Aumento de 22% na retenção de clientes.</p>
+            </li>
+            <li>
+              <p>Crescimento de 18% no ticket médio dos participantes.</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Palavras-chave</span>: CRM, Fidelidade, Automação</div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="interests" data-section="interests">
+    <h2 class="resume-section-title">Interesses</h2>
+    <div class="resume-section-content">
+      <div class="resume-interest-item"><span class="resume-interest-name">Voluntariado</span>: Mentoria, Educação</div>
+      <div class="resume-interest-item"><span class="resume-interest-name">Bem-estar</span>: Corrida, Yoga, Meditação</div>
+      <div class="resume-interest-item"><span class="resume-interest-name">Cultura</span>: Literatura, Cinema, Música</div>
+    </div>
+  </section>
+  <section class="resume-section" id="volunteer" data-section="volunteer">
+    <h2 class="resume-section-title">Voluntariado</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="volunteer-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.mentesbrilhantes.org.br">Instituto Mentes Brilhantes</a></div>
+            <div class="resume-entry-organization">Mentora de Marketing</div>
+          </div>
+          <div class="resume-entry-date">fev. de 2021–Atual</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Oriento jovens empreendedores na criação de estratégias de marketing.</p>
+            </li>
+            <li>
+              <p>Conduzo workshops sobre redes sociais e posicionamento de marca.</p>
+            </li>
+            <li>
+              <p>Ajudo na captação de recursos e divulgação de projetos sociais.</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer class="resume-footer">Generated by <a href="https://yamlresume.dev">YAMLResume</a></footer>
+</body>
+
+</html>

@@ -1,0 +1,318 @@
+\documentclass[a4paper, serif, 10pt]{moderncv}
+
+%% moderncv
+% style and color
+\moderncvstyle{banking}
+\moderncvcolor{black}
+
+%% page layout/margins
+\usepackage[top=2.5cm, bottom=2.5cm, left=1.5cm, right=1.5cm]{geometry}
+
+\nopagenumbers{}
+
+%% Babel config for Norwegian language
+% ref:
+% - https://latex3.github.io/babel/guides/locale-norwegian.html
+\usepackage[norsk]{babel}
+
+%% fontspec
+\usepackage{fontspec}
+
+\IfFontExistsTF{Linux Libertine}{
+  \setmainfont[Ligatures={TeX, Common}, Numbers=OldStyle]{Linux Libertine}
+}{}
+\IfFontExistsTF{Linux Libertine O}{
+  \setmainfont[Ligatures={TeX, Common}, Numbers=OldStyle]{Linux Libertine O}
+}{}
+
+%% CTeX
+% CJK support, used to show CJK characters in the resume
+%
+% - fontset=none: disable builtin fontset but instead set the CJK font manually
+% - heading=false: disable ctex heading
+% - punct=kaiming: use kaiming punctuations styles for CJK
+% - scheme=plain: use plain scheme, do not override \normalsize font size
+% - space=auto: space settings for CJK characters
+%
+% ref:
+% - http://ctan.mirrorcatalogs.com/language/chinese/ctex/ctex.pdf
+\usepackage[UTF8, heading=false, punct=kaiming, scheme=plain, space=auto]{ctex}
+
+\IfFontExistsTF{Noto Serif CJK SC}{
+  \setCJKmainfont{Noto Serif CJK SC}
+}{}
+\IfFontExistsTF{Noto Sans CJK SC}{
+  \setCJKsansfont{Noto Sans CJK SC}
+}{}
+
+%% line spacing
+\usepackage{setspace}
+\setstretch{1.125}
+
+%% URL styling - use normal text instead of monospace
+\urlstyle{same}
+
+% Auto-underline all links
+% Defer until \begin{document} so hyperref is already loaded
+\AtBeginDocument{%
+  \let\oldhref\href
+  \renewcommand{\href}[2]{\oldhref{#1}{\underline{#2}}}%
+}
+
+%% Patch \httplink and \httpslink to handle full URLs
+% The original moderncv macros always prepend http:// or https:// to URLs.
+% This causes issues when the URL already has a protocol (e.g., https://example.com)
+% resulting in malformed URLs like https://https://example.com.
+% This patch checks if the URL already contains "://" and uses it directly if so.
+% Note: We use \str_set:Nx (x-expansion) to expand macros like \@homepage first.
+\ExplSyntaxOn
+\str_new:N \g_yamlresume_url_str
+
+\RenewDocumentCommand{\httpslink}{O{}m}{
+  \str_set:Nx \g_yamlresume_url_str {#2}
+  \str_if_in:NnTF \g_yamlresume_url_str {://}
+    { \url{#2} }
+    { \url{https://#2} }
+}
+
+\RenewDocumentCommand{\httplink}{O{}m}{
+  \str_set:Nx \g_yamlresume_url_str {#2}
+  \str_if_in:NnTF \g_yamlresume_url_str {://}
+    { \url{#2} }
+    { \url{http://#2} }
+}
+\ExplSyntaxOff
+
+\name{Marianne Strand}{}
+\title{Markedssjef | Merkevarebygging, digital vekst og datadrevet markedsføring}
+\phone[mobile]{+47 913 45 782}
+\email{marianne.strand@nordmark.no}
+\homepage{https://www.mariannestrand.no}
+
+\address{Drammensveien 112, Oslo, Oslo, Norge, 0273}{}{}
+
+\extrainfo{{\small \faLinkedin}\ \href{https://www.linkedin.com/in/mariannestrand}{@mariannestrand} {} {} {} • {} {} {} 
+{\small \faMedium}\ \href{https://medium.com/@mariannestrand}{@mariannestrand} {} {} {} • {} {} {} 
+{\small \faInstagram}\ \href{https://www.instagram.com/marianne.strand}{@marianne.strand}}
+
+\begin{document}
+
+\maketitle
+
+\section{Grunnleggende informasjon}
+
+\cvline{}{Markedssjef med ni års erfaring fra varehandel, teknologi og forbruksvarer. Jeg bygger merkevarer som vokser både i markedet og på bunnlinjen, og jeg trives best i skjæringspunktet mellom kommersiell strategi, kreativt håndverk og tall.
+%
+\begin{itemize}
+\item Leder tverrfaglige team på 8-12 personer innen merkevare, innhold, SoMe, SEO/SEA og markedskommunikasjon
+\item Dokumenterte resultater: 63 \% vekst i organiske besøk, 41 \% lavere kundeanskaffelseskost og 2,4x ROAS på betalte kanaler
+\item Datadrevet arbeidsmetodikk med GA4, Looker Studio, A/B-testing og budsjettallokering basert på markedsmiksmodeller
+\item Budsjettansvar opp mot 28 MNOK, med tett samarbeid med salg, produkt, kundeservice og konsernledelse
+\end{itemize}}
+\section{Utdanning}
+
+\cventry{aug. 2013–juni 2015}
+        {Master, Strategi og ledelse, Poeng: A+}
+        {Norges Handelshøyskole}
+        {\url{https://www.nhh.no}}
+        {}
+        {\begin{itemize}
+\item Fordypning i merkevarestrategi og kommersiell styring, med masteroppgave om kanalmiks i norsk varehandel
+\item Gjennomførte tre praksisbaserte casestudier for nordiske virksomheter i samarbeid med næringslivet
+\item Ble valgt til studenttillitsvalgt og koordinerte karrieredagen for 40 arbeidsgivere
+\end{itemize}
+\textbf{Kurs}: Markedsføringsledelse, Merkevarestrategi, Forbrukeratferd og beslutningspsykologi, Kvantitativ metode og markedsanalyse, Digital forretningsmodellering}
+
+\cventry{aug. 2010–juni 2013}
+        {Bachelor, Markedsføring og internasjonalisering, Poeng: B+}
+        {Handelshøyskolen BI}
+        {\url{https://www.bi.no}}
+        {}
+        {\begin{itemize}
+\item Utvekslingsopphold ett semester ved Universitetet i Amsterdam innen digital markedsføring
+\item Prosjektleder for studentforeningens sponsorprogram, med ansvar for 1,2 MNOK i sponsorinntekter
+\end{itemize}
+\textbf{Kurs}: Markedsføringsledelse, Salgsledelse og forhandlingsteknikk, Statistikk og økonomistyring, Internasjonal markedsføring}
+\section{Arbeidserfaring}
+
+\cventry{mars 2021–Nå}
+        {Markedssjef}
+        {Nordmark Retail AS}
+        {\url{https://www.nordmark.no}}
+        {}
+        {\begin{itemize}
+\item Leder markedsavdelingen med 11 medarbeidere og budsjettansvar på 28 MNOK fordelt på merkevare, ytelsesmarkedsføring og CRM
+\item Omdefinerte merkevareplattformen og lanserte ny visuell identitet, noe som løftet uhjulpet kjennskap fra 24 \% til 39 \% på to år
+\item Bygget opp et datadrevet kanalhierarki som reduserte kundeanskaffelseskost med 41 \% og økte ROAS fra 1,6x til 2,4x
+\item Etablerte et lojalitetsprogram med 145 000 medlemmer og 18 \% høyere kjøpsfrekvens blant aktive medlemmer
+\item Innførte månedlig markedscockpit i Looker Studio som beslutningsgrunnlag for ledergruppen
+\item Fungerer som nærmeste leder for fire spesialister og driver kompetanseutvikling og rekruttering i avdelingen
+\end{itemize}
+\textbf{Nøkkelord}: Merkevarestrategi, Budsjettansvar, Teamledelse, Datadrevet markedsføring, CRM og lojalitet}
+
+\cventry{sep. 2018–feb. 2021}
+        {Senior digital markedssjef}
+        {Fjordlys Teknologi AS}
+        {\url{https://www.fjordlys.no}}
+        {}
+        {\begin{itemize}
+\item Ansvarlig for betalte og organiske kanaler for et abonnementsprodukt med 220 000 aktive brukere
+\item Skalerte innholdsmarkedsføring fra 4 til 30 publiserte artikler i måneden, med 63 \% vekst i organisk trafikk
+\item Ledet konverteringsoptimalisering på tvers av landingssider og onboarding, med 27 \% høyere trial-til-betalt-rate
+\item Satte opp attribusjonsmodell i GA360 og flyttet budsjett fra display til søk og video basert på inkrementelle tester
+\item Jobbet smidig i tverrfaglige produktteam med ukentlig eksperimentering og delt resultatansvar med produkt og salg
+\end{itemize}
+\textbf{Nøkkelord}: SEO og SEA, Konverteringsoptimalisering, Innholdsmarkedsføring, GA4 og attribusjon, Vekststrategi}
+
+\cventry{aug. 2015–aug. 2018}
+        {Markedskonsulent}
+        {Bygg og Bo Norge AS}
+        {\url{https://www.byggogbo.no}}
+        {}
+        {\begin{itemize}
+\item Planla og gjennomførte 14 kampanjer i året på tvers av butikk, netthandel og lokale medier
+\item Forvaltet mediebyrårelasjonen og budsjetter på 6 MNOK med månedlig resultatrapportering
+\item Bygget opp selskapets første e-postprogram med segmentering, som økte gjenkjøp med 12 \%
+\end{itemize}
+\textbf{Nøkkelord}: Kampanjeplanlegging, Mediebyrå, E-postmarkedsføring}
+\section{Språk}
+
+\cvline{Norsk}{Morsmål eller tospråklig nivå \hfill \textbf{Nøkkelord}: Morsmål}
+\cvline{Engelsk}{Fullt profesjonelt nivå \hfill \textbf{Nøkkelord}: TOEFL 112, Forretningsforhandlinger}
+\cvline{Tysk}{Begrenset arbeidskunnskap \hfill \textbf{Nøkkelord}: Daglig kommunikasjon}
+\cvline{Spansk}{Grunnleggende nivå \hfill \textbf{Nøkkelord}: Grunnleggende}
+\section{Ferdigheter}
+
+\cvline{Merkevare og strategi}{Ekspert \hfill \textbf{Nøkkelord}: Merkevareposisjonering, Markedsstrategi, Kundeinnsikt, Budsjettstyring}
+\cvline{Digital markedsføring}{Avansert \hfill \textbf{Nøkkelord}: SEO og SEA, Meta Ads, Programmatisk kjøp, Marketing automation}
+\cvline{Analyse og innsikt}{Avansert \hfill \textbf{Nøkkelord}: GA4, Looker Studio, A/B-testing, Attribusjonsmodeller}
+\cvline{Ledelse og samarbeid}{Ekspert \hfill \textbf{Nøkkelord}: Teamledelse, Prosjektledelse, Tverrfaglig arbeid, Leverandørstyring}
+\section{Utmerkelser}
+
+\cventry{nov. 2023}
+        {Norsk Markedsføringsforening}
+        {Årets markedssjef}
+        {}
+        {}
+        {Tildelt for dokumentert vekst i merkevarekjennskap og lønnsomhet hos Nordmark Retail AS, samt for sterk utvikling av eget markedsteam.}
+
+\cventry{apr. 2022}
+        {Anfo}
+        {Gullblyanten - sølv i kategorien kampanje}
+        {}
+        {}
+        {Priset for kampanjen "Hjem for enhver sesong", som økte netthandelsomsetningen med 22 \% i løpet av kampanjeperioden.}
+\section{Sertifikater}
+
+\cventry{mars 2023}
+        {Google Skillshop}
+        {Google Analytics 4 Certification}
+        {\url{https://skillshop.exceedlms.com/}}
+        {}
+        {}
+
+\cventry{jan. 2022}
+        {HubSpot Academy}
+        {HubSpot Content Marketing Certification}
+        {\url{https://academy.hubspot.com/}}
+        {}
+        {}
+
+\cventry{sep. 2021}
+        {Meta}
+        {Meta Blueprint - Media Buying Professional}
+        {\url{https://www.facebook.com/business/learn}}
+        {}
+        {}
+\section{Publikasjoner}
+
+\cventry{feb. 2023}
+        {Derfor vinner datadrevet merkevarebygging}
+        {Kampanje}
+        {\url{https://kampanje.com/}}
+        {}
+        {\begin{itemize}
+\item Kronikk om hvordan norske merkevarer kan kombinere merkevarebygging og ytelsesmarkedsføring i samme budsjettramme
+\item Presenterer en enkel modell for å måle inkrementell effekt av merkevareinvesteringer
+\end{itemize}}
+
+\cventry{juni 2021}
+        {Lojalitet i norsk varehandel - fra poeng til relasjon}
+        {Magma - Econas tidsskrift for økonomi og ledelse}
+        {\url{https://www.magma.no/}}
+        {}
+        {\begin{itemize}
+\item Fagartikkel basert på egne data fra 145 000 medlemmer i et lojalitetsprogram
+\item Viser sammenhengen mellom personalisert kommunikasjon og kjøpsfrekvens
+\end{itemize}}
+\section{Referanser}
+
+\cventry{\emaillink[henrik.aalborg@nordmark.no]{henrik.aalborg@nordmark.no}}
+        {Kommersiell direktør, Nordmark Retail AS}
+        {Henrik Aalborg}
+        {+47 901 22 348}
+        {}
+        {Marianne er en av de mest komplette markedssjefene jeg har jobbet med. Hun kombinerer kreativ tyngde med kommersiell forståelse, og hun har bygget et team som leverer jevnt på høyt nivå.}
+
+\cventry{\emaillink[ingvild.krogh@fjordlystek.no]{ingvild.krogh@fjordlystek.no}}
+        {Tidligere markedsdirektør, Fjordlys Teknologi AS}
+        {Ingvild Krogh}
+        {+47 926 78 019}
+        {}
+        {I tre år drev Marianne vår betalte og organiske vekststrategi. Hun er analytisk sterk, tar beslutninger på kort varsel og følger alltid opp med tydelige resultater.}
+\section{Prosjekter}
+
+\cventry{jan. 2022–sep. 2023}
+        {Lojalitetsprogram med 145 000 medlemmer for en norsk varehandelskjede}
+        {Nordmark Lojalitetsprogram}
+        {\url{https://www.nordmark.no/lojal}}
+        {}
+        {\begin{itemize}
+\item Definerte medlemsnivåer, opptjeningslogikk og personalisert kommunikasjon i samarbeid med CRM-leverandør
+\item Økte andelen aktive medlemmer fra 38 \% til 61 \% gjennom onboarding- og reaktiveringsflyter
+\item Løftet kjøpsfrekvensen blant medlemmer med 18 \% sammenlignet med ikke-medlemmer
+\end{itemize}
+\textbf{Nøkkelord}: Lojalitetsprogram, CRM, Segmentering, Personalisering}
+
+\cventry{mars 2019–nov. 2020}
+        {Reposisjonering og ny visuell identitet for en nordisk teknologivirksomhet}
+        {Fjordlys Merkevareløft}
+        {\url{https://www.fjordlys.no/om-oss}}
+        {}
+        {\begin{itemize}
+\item Ledet prosessen fra innsiktsarbeid og posisjonering til ny visuell identitet og tonality
+\item Rullet ut nytt brand på tvers av produkt, nettside, SoMe og annonsering i tre markeder
+\item Resulterte i 29 \% høyere merkevarepreferanse i målgruppen 25-45 år
+\end{itemize}
+\textbf{Nøkkelord}: Reposisjonering, Visuell identitet, Merkevareinnsikt}
+\section{Interesser}
+
+\cvline{Friluftsliv}{Fjellturer, Langrenn, Padling}
+\cvline{Mat og matkultur}{Matlaging, Vin, Reise}
+\cvline{Litteratur}{Sakprosa, Romaner}
+\section{Frivillig arbeid}
+
+\cventry{sep. 2019–Nå}
+        {Mentor i mentorprogrammet}
+        {Norsk Markedsføringsforening}
+        {\url{https://www.markedsforing.no}}
+        {}
+        {\begin{itemize}
+\item Veileder yngre markedsførere i karrierevalg, posisjonering og faglig utvikling
+\item Foredrar på årskonferansen om datadrevet merkevarebygging og kanalmiks
+\item Bidrar i faggruppen for merkevare og innsikt med arrangementer fire ganger i året
+\end{itemize}}
+    
+
+\cventry{feb. 2018–des. 2021}
+        {Frivillig markedsfører}
+        {Oslo Røde Kors}
+        {\url{https://www.rodekors.no}}
+        {}
+        {\begin{itemize}
+\item Utviklet lokalforeningens kommunikasjonsplan og sosiale medier-strategi på frivillig basis
+\item Rekrutterte 46 nye frivillige gjennom kampanjen "En time er nok"
+\item Prosjektleder for den årlige innsamlingsaksjonen, med 780 000 kroner innsamlet i 2020
+\end{itemize}}
+    
+\end{document}

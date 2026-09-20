@@ -1,0 +1,287 @@
+\documentclass[a4paper, serif, 10pt]{moderncv}
+
+%% moderncv
+% style and color
+\moderncvstyle{banking}
+\moderncvcolor{black}
+
+%% page layout/margins
+\usepackage[top=2.5cm, bottom=2.5cm, left=1.5cm, right=1.5cm]{geometry}
+
+\nopagenumbers{}
+
+%% Babel config for Brazilian Portuguese language
+% ref:
+% - https://latex3.github.io/babel/guides/locale-portuguese.html
+\usepackage[brazilian]{babel}
+
+%% fontspec
+\usepackage{fontspec}
+
+\IfFontExistsTF{Linux Libertine}{
+  \setmainfont[Ligatures={TeX, Common}, Numbers=OldStyle]{Linux Libertine}
+}{}
+\IfFontExistsTF{Linux Libertine O}{
+  \setmainfont[Ligatures={TeX, Common}, Numbers=OldStyle]{Linux Libertine O}
+}{}
+
+%% CTeX
+% CJK support, used to show CJK characters in the resume
+%
+% - fontset=none: disable builtin fontset but instead set the CJK font manually
+% - heading=false: disable ctex heading
+% - punct=kaiming: use kaiming punctuations styles for CJK
+% - scheme=plain: use plain scheme, do not override \normalsize font size
+% - space=auto: space settings for CJK characters
+%
+% ref:
+% - http://ctan.mirrorcatalogs.com/language/chinese/ctex/ctex.pdf
+\usepackage[UTF8, heading=false, punct=kaiming, scheme=plain, space=auto]{ctex}
+
+\IfFontExistsTF{Noto Serif CJK SC}{
+  \setCJKmainfont{Noto Serif CJK SC}
+}{}
+\IfFontExistsTF{Noto Sans CJK SC}{
+  \setCJKsansfont{Noto Sans CJK SC}
+}{}
+
+%% line spacing
+\usepackage{setspace}
+\setstretch{1.125}
+
+%% URL styling - use normal text instead of monospace
+\urlstyle{same}
+
+% Auto-underline all links
+% Defer until \begin{document} so hyperref is already loaded
+\AtBeginDocument{%
+  \let\oldhref\href
+  \renewcommand{\href}[2]{\oldhref{#1}{\underline{#2}}}%
+}
+
+%% Patch \httplink and \httpslink to handle full URLs
+% The original moderncv macros always prepend http:// or https:// to URLs.
+% This causes issues when the URL already has a protocol (e.g., https://example.com)
+% resulting in malformed URLs like https://https://example.com.
+% This patch checks if the URL already contains "://" and uses it directly if so.
+% Note: We use \str_set:Nx (x-expansion) to expand macros like \@homepage first.
+\ExplSyntaxOn
+\str_new:N \g_yamlresume_url_str
+
+\RenewDocumentCommand{\httpslink}{O{}m}{
+  \str_set:Nx \g_yamlresume_url_str {#2}
+  \str_if_in:NnTF \g_yamlresume_url_str {://}
+    { \url{#2} }
+    { \url{https://#2} }
+}
+
+\RenewDocumentCommand{\httplink}{O{}m}{
+  \str_set:Nx \g_yamlresume_url_str {#2}
+  \str_if_in:NnTF \g_yamlresume_url_str {://}
+    { \url{#2} }
+    { \url{http://#2} }
+}
+\ExplSyntaxOff
+
+\name{Mariana Alves de Souza}{}
+\title{Gerente de Marketing Digital e Estratégia de Marca}
+\phone[mobile]{+55 11 98765-4321}
+\email{mariana.souza@marketing.com.br}
+\homepage{https://www.marianasouza.com.br}
+
+\address{Av. Paulista, 1000 - Bela Vista, São Paulo, SP, Brasil, 01310-100}{}{}
+
+\extrainfo{{\small \faLinkedin}\ \href{https://www.linkedin.com/in/marianasouza}{@marianasouza} {} {} {} • {} {} {} 
+{\small \faMedium}\ \href{https://medium.com/@marianasouza}{@marianasouza}}
+
+\begin{document}
+
+\maketitle
+
+\section{Informações Básicas}
+
+\cvline{}{Gerente de marketing com mais de 8 anos de experiência em estratégias digitais, branding e growth para empresas de tecnologia e varejo. Especialista em planejamento de campanhas multicanal, análise de dados e liderança de equipes de alta performance.
+%
+\begin{itemize}
+\item Aumento de 45\% no ROI de campanhas pagas em 12 meses.
+\item Gestão de orçamentos anuais superiores a R\$ 5 milhões.
+\item Implementação de cultura data-driven com CRM e automação de marketing.
+\item Liderança de equipes multidisciplinares de até 12 pessoas.
+\end{itemize}
+Busco novos desafios para conectar marcas a públicos estratégicos e gerar crescimento sustentável.}
+\section{Formação}
+
+\cventry{mar. de 2016–dez. de 2017}
+        {Mestrado, Marketing, Nota: 9.1}
+        {Universidade de São Paulo}
+        {\url{https://www5.usp.br/}}
+        {}
+        {\begin{itemize}
+\item Dissertação sobre personalização de campanhas digitais em e-commerce.
+\item Publicação de artigo em congresso nacional de marketing.
+\item Média geral 9.1, com destaque em projetos aplicados.
+\end{itemize}
+\textbf{Cursos}: Comportamento do Consumidor, Pesquisa de Mercado, Marketing Digital, Branding e Gestão de Marca, Análise Estatística para Marketing, Estratégia de Preços, Comunicação Integrada}
+
+\cventry{fev. de 2010–dez. de 2014}
+        {Bacharelado, Administração de Empresas, Nota: 8.7}
+        {Fundação Getulio Vargas}
+        {\url{https://fgv.br/}}
+        {}
+        {\begin{itemize}
+\item Formação sólida em administração com foco em marketing.
+\item Participação em empresa júnior na área de consultoria de marketing.
+\end{itemize}
+\textbf{Cursos}: Teoria Geral da Administração, Marketing, Finanças Corporativas, Estatística, Gestão de Pessoas}
+\section{Experiência Profissional}
+
+\cventry{jan. de 2020–Atual}
+        {Gerente de Marketing}
+        {TechNova Brasil}
+        {\url{https://www.technova.com.br}}
+        {}
+        {\begin{itemize}
+\item Lidero equipe de 12 profissionais de marketing, design e conteúdo.
+\item Responsável por estratégia de marca, campanhas digitais e geração de demanda.
+\item Implementei modelo de atribuição multicanal que aumentou em 45\% a eficiência do investimento.
+\item Geri orçamento anual de R\$ 5,2 milhões com ROI médio de 3,8x.
+\item Desenvolvi parcerias com influenciadores e mídia para expansão de mercado.
+\end{itemize}
+\textbf{Palavras-chave}: Branding, Growth, Liderança, Data-driven, Performance}
+
+\cventry{jun. de 2017–dez. de 2019}
+        {Analista de Marketing Sênior}
+        {VarejoMais}
+        {\url{https://www.varejomais.com.br}}
+        {}
+        {\begin{itemize}
+\item Planejei e executei campanhas de mídia paga em Google Ads, Meta Ads e LinkedIn Ads.
+\item Reduzi o custo por aquisição em 30\% em 8 meses.
+\item Criei estratégias de CRM e automação que elevaram a retenção em 22\%.
+\item Analisei métricas e apresentei relatórios executivos mensais.
+\end{itemize}
+\textbf{Palavras-chave}: Mídia Paga, CRM, SEO, Analytics, E-commerce}
+
+\cventry{ago. de 2015–mai. de 2017}
+        {Analista de Marketing}
+        {Agência CriativaZ}
+        {\url{https://www.criativaz.com.br}}
+        {}
+        {\begin{itemize}
+\item Atendi contas de varejo e tecnologia, desenvolvendo planos de comunicação.
+\item Gerenciei redes sociais e produzi conteúdo para blogs e newsletters.
+\item Auxiliei no planejamento de eventos e lançamentos de produtos.
+\end{itemize}
+\textbf{Palavras-chave}: Social Media, Conteúdo, Eventos, Planejamento}
+\section{Idiomas}
+
+\cvline{Português}{Nativo ou Bilíngue \hfill \textbf{Palavras-chave}: Nativo}
+\cvline{Inglês}{Proficiência Profissional Fluente \hfill \textbf{Palavras-chave}: TOEIC 950, Reuniões internacionais}
+\cvline{Espanhol}{Proficiência Profissional Limitada \hfill \textbf{Palavras-chave}: Conversação básica}
+\section{Competências}
+
+\cvline{Estratégia de Marketing}{Especialista \hfill \textbf{Palavras-chave}: Planejamento, Branding, Posicionamento, Go-to-market}
+\cvline{Marketing Digital}{Avançado \hfill \textbf{Palavras-chave}: Google Ads, Meta Ads, LinkedIn Ads, SEO, SEM}
+\cvline{Análise de Dados}{Avançado \hfill \textbf{Palavras-chave}: Google Analytics 4, Power BI, SQL, Testes A/B, CRM}
+\cvline{Liderança}{Avançado \hfill \textbf{Palavras-chave}: Gestão de Equipes, Mentoria, Agile Marketing, Comunicação}
+\section{Prêmios}
+
+\cventry{nov. de 2023}
+        {Associação Brasileira de Marketing}
+        {Profissional de Marketing do Ano}
+        {}
+        {}
+        {Reconhecimento pelo impacto estratégico em campanhas de growth e liderança de equipe de alta performance.}
+\section{Certificados}
+
+\cventry{mar. de 2023}
+        {Google}
+        {Google Analytics 4 Certification}
+        {\url{https://skillshop.exceedlms.com/student/catalog}}
+        {}
+        {}
+
+\cventry{jun. de 2022}
+        {HubSpot Academy}
+        {HubSpot Marketing Hub Certificate}
+        {\url{https://academy.hubspot.com/courses}}
+        {}
+        {}
+
+\cventry{set. de 2021}
+        {Meta}
+        {Meta Certified Digital Marketing Associate}
+        {\url{https://www.facebook.com/business/learn/certification}}
+        {}
+        {}
+\section{Publicações}
+
+\cventry{out. de 2018}
+        {Personalização de Campanhas Digitais no E-commerce Brasileiro}
+        {Revista Brasileira de Marketing}
+        {\url{https://www.revistabrasileirademarketing.com.br}}
+        {}
+        {\begin{itemize}
+\item Estudo sobre o impacto da personalização em taxas de conversão.
+\item Análise de dados de mais de 50 mil sessões em lojas virtuais.
+\item Recomendações práticas para gestores de marketing.
+\end{itemize}}
+\section{Referências}
+
+\cventry{\emaillink[ricardo.menezes@usp.br]{ricardo.menezes@usp.br}}
+        {Professor Orientador de Mestrado}
+        {Dr. Ricardo Menezes}
+        {+55 11 91234-5678}
+        {}
+        {Mariana demonstra excelência estratégica e capacidade de liderança. Sua visão analítica e criatividade geram resultados consistentes.}
+
+\cventry{\emaillink[camila.torres@technova.com.br]{camila.torres@technova.com.br}}
+        {Diretora de Vendas}
+        {Camila Torres}
+        {+55 11 99876-5432}
+        {}
+        {Trabalhei diretamente com Mariana por 4 anos. É uma líder inspiradora, focada em dados e resultados.}
+\section{Projetos}
+
+\cventry{mar. de 2023–jun. de 2023}
+        {Campanha integrada de branding e performance para lançamento de linha de produtos.}
+        {Campanha "Viva Mais"}
+        {\url{https://www.technova.com.br/vivamais}}
+        {}
+        {\begin{itemize}
+\item Coordenei criação, mídia, influenciadores e assessoria de imprensa.
+\item Resultado: 120\% da meta de leads em 3 meses.
+\item Aumento de 35\% no reconhecimento de marca na região Sudeste.
+\end{itemize}
+\textbf{Palavras-chave}: Lançamento, Branding, Leads}
+
+\cventry{jan. de 2018–dez. de 2019}
+        {Reestruturação do programa de fidelidade com foco em personalização.}
+        {Programa de Fidelidade VarejoMais+}
+        {\url{https://www.varejomais.com.br/fidelidade}}
+        {}
+        {\begin{itemize}
+\item Implementei segmentação comportamental e automação de e-mail marketing.
+\item Aumento de 22\% na retenção de clientes.
+\item Crescimento de 18\% no ticket médio dos participantes.
+\end{itemize}
+\textbf{Palavras-chave}: CRM, Fidelidade, Automação}
+\section{Interesses}
+
+\cvline{Voluntariado}{Mentoria, Educação}
+\cvline{Bem-estar}{Corrida, Yoga, Meditação}
+\cvline{Cultura}{Literatura, Cinema, Música}
+\section{Voluntariado}
+
+\cventry{fev. de 2021–Atual}
+        {Mentora de Marketing}
+        {Instituto Mentes Brilhantes}
+        {\url{https://www.mentesbrilhantes.org.br}}
+        {}
+        {\begin{itemize}
+\item Oriento jovens empreendedores na criação de estratégias de marketing.
+\item Conduzo workshops sobre redes sociais e posicionamento de marca.
+\item Ajudo na captação de recursos e divulgação de projetos sociais.
+\end{itemize}}
+    
+\end{document}

@@ -1,0 +1,278 @@
+\documentclass[a4paper, serif, 10pt]{moderncv}
+
+%% moderncv
+% style and color
+\moderncvstyle{banking}
+\moderncvcolor{black}
+
+%% page layout/margins
+\usepackage[top=2.5cm, bottom=2.5cm, left=1.5cm, right=1.5cm]{geometry}
+
+\nopagenumbers{}
+
+%% Babel config for German language
+% ref:
+% - https://latex3.github.io/babel/guides/locale-german.html
+\usepackage[ngerman]{babel}
+
+%% fontspec
+\usepackage{fontspec}
+
+\IfFontExistsTF{Linux Libertine}{
+  \setmainfont[Ligatures={TeX, Common}, Numbers=OldStyle]{Linux Libertine}
+}{}
+\IfFontExistsTF{Linux Libertine O}{
+  \setmainfont[Ligatures={TeX, Common}, Numbers=OldStyle]{Linux Libertine O}
+}{}
+
+%% CTeX
+% CJK support, used to show CJK characters in the resume
+%
+% - fontset=none: disable builtin fontset but instead set the CJK font manually
+% - heading=false: disable ctex heading
+% - punct=kaiming: use kaiming punctuations styles for CJK
+% - scheme=plain: use plain scheme, do not override \normalsize font size
+% - space=auto: space settings for CJK characters
+%
+% ref:
+% - http://ctan.mirrorcatalogs.com/language/chinese/ctex/ctex.pdf
+\usepackage[UTF8, heading=false, punct=kaiming, scheme=plain, space=auto]{ctex}
+
+\IfFontExistsTF{Noto Serif CJK SC}{
+  \setCJKmainfont{Noto Serif CJK SC}
+}{}
+\IfFontExistsTF{Noto Sans CJK SC}{
+  \setCJKsansfont{Noto Sans CJK SC}
+}{}
+
+%% line spacing
+\usepackage{setspace}
+\setstretch{1.125}
+
+%% URL styling - use normal text instead of monospace
+\urlstyle{same}
+
+% Auto-underline all links
+% Defer until \begin{document} so hyperref is already loaded
+\AtBeginDocument{%
+  \let\oldhref\href
+  \renewcommand{\href}[2]{\oldhref{#1}{\underline{#2}}}%
+}
+
+%% Patch \httplink and \httpslink to handle full URLs
+% The original moderncv macros always prepend http:// or https:// to URLs.
+% This causes issues when the URL already has a protocol (e.g., https://example.com)
+% resulting in malformed URLs like https://https://example.com.
+% This patch checks if the URL already contains "://" and uses it directly if so.
+% Note: We use \str_set:Nx (x-expansion) to expand macros like \@homepage first.
+\ExplSyntaxOn
+\str_new:N \g_yamlresume_url_str
+
+\RenewDocumentCommand{\httpslink}{O{}m}{
+  \str_set:Nx \g_yamlresume_url_str {#2}
+  \str_if_in:NnTF \g_yamlresume_url_str {://}
+    { \url{#2} }
+    { \url{https://#2} }
+}
+
+\RenewDocumentCommand{\httplink}{O{}m}{
+  \str_set:Nx \g_yamlresume_url_str {#2}
+  \str_if_in:NnTF \g_yamlresume_url_str {://}
+    { \url{#2} }
+    { \url{http://#2} }
+}
+\ExplSyntaxOff
+
+\name{Julia Becker}{}
+\title{Customer Success Manager mit Fokus auf Kundenbindung und SaaS-Wachstum}
+\phone[mobile]{+49 30 12345678}
+\email{julia.becker@example.de}
+\homepage{https://www.juliabecker.de}
+
+\address{Friedrichstraße 123, Berlin, Berlin, Deutschland, 10117}{}{}
+
+\extrainfo{{\small \faLinkedin}\ \href{https://www.linkedin.com/in/julia-becker-csm}{@julia-becker-csm} {} {} {} • {} {} {} 
+{\small \faGithub}\ \href{https://github.com/juliabecker}{@juliabecker}}
+
+\begin{document}
+
+\maketitle
+
+\section{Basisinformationen}
+
+\cvline{}{Customer Success Manager mit über sechs Jahren Erfahrung in der Betreuung von B2B-Kunden im SaaS-Umfeld. Ich verbinde Datenanalyse mit empathischer Kommunikation, um Kundenziele zu erreichen und nachhaltige Geschäftsbeziehungen aufzubauen.
+%
+\begin{itemize}
+\item Verantwortung für ein Portfolio mit einem jährlichen Umsatzvolumen von über 4 Mio. EUR
+\item Erfolgreiche Steigerung der Kundenbindung um 18 \% durch proaktives Onboarding und QBRs
+\item Ausgeprägte Stärke in Eskalationsmanagement, Stakeholder-Kommunikation und vertraglichen Verhandlungen
+\item Technische Affinität zu CRM-, Ticketing- und Customer-Success-Plattformen wie Salesforce, Gainsight und Zendesk
+\end{itemize}}
+\section{Ausbildung}
+
+\cventry{Okt. 2014–Sept. 2016}
+        {Master, Wirtschaftsingenieurwesen, Punkte: 1,7}
+        {Technische Universität Berlin}
+        {\url{https://www.tu.berlin}}
+        {}
+        {\begin{itemize}
+\item Schwerpunkt auf digitalen Geschäftsmodellen und kundenorientierter Unternehmensführung
+\item Masterarbeit über Erfolgsfaktoren von Customer-Success-Organisationen im B2B-SaaS
+\end{itemize}
+\textbf{Kurse}: Strategisches Management, Marketing und Vertrieb, Datenanalyse für Entscheider, Projektmanagement, Verhandlungsführung, Service Design, Business Process Management, Customer Relationship Management}
+
+\cventry{Okt. 2011–Sept. 2014}
+        {Bachelor, Betriebswirtschaftslehre, Punkte: 2,0}
+        {Humboldt-Universität zu Berlin}
+        {\url{https://www.hu-berlin.de}}
+        {}
+        {\begin{itemize}
+\item Fundierte betriebswirtschaftliche Grundlagen mit Fokus auf Marketing und Organisation
+\item Praxisprojekt zur Kundenbindung im Einzelhandel
+\end{itemize}
+\textbf{Kurse}: Allgemeine Betriebswirtschaftslehre, Mikroökonomie, Statistik, Marketing, Personal und Organisation, Wirtschaftsinformatik}
+\section{Berufserfahrung}
+
+\cventry{Jan. 2022–Heute}
+        {Senior Customer Success Manager}
+        {CloudBridge GmbH}
+        {\url{https://www.cloudbridge.de}}
+        {}
+        {\begin{itemize}
+\item Betreuung eines Portfolios von 25 strategischen Enterprise-Kunden mit einem ARR von 5,2 Mio. EUR
+\item Entwicklung und Umsetzung von Customer-Success-Plänen zur Steigerung der Produktadoption und Kundenzufriedenheit (NPS +22)
+\item Durchführung von vierteljährlichen Business Reviews (QBRs) mit C-Level-Stakeholdern
+\item Identifikation von Upsell- und Cross-Sell-Potenzialen in enger Zusammenarbeit mit dem Vertrieb
+\item Proaktives Churn-Management durch Risikoanalyse und Eskalationspläne
+\end{itemize}
+\textbf{Schlüsselwörter}: Kundenbindung, Onboarding, QBR, Upselling, Churn-Management, Salesforce, Gainsight}
+
+\cventry{März 2019–Dez. 2021}
+        {Customer Success Manager}
+        {DataFlow AG}
+        {\url{https://www.dataflow.de}}
+        {}
+        {\begin{itemize}
+\item Verantwortung für 60 mittelständische Kunden im DACH-Raum
+\item Aufbau eines standardisierten Onboarding-Prozesses, der die Time-to-Value um 30 \% verkürzte
+\item Analyse von Nutzungsdaten zur Ableitung konkreter Handlungsempfehlungen
+\item Enge Zusammenarbeit mit Product und Support zur Weitergabe von Kundenfeedback
+\item Erstellung von Health-Score-Modellen zur Früherkennung von Abwanderungsrisiken
+\end{itemize}
+\textbf{Schlüsselwörter}: SaaS, Onboarding, Health Score, Datenanalyse, Zendesk}
+
+\cventry{Juli 2017–Feb. 2019}
+        {Junior Customer Success Manager}
+        {Nordwind Solutions}
+        {\url{https://www.nordwind-solutions.de}}
+        {}
+        {\begin{itemize}
+\item First-Level-Support für 120 Geschäftskunden per Telefon, E-Mail und Chat
+\item Dokumentation von Kundenanfragen und Pflege der Wissensdatenbank
+\item Vorbereitung von Reports und Präsentationen für das Customer-Success-Team
+\item Mitwirkung an Retentionskampagnen und Kundenzufriedenheitsumfragen
+\end{itemize}
+\textbf{Schlüsselwörter}: Kundenservice, CRM, Reporting, Retention, Kommunikation}
+\section{Sprachen}
+
+\cvline{Deutsch}{Muttersprache oder zweisprachig \hfill \textbf{Schlüsselwörter}: Muttersprache}
+\cvline{Englisch}{Verhandlungssichere Kenntnisse \hfill \textbf{Schlüsselwörter}: TOEFL 110, Verhandlungssicher}
+\cvline{Spanisch}{Gute Kenntnisse \hfill \textbf{Schlüsselwörter}: Grundkenntnisse}
+\section{Fähigkeiten}
+
+\cvline{Customer Success Management}{Experte \hfill \textbf{Schlüsselwörter}: Kundenbindung, Onboarding, QBR, Churn-Management, Upselling}
+\cvline{CRM und Tools}{Erfahren \hfill \textbf{Schlüsselwörter}: Salesforce, Gainsight, Zendesk, Jira, Confluence, Tableau}
+\cvline{Kommunikation und Führung}{Erfahren \hfill \textbf{Schlüsselwörter}: Stakeholder-Management, Eskalationsmanagement, Verhandlung, Präsentation, Mentoring}
+\section{Auszeichnungen}
+
+\cventry{Nov. 2023}
+        {CloudBridge GmbH}
+        {Customer-Success-Manager des Jahres}
+        {}
+        {}
+        {Auszeichnung für herausragende Leistungen bei der Steigerung der Kundenbindung und der Entwicklung innovativer Success-Programme.}
+
+\cventry{Dez. 2020}
+        {DataFlow AG}
+        {Beste Teamleistung}
+        {}
+        {}
+        {Anerkennung für kollaborative Zusammenarbeit und Unterstützung kollegenübergreifender Projekte.}
+\section{Zertifikate}
+
+\cventry{Juni 2021}
+        {SuccessCOACHING}
+        {Certified Customer Success Manager (CCSM)}
+        {\url{https://www.successcoaching.com/certification}}
+        {}
+        {}
+
+\cventry{Feb. 2020}
+        {Salesforce}
+        {Salesforce Certified Administrator}
+        {\url{https://trailhead.salesforce.com/credentials/administrator}}
+        {}
+        {}
+
+\cventry{Sept. 2022}
+        {Scrum.org}
+        {Professional Scrum Master I}
+        {\url{https://www.scrum.org/professional-scrum-master-i-certification}}
+        {}
+        {}
+\section{Veröffentlichungen}
+
+\cventry{März 2022}
+        {Kundenbindung im digitalen Zeitalter - Strategien für SaaS-Unternehmen}
+        {Journal für Customer Management}
+        {\url{https://www.example.com/publikation/kundenbindung-saas}}
+        {}
+        {\begin{itemize}
+\item Analyse proaktiver Customer-Success-Ansätze zur Reduzierung von Churn
+\item Fallstudien aus dem B2B-SaaS-Markt
+\item Handlungsempfehlungen für Onboarding und QBRs
+\end{itemize}}
+\section{Projekte}
+
+\cventry{Jan. 2023–Juni 2023}
+        {Neugestaltung eines Self-Service-Portals zur Verbesserung der Kundenerfahrung}
+        {Kundenportal Relaunch}
+        {\url{https://www.cloudbridge.de/kundenportal}}
+        {}
+        {\begin{itemize}
+\item Leitung eines cross-funktionalen Teams aus Product, Design und Support
+\item Durchführung von Kundeninterviews und Usability-Tests
+\item Steigerung der Portalnutzung um 45 \% innerhalb von drei Monaten
+\end{itemize}
+\textbf{Schlüsselwörter}: Customer Experience, Self-Service, Produktmanagement}
+
+\cventry{März 2020–Nov. 2020}
+        {Entwicklung eines datenbasierten Frühwarnsystems zur Churn-Prävention}
+        {Health-Score-Modell}
+        {\url{https://www.dataflow.de/health-score}}
+        {}
+        {\begin{itemize}
+\item Integration von Nutzungs-, Support- und Umfragedaten
+\item Definition von Schwellenwerten und automatisierten Warnmeldungen
+\item Reduzierung der Churn-Rate um 12 \% im ersten Jahr
+\end{itemize}
+\textbf{Schlüsselwörter}: Datenanalyse, Churn, Tableau}
+\section{Interessen}
+
+\cvline{Sport}{Laufen, Yoga, Radfahren}
+\cvline{Musik}{Klavier, Konzerte}
+\cvline{Ehrenamt}{Mentoring, Bildung}
+\section{Ehrenamtliche Tätigkeiten}
+
+\cventry{Sept. 2020–Heute}
+        {Mentorin für Berufseinsteiger}
+        {Berliner Mentoring Netzwerk}
+        {\url{https://www.berliner-mentoring.de}}
+        {}
+        {\begin{itemize}
+\item Unterstützung von Berufseinsteigern bei der Karriereplanung und Bewerbungsstrategie
+\item Durchführung monatlicher Coaching-Gespräche und Workshops
+\item Aufbau eines Netzwerks für junge Fachkräfte im Bereich Customer Success
+\end{itemize}}
+    
+\end{document}

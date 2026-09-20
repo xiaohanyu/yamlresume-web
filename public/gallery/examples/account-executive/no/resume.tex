@@ -1,0 +1,228 @@
+\documentclass[a4paper, serif, 10pt]{moderncv}
+
+%% moderncv
+% style and color
+\moderncvstyle{banking}
+\moderncvcolor{black}
+
+%% page layout/margins
+\usepackage[top=2.5cm, bottom=2.5cm, left=1.5cm, right=1.5cm]{geometry}
+
+\nopagenumbers{}
+
+%% Babel config for Norwegian language
+% ref:
+% - https://latex3.github.io/babel/guides/locale-norwegian.html
+\usepackage[norsk]{babel}
+
+%% fontspec
+\usepackage{fontspec}
+
+\IfFontExistsTF{Linux Libertine}{
+  \setmainfont[Ligatures={TeX, Common}, Numbers=OldStyle]{Linux Libertine}
+}{}
+\IfFontExistsTF{Linux Libertine O}{
+  \setmainfont[Ligatures={TeX, Common}, Numbers=OldStyle]{Linux Libertine O}
+}{}
+
+%% CTeX
+% CJK support, used to show CJK characters in the resume
+%
+% - fontset=none: disable builtin fontset but instead set the CJK font manually
+% - heading=false: disable ctex heading
+% - punct=kaiming: use kaiming punctuations styles for CJK
+% - scheme=plain: use plain scheme, do not override \normalsize font size
+% - space=auto: space settings for CJK characters
+%
+% ref:
+% - http://ctan.mirrorcatalogs.com/language/chinese/ctex/ctex.pdf
+\usepackage[UTF8, heading=false, punct=kaiming, scheme=plain, space=auto]{ctex}
+
+\IfFontExistsTF{Noto Serif CJK SC}{
+  \setCJKmainfont{Noto Serif CJK SC}
+}{}
+\IfFontExistsTF{Noto Sans CJK SC}{
+  \setCJKsansfont{Noto Sans CJK SC}
+}{}
+
+%% line spacing
+\usepackage{setspace}
+\setstretch{1.125}
+
+%% URL styling - use normal text instead of monospace
+\urlstyle{same}
+
+% Auto-underline all links
+% Defer until \begin{document} so hyperref is already loaded
+\AtBeginDocument{%
+  \let\oldhref\href
+  \renewcommand{\href}[2]{\oldhref{#1}{\underline{#2}}}%
+}
+
+%% Patch \httplink and \httpslink to handle full URLs
+% The original moderncv macros always prepend http:// or https:// to URLs.
+% This causes issues when the URL already has a protocol (e.g., https://example.com)
+% resulting in malformed URLs like https://https://example.com.
+% This patch checks if the URL already contains "://" and uses it directly if so.
+% Note: We use \str_set:Nx (x-expansion) to expand macros like \@homepage first.
+\ExplSyntaxOn
+\str_new:N \g_yamlresume_url_str
+
+\RenewDocumentCommand{\httpslink}{O{}m}{
+  \str_set:Nx \g_yamlresume_url_str {#2}
+  \str_if_in:NnTF \g_yamlresume_url_str {://}
+    { \url{#2} }
+    { \url{https://#2} }
+}
+
+\RenewDocumentCommand{\httplink}{O{}m}{
+  \str_set:Nx \g_yamlresume_url_str {#2}
+  \str_if_in:NnTF \g_yamlresume_url_str {://}
+    { \url{#2} }
+    { \url{http://#2} }
+}
+\ExplSyntaxOff
+
+\name{Ingrid Solberg}{}
+\title{Kundeansvarlig (Account Executive) med spesialisering i B2B-salg og kundevekst}
+\phone[mobile]{+47 912 34 567}
+\email{ingrid.solberg@example.no}
+\homepage{https://www.ingridsolberg.no}
+
+\address{Karl Johans gate 15, Oslo, Oslo, Norge, 0150}{}{}
+
+\extrainfo{{\small \faLinkedin}\ \href{https://www.linkedin.com/in/ingridsolberg}{@ingridsolberg} {} {} {} • {} {} {} 
+{\small \faTwitter}\ \href{https://twitter.com/ingridsolberg}{@ingridsolberg}}
+
+\begin{document}
+
+\maketitle
+
+\section{Grunnleggende informasjon}
+
+\cvline{}{\begin{itemize}
+\item Erfaren kundeansvarlig med dokumenterte resultater innen B2B-salg, SaaS og kundeutvikling
+\item Sterk på hele salgssyklusen fra prospecting og behovsanalyse til forhandling og kontrakt
+\item Systematisk og datadrevet tilnærming, med god forståelse for CRM, pipeline og prognoser
+\item Relasjonsbygger som skaper tillit hos beslutningstakere og samarbeider godt på tvers av fagmiljøer
+\end{itemize}}
+\section{Utdanning}
+
+\cventry{aug. 2015–juni 2018}
+        {Bachelor, Markedsføring og salgsledelse, Poeng: 3.9}
+        {Handelshøyskolen BI}
+        {\url{https://www.bi.no}}
+        {}
+        {\begin{itemize}
+\item Fordypning i B2B-salg, kundeadferd og kommersiell strategi
+\item Gjennomførte flere caseoppgaver med fokus på vekst og lønnsomhet
+\item Utviklet sterke ferdigheter i presentasjonsteknikk og forhandling
+\end{itemize}
+\textbf{Kurs}: Strategisk markedsføring, Salgsledelse og forhandling, Forretningsforståelse, Digital markedsføring, Kundeinnsikt og analyse, Prosjektledelse}
+\section{Arbeidserfaring}
+
+\cventry{jan. 2022–Nå}
+        {Senior kundeansvarlig (Account Executive)}
+        {Nordisk Sky AS}
+        {\url{https://www.nordisksky.no}}
+        {}
+        {\begin{itemize}
+\item Forvalter og utvikler en portefølje av mellomstore og store kunder innen SaaS
+\item Leder komplekse salgsprosesser fra første kontakt til signert avtale
+\item Oppnådde 132 \% av kvartalsvis salgsmål i 2023 og 118 \% i 2024
+\item Bygger og vedlikeholder en sunn pipeline med høy prognosenøyaktighet
+\item Samarbeider tett med customer success, produkt og marked for å sikre verdi
+\end{itemize}
+\textbf{Nøkkelord}: B2B SaaS, Salgsstrategi, Forhandling, Pipeline}
+
+\cventry{aug. 2018–des. 2021}
+        {Kundeansvarlig (Account Executive)}
+        {Vekstpartner AS}
+        {\url{https://www.vekstpartner.no}}
+        {}
+        {\begin{itemize}
+\item Ansvarlig for nykundesalg og videreutvikling av eksisterende kunder
+\item Gjennomførte behovsanalyser og presenterte skreddersydde løsninger
+\item Bygde opp et nettverk av beslutningstakere i norsk næringsliv
+\item Bidro til å øke omsetningen i segmentet med 27 \% over tre år
+\end{itemize}
+\textbf{Nøkkelord}: Nykundesalg, Kundeutvikling, Behovsanalyse, CRM}
+\section{Språk}
+
+\cvline{Norsk}{Morsmål eller tospråklig nivå \hfill \textbf{Nøkkelord}: Morsmål}
+\cvline{Engelsk}{Fullt profesjonelt nivå \hfill \textbf{Nøkkelord}: Forretningsflyt}
+\cvline{Tysk}{Begrenset arbeidskunnskap \hfill \textbf{Nøkkelord}: Grunnleggende}
+\section{Ferdigheter}
+
+\cvline{Salg og forretningsutvikling}{Ekspert \hfill \textbf{Nøkkelord}: B2B-salg, Salgsstrategi, Forhandling, Pipeline, Prognoser}
+\cvline{CRM og verktøy}{Avansert \hfill \textbf{Nøkkelord}: Salesforce, HubSpot, LinkedIn Sales Nav, Excel, Power BI}
+\cvline{Kommunikasjon og relasjoner}{Ekspert \hfill \textbf{Nøkkelord}: Presentasjon, Kundeinnsikt, Relasjonsbygging, Tverrfaglig}
+\cvline{Språk}{Avansert \hfill \textbf{Nøkkelord}: Norsk, Engelsk, Skandinavisk}
+\section{Utmerkelser}
+
+\cventry{nov. 2020}
+        {Vekstpartner AS}
+        {Årets Salgstalent}
+        {}
+        {}
+        {\begin{itemize}
+\item Tildelt for fremragende resultater og evne til å bygge varige kunderelasjoner
+\item Anerkjent for høy aktivitet og systematisk oppfølging av salgsmuligheter
+\end{itemize}}
+\section{Sertifikater}
+
+\cventry{mars 2021}
+        {Norsk Salgsforening}
+        {Sertifisert salgsprofesjonell}
+        {\url{https://www.salgsforeningen.no/sertifisering}}
+        {}
+        {}
+
+\cventry{sep. 2022}
+        {HubSpot}
+        {HubSpot-sertifisering for salg}
+        {\url{https://academy.hubspot.com/courses/sales-software}}
+        {}
+        {}
+\section{Publikasjoner}
+
+\cventry{apr. 2023}
+        {Slik lykkes du med datadrevet B2B-salg}
+        {Salgsmagasinet}
+        {\url{https://www.salgsmagasinet.no/artikler/datadrevet-b2b-salg}}
+        {}
+        {\begin{itemize}
+\item Praktiske råd om bruk av CRM-data for å prioritere riktige kunder
+\item Hvordan bygge en forutsigbar salgspipeline i SaaS-selskaper
+\end{itemize}}
+\section{Prosjekter}
+
+\cventry{feb. 2023–aug. 2023}
+        {Prosjekt for å forbedre salgsprosessen og øke konverteringsraten}
+        {Salgspipeline 2.0}
+        {\url{https://www.nordisksky.no/pipeline}}
+        {}
+        {\begin{itemize}
+\item Kartla og forenklet salgsfasene i CRM
+\item Innførte nye kvalifiseringskriterier og oppfølgingsrutiner
+\item Økte konverteringsraten fra kvalifisert lead til møte med 18 \%
+\end{itemize}
+\textbf{Nøkkelord}: Salgsprosess, CRM, Konvertering}
+\section{Interesser}
+
+\cvline{Friluftsliv}{Fjellturer, Ski, Kajakk}
+\cvline{Samfunn}{Entreprenørskap, Bærekraft}
+\section{Frivillig arbeid}
+
+\cventry{sep. 2019–juni 2023}
+        {Mentor}
+        {Ungt Entreprenørskap Oslo}
+        {\url{https://www.ue.no}}
+        {}
+        {\begin{itemize}
+\item Veiledet elever i videregående skole gjennom ungdomsbedrift
+\item Bidro med råd om salg, markedsføring og forretningsmodell
+\item Inspirerte unge til å utforske entreprenørskap og næringsliv
+\end{itemize}}
+    
+\end{document}

@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="generator" content="YAMLResume (https://yamlresume.dev)">
+
+
+  <title>Rafael Nogueira Almeida Resume</title>
+  <style>
+    :root {
+      --text-font-size: 16px;
+      --text-font-family: var(--text-default-font-family);
+      --line-height: 1.5;
+    }
+
+    /* Modified from: https://www.joshwcomeau.com/css/custom-css-reset/ */
+
+    /* 1. Use a more-intuitive box-sizing model */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    /* 2. Remove default margin */
+    *:not(dialog) {
+      margin: 0;
+    }
+
+    body {
+      /* 3. Improve text rendering */
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    :root {
+      --border-color: #d0d0d0;
+
+      /* text colors */
+      --text-color-primary: #000000;
+      --text-color-secondary: #333333;
+
+      /* spacing */
+      --spacing-xss: 2px;
+      --spacing-xs: 4px;
+      --spacing-sm: 8px;
+      --spacing-md: 12px;
+      --spacing-lg: 16px;
+      --spacing-xl: 24px;
+      --spacing-xxl: 40px;
+      --spacing-xxxl: 80px;
+
+      /* font sizes */
+      --font-size-xs: 0.8rem;
+      --font-size-sm: 0.9rem;
+      --font-size-md: 1rem;
+      --font-size-lg: 1.1rem;
+      --font-size-xl: 1.25rem;
+      --font-size-xxl: 2.5rem;
+
+      /* layout */
+      --page-max-width: 900px;
+
+      /* typography */
+      --text-default-font-family:
+        -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu,
+        Cantarell, sans-serif;
+    }
+
+    html {
+      font-size: var(--text-font-size);
+    }
+
+    body {
+      /* font & text */
+      color: var(--text-color-primary);
+      font-family: var(--text-font-family);
+      /* this variable is defined by `typography.fontSize` in resume html layout */
+      text-autospace: normal;
+
+      /* layout */
+      line-height: var(--line-height);
+      max-width: var(--page-max-width);
+      margin: 0 auto;
+      padding: var(--spacing-xxxl) var(--spacing-xxl) var(--spacing-xxl);
+    }
+
+    /* header */
+    .resume-header {
+      margin-bottom: var(--spacing-xxl);
+      text-align: center;
+    }
+
+    .resume-name {
+      font-size: var(--font-size-xxl);
+      font-weight: 600;
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .resume-headline {
+      font-size: var(--font-size-lg);
+      margin-bottom: var(--spacing-md);
+    }
+
+    /* contact info */
+    .resume-contact-info {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      column-gap: var(--spacing-lg);
+      row-gap: var(--spacing-xs);
+      margin-top: var(--spacing-sm);
+    }
+
+    .resume-contact-icon,
+    .resume-contact-label {
+      margin-right: var(--spacing-sm);
+      vertical-align: middle;
+    }
+
+    /* links: modern typographic style */
+    a {
+      color: var(--text-color-primary);
+      text-decoration: underline;
+      text-decoration-color: var(--border-color);
+      text-underline-offset: 3px;
+      text-decoration-thickness: 1px;
+      text-decoration-skip-ink: auto;
+      transition: text-decoration-color 0.2s;
+    }
+
+    a:hover {
+      text-decoration-color: var(--text-color-primary);
+    }
+
+    /* sections */
+    .resume-section {
+      margin-bottom: var(--spacing-xl);
+    }
+
+    .resume-section-title {
+      font-size: var(--font-size-xl);
+      font-weight: 500;
+      margin-bottom: var(--spacing-md);
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: var(--spacing-xs);
+    }
+
+    /* entries */
+    .resume-entry {
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .resume-entry:last-child {
+      margin-bottom: 0;
+    }
+
+    .resume-entry-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .resume-entry-title {
+      font-weight: 500;
+      margin-bottom: var(--spacing-xss);
+    }
+
+    .resume-entry-summary p,
+    .resume-summary-content p {
+      margin-bottom: var(--spacing-xs);
+    }
+
+    /* lists */
+    .resume-entry-summary ul,
+    .resume-entry-summary ol,
+    .resume-summary-content ul,
+    .resume-summary-content ol {
+      padding-left: var(--spacing-lg);
+      list-style-type: circle;
+    }
+
+    /* labeled lists (courses, keywords, etc.) */
+    .resume-labeled-list span {
+      font-weight: 500;
+    }
+
+    /* skills grid */
+    .resume-skill-item,
+    .resume-language-item {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .resume-skill-name,
+    .resume-language-name {
+      font-weight: 500;
+    }
+
+    .resume-skill-level,
+    .resume-language-fluency {
+      font-weight: 400;
+    }
+
+    /* mobile */
+    @media (max-width: 768px) {
+      body {
+        padding: var(--spacing-xl);
+      }
+
+      .resume-header {
+        margin-bottom: var(--spacing-xl);
+      }
+
+      .resume-contact-info {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .resume-entry-header {
+        flex-wrap: wrap;
+      }
+    }
+
+    /* footer */
+    .resume-footer {
+      margin-top: var(--spacing-xxl);
+      padding-top: var(--spacing-xl);
+      border-top: 1px solid var(--border-color);
+      font-size: var(--font-size-sm);
+      color: var(--text-color-secondary);
+    }
+
+    @media print {
+      .resume-footer {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="resume-header">
+    <h1 class="resume-name">Rafael Nogueira Almeida</h1>
+    <p class="resume-headline">Engenheiro DevOps Sênior | Cloud, Kubernetes e Platform Engineering</p>
+    <div class="resume-contact-info">
+      <span class="resume-contact-item"><span class="resume-contact-icon">📧</span><a href="mailto:rafael.nogueira.almeida@outlook.com" class="resume-contact-link">rafael.nogueira.almeida@outlook.com</a></span>
+      <span class="resume-contact-item"><span class="resume-contact-icon">📞</span>+55 11 98765-4321</span>
+      <span class="resume-contact-item"><span class="resume-contact-icon">🔗</span><a href="https://www.rafaelalmeida.dev" class="resume-contact-link">https://www.rafaelalmeida.dev</a></span>
+    </div>
+    <div class="resume-contact-info resume-location-info">
+      <span class="resume-contact-item"><span class="resume-contact-icon">📍</span>Rua Tabapuã, 1234, Apto 82 - Itaim Bibi, São Paulo, São Paulo, Brasil, 04533-003</span>
+    </div>
+    <div class="resume-contact-info resume-profiles-info">
+      <span class="resume-contact-item"><span class="resume-contact-label">GitHub</span>: <a href="https://github.com/rafaelnalmeida" class="resume-contact-link">@rafaelnalmeida</a></span>
+      <span class="resume-contact-item"><span class="resume-contact-label">LinkedIn</span>: <a href="https://www.linkedin.com/in/rafael-almeida-devops" class="resume-contact-link">@rafael-almeida-devops</a></span>
+      <span class="resume-contact-item"><span class="resume-contact-label">Gitlab</span>: <a href="https://gitlab.com/rafaelnalmeida" class="resume-contact-link">@rafaelnalmeida</a></span>
+    </div>
+  </header>
+  <section class="resume-section" id="summary" data-section="summary">
+    <h2 class="resume-section-title">Informações Básicas</h2>
+    <div class="resume-section-content">
+      <div class="resume-summary-content">
+        <p>Engenheiro DevOps com mais de 8 anos de experiência em nuvem, automação de infraestrutura e plataformas de entrega contínua.</p>
+        <ul>
+          <li>
+            <p>Especialista em Kubernetes, Terraform e AWS, com foco em confiabilidade, escalabilidade e eficiência de custos</p>
+          </li>
+          <li>
+            <p>Reduzi em 70% o tempo de provisionamento de ambientes e em 60% o lead time de deploy em times de produto</p>
+          </li>
+          <li>
+            <p>Vivência em práticas SRE, definição de SLOs, resposta a incidentes e cultura de pós-mortem sem culpa</p>
+          </li>
+          <li>
+            <p>Atuação em mentoria, documentação técnica e disseminação de boas práticas de Platform Engineering</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="education" data-section="education">
+    <h2 class="resume-section-title">Formação</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="education-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.unicamp.br">Universidade Estadual de Campinas</a></div>
+            <div class="resume-entry-organization">Bacharelado, Engenharia de Computação, Nota: 8.4/10</div>
+          </div>
+          <div class="resume-entry-date">mar. de 2013–dez. de 2017</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Base sólida em sistemas distribuídos, redes e administração de sistemas Linux</p>
+            </li>
+            <li>
+              <p>Projeto de conclusão sobre orquestração de contêineres e escalabilidade horizontal de serviços</p>
+            </li>
+            <li>
+              <p>Monitoria voluntária na disciplina de Sistemas Operacionais</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Cursos</span>: Sistemas Operacionais, Redes de Computadores, Sistemas Distribuídos, Banco de Dados, Engenharia de Software, Segurança da Informação, Computação em Nuvem</div>
+      </div>
+      <div class="resume-entry" id="education-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.fiap.com.br">FIAP - Faculdade de Informática e Administração Paulista</a></div>
+            <div class="resume-entry-organization">Diploma, Arquitetura de Soluções em Cloud Computing</div>
+          </div>
+          <div class="resume-entry-date">fev. de 2021–nov. de 2022</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Pós-graduação lato sensu com foco em arquitetura de nuvem, multi-cloud e governança</p>
+            </li>
+            <li>
+              <p>Trabalho final sobre plataformas internas de autoatendimento para times de engenharia</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="work" data-section="work">
+    <h2 class="resume-section-title">Experiência Profissional</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="work-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.nuvemviva.com.br">Nuvem Viva Tecnologia</a></div>
+            <div class="resume-entry-organization">Engenheiro DevOps Sênior</div>
+          </div>
+          <div class="resume-entry-date">mar. de 2022–Atual</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Lidero a modernização da plataforma de microsserviços em Kubernetes (Amazon EKS), atendendo mais de 40 squads de produto</p>
+            </li>
+            <li>
+              <p>Estruturei a infraestrutura como código com Terraform e Terragrunt, reduzindo em 70% o tempo de provisionamento de novos ambientes</p>
+            </li>
+            <li>
+              <p>Implementei pipelines de entrega contínua com GitLab CI e Argo CD, diminuindo o lead time de deploy de 2 dias para 40 minutos</p>
+            </li>
+            <li>
+              <p>Defini SLOs, alertas e runbooks em Prometheus e Grafana, reduzindo o MTTR de incidentes críticos em 55%</p>
+            </li>
+            <li>
+              <p>Conduzi iniciativas de FinOps que geraram economia anual de R$ 1,2 milhão em custos de nuvem</p>
+            </li>
+            <li>
+              <p>Mentorei 5 engenheiros e engenheiras em práticas SRE, segurança de contêineres e análise de incidentes</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Palavras-chave</span>: Kubernetes, Terraform, AWS, SRE, FinOps</div>
+      </div>
+      <div class="resume-entry" id="work-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.pagfacil.com.br">PagFácil Pagamentos</a></div>
+            <div class="resume-entry-organization">Engenheiro DevOps</div>
+          </div>
+          <div class="resume-entry-date">jan. de 2020–fev. de 2022</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Migrei cargas monolíticas para contêineres Docker orquestrados em Kubernetes, elevando a disponibilidade de 99,5% para 99,95%</p>
+            </li>
+            <li>
+              <p>Automatizei o provisionamento de servidores com Ansible e Packer, eliminando tarefas manuais repetitivas de operação</p>
+            </li>
+            <li>
+              <p>Implementei a stack de observabilidade com ELK e Datadog, cobrindo 100% dos serviços críticos de pagamento</p>
+            </li>
+            <li>
+              <p>Introduzi gestão de segredos com Vault e políticas de menor privilégio alinhadas ao PCI DSS</p>
+            </li>
+            <li>
+              <p>Atuei em plantões on-call e na resposta a incidentes em ambiente de alto volume transacional</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Palavras-chave</span>: CI/CD, Docker, Jenkins, Observabilidade, Vault</div>
+      </div>
+      <div class="resume-entry" id="work-3">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title">Sistemas Origem Consultoria</div>
+            <div class="resume-entry-organization">Analista de Infraestrutura e Automação</div>
+          </div>
+          <div class="resume-entry-date">jul. de 2017–dez. de 2019</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Administrei ambientes Linux (Debian e RHEL) e clusters de virtualização VMware para clientes de médio porte</p>
+            </li>
+            <li>
+              <p>Desenvolvi scripts em Python e Bash para automação de backups, monitoramento e deploys</p>
+            </li>
+            <li>
+              <p>Configurei balanceadores Nginx, certificados TLS e VPNs site-to-site entre unidades dos clientes</p>
+            </li>
+            <li>
+              <p>Documentei procedimentos operacionais e treinei equipes de suporte de primeiro e segundo nível</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Palavras-chave</span>: Linux, Ansible, Virtualização, Scripts, Nginx</div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="languages" data-section="languages">
+    <h2 class="resume-section-title">Idiomas</h2>
+    <div class="resume-section-content">
+      <div class="resume-languages-list">
+        <div class="resume-language-item">
+          <div class="resume-language-name">Português<span class="resume-language-fluency">: Nativo ou Bilíngue</span></div>
+        </div>
+        <div class="resume-language-item">
+          <div class="resume-language-name">Inglês<span class="resume-language-fluency">: Proficiência Profissional Fluente</span></div>
+          <div>
+            <div class="resume-labeled-list"><span>Palavras-chave</span>: TOEFL iBT 108, Reuniões técnicas diárias</div>
+          </div>
+        </div>
+        <div class="resume-language-item">
+          <div class="resume-language-name">Espanhol<span class="resume-language-fluency">: Proficiência Profissional Limitada</span></div>
+          <div>
+            <div class="resume-labeled-list"><span>Palavras-chave</span>: Leitura de documentação</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="skills" data-section="skills">
+    <h2 class="resume-section-title">Competências</h2>
+    <div class="resume-section-content">
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">Cloud &amp; Infraestrutura como Código<span class="resume-skill-level">: Especialista</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>Palavras-chave</span>: AWS, Azure, Terraform, Terragrunt, Ansible, Packer</div>
+        </div>
+      </div>
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">Contêineres &amp; Orquestração<span class="resume-skill-level">: Especialista</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>Palavras-chave</span>: Docker, Kubernetes, Helm, Argo CD, Istio</div>
+        </div>
+      </div>
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">CI/CD &amp; Automação<span class="resume-skill-level">: Avançado</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>Palavras-chave</span>: GitLab CI, GitHub Actions, Jenkins, Python, Bash</div>
+        </div>
+      </div>
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">Observabilidade &amp; SRE<span class="resume-skill-level">: Avançado</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>Palavras-chave</span>: Prometheus, Grafana, Datadog, OpenTelemetry, ELK</div>
+        </div>
+      </div>
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">Segurança &amp; Conformidade<span class="resume-skill-level">: Intermediário</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>Palavras-chave</span>: Vault, IAM, Trivy, PCI DSS, LGPD</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="awards" data-section="awards">
+    <h2 class="resume-section-title">Prêmios</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="awards-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title">Prêmio Inovação Interna - Plataforma de Autoatendimento</div>
+            <div class="resume-entry-organization">Nuvem Viva Tecnologia</div>
+          </div>
+          <div class="resume-entry-date">dez. de 2023</div>
+        </div>
+        <div class="resume-entry-summary">
+          <p>Reconhecimento pelo desenvolvimento da plataforma interna de provisionamento de ambientes, que reduziu em 70% o tempo de entrega de infraestrutura para as squads de produto.</p>
+        </div>
+      </div>
+      <div class="resume-entry" id="awards-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title">Destaque Técnico do Ano</div>
+            <div class="resume-entry-organization">PagFácil Pagamentos</div>
+          </div>
+          <div class="resume-entry-date">jan. de 2021</div>
+        </div>
+        <div class="resume-entry-summary">
+          <p>Premiação anual concedida aos profissionais de maior impacto técnico, pela liderança da migração para contêineres e pela melhoria dos indicadores de disponibilidade da plataforma de pagamentos.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="certificates" data-section="certificates">
+    <h2 class="resume-section-title">Certificados</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="certificates-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://aws.amazon.com/certification/">AWS Certified Solutions Architect - Professional</a></div>
+            <div class="resume-entry-organization">Amazon Web Services</div>
+          </div>
+          <div class="resume-entry-date">mar. de 2023</div>
+        </div>
+      </div>
+      <div class="resume-entry" id="certificates-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.cncf.io/certifications/cka/">Certified Kubernetes Administrator (CKA)</a></div>
+            <div class="resume-entry-organization">Cloud Native Computing Foundation</div>
+          </div>
+          <div class="resume-entry-date">jul. de 2022</div>
+        </div>
+      </div>
+      <div class="resume-entry" id="certificates-3">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.hashicorp.com/certifications/terraform-associate">HashiCorp Certified: Terraform Associate</a></div>
+            <div class="resume-entry-organization">HashiCorp</div>
+          </div>
+          <div class="resume-entry-date">nov. de 2021</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="publications" data-section="publications">
+    <h2 class="resume-section-title">Publicações</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="publications-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://medium.com/@rafaelnalmeida/escalando-clusters-kubernetes-com-karpenter-no-amazon-eks-9f1c2b7a4d13">Escalando clusters Kubernetes com Karpenter no Amazon EKS</a></div>
+            <div class="resume-entry-organization">Blog Técnico Nuvem Viva</div>
+          </div>
+          <div class="resume-entry-date">ago. de 2023</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Artigo técnico sobre provisionamento dinâmico de nós e redução de custos em clusters EKS</p>
+            </li>
+            <li>
+              <p>Comparativo entre Cluster Autoscaler e Karpenter em cargas de trabalho variáveis</p>
+            </li>
+            <li>
+              <p>Apresenta resultados reais com economia de 30% em custos de computação</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="references" data-section="references">
+    <h2 class="resume-section-title">Referências</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="references-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="mailto:camila.santos@nuvemviva.com.br">Camila Ferreira dos Santos</a></div>
+            <div class="resume-entry-organization">Gerente de Plataforma na Nuvem Viva Tecnologia</div>
+          </div>
+          <div>+55 11 97654-3210</div>
+        </div>
+        <div class="resume-entry-summary">
+          <p>Rafael é referência técnica em Kubernetes e Terraform no time. Conduz iniciativas complexas com autonomia, comunica-se bem com áreas de produto e eleva o nível técnico de quem trabalha ao seu lado.</p>
+        </div>
+      </div>
+      <div class="resume-entry" id="references-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="mailto:eduardo.nakamura@pagfacil.com.br">Eduardo Nakamura</a></div>
+            <div class="resume-entry-organization">Diretor de Engenharia na PagFácil Pagamentos</div>
+          </div>
+          <div>+55 11 96543-2109</div>
+        </div>
+        <div class="resume-entry-summary">
+          <p>Durante dois anos, Rafael foi responsável por nossa plataforma de entrega contínua. Sua atuação reduziu drasticamente o tempo de deploy e trouxe uma cultura de confiabilidade que permanece até hoje.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="projects" data-section="projects">
+    <h2 class="resume-section-title">Projetos</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="projects-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://github.com/rafaelnalmeida/plataforma-autoatendimento">Plataforma de Autoatendimento de Infraestrutura</a></div>
+            <div class="resume-entry-description">Plataforma interna que permite às squads provisionar ambientes completos por meio de pull requests.</div>
+          </div>
+          <div class="resume-entry-date">mar. de 2023–nov. de 2023</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Construída com Backstage, Terraform, Argo CD e Kubernetes em modelo GitOps</p>
+            </li>
+            <li>
+              <p>Reduziu de 3 dias para 25 minutos o tempo de criação de ambientes de homologação</p>
+            </li>
+            <li>
+              <p>Adotada por 32 squads, com mais de 400 ambientes provisionados no primeiro semestre</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Palavras-chave</span>: Backstage, Terraform, Argo CD, Kubernetes, GitOps</div>
+      </div>
+      <div class="resume-entry" id="projects-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title">Observabilidade para Pagamentos em Tempo Real</div>
+            <div class="resume-entry-description">Stack de métricas, logs e traces para monitorar transações críticas 24 horas por dia.</div>
+          </div>
+          <div class="resume-entry-date">fev. de 2021–out. de 2021</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Instrumentação de serviços com OpenTelemetry e correlação de traces ponta a ponta</p>
+            </li>
+            <li>
+              <p>Dashboards e alertas baseados em SLOs de latência e taxa de erro</p>
+            </li>
+            <li>
+              <p>Redução de 55% no tempo médio de diagnóstico de falhas em produção</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Palavras-chave</span>: OpenTelemetry, Grafana, Datadog, SLO</div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="interests" data-section="interests">
+    <h2 class="resume-section-title">Interesses</h2>
+    <div class="resume-section-content">
+      <div class="resume-interest-item"><span class="resume-interest-name">Esportes</span>: Corrida de rua, Ciclismo, Natação</div>
+      <div class="resume-interest-item"><span class="resume-interest-name">Comunidade Técnica</span>: Palestras, Open Source, Mentoria</div>
+      <div class="resume-interest-item"><span class="resume-interest-name">Música</span>: Guitarra, Vinis</div>
+    </div>
+  </section>
+  <section class="resume-section" id="volunteer" data-section="volunteer">
+    <h2 class="resume-section-title">Voluntariado</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="volunteer-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://devopsdays.org/sao-paulo">DevOpsDays São Paulo</a></div>
+            <div class="resume-entry-organization">Voluntário na Organização</div>
+          </div>
+          <div class="resume-entry-date">mar. de 2019–nov. de 2023</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Participei da organização de edições do DevOpsDays São Paulo, apoiando curadoria de palestras e logística do evento</p>
+            </li>
+            <li>
+              <p>Ministrei workshops introdutórios de Kubernetes e Terraform para mais de 200 participantes</p>
+            </li>
+            <li>
+              <p>Atuei como mentor em programas de entrada de novos profissionais nas áreas de DevOps e SRE</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer class="resume-footer">Generated by <a href="https://yamlresume.dev">YAMLResume</a></footer>
+</body>
+
+</html>

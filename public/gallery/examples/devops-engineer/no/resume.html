@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="no">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="generator" content="YAMLResume (https://yamlresume.dev)">
+
+
+  <title>Ingrid Nordby Resume</title>
+  <style>
+    :root {
+      --text-font-size: 16px;
+      --text-font-family: var(--text-default-font-family);
+      --line-height: 1.5;
+    }
+
+    /* Modified from: https://www.joshwcomeau.com/css/custom-css-reset/ */
+
+    /* 1. Use a more-intuitive box-sizing model */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    /* 2. Remove default margin */
+    *:not(dialog) {
+      margin: 0;
+    }
+
+    body {
+      /* 3. Improve text rendering */
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    :root {
+      --border-color: #d0d0d0;
+
+      /* text colors */
+      --text-color-primary: #000000;
+      --text-color-secondary: #333333;
+
+      /* spacing */
+      --spacing-xss: 2px;
+      --spacing-xs: 4px;
+      --spacing-sm: 8px;
+      --spacing-md: 12px;
+      --spacing-lg: 16px;
+      --spacing-xl: 24px;
+      --spacing-xxl: 40px;
+      --spacing-xxxl: 80px;
+
+      /* font sizes */
+      --font-size-xs: 0.8rem;
+      --font-size-sm: 0.9rem;
+      --font-size-md: 1rem;
+      --font-size-lg: 1.1rem;
+      --font-size-xl: 1.25rem;
+      --font-size-xxl: 2.5rem;
+
+      /* layout */
+      --page-max-width: 900px;
+
+      /* typography */
+      --text-default-font-family:
+        -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu,
+        Cantarell, sans-serif;
+    }
+
+    html {
+      font-size: var(--text-font-size);
+    }
+
+    body {
+      /* font & text */
+      color: var(--text-color-primary);
+      font-family: var(--text-font-family);
+      /* this variable is defined by `typography.fontSize` in resume html layout */
+      text-autospace: normal;
+
+      /* layout */
+      line-height: var(--line-height);
+      max-width: var(--page-max-width);
+      margin: 0 auto;
+      padding: var(--spacing-xxxl) var(--spacing-xxl) var(--spacing-xxl);
+    }
+
+    /* header */
+    .resume-header {
+      margin-bottom: var(--spacing-xxl);
+      text-align: center;
+    }
+
+    .resume-name {
+      font-size: var(--font-size-xxl);
+      font-weight: 600;
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .resume-headline {
+      font-size: var(--font-size-lg);
+      margin-bottom: var(--spacing-md);
+    }
+
+    /* contact info */
+    .resume-contact-info {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      column-gap: var(--spacing-lg);
+      row-gap: var(--spacing-xs);
+      margin-top: var(--spacing-sm);
+    }
+
+    .resume-contact-icon,
+    .resume-contact-label {
+      margin-right: var(--spacing-sm);
+      vertical-align: middle;
+    }
+
+    /* links: modern typographic style */
+    a {
+      color: var(--text-color-primary);
+      text-decoration: underline;
+      text-decoration-color: var(--border-color);
+      text-underline-offset: 3px;
+      text-decoration-thickness: 1px;
+      text-decoration-skip-ink: auto;
+      transition: text-decoration-color 0.2s;
+    }
+
+    a:hover {
+      text-decoration-color: var(--text-color-primary);
+    }
+
+    /* sections */
+    .resume-section {
+      margin-bottom: var(--spacing-xl);
+    }
+
+    .resume-section-title {
+      font-size: var(--font-size-xl);
+      font-weight: 500;
+      margin-bottom: var(--spacing-md);
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: var(--spacing-xs);
+    }
+
+    /* entries */
+    .resume-entry {
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .resume-entry:last-child {
+      margin-bottom: 0;
+    }
+
+    .resume-entry-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .resume-entry-title {
+      font-weight: 500;
+      margin-bottom: var(--spacing-xss);
+    }
+
+    .resume-entry-summary p,
+    .resume-summary-content p {
+      margin-bottom: var(--spacing-xs);
+    }
+
+    /* lists */
+    .resume-entry-summary ul,
+    .resume-entry-summary ol,
+    .resume-summary-content ul,
+    .resume-summary-content ol {
+      padding-left: var(--spacing-lg);
+      list-style-type: circle;
+    }
+
+    /* labeled lists (courses, keywords, etc.) */
+    .resume-labeled-list span {
+      font-weight: 500;
+    }
+
+    /* skills grid */
+    .resume-skill-item,
+    .resume-language-item {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .resume-skill-name,
+    .resume-language-name {
+      font-weight: 500;
+    }
+
+    .resume-skill-level,
+    .resume-language-fluency {
+      font-weight: 400;
+    }
+
+    /* mobile */
+    @media (max-width: 768px) {
+      body {
+        padding: var(--spacing-xl);
+      }
+
+      .resume-header {
+        margin-bottom: var(--spacing-xl);
+      }
+
+      .resume-contact-info {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .resume-entry-header {
+        flex-wrap: wrap;
+      }
+    }
+
+    /* footer */
+    .resume-footer {
+      margin-top: var(--spacing-xxl);
+      padding-top: var(--spacing-xl);
+      border-top: 1px solid var(--border-color);
+      font-size: var(--font-size-sm);
+      color: var(--text-color-secondary);
+    }
+
+    @media print {
+      .resume-footer {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="resume-header">
+    <h1 class="resume-name">Ingrid Nordby</h1>
+    <p class="resume-headline">DevOps-ingeniør med spesialisering i skyplattformer, automatisering og pålitelighet</p>
+    <div class="resume-contact-info">
+      <span class="resume-contact-item"><span class="resume-contact-icon">📧</span><a href="mailto:ingrid.nordby@nordbydrift.no" class="resume-contact-link">ingrid.nordby@nordbydrift.no</a></span>
+      <span class="resume-contact-item"><span class="resume-contact-icon">📞</span>+47 918 45 273</span>
+      <span class="resume-contact-item"><span class="resume-contact-icon">🔗</span><a href="https://www.ingridnordby.no" class="resume-contact-link">https://www.ingridnordby.no</a></span>
+    </div>
+    <div class="resume-contact-info resume-location-info">
+      <span class="resume-contact-item"><span class="resume-contact-icon">📍</span>Thorvald Meyers gate 42, Oslo, Oslo, Norge, 0555</span>
+    </div>
+    <div class="resume-contact-info resume-profiles-info">
+      <span class="resume-contact-item"><span class="resume-contact-label">GitHub</span>: <a href="https://github.com/ingridnordby" class="resume-contact-link">@ingridnordby</a></span>
+      <span class="resume-contact-item"><span class="resume-contact-label">LinkedIn</span>: <a href="https://www.linkedin.com/in/ingridnordby" class="resume-contact-link">@ingridnordby</a></span>
+    </div>
+  </header>
+  <section class="resume-section" id="summary" data-section="summary">
+    <h2 class="resume-section-title">Grunnleggende informasjon</h2>
+    <div class="resume-section-content">
+      <div class="resume-summary-content">
+        <p>DevOps-ingeniør med ni års erfaring fra skyleveranser, plattformarbeid og automatisering i <strong>høyt tilgjengelige</strong> produksjonsmiljøer.</p>
+        <ul>
+          <li>
+            <p>Bygget og driftet Kubernetes-plattformer som betjener over 200 tjenester og 40 produktteam</p>
+          </li>
+          <li>
+            <p>Automatisert infrastruktur med Terraform, GitOps og policy-som-kode</p>
+          </li>
+          <li>
+            <p>Redusert nedetid og skykostnader gjennom SLO-arbeid, observabilitet og FinOps</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="education" data-section="education">
+    <h2 class="resume-section-title">Utdanning</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="education-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.ntnu.no">Norges teknisk-naturvitenskapelige universitet (NTNU)</a></div>
+            <div class="resume-entry-organization">Master, Informatikk, Poeng: 3,8</div>
+          </div>
+          <div class="resume-entry-date">aug. 2013–juni 2018</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Fordypning i distribuerte systemer og skalerbar infrastruktur</p>
+            </li>
+            <li>
+              <p>Masteroppgave om automatisk kapasitetsstyring i containerplattformer</p>
+            </li>
+            <li>
+              <p>Gruppeleder i studentforeningen for systemdrift gjennom tre semestre</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Kurs</span>: Operativsystemer, Distribuerte systemer, Algoritmer og datastrukturer, Databasemodellering, Nettverkssikkerhet, Skyarkitektur og skalerbarhet</div>
+      </div>
+      <div class="resume-entry" id="education-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.btf.no">Bergen tekniske fagskole</a></div>
+            <div class="resume-entry-organization">Videregående skole, Informasjonsteknologi, Poeng: 5,4</div>
+          </div>
+          <div class="resume-entry-date">aug. 2010–juni 2013</div>
+        </div>
+        <div class="resume-labeled-list"><span>Kurs</span>: Nettverksteknologi, Linux-administrasjon, Programmering i Python</div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="work" data-section="work">
+    <h2 class="resume-section-title">Arbeidserfaring</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="work-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.nordlysdigtal.no">Nordlys Digital AS</a></div>
+            <div class="resume-entry-organization">Lead DevOps-ingeniør</div>
+          </div>
+          <div class="resume-entry-date">mars 2022–Nå</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Leder et plattformteam på seks ingeniører med ansvar for Kubernetes-plattformen til alle produktteam</p>
+            </li>
+            <li>
+              <p>Innførte GitOps med Argo CD og Terraform, og kuttet ledetiden for infrastrukturleveranser fra dager til under én time</p>
+            </li>
+            <li>
+              <p>Etablerte SLO-er og feilbudsjetter som løftet tilgjengeligheten fra 99,5 % til 99,95 %</p>
+            </li>
+            <li>
+              <p>Reduserte skykostnadene med 31 % gjennom rettighetsizing, spot-instanser og faste FinOps-rutiner</p>
+            </li>
+            <li>
+              <p>Fungerer som teknisk mentor og driver interne fagdager og onboarding av nye ingeniører</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Nøkkelord</span>: Kubernetes, Terraform, Argo CD, SRE, FinOps</div>
+      </div>
+      <div class="resume-entry" id="work-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.skybasert.no">Skybasert AS</a></div>
+            <div class="resume-entry-organization">Senior DevOps-ingeniør</div>
+          </div>
+          <div class="resume-entry-date">jan. 2020–mars 2022</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Designet og bygget multi-region AWS-arkitektur med Terraform for en SaaS-plattform med 120 000 aktive brukere</p>
+            </li>
+            <li>
+              <p>Automatiserte CI/CD i GitHub Actions og Jenkins med blågrønne utrullinger og automatisk rollback</p>
+            </li>
+            <li>
+              <p>Bygget observabilitetsstack med Prometheus, Grafana og OpenTelemetry som reduserte MTTR fra 90 til 22 minutter</p>
+            </li>
+            <li>
+              <p>Hardet opp containerbilder med Trivy og OPA-policyer integrert i leveringskjeden</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Nøkkelord</span>: AWS, GitHub Actions, Prometheus, OpenTelemetry, Sikkerhet</div>
+      </div>
+      <div class="resume-entry" id="work-3">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.fjordkraftsikt.no">Fjordkraft Teknologi</a></div>
+            <div class="resume-entry-organization">Driftsingeniør</div>
+          </div>
+          <div class="resume-entry-date">aug. 2018–des. 2019</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Driftet Linux-baserte produksjonsmiljøer med Ansible og Puppet for over 60 virtuelle tjenere</p>
+            </li>
+            <li>
+              <p>Migrerte on-prem-tjenester til Azure og automatiserte provisjonering med ARM-maler</p>
+            </li>
+            <li>
+              <p>Etablerte vaktrutiner, runbooks og hendelseshåndtering etter ITIL-prinsipper</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Nøkkelord</span>: Linux, Ansible, Azure, ITIL</div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="languages" data-section="languages">
+    <h2 class="resume-section-title">Språk</h2>
+    <div class="resume-section-content">
+      <div class="resume-languages-list">
+        <div class="resume-language-item">
+          <div class="resume-language-name">Norsk<span class="resume-language-fluency">: Morsmål eller tospråklig nivå</span></div>
+        </div>
+        <div class="resume-language-item">
+          <div class="resume-language-name">Engelsk<span class="resume-language-fluency">: Fullt profesjonelt nivå</span></div>
+          <div>
+            <div class="resume-labeled-list"><span>Nøkkelord</span>: Arbeidsspråk i 9 år, TOEFL 108</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="skills" data-section="skills">
+    <h2 class="resume-section-title">Ferdigheter</h2>
+    <div class="resume-section-content">
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">Skyplattformer<span class="resume-skill-level">: Ekspert</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>Nøkkelord</span>: AWS, Azure, Kubernetes, EKS, AKS</div>
+        </div>
+      </div>
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">Infrastruktur som kode<span class="resume-skill-level">: Avansert</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>Nøkkelord</span>: Terraform, Ansible, Pulumi, Helm, CloudFormation</div>
+        </div>
+      </div>
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">CI/CD og automatisering<span class="resume-skill-level">: Avansert</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>Nøkkelord</span>: GitHub Actions, GitLab CI, Argo CD, Jenkins, Tekton</div>
+        </div>
+      </div>
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">Observabilitet<span class="resume-skill-level">: Avansert</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>Nøkkelord</span>: Prometheus, Grafana, OpenTelemetry, Loki, Datadog</div>
+        </div>
+      </div>
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">Programmering<span class="resume-skill-level">: Avansert</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>Nøkkelord</span>: Python, Go, Bash, TypeScript, SQL</div>
+        </div>
+      </div>
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">Sikkerhet og compliance<span class="resume-skill-level">: Viderekommen</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>Nøkkelord</span>: Vault, Trivy, OPA, ISO 27001, Zero Trust</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="awards" data-section="awards">
+    <h2 class="resume-section-title">Utmerkelser</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="awards-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title">Årets teknologipris</div>
+            <div class="resume-entry-organization">Nordlys Digital AS</div>
+          </div>
+          <div class="resume-entry-date">nov. 2023</div>
+        </div>
+        <div class="resume-entry-summary">
+          <p>Tildelt for arbeidet med selvbetjeningsplattformen som gjorde at produktteamene kunne
+            provisjonere egne miljøer uten manuell driftsoppfølging.</p>
+        </div>
+      </div>
+      <div class="resume-entry" id="awards-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title">Beste fagartikkel</div>
+            <div class="resume-entry-organization">Nordic DevOps Community</div>
+          </div>
+          <div class="resume-entry-date">jan. 2023</div>
+        </div>
+        <div class="resume-entry-summary">
+          <p>Prisen ble gitt for artikkelen om plattformteam som produkt og hvordan man måler
+            verdien av intern utviklererfaring.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="certificates" data-section="certificates">
+    <h2 class="resume-section-title">Sertifikater</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="certificates-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://aws.amazon.com/certification/">AWS Certified DevOps Engineer – Professional</a></div>
+            <div class="resume-entry-organization">AWS</div>
+          </div>
+          <div class="resume-entry-date">feb. 2023</div>
+        </div>
+      </div>
+      <div class="resume-entry" id="certificates-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.hashicorp.com/certification/terraform-associate">HashiCorp Certified: Terraform Associate</a></div>
+            <div class="resume-entry-organization">HashiCorp</div>
+          </div>
+          <div class="resume-entry-date">sep. 2022</div>
+        </div>
+      </div>
+      <div class="resume-entry" id="certificates-3">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.cncf.io/certification/cka/">Certified Kubernetes Administrator (CKA)</a></div>
+            <div class="resume-entry-organization">CNCF</div>
+          </div>
+          <div class="resume-entry-date">juni 2021</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="publications" data-section="publications">
+    <h2 class="resume-section-title">Publikasjoner</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="publications-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.kode24.no">Plattformteamet som produkt – erfaringer fra norsk næringsliv</a></div>
+            <div class="resume-entry-organization">Kode24</div>
+          </div>
+          <div class="resume-entry-date">apr. 2023</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Fagartikkel om hvordan plattformteam kan måle og synliggjøre verdien de skaper for produktteam</p>
+            </li>
+            <li>
+              <p>Beskriver konkrete måltall for ledetid, endringsfrekvens og utviklererfaring</p>
+            </li>
+            <li>
+              <p>Deler erfaringer fra innføring av GitOps og selvbetjening i tre nordiske selskaper</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="references" data-section="references">
+    <h2 class="resume-section-title">Referanser</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="references-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="mailto:marit.solheim@nordlysdigtal.no">Marit Solheim</a></div>
+            <div class="resume-entry-organization">Faglig leder, Nordlys Digital AS</div>
+          </div>
+          <div>+47 900 12 345</div>
+        </div>
+        <div class="resume-entry-summary">
+          <p>Ingrid er en av de mest systematiske ingeniørene jeg har jobbet med. Hun kombinerer
+            dyp teknisk forståelse med evnen til å bygge team og skape varige forbedringer i driften.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="projects" data-section="projects">
+    <h2 class="resume-section-title">Prosjekter</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="projects-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://github.com/ingridnordby/selfservice-portal">Selvbetjeningsportal for utviklere</a></div>
+            <div class="resume-entry-description">Åpen kildekode-portal som lar utviklere provisjonere miljøer og tjenester selv, med innebygd policykontroll.</div>
+          </div>
+          <div class="resume-entry-date">feb. 2023–nov. 2023</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Bygget med Backstage og Crossplane på toppen av Kubernetes</p>
+            </li>
+            <li>
+              <p>Reduserte manuelle driftsoppgaver med omtrent 70 % i pilotteamene</p>
+            </li>
+            <li>
+              <p>Brukes i dag av 25 team i tre nordiske selskaper</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Nøkkelord</span>: Backstage, Crossplane, Platform Engineering</div>
+      </div>
+      <div class="resume-entry" id="projects-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://github.com/ingridnordby/tf-ggv">Terraform-moduler for offentlig sky</a></div>
+            <div class="resume-entry-description">Gjenbrukbare Terraform-moduler for sikre og kostnadseffektive landinger i AWS og Azure.</div>
+          </div>
+          <div class="resume-entry-date">sep. 2021–aug. 2022</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Moduler for nettverk, tilgangsstyring, logging og budsjettvarsler</p>
+            </li>
+            <li>
+              <p>Innebygde policyer for kryptering, tagging og nettverkssegmentering</p>
+            </li>
+            <li>
+              <p>Tatt i bruk av ni virksomheter i offentlig sektor</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Nøkkelord</span>: Terraform, AWS, Azure, Policy as Code</div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="interests" data-section="interests">
+    <h2 class="resume-section-title">Interesser</h2>
+    <div class="resume-section-content">
+      <div class="resume-interest-item"><span class="resume-interest-name">Friluftsliv</span>: Fjellturer, Langrenn, Padling</div>
+      <div class="resume-interest-item"><span class="resume-interest-name">Musikk</span>: Gitar, Kor</div>
+    </div>
+  </section>
+  <section class="resume-section" id="volunteer" data-section="volunteer">
+    <h2 class="resume-section-title">Frivillig arbeid</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="volunteer-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.nordicdevops.no">Nordic DevOps Community</a></div>
+            <div class="resume-entry-organization">Foredragsholder og fagansvarlig</div>
+          </div>
+          <div class="resume-entry-date">jan. 2021–jan. 2024</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Holder foredrag om plattformarbeid, GitOps og observabilitet på møter og konferanser</p>
+            </li>
+            <li>
+              <p>Er med på å organisere den årlige DevOps-dagen for over 400 deltakere</p>
+            </li>
+            <li>
+              <p>Fungerer som mentor for tre junioringeniører gjennom foreningens mentorprogram</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer class="resume-footer">Generated by <a href="https://yamlresume.dev">YAMLResume</a></footer>
+</body>
+
+</html>

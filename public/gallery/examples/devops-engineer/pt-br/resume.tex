@@ -1,0 +1,297 @@
+\documentclass[a4paper, serif, 10pt]{moderncv}
+
+%% moderncv
+% style and color
+\moderncvstyle{banking}
+\moderncvcolor{black}
+
+%% page layout/margins
+\usepackage[top=2.5cm, bottom=2.5cm, left=1.5cm, right=1.5cm]{geometry}
+
+\nopagenumbers{}
+
+%% Babel config for Brazilian Portuguese language
+% ref:
+% - https://latex3.github.io/babel/guides/locale-portuguese.html
+\usepackage[brazilian]{babel}
+
+%% fontspec
+\usepackage{fontspec}
+
+\IfFontExistsTF{Linux Libertine}{
+  \setmainfont[Ligatures={TeX, Common}, Numbers=OldStyle]{Linux Libertine}
+}{}
+\IfFontExistsTF{Linux Libertine O}{
+  \setmainfont[Ligatures={TeX, Common}, Numbers=OldStyle]{Linux Libertine O}
+}{}
+
+%% CTeX
+% CJK support, used to show CJK characters in the resume
+%
+% - fontset=none: disable builtin fontset but instead set the CJK font manually
+% - heading=false: disable ctex heading
+% - punct=kaiming: use kaiming punctuations styles for CJK
+% - scheme=plain: use plain scheme, do not override \normalsize font size
+% - space=auto: space settings for CJK characters
+%
+% ref:
+% - http://ctan.mirrorcatalogs.com/language/chinese/ctex/ctex.pdf
+\usepackage[UTF8, heading=false, punct=kaiming, scheme=plain, space=auto]{ctex}
+
+\IfFontExistsTF{Noto Serif CJK SC}{
+  \setCJKmainfont{Noto Serif CJK SC}
+}{}
+\IfFontExistsTF{Noto Sans CJK SC}{
+  \setCJKsansfont{Noto Sans CJK SC}
+}{}
+
+%% line spacing
+\usepackage{setspace}
+\setstretch{1.125}
+
+%% URL styling - use normal text instead of monospace
+\urlstyle{same}
+
+% Auto-underline all links
+% Defer until \begin{document} so hyperref is already loaded
+\AtBeginDocument{%
+  \let\oldhref\href
+  \renewcommand{\href}[2]{\oldhref{#1}{\underline{#2}}}%
+}
+
+%% Patch \httplink and \httpslink to handle full URLs
+% The original moderncv macros always prepend http:// or https:// to URLs.
+% This causes issues when the URL already has a protocol (e.g., https://example.com)
+% resulting in malformed URLs like https://https://example.com.
+% This patch checks if the URL already contains "://" and uses it directly if so.
+% Note: We use \str_set:Nx (x-expansion) to expand macros like \@homepage first.
+\ExplSyntaxOn
+\str_new:N \g_yamlresume_url_str
+
+\RenewDocumentCommand{\httpslink}{O{}m}{
+  \str_set:Nx \g_yamlresume_url_str {#2}
+  \str_if_in:NnTF \g_yamlresume_url_str {://}
+    { \url{#2} }
+    { \url{https://#2} }
+}
+
+\RenewDocumentCommand{\httplink}{O{}m}{
+  \str_set:Nx \g_yamlresume_url_str {#2}
+  \str_if_in:NnTF \g_yamlresume_url_str {://}
+    { \url{#2} }
+    { \url{http://#2} }
+}
+\ExplSyntaxOff
+
+\name{Rafael Nogueira Almeida}{}
+\title{Engenheiro DevOps Sênior | Cloud, Kubernetes e Platform Engineering}
+\phone[mobile]{+55 11 98765-4321}
+\email{rafael.nogueira.almeida@outlook.com}
+\homepage{https://www.rafaelalmeida.dev}
+
+\address{Rua Tabapuã, 1234, Apto 82 - Itaim Bibi, São Paulo, São Paulo, Brasil, 04533-003}{}{}
+
+\extrainfo{{\small \faGithub}\ \href{https://github.com/rafaelnalmeida}{@rafaelnalmeida} {} {} {} • {} {} {} 
+{\small \faLinkedin}\ \href{https://www.linkedin.com/in/rafael-almeida-devops}{@rafael-almeida-devops} {} {} {} • {} {} {} 
+{\small \faGitlab}\ \href{https://gitlab.com/rafaelnalmeida}{@rafaelnalmeida}}
+
+\begin{document}
+
+\maketitle
+
+\section{Informações Básicas}
+
+\cvline{}{Engenheiro DevOps com mais de 8 anos de experiência em nuvem, automação de infraestrutura e plataformas de entrega contínua.
+%
+\begin{itemize}
+\item Especialista em Kubernetes, Terraform e AWS, com foco em confiabilidade, escalabilidade e eficiência de custos
+\item Reduzi em 70\% o tempo de provisionamento de ambientes e em 60\% o lead time de deploy em times de produto
+\item Vivência em práticas SRE, definição de SLOs, resposta a incidentes e cultura de pós-mortem sem culpa
+\item Atuação em mentoria, documentação técnica e disseminação de boas práticas de Platform Engineering
+\end{itemize}}
+\section{Formação}
+
+\cventry{mar. de 2013–dez. de 2017}
+        {Bacharelado, Engenharia de Computação, Nota: 8.4/10}
+        {Universidade Estadual de Campinas}
+        {\url{https://www.unicamp.br}}
+        {}
+        {\begin{itemize}
+\item Base sólida em sistemas distribuídos, redes e administração de sistemas Linux
+\item Projeto de conclusão sobre orquestração de contêineres e escalabilidade horizontal de serviços
+\item Monitoria voluntária na disciplina de Sistemas Operacionais
+\end{itemize}
+\textbf{Cursos}: Sistemas Operacionais, Redes de Computadores, Sistemas Distribuídos, Banco de Dados, Engenharia de Software, Segurança da Informação, Computação em Nuvem}
+
+\cventry{fev. de 2021–nov. de 2022}
+        {Diploma, Arquitetura de Soluções em Cloud Computing}
+        {FIAP - Faculdade de Informática e Administração Paulista}
+        {\url{https://www.fiap.com.br}}
+        {}
+        {\begin{itemize}
+\item Pós-graduação lato sensu com foco em arquitetura de nuvem, multi-cloud e governança
+\item Trabalho final sobre plataformas internas de autoatendimento para times de engenharia
+\end{itemize}}
+\section{Experiência Profissional}
+
+\cventry{mar. de 2022–Atual}
+        {Engenheiro DevOps Sênior}
+        {Nuvem Viva Tecnologia}
+        {\url{https://www.nuvemviva.com.br}}
+        {}
+        {\begin{itemize}
+\item Lidero a modernização da plataforma de microsserviços em Kubernetes (Amazon EKS), atendendo mais de 40 squads de produto
+\item Estruturei a infraestrutura como código com Terraform e Terragrunt, reduzindo em 70\% o tempo de provisionamento de novos ambientes
+\item Implementei pipelines de entrega contínua com GitLab CI e Argo CD, diminuindo o lead time de deploy de 2 dias para 40 minutos
+\item Defini SLOs, alertas e runbooks em Prometheus e Grafana, reduzindo o MTTR de incidentes críticos em 55\%
+\item Conduzi iniciativas de FinOps que geraram economia anual de R\$ 1,2 milhão em custos de nuvem
+\item Mentorei 5 engenheiros e engenheiras em práticas SRE, segurança de contêineres e análise de incidentes
+\end{itemize}
+\textbf{Palavras-chave}: Kubernetes, Terraform, AWS, SRE, FinOps}
+
+\cventry{jan. de 2020–fev. de 2022}
+        {Engenheiro DevOps}
+        {PagFácil Pagamentos}
+        {\url{https://www.pagfacil.com.br}}
+        {}
+        {\begin{itemize}
+\item Migrei cargas monolíticas para contêineres Docker orquestrados em Kubernetes, elevando a disponibilidade de 99,5\% para 99,95\%
+\item Automatizei o provisionamento de servidores com Ansible e Packer, eliminando tarefas manuais repetitivas de operação
+\item Implementei a stack de observabilidade com ELK e Datadog, cobrindo 100\% dos serviços críticos de pagamento
+\item Introduzi gestão de segredos com Vault e políticas de menor privilégio alinhadas ao PCI DSS
+\item Atuei em plantões on-call e na resposta a incidentes em ambiente de alto volume transacional
+\end{itemize}
+\textbf{Palavras-chave}: CI/CD, Docker, Jenkins, Observabilidade, Vault}
+
+\cventry{jul. de 2017–dez. de 2019}
+        {Analista de Infraestrutura e Automação}
+        {Sistemas Origem Consultoria}
+        {}
+        {}
+        {\begin{itemize}
+\item Administrei ambientes Linux (Debian e RHEL) e clusters de virtualização VMware para clientes de médio porte
+\item Desenvolvi scripts em Python e Bash para automação de backups, monitoramento e deploys
+\item Configurei balanceadores Nginx, certificados TLS e VPNs site-to-site entre unidades dos clientes
+\item Documentei procedimentos operacionais e treinei equipes de suporte de primeiro e segundo nível
+\end{itemize}
+\textbf{Palavras-chave}: Linux, Ansible, Virtualização, Scripts, Nginx}
+\section{Idiomas}
+
+\cvline{Português}{Nativo ou Bilíngue}
+\cvline{Inglês}{Proficiência Profissional Fluente \hfill \textbf{Palavras-chave}: TOEFL iBT 108, Reuniões técnicas diárias}
+\cvline{Espanhol}{Proficiência Profissional Limitada \hfill \textbf{Palavras-chave}: Leitura de documentação}
+\section{Competências}
+
+\cvline{Cloud \& Infraestrutura como Código}{Especialista \hfill \textbf{Palavras-chave}: AWS, Azure, Terraform, Terragrunt, Ansible, Packer}
+\cvline{Contêineres \& Orquestração}{Especialista \hfill \textbf{Palavras-chave}: Docker, Kubernetes, Helm, Argo CD, Istio}
+\cvline{CI/CD \& Automação}{Avançado \hfill \textbf{Palavras-chave}: GitLab CI, GitHub Actions, Jenkins, Python, Bash}
+\cvline{Observabilidade \& SRE}{Avançado \hfill \textbf{Palavras-chave}: Prometheus, Grafana, Datadog, OpenTelemetry, ELK}
+\cvline{Segurança \& Conformidade}{Intermediário \hfill \textbf{Palavras-chave}: Vault, IAM, Trivy, PCI DSS, LGPD}
+\section{Prêmios}
+
+\cventry{dez. de 2023}
+        {Nuvem Viva Tecnologia}
+        {Prêmio Inovação Interna - Plataforma de Autoatendimento}
+        {}
+        {}
+        {Reconhecimento pelo desenvolvimento da plataforma interna de provisionamento de ambientes, que reduziu em 70\% o tempo de entrega de infraestrutura para as squads de produto.}
+
+\cventry{jan. de 2021}
+        {PagFácil Pagamentos}
+        {Destaque Técnico do Ano}
+        {}
+        {}
+        {Premiação anual concedida aos profissionais de maior impacto técnico, pela liderança da migração para contêineres e pela melhoria dos indicadores de disponibilidade da plataforma de pagamentos.}
+\section{Certificados}
+
+\cventry{mar. de 2023}
+        {Amazon Web Services}
+        {AWS Certified Solutions Architect - Professional}
+        {\url{https://aws.amazon.com/certification/}}
+        {}
+        {}
+
+\cventry{jul. de 2022}
+        {Cloud Native Computing Foundation}
+        {Certified Kubernetes Administrator (CKA)}
+        {\url{https://www.cncf.io/certifications/cka/}}
+        {}
+        {}
+
+\cventry{nov. de 2021}
+        {HashiCorp}
+        {HashiCorp Certified: Terraform Associate}
+        {\url{https://www.hashicorp.com/certifications/terraform-associate}}
+        {}
+        {}
+\section{Publicações}
+
+\cventry{ago. de 2023}
+        {Escalando clusters Kubernetes com Karpenter no Amazon EKS}
+        {Blog Técnico Nuvem Viva}
+        {\url{https://medium.com/@rafaelnalmeida/escalando-clusters-kubernetes-com-karpenter-no-amazon-eks-9f1c2b7a4d13}}
+        {}
+        {\begin{itemize}
+\item Artigo técnico sobre provisionamento dinâmico de nós e redução de custos em clusters EKS
+\item Comparativo entre Cluster Autoscaler e Karpenter em cargas de trabalho variáveis
+\item Apresenta resultados reais com economia de 30\% em custos de computação
+\end{itemize}}
+\section{Referências}
+
+\cventry{\emaillink[camila.santos@nuvemviva.com.br]{camila.santos@nuvemviva.com.br}}
+        {Gerente de Plataforma na Nuvem Viva Tecnologia}
+        {Camila Ferreira dos Santos}
+        {+55 11 97654-3210}
+        {}
+        {Rafael é referência técnica em Kubernetes e Terraform no time. Conduz iniciativas complexas com autonomia, comunica-se bem com áreas de produto e eleva o nível técnico de quem trabalha ao seu lado.}
+
+\cventry{\emaillink[eduardo.nakamura@pagfacil.com.br]{eduardo.nakamura@pagfacil.com.br}}
+        {Diretor de Engenharia na PagFácil Pagamentos}
+        {Eduardo Nakamura}
+        {+55 11 96543-2109}
+        {}
+        {Durante dois anos, Rafael foi responsável por nossa plataforma de entrega contínua. Sua atuação reduziu drasticamente o tempo de deploy e trouxe uma cultura de confiabilidade que permanece até hoje.}
+\section{Projetos}
+
+\cventry{mar. de 2023–nov. de 2023}
+        {Plataforma interna que permite às squads provisionar ambientes completos por meio de pull requests.}
+        {Plataforma de Autoatendimento de Infraestrutura}
+        {\url{https://github.com/rafaelnalmeida/plataforma-autoatendimento}}
+        {}
+        {\begin{itemize}
+\item Construída com Backstage, Terraform, Argo CD e Kubernetes em modelo GitOps
+\item Reduziu de 3 dias para 25 minutos o tempo de criação de ambientes de homologação
+\item Adotada por 32 squads, com mais de 400 ambientes provisionados no primeiro semestre
+\end{itemize}
+\textbf{Palavras-chave}: Backstage, Terraform, Argo CD, Kubernetes, GitOps}
+
+\cventry{fev. de 2021–out. de 2021}
+        {Stack de métricas, logs e traces para monitorar transações críticas 24 horas por dia.}
+        {Observabilidade para Pagamentos em Tempo Real}
+        {}
+        {}
+        {\begin{itemize}
+\item Instrumentação de serviços com OpenTelemetry e correlação de traces ponta a ponta
+\item Dashboards e alertas baseados em SLOs de latência e taxa de erro
+\item Redução de 55\% no tempo médio de diagnóstico de falhas em produção
+\end{itemize}
+\textbf{Palavras-chave}: OpenTelemetry, Grafana, Datadog, SLO}
+\section{Interesses}
+
+\cvline{Esportes}{Corrida de rua, Ciclismo, Natação}
+\cvline{Comunidade Técnica}{Palestras, Open Source, Mentoria}
+\cvline{Música}{Guitarra, Vinis}
+\section{Voluntariado}
+
+\cventry{mar. de 2019–nov. de 2023}
+        {Voluntário na Organização}
+        {DevOpsDays São Paulo}
+        {\url{https://devopsdays.org/sao-paulo}}
+        {}
+        {\begin{itemize}
+\item Participei da organização de edições do DevOpsDays São Paulo, apoiando curadoria de palestras e logística do evento
+\item Ministrei workshops introdutórios de Kubernetes e Terraform para mais de 200 participantes
+\item Atuei como mentor em programas de entrada de novos profissionais nas áreas de DevOps e SRE
+\end{itemize}}
+    
+\end{document}

@@ -4,9 +4,6 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
-overrides:
-  '@yamlresume/playground': file:./vendor/yamlresume-playground-0.16.0.tgz
-
 importers:
 
   .:
@@ -24,17 +21,17 @@ importers:
         specifier: ^2.0.1
         version: 2.0.1(next@16.2.11(@opentelemetry/api@1.9.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)
       '@yamlresume/core':
-        specifier: 0.16.0
-        version: 0.16.0
+        specifier: 0.16.1
+        version: 0.16.1
       '@yamlresume/node':
-        specifier: 0.16.0
-        version: 0.16.0(react@19.2.8)(zod@4.4.3)
+        specifier: 0.16.1
+        version: 0.16.1(react@19.2.8)(zod@4.4.3)
       '@yamlresume/playground':
-        specifier: file:vendor/yamlresume-playground-0.16.0.tgz
-        version: file:vendor/yamlresume-playground-0.16.0.tgz(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(tailwindcss@4.3.3)
+        specifier: ^0.16.1
+        version: 0.16.1(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(tailwindcss@4.3.3)
       '@yamlresume/samples':
-        specifier: 0.16.0
-        version: 0.16.0
+        specifier: 0.16.1
+        version: 0.16.1
       class-variance-authority:
         specifier: ^0.7.1
         version: 0.7.1
@@ -1803,30 +1800,29 @@ packages:
   '@vscode/l10n@0.0.18':
     resolution: {integrity: sha512-KYSIHVmslkaCDyw013pphY+d7x1qV8IZupYfeIfzNA+nsaWHbn5uPuQRvdRFsa9zFzGeudPuoGoZ1Op4jrJXIQ==}
 
-  '@yamlresume/ai@0.16.0':
-    resolution: {integrity: sha512-8sytJXP/npSIYYwnheIeYb7HFSWUqaBfJRwr0ouWXxYjg27UuOcb4R3NVnZMyi/2e445uBN5XL7cd9OF8mATvg==}
-    engines: {node: '>=20.0.0'}
+  '@yamlresume/ai@0.16.1':
+    resolution: {integrity: sha512-LlbCekfmFPyNbUNWPulciHiZCrVQ3rLQUxjPW7NlXnOsCsbD4T48zohG3Zx/uxBZDhdNqhSvKZ34YOPzBLvK7A==}
+    engines: {node: '>=22.0.0'}
 
-  '@yamlresume/core@0.16.0':
-    resolution: {integrity: sha512-HDpq6mwfWXtHy9EK1X2r1zlOnySITbGUr9dZOA7ymxQMN/hq3GdThTgP67wmewnqlXD1nHNChK4weCVqOHcRMA==}
-    engines: {node: '>=20.0.0'}
+  '@yamlresume/core@0.16.1':
+    resolution: {integrity: sha512-zC63zIGrrWV8z6ss0bFf3hCx7bryy4OpVSLpHyflHq4BeMnEMtpocG20tLw/Szo14VCNeQGCEmLiTQkXdwkCjw==}
+    engines: {node: '>=22.0.0'}
 
-  '@yamlresume/node@0.16.0':
-    resolution: {integrity: sha512-lGxAru8hMCz1/7Dl2RuIsc/s2UiVT6veiaK4AExBPErLzftvCgkrIqw1hbGNY/zmfiozHFm2aFZ8xvAQjflSSg==}
-    engines: {node: '>=20.0.0'}
+  '@yamlresume/node@0.16.1':
+    resolution: {integrity: sha512-LfuDyIvRc1Wdqr4NdHl+Sn/Ao7myapNrfhdz9n81NJLDAxQp7iJD9LGZ5fLrsUQmb8dlDdmWrSv6dPYjbNuCRw==}
+    engines: {node: '>=22.0.0'}
 
-  '@yamlresume/playground@file:vendor/yamlresume-playground-0.16.0.tgz':
-    resolution: {integrity: sha512-4RLqgcxHYWQixYUo5ljuFz2HwAuEXMyFZRSLkcfvTQgGlXR1AA5mEPgN4cjaK4Vw/kLdXw9kQUslRnAVbRnWtQ==, tarball: file:vendor/yamlresume-playground-0.16.0.tgz}
-    version: 0.16.0
+  '@yamlresume/playground@0.16.1':
+    resolution: {integrity: sha512-4tLW58rmjDNr43x31VbTG1vBIas9j4B9RRyAWf5W9r34jLPqp7pIqQF2WoZdSWsKl8QgbrwzC1o0r0yjrLy7eA==}
     engines: {node: '>=22.0.0'}
     peerDependencies:
       react: '>=18'
       react-dom: '>=18'
       tailwindcss: '>=3'
 
-  '@yamlresume/samples@0.16.0':
-    resolution: {integrity: sha512-Mu237QEw82il/dcSrs716JaD3vCzYs3oRXdM0sjZLEr9A3FK0ntBtNHNVIup+GiSisnlfA9vu2n3KdQAqfHMZw==}
-    engines: {node: '>=20.0.0'}
+  '@yamlresume/samples@0.16.1':
+    resolution: {integrity: sha512-+mWD1DuB27XoMsmevtl3BQb18Y369R/hb+mIklwKXpEaNCWQWzPLPMN/PMlp2gh30DwwDRiIXODi6QHWMYdUZw==}
+    engines: {node: '>=22.0.0'}
 
   '@yuku-analyzer/binding-darwin-arm64@0.6.12':
     resolution: {integrity: sha512-9rpIP7IeybjyvWUf6WnU24h1qo+JdxIHr1o3yb06HoE8tM3S/Jh5RrUw9aw5P9BKSIvSPbLyVlItX7PcD3o5bQ==}
@@ -5402,10 +5398,10 @@ snapshots:
 
   '@vscode/l10n@0.0.18': {}
 
-  '@yamlresume/ai@0.16.0(react@19.2.8)(zod@4.4.3)':
+  '@yamlresume/ai@0.16.1(react@19.2.8)(zod@4.4.3)':
     dependencies:
       '@ai-sdk/openai': 1.3.24(zod@4.4.3)
-      '@yamlresume/core': 0.16.0
+      '@yamlresume/core': 0.16.1
       ai: 4.3.19(react@19.2.8)(zod@4.4.3)
       consola: 3.4.2
       tslib: 2.8.1
@@ -5415,7 +5411,7 @@ snapshots:
       - supports-color
       - zod
 
-  '@yamlresume/core@0.16.0':
+  '@yamlresume/core@0.16.1':
     dependencies:
       docx: 9.7.1
       escape-latex: 1.2.0
@@ -5429,11 +5425,11 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@yamlresume/node@0.16.0(react@19.2.8)(zod@4.4.3)':
+  '@yamlresume/node@0.16.1(react@19.2.8)(zod@4.4.3)':
     dependencies:
-      '@yamlresume/ai': 0.16.0(react@19.2.8)(zod@4.4.3)
-      '@yamlresume/core': 0.16.0
-      '@yamlresume/samples': 0.16.0
+      '@yamlresume/ai': 0.16.1(react@19.2.8)(zod@4.4.3)
+      '@yamlresume/core': 0.16.1
+      '@yamlresume/samples': 0.16.1
       chokidar: 5.0.0
       coalescifn: 1.0.0
       execa: 10.0.0
@@ -5444,12 +5440,12 @@ snapshots:
       - supports-color
       - zod
 
-  '@yamlresume/playground@file:vendor/yamlresume-playground-0.16.0.tgz(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(tailwindcss@4.3.3)':
+  '@yamlresume/playground@0.16.1(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(tailwindcss@4.3.3)':
     dependencies:
       '@monaco-editor/react': 4.7.0(monaco-editor@0.54.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
       '@tabler/icons-react': 3.46.0(react@19.2.8)
-      '@yamlresume/core': 0.16.0
-      '@yamlresume/samples': 0.16.0
+      '@yamlresume/core': 0.16.1
+      '@yamlresume/samples': 0.16.1
       clsx: 2.1.1
       docx-preview: 0.4.0
       jszip: 3.10.1
@@ -5465,9 +5461,9 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@yamlresume/samples@0.16.0':
+  '@yamlresume/samples@0.16.1':
     dependencies:
-      '@yamlresume/core': 0.16.0
+      '@yamlresume/core': 0.16.1
       tslib: 2.8.1
       yaml: 2.9.0
       zod: 4.4.3

@@ -1,0 +1,273 @@
+\documentclass[a4paper, serif, 10pt]{moderncv}
+
+%% moderncv
+% style and color
+\moderncvstyle{banking}
+\moderncvcolor{black}
+
+%% page layout/margins
+\usepackage[top=2.5cm, bottom=2.5cm, left=1.5cm, right=1.5cm]{geometry}
+
+\nopagenumbers{}
+
+%% Babel config for French language
+% ref:
+% - https://latex3.github.io/babel/guides/locale-french.html
+\usepackage[french]{babel}
+
+%% fontspec
+\usepackage{fontspec}
+
+\IfFontExistsTF{Linux Libertine}{
+  \setmainfont[Ligatures={TeX, Common}, Numbers=OldStyle]{Linux Libertine}
+}{}
+\IfFontExistsTF{Linux Libertine O}{
+  \setmainfont[Ligatures={TeX, Common}, Numbers=OldStyle]{Linux Libertine O}
+}{}
+
+%% CTeX
+% CJK support, used to show CJK characters in the resume
+%
+% - fontset=none: disable builtin fontset but instead set the CJK font manually
+% - heading=false: disable ctex heading
+% - punct=kaiming: use kaiming punctuations styles for CJK
+% - scheme=plain: use plain scheme, do not override \normalsize font size
+% - space=auto: space settings for CJK characters
+%
+% ref:
+% - http://ctan.mirrorcatalogs.com/language/chinese/ctex/ctex.pdf
+\usepackage[UTF8, heading=false, punct=kaiming, scheme=plain, space=auto]{ctex}
+
+\IfFontExistsTF{Noto Serif CJK SC}{
+  \setCJKmainfont{Noto Serif CJK SC}
+}{}
+\IfFontExistsTF{Noto Sans CJK SC}{
+  \setCJKsansfont{Noto Sans CJK SC}
+}{}
+
+%% line spacing
+\usepackage{setspace}
+\setstretch{1.125}
+
+%% URL styling - use normal text instead of monospace
+\urlstyle{same}
+
+% Auto-underline all links
+% Defer until \begin{document} so hyperref is already loaded
+\AtBeginDocument{%
+  \let\oldhref\href
+  \renewcommand{\href}[2]{\oldhref{#1}{\underline{#2}}}%
+}
+
+%% Patch \httplink and \httpslink to handle full URLs
+% The original moderncv macros always prepend http:// or https:// to URLs.
+% This causes issues when the URL already has a protocol (e.g., https://example.com)
+% resulting in malformed URLs like https://https://example.com.
+% This patch checks if the URL already contains "://" and uses it directly if so.
+% Note: We use \str_set:Nx (x-expansion) to expand macros like \@homepage first.
+\ExplSyntaxOn
+\str_new:N \g_yamlresume_url_str
+
+\RenewDocumentCommand{\httpslink}{O{}m}{
+  \str_set:Nx \g_yamlresume_url_str {#2}
+  \str_if_in:NnTF \g_yamlresume_url_str {://}
+    { \url{#2} }
+    { \url{https://#2} }
+}
+
+\RenewDocumentCommand{\httplink}{O{}m}{
+  \str_set:Nx \g_yamlresume_url_str {#2}
+  \str_if_in:NnTF \g_yamlresume_url_str {://}
+    { \url{#2} }
+    { \url{http://#2} }
+}
+\ExplSyntaxOff
+
+\name{Camille Dubois}{}
+\title{Ingénieur DevOps / SRE}
+\phone[mobile]{+33 6 12 34 56 78}
+\email{camille.dubois@protonmail.com}
+\homepage{https://camilledubois.dev}
+
+\address{12 rue de la Roquette, Paris, Île-de-France, France, 75011}{}{}
+
+\extrainfo{{\small \faGithub}\ \href{https://github.com/camilledubois}{@camilledubois} {} {} {} • {} {} {} 
+{\small \faLinkedin}\ \href{https://www.linkedin.com/in/camille-dubois-devops}{@camille-dubois-devops}}
+
+\begin{document}
+
+\maketitle
+
+\section{Informations de base}
+
+\cvline{}{Ingénieur DevOps avec plus de 5 ans d'expérience dans la conception, l'automatisation et l'exploitation de plateformes cloud natives. Passionné par la fiabilité, l'observabilité et l'amélioration continue.
+%
+\begin{itemize}
+\item Expertise en Kubernetes, Terraform et CI/CD sur AWS et Azure
+\item Réduction des coûts cloud de 30 \% grâce à l'optimisation des ressources et au rightsizing
+\item Mise en place de pipelines de déploiement sans interruption pour plus de 200 microservices
+\item Solide culture SRE : SLO, gestion des incidents, post-mortems et ingénierie du chaos
+\end{itemize}}
+\section{Formation}
+
+\cventry{sept. 2019–juil. 2021}
+        {Master, Informatique - Systèmes distribués et cloud, Score : Mention Très Bien}
+        {Université Paris-Saclay}
+        {\url{https://www.universite-paris-saclay.fr}}
+        {}
+        {\begin{itemize}
+\item Spécialisation en systèmes distribués, cloud computing et automatisation
+\item Projet de fin d'études : orchestration Kubernetes multi-cloud avec Terraform
+\item Major de promotion en architecture cloud et sécurité
+\end{itemize}
+\textbf{Cours} : Architectures cloud et virtualisation, Systèmes distribués et tolérance aux pannes, Sécurité des infrastructures, Automatisation et Infrastructure as Code, Observabilité et performance}
+
+\cventry{sept. 2016–juin 2019}
+        {Licence, Informatique, Score : Mention Bien}
+        {Université de Lille}
+        {\url{https://www.univ-lille.fr}}
+        {}
+        {\begin{itemize}
+\item Acquisition des fondamentaux en développement, réseaux et systèmes d'exploitation
+\item Premier contact avec les pratiques DevOps lors de projets universitaires
+\end{itemize}
+\textbf{Cours} : Algorithmique et structures de données, Réseaux et protocoles, Administration système Linux, Programmation Python et Bash}
+\section{Expérience professionnelle}
+
+\cventry{janv. 2023–Present}
+        {Ingénieur DevOps Senior}
+        {CloudNova}
+        {\url{https://www.cloudnova.fr}}
+        {}
+        {\begin{itemize}
+\item Conception et maintien d'une plateforme Kubernetes multi-tenant sur AWS (EKS) pour 200+ microservices
+\item Automatisation complète du provisionnement avec Terraform et Ansible, réduisant le time-to-market de 40 \%
+\item Mise en place de pipelines GitLab CI/CD avec tests automatisés, scans de sécurité et déploiements canary
+\item Définition et suivi des SLO/SLI, animation des astreintes et des post-mortems
+\item Optimisation des coûts cloud de 30 \% via rightsizing, spot instances et politiques de rétention
+\end{itemize}
+\textbf{Mots-clés} : Kubernetes, Terraform, AWS, GitLab CI, SRE, Observabilité}
+
+\cventry{sept. 2021–déc. 2022}
+        {Ingénieur DevOps}
+        {PayFlow}
+        {\url{https://www.payflow.fr}}
+        {}
+        {\begin{itemize}
+\item Migration d'une application monolithique vers une architecture de microservices conteneurisés
+\item Création de charts Helm et de pipelines Jenkins pour des déploiements reproductibles
+\item Mise en place de la supervision avec Prometheus, Grafana et Alertmanager
+\item Participation à la rotation d'astreinte et à la réduction du MTTR de 50 \%
+\end{itemize}
+\textbf{Mots-clés} : Docker, Helm, Jenkins, Prometheus, Grafana}
+
+\cventry{juil. 2019–août 2021}
+        {Administrateur Systèmes et Réseaux}
+        {Startup Factory}
+        {\url{https://www.startupfactory.fr}}
+        {}
+        {\begin{itemize}
+\item Administration de serveurs Linux (Debian/Ubuntu) et gestion des sauvegardes
+\item Automatisation des tâches récurrentes avec Bash et Python
+\item Mise en place de la supervision Nagios et du référencement des incidents
+\item Support technique aux équipes de développement et participation aux revues d'architecture
+\end{itemize}
+\textbf{Mots-clés} : Linux, Bash, Python, Nagios, Réseaux}
+\section{Langues}
+
+\cvline{Français}{Niveau natif ou bilingue \hfill \textbf{Mots-clés} : Langue maternelle}
+\cvline{Anglais}{Niveau professionnel complet \hfill \textbf{Mots-clés} : TOEIC 950, Anglais technique}
+\cvline{Espagnol}{Niveau de travail limité \hfill \textbf{Mots-clés} : Conversation courante}
+\section{Compétences}
+
+\cvline{Cloud \& Infrastructure}{Expert \hfill \textbf{Mots-clés} : AWS, Azure, GCP, Terraform, Ansible, Pulumi}
+\cvline{Conteneurs \& Orchestration}{Expert \hfill \textbf{Mots-clés} : Kubernetes, Docker, Helm, Istio, EKS, Kustomize}
+\cvline{CI/CD \& Automatisation}{Avancé \hfill \textbf{Mots-clés} : GitLab CI, GitHub Actions, Jenkins, ArgoCD, Python, Go}
+\cvline{Observabilité \& SRE}{Avancé \hfill \textbf{Mots-clés} : Prometheus, Grafana, ELK, Datadog, SLO/SLI, Ingénierie du chaos}
+\cvline{Sécurité \& Conformité}{Intermédiaire \hfill \textbf{Mots-clés} : Vault, Trivy, OPA, RBAC, SOC2, RGPD}
+\section{Récompenses}
+
+\cventry{juin 2023}
+        {CloudNova}
+        {Prix de l'innovation DevOps}
+        {}
+        {}
+        {Récompense interne pour la conception d'une plateforme d'auto-scaling prédictif ayant permis une réduction de 25 \% des coûts d'infrastructure.}
+\section{Certificats}
+
+\cventry{mars 2023}
+        {Amazon Web Services}
+        {AWS Certified DevOps Engineer – Professional}
+        {\url{https://aws.amazon.com/certification/}}
+        {}
+        {}
+
+\cventry{nov. 2022}
+        {Cloud Native Computing Foundation}
+        {Certified Kubernetes Administrator (CKA)}
+        {\url{https://www.cncf.io/certification/cka/}}
+        {}
+        {}
+
+\cventry{mai 2022}
+        {HashiCorp}
+        {HashiCorp Certified: Terraform Associate}
+        {\url{https://www.hashicorp.com/certification}}
+        {}
+        {}
+\section{Publications}
+
+\cventry{avr. 2024}
+        {Retour d'expérience : migration de 200 microservices vers Kubernetes}
+        {Blog technique de CloudNova}
+        {\url{https://www.cloudnova.fr/blog/migration-kubernetes}}
+        {}
+        {\begin{itemize}
+\item Présentation des défis rencontrés lors de la migration d'un monolithe vers Kubernetes
+\item Bonnes pratiques pour la gestion des secrets, des ressources et des déploiements progressifs
+\item Analyse des gains de performance et de fiabilité après migration
+\end{itemize}}
+\section{Projets}
+
+\cventry{févr. 2023–août 2023}
+        {Mise en place d'une stack d'observabilité centralisée pour 200+ microservices}
+        {Plateforme d'observabilité interne}
+        {\url{https://github.com/camilledubois/observability-platform}}
+        {}
+        {\begin{itemize}
+\item Déploiement de Prometheus, Grafana et Loki sur Kubernetes
+\item Création de tableaux de bord SLO et d'alertes basées sur les symptômes
+\item Réduction du MTTR de 50 \% et amélioration de la visibilité sur les incidents
+\end{itemize}
+\textbf{Mots-clés} : Observabilité, Prometheus, Grafana, Loki, SLO}
+
+\cventry{mars 2022–nov. 2022}
+        {Provisionnement automatisé d'environnements éphémères sur AWS et Azure}
+        {Automatisation multi-cloud}
+        {\url{https://github.com/camilledubois/multi-cloud-automation}}
+        {}
+        {\begin{itemize}
+\item Développement de modules Terraform réutilisables et de pipelines GitLab CI
+\item Intégration de politiques OPA et de scans de sécurité Trivy
+\item Réduction du temps de création d'un environnement de 2 jours à 30 minutes
+\end{itemize}
+\textbf{Mots-clés} : Terraform, AWS, Azure, OPA, GitLab CI}
+\section{Centres d'intérêt}
+
+\cvline{Open Source}{Kubernetes, Terraform, Prometheus}
+\cvline{Sport}{Course à pied, Escalade}
+\cvline{Lecture}{Essais techniques, Science-fiction}
+\section{Bénévolat}
+
+\cventry{sept. 2022–Present}
+        {Mentor}
+        {DevOps Paris}
+        {\url{https://www.meetup.com/devops-paris/}}
+        {}
+        {\begin{itemize}
+\item Accompagnement de développeurs et d'administrateurs dans leur transition vers les pratiques DevOps
+\item Animation d'ateliers pratiques sur Kubernetes, Terraform et CI/CD
+\item Organisation de rencontres mensuelles et de retours d'expérience
+\end{itemize}}
+    
+\end{document}

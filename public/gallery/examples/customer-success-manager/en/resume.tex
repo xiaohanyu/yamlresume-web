@@ -1,0 +1,257 @@
+\documentclass[a4paper, serif, 10pt]{moderncv}
+
+%% moderncv
+% style and color
+\moderncvstyle{banking}
+\moderncvcolor{black}
+
+%% page layout/margins
+\usepackage[top=2.5cm, bottom=2.5cm, left=1.5cm, right=1.5cm]{geometry}
+
+\nopagenumbers{}
+
+%% Babel config for English language
+\usepackage[english]{babel}
+
+%% fontspec
+\usepackage{fontspec}
+
+\IfFontExistsTF{Linux Libertine}{
+  \setmainfont[Ligatures={TeX, Common}, Numbers=OldStyle]{Linux Libertine}
+}{}
+\IfFontExistsTF{Linux Libertine O}{
+  \setmainfont[Ligatures={TeX, Common}, Numbers=OldStyle]{Linux Libertine O}
+}{}
+
+%% CTeX
+% CJK support, used to show CJK characters in the resume
+%
+% - fontset=none: disable builtin fontset but instead set the CJK font manually
+% - heading=false: disable ctex heading
+% - punct=kaiming: use kaiming punctuations styles for CJK
+% - scheme=plain: use plain scheme, do not override \normalsize font size
+% - space=auto: space settings for CJK characters
+%
+% ref:
+% - http://ctan.mirrorcatalogs.com/language/chinese/ctex/ctex.pdf
+\usepackage[UTF8, heading=false, punct=kaiming, scheme=plain, space=auto]{ctex}
+
+\IfFontExistsTF{Noto Serif CJK SC}{
+  \setCJKmainfont{Noto Serif CJK SC}
+}{}
+\IfFontExistsTF{Noto Sans CJK SC}{
+  \setCJKsansfont{Noto Sans CJK SC}
+}{}
+
+%% line spacing
+\usepackage{setspace}
+\setstretch{1.125}
+
+%% URL styling - use normal text instead of monospace
+\urlstyle{same}
+
+% Auto-underline all links
+% Defer until \begin{document} so hyperref is already loaded
+\AtBeginDocument{%
+  \let\oldhref\href
+  \renewcommand{\href}[2]{\oldhref{#1}{\underline{#2}}}%
+}
+
+%% Patch \httplink and \httpslink to handle full URLs
+% The original moderncv macros always prepend http:// or https:// to URLs.
+% This causes issues when the URL already has a protocol (e.g., https://example.com)
+% resulting in malformed URLs like https://https://example.com.
+% This patch checks if the URL already contains "://" and uses it directly if so.
+% Note: We use \str_set:Nx (x-expansion) to expand macros like \@homepage first.
+\ExplSyntaxOn
+\str_new:N \g_yamlresume_url_str
+
+\RenewDocumentCommand{\httpslink}{O{}m}{
+  \str_set:Nx \g_yamlresume_url_str {#2}
+  \str_if_in:NnTF \g_yamlresume_url_str {://}
+    { \url{#2} }
+    { \url{https://#2} }
+}
+
+\RenewDocumentCommand{\httplink}{O{}m}{
+  \str_set:Nx \g_yamlresume_url_str {#2}
+  \str_if_in:NnTF \g_yamlresume_url_str {://}
+    { \url{#2} }
+    { \url{http://#2} }
+}
+\ExplSyntaxOff
+
+\name{Maya Chen}{}
+\title{Strategic Customer Success Manager | SaaS Retention \& Expansion}
+\phone[mobile]{(415) 555-0132}
+\email{maya.chen@example.com}
+\homepage{https://www.mayachen.com}
+
+\address{450 Mission Street, Suite 1200, San Francisco, California, United States, 94107}{}{}
+
+\extrainfo{{\small \faLinkedin}\ \href{https://www.linkedin.com/in/maya-chen-csm}{@maya-chen-csm} {} {} {} • {} {} {} 
+{\small \faMedium}\ \href{https://medium.com/@maya.chen}{@maya.chen}}
+
+\begin{document}
+
+\maketitle
+
+\section{Basics}
+
+\cvline{}{Customer Success Manager with 6+ years of experience driving retention, product adoption, and expansion revenue for B2B SaaS companies. Skilled at building trusted relationships with executive stakeholders and translating customer goals into measurable business outcomes.
+%
+\begin{itemize}
+\item Manage a \$4.2M book of business across 45 mid-market and enterprise accounts, consistently exceeding net revenue retention targets.
+\item Designed a customer health scoring model that reduced churn by 18\% and increased expansion pipeline by 32\%.
+\item Lead cross-functional initiatives with Product, Sales, and Support to improve onboarding, QBRs, and customer advocacy.
+\item Known for data-informed storytelling, empathetic communication, and a proactive, solution-oriented approach.
+\end{itemize}}
+\section{Education}
+
+\cventry{Sep 2014–Jun 2018}
+        {Bachelor, Business Administration and Marketing, Score: 3.7}
+        {University of Washington}
+        {\url{https://www.washington.edu}}
+        {}
+        {\begin{itemize}
+\item Graduated cum laude with a focus on customer strategy and B2B marketing
+\item Completed capstone project on reducing churn in subscription-based businesses
+\item Served as vice president of the undergraduate marketing association
+\end{itemize}
+\textbf{Courses}: Customer Relationship Management, Organizational Behavior, Data Analytics for Business, Negotiation and Conflict Resolution, Marketing Analytics, Project Management, Business Communication, Consumer Behavior}
+\section{Work}
+
+\cventry{Mar 2021–Present}
+        {Senior Customer Success Manager}
+        {CloudLoop}
+        {\url{https://www.cloudloop.com}}
+        {}
+        {\begin{itemize}
+\item Own strategic relationships with 45 enterprise and mid-market accounts representing \$4.2M in ARR
+\item Achieved 118\% net revenue retention in FY2023 through proactive renewals, upsells, and multi-threading
+\item Built a customer health score model using product usage, support tickets, and NPS to prioritize risk and growth
+\item Facilitate executive business reviews and quarterly success plans with C-level stakeholders
+\item Partner with Product to relay customer feedback, influencing roadmap decisions for three major releases
+\item Mentor two customer success associates and lead onboarding for new CSM hires
+\end{itemize}
+\textbf{Keywords}: Customer Health Scoring, QBR Facilitation, Churn Reduction, Upsell \& Cross-sell, Executive Business Reviews, Renewal Management, Team Leadership}
+
+\cventry{Jun 2018–Feb 2021}
+        {Customer Success Associate}
+        {BrightDesk}
+        {\url{https://www.brightdesk.com}}
+        {}
+        {\begin{itemize}
+\item Managed a portfolio of 80 SMB accounts with a combined ARR of \$1.1M
+\item Improved onboarding completion rate from 62\% to 89\% by redesigning the welcome journey
+\item Reduced average first-response time from 8 hours to 45 minutes by implementing triage workflows
+\item Conducted quarterly business reviews and identified expansion opportunities totaling \$240K
+\item Documented 30+ help center articles and led customer webinars on best practices
+\end{itemize}
+\textbf{Keywords}: Onboarding, SMB Accounts, Customer Journey Mapping, Support Triage, Webinars, Expansion Revenue, Product Adoption}
+\section{Languages}
+
+\cvline{English}{Native or Bilingual Proficiency \hfill \textbf{Keywords}: Native speaker}
+\cvline{Spanish}{Full Professional Proficiency \hfill \textbf{Keywords}: DELE B2}
+\cvline{Mandarin}{Limited Working Proficiency \hfill \textbf{Keywords}: Conversational}
+\section{Skills}
+
+\cvline{Customer Success Management}{Expert \hfill \textbf{Keywords}: Customer Health Scoring, QBR Facilitation, Churn Reduction, Renewal Management, Executive Business Reviews, Customer Journey Mapping}
+\cvline{Account Growth}{Advanced \hfill \textbf{Keywords}: Upsell \& Cross-sell, Expansion Revenue, Account Planning, Negotiation, Stakeholder Management, Customer Advocacy}
+\cvline{Data \& Analytics}{Advanced \hfill \textbf{Keywords}: Salesforce, Gainsight, Looker, SQL, NPS, CSAT, SaaS Metrics}
+\cvline{Leadership \& Collaboration}{Advanced \hfill \textbf{Keywords}: Team Leadership, Mentoring, Cross-functional Collaboration, Process Improvement, Project Management, Communication}
+\cvline{Tools}{Intermediate \hfill \textbf{Keywords}: Zendesk, Jira, Slack, HubSpot, Google Workspace, Notion}
+\section{Awards}
+
+\cventry{Jun 2023}
+        {CloudLoop}
+        {Customer Success Leader of the Quarter}
+        {}
+        {}
+        {Recognized for achieving the highest net revenue retention and expansion attainment across the customer success team in Q2 2023.}
+
+\cventry{May 2019}
+        {BrightDesk}
+        {President's Award for Service Excellence}
+        {}
+        {}
+        {Awarded for outstanding customer satisfaction scores and for leading a cross-team initiative that improved onboarding efficiency.}
+\section{Certificates}
+
+\cventry{Feb 2022}
+        {SuccessCOACHING}
+        {Certified Customer Success Manager (CCSM)}
+        {\url{https://www.successcoaching.com/certified-customer-success-manager}}
+        {}
+        {}
+
+\cventry{Sep 2021}
+        {HubSpot Academy}
+        {Customer Success Certification}
+        {\url{https://academy.hubspot.com/courses/customer-success}}
+        {}
+        {}
+
+\cventry{Nov 2020}
+        {Salesforce}
+        {Salesforce Certified Administrator}
+        {\url{https://trailhead.salesforce.com/credentials/administrator}}
+        {}
+        {}
+\section{Publications}
+
+\cventry{Mar 2023}
+        {The Retention Playbook for Mid-Market SaaS}
+        {Customer Success Collective}
+        {\url{https://www.customersuccesscollective.com/retention-playbook}}
+        {}
+        {\begin{itemize}
+\item Practical framework for diagnosing churn risk using product usage, support signals, and stakeholder maps
+\item Includes templates for health scores, executive business reviews, and renewal negotiations
+\item Featured in the Customer Success Collective weekly newsletter
+\end{itemize}}
+\section{Projects}
+
+\cventry{Jan 2023–Aug 2023}
+        {Redesigned the customer health scoring model to predict churn and expansion more accurately.}
+        {Customer Health Score 2.0}
+        {\url{https://www.cloudloop.com/customer-health-score}}
+        {}
+        {\begin{itemize}
+\item Consolidated data from Salesforce, Gainsight, Zendesk, and product analytics into a single health score
+\item Built a weighted model with 12 signals, including login frequency, support sentiment, and executive engagement
+\item Reduced false-positive risk alerts by 40\% and increased CSM efficiency by 15\%
+\end{itemize}
+\textbf{Keywords}: Health Score, Churn Prediction, Salesforce, Gainsight, Data Modeling}
+
+\cventry{Apr 2022–Oct 2022}
+        {Internal portal that centralizes onboarding resources, playbooks, and certification paths for new CSMs.}
+        {CSM Onboarding Portal}
+        {\url{https://www.cloudloop.com/csm-onboarding}}
+        {}
+        {\begin{itemize}
+\item Reduced new CSM ramp time from 12 weeks to 7 weeks
+\item Standardized onboarding checklists, call frameworks, and product certification milestones
+\item Adopted by the entire customer success organization across three regions
+\end{itemize}
+\textbf{Keywords}: Onboarding, Enablement, Documentation, Process Design}
+\section{Interests}
+
+\cvline{Community Building}{Customer Success Meetups, Mentorship, Networking}
+\cvline{Content Creation}{Podcasting, Writing, Video Editing}
+\cvline{Wellbeing}{Yoga, Hiking, Meditation}
+\cvline{Travel}{Cultural Exploration, Food, Photography}
+\section{Volunteer}
+
+\cventry{Jan 2022–Dec 2023}
+        {Mentor}
+        {Women in Customer Success}
+        {\url{https://www.womenincustomersuccess.org}}
+        {}
+        {\begin{itemize}
+\item Mentor early-career customer success professionals through monthly 1:1 sessions and resume reviews
+\item Lead quarterly workshops on executive communication, negotiation, and career development
+\item Helped 12 mentees secure promotions or new roles in customer success
+\end{itemize}}
+    
+\end{document}

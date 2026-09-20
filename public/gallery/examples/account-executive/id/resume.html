@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="generator" content="YAMLResume (https://yamlresume.dev)">
+
+
+  <title>Aditya Pratama Resume</title>
+  <style>
+    :root {
+      --text-font-size: 16px;
+      --text-font-family: var(--text-default-font-family);
+      --line-height: 1.5;
+    }
+
+    /* Modified from: https://www.joshwcomeau.com/css/custom-css-reset/ */
+
+    /* 1. Use a more-intuitive box-sizing model */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    /* 2. Remove default margin */
+    *:not(dialog) {
+      margin: 0;
+    }
+
+    body {
+      /* 3. Improve text rendering */
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    :root {
+      --border-color: #d0d0d0;
+
+      /* text colors */
+      --text-color-primary: #000000;
+      --text-color-secondary: #333333;
+
+      /* spacing */
+      --spacing-xss: 2px;
+      --spacing-xs: 4px;
+      --spacing-sm: 8px;
+      --spacing-md: 12px;
+      --spacing-lg: 16px;
+      --spacing-xl: 24px;
+      --spacing-xxl: 40px;
+      --spacing-xxxl: 80px;
+
+      /* font sizes */
+      --font-size-xs: 0.8rem;
+      --font-size-sm: 0.9rem;
+      --font-size-md: 1rem;
+      --font-size-lg: 1.1rem;
+      --font-size-xl: 1.25rem;
+      --font-size-xxl: 2.5rem;
+
+      /* layout */
+      --page-max-width: 900px;
+
+      /* typography */
+      --text-default-font-family:
+        -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu,
+        Cantarell, sans-serif;
+    }
+
+    html {
+      font-size: var(--text-font-size);
+    }
+
+    body {
+      /* font & text */
+      color: var(--text-color-primary);
+      font-family: var(--text-font-family);
+      /* this variable is defined by `typography.fontSize` in resume html layout */
+      text-autospace: normal;
+
+      /* layout */
+      line-height: var(--line-height);
+      max-width: var(--page-max-width);
+      margin: 0 auto;
+      padding: var(--spacing-xxxl) var(--spacing-xxl) var(--spacing-xxl);
+    }
+
+    /* header */
+    .resume-header {
+      margin-bottom: var(--spacing-xxl);
+      text-align: center;
+    }
+
+    .resume-name {
+      font-size: var(--font-size-xxl);
+      font-weight: 600;
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .resume-headline {
+      font-size: var(--font-size-lg);
+      margin-bottom: var(--spacing-md);
+    }
+
+    /* contact info */
+    .resume-contact-info {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      column-gap: var(--spacing-lg);
+      row-gap: var(--spacing-xs);
+      margin-top: var(--spacing-sm);
+    }
+
+    .resume-contact-icon,
+    .resume-contact-label {
+      margin-right: var(--spacing-sm);
+      vertical-align: middle;
+    }
+
+    /* links: modern typographic style */
+    a {
+      color: var(--text-color-primary);
+      text-decoration: underline;
+      text-decoration-color: var(--border-color);
+      text-underline-offset: 3px;
+      text-decoration-thickness: 1px;
+      text-decoration-skip-ink: auto;
+      transition: text-decoration-color 0.2s;
+    }
+
+    a:hover {
+      text-decoration-color: var(--text-color-primary);
+    }
+
+    /* sections */
+    .resume-section {
+      margin-bottom: var(--spacing-xl);
+    }
+
+    .resume-section-title {
+      font-size: var(--font-size-xl);
+      font-weight: 500;
+      margin-bottom: var(--spacing-md);
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: var(--spacing-xs);
+    }
+
+    /* entries */
+    .resume-entry {
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .resume-entry:last-child {
+      margin-bottom: 0;
+    }
+
+    .resume-entry-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .resume-entry-title {
+      font-weight: 500;
+      margin-bottom: var(--spacing-xss);
+    }
+
+    .resume-entry-summary p,
+    .resume-summary-content p {
+      margin-bottom: var(--spacing-xs);
+    }
+
+    /* lists */
+    .resume-entry-summary ul,
+    .resume-entry-summary ol,
+    .resume-summary-content ul,
+    .resume-summary-content ol {
+      padding-left: var(--spacing-lg);
+      list-style-type: circle;
+    }
+
+    /* labeled lists (courses, keywords, etc.) */
+    .resume-labeled-list span {
+      font-weight: 500;
+    }
+
+    /* skills grid */
+    .resume-skill-item,
+    .resume-language-item {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .resume-skill-name,
+    .resume-language-name {
+      font-weight: 500;
+    }
+
+    .resume-skill-level,
+    .resume-language-fluency {
+      font-weight: 400;
+    }
+
+    /* mobile */
+    @media (max-width: 768px) {
+      body {
+        padding: var(--spacing-xl);
+      }
+
+      .resume-header {
+        margin-bottom: var(--spacing-xl);
+      }
+
+      .resume-contact-info {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .resume-entry-header {
+        flex-wrap: wrap;
+      }
+    }
+
+    /* footer */
+    .resume-footer {
+      margin-top: var(--spacing-xxl);
+      padding-top: var(--spacing-xl);
+      border-top: 1px solid var(--border-color);
+      font-size: var(--font-size-sm);
+      color: var(--text-color-secondary);
+    }
+
+    @media print {
+      .resume-footer {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="resume-header">
+    <h1 class="resume-name">Aditya Pratama</h1>
+    <p class="resume-headline">Account Executive Senior | Spesialis Solusi SaaS B2B</p>
+    <div class="resume-contact-info">
+      <span class="resume-contact-item"><span class="resume-contact-icon">📧</span><a href="mailto:aditya.pratama@email.com" class="resume-contact-link">aditya.pratama@email.com</a></span>
+      <span class="resume-contact-item"><span class="resume-contact-icon">📞</span>+62 812-3456-7890</span>
+      <span class="resume-contact-item"><span class="resume-contact-icon">🔗</span><a href="https://www.adityapratama.id" class="resume-contact-link">https://www.adityapratama.id</a></span>
+    </div>
+    <div class="resume-contact-info resume-location-info">
+      <span class="resume-contact-item"><span class="resume-contact-icon">📍</span>Jl. Jenderal Sudirman No. 52, Jakarta, DKI Jakarta, Indonesia, 12190</span>
+    </div>
+    <div class="resume-contact-info resume-profiles-info">
+      <span class="resume-contact-item"><span class="resume-contact-label">LinkedIn</span>: <a href="https://www.linkedin.com/in/adityapratama" class="resume-contact-link">@adityapratama</a></span>
+      <span class="resume-contact-item"><span class="resume-contact-label">WhatsApp</span>: <a href="https://wa.me/6281234567890" class="resume-contact-link">@adityapratama</a></span>
+    </div>
+  </header>
+  <section class="resume-section" id="summary" data-section="summary">
+    <h2 class="resume-section-title">Informasi Dasar</h2>
+    <div class="resume-section-content">
+      <div class="resume-summary-content">
+        <p>Account Executive dengan pengalaman 7+ tahun di industri SaaS B2B dan teknologi enterprise. Terbukti secara konsisten mencapai 120% kuota tahunan melalui konsultatif selling, manajemen pipeline, dan negosiasi kontrak bernilai tinggi.</p>
+        <ul>
+          <li>
+            <p>Mengelola siklus penjualan end-to-end dari prospek hingga closing untuk klien enterprise di Indonesia dan Asia Tenggara.</p>
+          </li>
+          <li>
+            <p>Kuat dalam membangun hubungan C-level, memahami kebutuhan bisnis, dan menerjemahkan solusi teknis menjadi nilai bisnis.</p>
+          </li>
+          <li>
+            <p>Berpengalaman dengan Salesforce, HubSpot, MEDDIC, dan metodologi Challenger Sale.</p>
+          </li>
+          <li>
+            <p>Memimpin tim lintas fungsi untuk memastikan onboarding dan retensi klien berjalan lancar.</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="education" data-section="education">
+    <h2 class="resume-section-title">Pendidikan</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="education-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.ui.ac.id">Universitas Indonesia</a></div>
+            <div class="resume-entry-organization">Sarjana, Ilmu Administrasi Niaga, Nilai: 3.65</div>
+          </div>
+          <div class="resume-entry-date">Sep 2012–Jul 2016</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Lulus dengan predikat cum laude dan fokus pada strategi penjualan enterprise.</p>
+            </li>
+            <li>
+              <p>Aktif di organisasi kemahasiswaan sebagai ketua divisi hubungan perusahaan.</p>
+            </li>
+            <li>
+              <p>Meraih juara 2 kompetisi business case tingkat nasional.</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Mata Kuliah</span>: Manajemen Pemasaran, Perilaku Konsumen, Negosiasi Bisnis, Manajemen Penjualan, Analisis Laporan Keuangan, Strategi Bisnis</div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="work" data-section="work">
+    <h2 class="resume-section-title">Pengalaman Kerja</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="work-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.solusinusa.co.id">SolusiNusa Teknologi</a></div>
+            <div class="resume-entry-organization">Senior Account Executive</div>
+          </div>
+          <div class="resume-entry-date">Jan 2021–Sekarang</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Memimpin penjualan solusi cloud ERP untuk klien enterprise, dengan nilai kontrak tahunan rata-rata Rp2 miliar.</p>
+            </li>
+            <li>
+              <p>Mencapai 128% kuota pada 2023 dan 115% pada 2022 melalui pipeline yang sehat dan disiplin CRM.</p>
+            </li>
+            <li>
+              <p>Membangun hubungan strategis dengan CIO, CFO, dan COO untuk memahami prioritas transformasi digital.</p>
+            </li>
+            <li>
+              <p>Berkolaborasi dengan tim product, legal, dan customer success untuk mempercepat siklus closing dan retensi.</p>
+            </li>
+            <li>
+              <p>Melatih 4 Account Executive junior dalam prospecting, discovery, dan presentasi solusi.</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Kata Kunci</span>: Cloud ERP, Enterprise Sales, Negosiasi, Pipeline, MEDDIC</div>
+      </div>
+      <div class="resume-entry" id="work-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.teknologicerdas.co.id">Teknologi Cerdas Asia</a></div>
+            <div class="resume-entry-organization">Account Executive</div>
+          </div>
+          <div class="resume-entry-date">Mar 2018–Des 2020</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Mengelola portofolio 40+ klien UMKM dan mid-market untuk solusi CRM dan otomasi pemasaran.</p>
+            </li>
+            <li>
+              <p>Mencapai 110% kuota tahunan dan meraih penghargaan Top Sales Q3 2019.</p>
+            </li>
+            <li>
+              <p>Melakukan demo produk, trial, dan negosiasi harga untuk meningkatkan konversi dari 18% menjadi 27%.</p>
+            </li>
+            <li>
+              <p>Menjaga akurasi forecast melalui pembaruan Salesforce dan HubSpot secara mingguan.</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Kata Kunci</span>: CRM, SaaS, Prospecting, Demo, Forecast</div>
+      </div>
+      <div class="resume-entry" id="work-3">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.majubersama.co.id">PT Maju Bersama Distribusi</a></div>
+            <div class="resume-entry-organization">Sales Representative</div>
+          </div>
+          <div class="resume-entry-date">Agu 2016–Feb 2018</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Bertanggung jawab atas penjualan produk consumer goods di wilayah Jabodetabek.</p>
+            </li>
+            <li>
+              <p>Menambah 25 toko ritel baru dan meningkatkan pendapatan wilayah sebesar 32% YoY.</p>
+            </li>
+            <li>
+              <p>Membina hubungan dengan pemilik toko dan distributor untuk memastikan ketersediaan stok.</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Kata Kunci</span>: FMCG, Ritel, Distribusi, Penjualan</div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="languages" data-section="languages">
+    <h2 class="resume-section-title">Bahasa</h2>
+    <div class="resume-section-content">
+      <div class="resume-languages-list">
+        <div class="resume-language-item">
+          <div class="resume-language-name">Indonesia<span class="resume-language-fluency">: Bahasa Ibu / Bilingual</span></div>
+          <div>
+            <div class="resume-labeled-list"><span>Kata Kunci</span>: Bahasa Ibu</div>
+          </div>
+        </div>
+        <div class="resume-language-item">
+          <div class="resume-language-name">Inggris<span class="resume-language-fluency">: Tingkat Profesional Penuh</span></div>
+          <div>
+            <div class="resume-labeled-list"><span>Kata Kunci</span>: TOEFL 110, IELTS 8.0</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="skills" data-section="skills">
+    <h2 class="resume-section-title">Keahlian</h2>
+    <div class="resume-section-content">
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">Penjualan Enterprise<span class="resume-skill-level">: Ahli</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>Kata Kunci</span>: Konsultatif Selling, Negosiasi Kontrak, Manajemen Pipeline, Forecast</div>
+        </div>
+      </div>
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">CRM &amp; Tools<span class="resume-skill-level">: Mahir</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>Kata Kunci</span>: Salesforce, HubSpot, LinkedIn Sales Nav, ZoomInfo</div>
+        </div>
+      </div>
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">Presentasi &amp; Komunikasi<span class="resume-skill-level">: Ahli</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>Kata Kunci</span>: Demo Produk, Storytelling, Public Speaking, Proposal</div>
+        </div>
+      </div>
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">Bahasa<span class="resume-skill-level">: Mahir</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>Kata Kunci</span>: Inggris Bisnis, Indonesia</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="awards" data-section="awards">
+    <h2 class="resume-section-title">Penghargaan</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="awards-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title">Top Sales Enterprise 2023</div>
+            <div class="resume-entry-organization">SolusiNusa Teknologi</div>
+          </div>
+          <div class="resume-entry-date">Des 2023</div>
+        </div>
+        <div class="resume-entry-summary">
+          <p>Diberikan kepada Account Executive dengan pencapaian kuota tertinggi dan kontribusi pendapatan terbesar di segmen enterprise.</p>
+        </div>
+      </div>
+      <div class="resume-entry" id="awards-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title">Best Account Executive Q3 2019</div>
+            <div class="resume-entry-organization">Teknologi Cerdas Asia</div>
+          </div>
+          <div class="resume-entry-date">Sep 2019</div>
+        </div>
+        <div class="resume-entry-summary">
+          <p>Penghargaan atas pencapaian 135% kuota kuartal dan retensi klien 98%.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="certificates" data-section="certificates">
+    <h2 class="resume-section-title">Sertifikat</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="certificates-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.salesassociation.id/certification">Certified Sales Professional</a></div>
+            <div class="resume-entry-organization">Indonesian Sales Association</div>
+          </div>
+          <div class="resume-entry-date">Mei 2021</div>
+        </div>
+      </div>
+      <div class="resume-entry" id="certificates-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://academy.hubspot.com/certification">HubSpot Sales Software Certified</a></div>
+            <div class="resume-entry-organization">HubSpot</div>
+          </div>
+          <div class="resume-entry-date">Feb 2022</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="publications" data-section="publications">
+    <h2 class="resume-section-title">Publikasi</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="publications-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.bisnisdigital.id/artikel/consultative-selling-enterprise">Strategi Consultative Selling untuk Pasar Enterprise Indonesia</a></div>
+            <div class="resume-entry-organization">Majalah Bisnis Digital</div>
+          </div>
+          <div class="resume-entry-date">Apr 2023</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Membahas pentingnya discovery mendalam dan pemetaan stakeholder dalam penjualan enterprise.</p>
+            </li>
+            <li>
+              <p>Memberikan kerangka praktis untuk meningkatkan win rate di pasar B2B Indonesia.</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="projects" data-section="projects">
+    <h2 class="resume-section-title">Proyek</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="projects-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.solusinusa.co.id/program-onboarding">Program Akselerasi Onboarding Klien Enterprise</a></div>
+            <div class="resume-entry-description">Program kolaboratif untuk mempercepat waktu onboarding klien enterprise dari 90 hari menjadi 45 hari.</div>
+          </div>
+          <div class="resume-entry-date">Jan 2023–Jun 2023</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Memimpin inisiatif lintas fungsi antara sales, product, dan customer success.</p>
+            </li>
+            <li>
+              <p>Menganalisis hambatan proses dan merancang playbook onboarding baru.</p>
+            </li>
+            <li>
+              <p>Hasil: waktu onboarding turun 50% dan skor kepuasan klien naik menjadi 4.8/5.</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Kata Kunci</span>: Onboarding, Customer Success, Playbook, Enterprise</div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="interests" data-section="interests">
+    <h2 class="resume-section-title">Minat</h2>
+    <div class="resume-section-content">
+      <div class="resume-interest-item"><span class="resume-interest-name">Olahraga</span>: Lari, Sepak Bola, Bersepeda</div>
+      <div class="resume-interest-item"><span class="resume-interest-name">Musik</span>: Gitar, Konser</div>
+      <div class="resume-interest-item"><span class="resume-interest-name">Membaca</span>: Buku Bisnis, Biografi</div>
+    </div>
+  </section>
+  <section class="resume-section" id="volunteer" data-section="volunteer">
+    <h2 class="resume-section-title">Kegiatan Sukarela</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="volunteer-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.literasidigital.id">Yayasan Literasi Digital Indonesia</a></div>
+            <div class="resume-entry-organization">Mentor Penjualan UMKM</div>
+          </div>
+          <div class="resume-entry-date">Mar 2020–Des 2022</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Melatih 50+ pelaku UMKM dalam teknik penjualan digital dan negosiasi.</p>
+            </li>
+            <li>
+              <p>Mengembangkan modul pelatihan dasar CRM dan pemasaran media sosial.</p>
+            </li>
+            <li>
+              <p>Membantu peserta meningkatkan penjualan online rata-rata 40% dalam 6 bulan.</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer class="resume-footer">Generated by <a href="https://yamlresume.dev">YAMLResume</a></footer>
+</body>
+
+</html>

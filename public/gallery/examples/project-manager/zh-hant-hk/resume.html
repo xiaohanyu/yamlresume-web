@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="zh-hant-hk">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="generator" content="YAMLResume (https://yamlresume.dev)">
+
+
+  <title>陳嘉敏 Resume</title>
+  <style>
+    :root {
+      --text-font-size: 16px;
+      --text-font-family: var(--text-default-font-family);
+      --line-height: 1.5;
+    }
+
+    /* Modified from: https://www.joshwcomeau.com/css/custom-css-reset/ */
+
+    /* 1. Use a more-intuitive box-sizing model */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    /* 2. Remove default margin */
+    *:not(dialog) {
+      margin: 0;
+    }
+
+    body {
+      /* 3. Improve text rendering */
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    :root {
+      --border-color: #d0d0d0;
+
+      /* text colors */
+      --text-color-primary: #000000;
+      --text-color-secondary: #333333;
+
+      /* spacing */
+      --spacing-xss: 2px;
+      --spacing-xs: 4px;
+      --spacing-sm: 8px;
+      --spacing-md: 12px;
+      --spacing-lg: 16px;
+      --spacing-xl: 24px;
+      --spacing-xxl: 40px;
+      --spacing-xxxl: 80px;
+
+      /* font sizes */
+      --font-size-xs: 0.8rem;
+      --font-size-sm: 0.9rem;
+      --font-size-md: 1rem;
+      --font-size-lg: 1.1rem;
+      --font-size-xl: 1.25rem;
+      --font-size-xxl: 2.5rem;
+
+      /* layout */
+      --page-max-width: 900px;
+
+      /* typography */
+      --text-default-font-family:
+        -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu,
+        Cantarell, sans-serif;
+    }
+
+    html {
+      font-size: var(--text-font-size);
+    }
+
+    body {
+      /* font & text */
+      color: var(--text-color-primary);
+      font-family: var(--text-font-family);
+      /* this variable is defined by `typography.fontSize` in resume html layout */
+      text-autospace: normal;
+
+      /* layout */
+      line-height: var(--line-height);
+      max-width: var(--page-max-width);
+      margin: 0 auto;
+      padding: var(--spacing-xxxl) var(--spacing-xxl) var(--spacing-xxl);
+    }
+
+    /* header */
+    .resume-header {
+      margin-bottom: var(--spacing-xxl);
+      text-align: center;
+    }
+
+    .resume-name {
+      font-size: var(--font-size-xxl);
+      font-weight: 600;
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .resume-headline {
+      font-size: var(--font-size-lg);
+      margin-bottom: var(--spacing-md);
+    }
+
+    /* contact info */
+    .resume-contact-info {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      column-gap: var(--spacing-lg);
+      row-gap: var(--spacing-xs);
+      margin-top: var(--spacing-sm);
+    }
+
+    .resume-contact-icon,
+    .resume-contact-label {
+      margin-right: var(--spacing-sm);
+      vertical-align: middle;
+    }
+
+    /* links: modern typographic style */
+    a {
+      color: var(--text-color-primary);
+      text-decoration: underline;
+      text-decoration-color: var(--border-color);
+      text-underline-offset: 3px;
+      text-decoration-thickness: 1px;
+      text-decoration-skip-ink: auto;
+      transition: text-decoration-color 0.2s;
+    }
+
+    a:hover {
+      text-decoration-color: var(--text-color-primary);
+    }
+
+    /* sections */
+    .resume-section {
+      margin-bottom: var(--spacing-xl);
+    }
+
+    .resume-section-title {
+      font-size: var(--font-size-xl);
+      font-weight: 500;
+      margin-bottom: var(--spacing-md);
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: var(--spacing-xs);
+    }
+
+    /* entries */
+    .resume-entry {
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .resume-entry:last-child {
+      margin-bottom: 0;
+    }
+
+    .resume-entry-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .resume-entry-title {
+      font-weight: 500;
+      margin-bottom: var(--spacing-xss);
+    }
+
+    .resume-entry-summary p,
+    .resume-summary-content p {
+      margin-bottom: var(--spacing-xs);
+    }
+
+    /* lists */
+    .resume-entry-summary ul,
+    .resume-entry-summary ol,
+    .resume-summary-content ul,
+    .resume-summary-content ol {
+      padding-left: var(--spacing-lg);
+      list-style-type: circle;
+    }
+
+    /* labeled lists (courses, keywords, etc.) */
+    .resume-labeled-list span {
+      font-weight: 500;
+    }
+
+    /* skills grid */
+    .resume-skill-item,
+    .resume-language-item {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .resume-skill-name,
+    .resume-language-name {
+      font-weight: 500;
+    }
+
+    .resume-skill-level,
+    .resume-language-fluency {
+      font-weight: 400;
+    }
+
+    /* mobile */
+    @media (max-width: 768px) {
+      body {
+        padding: var(--spacing-xl);
+      }
+
+      .resume-header {
+        margin-bottom: var(--spacing-xl);
+      }
+
+      .resume-contact-info {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .resume-entry-header {
+        flex-wrap: wrap;
+      }
+    }
+
+    /* footer */
+    .resume-footer {
+      margin-top: var(--spacing-xxl);
+      padding-top: var(--spacing-xl);
+      border-top: 1px solid var(--border-color);
+      font-size: var(--font-size-sm);
+      color: var(--text-color-secondary);
+    }
+
+    @media print {
+      .resume-footer {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="resume-header">
+    <h1 class="resume-name">陳嘉敏</h1>
+    <p class="resume-headline">資深項目經理 | 數碼轉型與產品交付</p>
+    <div class="resume-contact-info">
+      <span class="resume-contact-item"><span class="resume-contact-icon">📧</span><a href="mailto:chan.ka.man.pm@gmail.com" class="resume-contact-link">chan.ka.man.pm@gmail.com</a></span>
+      <span class="resume-contact-item"><span class="resume-contact-icon">📞</span>+852 9123 4567</span>
+      <span class="resume-contact-item"><span class="resume-contact-icon">🔗</span><a href="https://www.chan-ka-man.com" class="resume-contact-link">https://www.chan-ka-man.com</a></span>
+    </div>
+    <div class="resume-contact-info resume-location-info">
+      <span class="resume-contact-item"><span class="resume-contact-icon">📍</span>中國香港，九龍，香港，香港九龍旺角彌敦道700號</span>
+    </div>
+    <div class="resume-contact-info resume-profiles-info">
+      <span class="resume-contact-item"><span class="resume-contact-label">LinkedIn</span>: <a href="https://www.linkedin.com/in/chan-ka-man-pm" class="resume-contact-link">@chan-ka-man-pm</a></span>
+      <span class="resume-contact-item"><span class="resume-contact-label">GitHub</span>: <a href="https://github.com/chanpmhk" class="resume-contact-link">@chanpmhk</a></span>
+    </div>
+  </header>
+  <section class="resume-section" id="summary" data-section="summary">
+    <h2 class="resume-section-title">簡介</h2>
+    <div class="resume-section-content">
+      <div class="resume-summary-content">
+        <p>資深項目經理，擁有超過 10 年資訊科技及數碼轉型項目管理經驗。擅長領導跨部門團隊，從需求分析、資源規劃到交付上線，確保項目按時、按預算及符合質量標準完成。</p>
+        <p>持有 PMP 及 PMI-ACP 專業認證，精通敏捷與傳統項目管理方法。曾成功交付多個超過港幣 2,000 萬的大型項目，涵蓋金融科技、電訊及客戶服務平台。</p>
+        <ul>
+          <li>
+            <p>卓越的持份者管理及溝通能力</p>
+          </li>
+          <li>
+            <p>數據驅動的決策與風險管理</p>
+          </li>
+          <li>
+            <p>擅長推動變更管理及團隊賦能</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="education" data-section="education">
+    <h2 class="resume-section-title">教育背景</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="education-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.ust.hk">香港科技大學</a></div>
+            <div class="resume-entry-organization">學士，資訊系統與管理，成績：3.6</div>
+          </div>
+          <div class="resume-entry-date">2010年9月–2014年6月</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>主修資訊系統與管理，副修商業分析</p>
+            </li>
+            <li>
+              <p>曾獲院長嘉許名單</p>
+            </li>
+            <li>
+              <p>畢業專題為智慧城市交通管理系統</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>課程</span>：資料庫管理系統、系統分析與設計、專案管理、企業資源規劃、商業智能、軟件工程</div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="work" data-section="work">
+    <h2 class="resume-section-title">工作經歷</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="work-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.hkt.com">香港電訊數碼有限公司</a></div>
+            <div class="resume-entry-organization">高級項目經理</div>
+          </div>
+          <div class="resume-entry-date">2021年4月至今</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>領導跨部門團隊交付多個大型數碼轉型項目，總預算超過港幣 2,000 萬</p>
+            </li>
+            <li>
+              <p>制定項目路線圖、資源分配及風險管理計劃，確保按時按預算交付</p>
+            </li>
+            <li>
+              <p>與產品、工程及業務團隊協作，推動敏捷開發流程及持續改進</p>
+            </li>
+            <li>
+              <p>建立項目績效指標及匯報機制，定期向管理層匯報進度</p>
+            </li>
+            <li>
+              <p>指導初級項目經理及項目協調員，提升團隊整體交付能力</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>關鍵字</span>：數碼轉型、敏捷開發、風險管理、持份者管理</div>
+      </div>
+      <div class="resume-entry" id="work-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.shkf.com">新鴻基金融集團</a></div>
+            <div class="resume-entry-organization">項目經理</div>
+          </div>
+          <div class="resume-entry-date">2018年7月–2021年3月</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>管理金融科技項目，包括網上銀行平台及流動支付系統</p>
+            </li>
+            <li>
+              <p>協調內部開發團隊與外部供應商，確保系統整合順利</p>
+            </li>
+            <li>
+              <p>主持需求收集工作坊，將業務需求轉化為技術規格</p>
+            </li>
+            <li>
+              <p>實施項目治理框架，降低項目延誤及超支風險</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>關鍵字</span>：金融科技、網上銀行、供應商管理、需求分析</div>
+      </div>
+      <div class="resume-entry" id="work-3">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.pccw.com">電訊盈科有限公司</a></div>
+            <div class="resume-entry-organization">助理項目經理</div>
+          </div>
+          <div class="resume-entry-date">2014年8月–2018年6月</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>協助管理客戶關係管理系統升級項目，涵蓋 10 個業務部門</p>
+            </li>
+            <li>
+              <p>負責項目文件、會議記錄及進度追蹤</p>
+            </li>
+            <li>
+              <p>參與用戶驗收測試及培訓安排</p>
+            </li>
+            <li>
+              <p>協調跨部門溝通，確保項目里程碑達成</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>關鍵字</span>：CRM、用戶驗收測試、項目協調、培訓</div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="languages" data-section="languages">
+    <h2 class="resume-section-title">語言</h2>
+    <div class="resume-section-content">
+      <div class="resume-languages-list">
+        <div class="resume-language-item">
+          <div class="resume-language-name">粵語<span class="resume-language-fluency">：母語或雙語水平</span></div>
+          <div>
+            <div class="resume-labeled-list"><span>關鍵字</span>：母語</div>
+          </div>
+        </div>
+        <div class="resume-language-item">
+          <div class="resume-language-name">英語<span class="resume-language-fluency">：完全專業水平</span></div>
+          <div>
+            <div class="resume-labeled-list"><span>關鍵字</span>：IELTS 7.5、HKDSE English 5*</div>
+          </div>
+        </div>
+        <div class="resume-language-item">
+          <div class="resume-language-name">普通話<span class="resume-language-fluency">：完全專業水平</span></div>
+          <div>
+            <div class="resume-labeled-list"><span>關鍵字</span>：普通話水平測試二級甲等</div>
+          </div>
+        </div>
+        <div class="resume-language-item">
+          <div class="resume-language-name">日語<span class="resume-language-fluency">：初級水平</span></div>
+          <div>
+            <div class="resume-labeled-list"><span>關鍵字</span>：JLPT N4</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="skills" data-section="skills">
+    <h2 class="resume-section-title">專業技能</h2>
+    <div class="resume-section-content">
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">項目管理<span class="resume-skill-level">：專家</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>關鍵字</span>：敏捷開發、Scrum、瀑布模型、風險管理、持份者管理、預算控制</div>
+        </div>
+      </div>
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">數碼轉型<span class="resume-skill-level">：高級</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>關鍵字</span>：流程自動化、雲端遷移、數據分析、變更管理</div>
+        </div>
+      </div>
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">工具<span class="resume-skill-level">：高級</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>關鍵字</span>：Jira、Confluence、MS Project、Trello、Asana、Power BI</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="awards" data-section="awards">
+    <h2 class="resume-section-title">榮譽</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="awards-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title">年度傑出項目經理</div>
+            <div class="resume-entry-organization">香港電訊數碼有限公司</div>
+          </div>
+          <div class="resume-entry-date">2023年12月</div>
+        </div>
+        <div class="resume-entry-summary">
+          <p>表揚在數碼轉型項目中的卓越領導及交付表現，成功為公司節省 15% 營運成本。</p>
+        </div>
+      </div>
+      <div class="resume-entry" id="awards-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title">最佳創新項目獎</div>
+            <div class="resume-entry-organization">新鴻基金融集團</div>
+          </div>
+          <div class="resume-entry-date">2020年11月</div>
+        </div>
+        <div class="resume-entry-summary">
+          <p>領導的流動支付項目獲得集團年度創新獎，用戶採用率超過 80%。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="certificates" data-section="certificates">
+    <h2 class="resume-section-title">證書</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="certificates-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.pmi.org/certifications/project-management-pmp">專業項目管理師 (PMP)</a></div>
+            <div class="resume-entry-organization">Project Management Institute</div>
+          </div>
+          <div class="resume-entry-date">2019年6月</div>
+        </div>
+      </div>
+      <div class="resume-entry" id="certificates-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.pmi.org/certifications/agile-acp">敏捷認證從業者 (PMI-ACP)</a></div>
+            <div class="resume-entry-organization">Project Management Institute</div>
+          </div>
+          <div class="resume-entry-date">2021年9月</div>
+        </div>
+      </div>
+      <div class="resume-entry" id="certificates-3">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://aws.amazon.com/certification/certified-cloud-practitioner/">AWS Certified Cloud Practitioner</a></div>
+            <div class="resume-entry-organization">Amazon Web Services</div>
+          </div>
+          <div class="resume-entry-date">2022年3月</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="publications" data-section="publications">
+    <h2 class="resume-section-title">出版刊物</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="publications-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.hkitjournal.com/digital-transformation-hk">香港企業數碼轉型的關鍵成功因素</a></div>
+            <div class="resume-entry-organization">香港資訊科技期刊</div>
+          </div>
+          <div class="resume-entry-date">2023年5月</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>探討香港企業在數碼轉型過程中常見的挑戰與機遇</p>
+            </li>
+            <li>
+              <p>提出項目管理在轉型中的關鍵角色及最佳實踐</p>
+            </li>
+            <li>
+              <p>分析敏捷方法與傳統項目管理的混合應用</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="references" data-section="references">
+    <h2 class="resume-section-title">引薦</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="references-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="mailto:mankit.lee@ust.hk">李文傑博士</a></div>
+            <div class="resume-entry-organization">香港科技大學資訊系統學系教授</div>
+          </div>
+          <div>+852 9876 5432</div>
+        </div>
+        <div class="resume-entry-summary">
+          <p>陳嘉敏在任職期間展現卓越的項目領導能力，能有效協調跨部門團隊，並在多個關鍵項目中達成超預期成果。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="projects" data-section="projects">
+    <h2 class="resume-section-title">項目</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="projects-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.chan-ka-man.com/projects/smart-cs-platform">智慧客戶服務平台</a></div>
+            <div class="resume-entry-description">為大型電訊商建立整合式客戶服務平台</div>
+          </div>
+          <div class="resume-entry-date">2022年1月–2022年12月</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>整合多渠道客服系統，包括電話、電郵、社交媒體及即時聊天</p>
+            </li>
+            <li>
+              <p>導入 AI 聊天機械人，處理 60% 常見查詢</p>
+            </li>
+            <li>
+              <p>項目提前兩週上線，客戶滿意度提升 25%</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>關鍵字</span>： 客戶服務、AI、系統整合</div>
+      </div>
+      <div class="resume-entry" id="projects-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.chan-ka-man.com/projects/finance-dashboard">金融數據儀表板</a></div>
+            <div class="resume-entry-description">為金融集團管理層開發實時業務數據儀表板</div>
+          </div>
+          <div class="resume-entry-date">2019年3月–2019年11月</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>整合多個內部系統數據，提供即時關鍵績效指標</p>
+            </li>
+            <li>
+              <p>與業務分析師合作定義指標及可視化需求</p>
+            </li>
+            <li>
+              <p>採用敏捷疊代方式交付，每兩週發布新功能</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>關鍵字</span>： 數據可視化、Power BI、KPI</div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="interests" data-section="interests">
+    <h2 class="resume-section-title">興趣愛好</h2>
+    <div class="resume-section-content">
+      <div class="resume-interest-item"><span class="resume-interest-name">運動</span>：跑步、游泳、遠足</div>
+      <div class="resume-interest-item"><span class="resume-interest-name">音樂</span>：鋼琴、爵士樂</div>
+      <div class="resume-interest-item"><span class="resume-interest-name">志願服務</span>：青年 mentorship、社區服務</div>
+    </div>
+  </section>
+  <section class="resume-section" id="volunteer" data-section="volunteer">
+    <h2 class="resume-section-title">志願服務</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="volunteer-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.hkfyg.org.hk">香港青年協會</a></div>
+            <div class="resume-entry-organization">項目顧問</div>
+          </div>
+          <div class="resume-entry-date">2020年1月–2023年12月</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>為青年創業項目提供項目管理及商業策劃指導</p>
+            </li>
+            <li>
+              <p>協助舉辦創新創業比賽及工作坊</p>
+            </li>
+            <li>
+              <p>分享數碼轉型及職涯發展經驗</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer class="resume-footer">Generated by <a href="https://yamlresume.dev">YAMLResume</a></footer>
+</body>
+
+</html>

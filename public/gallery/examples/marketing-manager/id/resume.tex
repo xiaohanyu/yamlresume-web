@@ -1,0 +1,263 @@
+\documentclass[a4paper, serif, 10pt]{moderncv}
+
+%% moderncv
+% style and color
+\moderncvstyle{banking}
+\moderncvcolor{black}
+
+%% page layout/margins
+\usepackage[top=2.5cm, bottom=2.5cm, left=1.5cm, right=1.5cm]{geometry}
+
+\nopagenumbers{}
+
+%% Babel config for Indonesian (Bahasa Indonesia) language
+% ref:
+% - https://latex3.github.io/babel/guides/locale-indonesian.html
+\usepackage[indonesian]{babel}
+
+%% fontspec
+\usepackage{fontspec}
+
+\IfFontExistsTF{Linux Libertine}{
+  \setmainfont[Ligatures={TeX, Common}, Numbers=OldStyle]{Linux Libertine}
+}{}
+\IfFontExistsTF{Linux Libertine O}{
+  \setmainfont[Ligatures={TeX, Common}, Numbers=OldStyle]{Linux Libertine O}
+}{}
+
+%% CTeX
+% CJK support, used to show CJK characters in the resume
+%
+% - fontset=none: disable builtin fontset but instead set the CJK font manually
+% - heading=false: disable ctex heading
+% - punct=kaiming: use kaiming punctuations styles for CJK
+% - scheme=plain: use plain scheme, do not override \normalsize font size
+% - space=auto: space settings for CJK characters
+%
+% ref:
+% - http://ctan.mirrorcatalogs.com/language/chinese/ctex/ctex.pdf
+\usepackage[UTF8, heading=false, punct=kaiming, scheme=plain, space=auto]{ctex}
+
+\IfFontExistsTF{Noto Serif CJK SC}{
+  \setCJKmainfont{Noto Serif CJK SC}
+}{}
+\IfFontExistsTF{Noto Sans CJK SC}{
+  \setCJKsansfont{Noto Sans CJK SC}
+}{}
+
+%% line spacing
+\usepackage{setspace}
+\setstretch{1.125}
+
+%% URL styling - use normal text instead of monospace
+\urlstyle{same}
+
+% Auto-underline all links
+% Defer until \begin{document} so hyperref is already loaded
+\AtBeginDocument{%
+  \let\oldhref\href
+  \renewcommand{\href}[2]{\oldhref{#1}{\underline{#2}}}%
+}
+
+%% Patch \httplink and \httpslink to handle full URLs
+% The original moderncv macros always prepend http:// or https:// to URLs.
+% This causes issues when the URL already has a protocol (e.g., https://example.com)
+% resulting in malformed URLs like https://https://example.com.
+% This patch checks if the URL already contains "://" and uses it directly if so.
+% Note: We use \str_set:Nx (x-expansion) to expand macros like \@homepage first.
+\ExplSyntaxOn
+\str_new:N \g_yamlresume_url_str
+
+\RenewDocumentCommand{\httpslink}{O{}m}{
+  \str_set:Nx \g_yamlresume_url_str {#2}
+  \str_if_in:NnTF \g_yamlresume_url_str {://}
+    { \url{#2} }
+    { \url{https://#2} }
+}
+
+\RenewDocumentCommand{\httplink}{O{}m}{
+  \str_set:Nx \g_yamlresume_url_str {#2}
+  \str_if_in:NnTF \g_yamlresume_url_str {://}
+    { \url{#2} }
+    { \url{http://#2} }
+}
+\ExplSyntaxOff
+
+\name{Dewi Anggraini}{}
+\title{Manajer Pemasaran dengan pengalaman 8+ tahun dalam strategi digital dan manajemen merek.}
+\phone[mobile]{+62 812-3456-7890}
+\email{dewi.anggraini@email.com}
+\homepage{https://www.dewianggraini.com}
+
+\address{Jl. Jenderal Sudirman No. 45, SCBD, Jakarta, DKI Jakarta, Indonesia, 12190}{}{}
+
+\extrainfo{{\small \faLinkedin}\ \href{https://www.linkedin.com/in/dewianggraini}{@dewianggraini} {} {} {} • {} {} {} 
+{\small \faTwitter}\ \href{https://twitter.com/dewianggraini}{@dewianggraini} {} {} {} • {} {} {} 
+{\small \faInstagram}\ \href{https://www.instagram.com/dewianggraini}{@dewianggraini}}
+
+\begin{document}
+
+\maketitle
+
+\section{Informasi Dasar}
+
+\cvline{}{\begin{itemize}
+\item Manajer Pemasaran dengan pengalaman lebih dari 8 tahun di industri ritel dan teknologi, terbukti meningkatkan pendapatan melalui strategi omni-channel.
+\item Ahli dalam pemasaran digital, riset pasar, dan manajemen merek; memimpin tim lintas fungsi untuk kampanye yang berdampak.
+\item Terbiasa bekerja dengan data untuk mengoptimalkan ROI, serta membangun hubungan kuat dengan mitra dan pelanggan.
+\end{itemize}}
+\section{Pendidikan}
+
+\cventry{Sep 2010–Jul 2014}
+        {Sarjana, Ilmu Komunikasi, Nilai: 3.75}
+        {Universitas Indonesia}
+        {\url{https://www.ui.ac.id}}
+        {}
+        {\begin{itemize}
+\item Lulus dengan predikat cum laude, aktif dalam organisasi kemahasiswaan dan kompetisi pemasaran.
+\item Mengembangkan keterampilan analitis dan kreatif melalui proyek kampanye sosial dan bisnis.
+\item Menjadi asisten dosen untuk mata kuliah Riset Pemasaran selama satu semester.
+\end{itemize}
+\textbf{Mata Kuliah}: Manajemen Pemasaran, Perilaku Konsumen, Riset Pemasaran, Komunikasi Massa, Public Relations, Strategi Branding, Periklanan, Statistik Sosial}
+\section{Pengalaman Kerja}
+
+\cventry{Jan 2020–Sekarang}
+        {Manajer Pemasaran}
+        {PT Maju Bersama}
+        {\url{https://www.majubersama.co.id}}
+        {}
+        {\begin{itemize}
+\item Memimpin tim pemasaran 12 orang, mengelola anggaran tahunan Rp15 miliar, dan meningkatkan pendapatan 35\% YoY.
+\item Merancang dan mengeksekusi strategi omni-channel (digital, offline, CRM) yang meningkatkan akuisisi pelanggan 40\%.
+\item Mengembangkan kampanye brand awareness yang meraih 3 penghargaan industri dan meningkatkan brand recall 25\%.
+\item Menganalisis data pasar dan kompetitor untuk mengidentifikasi peluang baru serta mengoptimalkan bauran pemasaran.
+\item Membangun kemitraan strategis dengan influencer dan media, menghasilkan liputan senilai Rp2 miliar.
+\end{itemize}
+\textbf{Kata Kunci}: Strategi Pemasaran, Omni-channel, Manajemen Anggaran, Brand Awareness, CRM, Analitik Pemasaran, Kepemimpinan Tim}
+
+\cventry{Mar 2016–Des 2019}
+        {Asisten Manajer Pemasaran}
+        {PT Kreatif Digital}
+        {\url{https://www.kreatifdigital.com}}
+        {}
+        {\begin{itemize}
+\item Mengelola kampanye digital untuk 20+ klien, dengan rata-rata peningkatan ROI 150\%.
+\item Mengoptimalkan SEO/SEM dan media sosial, meningkatkan traffic organik 200\% dalam 18 bulan.
+\item Menyusun laporan kinerja bulanan dan memberikan rekomendasi berbasis data kepada manajemen.
+\item Berkolaborasi dengan tim kreatif dan teknologi untuk meluncurkan situs web dan aplikasi mobile.
+\end{itemize}
+\textbf{Kata Kunci}: Digital Marketing, SEO, SEM, Media Sosial, Google Analytics, Content Marketing, ROI}
+\section{Bahasa}
+
+\cvline{Indonesia}{Bahasa Ibu / Bilingual}
+\cvline{Inggris}{Tingkat Profesional Penuh \hfill \textbf{Kata Kunci}: TOEFL 110, IELTS 8.0}
+\section{Keahlian}
+
+\cvline{Pemasaran Digital}{Ahli \hfill \textbf{Kata Kunci}: SEO/SEM, Media Sosial, Email Marketing, Content Strategy, Google Ads, Meta Ads, Analytics}
+\cvline{Manajemen Merek}{Mahir \hfill \textbf{Kata Kunci}: Brand Strategy, Positioning, Consumer Insight, Kampanye Integratif, Public Relations}
+\cvline{Analitik \& Riset}{Mahir \hfill \textbf{Kata Kunci}: Google Analytics, Tableau, SPSS, A/B Testing, Riset Pasar, Segmentasi}
+\cvline{Kepemimpinan}{Ahli \hfill \textbf{Kata Kunci}: Manajemen Tim, Mentoring, Presentasi, Negosiasi, Manajemen Proyek}
+\section{Penghargaan}
+
+\cventry{Des 2022}
+        {Asosiasi Pemasaran Indonesia}
+        {Marketer of the Year 2022}
+        {}
+        {}
+        {Diberikan kepada manajer pemasaran yang menunjukkan inovasi luar biasa dalam kampanye digital dan kontribusi signifikan terhadap pertumbuhan industri.}
+
+\cventry{Nov 2021}
+        {Digital Marketing Awards}
+        {Best Digital Campaign}
+        {}
+        {}
+        {Menghargai kampanye \#BanggaLokal yang berhasil meningkatkan keterlibatan pelanggan sebesar 300\% dan penjualan 50\% dalam 6 bulan.}
+\section{Sertifikat}
+
+\cventry{Mei 2022}
+        {Google}
+        {Google Digital Marketing \& E-commerce Professional Certificate}
+        {\url{https://www.coursera.org/professional-certificates/google-digital-marketing-ecommerce}}
+        {}
+        {}
+
+\cventry{Agu 2021}
+        {HubSpot Academy}
+        {HubSpot Content Marketing Certification}
+        {\url{https://academy.hubspot.com/courses/content-marketing}}
+        {}
+        {}
+
+\cventry{Feb 2023}
+        {Meta}
+        {Meta Certified Digital Marketing Associate}
+        {\url{https://www.facebook.com/business/learn/certification}}
+        {}
+        {}
+\section{Publikasi}
+
+\cventry{Jun 2023}
+        {Tren Pemasaran Digital di Indonesia 2023: Strategi Omni-channel untuk UMKM}
+        {Jurnal Pemasaran Indonesia}
+        {\url{https://www.jurnalpemasaran.id/artikel/tren-2023}}
+        {}
+        {\begin{itemize}
+\item Menganalisis adopsi strategi omni-channel oleh UMKM di Indonesia.
+\item Menyajikan studi kasus dari 50 bisnis yang berhasil meningkatkan pendapatan melalui integrasi digital dan offline.
+\item Merekomendasikan kerangka kerja untuk pemasaran yang berkelanjutan dan berbasis data.
+\end{itemize}}
+\section{Proyek}
+
+\cventry{Jan 2022–Des 2022}
+        {Kampanye pemasaran terintegrasi untuk mendorong konsumsi produk lokal.}
+        {Kampanye \#BanggaLokal}
+        {\url{https://www.banggalokal.id}}
+        {}
+        {\begin{itemize}
+\item Merancang dan memimpin kampanye multi-channel yang melibatkan 100+ influencer dan 50 media nasional.
+\item Meningkatkan penjualan produk lokal sebesar 50\% dan engagement media sosial 300\%.
+\item Meraih penghargaan Best Digital Campaign 2021 dan menjadi studi kasus di universitas.
+\end{itemize}
+\textbf{Kata Kunci}: Kampanye Integratif, Influencer Marketing, Media Sosial, Brand Lokal}
+
+\cventry{Mar 2021–Sep 2021}
+        {Peluncuran aplikasi belanja online untuk pasar Indonesia.}
+        {Peluncuran Aplikasi Mobile BelanjaMudah}
+        {\url{https://www.belanjamudah.id}}
+        {}
+        {\begin{itemize}
+\item Mengoordinasikan tim pemasaran, produk, dan teknologi untuk peluncuran aplikasi.
+\item Mencapai 100.000 unduhan dalam 3 bulan pertama melalui strategi user acquisition.
+\item Mengelola anggaran peluncuran Rp5 miliar dengan ROI 200\%.
+\end{itemize}
+\textbf{Kata Kunci}: Product Launch, User Acquisition, Mobile Marketing, ROI}
+\section{Minat}
+
+\cvline{Fotografi}{Street Photography, Portrait, Landscape}
+\cvline{Membaca}{Buku Bisnis, Fiksi, Sejarah}
+\cvline{Olahraga}{Yoga, Berlari, Bersepeda}
+\section{Kegiatan Sukarela}
+
+\cventry{Feb 2019–Des 2021}
+        {Relawan Pemasaran}
+        {Yayasan Pendidikan Anak Indonesia}
+        {\url{https://www.ypai.org}}
+        {}
+        {\begin{itemize}
+\item Membantu mengembangkan strategi pemasaran digital untuk meningkatkan donasi dan kesadaran publik.
+\item Mengelola kampanye media sosial yang berhasil mengumpulkan dana Rp500 juta untuk beasiswa anak kurang mampu.
+\item Melatih staf yayasan dalam penggunaan alat digital untuk komunikasi dan penggalangan dana.
+\end{itemize}}
+    
+
+\cventry{Jan 2018–Jan 2020}
+        {Koordinator Acara}
+        {Komunitas Pemasaran Jakarta}
+        {\url{https://www.marketingjakarta.org}}
+        {}
+        {\begin{itemize}
+\item Mengorganisir seminar dan workshop bulanan untuk 200+ profesional pemasaran.
+\item Menghubungkan pembicara ahli dan sponsor untuk mendukung pengembangan karier anggota.
+\end{itemize}}
+    
+\end{document}

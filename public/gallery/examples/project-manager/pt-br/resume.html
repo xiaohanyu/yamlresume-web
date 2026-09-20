@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="generator" content="YAMLResume (https://yamlresume.dev)">
+
+
+  <title>Ana Beatriz Silva Resume</title>
+  <style>
+    :root {
+      --text-font-size: 16px;
+      --text-font-family: var(--text-default-font-family);
+      --line-height: 1.5;
+    }
+
+    /* Modified from: https://www.joshwcomeau.com/css/custom-css-reset/ */
+
+    /* 1. Use a more-intuitive box-sizing model */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    /* 2. Remove default margin */
+    *:not(dialog) {
+      margin: 0;
+    }
+
+    body {
+      /* 3. Improve text rendering */
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    :root {
+      --border-color: #d0d0d0;
+
+      /* text colors */
+      --text-color-primary: #000000;
+      --text-color-secondary: #333333;
+
+      /* spacing */
+      --spacing-xss: 2px;
+      --spacing-xs: 4px;
+      --spacing-sm: 8px;
+      --spacing-md: 12px;
+      --spacing-lg: 16px;
+      --spacing-xl: 24px;
+      --spacing-xxl: 40px;
+      --spacing-xxxl: 80px;
+
+      /* font sizes */
+      --font-size-xs: 0.8rem;
+      --font-size-sm: 0.9rem;
+      --font-size-md: 1rem;
+      --font-size-lg: 1.1rem;
+      --font-size-xl: 1.25rem;
+      --font-size-xxl: 2.5rem;
+
+      /* layout */
+      --page-max-width: 900px;
+
+      /* typography */
+      --text-default-font-family:
+        -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu,
+        Cantarell, sans-serif;
+    }
+
+    html {
+      font-size: var(--text-font-size);
+    }
+
+    body {
+      /* font & text */
+      color: var(--text-color-primary);
+      font-family: var(--text-font-family);
+      /* this variable is defined by `typography.fontSize` in resume html layout */
+      text-autospace: normal;
+
+      /* layout */
+      line-height: var(--line-height);
+      max-width: var(--page-max-width);
+      margin: 0 auto;
+      padding: var(--spacing-xxxl) var(--spacing-xxl) var(--spacing-xxl);
+    }
+
+    /* header */
+    .resume-header {
+      margin-bottom: var(--spacing-xxl);
+      text-align: center;
+    }
+
+    .resume-name {
+      font-size: var(--font-size-xxl);
+      font-weight: 600;
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .resume-headline {
+      font-size: var(--font-size-lg);
+      margin-bottom: var(--spacing-md);
+    }
+
+    /* contact info */
+    .resume-contact-info {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      column-gap: var(--spacing-lg);
+      row-gap: var(--spacing-xs);
+      margin-top: var(--spacing-sm);
+    }
+
+    .resume-contact-icon,
+    .resume-contact-label {
+      margin-right: var(--spacing-sm);
+      vertical-align: middle;
+    }
+
+    /* links: modern typographic style */
+    a {
+      color: var(--text-color-primary);
+      text-decoration: underline;
+      text-decoration-color: var(--border-color);
+      text-underline-offset: 3px;
+      text-decoration-thickness: 1px;
+      text-decoration-skip-ink: auto;
+      transition: text-decoration-color 0.2s;
+    }
+
+    a:hover {
+      text-decoration-color: var(--text-color-primary);
+    }
+
+    /* sections */
+    .resume-section {
+      margin-bottom: var(--spacing-xl);
+    }
+
+    .resume-section-title {
+      font-size: var(--font-size-xl);
+      font-weight: 500;
+      margin-bottom: var(--spacing-md);
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: var(--spacing-xs);
+    }
+
+    /* entries */
+    .resume-entry {
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .resume-entry:last-child {
+      margin-bottom: 0;
+    }
+
+    .resume-entry-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .resume-entry-title {
+      font-weight: 500;
+      margin-bottom: var(--spacing-xss);
+    }
+
+    .resume-entry-summary p,
+    .resume-summary-content p {
+      margin-bottom: var(--spacing-xs);
+    }
+
+    /* lists */
+    .resume-entry-summary ul,
+    .resume-entry-summary ol,
+    .resume-summary-content ul,
+    .resume-summary-content ol {
+      padding-left: var(--spacing-lg);
+      list-style-type: circle;
+    }
+
+    /* labeled lists (courses, keywords, etc.) */
+    .resume-labeled-list span {
+      font-weight: 500;
+    }
+
+    /* skills grid */
+    .resume-skill-item,
+    .resume-language-item {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .resume-skill-name,
+    .resume-language-name {
+      font-weight: 500;
+    }
+
+    .resume-skill-level,
+    .resume-language-fluency {
+      font-weight: 400;
+    }
+
+    /* mobile */
+    @media (max-width: 768px) {
+      body {
+        padding: var(--spacing-xl);
+      }
+
+      .resume-header {
+        margin-bottom: var(--spacing-xl);
+      }
+
+      .resume-contact-info {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .resume-entry-header {
+        flex-wrap: wrap;
+      }
+    }
+
+    /* footer */
+    .resume-footer {
+      margin-top: var(--spacing-xxl);
+      padding-top: var(--spacing-xl);
+      border-top: 1px solid var(--border-color);
+      font-size: var(--font-size-sm);
+      color: var(--text-color-secondary);
+    }
+
+    @media print {
+      .resume-footer {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="resume-header">
+    <h1 class="resume-name">Ana Beatriz Silva</h1>
+    <p class="resume-headline">Gerente de Projetos Ágeis | PMP | Scrum Master</p>
+    <div class="resume-contact-info">
+      <span class="resume-contact-item"><span class="resume-contact-icon">📧</span><a href="mailto:ana.silva@email.com" class="resume-contact-link">ana.silva@email.com</a></span>
+      <span class="resume-contact-item"><span class="resume-contact-icon">📞</span>+55 11 98765-4321</span>
+      <span class="resume-contact-item"><span class="resume-contact-icon">🔗</span><a href="https://www.linkedin.com/in/anabeatrizsilva" class="resume-contact-link">https://www.linkedin.com/in/anabeatrizsilva</a></span>
+    </div>
+    <div class="resume-contact-info resume-location-info">
+      <span class="resume-contact-item"><span class="resume-contact-icon">📍</span>Rua das Flores, 123, São Paulo, SP, Brasil, 01234-567</span>
+    </div>
+    <div class="resume-contact-info resume-profiles-info">
+      <span class="resume-contact-item"><span class="resume-contact-label">LinkedIn</span>: <a href="https://www.linkedin.com/in/anabeatrizsilva" class="resume-contact-link">@anabeatrizsilva</a></span>
+    </div>
+  </header>
+  <section class="resume-section" id="summary" data-section="summary">
+    <h2 class="resume-section-title">Informações Básicas</h2>
+    <div class="resume-section-content">
+      <div class="resume-summary-content">
+        <ul>
+          <li>
+            <p>Gerente de Projetos com mais de 8 anos de experiência liderando equipes multidisciplinares em projetos de tecnologia e transformação digital.</p>
+          </li>
+          <li>
+            <p>Especialista em metodologias ágeis (Scrum, Kanban) e tradicionais (PMBOK), com certificação PMP e Scrum Master.</p>
+          </li>
+          <li>
+            <p>Histórico comprovado de entregas dentro do prazo e orçamento, com foco em qualidade e satisfação do cliente.</p>
+          </li>
+          <li>
+            <p>Habilidade em gestão de stakeholders, mitigação de riscos e otimização de processos.</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="education" data-section="education">
+    <h2 class="resume-section-title">Formação</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="education-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.usp.br">Universidade de São Paulo</a></div>
+            <div class="resume-entry-organization">Bacharelado, Administração de Empresas, Nota: 8.5</div>
+          </div>
+          <div class="resume-entry-date">mar. de 2010–dez. de 2014</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Formação sólida em administração com ênfase em gestão de projetos.</p>
+            </li>
+            <li>
+              <p>Desenvolvimento de habilidades em liderança, comunicação e análise de dados.</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Cursos</span>: Gestão de Projetos, Planejamento Estratégico, Gestão de Pessoas, Finanças Corporativas, Marketing, Estatística</div>
+      </div>
+      <div class="resume-entry" id="education-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.fgv.br">Fundação Getulio Vargas</a></div>
+            <div class="resume-entry-organization">Mestrado, Gestão de Projetos, Nota: 9.0</div>
+          </div>
+          <div class="resume-entry-date">fev. de 2016–dez. de 2017</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Especialização em gestão de projetos com foco em metodologias ágeis e tradicionais.</p>
+            </li>
+            <li>
+              <p>Trabalho de conclusão sobre transformação ágil em empresas brasileiras.</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Cursos</span>: Gerenciamento de Projetos Complexos, Métodos Ágeis, Liderança de Equipes</div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="work" data-section="work">
+    <h2 class="resume-section-title">Experiência Profissional</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="work-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.techsolutions.com.br">Tech Solutions Ltda</a></div>
+            <div class="resume-entry-organization">Gerente de Projetos Sênior</div>
+          </div>
+          <div class="resume-entry-date">jan. de 2020–Atual</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Liderança de uma equipe de 15 pessoas no desenvolvimento de uma plataforma SaaS, resultando em um aumento de 30% na receita anual.</p>
+            </li>
+            <li>
+              <p>Implementação de metodologia Scrum, reduzindo o time-to-market em 25%.</p>
+            </li>
+            <li>
+              <p>Gestão de orçamento de R$ 5 milhões, com entrega dentro do prazo e custo.</p>
+            </li>
+            <li>
+              <p>Interface com stakeholders de alto nível, incluindo C-level, para alinhamento estratégico.</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Palavras-chave</span>: Scrum, SaaS, Gestão de Orçamento, Liderança</div>
+      </div>
+      <div class="resume-entry" id="work-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.inovaconsultoria.com.br">Inova Consultoria</a></div>
+            <div class="resume-entry-organization">Gerente de Projetos</div>
+          </div>
+          <div class="resume-entry-date">mar. de 2017–dez. de 2019</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Gerenciamento de projetos de consultoria em transformação digital para clientes dos setores financeiro e varejo.</p>
+            </li>
+            <li>
+              <p>Coordenação de equipes remotas e presenciais, garantindo a entrega de soluções personalizadas.</p>
+            </li>
+            <li>
+              <p>Desenvolvimento de cronogramas, planos de comunicação e análise de riscos.</p>
+            </li>
+            <li>
+              <p>Aumento da satisfação do cliente em 20% através de melhorias nos processos de entrega.</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Palavras-chave</span>: Transformação Digital, Consultoria, Gestão de Riscos, Comunicação</div>
+      </div>
+      <div class="resume-entry" id="work-3">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.startupxyz.com.br">Startup XYZ</a></div>
+            <div class="resume-entry-organization">Analista de Projetos</div>
+          </div>
+          <div class="resume-entry-date">jan. de 2015–fev. de 2017</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Suporte ao gerente de projetos na elaboração de cronogramas e acompanhamento de tarefas.</p>
+            </li>
+            <li>
+              <p>Utilização de ferramentas como Jira e Trello para monitoramento de sprints.</p>
+            </li>
+            <li>
+              <p>Participação em reuniões diárias e retrospectivas, contribuindo para a melhoria contínua.</p>
+            </li>
+            <li>
+              <p>Auxílio na documentação de projetos e relatórios de status.</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Palavras-chave</span>: Jira, Trello, Ágil, Documentação</div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="languages" data-section="languages">
+    <h2 class="resume-section-title">Idiomas</h2>
+    <div class="resume-section-content">
+      <div class="resume-languages-list">
+        <div class="resume-language-item">
+          <div class="resume-language-name">Português<span class="resume-language-fluency">: Nativo ou Bilíngue</span></div>
+          <div>
+            <div class="resume-labeled-list"><span>Palavras-chave</span>: Língua materna</div>
+          </div>
+        </div>
+        <div class="resume-language-item">
+          <div class="resume-language-name">Inglês<span class="resume-language-fluency">: Proficiência Profissional Fluente</span></div>
+          <div>
+            <div class="resume-labeled-list"><span>Palavras-chave</span>: TOEFL 105</div>
+          </div>
+        </div>
+        <div class="resume-language-item">
+          <div class="resume-language-name">Espanhol<span class="resume-language-fluency">: Proficiência Profissional Limitada</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="skills" data-section="skills">
+    <h2 class="resume-section-title">Competências</h2>
+    <div class="resume-section-content">
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">Gestão de Projetos<span class="resume-skill-level">: Especialista</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>Palavras-chave</span>: PMBOK, Agile, Scrum, Kanban, Waterfall</div>
+        </div>
+      </div>
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">Liderança<span class="resume-skill-level">: Avançado</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>Palavras-chave</span>: Team Management, Mentoring, Negotiation, Conflict Resolution</div>
+        </div>
+      </div>
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">Ferramentas<span class="resume-skill-level">: Avançado</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>Palavras-chave</span>: Jira, Trello, MS Project, Asana, Slack</div>
+        </div>
+      </div>
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">Metodologias Ágeis<span class="resume-skill-level">: Especialista</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>Palavras-chave</span>: Scrum, Kanban, SAFe, Lean</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="awards" data-section="awards">
+    <h2 class="resume-section-title">Prêmios</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="awards-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title">Prêmio de Excelência em Gestão de Projetos</div>
+            <div class="resume-entry-organization">PMI São Paulo</div>
+          </div>
+          <div class="resume-entry-date">nov. de 2022</div>
+        </div>
+        <div class="resume-entry-summary">
+          <p>Reconhecimento pelo sucesso na entrega de um projeto crítico de transformação digital, superando as metas estabelecidas.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="certificates" data-section="certificates">
+    <h2 class="resume-section-title">Certificados</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="certificates-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.pmi.org/certifications/project-management-pmp">Project Management Professional (PMP)</a></div>
+            <div class="resume-entry-organization">Project Management Institute (PMI)</div>
+          </div>
+          <div class="resume-entry-date">mar. de 2018</div>
+        </div>
+      </div>
+      <div class="resume-entry" id="certificates-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.scrumalliance.org/get-certified/scrum-master-track/certified-scrummaster">Certified Scrum Master (CSM)</a></div>
+            <div class="resume-entry-organization">Scrum Alliance</div>
+          </div>
+          <div class="resume-entry-date">jun. de 2016</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="publications" data-section="publications">
+    <h2 class="resume-section-title">Publicações</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="publications-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.mundopm.com.br/artigo/transformacao-agil">Transformação Ágil em Empresas Brasileiras</a></div>
+            <div class="resume-entry-organization">Revista Mundo PM</div>
+          </div>
+          <div class="resume-entry-date">ago. de 2021</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Artigo sobre os desafios e benefícios da adoção de metodologias ágeis em grandes empresas no Brasil.</p>
+            </li>
+            <li>
+              <p>Análise de casos de sucesso e lições aprendidas.</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="projects" data-section="projects">
+    <h2 class="resume-section-title">Projetos</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="projects-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.techsolutions.com.br/projetos/erp">Implementação de Sistema ERP</a></div>
+            <div class="resume-entry-description">Projeto de implementação de ERP para uma indústria de médio porte.</div>
+          </div>
+          <div class="resume-entry-date">jan. de 2021–dez. de 2021</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Liderança da equipe de 10 pessoas na migração de sistemas legados para uma solução ERP integrada.</p>
+            </li>
+            <li>
+              <p>Entrega dentro do prazo e orçamento, com treinamento de 200 usuários.</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Palavras-chave</span>: ERP, Gestão de Mudanças, Treinamento</div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="interests" data-section="interests">
+    <h2 class="resume-section-title">Interesses</h2>
+    <div class="resume-section-content">
+      <div class="resume-interest-item"><span class="resume-interest-name">Corrida</span>: Maratona, Meia Maratona</div>
+      <div class="resume-interest-item"><span class="resume-interest-name">Leitura</span>: Literatura Brasileira, Gestão, Tecnologia</div>
+    </div>
+  </section>
+  <section class="resume-section" id="volunteer" data-section="volunteer">
+    <h2 class="resume-section-title">Voluntariado</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="volunteer-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.projetocrescer.org.br">Projeto Crescer</a></div>
+            <div class="resume-entry-organization">Gerente de Projetos Voluntária</div>
+          </div>
+          <div class="resume-entry-date">jan. de 2018–dez. de 2020</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Coordenação de projetos sociais voltados para educação de jovens em comunidades carentes.</p>
+            </li>
+            <li>
+              <p>Gestão de equipe de 5 voluntários e captação de recursos.</p>
+            </li>
+            <li>
+              <p>Implementação de metodologias ágeis para otimizar as entregas.</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer class="resume-footer">Generated by <a href="https://yamlresume.dev">YAMLResume</a></footer>
+</body>
+
+</html>

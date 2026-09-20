@@ -1,0 +1,246 @@
+\documentclass[a4paper, serif, 10pt]{moderncv}
+
+%% moderncv
+% style and color
+\moderncvstyle{banking}
+\moderncvcolor{black}
+
+%% page layout/margins
+\usepackage[top=2.5cm, bottom=2.5cm, left=1.5cm, right=1.5cm]{geometry}
+
+\nopagenumbers{}
+
+%% Babel config for Indonesian (Bahasa Indonesia) language
+% ref:
+% - https://latex3.github.io/babel/guides/locale-indonesian.html
+\usepackage[indonesian]{babel}
+
+%% fontspec
+\usepackage{fontspec}
+
+\IfFontExistsTF{Linux Libertine}{
+  \setmainfont[Ligatures={TeX, Common}, Numbers=OldStyle]{Linux Libertine}
+}{}
+\IfFontExistsTF{Linux Libertine O}{
+  \setmainfont[Ligatures={TeX, Common}, Numbers=OldStyle]{Linux Libertine O}
+}{}
+
+%% CTeX
+% CJK support, used to show CJK characters in the resume
+%
+% - fontset=none: disable builtin fontset but instead set the CJK font manually
+% - heading=false: disable ctex heading
+% - punct=kaiming: use kaiming punctuations styles for CJK
+% - scheme=plain: use plain scheme, do not override \normalsize font size
+% - space=auto: space settings for CJK characters
+%
+% ref:
+% - http://ctan.mirrorcatalogs.com/language/chinese/ctex/ctex.pdf
+\usepackage[UTF8, heading=false, punct=kaiming, scheme=plain, space=auto]{ctex}
+
+\IfFontExistsTF{Noto Serif CJK SC}{
+  \setCJKmainfont{Noto Serif CJK SC}
+}{}
+\IfFontExistsTF{Noto Sans CJK SC}{
+  \setCJKsansfont{Noto Sans CJK SC}
+}{}
+
+%% line spacing
+\usepackage{setspace}
+\setstretch{1.125}
+
+%% URL styling - use normal text instead of monospace
+\urlstyle{same}
+
+% Auto-underline all links
+% Defer until \begin{document} so hyperref is already loaded
+\AtBeginDocument{%
+  \let\oldhref\href
+  \renewcommand{\href}[2]{\oldhref{#1}{\underline{#2}}}%
+}
+
+%% Patch \httplink and \httpslink to handle full URLs
+% The original moderncv macros always prepend http:// or https:// to URLs.
+% This causes issues when the URL already has a protocol (e.g., https://example.com)
+% resulting in malformed URLs like https://https://example.com.
+% This patch checks if the URL already contains "://" and uses it directly if so.
+% Note: We use \str_set:Nx (x-expansion) to expand macros like \@homepage first.
+\ExplSyntaxOn
+\str_new:N \g_yamlresume_url_str
+
+\RenewDocumentCommand{\httpslink}{O{}m}{
+  \str_set:Nx \g_yamlresume_url_str {#2}
+  \str_if_in:NnTF \g_yamlresume_url_str {://}
+    { \url{#2} }
+    { \url{https://#2} }
+}
+
+\RenewDocumentCommand{\httplink}{O{}m}{
+  \str_set:Nx \g_yamlresume_url_str {#2}
+  \str_if_in:NnTF \g_yamlresume_url_str {://}
+    { \url{#2} }
+    { \url{http://#2} }
+}
+\ExplSyntaxOff
+
+\name{Aditya Pratama}{}
+\title{Account Executive Senior | Spesialis Solusi SaaS B2B}
+\phone[mobile]{+62 812-3456-7890}
+\email{aditya.pratama@email.com}
+\homepage{https://www.adityapratama.id}
+
+\address{Jl. Jenderal Sudirman No. 52, Jakarta, DKI Jakarta, Indonesia, 12190}{}{}
+
+\extrainfo{{\small \faLinkedin}\ \href{https://www.linkedin.com/in/adityapratama}{@adityapratama} {} {} {} • {} {} {} 
+{\small \faWhatsapp}\ \href{https://wa.me/6281234567890}{@adityapratama}}
+
+\begin{document}
+
+\maketitle
+
+\section{Informasi Dasar}
+
+\cvline{}{Account Executive dengan pengalaman 7+ tahun di industri SaaS B2B dan teknologi enterprise. Terbukti secara konsisten mencapai 120\% kuota tahunan melalui konsultatif selling, manajemen pipeline, dan negosiasi kontrak bernilai tinggi.
+%
+\begin{itemize}
+\item Mengelola siklus penjualan end-to-end dari prospek hingga closing untuk klien enterprise di Indonesia dan Asia Tenggara.
+\item Kuat dalam membangun hubungan C-level, memahami kebutuhan bisnis, dan menerjemahkan solusi teknis menjadi nilai bisnis.
+\item Berpengalaman dengan Salesforce, HubSpot, MEDDIC, dan metodologi Challenger Sale.
+\item Memimpin tim lintas fungsi untuk memastikan onboarding dan retensi klien berjalan lancar.
+\end{itemize}}
+\section{Pendidikan}
+
+\cventry{Sep 2012–Jul 2016}
+        {Sarjana, Ilmu Administrasi Niaga, Nilai: 3.65}
+        {Universitas Indonesia}
+        {\url{https://www.ui.ac.id}}
+        {}
+        {\begin{itemize}
+\item Lulus dengan predikat cum laude dan fokus pada strategi penjualan enterprise.
+\item Aktif di organisasi kemahasiswaan sebagai ketua divisi hubungan perusahaan.
+\item Meraih juara 2 kompetisi business case tingkat nasional.
+\end{itemize}
+\textbf{Mata Kuliah}: Manajemen Pemasaran, Perilaku Konsumen, Negosiasi Bisnis, Manajemen Penjualan, Analisis Laporan Keuangan, Strategi Bisnis}
+\section{Pengalaman Kerja}
+
+\cventry{Jan 2021–Sekarang}
+        {Senior Account Executive}
+        {SolusiNusa Teknologi}
+        {\url{https://www.solusinusa.co.id}}
+        {}
+        {\begin{itemize}
+\item Memimpin penjualan solusi cloud ERP untuk klien enterprise, dengan nilai kontrak tahunan rata-rata Rp2 miliar.
+\item Mencapai 128\% kuota pada 2023 dan 115\% pada 2022 melalui pipeline yang sehat dan disiplin CRM.
+\item Membangun hubungan strategis dengan CIO, CFO, dan COO untuk memahami prioritas transformasi digital.
+\item Berkolaborasi dengan tim product, legal, dan customer success untuk mempercepat siklus closing dan retensi.
+\item Melatih 4 Account Executive junior dalam prospecting, discovery, dan presentasi solusi.
+\end{itemize}
+\textbf{Kata Kunci}: Cloud ERP, Enterprise Sales, Negosiasi, Pipeline, MEDDIC}
+
+\cventry{Mar 2018–Des 2020}
+        {Account Executive}
+        {Teknologi Cerdas Asia}
+        {\url{https://www.teknologicerdas.co.id}}
+        {}
+        {\begin{itemize}
+\item Mengelola portofolio 40+ klien UMKM dan mid-market untuk solusi CRM dan otomasi pemasaran.
+\item Mencapai 110\% kuota tahunan dan meraih penghargaan Top Sales Q3 2019.
+\item Melakukan demo produk, trial, dan negosiasi harga untuk meningkatkan konversi dari 18\% menjadi 27\%.
+\item Menjaga akurasi forecast melalui pembaruan Salesforce dan HubSpot secara mingguan.
+\end{itemize}
+\textbf{Kata Kunci}: CRM, SaaS, Prospecting, Demo, Forecast}
+
+\cventry{Agu 2016–Feb 2018}
+        {Sales Representative}
+        {PT Maju Bersama Distribusi}
+        {\url{https://www.majubersama.co.id}}
+        {}
+        {\begin{itemize}
+\item Bertanggung jawab atas penjualan produk consumer goods di wilayah Jabodetabek.
+\item Menambah 25 toko ritel baru dan meningkatkan pendapatan wilayah sebesar 32\% YoY.
+\item Membina hubungan dengan pemilik toko dan distributor untuk memastikan ketersediaan stok.
+\end{itemize}
+\textbf{Kata Kunci}: FMCG, Ritel, Distribusi, Penjualan}
+\section{Bahasa}
+
+\cvline{Indonesia}{Bahasa Ibu / Bilingual \hfill \textbf{Kata Kunci}: Bahasa Ibu}
+\cvline{Inggris}{Tingkat Profesional Penuh \hfill \textbf{Kata Kunci}: TOEFL 110, IELTS 8.0}
+\section{Keahlian}
+
+\cvline{Penjualan Enterprise}{Ahli \hfill \textbf{Kata Kunci}: Konsultatif Selling, Negosiasi Kontrak, Manajemen Pipeline, Forecast}
+\cvline{CRM \& Tools}{Mahir \hfill \textbf{Kata Kunci}: Salesforce, HubSpot, LinkedIn Sales Nav, ZoomInfo}
+\cvline{Presentasi \& Komunikasi}{Ahli \hfill \textbf{Kata Kunci}: Demo Produk, Storytelling, Public Speaking, Proposal}
+\cvline{Bahasa}{Mahir \hfill \textbf{Kata Kunci}: Inggris Bisnis, Indonesia}
+\section{Penghargaan}
+
+\cventry{Des 2023}
+        {SolusiNusa Teknologi}
+        {Top Sales Enterprise 2023}
+        {}
+        {}
+        {Diberikan kepada Account Executive dengan pencapaian kuota tertinggi dan kontribusi pendapatan terbesar di segmen enterprise.}
+
+\cventry{Sep 2019}
+        {Teknologi Cerdas Asia}
+        {Best Account Executive Q3 2019}
+        {}
+        {}
+        {Penghargaan atas pencapaian 135\% kuota kuartal dan retensi klien 98\%.}
+\section{Sertifikat}
+
+\cventry{Mei 2021}
+        {Indonesian Sales Association}
+        {Certified Sales Professional}
+        {\url{https://www.salesassociation.id/certification}}
+        {}
+        {}
+
+\cventry{Feb 2022}
+        {HubSpot}
+        {HubSpot Sales Software Certified}
+        {\url{https://academy.hubspot.com/certification}}
+        {}
+        {}
+\section{Publikasi}
+
+\cventry{Apr 2023}
+        {Strategi Consultative Selling untuk Pasar Enterprise Indonesia}
+        {Majalah Bisnis Digital}
+        {\url{https://www.bisnisdigital.id/artikel/consultative-selling-enterprise}}
+        {}
+        {\begin{itemize}
+\item Membahas pentingnya discovery mendalam dan pemetaan stakeholder dalam penjualan enterprise.
+\item Memberikan kerangka praktis untuk meningkatkan win rate di pasar B2B Indonesia.
+\end{itemize}}
+\section{Proyek}
+
+\cventry{Jan 2023–Jun 2023}
+        {Program kolaboratif untuk mempercepat waktu onboarding klien enterprise dari 90 hari menjadi 45 hari.}
+        {Program Akselerasi Onboarding Klien Enterprise}
+        {\url{https://www.solusinusa.co.id/program-onboarding}}
+        {}
+        {\begin{itemize}
+\item Memimpin inisiatif lintas fungsi antara sales, product, dan customer success.
+\item Menganalisis hambatan proses dan merancang playbook onboarding baru.
+\item Hasil: waktu onboarding turun 50\% dan skor kepuasan klien naik menjadi 4.8/5.
+\end{itemize}
+\textbf{Kata Kunci}: Onboarding, Customer Success, Playbook, Enterprise}
+\section{Minat}
+
+\cvline{Olahraga}{Lari, Sepak Bola, Bersepeda}
+\cvline{Musik}{Gitar, Konser}
+\cvline{Membaca}{Buku Bisnis, Biografi}
+\section{Kegiatan Sukarela}
+
+\cventry{Mar 2020–Des 2022}
+        {Mentor Penjualan UMKM}
+        {Yayasan Literasi Digital Indonesia}
+        {\url{https://www.literasidigital.id}}
+        {}
+        {\begin{itemize}
+\item Melatih 50+ pelaku UMKM dalam teknik penjualan digital dan negosiasi.
+\item Mengembangkan modul pelatihan dasar CRM dan pemasaran media sosial.
+\item Membantu peserta meningkatkan penjualan online rata-rata 40\% dalam 6 bulan.
+\end{itemize}}
+    
+\end{document}

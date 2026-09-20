@@ -1,0 +1,265 @@
+\documentclass[a4paper, serif, 10pt]{moderncv}
+
+%% moderncv
+% style and color
+\moderncvstyle{banking}
+\moderncvcolor{black}
+
+%% page layout/margins
+\usepackage[top=2.5cm, bottom=2.5cm, left=1.5cm, right=1.5cm]{geometry}
+
+\nopagenumbers{}
+
+%% Babel config for Dutch language
+% ref:
+% - https://latex3.github.io/babel/guides/locale-dutch.html
+\usepackage[dutch]{babel}
+
+%% fontspec
+\usepackage{fontspec}
+
+\IfFontExistsTF{Linux Libertine}{
+  \setmainfont[Ligatures={TeX, Common}, Numbers=OldStyle]{Linux Libertine}
+}{}
+\IfFontExistsTF{Linux Libertine O}{
+  \setmainfont[Ligatures={TeX, Common}, Numbers=OldStyle]{Linux Libertine O}
+}{}
+
+%% CTeX
+% CJK support, used to show CJK characters in the resume
+%
+% - fontset=none: disable builtin fontset but instead set the CJK font manually
+% - heading=false: disable ctex heading
+% - punct=kaiming: use kaiming punctuations styles for CJK
+% - scheme=plain: use plain scheme, do not override \normalsize font size
+% - space=auto: space settings for CJK characters
+%
+% ref:
+% - http://ctan.mirrorcatalogs.com/language/chinese/ctex/ctex.pdf
+\usepackage[UTF8, heading=false, punct=kaiming, scheme=plain, space=auto]{ctex}
+
+\IfFontExistsTF{Noto Serif CJK SC}{
+  \setCJKmainfont{Noto Serif CJK SC}
+}{}
+\IfFontExistsTF{Noto Sans CJK SC}{
+  \setCJKsansfont{Noto Sans CJK SC}
+}{}
+
+%% line spacing
+\usepackage{setspace}
+\setstretch{1.125}
+
+%% URL styling - use normal text instead of monospace
+\urlstyle{same}
+
+% Auto-underline all links
+% Defer until \begin{document} so hyperref is already loaded
+\AtBeginDocument{%
+  \let\oldhref\href
+  \renewcommand{\href}[2]{\oldhref{#1}{\underline{#2}}}%
+}
+
+%% Patch \httplink and \httpslink to handle full URLs
+% The original moderncv macros always prepend http:// or https:// to URLs.
+% This causes issues when the URL already has a protocol (e.g., https://example.com)
+% resulting in malformed URLs like https://https://example.com.
+% This patch checks if the URL already contains "://" and uses it directly if so.
+% Note: We use \str_set:Nx (x-expansion) to expand macros like \@homepage first.
+\ExplSyntaxOn
+\str_new:N \g_yamlresume_url_str
+
+\RenewDocumentCommand{\httpslink}{O{}m}{
+  \str_set:Nx \g_yamlresume_url_str {#2}
+  \str_if_in:NnTF \g_yamlresume_url_str {://}
+    { \url{#2} }
+    { \url{https://#2} }
+}
+
+\RenewDocumentCommand{\httplink}{O{}m}{
+  \str_set:Nx \g_yamlresume_url_str {#2}
+  \str_if_in:NnTF \g_yamlresume_url_str {://}
+    { \url{#2} }
+    { \url{http://#2} }
+}
+\ExplSyntaxOff
+
+\name{Sanne de Vries}{}
+\title{Customer Success Manager | SaaS | Klantgerichte strategie}
+\phone[mobile]{+31 6 1234 5678}
+\email{sanne.devries@example.com}
+\homepage{https://www.sannedevries.nl}
+
+\address{Keizersgracht 123, Amsterdam, Noord-Holland, Nederland, 1015 CJ}{}{}
+
+\extrainfo{{\small \faLinkedin}\ \href{https://www.linkedin.com/in/sannedevries}{@sannedevries} {} {} {} • {} {} {} 
+{\small \faTwitter}\ \href{https://twitter.com/sannedevries}{@sannedevries}}
+
+\begin{document}
+
+\maketitle
+
+\section{Basis Informatie}
+
+\cvline{}{Customer Success Manager met 6+ jaar ervaring in SaaS en technologie. Ik help klanten hun doelen te bereiken door middel van datagedreven onboarding, proactieve relatiebeheer en continue waardecreatie.
+%
+\begin{itemize}
+\item Verantwoordelijk voor een portfolio van 40+ zakelijke klanten met een jaarlijkse omzet van €2,5 miljoen
+\item Gerealiseerd klantbehoud van 95\% en Net Promoter Score (NPS) van 72
+\item Sterk in het vertalen van klantbehoeften naar concrete oplossingen en het opschalen van succesprocessen
+\item Ervaren in het samenwerken met Sales, Product en Support om churn te verlagen en upsell-kansen te benutten
+\end{itemize}}
+\section{Opleidingen}
+
+\cventry{sep 2016–jul 2018}
+        {Master, Bedrijfskunde, Score: 8.2}
+        {Universiteit van Amsterdam}
+        {\url{https://www.uva.nl}}
+        {}
+        {\begin{itemize}
+\item Afstudeerrichting: Strategie en Innovatie
+\item Thesis over klantretentie in SaaS-organisaties
+\item Actief in studievereniging en organisatie van carrière-evenementen
+\end{itemize}
+\textbf{Cursussen}: Strategisch Management, Marketingmanagement, Organisatiegedrag, Business Analytics, Duurzaam Ondernemen, Innovatiemanagement}
+
+\cventry{sep 2012–jul 2016}
+        {Bachelor, Commerciële Economie, Score: 7.8}
+        {Hogeschool van Amsterdam}
+        {\url{https://www.hva.nl}}
+        {}
+        {\begin{itemize}
+\item Minor in International Business aan de Universiteit van Valencia
+\item Stage bij een marketingbureau in Amsterdam
+\item Ontwikkelde basis in commerciële vaardigheden en klantgericht werken
+\end{itemize}
+\textbf{Cursussen}: Marketingcommunicatie, Salesmanagement, Marktonderzoek, Bedrijfseconomie, Projectmanagement, Internationale Handel}
+\section{Werkervaring}
+
+\cventry{mrt 2021–Heden}
+        {Senior Customer Success Manager}
+        {CloudWise B.V.}
+        {\url{https://www.cloudwise.nl}}
+        {}
+        {\begin{itemize}
+\item Verantwoordelijk voor strategisch klantbeheer van enterprise-klanten in de Benelux
+\item Ontwikkelde en implementeerde een proactief succesplan dat leidde tot 20\% minder churn
+\item Leidde kwartaalgesprekken met klanten om waarde te tonen en upsell-kansen te identificeren
+\item Samenwerking met Product om klantfeedback om te zetten in roadmap-prioriteiten
+\item Mentor voor twee junior Customer Success Managers
+\end{itemize}
+\textbf{Trefwoorden}: Klantbehoud, Onboarding, SaaS, Upsell, Enterprise}
+
+\cventry{jan 2019–feb 2021}
+        {Customer Success Manager}
+        {Nexus Software}
+        {\url{https://www.nexussoftware.nl}}
+        {}
+        {\begin{itemize}
+\item Beheerde een portfolio van 60+ MKB-klanten in diverse sectoren
+\item Verantwoordelijk voor onboarding, training en adoptie van het SaaS-platform
+\item Realiseerde een gemiddelde klanttevredenheid van 4,7/5 en een retentie van 92\%
+\item Ontwikkelde selfservice-onboardingmateriaal dat de time-to-value met 30\% verkortte
+\item Signaleerde en escaleerde technische issues naar Support en Engineering
+\end{itemize}
+\textbf{Trefwoorden}: Relatiebeheer, CRM, Retentie, Onboarding, MKB}
+
+\cventry{jun 2018–dec 2018}
+        {Account Manager}
+        {DataFlow Solutions}
+        {\url{https://www.dataflowsolutions.nl}}
+        {}
+        {\begin{itemize}
+\item Onderhield contact met bestaande klanten en identificeerde commerciële kansen
+\item Verzorgde contractverlengingen en onderhandelde over tarieven
+\item Werkte samen met het Customer Success-team om klantvragen snel op te lossen
+\item Droeg bij aan een omzetgroei van 12\% binnen het toegewezen portfolio
+\end{itemize}
+\textbf{Trefwoorden}: Accountbeheer, Contractverlenging, Commercie, Klantcontact}
+\section{Talen}
+
+\cvline{Nederlands}{Moedertaal of tweetalige vaardigheid \hfill \textbf{Trefwoorden}: Moedertaal}
+\cvline{Engels}{Volledige professionele vaardigheid \hfill \textbf{Trefwoorden}: C1}
+\cvline{Duits}{Beperkte werkvaardigheid \hfill \textbf{Trefwoorden}: B1}
+\section{Vaardigheden}
+
+\cvline{Klantrelatiebeheer}{Expert \hfill \textbf{Trefwoorden}: CRM, Salesforce, Klantreis, Retentie, Klantbehoud}
+\cvline{Data-analyse}{Geavanceerd \hfill \textbf{Trefwoorden}: Excel, Tableau, SQL, KPI-rapportages, Datavisualisatie}
+\cvline{Projectmanagement}{Geavanceerd \hfill \textbf{Trefwoorden}: Agile, Scrum, Jira, Stakeholdermanagement}
+\cvline{Communicatie}{Expert \hfill \textbf{Trefwoorden}: Presenteren, Onderhandelen, Feedback, Luisteren}
+\cvline{SaaS-platformen}{Expert \hfill \textbf{Trefwoorden}: Onboarding, Adoptie, Klantgezondheid, Churnpreventie}
+\cvline{Leiderschap}{Geavanceerd \hfill \textbf{Trefwoorden}: Mentoring, Teamcoaching, Kennisoverdracht}
+\section{Onderscheidingen}
+
+\cventry{dec 2023}
+        {CloudWise B.V.}
+        {Beste Klanttevredenheidsscore}
+        {}
+        {}
+        {Toegekend vanwege de hoogste Net Promoter Score en klanttevredenheid binnen het Customer Success-team in 2023.}
+
+\cventry{dec 2020}
+        {Nexus Software}
+        {Toppresteerder 2020}
+        {}
+        {}
+        {Jaarlijkse prijs voor buitengewone bijdrage aan klantbehoud en omzetgroei.}
+\section{Certificaten}
+
+\cventry{mei 2022}
+        {SuccessCOACHING}
+        {Certified Customer Success Manager (CCSM)}
+        {\url{https://www.successcoaching.com}}
+        {}
+        {}
+
+\cventry{jan 2021}
+        {Salesforce}
+        {Salesforce Certified Administrator}
+        {\url{https://trailhead.salesforce.com}}
+        {}
+        {}
+\section{Publicaties}
+
+\cventry{okt 2022}
+        {De impact van customer success op SaaS-retentie}
+        {Tijdschrift voor Marketing}
+        {\url{https://www.tijdschriftvoormarketing.nl/artikelen/customer-success-retentie}}
+        {}
+        {\begin{itemize}
+\item Onderzoek naar de relatie tussen proactief klantcontact en retentie in SaaS
+\item Bespreekt best practices voor onboarding en customer health scoring
+\item Gepresenteerd tijdens het SaaS Congres Amsterdam
+\end{itemize}}
+\section{Projecten}
+
+\cventry{jan 2023–jun 2023}
+        {Herontwerp van het onboardingtraject voor nieuwe SaaS-klanten}
+        {Klantonboarding 2.0}
+        {\url{https://www.cloudwise.nl/onboarding}}
+        {}
+        {\begin{itemize}
+\item Analyse van bestaande onboardingflow en klantfeedback
+\item Implementatie van geautomatiseerde welkomstserie en interactieve handleidingen
+\item Verkorting van time-to-value met 35\% en verhoging van eerste-maands adoptie
+\end{itemize}
+\textbf{Trefwoorden}: Onboarding, SaaS, Automatisering, Klantreis}
+\section{Interesses}
+
+\cvline{Sport}{Hardlopen, Yoga, Wielrennen}
+\cvline{Muziek}{Piano, Concerten}
+\cvline{Reizen}{Azië, Zuid-Amerika, Stedentrips}
+\cvline{Vrijwilligerswerk}{Mentoring, Buurtinitiatieven}
+\section{Vrijwilligerswerk}
+
+\cventry{sep 2019–Heden}
+        {Mentor}
+        {Stichting Amsterdam Cares}
+        {\url{https://www.amsterdamcares.nl}}
+        {}
+        {\begin{itemize}
+\item Begeleid jongeren bij het ontwikkelen van professionele vaardigheden
+\item Verzorgd workshops over solliciteren en netwerken
+\item Draagt bij aan een inclusieve arbeidsmarkt in Amsterdam
+\end{itemize}}
+    
+\end{document}

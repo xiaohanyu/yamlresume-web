@@ -1,0 +1,264 @@
+\documentclass[a4paper, serif, 10pt]{moderncv}
+
+%% moderncv
+% style and color
+\moderncvstyle{banking}
+\moderncvcolor{black}
+
+%% page layout/margins
+\usepackage[top=2.5cm, bottom=2.5cm, left=1.5cm, right=1.5cm]{geometry}
+
+\nopagenumbers{}
+
+%% Babel config for German language
+% ref:
+% - https://latex3.github.io/babel/guides/locale-german.html
+\usepackage[ngerman]{babel}
+
+%% fontspec
+\usepackage{fontspec}
+
+\IfFontExistsTF{Linux Libertine}{
+  \setmainfont[Ligatures={TeX, Common}, Numbers=OldStyle]{Linux Libertine}
+}{}
+\IfFontExistsTF{Linux Libertine O}{
+  \setmainfont[Ligatures={TeX, Common}, Numbers=OldStyle]{Linux Libertine O}
+}{}
+
+%% CTeX
+% CJK support, used to show CJK characters in the resume
+%
+% - fontset=none: disable builtin fontset but instead set the CJK font manually
+% - heading=false: disable ctex heading
+% - punct=kaiming: use kaiming punctuations styles for CJK
+% - scheme=plain: use plain scheme, do not override \normalsize font size
+% - space=auto: space settings for CJK characters
+%
+% ref:
+% - http://ctan.mirrorcatalogs.com/language/chinese/ctex/ctex.pdf
+\usepackage[UTF8, heading=false, punct=kaiming, scheme=plain, space=auto]{ctex}
+
+\IfFontExistsTF{Noto Serif CJK SC}{
+  \setCJKmainfont{Noto Serif CJK SC}
+}{}
+\IfFontExistsTF{Noto Sans CJK SC}{
+  \setCJKsansfont{Noto Sans CJK SC}
+}{}
+
+%% line spacing
+\usepackage{setspace}
+\setstretch{1.125}
+
+%% URL styling - use normal text instead of monospace
+\urlstyle{same}
+
+% Auto-underline all links
+% Defer until \begin{document} so hyperref is already loaded
+\AtBeginDocument{%
+  \let\oldhref\href
+  \renewcommand{\href}[2]{\oldhref{#1}{\underline{#2}}}%
+}
+
+%% Patch \httplink and \httpslink to handle full URLs
+% The original moderncv macros always prepend http:// or https:// to URLs.
+% This causes issues when the URL already has a protocol (e.g., https://example.com)
+% resulting in malformed URLs like https://https://example.com.
+% This patch checks if the URL already contains "://" and uses it directly if so.
+% Note: We use \str_set:Nx (x-expansion) to expand macros like \@homepage first.
+\ExplSyntaxOn
+\str_new:N \g_yamlresume_url_str
+
+\RenewDocumentCommand{\httpslink}{O{}m}{
+  \str_set:Nx \g_yamlresume_url_str {#2}
+  \str_if_in:NnTF \g_yamlresume_url_str {://}
+    { \url{#2} }
+    { \url{https://#2} }
+}
+
+\RenewDocumentCommand{\httplink}{O{}m}{
+  \str_set:Nx \g_yamlresume_url_str {#2}
+  \str_if_in:NnTF \g_yamlresume_url_str {://}
+    { \url{#2} }
+    { \url{http://#2} }
+}
+\ExplSyntaxOff
+
+\name{Lukas Weber}{}
+\title{Account Executive | B2B SaaS Vertrieb}
+\phone[mobile]{+49 30 12345678}
+\email{lukas.weber@example.com}
+\homepage{https://www.lukasweber.de}
+
+\address{Friedrichstraße 123, Berlin, Berlin, Deutschland, 10117}{}{}
+
+\extrainfo{{\small \faLinkedin}\ \href{https://www.linkedin.com/in/lukasweber}{@lukasweber} {} {} {} • {} {} {} 
+{\small \faTwitter}\ \href{https://twitter.com/lukasweber}{@lukasweber}}
+
+\begin{document}
+
+\maketitle
+
+\section{Basisinformationen}
+
+\cvline{}{\begin{itemize}
+\item Account Executive mit über 6 Jahren Erfahrung im B2B-SaaS-Vertrieb und einer Leidenschaft für consultative Selling
+\item Nachgewiesene Erfolge bei der Gewinnung von Neukunden, der Steigerung von Bestandsumsätzen und dem Aufbau langfristiger Kundenbeziehungen
+\item Stärken in der Verhandlungsführung, im Stakeholder-Management und in der Entwicklung maßgeschneiderter Lösungen für Enterprise-Kunden
+\item Sicher im Umgang mit CRM-Systemen (Salesforce, HubSpot) und datengetriebenen Vertriebsstrategien
+\item Deutsch als Muttersprache, Englisch verhandlungssicher, Französisch Grundkenntnisse
+\end{itemize}}
+\section{Ausbildung}
+
+\cventry{Okt. 2017–Sept. 2019}
+        {Master, Wirtschaftswissenschaften, Punkte: 1,6}
+        {Humboldt-Universität zu Berlin}
+        {\url{https://www.hu-berlin.de}}
+        {}
+        {\begin{itemize}
+\item Schwerpunkt auf B2B-Vertrieb und strategischem Kundenmanagement
+\item Masterarbeit über consultative Selling im SaaS-Umfeld
+\item Praktische Projekte mit CRM-Systemen und Vertriebsanalysen
+\end{itemize}
+\textbf{Kurse}: Strategisches Vertriebsmanagement, Marketing und Marktforschung, Verhandlungsführung, Business Analytics, Internationales Management, Unternehmensführung}
+
+\cventry{Okt. 2014–Sept. 2017}
+        {Bachelor, Betriebswirtschaftslehre, Punkte: 1,8}
+        {Technische Universität Berlin}
+        {\url{https://www.tu.berlin}}
+        {}
+        {\begin{itemize}
+\item Fundierte betriebswirtschaftliche Ausbildung mit Vertiefung in Marketing und Vertrieb
+\item Teilnahme an Praxisprojekten mit regionalen Unternehmen
+\item Erste Erfahrungen im Kundenkontakt und in der Präsentation von Lösungen
+\end{itemize}
+\textbf{Kurse}: Grundlagen der Betriebswirtschaftslehre, Mikroökonomie, Makroökonomie, Statistik, Marketing, Vertriebsmanagement}
+\section{Berufserfahrung}
+
+\cventry{Jan. 2022–Heute}
+        {Senior Account Executive}
+        {CloudForge GmbH}
+        {\url{https://www.cloudforge.de}}
+        {}
+        {\begin{itemize}
+\item Verantwortung für den gesamten Vertriebszyklus von der Leadqualifizierung bis zum Abschluss im Enterprise-Segment
+\item Erzielung von 125 \% der Jahresumsatzvorgabe in 2023 durch consultative Selling und strategische Account-Pläne
+\item Aufbau und Pflege von C-Level-Beziehungen bei mittelständischen und großen Unternehmen
+\item Enge Zusammenarbeit mit Marketing, Produktmanagement und Customer Success zur Steigerung der Kundenbindung
+\item Mentoring von zwei Junior Account Executives und Einführung eines Sales-Playbooks
+\end{itemize}
+\textbf{Schlüsselwörter}: B2B SaaS, Enterprise Sales, Consultative Selling, Account Management, Verhandlung, CRM}
+
+\cventry{März 2019–Dez. 2021}
+        {Account Executive}
+        {DataPulse AG}
+        {\url{https://www.datapulse.de}}
+        {}
+        {\begin{itemize}
+\item Betreuung eines Portfolios von 80+ Bestandskunden im Bereich Datenanalyse-Software
+\item Steigerung des Netto-Umsatzes um 35 \% durch Upselling- und Cross-Selling-Maßnahmen
+\item Durchführung von Produktdemos und Präsentationen für technische und kaufmännische Entscheider
+\item Erstellung von Angeboten, Verträgen und Forecasts in Salesforce
+\item Aktive Mitgestaltung von Vertriebsprozessen und Preisstrategien
+\end{itemize}
+\textbf{Schlüsselwörter}: SaaS, Upselling, Cross-Selling, Salesforce, Forecasting}
+
+\cventry{Aug. 2017–Feb. 2019}
+        {Sales Development Representative}
+        {SoftwareHaus GmbH}
+        {\url{https://www.softwarehaus.de}}
+        {}
+        {\begin{itemize}
+\item Identifikation und Qualifizierung von Leads durch Kaltakquise, E-Mail-Kampagnen und LinkedIn
+\item Terminierung von 15+ qualifizierten Erstgesprächen pro Monat für das Account-Executive-Team
+\item Pflege und Aktualisierung des CRM-Systems sowie Erstellung von Vertriebsreports
+\item Unterstützung bei der Entwicklung von Outbound-Kampagnen und Messaging
+\end{itemize}
+\textbf{Schlüsselwörter}: Leadgenerierung, Kaltakquise, Outbound, CRM, Qualifizierung}
+\section{Sprachen}
+
+\cvline{Deutsch}{Muttersprache oder zweisprachig \hfill \textbf{Schlüsselwörter}: Muttersprache}
+\cvline{Englisch}{Verhandlungssichere Kenntnisse \hfill \textbf{Schlüsselwörter}: TOEFL iBT 112, Business English}
+\cvline{Französisch}{Gute Kenntnisse \hfill \textbf{Schlüsselwörter}: DELF B2}
+\section{Fähigkeiten}
+
+\cvline{Vertrieb und Account Management}{Experte \hfill \textbf{Schlüsselwörter}: B2B-Vertrieb, Enterprise Sales, Consultative Selling, Verhandlungsführung, Account Planning, Forecasting}
+\cvline{CRM und Tools}{Erfahren \hfill \textbf{Schlüsselwörter}: Salesforce, HubSpot, LinkedIn Sales Navigator, Outreach, ZoomInfo, Excel}
+\cvline{Kommunikation}{Experte \hfill \textbf{Schlüsselwörter}: Präsentation, Verhandlung, Stakeholder-Management, Interkulturelle Kommunikation}
+\section{Auszeichnungen}
+
+\cventry{März 2023}
+        {CloudForge GmbH}
+        {Sales Excellence Award}
+        {}
+        {}
+        {\begin{itemize}
+\item Auszeichnung für die höchste Abschlussquote im Enterprise-Segment
+\item Erzielung des größten Neukundenabschlusses im Jahr 2022
+\end{itemize}}
+
+\cventry{Jan. 2022}
+        {DataPulse AG}
+        {Top Performer 2021}
+        {}
+        {}
+        {\begin{itemize}
+\item Anerkennung für 135 \% Zielerreichung und herausragendes Kundenfeedback
+\end{itemize}}
+\section{Zertifikate}
+
+\cventry{Juni 2021}
+        {HubSpot}
+        {HubSpot Sales Software Certified}
+        {\url{https://academy.hubspot.com/certification}}
+        {}
+        {}
+
+\cventry{Sept. 2022}
+        {Salesforce}
+        {Salesforce Certified Sales Cloud Consultant}
+        {\url{https://trailhead.salesforce.com/credentials/salescloudconsultant}}
+        {}
+        {}
+\section{Veröffentlichungen}
+
+\cventry{Mai 2023}
+        {Consultative Selling im B2B-SaaS}
+        {Vertriebsmanagement Magazin}
+        {\url{https://www.vertriebsmanagement-magazin.de/consultative-selling}}
+        {}
+        {\begin{itemize}
+\item Praxisleitfaden zur Steigerung der Abschlussquote durch bedarfsorientierte Verkaufsgespräche
+\item Analyse von Fallbeispielen aus dem Enterprise-Software-Vertrieb
+\end{itemize}}
+\section{Projekte}
+
+\cventry{Jan. 2023–Juni 2023}
+        {Einführung eines neuen CRM-Systems und Standardisierung des Vertriebsprozesses}
+        {CRM-Migration und Sales-Playbook}
+        {\url{https://www.cloudforge.de/crm-migration}}
+        {}
+        {\begin{itemize}
+\item Leitung der Migration von Salesforce zu HubSpot für ein 25-köpfiges Vertriebsteam
+\item Entwicklung eines Sales-Playbooks mit Gesprächsleitfäden, Qualifizierungskriterien und KPIs
+\item Schulung der Teammitglieder und Sicherstellung der Akzeptanz
+\end{itemize}
+\textbf{Schlüsselwörter}: CRM, HubSpot, Sales Playbook, Prozessoptimierung}
+\section{Interessen}
+
+\cvline{Sport}{Laufen, Radfahren, Schwimmen}
+\cvline{Musik}{Gitarre, Konzerte}
+\cvline{Reisen}{Städtereisen, Wandern}
+\section{Ehrenamtliche Tätigkeiten}
+
+\cventry{Jan. 2021–Heute}
+        {Mentor für Vertriebsnachwuchs}
+        {Startup Nachwuchs e.V.}
+        {\url{https://www.startup-nachwuchs.de}}
+        {}
+        {\begin{itemize}
+\item Ehrenamtliche Betreuung von Berufseinsteigern im Bereich B2B-Vertrieb
+\item Durchführung von Workshops zu Kaltakquise, CRM-Nutzung und Verhandlungsführung
+\item Unterstützung bei der Vorbereitung auf Bewerbungsgespräche und Assessment-Center
+\end{itemize}}
+    
+\end{document}

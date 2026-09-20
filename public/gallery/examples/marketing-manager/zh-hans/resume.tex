@@ -1,0 +1,281 @@
+\documentclass[a4paper, serif, 10pt]{moderncv}
+
+%% moderncv
+% style and color
+\moderncvstyle{banking}
+\moderncvcolor{black}
+
+% renew moderncv command to adapt for CJK colon
+\renewcommand*{\cvitem}[3][.25em]{%
+  \ifstrempty{#2}{}{\hintstyle{#2}：}{#3}%
+  \par\addvspace{#1}}
+
+\renewcommand*{\cvitemwithcomment}[4][.25em]{%
+  \savebox{\cvitemwithcommentmainbox}{\ifstrempty{#2}{}{\hintstyle{#2}：}#3}%
+  \setlength{\cvitemwithcommentmainlength}{\widthof{\usebox{\cvitemwithcommentmainbox}}}%
+  \setlength{\cvitemwithcommentcommentlength}{\maincolumnwidth-\separatorcolumnwidth-\cvitemwithcommentmainlength}%
+  \begin{minipage}[t]{\cvitemwithcommentmainlength}\usebox{\cvitemwithcommentmainbox}\end{minipage}%
+  \hfill% fill of \separatorcolumnwidth
+  \begin{minipage}[t]{\cvitemwithcommentcommentlength}\raggedleft\small\itshape#4\end{minipage}%
+  \par\addvspace{#1}}
+
+%% page layout/margins
+\usepackage[top=2.5cm, bottom=2.5cm, left=1.5cm, right=1.5cm]{geometry}
+
+\nopagenumbers{}
+
+%% Babel config for English language
+\usepackage[english]{babel}
+
+%% fontspec
+\usepackage{fontspec}
+
+\IfFontExistsTF{Linux Libertine}{
+  \setmainfont[Ligatures={TeX, Common}, Numbers=Lining, ItalicFont=Linux Libertine]{Linux Libertine}
+}{}
+\IfFontExistsTF{Linux Libertine O}{
+  \setmainfont[Ligatures={TeX, Common}, Numbers=Lining, ItalicFont=Linux Libertine O]{Linux Libertine O}
+}{}
+
+%% CTeX
+% CJK support, used to show CJK characters in the resume
+%
+% - fontset=none: disable builtin fontset but instead set the CJK font manually
+% - heading=false: disable ctex heading
+% - punct=kaiming: use kaiming punctuations styles for CJK
+% - scheme=plain: use plain scheme, do not override \normalsize font size
+% - space=auto: space settings for CJK characters
+%
+% ref:
+% - http://ctan.mirrorcatalogs.com/language/chinese/ctex/ctex.pdf
+\usepackage[UTF8, heading=false, punct=kaiming, scheme=plain, space=auto]{ctex}
+
+\IfFontExistsTF{Noto Serif CJK SC}{
+  \setCJKmainfont{Noto Serif CJK SC}
+}{}
+\IfFontExistsTF{Noto Sans CJK SC}{
+  \setCJKsansfont{Noto Sans CJK SC}
+}{}
+
+%% line spacing
+\usepackage{setspace}
+\setstretch{1.125}
+
+%% URL styling - use normal text instead of monospace
+\urlstyle{same}
+
+% Auto-underline all links
+% Defer until \begin{document} so hyperref is already loaded
+\AtBeginDocument{%
+  \let\oldhref\href
+  \renewcommand{\href}[2]{\oldhref{#1}{\underline{#2}}}%
+}
+
+%% Patch \httplink and \httpslink to handle full URLs
+% The original moderncv macros always prepend http:// or https:// to URLs.
+% This causes issues when the URL already has a protocol (e.g., https://example.com)
+% resulting in malformed URLs like https://https://example.com.
+% This patch checks if the URL already contains "://" and uses it directly if so.
+% Note: We use \str_set:Nx (x-expansion) to expand macros like \@homepage first.
+\ExplSyntaxOn
+\str_new:N \g_yamlresume_url_str
+
+\RenewDocumentCommand{\httpslink}{O{}m}{
+  \str_set:Nx \g_yamlresume_url_str {#2}
+  \str_if_in:NnTF \g_yamlresume_url_str {://}
+    { \url{#2} }
+    { \url{https://#2} }
+}
+
+\RenewDocumentCommand{\httplink}{O{}m}{
+  \str_set:Nx \g_yamlresume_url_str {#2}
+  \str_if_in:NnTF \g_yamlresume_url_str {://}
+    { \url{#2} }
+    { \url{http://#2} }
+}
+\ExplSyntaxOff
+
+\name{张雅琳}{}
+\title{市场营销经理 | 品牌增长与数字营销专家}
+\phone[mobile]{+86 138 1234 5678}
+\email{yalin.zhang@example.com}
+\homepage{https://www.zhangyalin.com}
+
+\address{中国，上海市，上海，浦东新区世纪大道 100 号，200120}{}{}
+
+\extrainfo{{\small \faLinkedin}\ \href{https://www.linkedin.com/in/yalinzhang}{@yalinzhang} {} {} {} • {} {} {} 
+{\small \faMedium}\ \href{https://medium.com/@yalinzhang}{@yalinzhang}}
+
+\begin{document}
+
+\maketitle
+
+\section{简介}
+
+\cvline{}{\begin{itemize}
+\item 8 年市场营销经验，专注于企业级与快消行业的品牌增长、数字营销与整合传播
+\item 擅长制定市场策略、管理千万级预算，并通过数据驱动优化获客与转化
+\item 具备跨部门协作与团队管理能力，曾带领 6 人团队实现有效线索增长 180\%
+\item 熟悉国内外主流营销平台与工具，能够快速适应不同市场环境
+\end{itemize}}
+\section{教育背景}
+
+\cventry{2014年9月–2017年6月}
+        {硕士，市场营销，成绩：3.8/4.0}
+        {复旦大学}
+        {\url{https://www.fudan.edu.cn}}
+        {}
+        {\begin{itemize}
+\item 主修市场营销，系统学习消费者洞察、品牌战略与数据驱动决策
+\item 毕业论文聚焦社交媒体对年轻消费者购买意愿的影响
+\item 获得校级优秀研究生奖学金
+\end{itemize}
+\textbf{课程}：消费者行为学、市场调研与数据分析、品牌管理、数字营销策略、整合营销传播、商业统计学}
+
+\cventry{2010年9月–2014年6月}
+        {学士，国际商务，成绩：3.6/4.0}
+        {上海外国语大学}
+        {\url{https://www.shisu.edu.cn}}
+        {}
+        {\begin{itemize}
+\item 辅修英语，具备良好的跨文化沟通能力
+\item 参与校园国际文化节市场推广工作
+\end{itemize}
+\textbf{课程}：国际市场营销、商务英语、跨文化沟通、经济学原理}
+\section{工作经历}
+
+\cventry{2021年3月至今}
+        {高级市场营销经理}
+        {云图科技}
+        {\url{https://www.yuntu-tech.com}}
+        {}
+        {\begin{itemize}
+\item 负责企业级软件服务产品线整体市场策略，管理年度预算 1200 万元
+\item 带领 6 人团队执行内容营销、搜索引擎优化与营销、行业活动与渠道合作
+\item 将有效线索数量提升 180\%，客户获取成本降低 25\%，投资回报率提升至 4.2
+\item 搭建营销自动化与归因体系，实现线索到收入的闭环追踪
+\end{itemize}
+\textbf{关键字}：企业级营销、增长策略、营销自动化、团队管理}
+
+\cventry{2017年7月–2021年2月}
+        {市场营销经理}
+        {星潮互动}
+        {\url{https://www.xingchao.com}}
+        {}
+        {\begin{itemize}
+\item 负责快消品牌社交媒体与关键意见领袖营销，运营粉丝超 300 万
+\item 策划多个爆款话题，单次活动曝光量超 8000 万
+\item 与产品、销售团队协作，推动新品上市首月销售额破千万
+\item 管理代理商与媒体采购，优化投放效率
+\end{itemize}
+\textbf{关键字}：社交媒体、关键意见领袖营销、品牌传播、预算管理}
+\section{语言}
+
+\cvline{中文}{母语或双语水平 \hfill \textbf{关键字}：普通话}
+\cvline{英语}{完全专业水平 \hfill \textbf{关键字}：雅思 7.5、商务谈判}
+\section{专业技能}
+
+\cvline{市场营销}{专家 \hfill \textbf{关键字}：品牌战略、市场调研、整合营销、内容营销、活动策划}
+\cvline{数字营销}{高级 \hfill \textbf{关键字}：搜索引擎优化、搜索引擎营销、信息流广告、社交媒体营销、营销自动化、数据分析}
+\cvline{工具与平台}{高级 \hfill \textbf{关键字}：谷歌分析、HubSpot、百度统计、巨量引擎、Salesforce}
+\cvline{管理与协作}{高级 \hfill \textbf{关键字}：团队领导、跨部门协作、项目管理、预算控制、供应商管理}
+\section{荣誉}
+
+\cventry{2023年1月}
+        {云图科技}
+        {年度最佳营销团队奖}
+        {}
+        {}
+        {表彰在企业级增长营销与品牌建设方面的突出贡献，带领团队实现年度业绩目标 130\%。}
+
+\cventry{2020年11月}
+        {中国数字营销协会}
+        {数字营销创新金奖}
+        {}
+        {}
+        {凭借“城市夜跑计划”整合营销案例获得行业金奖，活动覆盖 20 个城市，参与人数超 5 万。}
+\section{证书}
+
+\cventry{2022年5月}
+        {谷歌}
+        {谷歌分析 4 认证}
+        {\url{https://skillshop.exceedlms.com/student/catalog}}
+        {}
+        {}
+
+\cventry{2021年8月}
+        {HubSpot 学院}
+        {内容营销认证}
+        {\url{https://academy.hubspot.com/courses/content-marketing}}
+        {}
+        {}
+
+\cventry{2020年3月}
+        {百度}
+        {百度营销认证}
+        {\url{https://yingxiao.baidu.com}}
+        {}
+        {}
+\section{出版刊物}
+
+\cventry{2022年10月}
+        {社交媒体时代企业级品牌内容营销策略研究}
+        {中国市场学会}
+        {\url{https://www.example.com/publication}}
+        {}
+        {\begin{itemize}
+\item 分析企业级品牌如何通过内容营销建立思想领导力
+\item 提出基于客户旅程的内容矩阵模型
+\item 被多家行业媒体转载引用
+\end{itemize}}
+\section{项目}
+
+\cventry{2022年1月–2022年9月}
+        {为企业级软件服务企业完成品牌升级与官网重构，覆盖 6 个国际市场}
+        {云图科技品牌焕新项目}
+        {\url{https://www.yuntu-tech.com/brand}}
+        {}
+        {\begin{itemize}
+\item 主导品牌定位、视觉识别与官网改版
+\item 统一全球市场传播口径，提升品牌认知度 45\%
+\end{itemize}
+\textbf{关键字}：品牌升级、官网改版、全球化}
+
+\cventry{2020年10月–2020年11月}
+        {快消品牌双十一全渠道整合营销活动}
+        {双十一整合营销战役}
+        {\url{https://www.xingchao.com/campaign}}
+        {}
+        {\begin{itemize}
+\item 统筹社交媒体、直播与电商站内投放
+\item 实现成交总额 3200 万元，同比增长 90\%
+\end{itemize}
+\textbf{关键字}：电商营销、直播、整合传播}
+\section{兴趣爱好}
+
+\cvline{内容创作}{写作、播客、摄影}
+\cvline{运动}{跑步、瑜伽、徒步}
+\section{志愿服务}
+
+\cventry{2019年9月–2023年6月}
+        {志愿者导师}
+        {上海青年营销人协会}
+        {\url{https://www.shyoungmarketers.org}}
+        {}
+        {\begin{itemize}
+\item 为大学生提供市场营销职业规划与技能辅导
+\item 组织行业分享会与公益讲座 20 余场
+\end{itemize}}
+    
+
+\cventry{2018年3月–2020年12月}
+        {品牌传播志愿者}
+        {乡村教育发展基金会}
+        {\url{https://www.ruraledu.org}}
+        {}
+        {\begin{itemize}
+\item 协助策划公益募捐活动，累计筹款 80 万元
+\item 负责社交媒体内容撰写与传播
+\end{itemize}}
+    
+\end{document}

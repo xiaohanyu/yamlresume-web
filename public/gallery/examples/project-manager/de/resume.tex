@@ -1,0 +1,277 @@
+\documentclass[a4paper, serif, 10pt]{moderncv}
+
+%% moderncv
+% style and color
+\moderncvstyle{banking}
+\moderncvcolor{black}
+
+%% page layout/margins
+\usepackage[top=2.5cm, bottom=2.5cm, left=1.5cm, right=1.5cm]{geometry}
+
+\nopagenumbers{}
+
+%% Babel config for German language
+% ref:
+% - https://latex3.github.io/babel/guides/locale-german.html
+\usepackage[ngerman]{babel}
+
+%% fontspec
+\usepackage{fontspec}
+
+\IfFontExistsTF{Linux Libertine}{
+  \setmainfont[Ligatures={TeX, Common}, Numbers=OldStyle]{Linux Libertine}
+}{}
+\IfFontExistsTF{Linux Libertine O}{
+  \setmainfont[Ligatures={TeX, Common}, Numbers=OldStyle]{Linux Libertine O}
+}{}
+
+%% CTeX
+% CJK support, used to show CJK characters in the resume
+%
+% - fontset=none: disable builtin fontset but instead set the CJK font manually
+% - heading=false: disable ctex heading
+% - punct=kaiming: use kaiming punctuations styles for CJK
+% - scheme=plain: use plain scheme, do not override \normalsize font size
+% - space=auto: space settings for CJK characters
+%
+% ref:
+% - http://ctan.mirrorcatalogs.com/language/chinese/ctex/ctex.pdf
+\usepackage[UTF8, heading=false, punct=kaiming, scheme=plain, space=auto]{ctex}
+
+\IfFontExistsTF{Noto Serif CJK SC}{
+  \setCJKmainfont{Noto Serif CJK SC}
+}{}
+\IfFontExistsTF{Noto Sans CJK SC}{
+  \setCJKsansfont{Noto Sans CJK SC}
+}{}
+
+%% line spacing
+\usepackage{setspace}
+\setstretch{1.125}
+
+%% URL styling - use normal text instead of monospace
+\urlstyle{same}
+
+% Auto-underline all links
+% Defer until \begin{document} so hyperref is already loaded
+\AtBeginDocument{%
+  \let\oldhref\href
+  \renewcommand{\href}[2]{\oldhref{#1}{\underline{#2}}}%
+}
+
+%% Patch \httplink and \httpslink to handle full URLs
+% The original moderncv macros always prepend http:// or https:// to URLs.
+% This causes issues when the URL already has a protocol (e.g., https://example.com)
+% resulting in malformed URLs like https://https://example.com.
+% This patch checks if the URL already contains "://" and uses it directly if so.
+% Note: We use \str_set:Nx (x-expansion) to expand macros like \@homepage first.
+\ExplSyntaxOn
+\str_new:N \g_yamlresume_url_str
+
+\RenewDocumentCommand{\httpslink}{O{}m}{
+  \str_set:Nx \g_yamlresume_url_str {#2}
+  \str_if_in:NnTF \g_yamlresume_url_str {://}
+    { \url{#2} }
+    { \url{https://#2} }
+}
+
+\RenewDocumentCommand{\httplink}{O{}m}{
+  \str_set:Nx \g_yamlresume_url_str {#2}
+  \str_if_in:NnTF \g_yamlresume_url_str {://}
+    { \url{#2} }
+    { \url{http://#2} }
+}
+\ExplSyntaxOff
+
+\name{Dr. Anna Schmidt}{}
+\title{Senior Projektmanagerin | Agile Transformation \& Digitalisierung}
+\phone[mobile]{+49 30 9876543}
+\email{anna.schmidt@example.de}
+\homepage{https://www.annaschmidt-pm.de}
+
+\address{Friedrichstraße 123, Berlin, Berlin, Deutschland, 10117}{}{}
+
+\extrainfo{{\small \faLinkedin}\ \href{https://www.linkedin.com/in/annaschmidtpm}{@annaschmidtpm} {} {} {} • {} {} {} 
+{\small \faGithub}\ \href{https://github.com/annaschmidt}{@annaschmidt} {} {} {} • {} {} {} 
+{\small \faTwitter}\ \href{https://twitter.com/annaschmidt\_pm}{@annaschmidt\_pm}}
+
+\begin{document}
+
+\maketitle
+
+\section{Basisinformationen}
+
+\cvline{}{Senior Projektmanagerin mit über 8 Jahren Erfahrung in der Leitung komplexer IT- und Digitalisierungsprojekte. Nachweisliche Erfolge in der agilen Transformation, im Stakeholder-Management und in der Budgetverantwortung von bis zu 5 Mio. EUR.
+%
+\begin{itemize}
+\item Führung interdisziplinärer Teams von bis zu 25 Mitarbeitenden
+\item Zertifizierte Scrum Masterin und PMP mit fundierten Kenntnissen in SAFe und Kanban
+\item Starke Kommunikationsfähigkeiten in Deutsch und Englisch, verhandlungssicher in Französisch
+\item Leidenschaft für nachhaltige Prozessoptimierung und datengetriebene Entscheidungen
+\end{itemize}}
+\section{Ausbildung}
+
+\cventry{Okt. 2013–Sept. 2015}
+        {Master, Wirtschaftsinformatik, Punkte: 1.7}
+        {Technische Universität München}
+        {\url{https://www.tum.de}}
+        {}
+        {\begin{itemize}
+\item Schwerpunkt auf IT-Projektmanagement und agile Methoden
+\item Masterarbeit: "Erfolgsfaktoren agiler Transformationsprojekte in mittelständischen Unternehmen"
+\end{itemize}
+\textbf{Kurse}: Projektmanagement, Agile Softwareentwicklung, Datenbanken, Unternehmensführung, IT-Controlling}
+
+\cventry{Okt. 2010–Sept. 2013}
+        {Bachelor, Betriebswirtschaftslehre, Punkte: 1.9}
+        {Universität Mannheim}
+        {\url{https://www.uni-mannheim.de}}
+        {}
+        {\begin{itemize}
+\item Grundlagen in BWL, VWL und Informatik
+\item Auslandssemester an der Universität St. Gallen
+\end{itemize}
+\textbf{Kurse}: Betriebswirtschaftslehre, Statistik, Informatik}
+\section{Berufserfahrung}
+
+\cventry{Jan. 2021–Heute}
+        {Senior Projektmanagerin}
+        {Digital Pioneers GmbH}
+        {\url{https://www.digital-pioneers.de}}
+        {}
+        {\begin{itemize}
+\item Leitung eines portfolioweiten agilen Transformationsprogramms mit 12 Projekten und einem Budget von 5 Mio. EUR
+\item Einführung eines skalierbaren SAFe-Frameworks, Steigerung der Liefergeschwindigkeit um 30\%
+\item Coaching von 5 Scrum-Teams und Aufbau eines internen PMO
+\item Berichterstattung an den Vorstand und Steuerung externer Dienstleister
+\end{itemize}
+\textbf{Schlüsselwörter}: Agile Transformation, SAFe, PMO, Budgetverantwortung, Stakeholder-Management}
+
+\cventry{Juli 2017–Dez. 2020}
+        {Projektmanager}
+        {TechSolutions AG}
+        {\url{https://www.techsolutions.de}}
+        {}
+        {\begin{itemize}
+\item Erfolgreiche Leitung von 15+ IT-Projekten in den Bereichen Cloud-Migration und SAP-Einführung
+\item Verantwortung für Projektplanung, Risikomanagement und Qualitätssicherung
+\item Enge Zusammenarbeit mit Product Ownern und Entwicklungsteams
+\item Einführung von Kanban in der Softwareentwicklung, Reduzierung der Durchlaufzeit um 25\%
+\end{itemize}
+\textbf{Schlüsselwörter}: Cloud-Migration, SAP, Kanban, Risikomanagement, Jira}
+
+\cventry{Aug. 2015–Juni 2017}
+        {Junior Projektmanager}
+        {StartUp Innovations GmbH}
+        {\url{https://www.startup-innovations.de}}
+        {}
+        {\begin{itemize}
+\item Unterstützung bei der Planung und Umsetzung von Digitalisierungsprojekten
+\item Erstellung von Projektplänen, Statusberichten und Präsentationen
+\item Koordination von Meetings und Workshops
+\end{itemize}
+\textbf{Schlüsselwörter}: Digitalisierung, Projektplanung, Reporting}
+\section{Sprachen}
+
+\cvline{Deutsch}{Muttersprache oder zweisprachig \hfill \textbf{Schlüsselwörter}: Muttersprache}
+\cvline{Englisch}{Verhandlungssichere Kenntnisse \hfill \textbf{Schlüsselwörter}: Verhandlungssicher, TOEFL 110}
+\cvline{Französisch}{Gute Kenntnisse \hfill \textbf{Schlüsselwörter}: Grundkenntnisse}
+\section{Fähigkeiten}
+
+\cvline{Projektmanagement}{Experte \hfill \textbf{Schlüsselwörter}: Agiles Projektmanagement, Wasserfall, Hybrid, PMI, PRINCE2}
+\cvline{Agile Methoden}{Experte \hfill \textbf{Schlüsselwörter}: Scrum, Kanban, SAFe, Lean, OKR}
+\cvline{Tools}{Erfahren \hfill \textbf{Schlüsselwörter}: Jira, Confluence, MS Project, Trello, Miro}
+\cvline{Führung \& Kommunikation}{Erfahren \hfill \textbf{Schlüsselwörter}: Teamentwicklung, Moderation, Konfliktmanagement, Stakeholder-Management}
+\section{Auszeichnungen}
+
+\cventry{Dez. 2023}
+        {Digital Pioneers GmbH}
+        {Projektmanagerin des Jahres 2023}
+        {}
+        {}
+        {Auszeichnung für die herausragende Leitung des agilen Transformationsprogramms und die erfolgreiche Einführung des PMO.}
+
+\cventry{Okt. 2015}
+        {Technische Universität München}
+        {Best Master Thesis Award}
+        {}
+        {}
+        {Auszeichnung für die beste Masterarbeit im Bereich Wirtschaftsinformatik.}
+\section{Zertifikate}
+
+\cventry{März 2020}
+        {Project Management Institute}
+        {Project Management Professional (PMP)}
+        {\url{https://www.pmi.org/certifications/project-management-pmp}}
+        {}
+        {}
+
+\cventry{Juni 2019}
+        {Scrum.org}
+        {Professional Scrum Master I}
+        {\url{https://www.scrum.org/professional-scrum-master-i-certification}}
+        {}
+        {}
+
+\cventry{Sept. 2021}
+        {Scaled Agile}
+        {SAFe 5 Agilist}
+        {\url{https://www.scaledagile.com/certification/safe-agilist/}}
+        {}
+        {}
+\section{Veröffentlichungen}
+
+\cventry{Mai 2018}
+        {Erfolgsfaktoren agiler Transformationsprojekte}
+        {Projektmanagement aktuell}
+        {\url{https://www.pm-aktuell.de/artikel/erfolgsfaktoren-agiler-transformation}}
+        {}
+        {\begin{itemize}
+\item Analyse von 20 agilen Transformationsprojekten in mittelständischen Unternehmen
+\item Identifikation von kritischen Erfolgsfaktoren wie Führung, Kommunikation und Kultur
+\item Handlungsempfehlungen für Projektmanager und Führungskräfte
+\end{itemize}}
+\section{Projekte}
+
+\cventry{März 2021–Nov. 2022}
+        {Aufbau eines zentralen PMO zur Steuerung von 12 agilen Projekten}
+        {Einführung eines agilen PMO}
+        {\url{https://www.digital-pioneers.de/projekte/agiles-pmo}}
+        {}
+        {\begin{itemize}
+\item Etablierung von standardisierten Prozessen und Reporting
+\item Einführung von Jira und Confluence als zentrale Plattformen
+\item Schulung von 50 Mitarbeitenden in agilen Methoden
+\item Reduzierung der Projektdurchlaufzeit um 20\%
+\end{itemize}
+\textbf{Schlüsselwörter}: PMO, Agile, Jira, Confluence}
+
+\cventry{Jan. 2019–Dez. 2020}
+        {Migration von 200+ Anwendungen in die AWS-Cloud}
+        {Cloud-Migration für einen DAX-Konzern}
+        {\url{https://www.techsolutions.de/projekte/cloud-migration}}
+        {}
+        {\begin{itemize}
+\item Leitung eines Teams von 15 Entwicklern und Architekten
+\item Sicherstellung der Termin- und Budgettreue
+\item Erfolgreiche Abnahme durch den Kunden
+\end{itemize}
+\textbf{Schlüsselwörter}: AWS, Cloud, Migration}
+\section{Interessen}
+
+\cvline{Sport}{Marathon, Skifahren, Wandern}
+\cvline{Musik}{Klavier, Gitarre}
+\section{Ehrenamtliche Tätigkeiten}
+
+\cventry{Jan. 2020–Dez. 2023}
+        {Mentorin}
+        {PMI Germany Chapter}
+        {\url{https://www.pmi-germany.de}}
+        {}
+        {\begin{itemize}
+\item Mentoring von Nachwuchsprojektmanagern
+\item Organisation von Netzwerkveranstaltungen und Workshops
+\item Vorträge zu agilen Methoden und Karriereentwicklung
+\end{itemize}}
+    
+\end{document}
