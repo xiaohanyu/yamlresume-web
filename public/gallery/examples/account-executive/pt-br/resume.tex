@@ -1,0 +1,243 @@
+\documentclass[a4paper, serif, 10pt]{moderncv}
+
+%% moderncv
+% style and color
+\moderncvstyle{banking}
+\moderncvcolor{black}
+
+%% page layout/margins
+\usepackage[top=2.5cm, bottom=2.5cm, left=1.5cm, right=1.5cm]{geometry}
+
+\nopagenumbers{}
+
+%% Babel config for Brazilian Portuguese language
+% ref:
+% - https://latex3.github.io/babel/guides/locale-portuguese.html
+\usepackage[brazilian]{babel}
+
+%% fontspec
+\usepackage{fontspec}
+
+\IfFontExistsTF{Linux Libertine}{
+  \setmainfont[Ligatures={TeX, Common}, Numbers=OldStyle]{Linux Libertine}
+}{}
+\IfFontExistsTF{Linux Libertine O}{
+  \setmainfont[Ligatures={TeX, Common}, Numbers=OldStyle]{Linux Libertine O}
+}{}
+
+%% CTeX
+% CJK support, used to show CJK characters in the resume
+%
+% - fontset=none: disable builtin fontset but instead set the CJK font manually
+% - heading=false: disable ctex heading
+% - punct=kaiming: use kaiming punctuations styles for CJK
+% - scheme=plain: use plain scheme, do not override \normalsize font size
+% - space=auto: space settings for CJK characters
+%
+% ref:
+% - http://ctan.mirrorcatalogs.com/language/chinese/ctex/ctex.pdf
+\usepackage[UTF8, heading=false, punct=kaiming, scheme=plain, space=auto]{ctex}
+
+\IfFontExistsTF{Noto Serif CJK SC}{
+  \setCJKmainfont{Noto Serif CJK SC}
+}{}
+\IfFontExistsTF{Noto Sans CJK SC}{
+  \setCJKsansfont{Noto Sans CJK SC}
+}{}
+
+%% line spacing
+\usepackage{setspace}
+\setstretch{1.125}
+
+%% URL styling - use normal text instead of monospace
+\urlstyle{same}
+
+% Auto-underline all links
+% Defer until \begin{document} so hyperref is already loaded
+\AtBeginDocument{%
+  \let\oldhref\href
+  \renewcommand{\href}[2]{\oldhref{#1}{\underline{#2}}}%
+}
+
+%% Patch \httplink and \httpslink to handle full URLs
+% The original moderncv macros always prepend http:// or https:// to URLs.
+% This causes issues when the URL already has a protocol (e.g., https://example.com)
+% resulting in malformed URLs like https://https://example.com.
+% This patch checks if the URL already contains "://" and uses it directly if so.
+% Note: We use \str_set:Nx (x-expansion) to expand macros like \@homepage first.
+\ExplSyntaxOn
+\str_new:N \g_yamlresume_url_str
+
+\RenewDocumentCommand{\httpslink}{O{}m}{
+  \str_set:Nx \g_yamlresume_url_str {#2}
+  \str_if_in:NnTF \g_yamlresume_url_str {://}
+    { \url{#2} }
+    { \url{https://#2} }
+}
+
+\RenewDocumentCommand{\httplink}{O{}m}{
+  \str_set:Nx \g_yamlresume_url_str {#2}
+  \str_if_in:NnTF \g_yamlresume_url_str {://}
+    { \url{#2} }
+    { \url{http://#2} }
+}
+\ExplSyntaxOff
+
+\name{Carolina Mendes}{}
+\title{Executiva de Contas | Vendas B2B SaaS}
+\phone[mobile]{+55 11 98765-4321}
+\email{carolina.mendes@vendaspro.com.br}
+\homepage{https://www.carolinamendes.com.br}
+
+\address{Av. Paulista, 1000, Bela Vista, São Paulo, SP, Brasil, 01310-100}{}{}
+
+\extrainfo{{\small \faLinkedin}\ \href{https://www.linkedin.com/in/carolinamendes}{@carolinamendes} {} {} {} • {} {} {} 
+{\small \faInstagram}\ \href{https://www.instagram.com/carolmendes.vendas}{@carolmendes.vendas}}
+
+\begin{document}
+
+\maketitle
+
+\section{Informações Básicas}
+
+\cvline{}{Executiva de Contas com mais de 8 anos de experiência em vendas B2B de soluções SaaS, especializada em gestão do ciclo completo de vendas, prospecção estratégica e fechamento de contratos de alto valor. Histórico comprovado de superação de metas trimestrais e anuais, com forte habilidade em construir relacionamentos de confiança com clientes C-level. Experiência em CRM (Salesforce, HubSpot), metodologias de vendas (SPIN, MEDDIC) e análise de dados para tomada de decisão. Proficiente em português, inglês e espanhol.}
+\section{Formação}
+
+\cventry{fev. de 2010–dez. de 2014}
+        {Bacharelado, Administração de Empresas, Nota: 8.7}
+        {Universidade de São Paulo}
+        {\url{https://www.usp.br}}
+        {}
+        {\begin{itemize}
+\item Formação sólida em administração, com foco em estratégias comerciais e gestão de equipes de vendas.
+\item Desenvolvimento de habilidades analíticas e de comunicação por meio de projetos práticos e apresentações.
+\item Participação em empresa júnior, atuando em prospecção de clientes e elaboração de propostas comerciais.
+\end{itemize}
+\textbf{Cursos}: Gestão de Vendas, Marketing Estratégico, Negociação Comercial, Comportamento Organizacional, Análise Financeira, Gestão de Projetos}
+\section{Experiência Profissional}
+
+\cventry{mar. de 2019–Atual}
+        {Executiva de Contas Sênior}
+        {VendaMais Tecnologia}
+        {\url{https://www.vendamais.com.br}}
+        {}
+        {\begin{itemize}
+\item Gerenciei um portfólio de mais de 50 contas estratégicas, com foco em soluções SaaS de gestão de vendas e automação de marketing.
+\item Superei a meta anual em 145\% em 2023, gerando mais de R\$ 4 milhões em receita nova e recorrente.
+\item Conduzi negociações complexas com diretores e C-levels, reduzindo o ciclo de vendas em 20\% por meio de propostas de valor personalizadas.
+\item Implementei cadências de prospecção outbound e inbound, aumentando em 35\% a taxa de conversão de leads em oportunidades.
+\item Colaborei com as equipes de Customer Success e Produto para garantir a adoção e a expansão das contas.
+\end{itemize}
+\textbf{Palavras-chave}: Vendas B2B, SaaS, CRM, Negociação, Metas}
+
+\cventry{jan. de 2016–fev. de 2019}
+        {Executiva de Contas}
+        {Soluções Cloud Brasil}
+        {\url{https://www.solucoescloud.com.br}}
+        {}
+        {\begin{itemize}
+\item Responsável pelo ciclo completo de vendas de serviços de infraestrutura em nuvem para médias e grandes empresas.
+\item Alcancei 130\% da meta anual em 2017 e 2018, com ticket médio de R\$ 80 mil.
+\item Desenvolvi relacionamentos com parceiros de canal, gerando 25\% do pipeline qualificado.
+\item Realizei análises de necessidades técnicas e apresentações de ROI para áreas de TI e Finanças.
+\end{itemize}
+\textbf{Palavras-chave}: Cloud, Infraestrutura, Pipeline, ROI}
+
+\cventry{jul. de 2014–dez. de 2015}
+        {Representante de Desenvolvimento de Vendas}
+        {InovaTech Sistemas}
+        {\url{https://www.inovatech.com.br}}
+        {}
+        {\begin{itemize}
+\item Prospecção ativa de novos clientes por telefone, e-mail e LinkedIn, com média de 60 ligações diárias.
+\item Qualificação de leads e agendamento de reuniões para o time de executivos de contas.
+\item Manutenção do CRM com dados precisos e relatórios semanais de atividades.
+\end{itemize}
+\textbf{Palavras-chave}: Prospecção, Qualificação, LinkedIn, CRM}
+\section{Idiomas}
+
+\cvline{Português}{Nativo ou Bilíngue \hfill \textbf{Palavras-chave}: Nativo}
+\cvline{Inglês}{Proficiência Profissional Fluente \hfill \textbf{Palavras-chave}: TOEFL iBT 105, Reuniões internacionais}
+\cvline{Espanhol}{Proficiência Profissional Limitada \hfill \textbf{Palavras-chave}: DELE B1, Negociação básica}
+\section{Competências}
+
+\cvline{Vendas B2B}{Especialista \hfill \textbf{Palavras-chave}: Prospecção, Qualificação de Leads, Fechamento de Contratos, Gestão de Pipeline, Negociação}
+\cvline{Ferramentas de CRM}{Avançado \hfill \textbf{Palavras-chave}: Salesforce, HubSpot, Pipedrive, LinkedIn Sales Navigator}
+\cvline{Análise de Dados}{Avançado \hfill \textbf{Palavras-chave}: Excel Avançado, Power BI, Tableau, Metas e KPIs}
+\cvline{Comunicação}{Especialista \hfill \textbf{Palavras-chave}: Apresentações C-level, Storytelling, Escuta Ativa}
+\section{Prêmios}
+
+\cventry{dez. de 2023}
+        {VendaMais Tecnologia}
+        {Vendedora do Ano}
+        {}
+        {}
+        {Reconhecimento por superar 150\% da meta anual e liderar o ranking de vendas da região Sudeste.}
+
+\cventry{nov. de 2018}
+        {Soluções Cloud Brasil}
+        {Prêmio Excelência em Atendimento}
+        {}
+        {}
+        {Concedido por manter índice de satisfação de clientes acima de 95\% e retenção de contratos.}
+\section{Certificados}
+
+\cventry{jun. de 2021}
+        {Fundação Getulio Vargas}
+        {Certificação em Vendas Consultivas}
+        {\url{https://www.fgv.br}}
+        {}
+        {}
+
+\cventry{set. de 2020}
+        {Salesforce}
+        {Consultor Certificado Salesforce Sales Cloud}
+        {\url{https://trailhead.salesforce.com}}
+        {}
+        {}
+
+\cventry{mar. de 2019}
+        {MEDDIC Academy}
+        {Metodologia de Vendas MEDDIC}
+        {\url{https://meddic.academy}}
+        {}
+        {}
+\section{Publicações}
+
+\cventry{ago. de 2022}
+        {Estratégias de Prospecção para Vendas SaaS}
+        {Revista Vendas \& Negócios}
+        {\url{https://www.revistavendasenegocios.com.br/artigo/prospeccao-saas}}
+        {}
+        {Artigo sobre técnicas de prospecção outbound e inbound para empresas de software como serviço, com foco em personalização e uso de dados.}
+\section{Projetos}
+
+\cventry{jan. de 2022–dez. de 2023}
+        {Iniciativa para aumentar receita recorrente em clientes existentes por meio de upsell e cross-sell.}
+        {Programa de Expansão de Receita}
+        {\url{https://www.vendamais.com.br/programa-expansao}}
+        {}
+        {\begin{itemize}
+\item Liderança de um programa de expansão que gerou R\$ 2,5 milhões em receita adicional em 12 meses.
+\item Desenvolvimento de playbooks de upsell e cross-sell para equipe de account management.
+\item Implementação de cadência de contato e monitoramento de indicadores no Salesforce.
+\end{itemize}
+\textbf{Palavras-chave}: Upsell, Cross-sell, Receita Recorrente, Customer Success}
+\section{Interesses}
+
+\cvline{Corrida}{Maratonas, Corrida de rua}
+\cvline{Leitura}{Biografias, Negócios, Psicologia}
+\section{Voluntariado}
+
+\cventry{fev. de 2020–Atual}
+        {Mentora de Vendas}
+        {Instituto Vendas para o Bem}
+        {\url{https://www.vendasparaobem.org.br}}
+        {}
+        {\begin{itemize}
+\item Mentoria para jovens em início de carreira comercial, com foco em comunicação, prospecção e ética profissional.
+\item Organização de workshops sobre técnicas de vendas e preparação para entrevistas.
+\item Apoio na captação de recursos e parcerias com empresas locais.
+\end{itemize}}
+    
+\end{document}

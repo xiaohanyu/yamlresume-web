@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="generator" content="YAMLResume (https://yamlresume.dev)">
+
+
+  <title>佐藤 健一 Resume</title>
+  <style>
+    :root {
+      --text-font-size: 16px;
+      --text-font-family: var(--text-default-font-family);
+      --line-height: 1.5;
+    }
+
+    /* Modified from: https://www.joshwcomeau.com/css/custom-css-reset/ */
+
+    /* 1. Use a more-intuitive box-sizing model */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    /* 2. Remove default margin */
+    *:not(dialog) {
+      margin: 0;
+    }
+
+    body {
+      /* 3. Improve text rendering */
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    :root {
+      --border-color: #d0d0d0;
+
+      /* text colors */
+      --text-color-primary: #000000;
+      --text-color-secondary: #333333;
+
+      /* spacing */
+      --spacing-xss: 2px;
+      --spacing-xs: 4px;
+      --spacing-sm: 8px;
+      --spacing-md: 12px;
+      --spacing-lg: 16px;
+      --spacing-xl: 24px;
+      --spacing-xxl: 40px;
+      --spacing-xxxl: 80px;
+
+      /* font sizes */
+      --font-size-xs: 0.8rem;
+      --font-size-sm: 0.9rem;
+      --font-size-md: 1rem;
+      --font-size-lg: 1.1rem;
+      --font-size-xl: 1.25rem;
+      --font-size-xxl: 2.5rem;
+
+      /* layout */
+      --page-max-width: 900px;
+
+      /* typography */
+      --text-default-font-family:
+        -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu,
+        Cantarell, sans-serif;
+    }
+
+    html {
+      font-size: var(--text-font-size);
+    }
+
+    body {
+      /* font & text */
+      color: var(--text-color-primary);
+      font-family: var(--text-font-family);
+      /* this variable is defined by `typography.fontSize` in resume html layout */
+      text-autospace: normal;
+
+      /* layout */
+      line-height: var(--line-height);
+      max-width: var(--page-max-width);
+      margin: 0 auto;
+      padding: var(--spacing-xxxl) var(--spacing-xxl) var(--spacing-xxl);
+    }
+
+    /* header */
+    .resume-header {
+      margin-bottom: var(--spacing-xxl);
+      text-align: center;
+    }
+
+    .resume-name {
+      font-size: var(--font-size-xxl);
+      font-weight: 600;
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .resume-headline {
+      font-size: var(--font-size-lg);
+      margin-bottom: var(--spacing-md);
+    }
+
+    /* contact info */
+    .resume-contact-info {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      column-gap: var(--spacing-lg);
+      row-gap: var(--spacing-xs);
+      margin-top: var(--spacing-sm);
+    }
+
+    .resume-contact-icon,
+    .resume-contact-label {
+      margin-right: var(--spacing-sm);
+      vertical-align: middle;
+    }
+
+    /* links: modern typographic style */
+    a {
+      color: var(--text-color-primary);
+      text-decoration: underline;
+      text-decoration-color: var(--border-color);
+      text-underline-offset: 3px;
+      text-decoration-thickness: 1px;
+      text-decoration-skip-ink: auto;
+      transition: text-decoration-color 0.2s;
+    }
+
+    a:hover {
+      text-decoration-color: var(--text-color-primary);
+    }
+
+    /* sections */
+    .resume-section {
+      margin-bottom: var(--spacing-xl);
+    }
+
+    .resume-section-title {
+      font-size: var(--font-size-xl);
+      font-weight: 500;
+      margin-bottom: var(--spacing-md);
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: var(--spacing-xs);
+    }
+
+    /* entries */
+    .resume-entry {
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .resume-entry:last-child {
+      margin-bottom: 0;
+    }
+
+    .resume-entry-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .resume-entry-title {
+      font-weight: 500;
+      margin-bottom: var(--spacing-xss);
+    }
+
+    .resume-entry-summary p,
+    .resume-summary-content p {
+      margin-bottom: var(--spacing-xs);
+    }
+
+    /* lists */
+    .resume-entry-summary ul,
+    .resume-entry-summary ol,
+    .resume-summary-content ul,
+    .resume-summary-content ol {
+      padding-left: var(--spacing-lg);
+      list-style-type: circle;
+    }
+
+    /* labeled lists (courses, keywords, etc.) */
+    .resume-labeled-list span {
+      font-weight: 500;
+    }
+
+    /* skills grid */
+    .resume-skill-item,
+    .resume-language-item {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .resume-skill-name,
+    .resume-language-name {
+      font-weight: 500;
+    }
+
+    .resume-skill-level,
+    .resume-language-fluency {
+      font-weight: 400;
+    }
+
+    /* mobile */
+    @media (max-width: 768px) {
+      body {
+        padding: var(--spacing-xl);
+      }
+
+      .resume-header {
+        margin-bottom: var(--spacing-xl);
+      }
+
+      .resume-contact-info {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .resume-entry-header {
+        flex-wrap: wrap;
+      }
+    }
+
+    /* footer */
+    .resume-footer {
+      margin-top: var(--spacing-xxl);
+      padding-top: var(--spacing-xl);
+      border-top: 1px solid var(--border-color);
+      font-size: var(--font-size-sm);
+      color: var(--text-color-secondary);
+    }
+
+    @media print {
+      .resume-footer {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="resume-header">
+    <h1 class="resume-name">佐藤 健一</h1>
+    <p class="resume-headline">シニアプロジェクトマネージャー | ITシステム開発・DX推進</p>
+    <div class="resume-contact-info">
+      <span class="resume-contact-item"><span class="resume-contact-icon">📧</span><a href="mailto:kenichi.sato@example.com" class="resume-contact-link">kenichi.sato@example.com</a></span>
+      <span class="resume-contact-item"><span class="resume-contact-icon">📞</span>+81 90-1234-5678</span>
+      <span class="resume-contact-item"><span class="resume-contact-icon">🔗</span><a href="https://kenichi-sato.example.com" class="resume-contact-link">https://kenichi-sato.example.com</a></span>
+    </div>
+    <div class="resume-contact-info resume-location-info">
+      <span class="resume-contact-item"><span class="resume-contact-icon">📍</span>日本、東京都、渋谷区、東京都渋谷区渋谷2-14-5 ネクサスビル8F、150-0002</span>
+    </div>
+    <div class="resume-contact-info resume-profiles-info">
+      <span class="resume-contact-item"><span class="resume-contact-label">LinkedIn</span>: <a href="https://www.linkedin.com/in/kenichi-sato-pm" class="resume-contact-link">@kenichi-sato-pm</a></span>
+      <span class="resume-contact-item"><span class="resume-contact-label">GitHub</span>: <a href="https://github.com/kenichisato-pm" class="resume-contact-link">@kenichisato-pm</a></span>
+      <span class="resume-contact-item"><span class="resume-contact-label">Twitter</span>: <a href="https://twitter.com/kenichi_pm" class="resume-contact-link">@kenichi_pm</a></span>
+    </div>
+  </header>
+  <section class="resume-section" id="summary" data-section="summary">
+    <h2 class="resume-section-title">基本情報</h2>
+    <div class="resume-section-content">
+      <div class="resume-summary-content">
+        <p>IT業界で12年以上の実務経験を持ち、そのうち7年間はプロジェクトマネージャーとして基幹系システムの企画・開発・刷新をリードしてきました。</p>
+        <ul>
+          <li>
+            <p>ウォーターフォールとアジャイルの両手法に精通し、案件特性に応じたハイブリッド型マネジメントを実践</p>
+          </li>
+          <li>
+            <p>最大50名規模の多国籍チームを統括し、予算・スケジュール・品質・リスクを一貫してマネジメント</p>
+          </li>
+          <li>
+            <p>経営層と開発現場をつなぐ橋渡し役として、ステークホルダー間の合意形成と意思決定の迅速化を推進</p>
+          </li>
+          <li>
+            <p>PMBOKおよびスクラムのベストプラクティスを組み合わせ、継続的なプロセス改善とPM人材育成を主導</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="education" data-section="education">
+    <h2 class="resume-section-title">学歴</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="education-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.keio.ac.jp/">慶應義塾大学大学院</a></div>
+            <div class="resume-entry-organization">修士、経営管理研究科 経営管理専攻（MBA）、成績：3.8</div>
+          </div>
+          <div class="resume-entry-date">2010年4月～2012年3月</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>プロジェクトの ROI 評価とポートフォリオマネジメントを中心に研究</p>
+            </li>
+            <li>
+              <p>修了研究では「IT投資プロジェクトの成功率を高めるガバナンス設計」をテーマに事例分析を実施</p>
+            </li>
+            <li>
+              <p>社会人学生とのグループワークを通じ、部門横断のリーダーシップとファシリテーション力を習得</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>コース</span>：プロジェクトマネジメント特論、オペレーションズ・マネジメント、企業財務と投資評価、組織行動論、情報システム戦略、データ分析と意思決定</div>
+      </div>
+      <div class="resume-entry" id="education-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.tus.ac.jp/">東京理科大学</a></div>
+            <div class="resume-entry-organization">学士、工学部 情報工学科、成績：3.6</div>
+          </div>
+          <div class="resume-entry-date">2006年4月～2010年3月</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>ソフトウェア開発の基礎とシステム設計の考え方を体系的に習得</p>
+            </li>
+            <li>
+              <p>卒業研究として業務プロセス可視化ツールの設計・開発に取り組む</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>コース</span>：ソフトウェア工学、データベースシステム、アルゴリズムとデータ構造、オペレーティングシステム、ネットワーク工学、経営情報システム</div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="work" data-section="work">
+    <h2 class="resume-section-title">職歴</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="work-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.next-solutions.example.com">株式会社ネクストソリューションズ</a></div>
+            <div class="resume-entry-organization">シニアプロジェクトマネージャー</div>
+          </div>
+          <div class="resume-entry-date">2021年4月～現在</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>金融・製造業向けの基幹システム刷新プロジェクトを同時に6件統括し、総額18億円の予算を管理</p>
+            </li>
+            <li>
+              <p>見積り・WBS策定・進捗管理・課題管理のプロセスを標準化し、納期遵守率を82%から96%へ改善</p>
+            </li>
+            <li>
+              <p>経営層向けの月次レポートとステアリングコミッティを運営し、意思決定のリードタイムを平均2週間短縮</p>
+            </li>
+            <li>
+              <p>若手PM5名のメンタリングを担当し、社内PMOの育成プログラムを設計・運用</p>
+            </li>
+            <li>
+              <p>ベンダー選定と契約交渉を主導し、外部委託コストを年間約12%削減</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>キーワード</span>：プロジェクトマネジメント、予算管理、ステークホルダー管理、PMO、リスク管理</div>
+      </div>
+      <div class="resume-entry" id="work-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.mediacreate.example.co.jp">株式会社メディアクリエイト</a></div>
+            <div class="resume-entry-organization">プロジェクトマネージャー</div>
+          </div>
+          <div class="resume-entry-date">2017年4月～2021年3月</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>ECサイトのリニューアル案件を年間3〜4件、20名規模のチームで完遂</p>
+            </li>
+            <li>
+              <p>スクラムを導入し、スプリントレビューとレトロスペクティブを定着させてリリース頻度を月1回から隔週へ向上</p>
+            </li>
+            <li>
+              <p>要件定義から受入テストまでを一貫して管理し、本番障害件数を前期比60%削減</p>
+            </li>
+            <li>
+              <p>海外拠点のエンジニアと協働し、時差を考慮した開発プロセスとドキュメント運用を整備</p>
+            </li>
+            <li>
+              <p>顧客満足度アンケートで3年連続「非常に満足」評価を獲得</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>キーワード</span>：スクラム、要件定義、品質保証、ベンダーマネジメント</div>
+      </div>
+      <div class="resume-entry" id="work-3">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.mediacreate.example.co.jp">株式会社メディアクリエイト</a></div>
+            <div class="resume-entry-organization">システムエンジニア / サブリーダー</div>
+          </div>
+          <div class="resume-entry-date">2012年4月～2017年3月</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>業務系Webアプリケーションの設計・開発・保守を担当し、Java と Oracle を用いた基盤構築を経験</p>
+            </li>
+            <li>
+              <p>5名の開発チームのサブリーダーとして、タスク割当とコードレビューを実施</p>
+            </li>
+            <li>
+              <p>運用保守フェーズの問い合わせ対応フローを整備し、一次対応時間を平均40%短縮</p>
+            </li>
+            <li>
+              <p>新人エンジニア3名のOJTトレーナーを担当</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>キーワード</span>：Java、Oracle、詳細設計、保守運用</div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="languages" data-section="languages">
+    <h2 class="resume-section-title">言語</h2>
+    <div class="resume-section-content">
+      <div class="resume-languages-list">
+        <div class="resume-language-item">
+          <div class="resume-language-name">日本語<span class="resume-language-fluency">：ネイティブ・母国語レベル</span></div>
+        </div>
+        <div class="resume-language-item">
+          <div class="resume-language-name">英語<span class="resume-language-fluency">：完全な実務レベル</span></div>
+          <div>
+            <div class="resume-labeled-list"><span>キーワード</span>：TOEIC 935、海外ベンダー折衝</div>
+          </div>
+        </div>
+        <div class="resume-language-item">
+          <div class="resume-language-name">中国語<span class="resume-language-fluency">：限定的な実務レベル</span></div>
+          <div>
+            <div class="resume-labeled-list"><span>キーワード</span>：HSK 4級</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="skills" data-section="skills">
+    <h2 class="resume-section-title">スキル</h2>
+    <div class="resume-section-content">
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">プロジェクトマネジメント<span class="resume-skill-level">：エキスパート</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>キーワード</span>：計画策定、予算管理、リスク管理、品質管理、変更管理</div>
+        </div>
+      </div>
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">開発手法<span class="resume-skill-level">：上級</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>キーワード</span>：スクラム、ウォーターフォール、カンバン、DevOps、CI/CD</div>
+        </div>
+      </div>
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">ツール<span class="resume-skill-level">：上級</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>キーワード</span>：Jira、Confluence、MS Project、Tableau、Slack</div>
+        </div>
+      </div>
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">技術リテラシー<span class="resume-skill-level">：中級</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>キーワード</span>：SQL、Python、AWS、Git、REST API</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="awards" data-section="awards">
+    <h2 class="resume-section-title">受賞・表彰</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="awards-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title">年間最優秀プロジェクト賞</div>
+            <div class="resume-entry-organization">株式会社ネクストソリューションズ</div>
+          </div>
+          <div class="resume-entry-date">2022年12月</div>
+        </div>
+        <div class="resume-entry-summary">
+          <p>基幹システム刷新プロジェクトにおいて、予算内・予定通りでの完遂と顧客満足度の大幅な向上が評価され受賞。</p>
+        </div>
+      </div>
+      <div class="resume-entry" id="awards-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title">社長表彰（業務改善貢献）</div>
+            <div class="resume-entry-organization">株式会社メディアクリエイト</div>
+          </div>
+          <div class="resume-entry-date">2019年12月</div>
+        </div>
+        <div class="resume-entry-summary">
+          <p>アジャイル開発プロセスの全社展開を主導し、リリース頻度の向上と障害件数の削減に貢献した功績により受賞。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="certificates" data-section="certificates">
+    <h2 class="resume-section-title">資格・免状</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="certificates-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.pmi.org/certifications/project-management-pmp">Project Management Professional (PMP)</a></div>
+            <div class="resume-entry-organization">Project Management Institute</div>
+          </div>
+          <div class="resume-entry-date">2018年6月</div>
+        </div>
+      </div>
+      <div class="resume-entry" id="certificates-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.pmi.org/certifications/agile-acp">PMI Agile Certified Practitioner (PMI-ACP)</a></div>
+            <div class="resume-entry-organization">Project Management Institute</div>
+          </div>
+          <div class="resume-entry-date">2020年11月</div>
+        </div>
+      </div>
+      <div class="resume-entry" id="certificates-3">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.ipa.go.jp/shiken/">応用情報技術者試験</a></div>
+            <div class="resume-entry-organization">情報処理推進機構（IPA）</div>
+          </div>
+          <div class="resume-entry-date">2013年12月</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="publications" data-section="publications">
+    <h2 class="resume-section-title">出版・著作</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="publications-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.pmi-japan.example.org/journal">ハイブリッド型プロジェクトマネジメントの実践と教訓</a></div>
+            <div class="resume-entry-organization">PMI日本支部 機関誌</div>
+          </div>
+          <div class="resume-entry-date">2023年9月</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>ウォーターフォールとアジャイルを組み合わせた運用手法について、実案件のデータを基に考察</p>
+            </li>
+            <li>
+              <p>大規模組織におけるガバナンス設計とステークホルダー合意形成の要点を整理</p>
+            </li>
+            <li>
+              <p>プロジェクト成功率を高めるための実践的なチェックリストを提示</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="projects" data-section="projects">
+    <h2 class="resume-section-title">プロジェクト</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="projects-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.next-solutions.example.com/cases/cloud-migration">基幹業務システムのクラウド移行プロジェクト</a></div>
+            <div class="resume-entry-description">オンプレミスで運用していた基幹業務システムをAWSへ段階的に移行するプロジェクト</div>
+          </div>
+          <div class="resume-entry-date">2022年5月～2023年10月</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>総額6億円・関係者80名規模のプロジェクトを統括し、計画通りに本番稼働を完了</p>
+            </li>
+            <li>
+              <p>移行リスクを洗い出して段階的なカットオーバー計画を策定し、本番障害ゼロを達成</p>
+            </li>
+            <li>
+              <p>運用保守体制の内製化を推進し、インフラ運用コストを年間25%削減</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>キーワード</span>： クラウド移行、AWS、カットオーバー、コスト最適化</div>
+      </div>
+      <div class="resume-entry" id="projects-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.mediacreate.example.co.jp/cases/agile">全社アジャイル導入支援プロジェクト</a></div>
+            <div class="resume-entry-description">開発部門全体へスクラムを導入し、開発プロセスを刷新する社内変革プロジェクト</div>
+          </div>
+          <div class="resume-entry-date">2019年1月～2020年12月</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>5チーム・約40名を対象にスクラムの研修とコーチングを実施</p>
+            </li>
+            <li>
+              <p>リリース頻度を月1回から隔週へ、本番障害件数を60%削減</p>
+            </li>
+            <li>
+              <p>導入効果を定量指標で可視化し、経営層への定期報告を実施</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>キーワード</span>： スクラム、組織変革、コーチング、KPI設計</div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="interests" data-section="interests">
+    <h2 class="resume-section-title">興味・関心</h2>
+    <div class="resume-section-content">
+      <div class="resume-interest-item"><span class="resume-interest-name">スポーツ</span>：フルマラソン、水泳、サイクリング</div>
+      <div class="resume-interest-item"><span class="resume-interest-name">読書</span>：経営戦略、組織論、テクノロジー</div>
+      <div class="resume-interest-item"><span class="resume-interest-name">写真</span>：街歩きスナップ、旅行記録</div>
+    </div>
+  </section>
+  <section class="resume-section" id="volunteer" data-section="volunteer">
+    <h2 class="resume-section-title">ボランティア活動</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="volunteer-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.it-education-support.example.org">NPO法人IT教育支援協会</a></div>
+            <div class="resume-entry-organization">キャリアメンター</div>
+          </div>
+          <div class="resume-entry-date">2019年9月～現在</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>就職・転職を目指す若年層に対して、IT業界のキャリア相談と面接対策を月2回実施</p>
+            </li>
+            <li>
+              <p>プロジェクトマネジメント入門講座の講師を年4回担当し、延べ120名以上が受講</p>
+            </li>
+            <li>
+              <p>協会の運営ボランティアとして、講座カリキュラムの見直しと改善提案を担当</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer class="resume-footer">Generated by <a href="https://yamlresume.dev">YAMLResume</a></footer>
+</body>
+
+</html>

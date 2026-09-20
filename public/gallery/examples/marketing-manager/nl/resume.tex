@@ -1,0 +1,296 @@
+\documentclass[a4paper, serif, 10pt]{moderncv}
+
+%% moderncv
+% style and color
+\moderncvstyle{banking}
+\moderncvcolor{black}
+
+%% page layout/margins
+\usepackage[top=2.5cm, bottom=2.5cm, left=1.5cm, right=1.5cm]{geometry}
+
+\nopagenumbers{}
+
+%% Babel config for Dutch language
+% ref:
+% - https://latex3.github.io/babel/guides/locale-dutch.html
+\usepackage[dutch]{babel}
+
+%% fontspec
+\usepackage{fontspec}
+
+\IfFontExistsTF{Linux Libertine}{
+  \setmainfont[Ligatures={TeX, Common}, Numbers=OldStyle]{Linux Libertine}
+}{}
+\IfFontExistsTF{Linux Libertine O}{
+  \setmainfont[Ligatures={TeX, Common}, Numbers=OldStyle]{Linux Libertine O}
+}{}
+
+%% CTeX
+% CJK support, used to show CJK characters in the resume
+%
+% - fontset=none: disable builtin fontset but instead set the CJK font manually
+% - heading=false: disable ctex heading
+% - punct=kaiming: use kaiming punctuations styles for CJK
+% - scheme=plain: use plain scheme, do not override \normalsize font size
+% - space=auto: space settings for CJK characters
+%
+% ref:
+% - http://ctan.mirrorcatalogs.com/language/chinese/ctex/ctex.pdf
+\usepackage[UTF8, heading=false, punct=kaiming, scheme=plain, space=auto]{ctex}
+
+\IfFontExistsTF{Noto Serif CJK SC}{
+  \setCJKmainfont{Noto Serif CJK SC}
+}{}
+\IfFontExistsTF{Noto Sans CJK SC}{
+  \setCJKsansfont{Noto Sans CJK SC}
+}{}
+
+%% line spacing
+\usepackage{setspace}
+\setstretch{1.125}
+
+%% URL styling - use normal text instead of monospace
+\urlstyle{same}
+
+% Auto-underline all links
+% Defer until \begin{document} so hyperref is already loaded
+\AtBeginDocument{%
+  \let\oldhref\href
+  \renewcommand{\href}[2]{\oldhref{#1}{\underline{#2}}}%
+}
+
+%% Patch \httplink and \httpslink to handle full URLs
+% The original moderncv macros always prepend http:// or https:// to URLs.
+% This causes issues when the URL already has a protocol (e.g., https://example.com)
+% resulting in malformed URLs like https://https://example.com.
+% This patch checks if the URL already contains "://" and uses it directly if so.
+% Note: We use \str_set:Nx (x-expansion) to expand macros like \@homepage first.
+\ExplSyntaxOn
+\str_new:N \g_yamlresume_url_str
+
+\RenewDocumentCommand{\httpslink}{O{}m}{
+  \str_set:Nx \g_yamlresume_url_str {#2}
+  \str_if_in:NnTF \g_yamlresume_url_str {://}
+    { \url{#2} }
+    { \url{https://#2} }
+}
+
+\RenewDocumentCommand{\httplink}{O{}m}{
+  \str_set:Nx \g_yamlresume_url_str {#2}
+  \str_if_in:NnTF \g_yamlresume_url_str {://}
+    { \url{#2} }
+    { \url{http://#2} }
+}
+\ExplSyntaxOff
+
+\name{Sanne de Vries}{}
+\title{Senior Marketing Manager | Digitale Strategie \& Merkopbouw}
+\phone[mobile]{+31 6 12345678}
+\email{sanne.devries@example.com}
+\homepage{https://www.sannedevries.nl}
+
+\address{Herengracht 182, Amsterdam, Noord-Holland, Nederland, 1016 BR}{}{}
+
+\extrainfo{{\small \faLinkedin}\ \href{https://www.linkedin.com/in/sannedevries}{@sannedevries} {} {} {} • {} {} {} 
+{\small \faTwitter}\ \href{https://twitter.com/sannedevries}{@sannedevries}}
+
+\begin{document}
+
+\maketitle
+
+\section{Basis Informatie}
+
+\cvline{}{Ervaren marketingmanager met meer dan 8 jaar ervaring in B2B- en B2C-marketing, digitale strategie en merkopbouw. Ik combineer data-gedreven inzichten met creatieve campagnes om duurzame groei te realiseren.
+%
+\begin{itemize}
+\item Leidinggeven aan multidisciplinaire teams van marketeers, contentspecialisten en bureaus
+\item Ontwikkelen en uitvoeren van omnichannel-marketingstrategieën met aantoonbare ROI
+\item Sterk in marketingautomatisering, SEO/SEA, contentmarketing en merkpositionering
+\item Ervaren in het beheren van budgetten tot EUR 1,5 miljoen en het rapporteren aan directie
+\end{itemize}}
+\section{Opleidingen}
+
+\cventry{sep 2014–jul 2016}
+        {Master, Bedrijfskunde, specialisatie Marketing, Score: 8.4}
+        {Universiteit van Amsterdam}
+        {\url{https://www.uva.nl}}
+        {}
+        {\begin{itemize}
+\item Afgestudeerd met specialisatie in digitale marketing en consumentenpsychologie
+\item Thesis over de invloed van social proof op online aankoopbeslissingen (cijfer 9,0)
+\item Bestuurslid van de studievereniging en organisator van marketingcarrièredag
+\end{itemize}
+\textbf{Cursussen}: Strategisch Marketingmanagement, Consumentengedrag, Marktonderzoek en Data-analyse, Digitale Marketing en Social Media, Brand Management, Marketingcommunicatie}
+
+\cventry{sep 2010–jul 2014}
+        {Bachelor, Commerciële Economie, Score: 7.9}
+        {Hogeschool van Amsterdam}
+        {\url{https://www.hva.nl}}
+        {}
+        {\begin{itemize}
+\item Brede basis in commercie, marketing en bedrijfsvoering
+\item Stage bij een reclamebureau in Amsterdam
+\item Minor in International Business aan de Universiteit van Barcelona
+\end{itemize}
+\textbf{Cursussen}: Marketingmanagement, Marktonderzoek, Verkoop en Accountmanagement, Communicatie, Bedrijfseconomie}
+\section{Werkervaring}
+
+\cventry{mrt 2021–Heden}
+        {Senior Marketing Manager}
+        {GroenMarkt BV}
+        {\url{https://www.groenmarkt.nl}}
+        {}
+        {\begin{itemize}
+\item Leiding aan een team van 6 marketingprofessionals en verantwoordelijk voor de jaarlijkse marketingstrategie
+\item Ontwikkelde en implementeerde een omnichannel-aanpak die het aantal gekwalificeerde leads met 45\% verhoogde
+\item Beheerde een marketingbudget van EUR 1,2 miljoen en verlaagde de kosten per lead met 22\% door middel van data-analyse
+\item Richtte een contentmarketingafdeling op die maandelijks 80.000 organische bezoekers genereert
+\item Werkt nauw samen met sales, product en directie om merkpositionering en klantwaarde te versterken
+\end{itemize}
+\textbf{Trefwoorden}: Digitale strategie, Contentmarketing, Leadgeneratie, Teamleiding, Budgetbeheer}
+
+\cventry{jun 2017–feb 2021}
+        {Marketing Manager}
+        {De Digitale Werkplaats}
+        {\url{https://www.dedigitalewerkplaats.nl}}
+        {}
+        {\begin{itemize}
+\item Verantwoordelijk voor de marketingstrategie van een SaaS-platform voor MKB-ondernemers
+\item Realiseerde 60\% groei in websiteconversies door A/B-testen, landingspagina-optimalisatie en SEO
+\item Zette marketingautomatisering op met HubSpot, waardoor 30\% minder handmatig werk nodig was
+\item Coördineerde externe bureaus voor branding, PR en evenementen
+\item Rapporteerde maandelijks aan de directie over KPI's, ROI en markttrends
+\end{itemize}
+\textbf{Trefwoorden}: SaaS, Marketingautomatisering, SEO, A/B-testen, HubSpot}
+
+\cventry{aug 2014–mei 2017}
+        {Online Marketing Specialist}
+        {Bureau Vlam}
+        {\url{https://www.bureauvlam.nl}}
+        {}
+        {\begin{itemize}
+\item Beheerde Google Ads- en socialmediacampagnes voor uiteenlopende klanten in retail en horeca
+\item Analyseerde campagneprestaties en optimaliseerde advertenties voor maximaal rendement
+\item Schreef SEO-vriendelijke webcontent en beheerde socialmediakanalen
+\item Ondersteunde bij de ontwikkeling van merkstrategieën en klantpresentaties
+\end{itemize}
+\textbf{Trefwoorden}: Google Ads, Social Media, SEO, Web analytics, Klantpresentaties}
+\section{Talen}
+
+\cvline{Nederlands}{Moedertaal of tweetalige vaardigheid \hfill \textbf{Trefwoorden}: Moedertaal}
+\cvline{Engels}{Volledige professionele vaardigheid \hfill \textbf{Trefwoorden}: Zakelijk vloeiend, TOEFL 110}
+\cvline{Duits}{Beperkte werkvaardigheid \hfill \textbf{Trefwoorden}: Basiskennis}
+\section{Vaardigheden}
+
+\cvline{Marketingstrategie}{Expert \hfill \textbf{Trefwoorden}: Merkpositionering, Marktanalyse, Go-to-market, Campagnemanagement, Budgettering}
+\cvline{Digitale Marketing}{Expert \hfill \textbf{Trefwoorden}: SEO, SEA, Contentmarketing, E-mailmarketing, Social media}
+\cvline{Data en Analytics}{Geavanceerd \hfill \textbf{Trefwoorden}: Google Analytics 4, Data Studio, A/B-testen, CRM, KPI-rapportages}
+\cvline{Leiderschap en Samenwerking}{Geavanceerd \hfill \textbf{Trefwoorden}: Teamleiding, Agile werken, Stakeholdermanagement, Coaching, Projectmanagement}
+\cvline{Tools}{Geavanceerd \hfill \textbf{Trefwoorden}: HubSpot, Salesforce, Google Ads, Meta Ads, Mailchimp}
+\section{Onderscheidingen}
+
+\cventry{nov 2023}
+        {Nederlandse Vereniging voor Marketing}
+        {Marketing Excellence Award}
+        {}
+        {}
+        {\begin{itemize}
+\item Gewonnen voor de succesvolle omnichannel-campagne "Duurzaam Doen" met een ROI van 340\%
+\item Beoordeeld door een vakjury van senior marketeers en hoogleraren
+\end{itemize}}
+
+\cventry{apr 2020}
+        {Stichting Marketing Impact}
+        {Beste Werkgeverscampagne}
+        {}
+        {}
+        {\begin{itemize}
+\item Erkend voor een employer branding-campagne die het aantal sollicitaties met 55\% verhoogde
+\end{itemize}}
+\section{Certificaten}
+
+\cventry{feb 2023}
+        {Google}
+        {Google Analytics 4 Certificering}
+        {\url{https://skillshop.exceedlms.com/student/path/508256-google-analytics-4}}
+        {}
+        {}
+
+\cventry{sep 2022}
+        {HubSpot Academy}
+        {HubSpot Marketing Automation Certificering}
+        {\url{https://academy.hubspot.com/courses/marketing-automation}}
+        {}
+        {}
+
+\cventry{jan 2021}
+        {Scrum.org}
+        {Scrum Master PSM I}
+        {\url{https://www.scrum.org/assessments/professional-scrum-master-i-certification}}
+        {}
+        {}
+\section{Publicaties}
+
+\cventry{jun 2023}
+        {De kracht van datagedreven merkstrategie}
+        {Tijdschrift voor Marketing}
+        {\url{https://www.tijdschriftvoormarketing.nl/}}
+        {}
+        {\begin{itemize}
+\item Artikel over hoe merken data kunnen inzetten voor authentieke positionering
+\item Gepubliceerd in het vakblad voor senior marketingprofessionals
+\end{itemize}}
+
+\cventry{okt 2022}
+        {AI in marketing: hype of hefboom?}
+        {MarketingTribune}
+        {\url{https://www.marketingtribune.nl/}}
+        {}
+        {\begin{itemize}
+\item Verkennend artikel over praktische toepassingen van AI in marketingteams
+\item Inclusief interviews met drie marketingdirecteuren
+\end{itemize}}
+\section{Projecten}
+
+\cventry{jan 2023–dec 2023}
+        {Omnichannel-campagne om duurzame productlijnen onder de aandacht te brengen bij zakelijke klanten.}
+        {Duurzaam Doen campagne}
+        {\url{https://www.groenmarkt.nl/duurzaam-doen}}
+        {}
+        {\begin{itemize}
+\item Ontwikkelde de strategie, merkpositionering en contentkalender
+\item Behaalde 2,4 miljoen vertoningen en 18.000 nieuwe leads
+\item Verhoogde de merkbekendheid met 32\% in de doelgroep
+\end{itemize}
+\textbf{Trefwoorden}: Omnichannel, Duurzaamheid, B2B, Contentmarketing}
+
+\cventry{mrt 2019–nov 2020}
+        {Online platform met klantcases en video's om de salesfunnel te ondersteunen.}
+        {Klantverhalenplatform}
+        {\url{https://www.dedigitalewerkplaats.nl/klantverhalen}}
+        {}
+        {\begin{itemize}
+\item Initieerde en beheerde het platform van concept tot lancering
+\item Zorgde voor 25\% meer marketinggekwalificeerde leads
+\item Werd bekroond met een interne innovatieprijs
+\end{itemize}
+\textbf{Trefwoorden}: Content, Video, Leadgeneratie, Sales enablement}
+\section{Interesses}
+
+\cvline{Sport}{Hardlopen, Yoga, Wielrennen}
+\cvline{Cultuur}{Literatuur, Musea, Reizen}
+\cvline{Maatschappij}{Duurzaamheid, Vrijwilligerswerk, Mentoring}
+\section{Vrijwilligerswerk}
+
+\cventry{sep 2019–Heden}
+        {Mentor voor jonge marketeers}
+        {Marketing aan Zee}
+        {\url{https://www.marketingaanzee.nl}}
+        {}
+        {\begin{itemize}
+\item Begeleidt jaarlijks drie jonge marketingprofessionals bij hun carrièreontwikkeling
+\item Organiseert workshops over persoonlijk leiderschap en digitale vaardigheden
+\item Draagt bij aan een inclusiever netwerk binnen de marketingbranche
+\end{itemize}}
+    
+\end{document}

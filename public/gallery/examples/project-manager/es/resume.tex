@@ -1,0 +1,302 @@
+\documentclass[a4paper, serif, 10pt]{moderncv}
+
+%% moderncv
+% style and color
+\moderncvstyle{banking}
+\moderncvcolor{black}
+
+%% page layout/margins
+\usepackage[top=2.5cm, bottom=2.5cm, left=1.5cm, right=1.5cm]{geometry}
+
+\nopagenumbers{}
+
+%% Babel config for Spanish language
+% \usepackage[spanish]{babel} has some conflicting issues with moderncv
+% so we have to use enable the following options to make it work
+%
+% ref:
+% - https://tex.stackexchange.com/a/140161/36007
+\usepackage[spanish,es-lcroman]{babel}
+
+%% fontspec
+\usepackage{fontspec}
+
+\IfFontExistsTF{Linux Libertine}{
+  \setmainfont[Ligatures={TeX, Common}, Numbers=OldStyle]{Linux Libertine}
+}{}
+\IfFontExistsTF{Linux Libertine O}{
+  \setmainfont[Ligatures={TeX, Common}, Numbers=OldStyle]{Linux Libertine O}
+}{}
+
+%% CTeX
+% CJK support, used to show CJK characters in the resume
+%
+% - fontset=none: disable builtin fontset but instead set the CJK font manually
+% - heading=false: disable ctex heading
+% - punct=kaiming: use kaiming punctuations styles for CJK
+% - scheme=plain: use plain scheme, do not override \normalsize font size
+% - space=auto: space settings for CJK characters
+%
+% ref:
+% - http://ctan.mirrorcatalogs.com/language/chinese/ctex/ctex.pdf
+\usepackage[UTF8, heading=false, punct=kaiming, scheme=plain, space=auto]{ctex}
+
+\IfFontExistsTF{Noto Serif CJK SC}{
+  \setCJKmainfont{Noto Serif CJK SC}
+}{}
+\IfFontExistsTF{Noto Sans CJK SC}{
+  \setCJKsansfont{Noto Sans CJK SC}
+}{}
+
+%% line spacing
+\usepackage{setspace}
+\setstretch{1.125}
+
+%% URL styling - use normal text instead of monospace
+\urlstyle{same}
+
+% Auto-underline all links
+% Defer until \begin{document} so hyperref is already loaded
+\AtBeginDocument{%
+  \let\oldhref\href
+  \renewcommand{\href}[2]{\oldhref{#1}{\underline{#2}}}%
+}
+
+%% Patch \httplink and \httpslink to handle full URLs
+% The original moderncv macros always prepend http:// or https:// to URLs.
+% This causes issues when the URL already has a protocol (e.g., https://example.com)
+% resulting in malformed URLs like https://https://example.com.
+% This patch checks if the URL already contains "://" and uses it directly if so.
+% Note: We use \str_set:Nx (x-expansion) to expand macros like \@homepage first.
+\ExplSyntaxOn
+\str_new:N \g_yamlresume_url_str
+
+\RenewDocumentCommand{\httpslink}{O{}m}{
+  \str_set:Nx \g_yamlresume_url_str {#2}
+  \str_if_in:NnTF \g_yamlresume_url_str {://}
+    { \url{#2} }
+    { \url{https://#2} }
+}
+
+\RenewDocumentCommand{\httplink}{O{}m}{
+  \str_set:Nx \g_yamlresume_url_str {#2}
+  \str_if_in:NnTF \g_yamlresume_url_str {://}
+    { \url{#2} }
+    { \url{http://#2} }
+}
+\ExplSyntaxOff
+
+\name{Lucía Fernández Gómez}{}
+\title{Gerente de Proyectos Senior | PMP | Transformación Digital}
+\phone[mobile]{+34 612 345 678}
+\email{lucia.fernandez@email.com}
+\homepage{https://www.luciafernandez-pm.com}
+
+\address{Calle de Alcalá 123, 4º B, Madrid, Comunidad de Madrid, España, 28010}{}{}
+
+\extrainfo{{\small \faLinkedin}\ \href{https://www.linkedin.com/in/luciafernandez-pm}{@luciafernandez-pm} {} {} {} • {} {} {} 
+{\small \faGithub}\ \href{https://github.com/luciafernandez}{@luciafernandez} {} {} {} • {} {} {} 
+{\small \faTwitter}\ \href{https://twitter.com/lucia\_pm}{@lucia\_pm}}
+
+\begin{document}
+
+\maketitle
+
+\section{Información básica}
+
+\cvline{}{Gerente de Proyectos con más de 8 años de experiencia liderando proyectos tecnológicos y de transformación digital en sectores como banca, retail y salud. Especializada en metodologías ágiles (Scrum, Kanban) y en la gestión integral del ciclo de vida del proyecto, desde la definición de requisitos hasta la entrega y el cierre.
+%
+\begin{itemize}
+\item Lideré equipos multidisciplinares de hasta 25 personas, alcanzando una tasa de entrega del 95\% dentro del plazo y presupuesto.
+\item Gestioné presupuestos de hasta 2,5 M€, optimizando costes en un 18\% mediante la renegociación con proveedores y la mejora de procesos.
+\item Certificada PMP, Scrum Master y ITIL Foundation, con sólida experiencia en gestión de stakeholders y comunicación ejecutiva.
+\item Apasionada por la mejora continua y la adopción de herramientas digitales para la gestión de proyectos (Jira, Asana, MS Project).
+\end{itemize}}
+\section{Educación}
+
+\cventry{sept 2017–jul 2019}
+        {Maestría, Dirección de Proyectos, Puntuación: 9.2}
+        {Universidad Politécnica de Madrid}
+        {\url{https://www.upm.es}}
+        {}
+        {\begin{itemize}
+\item Formación avanzada en dirección y gestión de proyectos complejos
+\item Proyecto fin de máster: implantación de PMO en una empresa del sector retail
+\end{itemize}
+\textbf{Cursos}: Gestión de Proyectos Ágiles, Planificación y Control de Proyectos, Gestión de Riesgos, Liderazgo de Equipos, Finanzas para Gerentes de Proyecto, Metodologías PMBOK}
+
+\cventry{sept 2011–jun 2015}
+        {Licenciatura, Administración y Dirección de Empresas, Puntuación: 8.7}
+        {Universidad de Sevilla}
+        {\url{https://www.us.es}}
+        {}
+        {\begin{itemize}
+\item Base sólida en administración, finanzas y gestión empresarial
+\item Participación en programas de intercambio internacional
+\end{itemize}
+\textbf{Cursos}: Contabilidad Financiera, Dirección Estratégica, Gestión de Operaciones, Comportamiento Organizacional, Marketing}
+\section{Experiencia laboral}
+
+\cventry{mar 2021 hasta la fecha}
+        {Gerente de Proyectos Senior}
+        {Telefónica Tech}
+        {\url{https://telefonicatech.com}}
+        {}
+        {\begin{itemize}
+\item Lideré un portfolio de 12 proyectos de transformación digital con un presupuesto total de 2,5 M€.
+\item Implementé marcos ágiles híbridos (Scrum + Kanban) que redujeron el time-to-market en un 30\%.
+\item Coordiné equipos multidisciplinares de hasta 25 personas distribuidas en 4 países.
+\item Gestioné la relación con stakeholders ejecutivos, presentando informes de progreso y métricas KPI.
+\item Implanté una PMO que estandarizó procesos y mejoró la trazabilidad de los proyectos.
+\end{itemize}
+\textbf{Palabras clave}: Scrum, Kanban, Gestión de riesgos, Presupuestos, PMO, Stakeholders}
+
+\cventry{sept 2019–feb 2021}
+        {Gerente de Proyectos}
+        {Banco Santander}
+        {\url{https://www.santander.com}}
+        {}
+        {\begin{itemize}
+\item Dirigí proyectos de desarrollo de software bancario bajo metodología Agile, con equipos de 10-15 personas.
+\item Gestioné el ciclo completo de vida de los proyectos: análisis, planificación, ejecución, seguimiento y cierre.
+\item Elaboré planes de proyecto, cronogramas y matrices de riesgos, asegurando el cumplimiento de plazos y presupuestos.
+\item Facilité ceremonias ágiles (daily stand-ups, sprint planning, retrospectivas) y eliminé impedimentos.
+\item Colaboré con product owners y equipos técnicos para priorizar el backlog y entregar valor de forma continua.
+\end{itemize}
+\textbf{Palabras clave}: Agile, Scrum, Jira, Backlog, Banca, Gestión de proyectos}
+
+\cventry{sept 2015–ago 2017}
+        {Analista de Proyectos}
+        {Accenture}
+        {\url{https://www.accenture.com}}
+        {}
+        {\begin{itemize}
+\item Apoyé la gestión de proyectos de consultoría tecnológica para clientes del sector público y privado.
+\item Realicé seguimiento de hitos, elaboración de informes de estado y coordinación de reuniones con clientes.
+\item Participé en la definición de alcance, estimación de esfuerzos y control de cambios.
+\item Contribuí a la implantación de herramientas de gestión como MS Project y Confluence.
+\end{itemize}
+\textbf{Palabras clave}: MS Project, Confluence, Consultoría, Informes, Control de cambios}
+\section{Idiomas}
+
+\cvline{Español}{Competencia nativa o bilingüe \hfill \textbf{Palabras clave}: Español nativo}
+\cvline{Inglés}{Competencia profesional plena \hfill \textbf{Palabras clave}: TOEFL 105, Certificado C1}
+\cvline{Francés}{Competencia limitada de trabajo \hfill \textbf{Palabras clave}: DELF B1}
+\section{Competencias}
+
+\cvline{Gestión de Proyectos}{Experto \hfill \textbf{Palabras clave}: PMBOK, Planificación, Presupuestos, Gestión de riesgos, Cronogramas}
+\cvline{Metodologías Ágiles}{Avanzado \hfill \textbf{Palabras clave}: Scrum, Kanban, Lean, SAFe, Design Thinking}
+\cvline{Herramientas}{Avanzado \hfill \textbf{Palabras clave}: Jira, Confluence, MS Project, Asana, Trello, Monday.com}
+\cvline{Liderazgo y Comunicación}{Experto \hfill \textbf{Palabras clave}: Liderazgo de equipos, Negociación, Comunicación ejecutiva, Gestión de stakeholders}
+\cvline{Análisis y Datos}{Intermedio \hfill \textbf{Palabras clave}: Power BI, Excel avanzado, SQL, Métricas KPI}
+\section{Premios}
+
+\cventry{nov 2023}
+        {PMI Madrid}
+        {Premio a la Excelencia en Gestión de Proyectos}
+        {}
+        {}
+        {Reconocimiento por la dirección del proyecto de transformación digital con mayor impacto en el sector bancario.}
+
+\cventry{dic 2022}
+        {Telefónica Tech}
+        {Empleada del Año}
+        {}
+        {}
+        {Distinción por liderazgo excepcional y resultados sobresalientes en la gestión de proyectos estratégicos.}
+\section{Certificados}
+
+\cventry{jun 2020}
+        {Project Management Institute}
+        {Project Management Professional (PMP)}
+        {\url{https://www.pmi.org/certifications/project-management-pmp}}
+        {}
+        {}
+
+\cventry{feb 2021}
+        {Scrum.org}
+        {Professional Scrum Master I (PSM I)}
+        {\url{https://www.scrum.org/professional-scrum-master-i-certification}}
+        {}
+        {}
+
+\cventry{sept 2019}
+        {AXELOS}
+        {ITIL Foundation}
+        {\url{https://www.axelos.com/certifications/itil-certifications}}
+        {}
+        {}
+\section{Publicaciones}
+
+\cventry{may 2022}
+        {Guía práctica para la implantación de una PMO ágil}
+        {Revista de Dirección de Proyectos}
+        {\url{https://www.revistadeproyectos.es/guia-pmo-agil}}
+        {}
+        {Artículo que describe un marco práctico para implantar una oficina de proyectos ágil en organizaciones medianas.}
+
+\cventry{oct 2021}
+        {Métricas de valor en proyectos de transformación digital}
+        {Congreso Internacional de Gestión de Proyectos}
+        {\url{https://www.congresoproyectos.org/metricas-valor}}
+        {}
+        {Ponencia sobre indicadores clave para medir el retorno de inversión en iniciativas de transformación digital.}
+\section{Proyectos}
+
+\cventry{ene 2022–dic 2022}
+        {Desarrollo de una herramienta interna para centralizar la gestión de proyectos y recursos.}
+        {Plataforma de Gestión de Proyectos Interna}
+        {\url{https://www.telefonicatech.com/proyectos/pm-tool}}
+        {}
+        {\begin{itemize}
+\item Lideré el proyecto desde la definición de requisitos hasta el despliegue en producción.
+\item Coordiné un equipo de 8 desarrolladores, 2 diseñadores y 1 analista de negocio.
+\item Implementé integraciones con Jira y Power BI para la automatización de informes.
+\item Reduje el tiempo de reporting semanal en un 60\%.
+\end{itemize}
+\textbf{Palabras clave}: Jira, Power BI, Gestión de proyectos, Automatización}
+
+\cventry{mar 2020–ene 2021}
+        {Digitalización del proceso de incorporación de clientes para una entidad bancaria.}
+        {Transformación Digital del Proceso de Onboarding}
+        {\url{https://www.santander.com/onboarding-digital}}
+        {}
+        {\begin{itemize}
+\item Dirigí la implementación de un flujo digital de onboarding con firma electrónica.
+\item Reduje el tiempo de alta de clientes de 5 días a 2 horas.
+\item Gestioné la coordinación entre equipos de negocio, IT, legal y cumplimiento normativo.
+\item Aseguré el cumplimiento de la normativa KYC y GDPR.
+\end{itemize}
+\textbf{Palabras clave}: Transformación digital, Banca, KYC, GDPR, Onboarding}
+\section{Intereses}
+
+\cvline{Deporte}{Senderismo, Natación, Yoga}
+\cvline{Voluntariado}{Mentoría, Formación}
+\cvline{Lectura}{Novela histórica, Ensayo}
+\cvline{Viajes}{Asia, Europa}
+\section{Voluntariado}
+
+\cventry{sept 2021–jun 2023}
+        {Mentora de Proyectos Sociales}
+        {Fundación Integra}
+        {\url{https://www.fundacionintegra.org}}
+        {}
+        {\begin{itemize}
+\item Acompaño a organizaciones sin ánimo de lucro en la planificación y ejecución de proyectos sociales.
+\item Facilito talleres de gestión de proyectos y metodologías ágiles adaptadas al tercer sector.
+\item Ayudo a definir indicadores de impacto y a mejorar la sostenibilidad de las iniciativas.
+\end{itemize}}
+    
+
+\cventry{ene 2018–dic 2020}
+        {Voluntaria en Comité de Eventos}
+        {PMI Madrid Chapter}
+        {\url{https://pmi-madrid.es}}
+        {}
+        {\begin{itemize}
+\item Colaboré en la organización de congresos y jornadas de gestión de proyectos.
+\item Gestioné la logística y coordinación de ponentes para eventos con más de 300 asistentes.
+\item Apoyé la comunicación y difusión en redes sociales.
+\end{itemize}}
+    
+\end{document}

@@ -1,0 +1,289 @@
+\documentclass[a4paper, serif, 10pt]{moderncv}
+
+%% moderncv
+% style and color
+\moderncvstyle{banking}
+\moderncvcolor{black}
+
+% renew moderncv command to adapt for CJK colon
+\renewcommand*{\cvitem}[3][.25em]{%
+  \ifstrempty{#2}{}{\hintstyle{#2}：}{#3}%
+  \par\addvspace{#1}}
+
+\renewcommand*{\cvitemwithcomment}[4][.25em]{%
+  \savebox{\cvitemwithcommentmainbox}{\ifstrempty{#2}{}{\hintstyle{#2}：}#3}%
+  \setlength{\cvitemwithcommentmainlength}{\widthof{\usebox{\cvitemwithcommentmainbox}}}%
+  \setlength{\cvitemwithcommentcommentlength}{\maincolumnwidth-\separatorcolumnwidth-\cvitemwithcommentmainlength}%
+  \begin{minipage}[t]{\cvitemwithcommentmainlength}\usebox{\cvitemwithcommentmainbox}\end{minipage}%
+  \hfill% fill of \separatorcolumnwidth
+  \begin{minipage}[t]{\cvitemwithcommentcommentlength}\raggedleft\small\itshape#4\end{minipage}%
+  \par\addvspace{#1}}
+
+%% page layout/margins
+\usepackage[top=2.5cm, bottom=2.5cm, left=1.5cm, right=1.5cm]{geometry}
+
+\nopagenumbers{}
+
+%% Babel config for English language
+\usepackage[english]{babel}
+
+%% fontspec
+\usepackage{fontspec}
+
+\IfFontExistsTF{Linux Libertine}{
+  \setmainfont[Ligatures={TeX, Common}, Numbers=Lining, ItalicFont=Linux Libertine]{Linux Libertine}
+}{}
+\IfFontExistsTF{Linux Libertine O}{
+  \setmainfont[Ligatures={TeX, Common}, Numbers=Lining, ItalicFont=Linux Libertine O]{Linux Libertine O}
+}{}
+
+%% CTeX
+% CJK support, used to show CJK characters in the resume
+%
+% - fontset=none: disable builtin fontset but instead set the CJK font manually
+% - heading=false: disable ctex heading
+% - punct=kaiming: use kaiming punctuations styles for CJK
+% - scheme=plain: use plain scheme, do not override \normalsize font size
+% - space=auto: space settings for CJK characters
+%
+% ref:
+% - http://ctan.mirrorcatalogs.com/language/chinese/ctex/ctex.pdf
+\usepackage[UTF8, heading=false, punct=kaiming, scheme=plain, space=auto]{ctex}
+
+\IfFontExistsTF{Noto Serif CJK SC}{
+  \setCJKmainfont{Noto Serif CJK SC}
+}{}
+\IfFontExistsTF{Noto Sans CJK SC}{
+  \setCJKsansfont{Noto Sans CJK SC}
+}{}
+
+%% line spacing
+\usepackage{setspace}
+\setstretch{1.125}
+
+%% URL styling - use normal text instead of monospace
+\urlstyle{same}
+
+% Auto-underline all links
+% Defer until \begin{document} so hyperref is already loaded
+\AtBeginDocument{%
+  \let\oldhref\href
+  \renewcommand{\href}[2]{\oldhref{#1}{\underline{#2}}}%
+}
+
+%% Patch \httplink and \httpslink to handle full URLs
+% The original moderncv macros always prepend http:// or https:// to URLs.
+% This causes issues when the URL already has a protocol (e.g., https://example.com)
+% resulting in malformed URLs like https://https://example.com.
+% This patch checks if the URL already contains "://" and uses it directly if so.
+% Note: We use \str_set:Nx (x-expansion) to expand macros like \@homepage first.
+\ExplSyntaxOn
+\str_new:N \g_yamlresume_url_str
+
+\RenewDocumentCommand{\httpslink}{O{}m}{
+  \str_set:Nx \g_yamlresume_url_str {#2}
+  \str_if_in:NnTF \g_yamlresume_url_str {://}
+    { \url{#2} }
+    { \url{https://#2} }
+}
+
+\RenewDocumentCommand{\httplink}{O{}m}{
+  \str_set:Nx \g_yamlresume_url_str {#2}
+  \str_if_in:NnTF \g_yamlresume_url_str {://}
+    { \url{#2} }
+    { \url{http://#2} }
+}
+\ExplSyntaxOff
+
+\name{陳嘉敏}{}
+\title{資深項目經理 | 數碼轉型與產品交付}
+\phone[mobile]{+852 9123 4567}
+\email{chan.ka.man.pm@gmail.com}
+\homepage{https://www.chan-ka-man.com}
+
+\address{中國香港，九龍，香港，香港九龍旺角彌敦道700號}{}{}
+
+\extrainfo{{\small \faLinkedin}\ \href{https://www.linkedin.com/in/chan-ka-man-pm}{@chan-ka-man-pm} {} {} {} • {} {} {} 
+{\small \faGithub}\ \href{https://github.com/chanpmhk}{@chanpmhk}}
+
+\begin{document}
+
+\maketitle
+
+\section{簡介}
+
+\cvline{}{資深項目經理，擁有超過 10 年資訊科技及數碼轉型項目管理經驗。擅長領導跨部門團隊，從需求分析、資源規劃到交付上線，確保項目按時、按預算及符合質量標準完成。
+%
+持有 PMP 及 PMI-ACP 專業認證，精通敏捷與傳統項目管理方法。曾成功交付多個超過港幣 2,000 萬的大型項目，涵蓋金融科技、電訊及客戶服務平台。
+%
+\begin{itemize}
+\item 卓越的持份者管理及溝通能力
+\item 數據驅動的決策與風險管理
+\item 擅長推動變更管理及團隊賦能
+\end{itemize}}
+\section{教育背景}
+
+\cventry{2010年9月–2014年6月}
+        {學士，資訊系統與管理，成績：3.6}
+        {香港科技大學}
+        {\url{https://www.ust.hk}}
+        {}
+        {\begin{itemize}
+\item 主修資訊系統與管理，副修商業分析
+\item 曾獲院長嘉許名單
+\item 畢業專題為智慧城市交通管理系統
+\end{itemize}
+\textbf{課程}：資料庫管理系統、系統分析與設計、專案管理、企業資源規劃、商業智能、軟件工程}
+\section{工作經歷}
+
+\cventry{2021年4月至今}
+        {高級項目經理}
+        {香港電訊數碼有限公司}
+        {\url{https://www.hkt.com}}
+        {}
+        {\begin{itemize}
+\item 領導跨部門團隊交付多個大型數碼轉型項目，總預算超過港幣 2,000 萬
+\item 制定項目路線圖、資源分配及風險管理計劃，確保按時按預算交付
+\item 與產品、工程及業務團隊協作，推動敏捷開發流程及持續改進
+\item 建立項目績效指標及匯報機制，定期向管理層匯報進度
+\item 指導初級項目經理及項目協調員，提升團隊整體交付能力
+\end{itemize}
+\textbf{關鍵字}：數碼轉型、敏捷開發、風險管理、持份者管理}
+
+\cventry{2018年7月–2021年3月}
+        {項目經理}
+        {新鴻基金融集團}
+        {\url{https://www.shkf.com}}
+        {}
+        {\begin{itemize}
+\item 管理金融科技項目，包括網上銀行平台及流動支付系統
+\item 協調內部開發團隊與外部供應商，確保系統整合順利
+\item 主持需求收集工作坊，將業務需求轉化為技術規格
+\item 實施項目治理框架，降低項目延誤及超支風險
+\end{itemize}
+\textbf{關鍵字}：金融科技、網上銀行、供應商管理、需求分析}
+
+\cventry{2014年8月–2018年6月}
+        {助理項目經理}
+        {電訊盈科有限公司}
+        {\url{https://www.pccw.com}}
+        {}
+        {\begin{itemize}
+\item 協助管理客戶關係管理系統升級項目，涵蓋 10 個業務部門
+\item 負責項目文件、會議記錄及進度追蹤
+\item 參與用戶驗收測試及培訓安排
+\item 協調跨部門溝通，確保項目里程碑達成
+\end{itemize}
+\textbf{關鍵字}：CRM、用戶驗收測試、項目協調、培訓}
+\section{語言}
+
+\cvline{粵語}{母語或雙語水平 \hfill \textbf{關鍵字}：母語}
+\cvline{英語}{完全專業水平 \hfill \textbf{關鍵字}：IELTS 7.5、HKDSE English 5*}
+\cvline{普通話}{完全專業水平 \hfill \textbf{關鍵字}：普通話水平測試二級甲等}
+\cvline{日語}{初級水平 \hfill \textbf{關鍵字}：JLPT N4}
+\section{專業技能}
+
+\cvline{項目管理}{專家 \hfill \textbf{關鍵字}：敏捷開發、Scrum、瀑布模型、風險管理、持份者管理、預算控制}
+\cvline{數碼轉型}{高級 \hfill \textbf{關鍵字}：流程自動化、雲端遷移、數據分析、變更管理}
+\cvline{工具}{高級 \hfill \textbf{關鍵字}：Jira、Confluence、MS Project、Trello、Asana、Power BI}
+\section{榮譽}
+
+\cventry{2023年12月}
+        {香港電訊數碼有限公司}
+        {年度傑出項目經理}
+        {}
+        {}
+        {表揚在數碼轉型項目中的卓越領導及交付表現，成功為公司節省 15\% 營運成本。}
+
+\cventry{2020年11月}
+        {新鴻基金融集團}
+        {最佳創新項目獎}
+        {}
+        {}
+        {領導的流動支付項目獲得集團年度創新獎，用戶採用率超過 80\%。}
+\section{證書}
+
+\cventry{2019年6月}
+        {Project Management Institute}
+        {專業項目管理師 (PMP)}
+        {\url{https://www.pmi.org/certifications/project-management-pmp}}
+        {}
+        {}
+
+\cventry{2021年9月}
+        {Project Management Institute}
+        {敏捷認證從業者 (PMI-ACP)}
+        {\url{https://www.pmi.org/certifications/agile-acp}}
+        {}
+        {}
+
+\cventry{2022年3月}
+        {Amazon Web Services}
+        {AWS Certified Cloud Practitioner}
+        {\url{https://aws.amazon.com/certification/certified-cloud-practitioner/}}
+        {}
+        {}
+\section{出版刊物}
+
+\cventry{2023年5月}
+        {香港企業數碼轉型的關鍵成功因素}
+        {香港資訊科技期刊}
+        {\url{https://www.hkitjournal.com/digital-transformation-hk}}
+        {}
+        {\begin{itemize}
+\item 探討香港企業在數碼轉型過程中常見的挑戰與機遇
+\item 提出項目管理在轉型中的關鍵角色及最佳實踐
+\item 分析敏捷方法與傳統項目管理的混合應用
+\end{itemize}}
+\section{引薦}
+
+\cventry{\emaillink[mankit.lee@ust.hk]{mankit.lee@ust.hk}}
+        {香港科技大學資訊系統學系教授}
+        {李文傑博士}
+        {+852 9876 5432}
+        {}
+        {陳嘉敏在任職期間展現卓越的項目領導能力，能有效協調跨部門團隊，並在多個關鍵項目中達成超預期成果。}
+\section{項目}
+
+\cventry{2022年1月–2022年12月}
+        {為大型電訊商建立整合式客戶服務平台}
+        {智慧客戶服務平台}
+        {\url{https://www.chan-ka-man.com/projects/smart-cs-platform}}
+        {}
+        {\begin{itemize}
+\item 整合多渠道客服系統，包括電話、電郵、社交媒體及即時聊天
+\item 導入 AI 聊天機械人，處理 60\% 常見查詢
+\item 項目提前兩週上線，客戶滿意度提升 25\%
+\end{itemize}
+\textbf{關鍵字}：客戶服務、AI、系統整合}
+
+\cventry{2019年3月–2019年11月}
+        {為金融集團管理層開發實時業務數據儀表板}
+        {金融數據儀表板}
+        {\url{https://www.chan-ka-man.com/projects/finance-dashboard}}
+        {}
+        {\begin{itemize}
+\item 整合多個內部系統數據，提供即時關鍵績效指標
+\item 與業務分析師合作定義指標及可視化需求
+\item 採用敏捷疊代方式交付，每兩週發布新功能
+\end{itemize}
+\textbf{關鍵字}：數據可視化、Power BI、KPI}
+\section{興趣愛好}
+
+\cvline{運動}{跑步、游泳、遠足}
+\cvline{音樂}{鋼琴、爵士樂}
+\cvline{志願服務}{青年 mentorship、社區服務}
+\section{志願服務}
+
+\cventry{2020年1月–2023年12月}
+        {項目顧問}
+        {香港青年協會}
+        {\url{https://www.hkfyg.org.hk}}
+        {}
+        {\begin{itemize}
+\item 為青年創業項目提供項目管理及商業策劃指導
+\item 協助舉辦創新創業比賽及工作坊
+\item 分享數碼轉型及職涯發展經驗
+\end{itemize}}
+    
+\end{document}

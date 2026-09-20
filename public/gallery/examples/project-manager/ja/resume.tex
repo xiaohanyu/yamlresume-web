@@ -1,0 +1,293 @@
+\documentclass[a4paper, serif, 10pt]{moderncv}
+
+%% moderncv
+% style and color
+\moderncvstyle{banking}
+\moderncvcolor{black}
+
+% renew moderncv command to adapt for CJK colon
+\renewcommand*{\cvitem}[3][.25em]{%
+  \ifstrempty{#2}{}{\hintstyle{#2}：}{#3}%
+  \par\addvspace{#1}}
+
+\renewcommand*{\cvitemwithcomment}[4][.25em]{%
+  \savebox{\cvitemwithcommentmainbox}{\ifstrempty{#2}{}{\hintstyle{#2}：}#3}%
+  \setlength{\cvitemwithcommentmainlength}{\widthof{\usebox{\cvitemwithcommentmainbox}}}%
+  \setlength{\cvitemwithcommentcommentlength}{\maincolumnwidth-\separatorcolumnwidth-\cvitemwithcommentmainlength}%
+  \begin{minipage}[t]{\cvitemwithcommentmainlength}\usebox{\cvitemwithcommentmainbox}\end{minipage}%
+  \hfill% fill of \separatorcolumnwidth
+  \begin{minipage}[t]{\cvitemwithcommentcommentlength}\raggedleft\small\itshape#4\end{minipage}%
+  \par\addvspace{#1}}
+
+%% page layout/margins
+\usepackage[top=2.5cm, bottom=2.5cm, left=1.5cm, right=1.5cm]{geometry}
+
+\nopagenumbers{}
+
+%% Babel config for English language
+\usepackage[english]{babel}
+
+%% fontspec
+\usepackage{fontspec}
+
+\IfFontExistsTF{Linux Libertine}{
+  \setmainfont[Ligatures={TeX, Common}, Numbers=Lining, ItalicFont=Linux Libertine]{Linux Libertine}
+}{}
+\IfFontExistsTF{Linux Libertine O}{
+  \setmainfont[Ligatures={TeX, Common}, Numbers=Lining, ItalicFont=Linux Libertine O]{Linux Libertine O}
+}{}
+
+%% CTeX
+% CJK support, used to show CJK characters in the resume
+%
+% - fontset=none: disable builtin fontset but instead set the CJK font manually
+% - heading=false: disable ctex heading
+% - punct=kaiming: use kaiming punctuations styles for CJK
+% - scheme=plain: use plain scheme, do not override \normalsize font size
+% - space=auto: space settings for CJK characters
+%
+% ref:
+% - http://ctan.mirrorcatalogs.com/language/chinese/ctex/ctex.pdf
+\usepackage[UTF8, heading=false, punct=kaiming, scheme=plain, space=auto]{ctex}
+
+\IfFontExistsTF{Noto Serif CJK SC}{
+  \setCJKmainfont{Noto Serif CJK SC}
+}{}
+\IfFontExistsTF{Noto Sans CJK SC}{
+  \setCJKsansfont{Noto Sans CJK SC}
+}{}
+
+%% line spacing
+\usepackage{setspace}
+\setstretch{1.125}
+
+%% URL styling - use normal text instead of monospace
+\urlstyle{same}
+
+% Auto-underline all links
+% Defer until \begin{document} so hyperref is already loaded
+\AtBeginDocument{%
+  \let\oldhref\href
+  \renewcommand{\href}[2]{\oldhref{#1}{\underline{#2}}}%
+}
+
+%% Patch \httplink and \httpslink to handle full URLs
+% The original moderncv macros always prepend http:// or https:// to URLs.
+% This causes issues when the URL already has a protocol (e.g., https://example.com)
+% resulting in malformed URLs like https://https://example.com.
+% This patch checks if the URL already contains "://" and uses it directly if so.
+% Note: We use \str_set:Nx (x-expansion) to expand macros like \@homepage first.
+\ExplSyntaxOn
+\str_new:N \g_yamlresume_url_str
+
+\RenewDocumentCommand{\httpslink}{O{}m}{
+  \str_set:Nx \g_yamlresume_url_str {#2}
+  \str_if_in:NnTF \g_yamlresume_url_str {://}
+    { \url{#2} }
+    { \url{https://#2} }
+}
+
+\RenewDocumentCommand{\httplink}{O{}m}{
+  \str_set:Nx \g_yamlresume_url_str {#2}
+  \str_if_in:NnTF \g_yamlresume_url_str {://}
+    { \url{#2} }
+    { \url{http://#2} }
+}
+\ExplSyntaxOff
+
+\name{佐藤 健一}{}
+\title{シニアプロジェクトマネージャー | ITシステム開発・DX推進}
+\phone[mobile]{+81 90-1234-5678}
+\email{kenichi.sato@example.com}
+\homepage{https://kenichi-sato.example.com}
+
+\address{日本、東京都、渋谷区、東京都渋谷区渋谷2-14-5 ネクサスビル8F、150-0002}{}{}
+
+\extrainfo{{\small \faLinkedin}\ \href{https://www.linkedin.com/in/kenichi-sato-pm}{@kenichi-sato-pm} {} {} {} • {} {} {} 
+{\small \faGithub}\ \href{https://github.com/kenichisato-pm}{@kenichisato-pm} {} {} {} • {} {} {} 
+{\small \faTwitter}\ \href{https://twitter.com/kenichi\_pm}{@kenichi\_pm}}
+
+\begin{document}
+
+\maketitle
+
+\section{基本情報}
+
+\cvline{}{IT業界で12年以上の実務経験を持ち、そのうち7年間はプロジェクトマネージャーとして基幹系システムの企画・開発・刷新をリードしてきました。
+%
+\begin{itemize}
+\item ウォーターフォールとアジャイルの両手法に精通し、案件特性に応じたハイブリッド型マネジメントを実践
+\item 最大50名規模の多国籍チームを統括し、予算・スケジュール・品質・リスクを一貫してマネジメント
+\item 経営層と開発現場をつなぐ橋渡し役として、ステークホルダー間の合意形成と意思決定の迅速化を推進
+\item PMBOKおよびスクラムのベストプラクティスを組み合わせ、継続的なプロセス改善とPM人材育成を主導
+\end{itemize}}
+\section{学歴}
+
+\cventry{2010年4月～2012年3月}
+        {修士、経営管理研究科 経営管理専攻（MBA）、成績：3.8}
+        {慶應義塾大学大学院}
+        {\url{https://www.keio.ac.jp/}}
+        {}
+        {\begin{itemize}
+\item プロジェクトの ROI 評価とポートフォリオマネジメントを中心に研究
+\item 修了研究では「IT投資プロジェクトの成功率を高めるガバナンス設計」をテーマに事例分析を実施
+\item 社会人学生とのグループワークを通じ、部門横断のリーダーシップとファシリテーション力を習得
+\end{itemize}
+\textbf{コース}：プロジェクトマネジメント特論、オペレーションズ・マネジメント、企業財務と投資評価、組織行動論、情報システム戦略、データ分析と意思決定}
+
+\cventry{2006年4月～2010年3月}
+        {学士、工学部 情報工学科、成績：3.6}
+        {東京理科大学}
+        {\url{https://www.tus.ac.jp/}}
+        {}
+        {\begin{itemize}
+\item ソフトウェア開発の基礎とシステム設計の考え方を体系的に習得
+\item 卒業研究として業務プロセス可視化ツールの設計・開発に取り組む
+\end{itemize}
+\textbf{コース}：ソフトウェア工学、データベースシステム、アルゴリズムとデータ構造、オペレーティングシステム、ネットワーク工学、経営情報システム}
+\section{職歴}
+
+\cventry{2021年4月～現在}
+        {シニアプロジェクトマネージャー}
+        {株式会社ネクストソリューションズ}
+        {\url{https://www.next-solutions.example.com}}
+        {}
+        {\begin{itemize}
+\item 金融・製造業向けの基幹システム刷新プロジェクトを同時に6件統括し、総額18億円の予算を管理
+\item 見積り・WBS策定・進捗管理・課題管理のプロセスを標準化し、納期遵守率を82\%から96\%へ改善
+\item 経営層向けの月次レポートとステアリングコミッティを運営し、意思決定のリードタイムを平均2週間短縮
+\item 若手PM5名のメンタリングを担当し、社内PMOの育成プログラムを設計・運用
+\item ベンダー選定と契約交渉を主導し、外部委託コストを年間約12\%削減
+\end{itemize}
+\textbf{キーワード}：プロジェクトマネジメント、予算管理、ステークホルダー管理、PMO、リスク管理}
+
+\cventry{2017年4月～2021年3月}
+        {プロジェクトマネージャー}
+        {株式会社メディアクリエイト}
+        {\url{https://www.mediacreate.example.co.jp}}
+        {}
+        {\begin{itemize}
+\item ECサイトのリニューアル案件を年間3〜4件、20名規模のチームで完遂
+\item スクラムを導入し、スプリントレビューとレトロスペクティブを定着させてリリース頻度を月1回から隔週へ向上
+\item 要件定義から受入テストまでを一貫して管理し、本番障害件数を前期比60\%削減
+\item 海外拠点のエンジニアと協働し、時差を考慮した開発プロセスとドキュメント運用を整備
+\item 顧客満足度アンケートで3年連続「非常に満足」評価を獲得
+\end{itemize}
+\textbf{キーワード}：スクラム、要件定義、品質保証、ベンダーマネジメント}
+
+\cventry{2012年4月～2017年3月}
+        {システムエンジニア / サブリーダー}
+        {株式会社メディアクリエイト}
+        {\url{https://www.mediacreate.example.co.jp}}
+        {}
+        {\begin{itemize}
+\item 業務系Webアプリケーションの設計・開発・保守を担当し、Java と Oracle を用いた基盤構築を経験
+\item 5名の開発チームのサブリーダーとして、タスク割当とコードレビューを実施
+\item 運用保守フェーズの問い合わせ対応フローを整備し、一次対応時間を平均40\%短縮
+\item 新人エンジニア3名のOJTトレーナーを担当
+\end{itemize}
+\textbf{キーワード}：Java、Oracle、詳細設計、保守運用}
+\section{言語}
+
+\cvline{日本語}{ネイティブ・母国語レベル}
+\cvline{英語}{完全な実務レベル \hfill \textbf{キーワード}：TOEIC 935、海外ベンダー折衝}
+\cvline{中国語}{限定的な実務レベル \hfill \textbf{キーワード}：HSK 4級}
+\section{スキル}
+
+\cvline{プロジェクトマネジメント}{エキスパート \hfill \textbf{キーワード}：計画策定、予算管理、リスク管理、品質管理、変更管理}
+\cvline{開発手法}{上級 \hfill \textbf{キーワード}：スクラム、ウォーターフォール、カンバン、DevOps、CI/CD}
+\cvline{ツール}{上級 \hfill \textbf{キーワード}：Jira、Confluence、MS Project、Tableau、Slack}
+\cvline{技術リテラシー}{中級 \hfill \textbf{キーワード}：SQL、Python、AWS、Git、REST API}
+\section{受賞・表彰}
+
+\cventry{2022年12月}
+        {株式会社ネクストソリューションズ}
+        {年間最優秀プロジェクト賞}
+        {}
+        {}
+        {基幹システム刷新プロジェクトにおいて、予算内・予定通りでの完遂と顧客満足度の大幅な向上が評価され受賞。}
+
+\cventry{2019年12月}
+        {株式会社メディアクリエイト}
+        {社長表彰（業務改善貢献）}
+        {}
+        {}
+        {アジャイル開発プロセスの全社展開を主導し、リリース頻度の向上と障害件数の削減に貢献した功績により受賞。}
+\section{資格・免状}
+
+\cventry{2018年6月}
+        {Project Management Institute}
+        {Project Management Professional (PMP)}
+        {\url{https://www.pmi.org/certifications/project-management-pmp}}
+        {}
+        {}
+
+\cventry{2020年11月}
+        {Project Management Institute}
+        {PMI Agile Certified Practitioner (PMI-ACP)}
+        {\url{https://www.pmi.org/certifications/agile-acp}}
+        {}
+        {}
+
+\cventry{2013年12月}
+        {情報処理推進機構（IPA）}
+        {応用情報技術者試験}
+        {\url{https://www.ipa.go.jp/shiken/}}
+        {}
+        {}
+\section{出版・著作}
+
+\cventry{2023年9月}
+        {ハイブリッド型プロジェクトマネジメントの実践と教訓}
+        {PMI日本支部 機関誌}
+        {\url{https://www.pmi-japan.example.org/journal}}
+        {}
+        {\begin{itemize}
+\item ウォーターフォールとアジャイルを組み合わせた運用手法について、実案件のデータを基に考察
+\item 大規模組織におけるガバナンス設計とステークホルダー合意形成の要点を整理
+\item プロジェクト成功率を高めるための実践的なチェックリストを提示
+\end{itemize}}
+\section{プロジェクト}
+
+\cventry{2022年5月～2023年10月}
+        {オンプレミスで運用していた基幹業務システムをAWSへ段階的に移行するプロジェクト}
+        {基幹業務システムのクラウド移行プロジェクト}
+        {\url{https://www.next-solutions.example.com/cases/cloud-migration}}
+        {}
+        {\begin{itemize}
+\item 総額6億円・関係者80名規模のプロジェクトを統括し、計画通りに本番稼働を完了
+\item 移行リスクを洗い出して段階的なカットオーバー計画を策定し、本番障害ゼロを達成
+\item 運用保守体制の内製化を推進し、インフラ運用コストを年間25\%削減
+\end{itemize}
+\textbf{キーワード}：クラウド移行、AWS、カットオーバー、コスト最適化}
+
+\cventry{2019年1月～2020年12月}
+        {開発部門全体へスクラムを導入し、開発プロセスを刷新する社内変革プロジェクト}
+        {全社アジャイル導入支援プロジェクト}
+        {\url{https://www.mediacreate.example.co.jp/cases/agile}}
+        {}
+        {\begin{itemize}
+\item 5チーム・約40名を対象にスクラムの研修とコーチングを実施
+\item リリース頻度を月1回から隔週へ、本番障害件数を60\%削減
+\item 導入効果を定量指標で可視化し、経営層への定期報告を実施
+\end{itemize}
+\textbf{キーワード}：スクラム、組織変革、コーチング、KPI設計}
+\section{興味・関心}
+
+\cvline{スポーツ}{フルマラソン、水泳、サイクリング}
+\cvline{読書}{経営戦略、組織論、テクノロジー}
+\cvline{写真}{街歩きスナップ、旅行記録}
+\section{ボランティア活動}
+
+\cventry{2019年9月～現在}
+        {キャリアメンター}
+        {NPO法人IT教育支援協会}
+        {\url{https://www.it-education-support.example.org}}
+        {}
+        {\begin{itemize}
+\item 就職・転職を目指す若年層に対して、IT業界のキャリア相談と面接対策を月2回実施
+\item プロジェクトマネジメント入門講座の講師を年4回担当し、延べ120名以上が受講
+\item 協会の運営ボランティアとして、講座カリキュラムの見直しと改善提案を担当
+\end{itemize}}
+    
+\end{document}

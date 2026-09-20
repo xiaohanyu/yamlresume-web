@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="no">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="generator" content="YAMLResume (https://yamlresume.dev)">
+
+
+  <title>Marianne Strand Resume</title>
+  <style>
+    :root {
+      --text-font-size: 16px;
+      --text-font-family: var(--text-default-font-family);
+      --line-height: 1.5;
+    }
+
+    /* Modified from: https://www.joshwcomeau.com/css/custom-css-reset/ */
+
+    /* 1. Use a more-intuitive box-sizing model */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    /* 2. Remove default margin */
+    *:not(dialog) {
+      margin: 0;
+    }
+
+    body {
+      /* 3. Improve text rendering */
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    :root {
+      --border-color: #d0d0d0;
+
+      /* text colors */
+      --text-color-primary: #000000;
+      --text-color-secondary: #333333;
+
+      /* spacing */
+      --spacing-xss: 2px;
+      --spacing-xs: 4px;
+      --spacing-sm: 8px;
+      --spacing-md: 12px;
+      --spacing-lg: 16px;
+      --spacing-xl: 24px;
+      --spacing-xxl: 40px;
+      --spacing-xxxl: 80px;
+
+      /* font sizes */
+      --font-size-xs: 0.8rem;
+      --font-size-sm: 0.9rem;
+      --font-size-md: 1rem;
+      --font-size-lg: 1.1rem;
+      --font-size-xl: 1.25rem;
+      --font-size-xxl: 2.5rem;
+
+      /* layout */
+      --page-max-width: 900px;
+
+      /* typography */
+      --text-default-font-family:
+        -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu,
+        Cantarell, sans-serif;
+    }
+
+    html {
+      font-size: var(--text-font-size);
+    }
+
+    body {
+      /* font & text */
+      color: var(--text-color-primary);
+      font-family: var(--text-font-family);
+      /* this variable is defined by `typography.fontSize` in resume html layout */
+      text-autospace: normal;
+
+      /* layout */
+      line-height: var(--line-height);
+      max-width: var(--page-max-width);
+      margin: 0 auto;
+      padding: var(--spacing-xxxl) var(--spacing-xxl) var(--spacing-xxl);
+    }
+
+    /* header */
+    .resume-header {
+      margin-bottom: var(--spacing-xxl);
+      text-align: center;
+    }
+
+    .resume-name {
+      font-size: var(--font-size-xxl);
+      font-weight: 600;
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .resume-headline {
+      font-size: var(--font-size-lg);
+      margin-bottom: var(--spacing-md);
+    }
+
+    /* contact info */
+    .resume-contact-info {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      column-gap: var(--spacing-lg);
+      row-gap: var(--spacing-xs);
+      margin-top: var(--spacing-sm);
+    }
+
+    .resume-contact-icon,
+    .resume-contact-label {
+      margin-right: var(--spacing-sm);
+      vertical-align: middle;
+    }
+
+    /* links: modern typographic style */
+    a {
+      color: var(--text-color-primary);
+      text-decoration: underline;
+      text-decoration-color: var(--border-color);
+      text-underline-offset: 3px;
+      text-decoration-thickness: 1px;
+      text-decoration-skip-ink: auto;
+      transition: text-decoration-color 0.2s;
+    }
+
+    a:hover {
+      text-decoration-color: var(--text-color-primary);
+    }
+
+    /* sections */
+    .resume-section {
+      margin-bottom: var(--spacing-xl);
+    }
+
+    .resume-section-title {
+      font-size: var(--font-size-xl);
+      font-weight: 500;
+      margin-bottom: var(--spacing-md);
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: var(--spacing-xs);
+    }
+
+    /* entries */
+    .resume-entry {
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .resume-entry:last-child {
+      margin-bottom: 0;
+    }
+
+    .resume-entry-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .resume-entry-title {
+      font-weight: 500;
+      margin-bottom: var(--spacing-xss);
+    }
+
+    .resume-entry-summary p,
+    .resume-summary-content p {
+      margin-bottom: var(--spacing-xs);
+    }
+
+    /* lists */
+    .resume-entry-summary ul,
+    .resume-entry-summary ol,
+    .resume-summary-content ul,
+    .resume-summary-content ol {
+      padding-left: var(--spacing-lg);
+      list-style-type: circle;
+    }
+
+    /* labeled lists (courses, keywords, etc.) */
+    .resume-labeled-list span {
+      font-weight: 500;
+    }
+
+    /* skills grid */
+    .resume-skill-item,
+    .resume-language-item {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .resume-skill-name,
+    .resume-language-name {
+      font-weight: 500;
+    }
+
+    .resume-skill-level,
+    .resume-language-fluency {
+      font-weight: 400;
+    }
+
+    /* mobile */
+    @media (max-width: 768px) {
+      body {
+        padding: var(--spacing-xl);
+      }
+
+      .resume-header {
+        margin-bottom: var(--spacing-xl);
+      }
+
+      .resume-contact-info {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .resume-entry-header {
+        flex-wrap: wrap;
+      }
+    }
+
+    /* footer */
+    .resume-footer {
+      margin-top: var(--spacing-xxl);
+      padding-top: var(--spacing-xl);
+      border-top: 1px solid var(--border-color);
+      font-size: var(--font-size-sm);
+      color: var(--text-color-secondary);
+    }
+
+    @media print {
+      .resume-footer {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="resume-header">
+    <h1 class="resume-name">Marianne Strand</h1>
+    <p class="resume-headline">Markedssjef | Merkevarebygging, digital vekst og datadrevet markedsføring</p>
+    <div class="resume-contact-info">
+      <span class="resume-contact-item"><span class="resume-contact-icon">📧</span><a href="mailto:marianne.strand@nordmark.no" class="resume-contact-link">marianne.strand@nordmark.no</a></span>
+      <span class="resume-contact-item"><span class="resume-contact-icon">📞</span>+47 913 45 782</span>
+      <span class="resume-contact-item"><span class="resume-contact-icon">🔗</span><a href="https://www.mariannestrand.no" class="resume-contact-link">https://www.mariannestrand.no</a></span>
+    </div>
+    <div class="resume-contact-info resume-location-info">
+      <span class="resume-contact-item"><span class="resume-contact-icon">📍</span>Drammensveien 112, Oslo, Oslo, Norge, 0273</span>
+    </div>
+    <div class="resume-contact-info resume-profiles-info">
+      <span class="resume-contact-item"><span class="resume-contact-label">LinkedIn</span>: <a href="https://www.linkedin.com/in/mariannestrand" class="resume-contact-link">@mariannestrand</a></span>
+      <span class="resume-contact-item"><span class="resume-contact-label">Medium</span>: <a href="https://medium.com/@mariannestrand" class="resume-contact-link">@mariannestrand</a></span>
+      <span class="resume-contact-item"><span class="resume-contact-label">Instagram</span>: <a href="https://www.instagram.com/marianne.strand" class="resume-contact-link">@marianne.strand</a></span>
+    </div>
+  </header>
+  <section class="resume-section" id="summary" data-section="summary">
+    <h2 class="resume-section-title">Grunnleggende informasjon</h2>
+    <div class="resume-section-content">
+      <div class="resume-summary-content">
+        <p>Markedssjef med ni års erfaring fra varehandel, teknologi og forbruksvarer. Jeg bygger merkevarer som vokser både i markedet og på bunnlinjen, og jeg trives best i skjæringspunktet mellom kommersiell strategi, kreativt håndverk og tall.</p>
+        <ul>
+          <li>
+            <p>Leder tverrfaglige team på 8-12 personer innen merkevare, innhold, SoMe, SEO/SEA og markedskommunikasjon</p>
+          </li>
+          <li>
+            <p>Dokumenterte resultater: 63 % vekst i organiske besøk, 41 % lavere kundeanskaffelseskost og 2,4x ROAS på betalte kanaler</p>
+          </li>
+          <li>
+            <p>Datadrevet arbeidsmetodikk med GA4, Looker Studio, A/B-testing og budsjettallokering basert på markedsmiksmodeller</p>
+          </li>
+          <li>
+            <p>Budsjettansvar opp mot 28 MNOK, med tett samarbeid med salg, produkt, kundeservice og konsernledelse</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="education" data-section="education">
+    <h2 class="resume-section-title">Utdanning</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="education-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.nhh.no">Norges Handelshøyskole</a></div>
+            <div class="resume-entry-organization">Master, Strategi og ledelse, Poeng: A+</div>
+          </div>
+          <div class="resume-entry-date">aug. 2013–juni 2015</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Fordypning i merkevarestrategi og kommersiell styring, med masteroppgave om kanalmiks i norsk varehandel</p>
+            </li>
+            <li>
+              <p>Gjennomførte tre praksisbaserte casestudier for nordiske virksomheter i samarbeid med næringslivet</p>
+            </li>
+            <li>
+              <p>Ble valgt til studenttillitsvalgt og koordinerte karrieredagen for 40 arbeidsgivere</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Kurs</span>: Markedsføringsledelse, Merkevarestrategi, Forbrukeratferd og beslutningspsykologi, Kvantitativ metode og markedsanalyse, Digital forretningsmodellering</div>
+      </div>
+      <div class="resume-entry" id="education-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.bi.no">Handelshøyskolen BI</a></div>
+            <div class="resume-entry-organization">Bachelor, Markedsføring og internasjonalisering, Poeng: B+</div>
+          </div>
+          <div class="resume-entry-date">aug. 2010–juni 2013</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Utvekslingsopphold ett semester ved Universitetet i Amsterdam innen digital markedsføring</p>
+            </li>
+            <li>
+              <p>Prosjektleder for studentforeningens sponsorprogram, med ansvar for 1,2 MNOK i sponsorinntekter</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Kurs</span>: Markedsføringsledelse, Salgsledelse og forhandlingsteknikk, Statistikk og økonomistyring, Internasjonal markedsføring</div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="work" data-section="work">
+    <h2 class="resume-section-title">Arbeidserfaring</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="work-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.nordmark.no">Nordmark Retail AS</a></div>
+            <div class="resume-entry-organization">Markedssjef</div>
+          </div>
+          <div class="resume-entry-date">mars 2021–Nå</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Leder markedsavdelingen med 11 medarbeidere og budsjettansvar på 28 MNOK fordelt på merkevare, ytelsesmarkedsføring og CRM</p>
+            </li>
+            <li>
+              <p>Omdefinerte merkevareplattformen og lanserte ny visuell identitet, noe som løftet uhjulpet kjennskap fra 24 % til 39 % på to år</p>
+            </li>
+            <li>
+              <p>Bygget opp et datadrevet kanalhierarki som reduserte kundeanskaffelseskost med 41 % og økte ROAS fra 1,6x til 2,4x</p>
+            </li>
+            <li>
+              <p>Etablerte et lojalitetsprogram med 145 000 medlemmer og 18 % høyere kjøpsfrekvens blant aktive medlemmer</p>
+            </li>
+            <li>
+              <p>Innførte månedlig markedscockpit i Looker Studio som beslutningsgrunnlag for ledergruppen</p>
+            </li>
+            <li>
+              <p>Fungerer som nærmeste leder for fire spesialister og driver kompetanseutvikling og rekruttering i avdelingen</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Nøkkelord</span>: Merkevarestrategi, Budsjettansvar, Teamledelse, Datadrevet markedsføring, CRM og lojalitet</div>
+      </div>
+      <div class="resume-entry" id="work-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.fjordlys.no">Fjordlys Teknologi AS</a></div>
+            <div class="resume-entry-organization">Senior digital markedssjef</div>
+          </div>
+          <div class="resume-entry-date">sep. 2018–feb. 2021</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Ansvarlig for betalte og organiske kanaler for et abonnementsprodukt med 220 000 aktive brukere</p>
+            </li>
+            <li>
+              <p>Skalerte innholdsmarkedsføring fra 4 til 30 publiserte artikler i måneden, med 63 % vekst i organisk trafikk</p>
+            </li>
+            <li>
+              <p>Ledet konverteringsoptimalisering på tvers av landingssider og onboarding, med 27 % høyere trial-til-betalt-rate</p>
+            </li>
+            <li>
+              <p>Satte opp attribusjonsmodell i GA360 og flyttet budsjett fra display til søk og video basert på inkrementelle tester</p>
+            </li>
+            <li>
+              <p>Jobbet smidig i tverrfaglige produktteam med ukentlig eksperimentering og delt resultatansvar med produkt og salg</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Nøkkelord</span>: SEO og SEA, Konverteringsoptimalisering, Innholdsmarkedsføring, GA4 og attribusjon, Vekststrategi</div>
+      </div>
+      <div class="resume-entry" id="work-3">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.byggogbo.no">Bygg og Bo Norge AS</a></div>
+            <div class="resume-entry-organization">Markedskonsulent</div>
+          </div>
+          <div class="resume-entry-date">aug. 2015–aug. 2018</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Planla og gjennomførte 14 kampanjer i året på tvers av butikk, netthandel og lokale medier</p>
+            </li>
+            <li>
+              <p>Forvaltet mediebyrårelasjonen og budsjetter på 6 MNOK med månedlig resultatrapportering</p>
+            </li>
+            <li>
+              <p>Bygget opp selskapets første e-postprogram med segmentering, som økte gjenkjøp med 12 %</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Nøkkelord</span>: Kampanjeplanlegging, Mediebyrå, E-postmarkedsføring</div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="languages" data-section="languages">
+    <h2 class="resume-section-title">Språk</h2>
+    <div class="resume-section-content">
+      <div class="resume-languages-list">
+        <div class="resume-language-item">
+          <div class="resume-language-name">Norsk<span class="resume-language-fluency">: Morsmål eller tospråklig nivå</span></div>
+          <div>
+            <div class="resume-labeled-list"><span>Nøkkelord</span>: Morsmål</div>
+          </div>
+        </div>
+        <div class="resume-language-item">
+          <div class="resume-language-name">Engelsk<span class="resume-language-fluency">: Fullt profesjonelt nivå</span></div>
+          <div>
+            <div class="resume-labeled-list"><span>Nøkkelord</span>: TOEFL 112, Forretningsforhandlinger</div>
+          </div>
+        </div>
+        <div class="resume-language-item">
+          <div class="resume-language-name">Tysk<span class="resume-language-fluency">: Begrenset arbeidskunnskap</span></div>
+          <div>
+            <div class="resume-labeled-list"><span>Nøkkelord</span>: Daglig kommunikasjon</div>
+          </div>
+        </div>
+        <div class="resume-language-item">
+          <div class="resume-language-name">Spansk<span class="resume-language-fluency">: Grunnleggende nivå</span></div>
+          <div>
+            <div class="resume-labeled-list"><span>Nøkkelord</span>: Grunnleggende</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="skills" data-section="skills">
+    <h2 class="resume-section-title">Ferdigheter</h2>
+    <div class="resume-section-content">
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">Merkevare og strategi<span class="resume-skill-level">: Ekspert</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>Nøkkelord</span>: Merkevareposisjonering, Markedsstrategi, Kundeinnsikt, Budsjettstyring</div>
+        </div>
+      </div>
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">Digital markedsføring<span class="resume-skill-level">: Avansert</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>Nøkkelord</span>: SEO og SEA, Meta Ads, Programmatisk kjøp, Marketing automation</div>
+        </div>
+      </div>
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">Analyse og innsikt<span class="resume-skill-level">: Avansert</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>Nøkkelord</span>: GA4, Looker Studio, A/B-testing, Attribusjonsmodeller</div>
+        </div>
+      </div>
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">Ledelse og samarbeid<span class="resume-skill-level">: Ekspert</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>Nøkkelord</span>: Teamledelse, Prosjektledelse, Tverrfaglig arbeid, Leverandørstyring</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="awards" data-section="awards">
+    <h2 class="resume-section-title">Utmerkelser</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="awards-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title">Årets markedssjef</div>
+            <div class="resume-entry-organization">Norsk Markedsføringsforening</div>
+          </div>
+          <div class="resume-entry-date">nov. 2023</div>
+        </div>
+        <div class="resume-entry-summary">
+          <p>Tildelt for dokumentert vekst i merkevarekjennskap og lønnsomhet hos Nordmark Retail AS, samt for sterk utvikling av eget markedsteam.</p>
+        </div>
+      </div>
+      <div class="resume-entry" id="awards-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title">Gullblyanten - sølv i kategorien kampanje</div>
+            <div class="resume-entry-organization">Anfo</div>
+          </div>
+          <div class="resume-entry-date">apr. 2022</div>
+        </div>
+        <div class="resume-entry-summary">
+          <p>Priset for kampanjen &quot;Hjem for enhver sesong&quot;, som økte netthandelsomsetningen med 22 % i løpet av kampanjeperioden.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="certificates" data-section="certificates">
+    <h2 class="resume-section-title">Sertifikater</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="certificates-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://skillshop.exceedlms.com/">Google Analytics 4 Certification</a></div>
+            <div class="resume-entry-organization">Google Skillshop</div>
+          </div>
+          <div class="resume-entry-date">mars 2023</div>
+        </div>
+      </div>
+      <div class="resume-entry" id="certificates-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://academy.hubspot.com/">HubSpot Content Marketing Certification</a></div>
+            <div class="resume-entry-organization">HubSpot Academy</div>
+          </div>
+          <div class="resume-entry-date">jan. 2022</div>
+        </div>
+      </div>
+      <div class="resume-entry" id="certificates-3">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.facebook.com/business/learn">Meta Blueprint - Media Buying Professional</a></div>
+            <div class="resume-entry-organization">Meta</div>
+          </div>
+          <div class="resume-entry-date">sep. 2021</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="publications" data-section="publications">
+    <h2 class="resume-section-title">Publikasjoner</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="publications-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://kampanje.com/">Derfor vinner datadrevet merkevarebygging</a></div>
+            <div class="resume-entry-organization">Kampanje</div>
+          </div>
+          <div class="resume-entry-date">feb. 2023</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Kronikk om hvordan norske merkevarer kan kombinere merkevarebygging og ytelsesmarkedsføring i samme budsjettramme</p>
+            </li>
+            <li>
+              <p>Presenterer en enkel modell for å måle inkrementell effekt av merkevareinvesteringer</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="resume-entry" id="publications-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.magma.no/">Lojalitet i norsk varehandel - fra poeng til relasjon</a></div>
+            <div class="resume-entry-organization">Magma - Econas tidsskrift for økonomi og ledelse</div>
+          </div>
+          <div class="resume-entry-date">juni 2021</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Fagartikkel basert på egne data fra 145 000 medlemmer i et lojalitetsprogram</p>
+            </li>
+            <li>
+              <p>Viser sammenhengen mellom personalisert kommunikasjon og kjøpsfrekvens</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="references" data-section="references">
+    <h2 class="resume-section-title">Referanser</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="references-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="mailto:henrik.aalborg@nordmark.no">Henrik Aalborg</a></div>
+            <div class="resume-entry-organization">Kommersiell direktør, Nordmark Retail AS</div>
+          </div>
+          <div>+47 901 22 348</div>
+        </div>
+        <div class="resume-entry-summary">
+          <p>Marianne er en av de mest komplette markedssjefene jeg har jobbet med. Hun kombinerer kreativ tyngde med kommersiell forståelse, og hun har bygget et team som leverer jevnt på høyt nivå.</p>
+        </div>
+      </div>
+      <div class="resume-entry" id="references-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="mailto:ingvild.krogh@fjordlystek.no">Ingvild Krogh</a></div>
+            <div class="resume-entry-organization">Tidligere markedsdirektør, Fjordlys Teknologi AS</div>
+          </div>
+          <div>+47 926 78 019</div>
+        </div>
+        <div class="resume-entry-summary">
+          <p>I tre år drev Marianne vår betalte og organiske vekststrategi. Hun er analytisk sterk, tar beslutninger på kort varsel og følger alltid opp med tydelige resultater.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="projects" data-section="projects">
+    <h2 class="resume-section-title">Prosjekter</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="projects-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.nordmark.no/lojal">Nordmark Lojalitetsprogram</a></div>
+            <div class="resume-entry-description">Lojalitetsprogram med 145 000 medlemmer for en norsk varehandelskjede</div>
+          </div>
+          <div class="resume-entry-date">jan. 2022–sep. 2023</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Definerte medlemsnivåer, opptjeningslogikk og personalisert kommunikasjon i samarbeid med CRM-leverandør</p>
+            </li>
+            <li>
+              <p>Økte andelen aktive medlemmer fra 38 % til 61 % gjennom onboarding- og reaktiveringsflyter</p>
+            </li>
+            <li>
+              <p>Løftet kjøpsfrekvensen blant medlemmer med 18 % sammenlignet med ikke-medlemmer</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Nøkkelord</span>: Lojalitetsprogram, CRM, Segmentering, Personalisering</div>
+      </div>
+      <div class="resume-entry" id="projects-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.fjordlys.no/om-oss">Fjordlys Merkevareløft</a></div>
+            <div class="resume-entry-description">Reposisjonering og ny visuell identitet for en nordisk teknologivirksomhet</div>
+          </div>
+          <div class="resume-entry-date">mars 2019–nov. 2020</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Ledet prosessen fra innsiktsarbeid og posisjonering til ny visuell identitet og tonality</p>
+            </li>
+            <li>
+              <p>Rullet ut nytt brand på tvers av produkt, nettside, SoMe og annonsering i tre markeder</p>
+            </li>
+            <li>
+              <p>Resulterte i 29 % høyere merkevarepreferanse i målgruppen 25-45 år</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Nøkkelord</span>: Reposisjonering, Visuell identitet, Merkevareinnsikt</div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="interests" data-section="interests">
+    <h2 class="resume-section-title">Interesser</h2>
+    <div class="resume-section-content">
+      <div class="resume-interest-item"><span class="resume-interest-name">Friluftsliv</span>: Fjellturer, Langrenn, Padling</div>
+      <div class="resume-interest-item"><span class="resume-interest-name">Mat og matkultur</span>: Matlaging, Vin, Reise</div>
+      <div class="resume-interest-item"><span class="resume-interest-name">Litteratur</span>: Sakprosa, Romaner</div>
+    </div>
+  </section>
+  <section class="resume-section" id="volunteer" data-section="volunteer">
+    <h2 class="resume-section-title">Frivillig arbeid</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="volunteer-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.markedsforing.no">Norsk Markedsføringsforening</a></div>
+            <div class="resume-entry-organization">Mentor i mentorprogrammet</div>
+          </div>
+          <div class="resume-entry-date">sep. 2019–Nå</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Veileder yngre markedsførere i karrierevalg, posisjonering og faglig utvikling</p>
+            </li>
+            <li>
+              <p>Foredrar på årskonferansen om datadrevet merkevarebygging og kanalmiks</p>
+            </li>
+            <li>
+              <p>Bidrar i faggruppen for merkevare og innsikt med arrangementer fire ganger i året</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="resume-entry" id="volunteer-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.rodekors.no">Oslo Røde Kors</a></div>
+            <div class="resume-entry-organization">Frivillig markedsfører</div>
+          </div>
+          <div class="resume-entry-date">feb. 2018–des. 2021</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Utviklet lokalforeningens kommunikasjonsplan og sosiale medier-strategi på frivillig basis</p>
+            </li>
+            <li>
+              <p>Rekrutterte 46 nye frivillige gjennom kampanjen &quot;En time er nok&quot;</p>
+            </li>
+            <li>
+              <p>Prosjektleder for den årlige innsamlingsaksjonen, med 780 000 kroner innsamlet i 2020</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer class="resume-footer">Generated by <a href="https://yamlresume.dev">YAMLResume</a></footer>
+</body>
+
+</html>

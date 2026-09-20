@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="generator" content="YAMLResume (https://yamlresume.dev)">
+
+
+  <title>Lars van den Berg Resume</title>
+  <style>
+    :root {
+      --text-font-size: 16px;
+      --text-font-family: var(--text-default-font-family);
+      --line-height: 1.5;
+    }
+
+    /* Modified from: https://www.joshwcomeau.com/css/custom-css-reset/ */
+
+    /* 1. Use a more-intuitive box-sizing model */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    /* 2. Remove default margin */
+    *:not(dialog) {
+      margin: 0;
+    }
+
+    body {
+      /* 3. Improve text rendering */
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    :root {
+      --border-color: #d0d0d0;
+
+      /* text colors */
+      --text-color-primary: #000000;
+      --text-color-secondary: #333333;
+
+      /* spacing */
+      --spacing-xss: 2px;
+      --spacing-xs: 4px;
+      --spacing-sm: 8px;
+      --spacing-md: 12px;
+      --spacing-lg: 16px;
+      --spacing-xl: 24px;
+      --spacing-xxl: 40px;
+      --spacing-xxxl: 80px;
+
+      /* font sizes */
+      --font-size-xs: 0.8rem;
+      --font-size-sm: 0.9rem;
+      --font-size-md: 1rem;
+      --font-size-lg: 1.1rem;
+      --font-size-xl: 1.25rem;
+      --font-size-xxl: 2.5rem;
+
+      /* layout */
+      --page-max-width: 900px;
+
+      /* typography */
+      --text-default-font-family:
+        -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu,
+        Cantarell, sans-serif;
+    }
+
+    html {
+      font-size: var(--text-font-size);
+    }
+
+    body {
+      /* font & text */
+      color: var(--text-color-primary);
+      font-family: var(--text-font-family);
+      /* this variable is defined by `typography.fontSize` in resume html layout */
+      text-autospace: normal;
+
+      /* layout */
+      line-height: var(--line-height);
+      max-width: var(--page-max-width);
+      margin: 0 auto;
+      padding: var(--spacing-xxxl) var(--spacing-xxl) var(--spacing-xxl);
+    }
+
+    /* header */
+    .resume-header {
+      margin-bottom: var(--spacing-xxl);
+      text-align: center;
+    }
+
+    .resume-name {
+      font-size: var(--font-size-xxl);
+      font-weight: 600;
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .resume-headline {
+      font-size: var(--font-size-lg);
+      margin-bottom: var(--spacing-md);
+    }
+
+    /* contact info */
+    .resume-contact-info {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      column-gap: var(--spacing-lg);
+      row-gap: var(--spacing-xs);
+      margin-top: var(--spacing-sm);
+    }
+
+    .resume-contact-icon,
+    .resume-contact-label {
+      margin-right: var(--spacing-sm);
+      vertical-align: middle;
+    }
+
+    /* links: modern typographic style */
+    a {
+      color: var(--text-color-primary);
+      text-decoration: underline;
+      text-decoration-color: var(--border-color);
+      text-underline-offset: 3px;
+      text-decoration-thickness: 1px;
+      text-decoration-skip-ink: auto;
+      transition: text-decoration-color 0.2s;
+    }
+
+    a:hover {
+      text-decoration-color: var(--text-color-primary);
+    }
+
+    /* sections */
+    .resume-section {
+      margin-bottom: var(--spacing-xl);
+    }
+
+    .resume-section-title {
+      font-size: var(--font-size-xl);
+      font-weight: 500;
+      margin-bottom: var(--spacing-md);
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: var(--spacing-xs);
+    }
+
+    /* entries */
+    .resume-entry {
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .resume-entry:last-child {
+      margin-bottom: 0;
+    }
+
+    .resume-entry-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .resume-entry-title {
+      font-weight: 500;
+      margin-bottom: var(--spacing-xss);
+    }
+
+    .resume-entry-summary p,
+    .resume-summary-content p {
+      margin-bottom: var(--spacing-xs);
+    }
+
+    /* lists */
+    .resume-entry-summary ul,
+    .resume-entry-summary ol,
+    .resume-summary-content ul,
+    .resume-summary-content ol {
+      padding-left: var(--spacing-lg);
+      list-style-type: circle;
+    }
+
+    /* labeled lists (courses, keywords, etc.) */
+    .resume-labeled-list span {
+      font-weight: 500;
+    }
+
+    /* skills grid */
+    .resume-skill-item,
+    .resume-language-item {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .resume-skill-name,
+    .resume-language-name {
+      font-weight: 500;
+    }
+
+    .resume-skill-level,
+    .resume-language-fluency {
+      font-weight: 400;
+    }
+
+    /* mobile */
+    @media (max-width: 768px) {
+      body {
+        padding: var(--spacing-xl);
+      }
+
+      .resume-header {
+        margin-bottom: var(--spacing-xl);
+      }
+
+      .resume-contact-info {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .resume-entry-header {
+        flex-wrap: wrap;
+      }
+    }
+
+    /* footer */
+    .resume-footer {
+      margin-top: var(--spacing-xxl);
+      padding-top: var(--spacing-xl);
+      border-top: 1px solid var(--border-color);
+      font-size: var(--font-size-sm);
+      color: var(--text-color-secondary);
+    }
+
+    @media print {
+      .resume-footer {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="resume-header">
+    <h1 class="resume-name">Lars van den Berg</h1>
+    <p class="resume-headline">Account Executive met 7+ jaar ervaring in B2B SaaS</p>
+    <div class="resume-contact-info">
+      <span class="resume-contact-item"><span class="resume-contact-icon">📧</span><a href="mailto:lars.vandenberg@example.nl" class="resume-contact-link">lars.vandenberg@example.nl</a></span>
+      <span class="resume-contact-item"><span class="resume-contact-icon">📞</span>+31 6 12345678</span>
+      <span class="resume-contact-item"><span class="resume-contact-icon">🔗</span><a href="https://www.larsvandenberg.nl" class="resume-contact-link">https://www.larsvandenberg.nl</a></span>
+    </div>
+    <div class="resume-contact-info resume-location-info">
+      <span class="resume-contact-item"><span class="resume-contact-icon">📍</span>Keizersgracht 123, Amsterdam, Noord-Holland, Nederland, 1015 CJ</span>
+    </div>
+    <div class="resume-contact-info resume-profiles-info">
+      <span class="resume-contact-item"><span class="resume-contact-label">LinkedIn</span>: <a href="https://www.linkedin.com/in/larsvandenberg" class="resume-contact-link">@larsvandenberg</a></span>
+      <span class="resume-contact-item"><span class="resume-contact-label">Twitter</span>: <a href="https://twitter.com/larsvdb" class="resume-contact-link">@larsvdb</a></span>
+    </div>
+  </header>
+  <section class="resume-section" id="summary" data-section="summary">
+    <h2 class="resume-section-title">Basis Informatie</h2>
+    <div class="resume-section-content">
+      <div class="resume-summary-content">
+        <ul>
+          <li>
+            <p>Ervaren Account Executive met een bewezen trackrecord in het sluiten van complexe B2B-deals binnen de SaaS- en technologiesector.</p>
+          </li>
+          <li>
+            <p>Sterk in het opbouwen van langdurige klantrelaties, van leadgeneratie tot contractonderhandeling en accountmanagement.</p>
+          </li>
+          <li>
+            <p>Data-gedreven en resultaatgericht, met expertise in CRM-systemen (Salesforce, HubSpot) en verkoopmethodologieën zoals MEDDIC en SPIN Selling.</p>
+          </li>
+          <li>
+            <p>Teamspeler die nauw samenwerkt met marketing, product en customer success om omzetdoelen te overtreffen.</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="education" data-section="education">
+    <h2 class="resume-section-title">Opleidingen</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="education-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.uva.nl">Universiteit van Amsterdam</a></div>
+            <div class="resume-entry-organization">Master, Bedrijfskunde, Score: 8.5</div>
+          </div>
+          <div class="resume-entry-date">sep 2014–jul 2016</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Afgestudeerd met specialisatie in Strategic Sales &amp; Account Management.</p>
+            </li>
+            <li>
+              <p>Thesis over datagedreven verkoopstrategieën in de SaaS-sector.</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Cursussen</span>: Strategisch Management, Marketingmanagement, Salesmanagement, Bedrijfsanalytiek, Organisatiegedrag, Financiële Administratie</div>
+      </div>
+      <div class="resume-entry" id="education-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.hva.nl">Hogeschool van Amsterdam</a></div>
+            <div class="resume-entry-organization">Bachelor, Commerciële Economie, Score: 8.0</div>
+          </div>
+          <div class="resume-entry-date">sep 2010–jul 2014</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Actieve deelname aan commerciële projecten en stages.</p>
+            </li>
+            <li>
+              <p>Minor in International Business aan de Universiteit van Barcelona.</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Cursussen</span>: Sales &amp; Marketing, Onderhandelen, Marktonderzoek, Projectmanagement, Bedrijfseconomie</div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="work" data-section="work">
+    <h2 class="resume-section-title">Werkervaring</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="work-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.cloudsales.nl">CloudSales B.V.</a></div>
+            <div class="resume-entry-organization">Senior Account Executive</div>
+          </div>
+          <div class="resume-entry-date">mrt 2021–Heden</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Verantwoordelijk voor het volledige verkoopproces van enterprise SaaS-oplossingen voor klanten in de Benelux.</p>
+            </li>
+            <li>
+              <p>Jaarlijks gemiddeld 135% van het persoonlijke omzetdoel behaald, met deals tot €500.000.</p>
+            </li>
+            <li>
+              <p>Opgebouwd en onderhouden van een pijplijn van €2,5 miljoen aan gekwalificeerde kansen.</p>
+            </li>
+            <li>
+              <p>Samengewerkt met SDR&#39;s, marketing en productteams om proposities te verfijnen en klantbehoeften te vertalen naar oplossingen.</p>
+            </li>
+            <li>
+              <p>Onderhandeld over meerjarige contracten en SLA&#39;s, met focus op wederzijdse waarde en klantbehoud.</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Trefwoorden</span>: Enterprise Sales, SaaS, Onderhandelen, MEDDIC, Accountmanagement</div>
+      </div>
+      <div class="resume-entry" id="work-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.techconnect.nl">TechConnect Nederland</a></div>
+            <div class="resume-entry-organization">Account Executive</div>
+          </div>
+          <div class="resume-entry-date">jan 2018–feb 2021</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Beheerde een portfolio van 50+ MKB- en enterprise-accounts in de technologiesector.</p>
+            </li>
+            <li>
+              <p>Genereerde nieuwe business via outbound prospecting, netwerkevenementen en partnerkanalen.</p>
+            </li>
+            <li>
+              <p>Realiseerde een omzetgroei van 40% in twee jaar door cross- en upselling.</p>
+            </li>
+            <li>
+              <p>Voerde onderhandelingen over raamcontracten en verlengingen, met een klanttevredenheidsscore van 9,2.</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Trefwoorden</span>: B2B Sales, Leadgeneratie, CRM, Salesforce, Groei</div>
+      </div>
+      <div class="resume-entry" id="work-3">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.salespro.nl">SalesPro Solutions</a></div>
+            <div class="resume-entry-organization">Junior Account Executive</div>
+          </div>
+          <div class="resume-entry-date">sep 2016–dec 2017</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Ondersteunde senior accountmanagers bij het opstellen van voorstellen en offertes.</p>
+            </li>
+            <li>
+              <p>Verzorgde de eerste klantcontacten en kwalificatie van inkomende leads.</p>
+            </li>
+            <li>
+              <p>Droeg bij aan de implementatie van een nieuw CRM-systeem (HubSpot) en het optimaliseren van verkoopprocessen.</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Trefwoorden</span>: HubSpot, Sales Support, Prospectie, Klantrelaties</div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="languages" data-section="languages">
+    <h2 class="resume-section-title">Talen</h2>
+    <div class="resume-section-content">
+      <div class="resume-languages-list">
+        <div class="resume-language-item">
+          <div class="resume-language-name">Nederlands<span class="resume-language-fluency">: Moedertaal of tweetalige vaardigheid</span></div>
+          <div>
+            <div class="resume-labeled-list"><span>Trefwoorden</span>: Moedertaal</div>
+          </div>
+        </div>
+        <div class="resume-language-item">
+          <div class="resume-language-name">Engels<span class="resume-language-fluency">: Volledige professionele vaardigheid</span></div>
+          <div>
+            <div class="resume-labeled-list"><span>Trefwoorden</span>: C1, TOEFL 110</div>
+          </div>
+        </div>
+        <div class="resume-language-item">
+          <div class="resume-language-name">Duits<span class="resume-language-fluency">: Beperkte werkvaardigheid</span></div>
+          <div>
+            <div class="resume-labeled-list"><span>Trefwoorden</span>: B1, Zakelijk Duits</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="skills" data-section="skills">
+    <h2 class="resume-section-title">Vaardigheden</h2>
+    <div class="resume-section-content">
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">Sales &amp; Bedrijfsontwikkeling<span class="resume-skill-level">: Expert</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>Trefwoorden</span>: Enterprise Sales, B2B, SaaS, Leadgeneratie, Pipeline Management</div>
+        </div>
+      </div>
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">Onderhandelen &amp; Accountmanagement<span class="resume-skill-level">: Geavanceerd</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>Trefwoorden</span>: Contractonderhandeling, MEDDIC, SPIN Selling, Klantbehoud, Upselling</div>
+        </div>
+      </div>
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">CRM &amp; Systemen<span class="resume-skill-level">: Geavanceerd</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>Trefwoorden</span>: Salesforce, HubSpot, LinkedIn Sales Navigator, Outreach, ZoomInfo</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="awards" data-section="awards">
+    <h2 class="resume-section-title">Onderscheidingen</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="awards-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title">Salespersoon van het Jaar</div>
+            <div class="resume-entry-organization">CloudSales B.V.</div>
+          </div>
+          <div class="resume-entry-date">dec 2022</div>
+        </div>
+        <div class="resume-entry-summary">
+          <p>Uitgereikt aan de account executive met de hoogste omzetgroei en beste klanttevredenheid in 2022.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="certificates" data-section="certificates">
+    <h2 class="resume-section-title">Certificaten</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="certificates-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.salesforce.com/certification">Salesforce Certified Administrator</a></div>
+            <div class="resume-entry-organization">Salesforce</div>
+          </div>
+          <div class="resume-entry-date">jun 2021</div>
+        </div>
+      </div>
+      <div class="resume-entry" id="certificates-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.meddicacademy.com">MEDDIC Sales Certification</a></div>
+            <div class="resume-entry-organization">MEDDIC Academy</div>
+          </div>
+          <div class="resume-entry-date">mrt 2020</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="projects" data-section="projects">
+    <h2 class="resume-section-title">Projecten</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="projects-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.cloudsales.nl/projecten/crm">Implementatie nieuw CRM-systeem</a></div>
+            <div class="resume-entry-description">Implementatie van Salesforce voor het volledige salesteam.</div>
+          </div>
+          <div class="resume-entry-date">jan 2022–jun 2022</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Leidde de migratie van HubSpot naar Salesforce voor 25 gebruikers.</p>
+            </li>
+            <li>
+              <p>Ontwierp verkoopprocessen en rapportages voor pipeline- en omzetanalyse.</p>
+            </li>
+            <li>
+              <p>Verzorgde training en adoptie, wat leidde tot 30% efficiëntiewinst.</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Trefwoorden</span>: Salesforce, CRM, Procesoptimalisatie</div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="interests" data-section="interests">
+    <h2 class="resume-section-title">Interesses</h2>
+    <div class="resume-section-content">
+      <div class="resume-interest-item"><span class="resume-interest-name">Sport</span>: Hardlopen, Padel, Zeilen</div>
+      <div class="resume-interest-item"><span class="resume-interest-name">Reizen</span>: Azië, Zuid-Amerika, Stedentrips</div>
+    </div>
+  </section>
+  <section class="resume-section" id="volunteer" data-section="volunteer">
+    <h2 class="resume-section-title">Vrijwilligerswerk</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="volunteer-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.salestalent.nl">Stichting Sales Talent</a></div>
+            <div class="resume-entry-organization">Mentor</div>
+          </div>
+          <div class="resume-entry-date">sep 2019–jun 2023</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Begeleidde jonge professionals bij het opbouwen van een carrière in sales.</p>
+            </li>
+            <li>
+              <p>Verzorgde workshops over netwerken, personal branding en onderhandelen.</p>
+            </li>
+            <li>
+              <p>Droeg bij aan het vergroten van diversiteit in het salesvakgebied.</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer class="resume-footer">Generated by <a href="https://yamlresume.dev">YAMLResume</a></footer>
+</body>
+
+</html>

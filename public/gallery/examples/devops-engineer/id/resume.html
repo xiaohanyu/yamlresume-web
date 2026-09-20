@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="generator" content="YAMLResume (https://yamlresume.dev)">
+
+
+  <title>Budi Santoso Resume</title>
+  <style>
+    :root {
+      --text-font-size: 16px;
+      --text-font-family: var(--text-default-font-family);
+      --line-height: 1.5;
+    }
+
+    /* Modified from: https://www.joshwcomeau.com/css/custom-css-reset/ */
+
+    /* 1. Use a more-intuitive box-sizing model */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    /* 2. Remove default margin */
+    *:not(dialog) {
+      margin: 0;
+    }
+
+    body {
+      /* 3. Improve text rendering */
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    :root {
+      --border-color: #d0d0d0;
+
+      /* text colors */
+      --text-color-primary: #000000;
+      --text-color-secondary: #333333;
+
+      /* spacing */
+      --spacing-xss: 2px;
+      --spacing-xs: 4px;
+      --spacing-sm: 8px;
+      --spacing-md: 12px;
+      --spacing-lg: 16px;
+      --spacing-xl: 24px;
+      --spacing-xxl: 40px;
+      --spacing-xxxl: 80px;
+
+      /* font sizes */
+      --font-size-xs: 0.8rem;
+      --font-size-sm: 0.9rem;
+      --font-size-md: 1rem;
+      --font-size-lg: 1.1rem;
+      --font-size-xl: 1.25rem;
+      --font-size-xxl: 2.5rem;
+
+      /* layout */
+      --page-max-width: 900px;
+
+      /* typography */
+      --text-default-font-family:
+        -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu,
+        Cantarell, sans-serif;
+    }
+
+    html {
+      font-size: var(--text-font-size);
+    }
+
+    body {
+      /* font & text */
+      color: var(--text-color-primary);
+      font-family: var(--text-font-family);
+      /* this variable is defined by `typography.fontSize` in resume html layout */
+      text-autospace: normal;
+
+      /* layout */
+      line-height: var(--line-height);
+      max-width: var(--page-max-width);
+      margin: 0 auto;
+      padding: var(--spacing-xxxl) var(--spacing-xxl) var(--spacing-xxl);
+    }
+
+    /* header */
+    .resume-header {
+      margin-bottom: var(--spacing-xxl);
+      text-align: center;
+    }
+
+    .resume-name {
+      font-size: var(--font-size-xxl);
+      font-weight: 600;
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .resume-headline {
+      font-size: var(--font-size-lg);
+      margin-bottom: var(--spacing-md);
+    }
+
+    /* contact info */
+    .resume-contact-info {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      column-gap: var(--spacing-lg);
+      row-gap: var(--spacing-xs);
+      margin-top: var(--spacing-sm);
+    }
+
+    .resume-contact-icon,
+    .resume-contact-label {
+      margin-right: var(--spacing-sm);
+      vertical-align: middle;
+    }
+
+    /* links: modern typographic style */
+    a {
+      color: var(--text-color-primary);
+      text-decoration: underline;
+      text-decoration-color: var(--border-color);
+      text-underline-offset: 3px;
+      text-decoration-thickness: 1px;
+      text-decoration-skip-ink: auto;
+      transition: text-decoration-color 0.2s;
+    }
+
+    a:hover {
+      text-decoration-color: var(--text-color-primary);
+    }
+
+    /* sections */
+    .resume-section {
+      margin-bottom: var(--spacing-xl);
+    }
+
+    .resume-section-title {
+      font-size: var(--font-size-xl);
+      font-weight: 500;
+      margin-bottom: var(--spacing-md);
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: var(--spacing-xs);
+    }
+
+    /* entries */
+    .resume-entry {
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .resume-entry:last-child {
+      margin-bottom: 0;
+    }
+
+    .resume-entry-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .resume-entry-title {
+      font-weight: 500;
+      margin-bottom: var(--spacing-xss);
+    }
+
+    .resume-entry-summary p,
+    .resume-summary-content p {
+      margin-bottom: var(--spacing-xs);
+    }
+
+    /* lists */
+    .resume-entry-summary ul,
+    .resume-entry-summary ol,
+    .resume-summary-content ul,
+    .resume-summary-content ol {
+      padding-left: var(--spacing-lg);
+      list-style-type: circle;
+    }
+
+    /* labeled lists (courses, keywords, etc.) */
+    .resume-labeled-list span {
+      font-weight: 500;
+    }
+
+    /* skills grid */
+    .resume-skill-item,
+    .resume-language-item {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .resume-skill-name,
+    .resume-language-name {
+      font-weight: 500;
+    }
+
+    .resume-skill-level,
+    .resume-language-fluency {
+      font-weight: 400;
+    }
+
+    /* mobile */
+    @media (max-width: 768px) {
+      body {
+        padding: var(--spacing-xl);
+      }
+
+      .resume-header {
+        margin-bottom: var(--spacing-xl);
+      }
+
+      .resume-contact-info {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .resume-entry-header {
+        flex-wrap: wrap;
+      }
+    }
+
+    /* footer */
+    .resume-footer {
+      margin-top: var(--spacing-xxl);
+      padding-top: var(--spacing-xl);
+      border-top: 1px solid var(--border-color);
+      font-size: var(--font-size-sm);
+      color: var(--text-color-secondary);
+    }
+
+    @media print {
+      .resume-footer {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="resume-header">
+    <h1 class="resume-name">Budi Santoso</h1>
+    <p class="resume-headline">Insinyur DevOps | Otomasi Infrastruktur &amp; Cloud</p>
+    <div class="resume-contact-info">
+      <span class="resume-contact-item"><span class="resume-contact-icon">📧</span><a href="mailto:budi.santoso.devops@example.com" class="resume-contact-link">budi.santoso.devops@example.com</a></span>
+      <span class="resume-contact-item"><span class="resume-contact-icon">📞</span>+62 812-3456-7890</span>
+      <span class="resume-contact-item"><span class="resume-contact-icon">🔗</span><a href="https://budisantoso.dev" class="resume-contact-link">https://budisantoso.dev</a></span>
+    </div>
+    <div class="resume-contact-info resume-location-info">
+      <span class="resume-contact-item"><span class="resume-contact-icon">📍</span>Jl. Jenderal Sudirman No. 52, Jakarta Pusat, Jakarta, DKI Jakarta, Indonesia, 10220</span>
+    </div>
+    <div class="resume-contact-info resume-profiles-info">
+      <span class="resume-contact-item"><span class="resume-contact-label">GitHub</span>: <a href="https://github.com/budisantoso-devops" class="resume-contact-link">@budisantoso-devops</a></span>
+      <span class="resume-contact-item"><span class="resume-contact-label">LinkedIn</span>: <a href="https://www.linkedin.com/in/budisantoso-devops" class="resume-contact-link">@budisantoso-devops</a></span>
+    </div>
+  </header>
+  <section class="resume-section" id="summary" data-section="summary">
+    <h2 class="resume-section-title">Informasi Dasar</h2>
+    <div class="resume-section-content">
+      <div class="resume-summary-content">
+        <ul>
+          <li>
+            <p>Insinyur DevOps dengan lebih dari 6 tahun pengalaman dalam merancang, mengotomasi, dan mengoperasikan infrastruktur cloud yang andal.</p>
+          </li>
+          <li>
+            <p>Terampil dalam Kubernetes, Terraform, CI/CD, dan praktik Site Reliability Engineering untuk meningkatkan kecepatan rilis serta ketersediaan layanan.</p>
+          </li>
+          <li>
+            <p>Berpengalaman membangun platform observabilitas, mengelola multi-cloud, dan menerapkan keamanan pada pipeline DevOps.</p>
+          </li>
+          <li>
+            <p>Kolaboratif, berorientasi pada otomasi, dan terbiasa memimpin transformasi budaya DevOps di tim lintas fungsi.</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="education" data-section="education">
+    <h2 class="resume-section-title">Pendidikan</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="education-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.ui.ac.id">Universitas Indonesia</a></div>
+            <div class="resume-entry-organization">Sarjana, Teknik Informatika, Nilai: 3.72</div>
+          </div>
+          <div class="resume-entry-date">Agu 2015–Jul 2019</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Lulus dengan predikat cum laude dan fokus pada rekayasa perangkat lunak serta infrastruktur.</p>
+            </li>
+            <li>
+              <p>Mengembangkan proyek akhir tentang orkestrasi kontainer untuk aplikasi berbasis mikroservis.</p>
+            </li>
+            <li>
+              <p>Aktif dalam organisasi kemahasiswaan yang bergerak di bidang teknologi dan open source.</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Mata Kuliah</span>: Algoritma dan Struktur Data, Sistem Operasi, Jaringan Komputer, Basis Data, Arsitektur Perangkat Lunak, Keamanan Informasi, Komputasi Awan, Otomasi Infrastruktur</div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="work" data-section="work">
+    <h2 class="resume-section-title">Pengalaman Kerja</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="work-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.solusidigitalnusantara.co.id">PT Solusi Digital Nusantara</a></div>
+            <div class="resume-entry-organization">Insinyur DevOps Senior</div>
+          </div>
+          <div class="resume-entry-date">Jan 2022–Sekarang</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Memimpin adopsi GitOps dan pipeline CI/CD untuk lebih dari 40 layanan mikro, menurunkan waktu deployment dari 2 jam menjadi 15 menit.</p>
+            </li>
+            <li>
+              <p>Mengelola cluster Kubernetes multi-tenant di AWS dengan Terraform, Helm, dan Argo CD untuk menjaga konsistensi lingkungan.</p>
+            </li>
+            <li>
+              <p>Membangun platform observabilitas terpusat menggunakan Prometheus, Grafana, Loki, dan OpenTelemetry.</p>
+            </li>
+            <li>
+              <p>Menerapkan kebijakan keamanan supply chain, pemindaian kerentanan, dan manajemen rahasia dengan Vault.</p>
+            </li>
+            <li>
+              <p>Menjadi mentor bagi 4 insinyur junior dan memimpin forum praktik terbaik DevOps internal.</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Kata Kunci</span>: Kubernetes, Terraform, AWS, GitLab CI, Observabilitas</div>
+      </div>
+      <div class="resume-entry" id="work-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.teknologicakra.co.id">PT Teknologi Cakra</a></div>
+            <div class="resume-entry-organization">Insinyur DevOps</div>
+          </div>
+          <div class="resume-entry-date">Mar 2020–Des 2021</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Mengotomasi provisioning infrastruktur dengan Ansible dan Terraform, mengurangi kesalahan konfigurasi manual hingga 70%.</p>
+            </li>
+            <li>
+              <p>Membangun pipeline Jenkins untuk build, test, dan deployment aplikasi Java dan Node.js.</p>
+            </li>
+            <li>
+              <p>Mengimplementasikan monitoring dan alerting dengan Prometheus, Alertmanager, dan Grafana.</p>
+            </li>
+            <li>
+              <p>Melakukan tuning Linux, Docker, dan Nginx untuk meningkatkan performa serta stabilitas layanan.</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Kata Kunci</span>: Docker, Jenkins, Ansible, Prometheus, Linux</div>
+      </div>
+      <div class="resume-entry" id="work-3">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.dataprima.co.id">PT Data Prima</a></div>
+            <div class="resume-entry-organization">Site Reliability Engineer</div>
+          </div>
+          <div class="resume-entry-date">Jun 2019–Feb 2020</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Menjaga ketersediaan layanan data dengan pemantauan proaktif dan respons insiden.</p>
+            </li>
+            <li>
+              <p>Menulis skrip otomasi Python dan Bash untuk tugas operasional berulang.</p>
+            </li>
+            <li>
+              <p>Mendokumentasikan runbook, prosedur pemulihan bencana, dan praktik on-call.</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Kata Kunci</span>: Python, Bash, Nagios, MySQL, Jaringan</div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="languages" data-section="languages">
+    <h2 class="resume-section-title">Bahasa</h2>
+    <div class="resume-section-content">
+      <div class="resume-languages-list">
+        <div class="resume-language-item">
+          <div class="resume-language-name">Melayu<span class="resume-language-fluency">: Bahasa Ibu / Bilingual</span></div>
+          <div>
+            <div class="resume-labeled-list"><span>Kata Kunci</span>: Bahasa Indonesia</div>
+          </div>
+        </div>
+        <div class="resume-language-item">
+          <div class="resume-language-name">Inggris<span class="resume-language-fluency">: Tingkat Profesional Penuh</span></div>
+          <div>
+            <div class="resume-labeled-list"><span>Kata Kunci</span>: IELTS 7.0, TOEFL 600</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="skills" data-section="skills">
+    <h2 class="resume-section-title">Keahlian</h2>
+    <div class="resume-section-content">
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">Orkestrasi Kontainer<span class="resume-skill-level">: Ahli</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>Kata Kunci</span>: Docker, Kubernetes, Helm, OpenShift</div>
+        </div>
+      </div>
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">Infrastruktur sebagai Kode<span class="resume-skill-level">: Mahir</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>Kata Kunci</span>: Terraform, Ansible, Pulumi, CloudFormation</div>
+        </div>
+      </div>
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">CI/CD<span class="resume-skill-level">: Ahli</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>Kata Kunci</span>: GitLab CI, Jenkins, GitHub Actions, Argo CD</div>
+        </div>
+      </div>
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">Cloud<span class="resume-skill-level">: Mahir</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>Kata Kunci</span>: AWS, Google Cloud, Azure, Alibaba Cloud</div>
+        </div>
+      </div>
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">Observabilitas<span class="resume-skill-level">: Mahir</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>Kata Kunci</span>: Prometheus, Grafana, ELK Stack, Datadog</div>
+        </div>
+      </div>
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">Bahasa Pemrograman<span class="resume-skill-level">: Mahir</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>Kata Kunci</span>: Python, Go, Bash, SQL</div>
+        </div>
+      </div>
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">Keamanan DevOps<span class="resume-skill-level">: Menengah</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>Kata Kunci</span>: Vault, Trivy, SonarQube, IAM</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="awards" data-section="awards">
+    <h2 class="resume-section-title">Penghargaan</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="awards-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title">Penghargaan Inovasi Otomasi Infrastruktur</div>
+            <div class="resume-entry-organization">PT Solusi Digital Nusantara</div>
+          </div>
+          <div class="resume-entry-date">Des 2023</div>
+        </div>
+        <div class="resume-entry-summary">
+          <p>Diberikan atas kontribusi dalam membangun pipeline CI/CD terpusat yang meningkatkan kecepatan rilis dan keandalan layanan.</p>
+        </div>
+      </div>
+      <div class="resume-entry" id="awards-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title">Juara 2 Kompetisi Cloud Native</div>
+            <div class="resume-entry-organization">Cloud Native Indonesia</div>
+          </div>
+          <div class="resume-entry-date">Agu 2021</div>
+        </div>
+        <div class="resume-entry-summary">
+          <p>Meraih juara kedua dalam kompetisi desain arsitektur cloud native untuk studi kasus layanan logistik.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="certificates" data-section="certificates">
+    <h2 class="resume-section-title">Sertifikat</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="certificates-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://aws.amazon.com/certification/certified-devops-engineer-professional/">AWS Certified DevOps Engineer - Professional</a></div>
+            <div class="resume-entry-organization">Amazon Web Services</div>
+          </div>
+          <div class="resume-entry-date">Mar 2022</div>
+        </div>
+      </div>
+      <div class="resume-entry" id="certificates-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://training.linuxfoundation.org/certification/certified-kubernetes-administrator-cka/">Certified Kubernetes Administrator</a></div>
+            <div class="resume-entry-organization">Cloud Native Computing Foundation</div>
+          </div>
+          <div class="resume-entry-date">Nov 2021</div>
+        </div>
+      </div>
+      <div class="resume-entry" id="certificates-3">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.hashicorp.com/certification/terraform-associate">HashiCorp Certified: Terraform Associate</a></div>
+            <div class="resume-entry-organization">HashiCorp</div>
+          </div>
+          <div class="resume-entry-date">Jun 2023</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="publications" data-section="publications">
+    <h2 class="resume-section-title">Publikasi</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="publications-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://jurnalcloud.id/artikel/otomasi-infrastruktur-multi-cloud">Otomasi Infrastruktur Multi-Cloud dengan Terraform dan GitLab CI</a></div>
+            <div class="resume-entry-organization">Jurnal Teknologi Cloud Indonesia</div>
+          </div>
+          <div class="resume-entry-date">Agu 2023</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Membahas pola modular Terraform untuk mengelola sumber daya di AWS, GCP, dan Azure.</p>
+            </li>
+            <li>
+              <p>Menjelaskan integrasi pipeline GitLab CI untuk deployment yang aman dan dapat diaudit.</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="resume-entry" id="publications-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://devops.id/prosiding/observabilitas-microservices">Observabilitas Modern untuk Arsitektur Microservices</a></div>
+            <div class="resume-entry-organization">Konferensi DevOps Indonesia</div>
+          </div>
+          <div class="resume-entry-date">Okt 2022</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Mengulas penerapan metrik, log, dan trace terdistribusi pada layanan mikro.</p>
+            </li>
+            <li>
+              <p>Memberikan rekomendasi praktis untuk alerting dan penanganan insiden.</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="projects" data-section="projects">
+    <h2 class="resume-section-title">Proyek</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="projects-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://github.com/budisantoso-devops/observability-platform">Platform Observabilitas Terpusat</a></div>
+            <div class="resume-entry-description">Implementasi observabilitas terpusat untuk 50+ layanan mikro.</div>
+          </div>
+          <div class="resume-entry-date">Jan 2023–Jun 2023</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Menggabungkan metrik, log, dan trace menggunakan Prometheus, Loki, dan OpenTelemetry.</p>
+            </li>
+            <li>
+              <p>Membuat dasbor Grafana dan alerting yang mengurangi mean time to recovery sebesar 40%.</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Kata Kunci</span>: Prometheus, Grafana, Loki, OpenTelemetry</div>
+      </div>
+      <div class="resume-entry" id="projects-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://github.com/budisantoso-devops/multi-cloud-cicd">Pipeline CI/CD Multi-Cloud</a></div>
+            <div class="resume-entry-description">Pipeline otomatis untuk deployment ke AWS, GCP, dan Azure.</div>
+          </div>
+          <div class="resume-entry-date">Mar 2022–Nov 2022</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Membangun pipeline reusable dengan GitLab CI, Terraform, dan Argo CD.</p>
+            </li>
+            <li>
+              <p>Menerapkan quality gate, pemindaian keamanan, dan strategi canary release.</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Kata Kunci</span>: GitLab CI, Terraform, Argo CD, Kubernetes</div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="interests" data-section="interests">
+    <h2 class="resume-section-title">Minat</h2>
+    <div class="resume-section-content">
+      <div class="resume-interest-item"><span class="resume-interest-name">Olahraga</span>: Lari, Bersepeda, Renang</div>
+      <div class="resume-interest-item"><span class="resume-interest-name">Musik</span>: Gitar, Piano</div>
+      <div class="resume-interest-item"><span class="resume-interest-name">Open Source</span>: Kubernetes, Terraform, Prometheus</div>
+    </div>
+  </section>
+  <section class="resume-section" id="volunteer" data-section="volunteer">
+    <h2 class="resume-section-title">Kegiatan Sukarela</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="volunteer-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://devops.id">Komunitas DevOps Indonesia</a></div>
+            <div class="resume-entry-organization">Mentor</div>
+          </div>
+          <div class="resume-entry-date">Jan 2022–Sekarang</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Menjadi mentor bagi anggota komunitas dalam mempelajari Kubernetes, Terraform, dan praktik CI/CD.</p>
+            </li>
+            <li>
+              <p>Membantu menyelenggarakan workshop dan sesi diskusi teknis rutin.</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="resume-entry" id="volunteer-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://ui.ac.id/programming-club">Universitas Indonesia Programming Club</a></div>
+            <div class="resume-entry-organization">Pengajar</div>
+          </div>
+          <div class="resume-entry-date">Sep 2017–Jul 2019</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Mengajarkan dasar pemrograman dan penggunaan Git kepada mahasiswa baru.</p>
+            </li>
+            <li>
+              <p>Mendampingi peserta dalam kompetisi pemrograman tingkat universitas.</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer class="resume-footer">Generated by <a href="https://yamlresume.dev">YAMLResume</a></footer>
+</body>
+
+</html>

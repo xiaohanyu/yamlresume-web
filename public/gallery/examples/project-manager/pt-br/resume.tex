@@ -1,0 +1,245 @@
+\documentclass[a4paper, serif, 10pt]{moderncv}
+
+%% moderncv
+% style and color
+\moderncvstyle{banking}
+\moderncvcolor{black}
+
+%% page layout/margins
+\usepackage[top=2.5cm, bottom=2.5cm, left=1.5cm, right=1.5cm]{geometry}
+
+\nopagenumbers{}
+
+%% Babel config for Brazilian Portuguese language
+% ref:
+% - https://latex3.github.io/babel/guides/locale-portuguese.html
+\usepackage[brazilian]{babel}
+
+%% fontspec
+\usepackage{fontspec}
+
+\IfFontExistsTF{Linux Libertine}{
+  \setmainfont[Ligatures={TeX, Common}, Numbers=OldStyle]{Linux Libertine}
+}{}
+\IfFontExistsTF{Linux Libertine O}{
+  \setmainfont[Ligatures={TeX, Common}, Numbers=OldStyle]{Linux Libertine O}
+}{}
+
+%% CTeX
+% CJK support, used to show CJK characters in the resume
+%
+% - fontset=none: disable builtin fontset but instead set the CJK font manually
+% - heading=false: disable ctex heading
+% - punct=kaiming: use kaiming punctuations styles for CJK
+% - scheme=plain: use plain scheme, do not override \normalsize font size
+% - space=auto: space settings for CJK characters
+%
+% ref:
+% - http://ctan.mirrorcatalogs.com/language/chinese/ctex/ctex.pdf
+\usepackage[UTF8, heading=false, punct=kaiming, scheme=plain, space=auto]{ctex}
+
+\IfFontExistsTF{Noto Serif CJK SC}{
+  \setCJKmainfont{Noto Serif CJK SC}
+}{}
+\IfFontExistsTF{Noto Sans CJK SC}{
+  \setCJKsansfont{Noto Sans CJK SC}
+}{}
+
+%% line spacing
+\usepackage{setspace}
+\setstretch{1.125}
+
+%% URL styling - use normal text instead of monospace
+\urlstyle{same}
+
+% Auto-underline all links
+% Defer until \begin{document} so hyperref is already loaded
+\AtBeginDocument{%
+  \let\oldhref\href
+  \renewcommand{\href}[2]{\oldhref{#1}{\underline{#2}}}%
+}
+
+%% Patch \httplink and \httpslink to handle full URLs
+% The original moderncv macros always prepend http:// or https:// to URLs.
+% This causes issues when the URL already has a protocol (e.g., https://example.com)
+% resulting in malformed URLs like https://https://example.com.
+% This patch checks if the URL already contains "://" and uses it directly if so.
+% Note: We use \str_set:Nx (x-expansion) to expand macros like \@homepage first.
+\ExplSyntaxOn
+\str_new:N \g_yamlresume_url_str
+
+\RenewDocumentCommand{\httpslink}{O{}m}{
+  \str_set:Nx \g_yamlresume_url_str {#2}
+  \str_if_in:NnTF \g_yamlresume_url_str {://}
+    { \url{#2} }
+    { \url{https://#2} }
+}
+
+\RenewDocumentCommand{\httplink}{O{}m}{
+  \str_set:Nx \g_yamlresume_url_str {#2}
+  \str_if_in:NnTF \g_yamlresume_url_str {://}
+    { \url{#2} }
+    { \url{http://#2} }
+}
+\ExplSyntaxOff
+
+\name{Ana Beatriz Silva}{}
+\title{Gerente de Projetos Ágeis | PMP | Scrum Master}
+\phone[mobile]{+55 11 98765-4321}
+\email{ana.silva@email.com}
+\homepage{https://www.linkedin.com/in/anabeatrizsilva}
+
+\address{Rua das Flores, 123, São Paulo, SP, Brasil, 01234-567}{}{}
+
+\extrainfo{{\small \faLinkedin}\ \href{https://www.linkedin.com/in/anabeatrizsilva}{@anabeatrizsilva}}
+
+\begin{document}
+
+\maketitle
+
+\section{Informações Básicas}
+
+\cvline{}{\begin{itemize}
+\item Gerente de Projetos com mais de 8 anos de experiência liderando equipes multidisciplinares em projetos de tecnologia e transformação digital.
+\item Especialista em metodologias ágeis (Scrum, Kanban) e tradicionais (PMBOK), com certificação PMP e Scrum Master.
+\item Histórico comprovado de entregas dentro do prazo e orçamento, com foco em qualidade e satisfação do cliente.
+\item Habilidade em gestão de stakeholders, mitigação de riscos e otimização de processos.
+\end{itemize}}
+\section{Formação}
+
+\cventry{mar. de 2010–dez. de 2014}
+        {Bacharelado, Administração de Empresas, Nota: 8.5}
+        {Universidade de São Paulo}
+        {\url{https://www.usp.br}}
+        {}
+        {\begin{itemize}
+\item Formação sólida em administração com ênfase em gestão de projetos.
+\item Desenvolvimento de habilidades em liderança, comunicação e análise de dados.
+\end{itemize}
+\textbf{Cursos}: Gestão de Projetos, Planejamento Estratégico, Gestão de Pessoas, Finanças Corporativas, Marketing, Estatística}
+
+\cventry{fev. de 2016–dez. de 2017}
+        {Mestrado, Gestão de Projetos, Nota: 9.0}
+        {Fundação Getulio Vargas}
+        {\url{https://www.fgv.br}}
+        {}
+        {\begin{itemize}
+\item Especialização em gestão de projetos com foco em metodologias ágeis e tradicionais.
+\item Trabalho de conclusão sobre transformação ágil em empresas brasileiras.
+\end{itemize}
+\textbf{Cursos}: Gerenciamento de Projetos Complexos, Métodos Ágeis, Liderança de Equipes}
+\section{Experiência Profissional}
+
+\cventry{jan. de 2020–Atual}
+        {Gerente de Projetos Sênior}
+        {Tech Solutions Ltda}
+        {\url{https://www.techsolutions.com.br}}
+        {}
+        {\begin{itemize}
+\item Liderança de uma equipe de 15 pessoas no desenvolvimento de uma plataforma SaaS, resultando em um aumento de 30\% na receita anual.
+\item Implementação de metodologia Scrum, reduzindo o time-to-market em 25\%.
+\item Gestão de orçamento de R\$ 5 milhões, com entrega dentro do prazo e custo.
+\item Interface com stakeholders de alto nível, incluindo C-level, para alinhamento estratégico.
+\end{itemize}
+\textbf{Palavras-chave}: Scrum, SaaS, Gestão de Orçamento, Liderança}
+
+\cventry{mar. de 2017–dez. de 2019}
+        {Gerente de Projetos}
+        {Inova Consultoria}
+        {\url{https://www.inovaconsultoria.com.br}}
+        {}
+        {\begin{itemize}
+\item Gerenciamento de projetos de consultoria em transformação digital para clientes dos setores financeiro e varejo.
+\item Coordenação de equipes remotas e presenciais, garantindo a entrega de soluções personalizadas.
+\item Desenvolvimento de cronogramas, planos de comunicação e análise de riscos.
+\item Aumento da satisfação do cliente em 20\% através de melhorias nos processos de entrega.
+\end{itemize}
+\textbf{Palavras-chave}: Transformação Digital, Consultoria, Gestão de Riscos, Comunicação}
+
+\cventry{jan. de 2015–fev. de 2017}
+        {Analista de Projetos}
+        {Startup XYZ}
+        {\url{https://www.startupxyz.com.br}}
+        {}
+        {\begin{itemize}
+\item Suporte ao gerente de projetos na elaboração de cronogramas e acompanhamento de tarefas.
+\item Utilização de ferramentas como Jira e Trello para monitoramento de sprints.
+\item Participação em reuniões diárias e retrospectivas, contribuindo para a melhoria contínua.
+\item Auxílio na documentação de projetos e relatórios de status.
+\end{itemize}
+\textbf{Palavras-chave}: Jira, Trello, Ágil, Documentação}
+\section{Idiomas}
+
+\cvline{Português}{Nativo ou Bilíngue \hfill \textbf{Palavras-chave}: Língua materna}
+\cvline{Inglês}{Proficiência Profissional Fluente \hfill \textbf{Palavras-chave}: TOEFL 105}
+\cvline{Espanhol}{Proficiência Profissional Limitada}
+\section{Competências}
+
+\cvline{Gestão de Projetos}{Especialista \hfill \textbf{Palavras-chave}: PMBOK, Agile, Scrum, Kanban, Waterfall}
+\cvline{Liderança}{Avançado \hfill \textbf{Palavras-chave}: Team Management, Mentoring, Negotiation, Conflict Resolution}
+\cvline{Ferramentas}{Avançado \hfill \textbf{Palavras-chave}: Jira, Trello, MS Project, Asana, Slack}
+\cvline{Metodologias Ágeis}{Especialista \hfill \textbf{Palavras-chave}: Scrum, Kanban, SAFe, Lean}
+\section{Prêmios}
+
+\cventry{nov. de 2022}
+        {PMI São Paulo}
+        {Prêmio de Excelência em Gestão de Projetos}
+        {}
+        {}
+        {Reconhecimento pelo sucesso na entrega de um projeto crítico de transformação digital, superando as metas estabelecidas.}
+\section{Certificados}
+
+\cventry{mar. de 2018}
+        {Project Management Institute (PMI)}
+        {Project Management Professional (PMP)}
+        {\url{https://www.pmi.org/certifications/project-management-pmp}}
+        {}
+        {}
+
+\cventry{jun. de 2016}
+        {Scrum Alliance}
+        {Certified Scrum Master (CSM)}
+        {\url{https://www.scrumalliance.org/get-certified/scrum-master-track/certified-scrummaster}}
+        {}
+        {}
+\section{Publicações}
+
+\cventry{ago. de 2021}
+        {Transformação Ágil em Empresas Brasileiras}
+        {Revista Mundo PM}
+        {\url{https://www.mundopm.com.br/artigo/transformacao-agil}}
+        {}
+        {\begin{itemize}
+\item Artigo sobre os desafios e benefícios da adoção de metodologias ágeis em grandes empresas no Brasil.
+\item Análise de casos de sucesso e lições aprendidas.
+\end{itemize}}
+\section{Projetos}
+
+\cventry{jan. de 2021–dez. de 2021}
+        {Projeto de implementação de ERP para uma indústria de médio porte.}
+        {Implementação de Sistema ERP}
+        {\url{https://www.techsolutions.com.br/projetos/erp}}
+        {}
+        {\begin{itemize}
+\item Liderança da equipe de 10 pessoas na migração de sistemas legados para uma solução ERP integrada.
+\item Entrega dentro do prazo e orçamento, com treinamento de 200 usuários.
+\end{itemize}
+\textbf{Palavras-chave}: ERP, Gestão de Mudanças, Treinamento}
+\section{Interesses}
+
+\cvline{Corrida}{Maratona, Meia Maratona}
+\cvline{Leitura}{Literatura Brasileira, Gestão, Tecnologia}
+\section{Voluntariado}
+
+\cventry{jan. de 2018–dez. de 2020}
+        {Gerente de Projetos Voluntária}
+        {Projeto Crescer}
+        {\url{https://www.projetocrescer.org.br}}
+        {}
+        {\begin{itemize}
+\item Coordenação de projetos sociais voltados para educação de jovens em comunidades carentes.
+\item Gestão de equipe de 5 voluntários e captação de recursos.
+\item Implementação de metodologias ágeis para otimizar as entregas.
+\end{itemize}}
+    
+\end{document}

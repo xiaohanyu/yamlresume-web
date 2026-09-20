@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="generator" content="YAMLResume (https://yamlresume.dev)">
+
+
+  <title>Julia Schneider Resume</title>
+  <style>
+    :root {
+      --text-font-size: 16px;
+      --text-font-family: var(--text-default-font-family);
+      --line-height: 1.5;
+    }
+
+    /* Modified from: https://www.joshwcomeau.com/css/custom-css-reset/ */
+
+    /* 1. Use a more-intuitive box-sizing model */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    /* 2. Remove default margin */
+    *:not(dialog) {
+      margin: 0;
+    }
+
+    body {
+      /* 3. Improve text rendering */
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    :root {
+      --border-color: #d0d0d0;
+
+      /* text colors */
+      --text-color-primary: #000000;
+      --text-color-secondary: #333333;
+
+      /* spacing */
+      --spacing-xss: 2px;
+      --spacing-xs: 4px;
+      --spacing-sm: 8px;
+      --spacing-md: 12px;
+      --spacing-lg: 16px;
+      --spacing-xl: 24px;
+      --spacing-xxl: 40px;
+      --spacing-xxxl: 80px;
+
+      /* font sizes */
+      --font-size-xs: 0.8rem;
+      --font-size-sm: 0.9rem;
+      --font-size-md: 1rem;
+      --font-size-lg: 1.1rem;
+      --font-size-xl: 1.25rem;
+      --font-size-xxl: 2.5rem;
+
+      /* layout */
+      --page-max-width: 900px;
+
+      /* typography */
+      --text-default-font-family:
+        -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu,
+        Cantarell, sans-serif;
+    }
+
+    html {
+      font-size: var(--text-font-size);
+    }
+
+    body {
+      /* font & text */
+      color: var(--text-color-primary);
+      font-family: var(--text-font-family);
+      /* this variable is defined by `typography.fontSize` in resume html layout */
+      text-autospace: normal;
+
+      /* layout */
+      line-height: var(--line-height);
+      max-width: var(--page-max-width);
+      margin: 0 auto;
+      padding: var(--spacing-xxxl) var(--spacing-xxl) var(--spacing-xxl);
+    }
+
+    /* header */
+    .resume-header {
+      margin-bottom: var(--spacing-xxl);
+      text-align: center;
+    }
+
+    .resume-name {
+      font-size: var(--font-size-xxl);
+      font-weight: 600;
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .resume-headline {
+      font-size: var(--font-size-lg);
+      margin-bottom: var(--spacing-md);
+    }
+
+    /* contact info */
+    .resume-contact-info {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      column-gap: var(--spacing-lg);
+      row-gap: var(--spacing-xs);
+      margin-top: var(--spacing-sm);
+    }
+
+    .resume-contact-icon,
+    .resume-contact-label {
+      margin-right: var(--spacing-sm);
+      vertical-align: middle;
+    }
+
+    /* links: modern typographic style */
+    a {
+      color: var(--text-color-primary);
+      text-decoration: underline;
+      text-decoration-color: var(--border-color);
+      text-underline-offset: 3px;
+      text-decoration-thickness: 1px;
+      text-decoration-skip-ink: auto;
+      transition: text-decoration-color 0.2s;
+    }
+
+    a:hover {
+      text-decoration-color: var(--text-color-primary);
+    }
+
+    /* sections */
+    .resume-section {
+      margin-bottom: var(--spacing-xl);
+    }
+
+    .resume-section-title {
+      font-size: var(--font-size-xl);
+      font-weight: 500;
+      margin-bottom: var(--spacing-md);
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: var(--spacing-xs);
+    }
+
+    /* entries */
+    .resume-entry {
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .resume-entry:last-child {
+      margin-bottom: 0;
+    }
+
+    .resume-entry-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .resume-entry-title {
+      font-weight: 500;
+      margin-bottom: var(--spacing-xss);
+    }
+
+    .resume-entry-summary p,
+    .resume-summary-content p {
+      margin-bottom: var(--spacing-xs);
+    }
+
+    /* lists */
+    .resume-entry-summary ul,
+    .resume-entry-summary ol,
+    .resume-summary-content ul,
+    .resume-summary-content ol {
+      padding-left: var(--spacing-lg);
+      list-style-type: circle;
+    }
+
+    /* labeled lists (courses, keywords, etc.) */
+    .resume-labeled-list span {
+      font-weight: 500;
+    }
+
+    /* skills grid */
+    .resume-skill-item,
+    .resume-language-item {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .resume-skill-name,
+    .resume-language-name {
+      font-weight: 500;
+    }
+
+    .resume-skill-level,
+    .resume-language-fluency {
+      font-weight: 400;
+    }
+
+    /* mobile */
+    @media (max-width: 768px) {
+      body {
+        padding: var(--spacing-xl);
+      }
+
+      .resume-header {
+        margin-bottom: var(--spacing-xl);
+      }
+
+      .resume-contact-info {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .resume-entry-header {
+        flex-wrap: wrap;
+      }
+    }
+
+    /* footer */
+    .resume-footer {
+      margin-top: var(--spacing-xxl);
+      padding-top: var(--spacing-xl);
+      border-top: 1px solid var(--border-color);
+      font-size: var(--font-size-sm);
+      color: var(--text-color-secondary);
+    }
+
+    @media print {
+      .resume-footer {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="resume-header">
+    <h1 class="resume-name">Julia Schneider</h1>
+    <p class="resume-headline">Marketing Manager | Digitale Kampagnen &amp; Markenstrategie</p>
+    <div class="resume-contact-info">
+      <span class="resume-contact-item"><span class="resume-contact-icon">📧</span><a href="mailto:julia.schneider@example.de" class="resume-contact-link">julia.schneider@example.de</a></span>
+      <span class="resume-contact-item"><span class="resume-contact-icon">📞</span>+49 30 12345678</span>
+      <span class="resume-contact-item"><span class="resume-contact-icon">🔗</span><a href="https://www.juliaschneider-marketing.de" class="resume-contact-link">https://www.juliaschneider-marketing.de</a></span>
+    </div>
+    <div class="resume-contact-info resume-location-info">
+      <span class="resume-contact-item"><span class="resume-contact-icon">📍</span>Friedrichstraße 123, Berlin, Berlin, Deutschland, 10117</span>
+    </div>
+    <div class="resume-contact-info resume-profiles-info">
+      <span class="resume-contact-item"><span class="resume-contact-label">LinkedIn</span>: <a href="https://www.linkedin.com/in/julia-schneider-marketing" class="resume-contact-link">@julia-schneider-marketing</a></span>
+      <span class="resume-contact-item"><span class="resume-contact-label">Twitter</span>: <a href="https://twitter.com/julia_marketing" class="resume-contact-link">@julia_marketing</a></span>
+    </div>
+  </header>
+  <section class="resume-section" id="summary" data-section="summary">
+    <h2 class="resume-section-title">Basisinformationen</h2>
+    <div class="resume-section-content">
+      <div class="resume-summary-content">
+        <p>Marketing Manager mit über 8 Jahren Erfahrung in der Entwicklung und Umsetzung datengetriebener Marketingstrategien. Spezialisiert auf digitale Kampagnen, Markenführung und Lead-Generierung im B2B- und B2C-Umfeld.</p>
+        <ul>
+          <li>
+            <p>Erfolgreiche Steuerung von Marketingbudgets bis 1,5 Mio. €</p>
+          </li>
+          <li>
+            <p>Führung interdisziplinärer Teams von bis zu 8 Mitarbeitenden</p>
+          </li>
+          <li>
+            <p>Ausgeprägte analytische Fähigkeiten und Erfahrung mit CRM- und Marketing-Automation-Tools</p>
+          </li>
+          <li>
+            <p>Kreative Denkweise mit starkem Fokus auf messbare Ergebnisse und ROI</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="education" data-section="education">
+    <h2 class="resume-section-title">Ausbildung</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="education-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.fu-berlin.de">Freie Universität Berlin</a></div>
+            <div class="resume-entry-organization">Master, Betriebswirtschaftslehre mit Schwerpunkt Marketing, Punkte: 1,7</div>
+          </div>
+          <div class="resume-entry-date">Okt. 2014–Sept. 2016</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Vertiefung in marktorientierter Unternehmensführung und digitalen Geschäftsmodellen</p>
+            </li>
+            <li>
+              <p>Masterarbeit zum Thema &quot;Einfluss von Social Media auf die Markenloyalität&quot;</p>
+            </li>
+            <li>
+              <p>Praktika bei einer Werbeagentur und einem E-Commerce-Unternehmen</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Kurse</span>: Strategisches Marketing, Konsumentenverhalten, Marktforschung, Digitales Marketing, Internationales Management, Kommunikationspolitik</div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="work" data-section="work">
+    <h2 class="resume-section-title">Berufserfahrung</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="work-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.technova.de">TechNova GmbH</a></div>
+            <div class="resume-entry-organization">Marketing Manager</div>
+          </div>
+          <div class="resume-entry-date">Jan. 2020–Heute</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Entwicklung und Umsetzung der ganzheitlichen Marketingstrategie für den DACH-Raum</p>
+            </li>
+            <li>
+              <p>Steuerung eines jährlichen Budgets von 1,5 Mio. € über alle digitalen und Offline-Kanäle</p>
+            </li>
+            <li>
+              <p>Führung eines Teams von 6 Marketing-Spezialisten (Content, Performance, Design)</p>
+            </li>
+            <li>
+              <p>Einführung eines Marketing-Automation-Systems (HubSpot) und Steigerung der qualifizierten Leads um 45 %</p>
+            </li>
+            <li>
+              <p>Enge Zusammenarbeit mit Produktmanagement und Vertrieb zur Markteinführung neuer Produkte</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Schlüsselwörter</span>: Digitale Kampagnen, Markenstrategie, Lead-Generierung, Budgetplanung, Teamführung, Marketing-Automation</div>
+      </div>
+      <div class="resume-entry" id="work-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.greenwave.de">GreenWave AG</a></div>
+            <div class="resume-entry-organization">Senior Marketing Specialist</div>
+          </div>
+          <div class="resume-entry-date">März 2017–Dez. 2019</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Konzeption und Durchführung von Multi-Channel-Kampagnen zur Steigerung der Markenbekanntheit</p>
+            </li>
+            <li>
+              <p>Verantwortung für SEO/SEM-Maßnahmen und Steigerung des organischen Traffics um 60 %</p>
+            </li>
+            <li>
+              <p>Aufbau und Betreuung des Content-Marketings inkl. Blog, Whitepaper und Social Media</p>
+            </li>
+            <li>
+              <p>Analyse von Kampagnenkennzahlen und Ableitung von Optimierungsmaßnahmen</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Schlüsselwörter</span>: SEO, SEM, Content-Marketing, Social Media, Kampagnenmanagement</div>
+      </div>
+      <div class="resume-entry" id="work-3">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.startuplabs.de">StartUp Labs</a></div>
+            <div class="resume-entry-organization">Marketing Assistant</div>
+          </div>
+          <div class="resume-entry-date">Juli 2016–Feb. 2017</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Unterstützung bei der Erstellung von Marketingmaterialien und Präsentationen</p>
+            </li>
+            <li>
+              <p>Pflege der Social-Media-Kanäle und Erstellung von Grafiken mit Canva</p>
+            </li>
+            <li>
+              <p>Mithilfe bei der Organisation von Events und Messen</p>
+            </li>
+            <li>
+              <p>Erste Erfahrungen in der Auswertung von Google Analytics</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Schlüsselwörter</span>: Social Media, Event-Marketing, Content-Erstellung</div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="languages" data-section="languages">
+    <h2 class="resume-section-title">Sprachen</h2>
+    <div class="resume-section-content">
+      <div class="resume-languages-list">
+        <div class="resume-language-item">
+          <div class="resume-language-name">Deutsch<span class="resume-language-fluency">: Muttersprache oder zweisprachig</span></div>
+        </div>
+        <div class="resume-language-item">
+          <div class="resume-language-name">Englisch<span class="resume-language-fluency">: Verhandlungssichere Kenntnisse</span></div>
+          <div>
+            <div class="resume-labeled-list"><span>Schlüsselwörter</span>: C1, Business English</div>
+          </div>
+        </div>
+        <div class="resume-language-item">
+          <div class="resume-language-name">Französisch<span class="resume-language-fluency">: Gute Kenntnisse</span></div>
+          <div>
+            <div class="resume-labeled-list"><span>Schlüsselwörter</span>: A2</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="skills" data-section="skills">
+    <h2 class="resume-section-title">Fähigkeiten</h2>
+    <div class="resume-section-content">
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">Marketingstrategie<span class="resume-skill-level">: Experte</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>Schlüsselwörter</span>: Markenpositionierung, Zielgruppenanalyse, Wettbewerbsanalyse, Marketingplanung</div>
+        </div>
+      </div>
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">Digitale Kanäle<span class="resume-skill-level">: Erfahren</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>Schlüsselwörter</span>: Google Ads, Meta Ads, LinkedIn Ads, SEO, E-Mail-Marketing</div>
+        </div>
+      </div>
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">Analytik &amp; Tools<span class="resume-skill-level">: Erfahren</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>Schlüsselwörter</span>: Google Analytics 4, HubSpot, Salesforce, Tableau, A/B-Testing</div>
+        </div>
+      </div>
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">Führung &amp; Kommunikation<span class="resume-skill-level">: Erfahren</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>Schlüsselwörter</span>: Teamleitung, Projektmanagement, Stakeholder, Präsentation</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="awards" data-section="awards">
+    <h2 class="resume-section-title">Auszeichnungen</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="awards-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title">Marketing Manager des Jahres</div>
+            <div class="resume-entry-organization">Deutscher Marketing Verband</div>
+          </div>
+          <div class="resume-entry-date">Nov. 2022</div>
+        </div>
+        <div class="resume-entry-summary">
+          <p>Auszeichnung für herausragende Leistungen in der strategischen Marketingführung und nachweisbare Steigerung der Markenbekanntheit.</p>
+        </div>
+      </div>
+      <div class="resume-entry" id="awards-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title">Best Digital Campaign</div>
+            <div class="resume-entry-organization">European Marketing Awards</div>
+          </div>
+          <div class="resume-entry-date">Mai 2021</div>
+        </div>
+        <div class="resume-entry-summary">
+          <p>Prämierung der Kampagne &quot;TechNova Future&quot; für Kreativität, Innovation und messbaren ROI.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="certificates" data-section="certificates">
+    <h2 class="resume-section-title">Zertifikate</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="certificates-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://ads.google.com/certification">Google Ads Zertifizierung</a></div>
+            <div class="resume-entry-organization">Google</div>
+          </div>
+          <div class="resume-entry-date">März 2021</div>
+        </div>
+      </div>
+      <div class="resume-entry" id="certificates-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://academy.hubspot.com">HubSpot Inbound Marketing Zertifizierung</a></div>
+            <div class="resume-entry-organization">HubSpot Academy</div>
+          </div>
+          <div class="resume-entry-date">Juni 2020</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="publications" data-section="publications">
+    <h2 class="resume-section-title">Veröffentlichungen</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="publications-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.marketingjournal.de">Die Zukunft des datengetriebenen Marketings</a></div>
+            <div class="resume-entry-organization">Marketing Journal</div>
+          </div>
+          <div class="resume-entry-date">Apr. 2023</div>
+        </div>
+        <div class="resume-entry-summary">
+          <p>Fachartikel über die Bedeutung von Datenanalyse und KI für personalisierte Marketingstrategien.</p>
+        </div>
+      </div>
+      <div class="resume-entry" id="publications-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.springer.com">Nachhaltige Markenführung</a></div>
+            <div class="resume-entry-organization">Springer Gabler</div>
+          </div>
+          <div class="resume-entry-date">Sept. 2022</div>
+        </div>
+        <div class="resume-entry-summary">
+          <p>Buchkapitel über die Integration von Nachhaltigkeit in die Markenpositionierung.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="projects" data-section="projects">
+    <h2 class="resume-section-title">Projekte</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="projects-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.technova.de/markenrelaunch">Markenrelaunch TechNova</a></div>
+            <div class="resume-entry-description">Neupositionierung der Marke TechNova für den europäischen Markt</div>
+          </div>
+          <div class="resume-entry-date">Jan. 2021–Dez. 2021</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Entwicklung eines neuen Markenleitbilds und visuellen Erscheinungsbilds</p>
+            </li>
+            <li>
+              <p>Umsetzung einer integrierten Kampagne über Social Media, PR und Events</p>
+            </li>
+            <li>
+              <p>Steigerung der Markenbekanntheit um 35 % innerhalb von 12 Monaten</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Schlüsselwörter</span>: Markenrelaunch, Positionierung, Integrierte Kampagne</div>
+      </div>
+      <div class="resume-entry" id="projects-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.technova.de/lead-funnel">B2B Lead-Funnel</a></div>
+            <div class="resume-entry-description">Aufbau eines automatisierten B2B-Lead-Funnels</div>
+          </div>
+          <div class="resume-entry-date">März 2022–Nov. 2022</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Konzeption und Implementierung von Content-Angeboten für jede Funnel-Phase</p>
+            </li>
+            <li>
+              <p>Nutzung von LinkedIn Ads und E-Mail-Nurturing zur Lead-Qualifizierung</p>
+            </li>
+            <li>
+              <p>Erhöhung der Conversion-Rate um 28 %</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Schlüsselwörter</span>: Lead-Generierung, B2B, Marketing-Automation</div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="interests" data-section="interests">
+    <h2 class="resume-section-title">Interessen</h2>
+    <div class="resume-section-content">
+      <div class="resume-interest-item"><span class="resume-interest-name">Sport</span>: Laufen, Yoga, Radfahren</div>
+      <div class="resume-interest-item"><span class="resume-interest-name">Kultur</span>: Fotografie, Reisen, Literatur</div>
+    </div>
+  </section>
+  <section class="resume-section" id="volunteer" data-section="volunteer">
+    <h2 class="resume-section-title">Ehrenamtliche Tätigkeiten</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="volunteer-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.marketing-nonprofit.de">Marketing für Non-Profit e.V.</a></div>
+            <div class="resume-entry-organization">Ehrenamtliche Marketingleitung</div>
+          </div>
+          <div class="resume-entry-date">Jan. 2018–Dez. 2020</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Entwicklung und Umsetzung der Online-Marketingstrategie für ein soziales Projekt</p>
+            </li>
+            <li>
+              <p>Betreuung der Website und Social-Media-Kanäle</p>
+            </li>
+            <li>
+              <p>Organisation von Spendenkampagnen mit einem Spendenvolumen von über 50.000 €</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer class="resume-footer">Generated by <a href="https://yamlresume.dev">YAMLResume</a></footer>
+</body>
+
+</html>

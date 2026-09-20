@@ -1,0 +1,294 @@
+\documentclass[a4paper, serif, 10pt]{moderncv}
+
+%% moderncv
+% style and color
+\moderncvstyle{banking}
+\moderncvcolor{black}
+
+%% page layout/margins
+\usepackage[top=2.5cm, bottom=2.5cm, left=1.5cm, right=1.5cm]{geometry}
+
+\nopagenumbers{}
+
+%% Babel config for English language
+\usepackage[english]{babel}
+
+%% fontspec
+\usepackage{fontspec}
+
+\IfFontExistsTF{Linux Libertine}{
+  \setmainfont[Ligatures={TeX, Common}, Numbers=OldStyle]{Linux Libertine}
+}{}
+\IfFontExistsTF{Linux Libertine O}{
+  \setmainfont[Ligatures={TeX, Common}, Numbers=OldStyle]{Linux Libertine O}
+}{}
+
+%% CTeX
+% CJK support, used to show CJK characters in the resume
+%
+% - fontset=none: disable builtin fontset but instead set the CJK font manually
+% - heading=false: disable ctex heading
+% - punct=kaiming: use kaiming punctuations styles for CJK
+% - scheme=plain: use plain scheme, do not override \normalsize font size
+% - space=auto: space settings for CJK characters
+%
+% ref:
+% - http://ctan.mirrorcatalogs.com/language/chinese/ctex/ctex.pdf
+\usepackage[UTF8, heading=false, punct=kaiming, scheme=plain, space=auto]{ctex}
+
+\IfFontExistsTF{Noto Serif CJK SC}{
+  \setCJKmainfont{Noto Serif CJK SC}
+}{}
+\IfFontExistsTF{Noto Sans CJK SC}{
+  \setCJKsansfont{Noto Sans CJK SC}
+}{}
+
+%% line spacing
+\usepackage{setspace}
+\setstretch{1.125}
+
+%% URL styling - use normal text instead of monospace
+\urlstyle{same}
+
+% Auto-underline all links
+% Defer until \begin{document} so hyperref is already loaded
+\AtBeginDocument{%
+  \let\oldhref\href
+  \renewcommand{\href}[2]{\oldhref{#1}{\underline{#2}}}%
+}
+
+%% Patch \httplink and \httpslink to handle full URLs
+% The original moderncv macros always prepend http:// or https:// to URLs.
+% This causes issues when the URL already has a protocol (e.g., https://example.com)
+% resulting in malformed URLs like https://https://example.com.
+% This patch checks if the URL already contains "://" and uses it directly if so.
+% Note: We use \str_set:Nx (x-expansion) to expand macros like \@homepage first.
+\ExplSyntaxOn
+\str_new:N \g_yamlresume_url_str
+
+\RenewDocumentCommand{\httpslink}{O{}m}{
+  \str_set:Nx \g_yamlresume_url_str {#2}
+  \str_if_in:NnTF \g_yamlresume_url_str {://}
+    { \url{#2} }
+    { \url{https://#2} }
+}
+
+\RenewDocumentCommand{\httplink}{O{}m}{
+  \str_set:Nx \g_yamlresume_url_str {#2}
+  \str_if_in:NnTF \g_yamlresume_url_str {://}
+    { \url{#2} }
+    { \url{http://#2} }
+}
+\ExplSyntaxOff
+
+\name{Jordan Ellis}{}
+\title{Senior Marketing Manager | Brand Strategist | Growth Marketing}
+\phone[mobile]{(415) 555-0138}
+\email{jordan.ellis@marketingpro.com}
+\homepage{https://www.jordanellis.com}
+
+\address{482 Market Street, Suite 900, San Francisco, California, United States, 94105}{}{}
+
+\extrainfo{{\small \faLinkedin}\ \href{https://www.linkedin.com/in/jordanellis}{@jordanellis} {} {} {} • {} {} {} 
+{\small \faTwitter}\ \href{https://twitter.com/jordanellis}{@jordanellis} {} {} {} • {} {} {} 
+{\small \faMedium}\ \href{https://medium.com/@jordanellis}{@jordanellis}}
+
+\begin{document}
+
+\maketitle
+
+\section{Basics}
+
+\cvline{}{\begin{itemize}
+\item Integrated marketing leader with 8+ years of experience developing and executing data-driven campaigns across digital, social, and traditional channels.
+\item Proven track record of increasing brand awareness, generating qualified leads, and driving revenue growth for B2B and B2C companies.
+\item Skilled in building and mentoring high-performing marketing teams, managing budgets up to \$2M, and collaborating with cross-functional stakeholders.
+\item Adept at leveraging analytics, CRM, and marketing automation tools to optimize performance and inform strategic decisions.
+\end{itemize}}
+\section{Education}
+
+\cventry{Sep 2016–Jun 2018}
+        {Master, Integrated Marketing Communications, Score: 3.95}
+        {Northwestern University}
+        {\url{https://www.northwestern.edu/}}
+        {}
+        {\begin{itemize}
+\item Graduated with distinction and received the Dean's Scholarship for academic excellence.
+\item Completed capstone project on omnichannel customer journey mapping for a national retail brand.
+\end{itemize}
+\textbf{Courses}: Consumer Insight and Analytics, Brand Communication, Digital Marketing Strategy, Marketing Finance, Strategic Communications, Media Planning}
+
+\cventry{Aug 2012–May 2016}
+        {Bachelor, Marketing and Business Administration, Score: 3.8}
+        {University of California, Berkeley}
+        {\url{https://www.berkeley.edu/}}
+        {}
+        {\begin{itemize}
+\item Served as Marketing Director for the student business association, growing membership by 30\%.
+\item Completed internship with a local startup, developing social media and content marketing playbooks.
+\end{itemize}
+\textbf{Courses}: Principles of Marketing, Consumer Behavior, Business Analytics, Microeconomics, Statistics, Organizational Behavior}
+\section{Work}
+
+\cventry{Jan 2022–Present}
+        {Senior Marketing Manager}
+        {Brightwave Digital}
+        {\url{https://www.brightwavedigital.com}}
+        {}
+        {\begin{itemize}
+\item Lead a team of 6 marketing professionals to plan and execute integrated campaigns for 12+ B2B and B2C clients.
+\item Developed and managed annual marketing budgets exceeding \$2M, consistently delivering ROI above 300\%.
+\item Spearheaded a brand refresh and website redesign that increased organic traffic by 65\% and lead conversion by 28\%.
+\item Implemented marketing automation workflows in HubSpot, reducing manual tasks by 40\% and improving lead nurturing.
+\item Built a reporting framework using Google Analytics, Tableau, and Salesforce to track KPIs and present insights to C-suite.
+\end{itemize}
+\textbf{Keywords}: Integrated Marketing, Budget Management, Marketing Automation, Team Leadership, ROI Optimization}
+
+\cventry{Mar 2019–Dec 2021}
+        {Marketing Manager}
+        {Northstar Consumer Goods}
+        {\url{https://www.northstarconsumer.com}}
+        {}
+        {\begin{itemize}
+\item Managed product marketing for a portfolio of 15+ consumer packaged goods, generating \$18M in annual revenue.
+\item Launched 8 new products from concept to market, achieving average first-year sales targets of 115\%.
+\item Led consumer research and segmentation studies to inform positioning, messaging, and media mix.
+\item Partnered with sales and e-commerce teams to develop promotional calendars and retail activation programs.
+\item Grew social media following by 120\% through influencer partnerships and user-generated content campaigns.
+\end{itemize}
+\textbf{Keywords}: Product Marketing, Consumer Research, Go-to-Market, E-commerce, Influencer Marketing}
+
+\cventry{Jun 2018–Feb 2019}
+        {Marketing Specialist}
+        {Spark \& Co.}
+        {\url{https://www.sparkandco.com}}
+        {}
+        {\begin{itemize}
+\item Executed email marketing campaigns with open rates 22\% above industry benchmarks.
+\item Assisted in the development of content marketing strategy, producing blog posts, whitepapers, and case studies.
+\item Coordinated trade show and event marketing logistics, generating 500+ qualified leads.
+\item Analyzed campaign performance and prepared monthly reports for senior management.
+\end{itemize}
+\textbf{Keywords}: Email Marketing, Content Marketing, Event Marketing, Analytics}
+\section{Languages}
+
+\cvline{English}{Native or Bilingual Proficiency \hfill \textbf{Keywords}: TOEFL 115, Business Writing}
+\cvline{Spanish}{Full Professional Proficiency \hfill \textbf{Keywords}: DELE B2}
+\cvline{French}{Limited Working Proficiency \hfill \textbf{Keywords}: Conversational}
+\section{Skills}
+
+\cvline{Marketing Strategy}{Expert \hfill \textbf{Keywords}: Brand Positioning, Go-to-Market, Competitive Analysis, Customer Segmentation}
+\cvline{Digital Marketing}{Advanced \hfill \textbf{Keywords}: SEO, SEM, PPC, Email Marketing, Content Marketing}
+\cvline{Analytics \& CRM}{Advanced \hfill \textbf{Keywords}: Google Analytics, HubSpot, Salesforce, Tableau, A/B Testing}
+\cvline{Social Media}{Expert \hfill \textbf{Keywords}: LinkedIn, Instagram, TikTok, Hootsuite, Sprout Social}
+\cvline{Project Management}{Advanced \hfill \textbf{Keywords}: Agile, Asana, Jira, Budgeting, Cross-functional}
+\section{Awards}
+
+\cventry{Nov 2023}
+        {Brightwave Digital}
+        {Marketer of the Year}
+        {}
+        {}
+        {Recognized for leading an integrated campaign that increased lead generation by 42\% and exceeded revenue targets by 18\%.}
+
+\cventry{Apr 2021}
+        {Northstar Consumer Goods}
+        {Excellence in Brand Strategy}
+        {}
+        {}
+        {Awarded for successful rebranding initiative across 5 product lines, resulting in a 25\% increase in brand recall.}
+\section{Certificates}
+
+\cventry{Jan 2023}
+        {Google}
+        {Google Analytics Certified Professional}
+        {\url{https://skillshop.exceedlms.com/student/catalog}}
+        {}
+        {}
+
+\cventry{Mar 2022}
+        {HubSpot Academy}
+        {HubSpot Inbound Marketing Certification}
+        {\url{https://academy.hubspot.com/courses/inbound-marketing}}
+        {}
+        {}
+
+\cventry{Jul 2021}
+        {Digital Marketing Institute}
+        {Certified Digital Marketing Professional}
+        {\url{https://digitalmarketinginstitute.com/certifications}}
+        {}
+        {}
+\section{Publications}
+
+\cventry{Sep 2022}
+        {The Future of Omnichannel Retail Marketing}
+        {Journal of Digital Marketing}
+        {\url{https://www.journalofdigitalmarketing.com/articles/omnichannel-retail}}
+        {}
+        {\begin{itemize}
+\item Examines how brands can create seamless customer experiences across online and offline channels.
+\item Provides a framework for measuring omnichannel campaign effectiveness and attribution.
+\end{itemize}}
+
+\cventry{Feb 2021}
+        {Data-Driven Personalization in B2B Marketing}
+        {MarketingProfs}
+        {\url{https://www.marketingprofs.com/articles/data-driven-personalization-b2b}}
+        {}
+        {\begin{itemize}
+\item Explores practical applications of predictive analytics for lead scoring and segmentation.
+\item Includes a case study on increasing conversion rates through personalized content.
+\end{itemize}}
+\section{Projects}
+
+\cventry{Mar 2023–Sep 2023}
+        {Integrated launch campaign for an eco-friendly home care line.}
+        {GreenLeaf Product Launch}
+        {\url{https://www.brightwavedigital.com/case-studies/greenleaf}}
+        {}
+        {\begin{itemize}
+\item Led a cross-functional team of 8 to plan and execute a multi-channel launch.
+\item Achieved 150\% of first-quarter sales target and a 25\% increase in brand awareness.
+\end{itemize}
+\textbf{Keywords}: Product Launch, Integrated Campaign, Sustainability}
+
+\cventry{Jun 2020–Nov 2020}
+        {Redesigned loyalty program to improve retention and engagement.}
+        {Customer Loyalty Revamp}
+        {\url{https://www.northstarconsumer.com/case-studies/loyalty}}
+        {}
+        {\begin{itemize}
+\item Implemented tiered rewards and personalized offers based on purchase history.
+\item Increased repeat purchase rate by 18\% and member engagement by 32\%.
+\end{itemize}
+\textbf{Keywords}: Retention, CRM, Personalization}
+\section{Interests}
+
+\cvline{Professional Development}{Marketing Podcasts, Industry Conferences, Case Studies}
+\cvline{Outdoor Activities}{Hiking, Cycling, Photography}
+\cvline{Community}{Mentoring, Nonprofit Marketing, Volunteering}
+\section{Volunteer}
+
+\cventry{Jan 2019–Dec 2023}
+        {Marketing Volunteer}
+        {San Francisco Food Bank}
+        {\url{https://www.sffoodbank.org/}}
+        {}
+        {\begin{itemize}
+\item Developed a social media content calendar to raise awareness for hunger relief.
+\item Helped organize the annual fundraising gala that exceeded the donation goal by 20\%.
+\end{itemize}}
+    
+
+\cventry{Sep 2020–Present}
+        {Workshop Mentor}
+        {Girls Who Code}
+        {\url{https://girlswhocode.com/}}
+        {}
+        {\begin{itemize}
+\item Mentored high school students in digital marketing and personal branding workshops.
+\item Coordinated guest speaker sessions with local marketing professionals.
+\end{itemize}}
+    
+\end{document}

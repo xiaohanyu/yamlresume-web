@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="generator" content="YAMLResume (https://yamlresume.dev)">
+
+
+  <title>Julia Becker Resume</title>
+  <style>
+    :root {
+      --text-font-size: 16px;
+      --text-font-family: var(--text-default-font-family);
+      --line-height: 1.5;
+    }
+
+    /* Modified from: https://www.joshwcomeau.com/css/custom-css-reset/ */
+
+    /* 1. Use a more-intuitive box-sizing model */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    /* 2. Remove default margin */
+    *:not(dialog) {
+      margin: 0;
+    }
+
+    body {
+      /* 3. Improve text rendering */
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    :root {
+      --border-color: #d0d0d0;
+
+      /* text colors */
+      --text-color-primary: #000000;
+      --text-color-secondary: #333333;
+
+      /* spacing */
+      --spacing-xss: 2px;
+      --spacing-xs: 4px;
+      --spacing-sm: 8px;
+      --spacing-md: 12px;
+      --spacing-lg: 16px;
+      --spacing-xl: 24px;
+      --spacing-xxl: 40px;
+      --spacing-xxxl: 80px;
+
+      /* font sizes */
+      --font-size-xs: 0.8rem;
+      --font-size-sm: 0.9rem;
+      --font-size-md: 1rem;
+      --font-size-lg: 1.1rem;
+      --font-size-xl: 1.25rem;
+      --font-size-xxl: 2.5rem;
+
+      /* layout */
+      --page-max-width: 900px;
+
+      /* typography */
+      --text-default-font-family:
+        -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu,
+        Cantarell, sans-serif;
+    }
+
+    html {
+      font-size: var(--text-font-size);
+    }
+
+    body {
+      /* font & text */
+      color: var(--text-color-primary);
+      font-family: var(--text-font-family);
+      /* this variable is defined by `typography.fontSize` in resume html layout */
+      text-autospace: normal;
+
+      /* layout */
+      line-height: var(--line-height);
+      max-width: var(--page-max-width);
+      margin: 0 auto;
+      padding: var(--spacing-xxxl) var(--spacing-xxl) var(--spacing-xxl);
+    }
+
+    /* header */
+    .resume-header {
+      margin-bottom: var(--spacing-xxl);
+      text-align: center;
+    }
+
+    .resume-name {
+      font-size: var(--font-size-xxl);
+      font-weight: 600;
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .resume-headline {
+      font-size: var(--font-size-lg);
+      margin-bottom: var(--spacing-md);
+    }
+
+    /* contact info */
+    .resume-contact-info {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      column-gap: var(--spacing-lg);
+      row-gap: var(--spacing-xs);
+      margin-top: var(--spacing-sm);
+    }
+
+    .resume-contact-icon,
+    .resume-contact-label {
+      margin-right: var(--spacing-sm);
+      vertical-align: middle;
+    }
+
+    /* links: modern typographic style */
+    a {
+      color: var(--text-color-primary);
+      text-decoration: underline;
+      text-decoration-color: var(--border-color);
+      text-underline-offset: 3px;
+      text-decoration-thickness: 1px;
+      text-decoration-skip-ink: auto;
+      transition: text-decoration-color 0.2s;
+    }
+
+    a:hover {
+      text-decoration-color: var(--text-color-primary);
+    }
+
+    /* sections */
+    .resume-section {
+      margin-bottom: var(--spacing-xl);
+    }
+
+    .resume-section-title {
+      font-size: var(--font-size-xl);
+      font-weight: 500;
+      margin-bottom: var(--spacing-md);
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: var(--spacing-xs);
+    }
+
+    /* entries */
+    .resume-entry {
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .resume-entry:last-child {
+      margin-bottom: 0;
+    }
+
+    .resume-entry-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .resume-entry-title {
+      font-weight: 500;
+      margin-bottom: var(--spacing-xss);
+    }
+
+    .resume-entry-summary p,
+    .resume-summary-content p {
+      margin-bottom: var(--spacing-xs);
+    }
+
+    /* lists */
+    .resume-entry-summary ul,
+    .resume-entry-summary ol,
+    .resume-summary-content ul,
+    .resume-summary-content ol {
+      padding-left: var(--spacing-lg);
+      list-style-type: circle;
+    }
+
+    /* labeled lists (courses, keywords, etc.) */
+    .resume-labeled-list span {
+      font-weight: 500;
+    }
+
+    /* skills grid */
+    .resume-skill-item,
+    .resume-language-item {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .resume-skill-name,
+    .resume-language-name {
+      font-weight: 500;
+    }
+
+    .resume-skill-level,
+    .resume-language-fluency {
+      font-weight: 400;
+    }
+
+    /* mobile */
+    @media (max-width: 768px) {
+      body {
+        padding: var(--spacing-xl);
+      }
+
+      .resume-header {
+        margin-bottom: var(--spacing-xl);
+      }
+
+      .resume-contact-info {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .resume-entry-header {
+        flex-wrap: wrap;
+      }
+    }
+
+    /* footer */
+    .resume-footer {
+      margin-top: var(--spacing-xxl);
+      padding-top: var(--spacing-xl);
+      border-top: 1px solid var(--border-color);
+      font-size: var(--font-size-sm);
+      color: var(--text-color-secondary);
+    }
+
+    @media print {
+      .resume-footer {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="resume-header">
+    <h1 class="resume-name">Julia Becker</h1>
+    <p class="resume-headline">Customer Success Manager mit Fokus auf Kundenbindung und SaaS-Wachstum</p>
+    <div class="resume-contact-info">
+      <span class="resume-contact-item"><span class="resume-contact-icon">📧</span><a href="mailto:julia.becker@example.de" class="resume-contact-link">julia.becker@example.de</a></span>
+      <span class="resume-contact-item"><span class="resume-contact-icon">📞</span>+49 30 12345678</span>
+      <span class="resume-contact-item"><span class="resume-contact-icon">🔗</span><a href="https://www.juliabecker.de" class="resume-contact-link">https://www.juliabecker.de</a></span>
+    </div>
+    <div class="resume-contact-info resume-location-info">
+      <span class="resume-contact-item"><span class="resume-contact-icon">📍</span>Friedrichstraße 123, Berlin, Berlin, Deutschland, 10117</span>
+    </div>
+    <div class="resume-contact-info resume-profiles-info">
+      <span class="resume-contact-item"><span class="resume-contact-label">LinkedIn</span>: <a href="https://www.linkedin.com/in/julia-becker-csm" class="resume-contact-link">@julia-becker-csm</a></span>
+      <span class="resume-contact-item"><span class="resume-contact-label">GitHub</span>: <a href="https://github.com/juliabecker" class="resume-contact-link">@juliabecker</a></span>
+    </div>
+  </header>
+  <section class="resume-section" id="summary" data-section="summary">
+    <h2 class="resume-section-title">Basisinformationen</h2>
+    <div class="resume-section-content">
+      <div class="resume-summary-content">
+        <p>Customer Success Manager mit über sechs Jahren Erfahrung in der Betreuung von B2B-Kunden im SaaS-Umfeld. Ich verbinde Datenanalyse mit empathischer Kommunikation, um Kundenziele zu erreichen und nachhaltige Geschäftsbeziehungen aufzubauen.</p>
+        <ul>
+          <li>
+            <p>Verantwortung für ein Portfolio mit einem jährlichen Umsatzvolumen von über 4 Mio. EUR</p>
+          </li>
+          <li>
+            <p>Erfolgreiche Steigerung der Kundenbindung um 18 % durch proaktives Onboarding und QBRs</p>
+          </li>
+          <li>
+            <p>Ausgeprägte Stärke in Eskalationsmanagement, Stakeholder-Kommunikation und vertraglichen Verhandlungen</p>
+          </li>
+          <li>
+            <p>Technische Affinität zu CRM-, Ticketing- und Customer-Success-Plattformen wie Salesforce, Gainsight und Zendesk</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="education" data-section="education">
+    <h2 class="resume-section-title">Ausbildung</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="education-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.tu.berlin">Technische Universität Berlin</a></div>
+            <div class="resume-entry-organization">Master, Wirtschaftsingenieurwesen, Punkte: 1,7</div>
+          </div>
+          <div class="resume-entry-date">Okt. 2014–Sept. 2016</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Schwerpunkt auf digitalen Geschäftsmodellen und kundenorientierter Unternehmensführung</p>
+            </li>
+            <li>
+              <p>Masterarbeit über Erfolgsfaktoren von Customer-Success-Organisationen im B2B-SaaS</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Kurse</span>: Strategisches Management, Marketing und Vertrieb, Datenanalyse für Entscheider, Projektmanagement, Verhandlungsführung, Service Design, Business Process Management, Customer Relationship Management</div>
+      </div>
+      <div class="resume-entry" id="education-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.hu-berlin.de">Humboldt-Universität zu Berlin</a></div>
+            <div class="resume-entry-organization">Bachelor, Betriebswirtschaftslehre, Punkte: 2,0</div>
+          </div>
+          <div class="resume-entry-date">Okt. 2011–Sept. 2014</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Fundierte betriebswirtschaftliche Grundlagen mit Fokus auf Marketing und Organisation</p>
+            </li>
+            <li>
+              <p>Praxisprojekt zur Kundenbindung im Einzelhandel</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Kurse</span>: Allgemeine Betriebswirtschaftslehre, Mikroökonomie, Statistik, Marketing, Personal und Organisation, Wirtschaftsinformatik</div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="work" data-section="work">
+    <h2 class="resume-section-title">Berufserfahrung</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="work-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.cloudbridge.de">CloudBridge GmbH</a></div>
+            <div class="resume-entry-organization">Senior Customer Success Manager</div>
+          </div>
+          <div class="resume-entry-date">Jan. 2022–Heute</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Betreuung eines Portfolios von 25 strategischen Enterprise-Kunden mit einem ARR von 5,2 Mio. EUR</p>
+            </li>
+            <li>
+              <p>Entwicklung und Umsetzung von Customer-Success-Plänen zur Steigerung der Produktadoption und Kundenzufriedenheit (NPS +22)</p>
+            </li>
+            <li>
+              <p>Durchführung von vierteljährlichen Business Reviews (QBRs) mit C-Level-Stakeholdern</p>
+            </li>
+            <li>
+              <p>Identifikation von Upsell- und Cross-Sell-Potenzialen in enger Zusammenarbeit mit dem Vertrieb</p>
+            </li>
+            <li>
+              <p>Proaktives Churn-Management durch Risikoanalyse und Eskalationspläne</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Schlüsselwörter</span>: Kundenbindung, Onboarding, QBR, Upselling, Churn-Management, Salesforce, Gainsight</div>
+      </div>
+      <div class="resume-entry" id="work-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.dataflow.de">DataFlow AG</a></div>
+            <div class="resume-entry-organization">Customer Success Manager</div>
+          </div>
+          <div class="resume-entry-date">März 2019–Dez. 2021</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Verantwortung für 60 mittelständische Kunden im DACH-Raum</p>
+            </li>
+            <li>
+              <p>Aufbau eines standardisierten Onboarding-Prozesses, der die Time-to-Value um 30 % verkürzte</p>
+            </li>
+            <li>
+              <p>Analyse von Nutzungsdaten zur Ableitung konkreter Handlungsempfehlungen</p>
+            </li>
+            <li>
+              <p>Enge Zusammenarbeit mit Product und Support zur Weitergabe von Kundenfeedback</p>
+            </li>
+            <li>
+              <p>Erstellung von Health-Score-Modellen zur Früherkennung von Abwanderungsrisiken</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Schlüsselwörter</span>: SaaS, Onboarding, Health Score, Datenanalyse, Zendesk</div>
+      </div>
+      <div class="resume-entry" id="work-3">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.nordwind-solutions.de">Nordwind Solutions</a></div>
+            <div class="resume-entry-organization">Junior Customer Success Manager</div>
+          </div>
+          <div class="resume-entry-date">Juli 2017–Feb. 2019</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>First-Level-Support für 120 Geschäftskunden per Telefon, E-Mail und Chat</p>
+            </li>
+            <li>
+              <p>Dokumentation von Kundenanfragen und Pflege der Wissensdatenbank</p>
+            </li>
+            <li>
+              <p>Vorbereitung von Reports und Präsentationen für das Customer-Success-Team</p>
+            </li>
+            <li>
+              <p>Mitwirkung an Retentionskampagnen und Kundenzufriedenheitsumfragen</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Schlüsselwörter</span>: Kundenservice, CRM, Reporting, Retention, Kommunikation</div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="languages" data-section="languages">
+    <h2 class="resume-section-title">Sprachen</h2>
+    <div class="resume-section-content">
+      <div class="resume-languages-list">
+        <div class="resume-language-item">
+          <div class="resume-language-name">Deutsch<span class="resume-language-fluency">: Muttersprache oder zweisprachig</span></div>
+          <div>
+            <div class="resume-labeled-list"><span>Schlüsselwörter</span>: Muttersprache</div>
+          </div>
+        </div>
+        <div class="resume-language-item">
+          <div class="resume-language-name">Englisch<span class="resume-language-fluency">: Verhandlungssichere Kenntnisse</span></div>
+          <div>
+            <div class="resume-labeled-list"><span>Schlüsselwörter</span>: TOEFL 110, Verhandlungssicher</div>
+          </div>
+        </div>
+        <div class="resume-language-item">
+          <div class="resume-language-name">Spanisch<span class="resume-language-fluency">: Gute Kenntnisse</span></div>
+          <div>
+            <div class="resume-labeled-list"><span>Schlüsselwörter</span>: Grundkenntnisse</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="skills" data-section="skills">
+    <h2 class="resume-section-title">Fähigkeiten</h2>
+    <div class="resume-section-content">
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">Customer Success Management<span class="resume-skill-level">: Experte</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>Schlüsselwörter</span>: Kundenbindung, Onboarding, QBR, Churn-Management, Upselling</div>
+        </div>
+      </div>
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">CRM und Tools<span class="resume-skill-level">: Erfahren</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>Schlüsselwörter</span>: Salesforce, Gainsight, Zendesk, Jira, Confluence, Tableau</div>
+        </div>
+      </div>
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">Kommunikation und Führung<span class="resume-skill-level">: Erfahren</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>Schlüsselwörter</span>: Stakeholder-Management, Eskalationsmanagement, Verhandlung, Präsentation, Mentoring</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="awards" data-section="awards">
+    <h2 class="resume-section-title">Auszeichnungen</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="awards-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title">Customer-Success-Manager des Jahres</div>
+            <div class="resume-entry-organization">CloudBridge GmbH</div>
+          </div>
+          <div class="resume-entry-date">Nov. 2023</div>
+        </div>
+        <div class="resume-entry-summary">
+          <p>Auszeichnung für herausragende Leistungen bei der Steigerung der Kundenbindung und der Entwicklung innovativer Success-Programme.</p>
+        </div>
+      </div>
+      <div class="resume-entry" id="awards-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title">Beste Teamleistung</div>
+            <div class="resume-entry-organization">DataFlow AG</div>
+          </div>
+          <div class="resume-entry-date">Dez. 2020</div>
+        </div>
+        <div class="resume-entry-summary">
+          <p>Anerkennung für kollaborative Zusammenarbeit und Unterstützung kollegenübergreifender Projekte.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="certificates" data-section="certificates">
+    <h2 class="resume-section-title">Zertifikate</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="certificates-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.successcoaching.com/certification">Certified Customer Success Manager (CCSM)</a></div>
+            <div class="resume-entry-organization">SuccessCOACHING</div>
+          </div>
+          <div class="resume-entry-date">Juni 2021</div>
+        </div>
+      </div>
+      <div class="resume-entry" id="certificates-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://trailhead.salesforce.com/credentials/administrator">Salesforce Certified Administrator</a></div>
+            <div class="resume-entry-organization">Salesforce</div>
+          </div>
+          <div class="resume-entry-date">Feb. 2020</div>
+        </div>
+      </div>
+      <div class="resume-entry" id="certificates-3">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.scrum.org/professional-scrum-master-i-certification">Professional Scrum Master I</a></div>
+            <div class="resume-entry-organization">Scrum.org</div>
+          </div>
+          <div class="resume-entry-date">Sept. 2022</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="publications" data-section="publications">
+    <h2 class="resume-section-title">Veröffentlichungen</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="publications-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.example.com/publikation/kundenbindung-saas">Kundenbindung im digitalen Zeitalter - Strategien für SaaS-Unternehmen</a></div>
+            <div class="resume-entry-organization">Journal für Customer Management</div>
+          </div>
+          <div class="resume-entry-date">März 2022</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Analyse proaktiver Customer-Success-Ansätze zur Reduzierung von Churn</p>
+            </li>
+            <li>
+              <p>Fallstudien aus dem B2B-SaaS-Markt</p>
+            </li>
+            <li>
+              <p>Handlungsempfehlungen für Onboarding und QBRs</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="projects" data-section="projects">
+    <h2 class="resume-section-title">Projekte</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="projects-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.cloudbridge.de/kundenportal">Kundenportal Relaunch</a></div>
+            <div class="resume-entry-description">Neugestaltung eines Self-Service-Portals zur Verbesserung der Kundenerfahrung</div>
+          </div>
+          <div class="resume-entry-date">Jan. 2023–Juni 2023</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Leitung eines cross-funktionalen Teams aus Product, Design und Support</p>
+            </li>
+            <li>
+              <p>Durchführung von Kundeninterviews und Usability-Tests</p>
+            </li>
+            <li>
+              <p>Steigerung der Portalnutzung um 45 % innerhalb von drei Monaten</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Schlüsselwörter</span>: Customer Experience, Self-Service, Produktmanagement</div>
+      </div>
+      <div class="resume-entry" id="projects-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.dataflow.de/health-score">Health-Score-Modell</a></div>
+            <div class="resume-entry-description">Entwicklung eines datenbasierten Frühwarnsystems zur Churn-Prävention</div>
+          </div>
+          <div class="resume-entry-date">März 2020–Nov. 2020</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Integration von Nutzungs-, Support- und Umfragedaten</p>
+            </li>
+            <li>
+              <p>Definition von Schwellenwerten und automatisierten Warnmeldungen</p>
+            </li>
+            <li>
+              <p>Reduzierung der Churn-Rate um 12 % im ersten Jahr</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Schlüsselwörter</span>: Datenanalyse, Churn, Tableau</div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="interests" data-section="interests">
+    <h2 class="resume-section-title">Interessen</h2>
+    <div class="resume-section-content">
+      <div class="resume-interest-item"><span class="resume-interest-name">Sport</span>: Laufen, Yoga, Radfahren</div>
+      <div class="resume-interest-item"><span class="resume-interest-name">Musik</span>: Klavier, Konzerte</div>
+      <div class="resume-interest-item"><span class="resume-interest-name">Ehrenamt</span>: Mentoring, Bildung</div>
+    </div>
+  </section>
+  <section class="resume-section" id="volunteer" data-section="volunteer">
+    <h2 class="resume-section-title">Ehrenamtliche Tätigkeiten</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="volunteer-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.berliner-mentoring.de">Berliner Mentoring Netzwerk</a></div>
+            <div class="resume-entry-organization">Mentorin für Berufseinsteiger</div>
+          </div>
+          <div class="resume-entry-date">Sept. 2020–Heute</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Unterstützung von Berufseinsteigern bei der Karriereplanung und Bewerbungsstrategie</p>
+            </li>
+            <li>
+              <p>Durchführung monatlicher Coaching-Gespräche und Workshops</p>
+            </li>
+            <li>
+              <p>Aufbau eines Netzwerks für junge Fachkräfte im Bereich Customer Success</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer class="resume-footer">Generated by <a href="https://yamlresume.dev">YAMLResume</a></footer>
+</body>
+
+</html>

@@ -1,0 +1,267 @@
+\documentclass[a4paper, serif, 10pt]{moderncv}
+
+%% moderncv
+% style and color
+\moderncvstyle{banking}
+\moderncvcolor{black}
+
+%% page layout/margins
+\usepackage[top=2.5cm, bottom=2.5cm, left=1.5cm, right=1.5cm]{geometry}
+
+\nopagenumbers{}
+
+%% Babel config for Brazilian Portuguese language
+% ref:
+% - https://latex3.github.io/babel/guides/locale-portuguese.html
+\usepackage[brazilian]{babel}
+
+%% fontspec
+\usepackage{fontspec}
+
+\IfFontExistsTF{Linux Libertine}{
+  \setmainfont[Ligatures={TeX, Common}, Numbers=OldStyle]{Linux Libertine}
+}{}
+\IfFontExistsTF{Linux Libertine O}{
+  \setmainfont[Ligatures={TeX, Common}, Numbers=OldStyle]{Linux Libertine O}
+}{}
+
+%% CTeX
+% CJK support, used to show CJK characters in the resume
+%
+% - fontset=none: disable builtin fontset but instead set the CJK font manually
+% - heading=false: disable ctex heading
+% - punct=kaiming: use kaiming punctuations styles for CJK
+% - scheme=plain: use plain scheme, do not override \normalsize font size
+% - space=auto: space settings for CJK characters
+%
+% ref:
+% - http://ctan.mirrorcatalogs.com/language/chinese/ctex/ctex.pdf
+\usepackage[UTF8, heading=false, punct=kaiming, scheme=plain, space=auto]{ctex}
+
+\IfFontExistsTF{Noto Serif CJK SC}{
+  \setCJKmainfont{Noto Serif CJK SC}
+}{}
+\IfFontExistsTF{Noto Sans CJK SC}{
+  \setCJKsansfont{Noto Sans CJK SC}
+}{}
+
+%% line spacing
+\usepackage{setspace}
+\setstretch{1.125}
+
+%% URL styling - use normal text instead of monospace
+\urlstyle{same}
+
+% Auto-underline all links
+% Defer until \begin{document} so hyperref is already loaded
+\AtBeginDocument{%
+  \let\oldhref\href
+  \renewcommand{\href}[2]{\oldhref{#1}{\underline{#2}}}%
+}
+
+%% Patch \httplink and \httpslink to handle full URLs
+% The original moderncv macros always prepend http:// or https:// to URLs.
+% This causes issues when the URL already has a protocol (e.g., https://example.com)
+% resulting in malformed URLs like https://https://example.com.
+% This patch checks if the URL already contains "://" and uses it directly if so.
+% Note: We use \str_set:Nx (x-expansion) to expand macros like \@homepage first.
+\ExplSyntaxOn
+\str_new:N \g_yamlresume_url_str
+
+\RenewDocumentCommand{\httpslink}{O{}m}{
+  \str_set:Nx \g_yamlresume_url_str {#2}
+  \str_if_in:NnTF \g_yamlresume_url_str {://}
+    { \url{#2} }
+    { \url{https://#2} }
+}
+
+\RenewDocumentCommand{\httplink}{O{}m}{
+  \str_set:Nx \g_yamlresume_url_str {#2}
+  \str_if_in:NnTF \g_yamlresume_url_str {://}
+    { \url{#2} }
+    { \url{http://#2} }
+}
+\ExplSyntaxOff
+
+\name{Mariana Costa Almeida}{}
+\title{Gerente de Sucesso do Cliente | Customer Success Manager}
+\phone[mobile]{+55 11 98765-4321}
+\email{mariana.almeida@email.com}
+\homepage{https://marianaalmeida.com.br}
+
+\address{Avenida Paulista, 1578, Bela Vista, São Paulo, São Paulo, Brasil, 01310-200}{}{}
+
+\extrainfo{{\small \faLinkedin}\ \href{https://www.linkedin.com/in/marianacalmeida}{@marianacalmeida} {} {} {} • {} {} {} 
+{\small \faMedium}\ \href{https://medium.com/@marianaalmeida}{@marianaalmeida}}
+
+\begin{document}
+
+\maketitle
+
+\section{Informações Básicas}
+
+\cvline{}{\begin{itemize}
+\item Gerente de Sucesso do Cliente com mais de 8 anos de experiência em SaaS B2B, focada em retenção, expansão de receita e satisfação de clientes.
+\item Especialista em construir relacionamentos de confiança com stakeholders, liderar equipes multidisciplinares e implementar estratégias de customer success baseadas em dados.
+\item Experiência comprovada na redução de churn, aumento de NPS e identificação de oportunidades de upsell e cross-sell.
+\item Fortes habilidades em análise de métricas, gestão de projetos, comunicação e resolução de problemas.
+\item Inglês avançado e espanhol intermediário, com vivência em ambientes internacionais.
+\end{itemize}}
+\section{Formação}
+
+\cventry{fev. de 2012–dez. de 2016}
+        {Bacharelado, Administração de Empresas, Nota: 8.7}
+        {Universidade de São Paulo}
+        {\url{https://www.usp.br}}
+        {}
+        {\begin{itemize}
+\item Formação sólida em gestão empresarial, com ênfase em relacionamento com clientes e estratégias de retenção.
+\item Desenvolvimento de projetos práticos de consultoria para pequenas e médias empresas.
+\item Participação ativa em empresa júnior, liderando projetos de customer success.
+\end{itemize}
+\textbf{Cursos}: Gestão de Clientes e CRM, Marketing de Serviços, Análise de Dados para Negócios, Gestão de Projetos, Comportamento Organizacional, Negociação e Comunicação}
+\section{Experiência Profissional}
+
+\cventry{mar. de 2021–Atual}
+        {Senior Customer Success Manager}
+        {NuvemTech}
+        {\url{https://www.nuvemtech.com.br}}
+        {}
+        {\begin{itemize}
+\item Gerencia uma carteira de 45 clientes enterprise, representando R\$ 12 milhões em receita recorrente anual (ARR).
+\item Lidera uma equipe de 6 CSMs, responsável por onboarding, adoção, retenção e expansão.
+\item Implementou um programa de QBRs estratégicos que aumentou o NPS de 42 para 68 em 12 meses.
+\item Desenvolveu playbooks de sucesso do cliente que reduziram o churn em 22\% no primeiro ano.
+\item Colabora com Produto, Vendas e Marketing para alinhar a voz do cliente à estratégia corporativa.
+\end{itemize}
+\textbf{Palavras-chave}: Retenção, Upsell, NPS, Gestão de Equipes, Onboarding}
+
+\cventry{jan. de 2018–fev. de 2021}
+        {Customer Success Manager}
+        {DataFlow Sistemas}
+        {\url{https://www.dataflowsistemas.com.br}}
+        {}
+        {\begin{itemize}
+\item Gerenciou uma carteira de 120 clientes B2B, com foco em retenção e crescimento.
+\item Conduziu análises de health score e implementou ações proativas para prevenir churn.
+\item Aumentou a receita de upsell em 30\% por meio de identificação de oportunidades e negociação.
+\item Realizou treinamentos e webinars para promover a adoção do produto.
+\item Atuou como ponto de contato principal para escalonamentos e resolução de problemas.
+\end{itemize}
+\textbf{Palavras-chave}: CRM, Customer Success, Análise de Churn, QBR}
+
+\cventry{jul. de 2016–dez. de 2017}
+        {Analista de Sucesso do Cliente}
+        {ConectaCRM}
+        {\url{https://www.conectacrm.com.br}}
+        {}
+        {\begin{itemize}
+\item Prestou suporte a clientes na implementação e uso do software de CRM.
+\item Monitorou métricas de satisfação e elaborou relatórios para a liderança.
+\item Participou da criação de materiais de autoatendimento e base de conhecimento.
+\item Contribuiu para a redução do tempo médio de resposta em 35\%.
+\end{itemize}
+\textbf{Palavras-chave}: Atendimento, Suporte, Salesforce, Métricas}
+\section{Idiomas}
+
+\cvline{Português}{Nativo ou Bilíngue \hfill \textbf{Palavras-chave}: Nativo}
+\cvline{Inglês}{Proficiência Profissional Fluente \hfill \textbf{Palavras-chave}: TOEFL 105, IELTS 7.5}
+\cvline{Espanhol}{Proficiência Profissional Limitada \hfill \textbf{Palavras-chave}: DELE B1}
+\section{Competências}
+
+\cvline{Customer Success}{Especialista \hfill \textbf{Palavras-chave}: Onboarding, Retenção, Expansão, QBR, NPS}
+\cvline{Ferramentas de CRM}{Avançado \hfill \textbf{Palavras-chave}: Salesforce, HubSpot, Gainsight, Totango}
+\cvline{Análise de Dados}{Avançado \hfill \textbf{Palavras-chave}: Power BI, Tableau, Excel Avançado, SQL}
+\cvline{Gestão de Projetos}{Avançado \hfill \textbf{Palavras-chave}: Agile, Scrum, Jira, Trello}
+\cvline{Comunicação}{Especialista \hfill \textbf{Palavras-chave}: Apresentações, Negociação, Escuta Ativa, Feedback}
+\section{Prêmios}
+
+\cventry{dez. de 2022}
+        {NuvemTech}
+        {Prêmio Excelência em Customer Success}
+        {}
+        {}
+        {Reconhecimento anual concedido aos profissionais com melhor desempenho em retenção e satisfação de clientes.}
+
+\cventry{out. de 2020}
+        {DataFlow Sistemas}
+        {Top Performer Q3}
+        {}
+        {}
+        {Destaque por superar metas de NPS e reduzir churn em 15\% no trimestre.}
+\section{Certificados}
+
+\cventry{jun. de 2021}
+        {SuccessCOACHING}
+        {Certified Customer Success Manager (CCSM)}
+        {\url{https://www.successcoaching.com/certifications}}
+        {}
+        {}
+
+\cventry{ago. de 2019}
+        {SCRUMstudy}
+        {Scrum Fundamentals Certified}
+        {\url{https://www.scrumstudy.com/certifications}}
+        {}
+        {}
+\section{Publicações}
+
+\cventry{mar. de 2023}
+        {Como reduzir churn com uma jornada de onboarding eficiente}
+        {Blog Customer Success Brasil}
+        {\url{https://www.customersuccessbrasil.com.br/blog/onboarding-eficiente}}
+        {}
+        {Artigo sobre melhores práticas para estruturar o onboarding de clientes SaaS, aumentando a retenção e o tempo de vida útil.}
+\section{Projetos}
+
+\cventry{jan. de 2022–dez. de 2022}
+        {Implantação de um modelo escalável de CS para clientes de baixo touch.}
+        {Programa de Customer Success Escalável}
+        {\url{https://www.nuvemtech.com.br/cases/cs-escalavel}}
+        {}
+        {\begin{itemize}
+\item Estruturou playbooks e automações para atendimento de mais de 1.000 clientes.
+\item Reduziu o tempo de resposta em 40\% e aumentou o NPS em 12 pontos.
+\item Utilizou Gainsight para monitorar saúde do cliente e disparar ações proativas.
+\end{itemize}
+\textbf{Palavras-chave}: Escalabilidade, Automação, Gainsight}
+
+\cventry{mar. de 2019–nov. de 2019}
+        {Redesenho do portal de autoatendimento para clientes B2B.}
+        {Portal do Cliente 2.0}
+        {\url{https://www.dataflowsistemas.com.br/portal}}
+        {}
+        {\begin{itemize}
+\item Conduziu pesquisa com usuários e priorizou funcionalidades com base em dados.
+\item Aumentou em 25\% a adoção do portal e reduziu tickets de suporte em 18\%.
+\end{itemize}
+\textbf{Palavras-chave}: UX, Autoatendimento, Feedback}
+\section{Interesses}
+
+\cvline{Voluntariado}{Mentoria, Educação, ONGs}
+\cvline{Esportes}{Corrida, Ciclismo, Natação}
+\cvline{Leitura}{Negócios, Biografias, Tecnologia}
+\section{Voluntariado}
+
+\cventry{fev. de 2020–dez. de 2023}
+        {Mentora de Carreira}
+        {Instituto Mente Ativa}
+        {\url{https://www.institutomenteativa.org.br}}
+        {}
+        {\begin{itemize}
+\item Mentoria voluntária para jovens em início de carreira na área de negócios e tecnologia.
+\item Realização de workshops sobre comunicação, currículo e preparação para entrevistas.
+\end{itemize}}
+    
+
+\cventry{jan. de 2023–Atual}
+        {Membro do Comitê de Conteúdo}
+        {Associação Brasileira de Customer Success}
+        {\url{https://www.abcs.com.br}}
+        {}
+        {\begin{itemize}
+\item Colaboração na curadoria de conteúdos e eventos para a comunidade de Customer Success.
+\item Participação em painéis e discussões sobre tendências do mercado.
+\end{itemize}}
+    
+\end{document}

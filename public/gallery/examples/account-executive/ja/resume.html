@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="generator" content="YAMLResume (https://yamlresume.dev)">
+
+
+  <title>佐藤 美咲 Resume</title>
+  <style>
+    :root {
+      --text-font-size: 16px;
+      --text-font-family: var(--text-default-font-family);
+      --line-height: 1.5;
+    }
+
+    /* Modified from: https://www.joshwcomeau.com/css/custom-css-reset/ */
+
+    /* 1. Use a more-intuitive box-sizing model */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    /* 2. Remove default margin */
+    *:not(dialog) {
+      margin: 0;
+    }
+
+    body {
+      /* 3. Improve text rendering */
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    :root {
+      --border-color: #d0d0d0;
+
+      /* text colors */
+      --text-color-primary: #000000;
+      --text-color-secondary: #333333;
+
+      /* spacing */
+      --spacing-xss: 2px;
+      --spacing-xs: 4px;
+      --spacing-sm: 8px;
+      --spacing-md: 12px;
+      --spacing-lg: 16px;
+      --spacing-xl: 24px;
+      --spacing-xxl: 40px;
+      --spacing-xxxl: 80px;
+
+      /* font sizes */
+      --font-size-xs: 0.8rem;
+      --font-size-sm: 0.9rem;
+      --font-size-md: 1rem;
+      --font-size-lg: 1.1rem;
+      --font-size-xl: 1.25rem;
+      --font-size-xxl: 2.5rem;
+
+      /* layout */
+      --page-max-width: 900px;
+
+      /* typography */
+      --text-default-font-family:
+        -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu,
+        Cantarell, sans-serif;
+    }
+
+    html {
+      font-size: var(--text-font-size);
+    }
+
+    body {
+      /* font & text */
+      color: var(--text-color-primary);
+      font-family: var(--text-font-family);
+      /* this variable is defined by `typography.fontSize` in resume html layout */
+      text-autospace: normal;
+
+      /* layout */
+      line-height: var(--line-height);
+      max-width: var(--page-max-width);
+      margin: 0 auto;
+      padding: var(--spacing-xxxl) var(--spacing-xxl) var(--spacing-xxl);
+    }
+
+    /* header */
+    .resume-header {
+      margin-bottom: var(--spacing-xxl);
+      text-align: center;
+    }
+
+    .resume-name {
+      font-size: var(--font-size-xxl);
+      font-weight: 600;
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .resume-headline {
+      font-size: var(--font-size-lg);
+      margin-bottom: var(--spacing-md);
+    }
+
+    /* contact info */
+    .resume-contact-info {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      column-gap: var(--spacing-lg);
+      row-gap: var(--spacing-xs);
+      margin-top: var(--spacing-sm);
+    }
+
+    .resume-contact-icon,
+    .resume-contact-label {
+      margin-right: var(--spacing-sm);
+      vertical-align: middle;
+    }
+
+    /* links: modern typographic style */
+    a {
+      color: var(--text-color-primary);
+      text-decoration: underline;
+      text-decoration-color: var(--border-color);
+      text-underline-offset: 3px;
+      text-decoration-thickness: 1px;
+      text-decoration-skip-ink: auto;
+      transition: text-decoration-color 0.2s;
+    }
+
+    a:hover {
+      text-decoration-color: var(--text-color-primary);
+    }
+
+    /* sections */
+    .resume-section {
+      margin-bottom: var(--spacing-xl);
+    }
+
+    .resume-section-title {
+      font-size: var(--font-size-xl);
+      font-weight: 500;
+      margin-bottom: var(--spacing-md);
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: var(--spacing-xs);
+    }
+
+    /* entries */
+    .resume-entry {
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .resume-entry:last-child {
+      margin-bottom: 0;
+    }
+
+    .resume-entry-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .resume-entry-title {
+      font-weight: 500;
+      margin-bottom: var(--spacing-xss);
+    }
+
+    .resume-entry-summary p,
+    .resume-summary-content p {
+      margin-bottom: var(--spacing-xs);
+    }
+
+    /* lists */
+    .resume-entry-summary ul,
+    .resume-entry-summary ol,
+    .resume-summary-content ul,
+    .resume-summary-content ol {
+      padding-left: var(--spacing-lg);
+      list-style-type: circle;
+    }
+
+    /* labeled lists (courses, keywords, etc.) */
+    .resume-labeled-list span {
+      font-weight: 500;
+    }
+
+    /* skills grid */
+    .resume-skill-item,
+    .resume-language-item {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .resume-skill-name,
+    .resume-language-name {
+      font-weight: 500;
+    }
+
+    .resume-skill-level,
+    .resume-language-fluency {
+      font-weight: 400;
+    }
+
+    /* mobile */
+    @media (max-width: 768px) {
+      body {
+        padding: var(--spacing-xl);
+      }
+
+      .resume-header {
+        margin-bottom: var(--spacing-xl);
+      }
+
+      .resume-contact-info {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .resume-entry-header {
+        flex-wrap: wrap;
+      }
+    }
+
+    /* footer */
+    .resume-footer {
+      margin-top: var(--spacing-xxl);
+      padding-top: var(--spacing-xl);
+      border-top: 1px solid var(--border-color);
+      font-size: var(--font-size-sm);
+      color: var(--text-color-secondary);
+    }
+
+    @media print {
+      .resume-footer {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="resume-header">
+    <h1 class="resume-name">佐藤 美咲</h1>
+    <p class="resume-headline">法人SaaS営業のアカウントエグゼクティブ</p>
+    <div class="resume-contact-info">
+      <span class="resume-contact-item"><span class="resume-contact-icon">📧</span><a href="mailto:misaki.sato@example.co.jp" class="resume-contact-link">misaki.sato@example.co.jp</a></span>
+      <span class="resume-contact-item"><span class="resume-contact-icon">📞</span>+81 90-1234-5678</span>
+      <span class="resume-contact-item"><span class="resume-contact-icon">🔗</span><a href="https://misaki-sato.example.com" class="resume-contact-link">https://misaki-sato.example.com</a></span>
+    </div>
+    <div class="resume-contact-info resume-location-info">
+      <span class="resume-contact-item"><span class="resume-contact-icon">📍</span>日本、東京都、千代田区、東京都千代田区丸の内1-1-1、100-0005</span>
+    </div>
+    <div class="resume-contact-info resume-profiles-info">
+      <span class="resume-contact-item"><span class="resume-contact-label">LinkedIn</span>: <a href="https://www.linkedin.com/in/misaki-sato" class="resume-contact-link">@misaki-sato</a></span>
+      <span class="resume-contact-item"><span class="resume-contact-label">Twitter</span>: <a href="https://twitter.com/misaki_sato_sales" class="resume-contact-link">@misaki_sato_sales</a></span>
+    </div>
+  </header>
+  <section class="resume-section" id="summary" data-section="summary">
+    <h2 class="resume-section-title">基本情報</h2>
+    <div class="resume-section-content">
+      <div class="resume-summary-content">
+        <ul>
+          <li>
+            <p>法人向けSaaS営業で7年以上の経験を持つアカウントエグゼクティブ</p>
+          </li>
+          <li>
+            <p>エンタープライズ企業を中心に、新規開拓からクロージング、顧客成功まで一貫して担当</p>
+          </li>
+          <li>
+            <p>年間売上目標を120%達成し、複数回の最優秀営業賞を受賞</p>
+          </li>
+          <li>
+            <p>データに基づく商談設計と、経営層との関係構築を得意とする</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="education" data-section="education">
+    <h2 class="resume-section-title">学歴</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="education-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.keio.ac.jp/">慶應義塾大学</a></div>
+            <div class="resume-entry-organization">学士、経済学部経済学科、成績：3.7</div>
+          </div>
+          <div class="resume-entry-date">2014年4月～2018年3月</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>経済学と経営学を中心に、市場分析と企業戦略の基礎を修得</p>
+            </li>
+            <li>
+              <p>ゼミではB2Bマーケティングを研究し、企業への提案を実施</p>
+            </li>
+            <li>
+              <p>交換留学で英語によるディスカッションとプレゼンテーションを経験</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>コース</span>：マーケティング論、消費者行動論、企業戦略論、会計学、統計学、交渉学、ビジネス英語、組織行動論</div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="work" data-section="work">
+    <h2 class="resume-section-title">職歴</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="work-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.cloudsales.example.co.jp">株式会社クラウドセールス</a></div>
+            <div class="resume-entry-organization">シニアアカウントエグゼクティブ</div>
+          </div>
+          <div class="resume-entry-date">2021年4月～現在</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>エンタープライズ向けSaaSの新規開拓営業を担当し、年間売上目標を120%達成</p>
+            </li>
+            <li>
+              <p>経営層への提案からPoC、契約交渉までをリードし、大型案件を複数成約</p>
+            </li>
+            <li>
+              <p>顧客成功チームと連携し、オンボーディングとアップセルを推進</p>
+            </li>
+            <li>
+              <p>若手営業のメンターとして商談スキル向上を支援</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>キーワード</span>：SaaS、法人営業、エンタープライズ、新規開拓、クロージング、顧客成功</div>
+      </div>
+      <div class="resume-entry" id="work-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.databridge.example.co.jp">株式会社データブリッジ</a></div>
+            <div class="resume-entry-organization">アカウントエグゼクティブ</div>
+          </div>
+          <div class="resume-entry-date">2018年4月～2021年3月</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>中堅・中小企業向けにデータ分析ツールの営業を担当</p>
+            </li>
+            <li>
+              <p>インサイドセールスとフィールドセールスを兼任し、商談数を3倍に拡大</p>
+            </li>
+            <li>
+              <p>CRMを活用したパイプライン管理と営業プロセスの改善を推進</p>
+            </li>
+            <li>
+              <p>顧客の課題ヒアリングに基づく提案で、解約率を15%削減</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>キーワード</span>：データ分析、CRM、パイプライン管理、提案営業、課題解決</div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="languages" data-section="languages">
+    <h2 class="resume-section-title">言語</h2>
+    <div class="resume-section-content">
+      <div class="resume-languages-list">
+        <div class="resume-language-item">
+          <div class="resume-language-name">日本語<span class="resume-language-fluency">：ネイティブ・母国語レベル</span></div>
+          <div>
+            <div class="resume-labeled-list"><span>キーワード</span>：ビジネス日本語、母国語</div>
+          </div>
+        </div>
+        <div class="resume-language-item">
+          <div class="resume-language-name">英語<span class="resume-language-fluency">：完全な実務レベル</span></div>
+          <div>
+            <div class="resume-labeled-list"><span>キーワード</span>：TOEIC 950、ビジネス交渉</div>
+          </div>
+        </div>
+        <div class="resume-language-item">
+          <div class="resume-language-name">中国語<span class="resume-language-fluency">：限定的な実務レベル</span></div>
+          <div>
+            <div class="resume-labeled-list"><span>キーワード</span>：HSK 4級、日常会話</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="skills" data-section="skills">
+    <h2 class="resume-section-title">スキル</h2>
+    <div class="resume-section-content">
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">法人営業<span class="resume-skill-level">：エキスパート</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>キーワード</span>：新規開拓、商談設計、クロージング、顧客関係構築、アップセル</div>
+        </div>
+      </div>
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">SaaSソリューション<span class="resume-skill-level">：上級</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>キーワード</span>：Salesforce、HubSpot、KPI管理、データ分析、提案資料作成</div>
+        </div>
+      </div>
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">プレゼンテーション<span class="resume-skill-level">：上級</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>キーワード</span>：経営層向け提案、デモ、交渉、ファシリテーション</div>
+        </div>
+      </div>
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">プロジェクトマネジメント<span class="resume-skill-level">：中級</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>キーワード</span>：ステークホルダー管理、スケジュール管理、リスク管理</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="awards" data-section="awards">
+    <h2 class="resume-section-title">受賞・表彰</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="awards-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title">年間最優秀営業賞</div>
+            <div class="resume-entry-organization">株式会社クラウドセールス</div>
+          </div>
+          <div class="resume-entry-date">2023年12月</div>
+        </div>
+        <div class="resume-entry-summary">
+          <p>年間売上目標を120%達成し、新規顧客獲得数が全社1位。エンタープライズ案件の成約額でも最高記録を更新。</p>
+        </div>
+      </div>
+      <div class="resume-entry" id="awards-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title">四半期MVP</div>
+            <div class="resume-entry-organization">株式会社クラウドセールス</div>
+          </div>
+          <div class="resume-entry-date">2022年6月</div>
+        </div>
+        <div class="resume-entry-summary">
+          <p>第2四半期において、パイプライン創出額と成約率が全営業部門でトップ。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="certificates" data-section="certificates">
+    <h2 class="resume-section-title">資格・免状</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="certificates-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://trailhead.salesforce.com/credentials/administrator">Salesforce認定アドミニストレーター</a></div>
+            <div class="resume-entry-organization">Salesforce</div>
+          </div>
+          <div class="resume-entry-date">2022年6月</div>
+        </div>
+      </div>
+      <div class="resume-entry" id="certificates-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.iibc-global.org/english/toeic.html">TOEIC Listening &amp; Reading 950</a></div>
+            <div class="resume-entry-organization">IIBC</div>
+          </div>
+          <div class="resume-entry-date">2020年11月</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="publications" data-section="publications">
+    <h2 class="resume-section-title">出版・著作</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="publications-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://example.com/journal/sales-cs">法人SaaS営業における顧客成功指標の設計</a></div>
+            <div class="resume-entry-organization">日本セールス研究ジャーナル</div>
+          </div>
+          <div class="resume-entry-date">2022年8月</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>顧客成功指標と営業KPIの連携方法を提案</p>
+            </li>
+            <li>
+              <p>解約率低下とアップセル率向上の実践事例を分析</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="references" data-section="references">
+    <h2 class="resume-section-title">推薦人</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="references-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="mailto:ichiro.tanaka@cloudsales.example.co.jp">田中 一郎</a></div>
+            <div class="resume-entry-organization">株式会社クラウドセールス 営業部長</div>
+          </div>
+          <div>+81 3-1234-5678</div>
+        </div>
+        <div class="resume-entry-summary">
+          <p>佐藤美咲は卓越した営業スキルと顧客志向を持ち、組織に大きな貢献をもたらしました。どんなチームでも即戦力として活躍できる人材です。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="projects" data-section="projects">
+    <h2 class="resume-section-title">プロジェクト</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="projects-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.cloudsales.example.co.jp/projects/crm">エンタープライズ向けCRM導入プロジェクト</a></div>
+            <div class="resume-entry-description">大手製造業向けにCRMを導入し、営業プロセスを標準化するプロジェクト</div>
+          </div>
+          <div class="resume-entry-date">2023年1月～2023年8月</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>顧客の営業部門と連携し、要件定義から運用定着までをリード</p>
+            </li>
+            <li>
+              <p>導入後に商談サイクルを30%短縮し、受注率を15%向上</p>
+            </li>
+            <li>
+              <p>チェンジマネジメントを推進し、現場の利用率を90%以上に向上</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>キーワード</span>： CRM、要件定義、チェンジマネジメント、営業プロセス</div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="interests" data-section="interests">
+    <h2 class="resume-section-title">興味・関心</h2>
+    <div class="resume-section-content">
+      <div class="resume-interest-item"><span class="resume-interest-name">スポーツ</span>：テニス、ランニング、登山</div>
+      <div class="resume-interest-item"><span class="resume-interest-name">読書</span>：ビジネス書、歴史小説、経済学</div>
+    </div>
+  </section>
+  <section class="resume-section" id="volunteer" data-section="volunteer">
+    <h2 class="resume-section-title">ボランティア活動</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="volunteer-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://example.org/next-leaders">一般社団法人次世代リーダー育成協会</a></div>
+            <div class="resume-entry-organization">メンター</div>
+          </div>
+          <div class="resume-entry-date">2022年4月～現在</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>大学生向けに営業スキルとキャリア形成のワークショップを開催</p>
+            </li>
+            <li>
+              <p>年間10回のメンタリングセッションを担当</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer class="resume-footer">Generated by <a href="https://yamlresume.dev">YAMLResume</a></footer>
+</body>
+
+</html>

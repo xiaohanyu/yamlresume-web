@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="zh-hant-hk">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="generator" content="YAMLResume (https://yamlresume.dev)">
+
+
+  <title>陳嘉欣 Resume</title>
+  <style>
+    :root {
+      --text-font-size: 16px;
+      --text-font-family: var(--text-default-font-family);
+      --line-height: 1.5;
+    }
+
+    /* Modified from: https://www.joshwcomeau.com/css/custom-css-reset/ */
+
+    /* 1. Use a more-intuitive box-sizing model */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    /* 2. Remove default margin */
+    *:not(dialog) {
+      margin: 0;
+    }
+
+    body {
+      /* 3. Improve text rendering */
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    :root {
+      --border-color: #d0d0d0;
+
+      /* text colors */
+      --text-color-primary: #000000;
+      --text-color-secondary: #333333;
+
+      /* spacing */
+      --spacing-xss: 2px;
+      --spacing-xs: 4px;
+      --spacing-sm: 8px;
+      --spacing-md: 12px;
+      --spacing-lg: 16px;
+      --spacing-xl: 24px;
+      --spacing-xxl: 40px;
+      --spacing-xxxl: 80px;
+
+      /* font sizes */
+      --font-size-xs: 0.8rem;
+      --font-size-sm: 0.9rem;
+      --font-size-md: 1rem;
+      --font-size-lg: 1.1rem;
+      --font-size-xl: 1.25rem;
+      --font-size-xxl: 2.5rem;
+
+      /* layout */
+      --page-max-width: 900px;
+
+      /* typography */
+      --text-default-font-family:
+        -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu,
+        Cantarell, sans-serif;
+    }
+
+    html {
+      font-size: var(--text-font-size);
+    }
+
+    body {
+      /* font & text */
+      color: var(--text-color-primary);
+      font-family: var(--text-font-family);
+      /* this variable is defined by `typography.fontSize` in resume html layout */
+      text-autospace: normal;
+
+      /* layout */
+      line-height: var(--line-height);
+      max-width: var(--page-max-width);
+      margin: 0 auto;
+      padding: var(--spacing-xxxl) var(--spacing-xxl) var(--spacing-xxl);
+    }
+
+    /* header */
+    .resume-header {
+      margin-bottom: var(--spacing-xxl);
+      text-align: center;
+    }
+
+    .resume-name {
+      font-size: var(--font-size-xxl);
+      font-weight: 600;
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .resume-headline {
+      font-size: var(--font-size-lg);
+      margin-bottom: var(--spacing-md);
+    }
+
+    /* contact info */
+    .resume-contact-info {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      column-gap: var(--spacing-lg);
+      row-gap: var(--spacing-xs);
+      margin-top: var(--spacing-sm);
+    }
+
+    .resume-contact-icon,
+    .resume-contact-label {
+      margin-right: var(--spacing-sm);
+      vertical-align: middle;
+    }
+
+    /* links: modern typographic style */
+    a {
+      color: var(--text-color-primary);
+      text-decoration: underline;
+      text-decoration-color: var(--border-color);
+      text-underline-offset: 3px;
+      text-decoration-thickness: 1px;
+      text-decoration-skip-ink: auto;
+      transition: text-decoration-color 0.2s;
+    }
+
+    a:hover {
+      text-decoration-color: var(--text-color-primary);
+    }
+
+    /* sections */
+    .resume-section {
+      margin-bottom: var(--spacing-xl);
+    }
+
+    .resume-section-title {
+      font-size: var(--font-size-xl);
+      font-weight: 500;
+      margin-bottom: var(--spacing-md);
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: var(--spacing-xs);
+    }
+
+    /* entries */
+    .resume-entry {
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .resume-entry:last-child {
+      margin-bottom: 0;
+    }
+
+    .resume-entry-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .resume-entry-title {
+      font-weight: 500;
+      margin-bottom: var(--spacing-xss);
+    }
+
+    .resume-entry-summary p,
+    .resume-summary-content p {
+      margin-bottom: var(--spacing-xs);
+    }
+
+    /* lists */
+    .resume-entry-summary ul,
+    .resume-entry-summary ol,
+    .resume-summary-content ul,
+    .resume-summary-content ol {
+      padding-left: var(--spacing-lg);
+      list-style-type: circle;
+    }
+
+    /* labeled lists (courses, keywords, etc.) */
+    .resume-labeled-list span {
+      font-weight: 500;
+    }
+
+    /* skills grid */
+    .resume-skill-item,
+    .resume-language-item {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .resume-skill-name,
+    .resume-language-name {
+      font-weight: 500;
+    }
+
+    .resume-skill-level,
+    .resume-language-fluency {
+      font-weight: 400;
+    }
+
+    /* mobile */
+    @media (max-width: 768px) {
+      body {
+        padding: var(--spacing-xl);
+      }
+
+      .resume-header {
+        margin-bottom: var(--spacing-xl);
+      }
+
+      .resume-contact-info {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .resume-entry-header {
+        flex-wrap: wrap;
+      }
+    }
+
+    /* footer */
+    .resume-footer {
+      margin-top: var(--spacing-xxl);
+      padding-top: var(--spacing-xl);
+      border-top: 1px solid var(--border-color);
+      font-size: var(--font-size-sm);
+      color: var(--text-color-secondary);
+    }
+
+    @media print {
+      .resume-footer {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="resume-header">
+    <h1 class="resume-name">陳嘉欣</h1>
+    <p class="resume-headline">客戶成功經理 | SaaS 客戶體驗專家</p>
+    <div class="resume-contact-info">
+      <span class="resume-contact-item"><span class="resume-contact-icon">📧</span><a href="mailto:ka-yan.chan@example.com" class="resume-contact-link">ka-yan.chan@example.com</a></span>
+      <span class="resume-contact-item"><span class="resume-contact-icon">📞</span>+852 9123 4567</span>
+      <span class="resume-contact-item"><span class="resume-contact-icon">🔗</span><a href="https://www.linkedin.com/in/kayanchan-csm" class="resume-contact-link">https://www.linkedin.com/in/kayanchan-csm</a></span>
+    </div>
+    <div class="resume-contact-info resume-location-info">
+      <span class="resume-contact-item"><span class="resume-contact-icon">📍</span>中國香港，香港島，香港，香港中環皇后大道中 99 號</span>
+    </div>
+    <div class="resume-contact-info resume-profiles-info">
+      <span class="resume-contact-item"><span class="resume-contact-label">LinkedIn</span>: <a href="https://www.linkedin.com/in/kayanchan-csm" class="resume-contact-link">@kayanchan-csm</a></span>
+      <span class="resume-contact-item"><span class="resume-contact-label">Medium</span>: <a href="https://medium.com/@kayanchan" class="resume-contact-link">@kayanchan</a></span>
+    </div>
+  </header>
+  <section class="resume-section" id="summary" data-section="summary">
+    <h2 class="resume-section-title">簡介</h2>
+    <div class="resume-section-content">
+      <div class="resume-summary-content">
+        <ul>
+          <li>
+            <p>擁有超過 8 年客戶成功及客戶關係管理經驗，專注於 SaaS 及金融科技行業</p>
+          </li>
+          <li>
+            <p>擅長制定客戶成功策略，提升客戶留存率及終身價值</p>
+          </li>
+          <li>
+            <p>具備優秀的跨部門協作能力，能與產品、銷售及技術團隊緊密合作</p>
+          </li>
+          <li>
+            <p>熟悉數據分析，能以數據驅動客戶健康度管理及主動服務</p>
+          </li>
+          <li>
+            <p>精通粵語、英語及普通話，能服務香港及大中華區客戶</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="education" data-section="education">
+    <h2 class="resume-section-title">教育背景</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="education-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.hku.hk">香港大學</a></div>
+            <div class="resume-entry-organization">學士，工商管理學學士（市場學），成績：3.6</div>
+          </div>
+          <div class="resume-entry-date">2011年9月–2015年7月</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>主修市場學，副修資訊系統</p>
+            </li>
+            <li>
+              <p>曾獲院長榮譽榜及多項獎學金</p>
+            </li>
+            <li>
+              <p>積極參與商業個案比賽，獲得校際亞軍</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>課程</span>：市場營銷原理、消費者行為、商業統計、組織行為學、財務管理、策略管理</div>
+      </div>
+      <div class="resume-entry" id="education-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.ust.hk">香港科技大學</a></div>
+            <div class="resume-entry-organization">碩士，資訊系統管理碩士，成績：3.8</div>
+          </div>
+          <div class="resume-entry-date">2018年9月–2020年6月</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>在職進修，專注於企業資訊系統與數據分析</p>
+            </li>
+            <li>
+              <p>畢業論文探討客戶成功管理系統對 B2B 企業績效的影響</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>課程</span>：企業資源規劃、數據庫管理、商業智能與分析、項目管理、數位轉型策略</div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="work" data-section="work">
+    <h2 class="resume-section-title">工作經歷</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="work-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.hkcloudsolutions.example.com">香港雲端方案有限公司</a></div>
+            <div class="resume-entry-organization">高級客戶成功經理</div>
+          </div>
+          <div class="resume-entry-date">2021年3月至今</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>管理超過 50 間企業客戶，年度經常性收入（ARR）超過 2,000 萬港元</p>
+            </li>
+            <li>
+              <p>制定並執行客戶成功計劃，將客戶留存率由 85% 提升至 94%</p>
+            </li>
+            <li>
+              <p>建立客戶健康度評分模型，主動識別流失風險並制定挽留策略</p>
+            </li>
+            <li>
+              <p>領導 5 人客戶成功團隊，負責招聘、培訓及績效管理</p>
+            </li>
+            <li>
+              <p>與產品團隊合作，將客戶反饋轉化為產品路線圖優先事項</p>
+            </li>
+            <li>
+              <p>推動客戶追加銷售及交叉銷售，年度擴展收入增長 30%</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>關鍵字</span>：客戶留存、客戶健康度、團隊領導、追加銷售、SaaS、數據分析</div>
+      </div>
+      <div class="resume-entry" id="work-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.asiafintech.example.com">亞洲金融科技集團</a></div>
+            <div class="resume-entry-organization">客戶成功經理</div>
+          </div>
+          <div class="resume-entry-date">2017年6月–2021年2月</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>負責金融科技產品之客戶導入、培訓及續約管理</p>
+            </li>
+            <li>
+              <p>為超過 200 間中小企業客戶提供技術支援及最佳實踐建議</p>
+            </li>
+            <li>
+              <p>設計客戶入門流程，將價值實現時間由 45 天縮短至 20 天</p>
+            </li>
+            <li>
+              <p>分析客戶使用數據，制定個人化服務方案，提升客戶滿意度至 92%</p>
+            </li>
+            <li>
+              <p>與銷售團隊緊密合作，識別升級銷售機會，達成 120% 配額</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>關鍵字</span>：客戶導入、續約管理、金融科技、客戶滿意度、數據驅動</div>
+      </div>
+      <div class="resume-entry" id="work-3">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.hkt.example.com">香港電訊數碼</a></div>
+            <div class="resume-entry-organization">客戶服務主任</div>
+          </div>
+          <div class="resume-entry-date">2015年8月–2017年5月</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>處理企業客戶的服務查詢及技術問題，確保快速有效解決</p>
+            </li>
+            <li>
+              <p>協調內部技術團隊，跟進個案至完全解決，客戶滿意度達 90%</p>
+            </li>
+            <li>
+              <p>編寫客戶服務指南及常見問題，提升團隊效率 25%</p>
+            </li>
+            <li>
+              <p>識別客戶痛點並向產品團隊提出改善建議</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>關鍵字</span>：客戶服務、問題解決、電訊、跨部門協作</div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="languages" data-section="languages">
+    <h2 class="resume-section-title">語言</h2>
+    <div class="resume-section-content">
+      <div class="resume-languages-list">
+        <div class="resume-language-item">
+          <div class="resume-language-name">粵語<span class="resume-language-fluency">：母語或雙語水平</span></div>
+          <div>
+            <div class="resume-labeled-list"><span>關鍵字</span>：母語</div>
+          </div>
+        </div>
+        <div class="resume-language-item">
+          <div class="resume-language-name">英語<span class="resume-language-fluency">：完全專業水平</span></div>
+          <div>
+            <div class="resume-labeled-list"><span>關鍵字</span>：IELTS 8.0、商業寫作</div>
+          </div>
+        </div>
+        <div class="resume-language-item">
+          <div class="resume-language-name">普通話<span class="resume-language-fluency">：完全專業水平</span></div>
+          <div>
+            <div class="resume-labeled-list"><span>關鍵字</span>：普通話水平測試二級甲等</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="skills" data-section="skills">
+    <h2 class="resume-section-title">專業技能</h2>
+    <div class="resume-section-content">
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">客戶成功管理<span class="resume-skill-level">：專家</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>關鍵字</span>：客戶留存、客戶滿意度、客戶健康度、客戶旅程、續約管理、追加銷售</div>
+        </div>
+      </div>
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">數據分析<span class="resume-skill-level">：高級</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>關鍵字</span>：Salesforce、Tableau、SQL、Excel、Power BI、Google Analytics</div>
+        </div>
+      </div>
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">項目管理<span class="resume-skill-level">：高級</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>關鍵字</span>：Jira、Asana、Agile、Scrum、跨部門協作</div>
+        </div>
+      </div>
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">溝通與談判<span class="resume-skill-level">：專家</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>關鍵字</span>：粵語、英語、普通話、簡報技巧、衝突處理</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="awards" data-section="awards">
+    <h2 class="resume-section-title">榮譽</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="awards-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title">年度最佳客戶成功經理</div>
+            <div class="resume-entry-organization">香港雲端方案有限公司</div>
+          </div>
+          <div class="resume-entry-date">2023年12月</div>
+        </div>
+        <div class="resume-entry-summary">
+          <p>表揚在客戶留存、滿意度及團隊領導方面的卓越表現，帶領團隊達成 94% 客戶留存率。</p>
+        </div>
+      </div>
+      <div class="resume-entry" id="awards-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title">總裁卓越獎</div>
+            <div class="resume-entry-organization">亞洲金融科技集團</div>
+          </div>
+          <div class="resume-entry-date">2020年1月</div>
+        </div>
+        <div class="resume-entry-summary">
+          <p>因成功提升客戶滿意度至 92% 及超額完成銷售配額而獲頒總裁卓越獎。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="certificates" data-section="certificates">
+    <h2 class="resume-section-title">證書</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="certificates-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.successcoaching.com/certification">Certified Customer Success Manager (CCSM)</a></div>
+            <div class="resume-entry-organization">SuccessCOACHING</div>
+          </div>
+          <div class="resume-entry-date">2022年3月</div>
+        </div>
+      </div>
+      <div class="resume-entry" id="certificates-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://trailhead.salesforce.com/credentials/administrator">Salesforce Certified Administrator</a></div>
+            <div class="resume-entry-organization">Salesforce</div>
+          </div>
+          <div class="resume-entry-date">2021年8月</div>
+        </div>
+      </div>
+      <div class="resume-entry" id="certificates-3">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.pmi.org/certifications/project-management-pmp">項目管理專業人士 (PMP)</a></div>
+            <div class="resume-entry-organization">PMI</div>
+          </div>
+          <div class="resume-entry-date">2019年11月</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="publications" data-section="publications">
+    <h2 class="resume-section-title">出版刊物</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="publications-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.hkcsa.example.com/publications/data-driven-customer-success">以數據驅動客戶成功：香港 SaaS 市場的實踐指南</a></div>
+            <div class="resume-entry-organization">香港客戶成功協會</div>
+          </div>
+          <div class="resume-entry-date">2023年6月</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>探討如何利用客戶健康度指標預測流失風險</p>
+            </li>
+            <li>
+              <p>分享香港 SaaS 企業的客戶成功案例與最佳實踐</p>
+            </li>
+            <li>
+              <p>提供建立客戶成功團隊的框架與關鍵績效指標</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="resume-entry" id="publications-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.asianbusinessreview.example.com/retention-strategies">提升 B2B 客戶留存率的五大策略</a></div>
+            <div class="resume-entry-organization">亞洲商業評論</div>
+          </div>
+          <div class="resume-entry-date">2022年9月</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>分析 B2B 客戶留存的核心驅動因素</p>
+            </li>
+            <li>
+              <p>提出從入門到續約的五大實用策略</p>
+            </li>
+            <li>
+              <p>引用亞太區企業數據支持論點</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="references" data-section="references">
+    <h2 class="resume-section-title">引薦</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="references-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="mailto:chi-ming.wong@hkcloudsolutions.example.com">黃志明</a></div>
+            <div class="resume-entry-organization">香港雲端方案有限公司 營運總監</div>
+          </div>
+          <div>+852 9876 5432</div>
+        </div>
+        <div class="resume-entry-summary">
+          <p>陳嘉欣在客戶成功領域表現卓越，具備出色的策略思維及團隊領導能力，能有效提升客戶留存及滿意度，是任何企業都不可多得的人才。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="projects" data-section="projects">
+    <h2 class="resume-section-title">項目</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="projects-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.hkcloudsolutions.example.com/projects/health-dashboard">客戶健康度儀表板</a></div>
+            <div class="resume-entry-description">為企業客戶開發的實時客戶健康度監控平台</div>
+          </div>
+          <div class="resume-entry-date">2022年1月–2022年8月</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>整合 Salesforce、產品使用數據及支援工單，建立 360 度客戶視圖</p>
+            </li>
+            <li>
+              <p>設計健康度評分演算法，準確預測 90% 的流失風險客戶</p>
+            </li>
+            <li>
+              <p>儀表板上線後，客戶成功團隊主動跟進效率提升 40%</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>關鍵字</span>： 客戶健康度、Tableau、Salesforce、數據可視化</div>
+      </div>
+      <div class="resume-entry" id="projects-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.hkcloudsolutions.example.com/projects/onboarding">客戶成功入門計劃</a></div>
+            <div class="resume-entry-description">標準化新客戶入門流程，縮短價值實現時間</div>
+          </div>
+          <div class="resume-entry-date">2021年3月–2021年12月</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>設計 30-60-90 天入門框架，涵蓋培訓、設定及成功指標</p>
+            </li>
+            <li>
+              <p>自動化入門溝通郵件及任務提醒，減少人手 50%</p>
+            </li>
+            <li>
+              <p>新客戶首 90 天滿意度由 80% 提升至 93%</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>關鍵字</span>： 入門流程、客戶旅程、自動化、滿意度</div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="interests" data-section="interests">
+    <h2 class="resume-section-title">興趣愛好</h2>
+    <div class="resume-section-content">
+      <div class="resume-interest-item"><span class="resume-interest-name">專業發展</span>：客戶成功、SaaS、數據分析、人工智能</div>
+      <div class="resume-interest-item"><span class="resume-interest-name">社區服務</span>：青年導師、義工、環保</div>
+      <div class="resume-interest-item"><span class="resume-interest-name">個人興趣</span>：遠足、攝影、閱讀、咖啡</div>
+    </div>
+  </section>
+  <section class="resume-section" id="volunteer" data-section="volunteer">
+    <h2 class="resume-section-title">志願服務</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="volunteer-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.hkyea.example.com">香港青年創業家協會</a></div>
+            <div class="resume-entry-organization">客戶成功導師</div>
+          </div>
+          <div class="resume-entry-date">2021年9月至今</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>為青年創業者提供客戶成功及客戶關係管理指導</p>
+            </li>
+            <li>
+              <p>協助制定客戶獲取及留存策略，參與每月導師聚會</p>
+            </li>
+            <li>
+              <p>分享 SaaS 行業經驗，幫助初創企業建立可持續增長模式</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="resume-entry" id="volunteer-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.hkcsa.example.com">香港客戶成功協會</a></div>
+            <div class="resume-entry-organization">活動籌委</div>
+          </div>
+          <div class="resume-entry-date">2020年1月–2021年12月</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>籌辦年度客戶成功研討會及工作坊，吸引超過 300 名參與者</p>
+            </li>
+            <li>
+              <p>負責講者邀請、議程設計及場地協調</p>
+            </li>
+            <li>
+              <p>促進香港客戶成功專業社群交流與知識分享</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer class="resume-footer">Generated by <a href="https://yamlresume.dev">YAMLResume</a></footer>
+</body>
+
+</html>

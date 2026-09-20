@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="no">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="generator" content="YAMLResume (https://yamlresume.dev)">
+
+
+  <title>Ingrid Solberg Resume</title>
+  <style>
+    :root {
+      --text-font-size: 16px;
+      --text-font-family: var(--text-default-font-family);
+      --line-height: 1.5;
+    }
+
+    /* Modified from: https://www.joshwcomeau.com/css/custom-css-reset/ */
+
+    /* 1. Use a more-intuitive box-sizing model */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    /* 2. Remove default margin */
+    *:not(dialog) {
+      margin: 0;
+    }
+
+    body {
+      /* 3. Improve text rendering */
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    :root {
+      --border-color: #d0d0d0;
+
+      /* text colors */
+      --text-color-primary: #000000;
+      --text-color-secondary: #333333;
+
+      /* spacing */
+      --spacing-xss: 2px;
+      --spacing-xs: 4px;
+      --spacing-sm: 8px;
+      --spacing-md: 12px;
+      --spacing-lg: 16px;
+      --spacing-xl: 24px;
+      --spacing-xxl: 40px;
+      --spacing-xxxl: 80px;
+
+      /* font sizes */
+      --font-size-xs: 0.8rem;
+      --font-size-sm: 0.9rem;
+      --font-size-md: 1rem;
+      --font-size-lg: 1.1rem;
+      --font-size-xl: 1.25rem;
+      --font-size-xxl: 2.5rem;
+
+      /* layout */
+      --page-max-width: 900px;
+
+      /* typography */
+      --text-default-font-family:
+        -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu,
+        Cantarell, sans-serif;
+    }
+
+    html {
+      font-size: var(--text-font-size);
+    }
+
+    body {
+      /* font & text */
+      color: var(--text-color-primary);
+      font-family: var(--text-font-family);
+      /* this variable is defined by `typography.fontSize` in resume html layout */
+      text-autospace: normal;
+
+      /* layout */
+      line-height: var(--line-height);
+      max-width: var(--page-max-width);
+      margin: 0 auto;
+      padding: var(--spacing-xxxl) var(--spacing-xxl) var(--spacing-xxl);
+    }
+
+    /* header */
+    .resume-header {
+      margin-bottom: var(--spacing-xxl);
+      text-align: center;
+    }
+
+    .resume-name {
+      font-size: var(--font-size-xxl);
+      font-weight: 600;
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .resume-headline {
+      font-size: var(--font-size-lg);
+      margin-bottom: var(--spacing-md);
+    }
+
+    /* contact info */
+    .resume-contact-info {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      column-gap: var(--spacing-lg);
+      row-gap: var(--spacing-xs);
+      margin-top: var(--spacing-sm);
+    }
+
+    .resume-contact-icon,
+    .resume-contact-label {
+      margin-right: var(--spacing-sm);
+      vertical-align: middle;
+    }
+
+    /* links: modern typographic style */
+    a {
+      color: var(--text-color-primary);
+      text-decoration: underline;
+      text-decoration-color: var(--border-color);
+      text-underline-offset: 3px;
+      text-decoration-thickness: 1px;
+      text-decoration-skip-ink: auto;
+      transition: text-decoration-color 0.2s;
+    }
+
+    a:hover {
+      text-decoration-color: var(--text-color-primary);
+    }
+
+    /* sections */
+    .resume-section {
+      margin-bottom: var(--spacing-xl);
+    }
+
+    .resume-section-title {
+      font-size: var(--font-size-xl);
+      font-weight: 500;
+      margin-bottom: var(--spacing-md);
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: var(--spacing-xs);
+    }
+
+    /* entries */
+    .resume-entry {
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .resume-entry:last-child {
+      margin-bottom: 0;
+    }
+
+    .resume-entry-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .resume-entry-title {
+      font-weight: 500;
+      margin-bottom: var(--spacing-xss);
+    }
+
+    .resume-entry-summary p,
+    .resume-summary-content p {
+      margin-bottom: var(--spacing-xs);
+    }
+
+    /* lists */
+    .resume-entry-summary ul,
+    .resume-entry-summary ol,
+    .resume-summary-content ul,
+    .resume-summary-content ol {
+      padding-left: var(--spacing-lg);
+      list-style-type: circle;
+    }
+
+    /* labeled lists (courses, keywords, etc.) */
+    .resume-labeled-list span {
+      font-weight: 500;
+    }
+
+    /* skills grid */
+    .resume-skill-item,
+    .resume-language-item {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .resume-skill-name,
+    .resume-language-name {
+      font-weight: 500;
+    }
+
+    .resume-skill-level,
+    .resume-language-fluency {
+      font-weight: 400;
+    }
+
+    /* mobile */
+    @media (max-width: 768px) {
+      body {
+        padding: var(--spacing-xl);
+      }
+
+      .resume-header {
+        margin-bottom: var(--spacing-xl);
+      }
+
+      .resume-contact-info {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .resume-entry-header {
+        flex-wrap: wrap;
+      }
+    }
+
+    /* footer */
+    .resume-footer {
+      margin-top: var(--spacing-xxl);
+      padding-top: var(--spacing-xl);
+      border-top: 1px solid var(--border-color);
+      font-size: var(--font-size-sm);
+      color: var(--text-color-secondary);
+    }
+
+    @media print {
+      .resume-footer {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="resume-header">
+    <h1 class="resume-name">Ingrid Solberg</h1>
+    <p class="resume-headline">Erfaren prosjektleder med lidenskap for smidig metodikk og verdiskapning</p>
+    <div class="resume-contact-info">
+      <span class="resume-contact-item"><span class="resume-contact-icon">📧</span><a href="mailto:ingrid.solberg@example.no" class="resume-contact-link">ingrid.solberg@example.no</a></span>
+      <span class="resume-contact-item"><span class="resume-contact-icon">📞</span>+47 123 45 678</span>
+      <span class="resume-contact-item"><span class="resume-contact-icon">🔗</span><a href="https://www.ingridsolberg.no" class="resume-contact-link">https://www.ingridsolberg.no</a></span>
+    </div>
+    <div class="resume-contact-info resume-location-info">
+      <span class="resume-contact-item"><span class="resume-contact-icon">📍</span>Karl Johans gate 15, Oslo, Oslo, Norge, 0150</span>
+    </div>
+    <div class="resume-contact-info resume-profiles-info">
+      <span class="resume-contact-item"><span class="resume-contact-label">LinkedIn</span>: <a href="https://www.linkedin.com/in/ingridsolberg" class="resume-contact-link">@ingridsolberg</a></span>
+      <span class="resume-contact-item"><span class="resume-contact-label">GitHub</span>: <a href="https://github.com/ingridsolberg" class="resume-contact-link">@ingridsolberg</a></span>
+      <span class="resume-contact-item"><span class="resume-contact-label">Twitter</span>: <a href="https://twitter.com/ingridsolberg" class="resume-contact-link">@ingridsolberg</a></span>
+    </div>
+  </header>
+  <section class="resume-section" id="summary" data-section="summary">
+    <h2 class="resume-section-title">Grunnleggende informasjon</h2>
+    <div class="resume-section-content">
+      <div class="resume-summary-content">
+        <ul>
+          <li>
+            <p>Prosjektleder med over 8 års erfaring fra teknologi- og energibransjen</p>
+          </li>
+          <li>
+            <p>Dokumentert suksess med å lede tverrfaglige team og levere prosjekter innen tid og budsjett</p>
+          </li>
+          <li>
+            <p>Sterk kompetanse innen smidige metoder (Scrum, Kanban) og tradisjonell prosjektstyring (PMBOK)</p>
+          </li>
+          <li>
+            <p>Strategisk tenker med fokus på kontinuerlig forbedring og bærekraftige løsninger</p>
+          </li>
+          <li>
+            <p>Gode kommunikasjons- og lederegenskaper, vant til å samarbeide med interessenter på alle nivåer</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="education" data-section="education">
+    <h2 class="resume-section-title">Utdanning</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="education-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.ntnu.no/">Norges teknisk-naturvitenskapelige universitet (NTNU)</a></div>
+            <div class="resume-entry-organization">Master, Industriell økonomi og teknologiledelse, Poeng: 3.8</div>
+          </div>
+          <div class="resume-entry-date">aug. 2015–juni 2017</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Spesialisering i prosjektledelse og innovasjonsledelse</p>
+            </li>
+            <li>
+              <p>Gjennomførte masteroppgave om smidig prosjektstyring i energisektoren</p>
+            </li>
+            <li>
+              <p>Verv som leder for studentorganisasjonen Prosjektforum</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Kurs</span>: Prosjektledelse, Risikostyring, Smidig utvikling, Strategisk ledelse, Finansstyring, Forhandlingsteknikk</div>
+      </div>
+      <div class="resume-entry" id="education-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.bi.no/">Handelshøyskolen BI</a></div>
+            <div class="resume-entry-organization">Bachelor, Økonomi og administrasjon, Poeng: 3.5</div>
+          </div>
+          <div class="resume-entry-date">aug. 2012–juni 2015</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Grunnleggende forståelse for forretningsdrift og økonomistyring</p>
+            </li>
+            <li>
+              <p>Deltok i case-konkurranser og studentprosjekter</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Kurs</span>: Bedriftsøkonomi, Markedsføring, Organisasjonspsykologi, Statistikk</div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="work" data-section="work">
+    <h2 class="resume-section-title">Arbeidserfaring</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="work-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.equinor.com/">Equinor</a></div>
+            <div class="resume-entry-organization">Senior Prosjektleder</div>
+          </div>
+          <div class="resume-entry-date">jan. 2021–Nå</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Leder komplekse tverrfaglige prosjekter innen fornybar energi og digitalisering</p>
+            </li>
+            <li>
+              <p>Ansvarlig for prosjektbudsjetter på opptil 200 MNOK og team på 20+ medlemmer</p>
+            </li>
+            <li>
+              <p>Implementerte smidige arbeidsmetoder som reduserte leveringstiden med 25%</p>
+            </li>
+            <li>
+              <p>Bygget sterke relasjoner med interessenter og leverandører for å sikre fremdrift</p>
+            </li>
+            <li>
+              <p>Veileder og mentor for junior prosjektledere i organisasjonen</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Nøkkelord</span>: Prosjektledelse, Smidig, Fornybar energi, Digitalisering, Risikostyring</div>
+      </div>
+      <div class="resume-entry" id="work-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.telenor.no/">Telenor</a></div>
+            <div class="resume-entry-organization">Prosjektleder</div>
+          </div>
+          <div class="resume-entry-date">sep. 2017–des. 2020</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Ledet flere IT-utviklingsprosjekter fra konsept til produksjon</p>
+            </li>
+            <li>
+              <p>Koordinerte interne team og eksterne leverandører for å levere på tid og budsjett</p>
+            </li>
+            <li>
+              <p>Innførte Kanban for bedre flyt og oversikt i utviklingsteamene</p>
+            </li>
+            <li>
+              <p>Gjennomførte risikovurderinger og utarbeidet beredskapsplaner</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Nøkkelord</span>: IT-prosjekter, Kanban, Leverandørstyring, Agile</div>
+      </div>
+      <div class="resume-entry" id="work-3">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.dnv.no/">DNV</a></div>
+            <div class="resume-entry-organization">Prosjektkoordinator</div>
+          </div>
+          <div class="resume-entry-date">juli 2016–aug. 2017</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Støttet prosjektledere i planlegging, oppfølging og rapportering</p>
+            </li>
+            <li>
+              <p>Utviklet maler og verktøy for prosjektstyring som ble brukt på tvers av avdelingen</p>
+            </li>
+            <li>
+              <p>Bidro til å etablere et prosjektkontor (PMO) for bedre styring og kontroll</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Nøkkelord</span>: Prosjektstøtte, PMO, Rapportering</div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="languages" data-section="languages">
+    <h2 class="resume-section-title">Språk</h2>
+    <div class="resume-section-content">
+      <div class="resume-languages-list">
+        <div class="resume-language-item">
+          <div class="resume-language-name">Norsk<span class="resume-language-fluency">: Morsmål eller tospråklig nivå</span></div>
+          <div>
+            <div class="resume-labeled-list"><span>Nøkkelord</span>: Morsmål</div>
+          </div>
+        </div>
+        <div class="resume-language-item">
+          <div class="resume-language-name">Engelsk<span class="resume-language-fluency">: Fullt profesjonelt nivå</span></div>
+          <div>
+            <div class="resume-labeled-list"><span>Nøkkelord</span>: TOEFL 110, Forretningsflyt</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="skills" data-section="skills">
+    <h2 class="resume-section-title">Ferdigheter</h2>
+    <div class="resume-section-content">
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">Prosjektledelse<span class="resume-skill-level">: Ekspert</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>Nøkkelord</span>: PMBOK, PRINCE2, Risikostyring, Budsjettering, Interessentanalyse</div>
+        </div>
+      </div>
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">Smidig metodikk<span class="resume-skill-level">: Avansert</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>Nøkkelord</span>: Scrum, Kanban, Lean, SAFe</div>
+        </div>
+      </div>
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">Verktøy<span class="resume-skill-level">: Avansert</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>Nøkkelord</span>: Jira, Microsoft Project, Trello, Asana, Miro</div>
+        </div>
+      </div>
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">Ledelse<span class="resume-skill-level">: Ekspert</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>Nøkkelord</span>: Teamledelse, Mentoring, Kommunikasjon, Forhandling</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="awards" data-section="awards">
+    <h2 class="resume-section-title">Utmerkelser</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="awards-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title">Årets Prosjektleder</div>
+            <div class="resume-entry-organization">Norsk Prosjektlederforening</div>
+          </div>
+          <div class="resume-entry-date">nov. 2022</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Tildelt for fremragende ledelse av digitaliseringsprosjektet &quot;Fremtidens Energi&quot;</p>
+            </li>
+            <li>
+              <p>Anerkjent for innovativ bruk av smidige metoder og sterk resultatorientering</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="resume-entry" id="awards-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title">Beste Masteroppgave</div>
+            <div class="resume-entry-organization">NTNU</div>
+          </div>
+          <div class="resume-entry-date">juni 2017</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Tildelt for masteroppgaven &quot;Smidig prosjektstyring i energisektoren&quot;</p>
+            </li>
+            <li>
+              <p>Karakter A og ros for praktisk relevans</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="certificates" data-section="certificates">
+    <h2 class="resume-section-title">Sertifikater</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="certificates-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.pmi.org/certifications/project-management-pmp">Project Management Professional (PMP)</a></div>
+            <div class="resume-entry-organization">Project Management Institute</div>
+          </div>
+          <div class="resume-entry-date">mars 2019</div>
+        </div>
+      </div>
+      <div class="resume-entry" id="certificates-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.axelos.com/certifications/prince2">PRINCE2 Foundation</a></div>
+            <div class="resume-entry-organization">AXELOS</div>
+          </div>
+          <div class="resume-entry-date">juni 2016</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="publications" data-section="publications">
+    <h2 class="resume-section-title">Publikasjoner</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="publications-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.magma.no/smidig-prosjektstyring">Smidig prosjektstyring i energisektoren</a></div>
+            <div class="resume-entry-organization">Magma - Econa</div>
+          </div>
+          <div class="resume-entry-date">sep. 2017</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Artikkel basert på masteroppgave om hvordan smidige metoder kan forbedre prosjektgjennomføring i energibransjen</p>
+            </li>
+            <li>
+              <p>Presenterer case-studier og anbefalinger for ledere</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="projects" data-section="projects">
+    <h2 class="resume-section-title">Prosjekter</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="projects-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.equinor.com/fremtidens-energi">Fremtidens Energi</a></div>
+            <div class="resume-entry-description">Digital plattform for sanntidsstyring av fornybare energikilder</div>
+          </div>
+          <div class="resume-entry-date">feb. 2021–des. 2022</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Ledet et team på 15 utviklere, designere og data scientists</p>
+            </li>
+            <li>
+              <p>Leverte plattformen 2 måneder før planlagt og 10% under budsjett</p>
+            </li>
+            <li>
+              <p>Implementerte smidige metoder og automatisert rapportering</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Nøkkelord</span>: Fornybar energi, Digitalisering, Smidig, Prosjektledelse</div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="interests" data-section="interests">
+    <h2 class="resume-section-title">Interesser</h2>
+    <div class="resume-section-content">
+      <div class="resume-interest-item"><span class="resume-interest-name">Friluftsliv</span>: Fjellturer, Ski, Kajakk</div>
+      <div class="resume-interest-item"><span class="resume-interest-name">Teknologi</span>: Kunstig intelligens, Bærekraft, Åpen kildekode</div>
+    </div>
+  </section>
+  <section class="resume-section" id="volunteer" data-section="volunteer">
+    <h2 class="resume-section-title">Frivillig arbeid</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="volunteer-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.prosjektlederforeningen.no/">Norsk Prosjektlederforening</a></div>
+            <div class="resume-entry-organization">Mentor</div>
+          </div>
+          <div class="resume-entry-date">jan. 2020–Nå</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Mentorer unge prosjektledere og studenter innen prosjektfaget</p>
+            </li>
+            <li>
+              <p>Holder foredrag og workshops om smidig prosjektledelse</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="resume-entry" id="volunteer-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.startupnorge.no/">StartUp Norge</a></div>
+            <div class="resume-entry-organization">Rådgiver</div>
+          </div>
+          <div class="resume-entry-date">mars 2018–des. 2019</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Rådgav oppstartsbedrifter om prosjektplanlegging og finansiering</p>
+            </li>
+            <li>
+              <p>Bidro til å utvikle strukturerte prosjektplaner for tidligfase-selskaper</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer class="resume-footer">Generated by <a href="https://yamlresume.dev">YAMLResume</a></footer>
+</body>
+
+</html>

@@ -1,0 +1,263 @@
+\documentclass[a4paper, serif, 10pt]{moderncv}
+
+%% moderncv
+% style and color
+\moderncvstyle{banking}
+\moderncvcolor{black}
+
+%% page layout/margins
+\usepackage[top=2.5cm, bottom=2.5cm, left=1.5cm, right=1.5cm]{geometry}
+
+\nopagenumbers{}
+
+%% Babel config for German language
+% ref:
+% - https://latex3.github.io/babel/guides/locale-german.html
+\usepackage[ngerman]{babel}
+
+%% fontspec
+\usepackage{fontspec}
+
+\IfFontExistsTF{Linux Libertine}{
+  \setmainfont[Ligatures={TeX, Common}, Numbers=OldStyle]{Linux Libertine}
+}{}
+\IfFontExistsTF{Linux Libertine O}{
+  \setmainfont[Ligatures={TeX, Common}, Numbers=OldStyle]{Linux Libertine O}
+}{}
+
+%% CTeX
+% CJK support, used to show CJK characters in the resume
+%
+% - fontset=none: disable builtin fontset but instead set the CJK font manually
+% - heading=false: disable ctex heading
+% - punct=kaiming: use kaiming punctuations styles for CJK
+% - scheme=plain: use plain scheme, do not override \normalsize font size
+% - space=auto: space settings for CJK characters
+%
+% ref:
+% - http://ctan.mirrorcatalogs.com/language/chinese/ctex/ctex.pdf
+\usepackage[UTF8, heading=false, punct=kaiming, scheme=plain, space=auto]{ctex}
+
+\IfFontExistsTF{Noto Serif CJK SC}{
+  \setCJKmainfont{Noto Serif CJK SC}
+}{}
+\IfFontExistsTF{Noto Sans CJK SC}{
+  \setCJKsansfont{Noto Sans CJK SC}
+}{}
+
+%% line spacing
+\usepackage{setspace}
+\setstretch{1.125}
+
+%% URL styling - use normal text instead of monospace
+\urlstyle{same}
+
+% Auto-underline all links
+% Defer until \begin{document} so hyperref is already loaded
+\AtBeginDocument{%
+  \let\oldhref\href
+  \renewcommand{\href}[2]{\oldhref{#1}{\underline{#2}}}%
+}
+
+%% Patch \httplink and \httpslink to handle full URLs
+% The original moderncv macros always prepend http:// or https:// to URLs.
+% This causes issues when the URL already has a protocol (e.g., https://example.com)
+% resulting in malformed URLs like https://https://example.com.
+% This patch checks if the URL already contains "://" and uses it directly if so.
+% Note: We use \str_set:Nx (x-expansion) to expand macros like \@homepage first.
+\ExplSyntaxOn
+\str_new:N \g_yamlresume_url_str
+
+\RenewDocumentCommand{\httpslink}{O{}m}{
+  \str_set:Nx \g_yamlresume_url_str {#2}
+  \str_if_in:NnTF \g_yamlresume_url_str {://}
+    { \url{#2} }
+    { \url{https://#2} }
+}
+
+\RenewDocumentCommand{\httplink}{O{}m}{
+  \str_set:Nx \g_yamlresume_url_str {#2}
+  \str_if_in:NnTF \g_yamlresume_url_str {://}
+    { \url{#2} }
+    { \url{http://#2} }
+}
+\ExplSyntaxOff
+
+\name{Julia Schneider}{}
+\title{Marketing Manager | Digitale Kampagnen \& Markenstrategie}
+\phone[mobile]{+49 30 12345678}
+\email{julia.schneider@example.de}
+\homepage{https://www.juliaschneider-marketing.de}
+
+\address{Friedrichstraße 123, Berlin, Berlin, Deutschland, 10117}{}{}
+
+\extrainfo{{\small \faLinkedin}\ \href{https://www.linkedin.com/in/julia-schneider-marketing}{@julia-schneider-marketing} {} {} {} • {} {} {} 
+{\small \faTwitter}\ \href{https://twitter.com/julia\_marketing}{@julia\_marketing}}
+
+\begin{document}
+
+\maketitle
+
+\section{Basisinformationen}
+
+\cvline{}{Marketing Manager mit über 8 Jahren Erfahrung in der Entwicklung und Umsetzung datengetriebener Marketingstrategien. Spezialisiert auf digitale Kampagnen, Markenführung und Lead-Generierung im B2B- und B2C-Umfeld.
+%
+\begin{itemize}
+\item Erfolgreiche Steuerung von Marketingbudgets bis 1,5 Mio. €
+\item Führung interdisziplinärer Teams von bis zu 8 Mitarbeitenden
+\item Ausgeprägte analytische Fähigkeiten und Erfahrung mit CRM- und Marketing-Automation-Tools
+\item Kreative Denkweise mit starkem Fokus auf messbare Ergebnisse und ROI
+\end{itemize}}
+\section{Ausbildung}
+
+\cventry{Okt. 2014–Sept. 2016}
+        {Master, Betriebswirtschaftslehre mit Schwerpunkt Marketing, Punkte: 1,7}
+        {Freie Universität Berlin}
+        {\url{https://www.fu-berlin.de}}
+        {}
+        {\begin{itemize}
+\item Vertiefung in marktorientierter Unternehmensführung und digitalen Geschäftsmodellen
+\item Masterarbeit zum Thema "Einfluss von Social Media auf die Markenloyalität"
+\item Praktika bei einer Werbeagentur und einem E-Commerce-Unternehmen
+\end{itemize}
+\textbf{Kurse}: Strategisches Marketing, Konsumentenverhalten, Marktforschung, Digitales Marketing, Internationales Management, Kommunikationspolitik}
+\section{Berufserfahrung}
+
+\cventry{Jan. 2020–Heute}
+        {Marketing Manager}
+        {TechNova GmbH}
+        {\url{https://www.technova.de}}
+        {}
+        {\begin{itemize}
+\item Entwicklung und Umsetzung der ganzheitlichen Marketingstrategie für den DACH-Raum
+\item Steuerung eines jährlichen Budgets von 1,5 Mio. € über alle digitalen und Offline-Kanäle
+\item Führung eines Teams von 6 Marketing-Spezialisten (Content, Performance, Design)
+\item Einführung eines Marketing-Automation-Systems (HubSpot) und Steigerung der qualifizierten Leads um 45 \%
+\item Enge Zusammenarbeit mit Produktmanagement und Vertrieb zur Markteinführung neuer Produkte
+\end{itemize}
+\textbf{Schlüsselwörter}: Digitale Kampagnen, Markenstrategie, Lead-Generierung, Budgetplanung, Teamführung, Marketing-Automation}
+
+\cventry{März 2017–Dez. 2019}
+        {Senior Marketing Specialist}
+        {GreenWave AG}
+        {\url{https://www.greenwave.de}}
+        {}
+        {\begin{itemize}
+\item Konzeption und Durchführung von Multi-Channel-Kampagnen zur Steigerung der Markenbekanntheit
+\item Verantwortung für SEO/SEM-Maßnahmen und Steigerung des organischen Traffics um 60 \%
+\item Aufbau und Betreuung des Content-Marketings inkl. Blog, Whitepaper und Social Media
+\item Analyse von Kampagnenkennzahlen und Ableitung von Optimierungsmaßnahmen
+\end{itemize}
+\textbf{Schlüsselwörter}: SEO, SEM, Content-Marketing, Social Media, Kampagnenmanagement}
+
+\cventry{Juli 2016–Feb. 2017}
+        {Marketing Assistant}
+        {StartUp Labs}
+        {\url{https://www.startuplabs.de}}
+        {}
+        {\begin{itemize}
+\item Unterstützung bei der Erstellung von Marketingmaterialien und Präsentationen
+\item Pflege der Social-Media-Kanäle und Erstellung von Grafiken mit Canva
+\item Mithilfe bei der Organisation von Events und Messen
+\item Erste Erfahrungen in der Auswertung von Google Analytics
+\end{itemize}
+\textbf{Schlüsselwörter}: Social Media, Event-Marketing, Content-Erstellung}
+\section{Sprachen}
+
+\cvline{Deutsch}{Muttersprache oder zweisprachig}
+\cvline{Englisch}{Verhandlungssichere Kenntnisse \hfill \textbf{Schlüsselwörter}: C1, Business English}
+\cvline{Französisch}{Gute Kenntnisse \hfill \textbf{Schlüsselwörter}: A2}
+\section{Fähigkeiten}
+
+\cvline{Marketingstrategie}{Experte \hfill \textbf{Schlüsselwörter}: Markenpositionierung, Zielgruppenanalyse, Wettbewerbsanalyse, Marketingplanung}
+\cvline{Digitale Kanäle}{Erfahren \hfill \textbf{Schlüsselwörter}: Google Ads, Meta Ads, LinkedIn Ads, SEO, E-Mail-Marketing}
+\cvline{Analytik \& Tools}{Erfahren \hfill \textbf{Schlüsselwörter}: Google Analytics 4, HubSpot, Salesforce, Tableau, A/B-Testing}
+\cvline{Führung \& Kommunikation}{Erfahren \hfill \textbf{Schlüsselwörter}: Teamleitung, Projektmanagement, Stakeholder, Präsentation}
+\section{Auszeichnungen}
+
+\cventry{Nov. 2022}
+        {Deutscher Marketing Verband}
+        {Marketing Manager des Jahres}
+        {}
+        {}
+        {Auszeichnung für herausragende Leistungen in der strategischen Marketingführung und nachweisbare Steigerung der Markenbekanntheit.}
+
+\cventry{Mai 2021}
+        {European Marketing Awards}
+        {Best Digital Campaign}
+        {}
+        {}
+        {Prämierung der Kampagne "TechNova Future" für Kreativität, Innovation und messbaren ROI.}
+\section{Zertifikate}
+
+\cventry{März 2021}
+        {Google}
+        {Google Ads Zertifizierung}
+        {\url{https://ads.google.com/certification}}
+        {}
+        {}
+
+\cventry{Juni 2020}
+        {HubSpot Academy}
+        {HubSpot Inbound Marketing Zertifizierung}
+        {\url{https://academy.hubspot.com}}
+        {}
+        {}
+\section{Veröffentlichungen}
+
+\cventry{Apr. 2023}
+        {Die Zukunft des datengetriebenen Marketings}
+        {Marketing Journal}
+        {\url{https://www.marketingjournal.de}}
+        {}
+        {Fachartikel über die Bedeutung von Datenanalyse und KI für personalisierte Marketingstrategien.}
+
+\cventry{Sept. 2022}
+        {Nachhaltige Markenführung}
+        {Springer Gabler}
+        {\url{https://www.springer.com}}
+        {}
+        {Buchkapitel über die Integration von Nachhaltigkeit in die Markenpositionierung.}
+\section{Projekte}
+
+\cventry{Jan. 2021–Dez. 2021}
+        {Neupositionierung der Marke TechNova für den europäischen Markt}
+        {Markenrelaunch TechNova}
+        {\url{https://www.technova.de/markenrelaunch}}
+        {}
+        {\begin{itemize}
+\item Entwicklung eines neuen Markenleitbilds und visuellen Erscheinungsbilds
+\item Umsetzung einer integrierten Kampagne über Social Media, PR und Events
+\item Steigerung der Markenbekanntheit um 35 \% innerhalb von 12 Monaten
+\end{itemize}
+\textbf{Schlüsselwörter}: Markenrelaunch, Positionierung, Integrierte Kampagne}
+
+\cventry{März 2022–Nov. 2022}
+        {Aufbau eines automatisierten B2B-Lead-Funnels}
+        {B2B Lead-Funnel}
+        {\url{https://www.technova.de/lead-funnel}}
+        {}
+        {\begin{itemize}
+\item Konzeption und Implementierung von Content-Angeboten für jede Funnel-Phase
+\item Nutzung von LinkedIn Ads und E-Mail-Nurturing zur Lead-Qualifizierung
+\item Erhöhung der Conversion-Rate um 28 \%
+\end{itemize}
+\textbf{Schlüsselwörter}: Lead-Generierung, B2B, Marketing-Automation}
+\section{Interessen}
+
+\cvline{Sport}{Laufen, Yoga, Radfahren}
+\cvline{Kultur}{Fotografie, Reisen, Literatur}
+\section{Ehrenamtliche Tätigkeiten}
+
+\cventry{Jan. 2018–Dez. 2020}
+        {Ehrenamtliche Marketingleitung}
+        {Marketing für Non-Profit e.V.}
+        {\url{https://www.marketing-nonprofit.de}}
+        {}
+        {\begin{itemize}
+\item Entwicklung und Umsetzung der Online-Marketingstrategie für ein soziales Projekt
+\item Betreuung der Website und Social-Media-Kanäle
+\item Organisation von Spendenkampagnen mit einem Spendenvolumen von über 50.000 €
+\end{itemize}}
+    
+\end{document}

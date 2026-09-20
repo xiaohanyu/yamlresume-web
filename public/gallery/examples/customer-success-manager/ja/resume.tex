@@ -1,0 +1,277 @@
+\documentclass[a4paper, serif, 10pt]{moderncv}
+
+%% moderncv
+% style and color
+\moderncvstyle{banking}
+\moderncvcolor{black}
+
+% renew moderncv command to adapt for CJK colon
+\renewcommand*{\cvitem}[3][.25em]{%
+  \ifstrempty{#2}{}{\hintstyle{#2}：}{#3}%
+  \par\addvspace{#1}}
+
+\renewcommand*{\cvitemwithcomment}[4][.25em]{%
+  \savebox{\cvitemwithcommentmainbox}{\ifstrempty{#2}{}{\hintstyle{#2}：}#3}%
+  \setlength{\cvitemwithcommentmainlength}{\widthof{\usebox{\cvitemwithcommentmainbox}}}%
+  \setlength{\cvitemwithcommentcommentlength}{\maincolumnwidth-\separatorcolumnwidth-\cvitemwithcommentmainlength}%
+  \begin{minipage}[t]{\cvitemwithcommentmainlength}\usebox{\cvitemwithcommentmainbox}\end{minipage}%
+  \hfill% fill of \separatorcolumnwidth
+  \begin{minipage}[t]{\cvitemwithcommentcommentlength}\raggedleft\small\itshape#4\end{minipage}%
+  \par\addvspace{#1}}
+
+%% page layout/margins
+\usepackage[top=2.5cm, bottom=2.5cm, left=1.5cm, right=1.5cm]{geometry}
+
+\nopagenumbers{}
+
+%% Babel config for English language
+\usepackage[english]{babel}
+
+%% fontspec
+\usepackage{fontspec}
+
+\IfFontExistsTF{Linux Libertine}{
+  \setmainfont[Ligatures={TeX, Common}, Numbers=Lining, ItalicFont=Linux Libertine]{Linux Libertine}
+}{}
+\IfFontExistsTF{Linux Libertine O}{
+  \setmainfont[Ligatures={TeX, Common}, Numbers=Lining, ItalicFont=Linux Libertine O]{Linux Libertine O}
+}{}
+
+%% CTeX
+% CJK support, used to show CJK characters in the resume
+%
+% - fontset=none: disable builtin fontset but instead set the CJK font manually
+% - heading=false: disable ctex heading
+% - punct=kaiming: use kaiming punctuations styles for CJK
+% - scheme=plain: use plain scheme, do not override \normalsize font size
+% - space=auto: space settings for CJK characters
+%
+% ref:
+% - http://ctan.mirrorcatalogs.com/language/chinese/ctex/ctex.pdf
+\usepackage[UTF8, heading=false, punct=kaiming, scheme=plain, space=auto]{ctex}
+
+\IfFontExistsTF{Noto Serif CJK SC}{
+  \setCJKmainfont{Noto Serif CJK SC}
+}{}
+\IfFontExistsTF{Noto Sans CJK SC}{
+  \setCJKsansfont{Noto Sans CJK SC}
+}{}
+
+%% line spacing
+\usepackage{setspace}
+\setstretch{1.125}
+
+%% URL styling - use normal text instead of monospace
+\urlstyle{same}
+
+% Auto-underline all links
+% Defer until \begin{document} so hyperref is already loaded
+\AtBeginDocument{%
+  \let\oldhref\href
+  \renewcommand{\href}[2]{\oldhref{#1}{\underline{#2}}}%
+}
+
+%% Patch \httplink and \httpslink to handle full URLs
+% The original moderncv macros always prepend http:// or https:// to URLs.
+% This causes issues when the URL already has a protocol (e.g., https://example.com)
+% resulting in malformed URLs like https://https://example.com.
+% This patch checks if the URL already contains "://" and uses it directly if so.
+% Note: We use \str_set:Nx (x-expansion) to expand macros like \@homepage first.
+\ExplSyntaxOn
+\str_new:N \g_yamlresume_url_str
+
+\RenewDocumentCommand{\httpslink}{O{}m}{
+  \str_set:Nx \g_yamlresume_url_str {#2}
+  \str_if_in:NnTF \g_yamlresume_url_str {://}
+    { \url{#2} }
+    { \url{https://#2} }
+}
+
+\RenewDocumentCommand{\httplink}{O{}m}{
+  \str_set:Nx \g_yamlresume_url_str {#2}
+  \str_if_in:NnTF \g_yamlresume_url_str {://}
+    { \url{#2} }
+    { \url{http://#2} }
+}
+\ExplSyntaxOff
+
+\name{佐藤 美咲}{}
+\title{カスタマーサクセスマネージャー | SaaS導入支援と顧客成長の推進}
+\phone[mobile]{+81 90-1234-5678}
+\email{misaki.sato@example.com}
+\homepage{https://example.com/misaki-sato}
+
+\address{日本、東京都、渋谷区、東京都渋谷区神南1-2-3、150-0001}{}{}
+
+\extrainfo{{\small \faLinkedin}\ \href{https://www.linkedin.com/in/misaki-sato-csm}{@misaki-sato-csm} {} {} {} • {} {} {} 
+{\small \faTwitter}\ \href{https://twitter.com/misaki\_csm}{@misaki\_csm}}
+
+\begin{document}
+
+\maketitle
+
+\section{基本情報}
+
+\cvline{}{\begin{itemize}
+\item SaaS企業で5年以上のカスタマーサクセス経験を持ち、導入支援から定着支援、更新・アップセルまで一貫して担当
+\item 顧客のビジネス目標を理解し、プロダクト活用を通じた成果創出を支援
+\item データ分析に基づくヘルススコア設計とチャーン防止施策の立案・実行が強み
+\item クロスファンクショナルなチームと連携し、顧客の声をプロダクト改善に還元
+\item 日本語と英語でのコミュニケーションが可能で、グローバル顧客にも対応
+\end{itemize}}
+\section{学歴}
+
+\cventry{2014年4月～2018年3月}
+        {学士、経営学、成績：3.7/4.0}
+        {早稲田大学}
+        {\url{https://www.waseda.jp}}
+        {}
+        {\begin{itemize}
+\item 経営学を専攻し、マーケティングと組織マネジメントを中心に学習
+\item データ分析や消費者行動の授業を通じて、顧客理解の基礎を習得
+\item グループワークやプレゼンテーションで協働と発信力を養成
+\end{itemize}
+\textbf{コース}：マーケティング戦略、経営組織論、消費者行動論、データ分析入門、ビジネスコミュニケーション、国際経営}
+\section{職歴}
+
+\cventry{2021年4月～現在}
+        {シニアカスタマーサクセスマネージャー}
+        {株式会社クラウドコネクト}
+        {\url{https://cloudconnect.example.jp}}
+        {}
+        {\begin{itemize}
+\item エンタープライズ顧客30社以上を担当し、導入支援から定着、更新、アップセルまで一貫して推進
+\item 顧客のKPIに基づく成功計画を策定し、四半期ビジネスレビュー（QBR）を主導
+\item ヘルススコアを再設計し、チャーンリスクの早期検知と proactive な支援を実現
+\item プロダクトチームと連携し、顧客要望を機能改善に反映
+\item 年間契約更新率を92\%から96\%へ改善し、アップセル収益を前年比130\%に拡大
+\end{itemize}
+\textbf{キーワード}：カスタマーサクセス、導入支援、更新管理、アップセル、QBR、チャーン防止}
+
+\cventry{2018年4月～2021年3月}
+        {カスタマーサクセスマネージャー}
+        {株式会社サポートテック}
+        {\url{https://supporttech.example.jp}}
+        {}
+        {\begin{itemize}
+\item 中小規模顧客100社以上を担当し、オンボーディングと活用支援を実施
+\item 顧客向けトレーニングやウェビナーを企画・運営し、プロダクト利用率を向上
+\item 顧客満足度調査を分析し、サポート品質改善とナレッジベース整備に貢献
+\item 解約予兆のある顧客へのリテンション施策を立案し、更新率を88\%から93\%へ改善
+\end{itemize}
+\textbf{キーワード}：オンボーディング、活用支援、リテンション、トレーニング、顧客満足度}
+
+\cventry{2016年4月～2018年3月}
+        {カスタマーサポート担当}
+        {株式会社グローバルソリューションズ}
+        {\url{https://globalsolutions.example.jp}}
+        {}
+        {\begin{itemize}
+\item 法人顧客からの問い合わせ対応を通じて、プロダクトの機能理解と課題解決を支援
+\item 問い合わせデータを分析し、FAQやマニュアルの改善を提案
+\item サポートチーム内のナレッジ共有を促進し、対応時間の短縮に貢献
+\end{itemize}
+\textbf{キーワード}：カスタマーサポート、問い合わせ対応、ナレッジ管理、課題解決}
+\section{言語}
+
+\cvline{日本語}{ネイティブ・母国語レベル \hfill \textbf{キーワード}：母国語、ビジネス文書、プレゼンテーション}
+\cvline{英語}{完全な実務レベル \hfill \textbf{キーワード}：TOEIC 920、ビジネス会話、英文メール、海外顧客対応}
+\section{スキル}
+
+\cvline{カスタマーサクセス}{エキスパート \hfill \textbf{キーワード}：オンボーディング、導入支援、顧客関係構築、チャーン防止、アップセル、更新管理}
+\cvline{データ分析}{上級 \hfill \textbf{キーワード}：Salesforce、Tableau、SQL、Excel、KPI設計、ヘルススコア}
+\cvline{プロジェクト管理}{上級 \hfill \textbf{キーワード}：Asana、Jira、Notion、Slack、進行管理}
+\cvline{コミュニケーション}{エキスパート \hfill \textbf{キーワード}：プレゼンテーション、折衝、ファシリテーション、英語、日本語}
+\section{受賞・表彰}
+
+\cventry{2023年12月}
+        {株式会社クラウドコネクト}
+        {年間最優秀カスタマーサクセスマネージャー}
+        {}
+        {}
+        {顧客満足度と更新率の向上、およびアップセル収益の拡大に貢献した功績により表彰。}
+
+\cventry{2020年12月}
+        {株式会社サポートテック}
+        {社長賞}
+        {}
+        {}
+        {大手顧客のチャーン防止プロジェクトをリードし、年間契約更新率を93\%まで改善した功績により受賞。}
+\section{資格・免状}
+
+\cventry{2022年6月}
+        {Salesforce}
+        {Salesforce 認定アドミニストレーター}
+        {\url{https://trailhead.salesforce.com/credentials/administrator}}
+        {}
+        {}
+
+\cventry{2021年9月}
+        {HubSpot}
+        {HubSpot インバウンドセールス認定}
+        {\url{https://academy.hubspot.com/certification}}
+        {}
+        {}
+
+\cventry{2020年3月}
+        {AXELOS}
+        {ITIL 4 Foundation}
+        {\url{https://www.axelos.com/certifications/itil-certifications}}
+        {}
+        {}
+\section{出版・著作}
+
+\cventry{2023年8月}
+        {SaaSにおけるカスタマーサクセス指標の設計}
+        {テックビジネスジャーナル}
+        {\url{https://example.com/articles/customer-success-kpi}}
+        {}
+        {\begin{itemize}
+\item カスタマーサクセスにおけるKPI設計の考え方とヘルススコア活用事例を解説
+\item チャーン予測とアップセル機会の可視化による収益貢献の可能性を提示
+\item 顧客セグメント別の成功指標の違いと運用上の注意点を整理
+\end{itemize}}
+\section{プロジェクト}
+
+\cventry{2023年1月～2023年12月}
+        {顧客データを活用したヘルススコアモデルの再設計}
+        {顧客ヘルススコア改善プロジェクト}
+        {\url{https://example.com/projects/health-score}}
+        {}
+        {\begin{itemize}
+\item 利用頻度、サポート問い合わせ、NPSなどのデータを統合し、チャーン予測精度を向上
+\item リスク顧客に対する自動アラートと担当者アクションの標準化を実施
+\item プロジェクト完了後、解約率を前年比20\%削減
+\end{itemize}
+\textbf{キーワード}：ヘルススコア、データ分析、チャーン予測、顧客セグメント}
+
+\cventry{2022年4月～2022年9月}
+        {新規顧客向けオンボーディングプロセスの自動化}
+        {オンボーディング自動化プロジェクト}
+        {\url{https://example.com/projects/onboarding-automation}}
+        {}
+        {\begin{itemize}
+\item 契約後から初回価値実感までのステップを整理し、自動化ツールを導入
+\item テンプレート化により、担当者ごとのばらつきを削減
+\item オンボーディング完了までの期間を平均14日から7日へ短縮
+\end{itemize}
+\textbf{キーワード}：オンボーディング、自動化、プロセス改善、顧客導入}
+\section{興味・関心}
+
+\cvline{読書}{ビジネス書、心理学、テクノロジー}
+\cvline{旅行}{国内旅行、海外旅行、温泉}
+\cvline{料理}{イタリア料理、和食、パン作り}
+\section{ボランティア活動}
+
+\cventry{2019年9月～現在}
+        {メンター}
+        {一般社団法人 キャリア支援ネットワーク}
+        {\url{https://example.com/volunteer}}
+        {}
+        {\begin{itemize}
+\item 若手社会人や学生向けに、キャリア相談とビジネススキル向上のメンタリングを実施
+\item 月1回のワークショップを企画し、コミュニケーションや顧客対応の基礎を指導
+\item メンティーの成長を支援し、延べ50名以上を担当
+\end{itemize}}
+    
+\end{document}

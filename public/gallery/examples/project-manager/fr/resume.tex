@@ -1,0 +1,255 @@
+\documentclass[a4paper, serif, 10pt]{moderncv}
+
+%% moderncv
+% style and color
+\moderncvstyle{banking}
+\moderncvcolor{black}
+
+%% page layout/margins
+\usepackage[top=2.5cm, bottom=2.5cm, left=1.5cm, right=1.5cm]{geometry}
+
+\nopagenumbers{}
+
+%% Babel config for French language
+% ref:
+% - https://latex3.github.io/babel/guides/locale-french.html
+\usepackage[french]{babel}
+
+%% fontspec
+\usepackage{fontspec}
+
+\IfFontExistsTF{Linux Libertine}{
+  \setmainfont[Ligatures={TeX, Common}, Numbers=OldStyle]{Linux Libertine}
+}{}
+\IfFontExistsTF{Linux Libertine O}{
+  \setmainfont[Ligatures={TeX, Common}, Numbers=OldStyle]{Linux Libertine O}
+}{}
+
+%% CTeX
+% CJK support, used to show CJK characters in the resume
+%
+% - fontset=none: disable builtin fontset but instead set the CJK font manually
+% - heading=false: disable ctex heading
+% - punct=kaiming: use kaiming punctuations styles for CJK
+% - scheme=plain: use plain scheme, do not override \normalsize font size
+% - space=auto: space settings for CJK characters
+%
+% ref:
+% - http://ctan.mirrorcatalogs.com/language/chinese/ctex/ctex.pdf
+\usepackage[UTF8, heading=false, punct=kaiming, scheme=plain, space=auto]{ctex}
+
+\IfFontExistsTF{Noto Serif CJK SC}{
+  \setCJKmainfont{Noto Serif CJK SC}
+}{}
+\IfFontExistsTF{Noto Sans CJK SC}{
+  \setCJKsansfont{Noto Sans CJK SC}
+}{}
+
+%% line spacing
+\usepackage{setspace}
+\setstretch{1.125}
+
+%% URL styling - use normal text instead of monospace
+\urlstyle{same}
+
+% Auto-underline all links
+% Defer until \begin{document} so hyperref is already loaded
+\AtBeginDocument{%
+  \let\oldhref\href
+  \renewcommand{\href}[2]{\oldhref{#1}{\underline{#2}}}%
+}
+
+%% Patch \httplink and \httpslink to handle full URLs
+% The original moderncv macros always prepend http:// or https:// to URLs.
+% This causes issues when the URL already has a protocol (e.g., https://example.com)
+% resulting in malformed URLs like https://https://example.com.
+% This patch checks if the URL already contains "://" and uses it directly if so.
+% Note: We use \str_set:Nx (x-expansion) to expand macros like \@homepage first.
+\ExplSyntaxOn
+\str_new:N \g_yamlresume_url_str
+
+\RenewDocumentCommand{\httpslink}{O{}m}{
+  \str_set:Nx \g_yamlresume_url_str {#2}
+  \str_if_in:NnTF \g_yamlresume_url_str {://}
+    { \url{#2} }
+    { \url{https://#2} }
+}
+
+\RenewDocumentCommand{\httplink}{O{}m}{
+  \str_set:Nx \g_yamlresume_url_str {#2}
+  \str_if_in:NnTF \g_yamlresume_url_str {://}
+    { \url{#2} }
+    { \url{http://#2} }
+}
+\ExplSyntaxOff
+
+\name{Camille Laurent}{}
+\title{Chef de projet senior | Transformation digitale et Agile}
+\phone[mobile]{+33 6 12 34 56 78}
+\email{camille.laurent@example.fr}
+\homepage{https://www.camillelaurent.fr}
+
+\address{12 rue de la Paix, Paris, Île-de-France, France, 75002}{}{}
+
+\extrainfo{{\small \faLinkedin}\ \href{https://www.linkedin.com/in/camillelaurent}{@camillelaurent} {} {} {} • {} {} {} 
+{\small \faGithub}\ \href{https://github.com/camillelaurent}{@camillelaurent}}
+
+\begin{document}
+
+\maketitle
+
+\section{Informations de base}
+
+\cvline{}{Chef de projet senior avec plus de 8 ans d'expérience dans le pilotage de projets de transformation digitale, principalement dans les secteurs bancaire, assurance et santé.
+%
+\begin{itemize}
+\item Expertise en méthodologies agiles (Scrum, Kanban, SAFe) et gestion de projets complexes
+\item Solide expérience en management d'équipes pluridisciplinaires et coordination de parties prenantes
+\item Maîtrise du budget, des risques, de la qualité et du reporting
+\item Certifié PMP, PRINCE2 et Scrum Master
+\end{itemize}}
+\section{Formation}
+
+\cventry{sept. 2014–juil. 2016}
+        {Master, Management de projets et systèmes d'information, Score : Mention Bien}
+        {Université Paris-Dauphine}
+        {\url{https://www.dauphine.psl.eu/}}
+        {}
+        {\begin{itemize}
+\item Formation spécialisée en pilotage de projets complexes et transformation digitale
+\item Projets académiques en collaboration avec des entreprises partenaires
+\item Développement de compétences en leadership et communication
+\end{itemize}
+\textbf{Cours} : Gestion de projet avancée, Méthodes agiles et Scrum, Analyse des risques, Management d'équipe, Budget et contrôle de gestion, Systèmes d'information}
+\section{Expérience professionnelle}
+
+\cventry{janv. 2021–Present}
+        {Chef de projet senior}
+        {Atos}
+        {\url{https://atos.net/fr}}
+        {}
+        {\begin{itemize}
+\item Pilote de projets de transformation digitale pour des clients grands comptes (banque, assurance, santé)
+\item Management d'équipes pluridisciplinaires de 10 à 15 personnes (développeurs, business analysts, UX)
+\item Mise en place de méthodologies agiles (Scrum, Kanban) et animation des rituels
+\item Gestion du budget, des risques et des délais ; reporting auprès du comité de direction
+\item Coordination des parties prenantes internes et externes, en France et à l'international
+\end{itemize}
+\textbf{Mots-clés} : Gestion de projet, Agile, Scrum, Budget, Risques}
+
+\cventry{sept. 2016–déc. 2020}
+        {Chef de projet}
+        {Capgemini}
+        {\url{https://www.capgemini.com/fr-fr/}}
+        {}
+        {\begin{itemize}
+\item Gestion de projets web et mobiles pour des clients du secteur public et privé
+\item Rédaction des cahiers des charges, planification et suivi de l'avancement
+\item Animation d'ateliers de cadrage et de recettes fonctionnelles
+\item Encadrement d'une équipe de 5 à 8 personnes
+\item Contribution à l'amélioration continue des processus internes
+\end{itemize}
+\textbf{Mots-clés} : Web, Mobile, Cadrage, Planification, Recette}
+\section{Langues}
+
+\cvline{Français}{Niveau natif ou bilingue \hfill \textbf{Mots-clés} : Langue maternelle}
+\cvline{Anglais}{Niveau professionnel complet \hfill \textbf{Mots-clés} : TOEIC 950, Affaires}
+\cvline{Espagnol}{Niveau de travail limité \hfill \textbf{Mots-clés} : Conversation}
+\section{Compétences}
+
+\cvline{Gestion de projet}{Expert \hfill \textbf{Mots-clés} : Planification, Budget, Risques, Qualité, Reporting}
+\cvline{Méthodes agiles}{Avancé \hfill \textbf{Mots-clés} : Scrum, Kanban, SAFe, Jira, Confluence}
+\cvline{Outils}{Avancé \hfill \textbf{Mots-clés} : MS Project, Jira, Trello, Power BI, Excel avancé}
+\cvline{Management}{Avancé \hfill \textbf{Mots-clés} : Leadership, Communication, Négociation, Coaching}
+\section{Récompenses}
+
+\cventry{juin 2022}
+        {Atos}
+        {Prix de l'Innovation Project Management}
+        {}
+        {}
+        {Récompense pour la mise en place d'un tableau de bord prédictif de suivi des risques projet, adopté par 5 équipes.}
+\section{Certificats}
+
+\cventry{mars 2020}
+        {PMI}
+        {PMP (Project Management Professional)}
+        {\url{https://www.pmi.org/certifications/project-management-pmp}}
+        {}
+        {}
+
+\cventry{nov. 2019}
+        {AXELOS}
+        {PRINCE2 Practitioner}
+        {\url{https://www.axelos.com/certifications/prince2}}
+        {}
+        {}
+
+\cventry{mai 2021}
+        {Scrum.org}
+        {Professional Scrum Master I}
+        {\url{https://www.scrum.org/professional-scrum-master-i-certification}}
+        {}
+        {}
+\section{Publications}
+
+\cventry{oct. 2023}
+        {Pilotage agile des projets de transformation digitale}
+        {Revue Française de Gestion}
+        {\url{https://www.revues.org/rfg}}
+        {}
+        {\begin{itemize}
+\item Article sur les bonnes pratiques de gouvernance agile dans les grands projets
+\item Analyse de cas concrets et retours d'expérience
+\end{itemize}}
+\section{Références}
+
+\cventry{\emaillink[sophie.martin@atos.net]{sophie.martin@atos.net}}
+        {Directrice de programme, Atos}
+        {Sophie Martin}
+        {+33 6 98 76 54 32}
+        {}
+        {Camille a démontré une excellente capacité à fédérer les équipes et à livrer des projets complexes dans les délais. Sa rigueur et son leadership sont remarquables.}
+\section{Projets}
+
+\cventry{janv. 2022–déc. 2022}
+        {Refonte complète du portail client d'un grand groupe bancaire}
+        {Refonte du portail client}
+        {\url{https://www.example.com/portail-client}}
+        {}
+        {\begin{itemize}
+\item Pilotage du projet de A à Z, de la phase de cadrage à la mise en production
+\item Coordination de 3 équipes réparties entre Paris et Casablanca
+\item Livraison dans les délais avec un budget de 1,2 M€
+\end{itemize}
+\textbf{Mots-clés} : Transformation digitale, Banque, Agile}
+
+\cventry{mars 2019–nov. 2019}
+        {Développement d'une application mobile pour le suivi des patients}
+        {Application mobile santé}
+        {\url{https://www.example.com/app-sante}}
+        {}
+        {\begin{itemize}
+\item Gestion du projet en méthode Scrum avec des sprints de 2 semaines
+\item Collaboration étroite avec les équipes médicales et techniques
+\item Obtention d'un taux de satisfaction utilisateur de 4,7/5
+\end{itemize}
+\textbf{Mots-clés} : Santé, Mobile, Scrum}
+\section{Centres d'intérêt}
+
+\cvline{Sports}{Course à pied, Natation, Randonnée}
+\cvline{Culture}{Lecture, Cinéma, Voyages}
+\section{Bénévolat}
+
+\cventry{sept. 2018–déc. 2020}
+        {Bénévole logistique}
+        {Les Restos du Cœur}
+        {\url{https://www.restosducoeur.org/}}
+        {}
+        {\begin{itemize}
+\item Participation à la collecte alimentaire et à la distribution des repas
+\item Organisation des plannings des bénévoles
+\item Contribution à la coordination locale
+\end{itemize}}
+    
+\end{document}

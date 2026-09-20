@@ -1,0 +1,284 @@
+\documentclass[a4paper, serif, 10pt]{moderncv}
+
+%% moderncv
+% style and color
+\moderncvstyle{banking}
+\moderncvcolor{black}
+
+%% page layout/margins
+\usepackage[top=2.5cm, bottom=2.5cm, left=1.5cm, right=1.5cm]{geometry}
+
+\nopagenumbers{}
+
+%% Babel config for Indonesian (Bahasa Indonesia) language
+% ref:
+% - https://latex3.github.io/babel/guides/locale-indonesian.html
+\usepackage[indonesian]{babel}
+
+%% fontspec
+\usepackage{fontspec}
+
+\IfFontExistsTF{Linux Libertine}{
+  \setmainfont[Ligatures={TeX, Common}, Numbers=OldStyle]{Linux Libertine}
+}{}
+\IfFontExistsTF{Linux Libertine O}{
+  \setmainfont[Ligatures={TeX, Common}, Numbers=OldStyle]{Linux Libertine O}
+}{}
+
+%% CTeX
+% CJK support, used to show CJK characters in the resume
+%
+% - fontset=none: disable builtin fontset but instead set the CJK font manually
+% - heading=false: disable ctex heading
+% - punct=kaiming: use kaiming punctuations styles for CJK
+% - scheme=plain: use plain scheme, do not override \normalsize font size
+% - space=auto: space settings for CJK characters
+%
+% ref:
+% - http://ctan.mirrorcatalogs.com/language/chinese/ctex/ctex.pdf
+\usepackage[UTF8, heading=false, punct=kaiming, scheme=plain, space=auto]{ctex}
+
+\IfFontExistsTF{Noto Serif CJK SC}{
+  \setCJKmainfont{Noto Serif CJK SC}
+}{}
+\IfFontExistsTF{Noto Sans CJK SC}{
+  \setCJKsansfont{Noto Sans CJK SC}
+}{}
+
+%% line spacing
+\usepackage{setspace}
+\setstretch{1.125}
+
+%% URL styling - use normal text instead of monospace
+\urlstyle{same}
+
+% Auto-underline all links
+% Defer until \begin{document} so hyperref is already loaded
+\AtBeginDocument{%
+  \let\oldhref\href
+  \renewcommand{\href}[2]{\oldhref{#1}{\underline{#2}}}%
+}
+
+%% Patch \httplink and \httpslink to handle full URLs
+% The original moderncv macros always prepend http:// or https:// to URLs.
+% This causes issues when the URL already has a protocol (e.g., https://example.com)
+% resulting in malformed URLs like https://https://example.com.
+% This patch checks if the URL already contains "://" and uses it directly if so.
+% Note: We use \str_set:Nx (x-expansion) to expand macros like \@homepage first.
+\ExplSyntaxOn
+\str_new:N \g_yamlresume_url_str
+
+\RenewDocumentCommand{\httpslink}{O{}m}{
+  \str_set:Nx \g_yamlresume_url_str {#2}
+  \str_if_in:NnTF \g_yamlresume_url_str {://}
+    { \url{#2} }
+    { \url{https://#2} }
+}
+
+\RenewDocumentCommand{\httplink}{O{}m}{
+  \str_set:Nx \g_yamlresume_url_str {#2}
+  \str_if_in:NnTF \g_yamlresume_url_str {://}
+    { \url{#2} }
+    { \url{http://#2} }
+}
+\ExplSyntaxOff
+
+\name{Budi Santoso}{}
+\title{Insinyur DevOps | Otomasi Infrastruktur \& Cloud}
+\phone[mobile]{+62 812-3456-7890}
+\email{budi.santoso.devops@example.com}
+\homepage{https://budisantoso.dev}
+
+\address{Jl. Jenderal Sudirman No. 52, Jakarta Pusat, Jakarta, DKI Jakarta, Indonesia, 10220}{}{}
+
+\extrainfo{{\small \faGithub}\ \href{https://github.com/budisantoso-devops}{@budisantoso-devops} {} {} {} • {} {} {} 
+{\small \faLinkedin}\ \href{https://www.linkedin.com/in/budisantoso-devops}{@budisantoso-devops}}
+
+\begin{document}
+
+\maketitle
+
+\section{Informasi Dasar}
+
+\cvline{}{\begin{itemize}
+\item Insinyur DevOps dengan lebih dari 6 tahun pengalaman dalam merancang, mengotomasi, dan mengoperasikan infrastruktur cloud yang andal.
+\item Terampil dalam Kubernetes, Terraform, CI/CD, dan praktik Site Reliability Engineering untuk meningkatkan kecepatan rilis serta ketersediaan layanan.
+\item Berpengalaman membangun platform observabilitas, mengelola multi-cloud, dan menerapkan keamanan pada pipeline DevOps.
+\item Kolaboratif, berorientasi pada otomasi, dan terbiasa memimpin transformasi budaya DevOps di tim lintas fungsi.
+\end{itemize}}
+\section{Pendidikan}
+
+\cventry{Agu 2015–Jul 2019}
+        {Sarjana, Teknik Informatika, Nilai: 3.72}
+        {Universitas Indonesia}
+        {\url{https://www.ui.ac.id}}
+        {}
+        {\begin{itemize}
+\item Lulus dengan predikat cum laude dan fokus pada rekayasa perangkat lunak serta infrastruktur.
+\item Mengembangkan proyek akhir tentang orkestrasi kontainer untuk aplikasi berbasis mikroservis.
+\item Aktif dalam organisasi kemahasiswaan yang bergerak di bidang teknologi dan open source.
+\end{itemize}
+\textbf{Mata Kuliah}: Algoritma dan Struktur Data, Sistem Operasi, Jaringan Komputer, Basis Data, Arsitektur Perangkat Lunak, Keamanan Informasi, Komputasi Awan, Otomasi Infrastruktur}
+\section{Pengalaman Kerja}
+
+\cventry{Jan 2022–Sekarang}
+        {Insinyur DevOps Senior}
+        {PT Solusi Digital Nusantara}
+        {\url{https://www.solusidigitalnusantara.co.id}}
+        {}
+        {\begin{itemize}
+\item Memimpin adopsi GitOps dan pipeline CI/CD untuk lebih dari 40 layanan mikro, menurunkan waktu deployment dari 2 jam menjadi 15 menit.
+\item Mengelola cluster Kubernetes multi-tenant di AWS dengan Terraform, Helm, dan Argo CD untuk menjaga konsistensi lingkungan.
+\item Membangun platform observabilitas terpusat menggunakan Prometheus, Grafana, Loki, dan OpenTelemetry.
+\item Menerapkan kebijakan keamanan supply chain, pemindaian kerentanan, dan manajemen rahasia dengan Vault.
+\item Menjadi mentor bagi 4 insinyur junior dan memimpin forum praktik terbaik DevOps internal.
+\end{itemize}
+\textbf{Kata Kunci}: Kubernetes, Terraform, AWS, GitLab CI, Observabilitas}
+
+\cventry{Mar 2020–Des 2021}
+        {Insinyur DevOps}
+        {PT Teknologi Cakra}
+        {\url{https://www.teknologicakra.co.id}}
+        {}
+        {\begin{itemize}
+\item Mengotomasi provisioning infrastruktur dengan Ansible dan Terraform, mengurangi kesalahan konfigurasi manual hingga 70\%.
+\item Membangun pipeline Jenkins untuk build, test, dan deployment aplikasi Java dan Node.js.
+\item Mengimplementasikan monitoring dan alerting dengan Prometheus, Alertmanager, dan Grafana.
+\item Melakukan tuning Linux, Docker, dan Nginx untuk meningkatkan performa serta stabilitas layanan.
+\end{itemize}
+\textbf{Kata Kunci}: Docker, Jenkins, Ansible, Prometheus, Linux}
+
+\cventry{Jun 2019–Feb 2020}
+        {Site Reliability Engineer}
+        {PT Data Prima}
+        {\url{https://www.dataprima.co.id}}
+        {}
+        {\begin{itemize}
+\item Menjaga ketersediaan layanan data dengan pemantauan proaktif dan respons insiden.
+\item Menulis skrip otomasi Python dan Bash untuk tugas operasional berulang.
+\item Mendokumentasikan runbook, prosedur pemulihan bencana, dan praktik on-call.
+\end{itemize}
+\textbf{Kata Kunci}: Python, Bash, Nagios, MySQL, Jaringan}
+\section{Bahasa}
+
+\cvline{Melayu}{Bahasa Ibu / Bilingual \hfill \textbf{Kata Kunci}: Bahasa Indonesia}
+\cvline{Inggris}{Tingkat Profesional Penuh \hfill \textbf{Kata Kunci}: IELTS 7.0, TOEFL 600}
+\section{Keahlian}
+
+\cvline{Orkestrasi Kontainer}{Ahli \hfill \textbf{Kata Kunci}: Docker, Kubernetes, Helm, OpenShift}
+\cvline{Infrastruktur sebagai Kode}{Mahir \hfill \textbf{Kata Kunci}: Terraform, Ansible, Pulumi, CloudFormation}
+\cvline{CI/CD}{Ahli \hfill \textbf{Kata Kunci}: GitLab CI, Jenkins, GitHub Actions, Argo CD}
+\cvline{Cloud}{Mahir \hfill \textbf{Kata Kunci}: AWS, Google Cloud, Azure, Alibaba Cloud}
+\cvline{Observabilitas}{Mahir \hfill \textbf{Kata Kunci}: Prometheus, Grafana, ELK Stack, Datadog}
+\cvline{Bahasa Pemrograman}{Mahir \hfill \textbf{Kata Kunci}: Python, Go, Bash, SQL}
+\cvline{Keamanan DevOps}{Menengah \hfill \textbf{Kata Kunci}: Vault, Trivy, SonarQube, IAM}
+\section{Penghargaan}
+
+\cventry{Des 2023}
+        {PT Solusi Digital Nusantara}
+        {Penghargaan Inovasi Otomasi Infrastruktur}
+        {}
+        {}
+        {Diberikan atas kontribusi dalam membangun pipeline CI/CD terpusat yang meningkatkan kecepatan rilis dan keandalan layanan.}
+
+\cventry{Agu 2021}
+        {Cloud Native Indonesia}
+        {Juara 2 Kompetisi Cloud Native}
+        {}
+        {}
+        {Meraih juara kedua dalam kompetisi desain arsitektur cloud native untuk studi kasus layanan logistik.}
+\section{Sertifikat}
+
+\cventry{Mar 2022}
+        {Amazon Web Services}
+        {AWS Certified DevOps Engineer - Professional}
+        {\url{https://aws.amazon.com/certification/certified-devops-engineer-professional/}}
+        {}
+        {}
+
+\cventry{Nov 2021}
+        {Cloud Native Computing Foundation}
+        {Certified Kubernetes Administrator}
+        {\url{https://training.linuxfoundation.org/certification/certified-kubernetes-administrator-cka/}}
+        {}
+        {}
+
+\cventry{Jun 2023}
+        {HashiCorp}
+        {HashiCorp Certified: Terraform Associate}
+        {\url{https://www.hashicorp.com/certification/terraform-associate}}
+        {}
+        {}
+\section{Publikasi}
+
+\cventry{Agu 2023}
+        {Otomasi Infrastruktur Multi-Cloud dengan Terraform dan GitLab CI}
+        {Jurnal Teknologi Cloud Indonesia}
+        {\url{https://jurnalcloud.id/artikel/otomasi-infrastruktur-multi-cloud}}
+        {}
+        {\begin{itemize}
+\item Membahas pola modular Terraform untuk mengelola sumber daya di AWS, GCP, dan Azure.
+\item Menjelaskan integrasi pipeline GitLab CI untuk deployment yang aman dan dapat diaudit.
+\end{itemize}}
+
+\cventry{Okt 2022}
+        {Observabilitas Modern untuk Arsitektur Microservices}
+        {Konferensi DevOps Indonesia}
+        {\url{https://devops.id/prosiding/observabilitas-microservices}}
+        {}
+        {\begin{itemize}
+\item Mengulas penerapan metrik, log, dan trace terdistribusi pada layanan mikro.
+\item Memberikan rekomendasi praktis untuk alerting dan penanganan insiden.
+\end{itemize}}
+\section{Proyek}
+
+\cventry{Jan 2023–Jun 2023}
+        {Implementasi observabilitas terpusat untuk 50+ layanan mikro.}
+        {Platform Observabilitas Terpusat}
+        {\url{https://github.com/budisantoso-devops/observability-platform}}
+        {}
+        {\begin{itemize}
+\item Menggabungkan metrik, log, dan trace menggunakan Prometheus, Loki, dan OpenTelemetry.
+\item Membuat dasbor Grafana dan alerting yang mengurangi mean time to recovery sebesar 40\%.
+\end{itemize}
+\textbf{Kata Kunci}: Prometheus, Grafana, Loki, OpenTelemetry}
+
+\cventry{Mar 2022–Nov 2022}
+        {Pipeline otomatis untuk deployment ke AWS, GCP, dan Azure.}
+        {Pipeline CI/CD Multi-Cloud}
+        {\url{https://github.com/budisantoso-devops/multi-cloud-cicd}}
+        {}
+        {\begin{itemize}
+\item Membangun pipeline reusable dengan GitLab CI, Terraform, dan Argo CD.
+\item Menerapkan quality gate, pemindaian keamanan, dan strategi canary release.
+\end{itemize}
+\textbf{Kata Kunci}: GitLab CI, Terraform, Argo CD, Kubernetes}
+\section{Minat}
+
+\cvline{Olahraga}{Lari, Bersepeda, Renang}
+\cvline{Musik}{Gitar, Piano}
+\cvline{Open Source}{Kubernetes, Terraform, Prometheus}
+\section{Kegiatan Sukarela}
+
+\cventry{Jan 2022–Sekarang}
+        {Mentor}
+        {Komunitas DevOps Indonesia}
+        {\url{https://devops.id}}
+        {}
+        {\begin{itemize}
+\item Menjadi mentor bagi anggota komunitas dalam mempelajari Kubernetes, Terraform, dan praktik CI/CD.
+\item Membantu menyelenggarakan workshop dan sesi diskusi teknis rutin.
+\end{itemize}}
+    
+
+\cventry{Sep 2017–Jul 2019}
+        {Pengajar}
+        {Universitas Indonesia Programming Club}
+        {\url{https://ui.ac.id/programming-club}}
+        {}
+        {\begin{itemize}
+\item Mengajarkan dasar pemrograman dan penggunaan Git kepada mahasiswa baru.
+\item Mendampingi peserta dalam kompetisi pemrograman tingkat universitas.
+\end{itemize}}
+    
+\end{document}

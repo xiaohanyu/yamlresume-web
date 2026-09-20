@@ -1,0 +1,323 @@
+\documentclass[a4paper, serif, 10pt]{moderncv}
+
+%% moderncv
+% style and color
+\moderncvstyle{banking}
+\moderncvcolor{black}
+
+% renew moderncv command to adapt for CJK colon
+\renewcommand*{\cvitem}[3][.25em]{%
+  \ifstrempty{#2}{}{\hintstyle{#2}：}{#3}%
+  \par\addvspace{#1}}
+
+\renewcommand*{\cvitemwithcomment}[4][.25em]{%
+  \savebox{\cvitemwithcommentmainbox}{\ifstrempty{#2}{}{\hintstyle{#2}：}#3}%
+  \setlength{\cvitemwithcommentmainlength}{\widthof{\usebox{\cvitemwithcommentmainbox}}}%
+  \setlength{\cvitemwithcommentcommentlength}{\maincolumnwidth-\separatorcolumnwidth-\cvitemwithcommentmainlength}%
+  \begin{minipage}[t]{\cvitemwithcommentmainlength}\usebox{\cvitemwithcommentmainbox}\end{minipage}%
+  \hfill% fill of \separatorcolumnwidth
+  \begin{minipage}[t]{\cvitemwithcommentcommentlength}\raggedleft\small\itshape#4\end{minipage}%
+  \par\addvspace{#1}}
+
+%% page layout/margins
+\usepackage[top=2.5cm, bottom=2.5cm, left=1.5cm, right=1.5cm]{geometry}
+
+\nopagenumbers{}
+
+%% Babel config for English language
+\usepackage[english]{babel}
+
+%% fontspec
+\usepackage{fontspec}
+
+\IfFontExistsTF{Linux Libertine}{
+  \setmainfont[Ligatures={TeX, Common}, Numbers=Lining, ItalicFont=Linux Libertine]{Linux Libertine}
+}{}
+\IfFontExistsTF{Linux Libertine O}{
+  \setmainfont[Ligatures={TeX, Common}, Numbers=Lining, ItalicFont=Linux Libertine O]{Linux Libertine O}
+}{}
+
+%% CTeX
+% CJK support, used to show CJK characters in the resume
+%
+% - fontset=none: disable builtin fontset but instead set the CJK font manually
+% - heading=false: disable ctex heading
+% - punct=kaiming: use kaiming punctuations styles for CJK
+% - scheme=plain: use plain scheme, do not override \normalsize font size
+% - space=auto: space settings for CJK characters
+%
+% ref:
+% - http://ctan.mirrorcatalogs.com/language/chinese/ctex/ctex.pdf
+\usepackage[UTF8, heading=false, punct=kaiming, scheme=plain, space=auto]{ctex}
+
+\IfFontExistsTF{Noto Serif CJK SC}{
+  \setCJKmainfont{Noto Serif CJK SC}
+}{}
+\IfFontExistsTF{Noto Sans CJK SC}{
+  \setCJKsansfont{Noto Sans CJK SC}
+}{}
+
+%% line spacing
+\usepackage{setspace}
+\setstretch{1.125}
+
+%% URL styling - use normal text instead of monospace
+\urlstyle{same}
+
+% Auto-underline all links
+% Defer until \begin{document} so hyperref is already loaded
+\AtBeginDocument{%
+  \let\oldhref\href
+  \renewcommand{\href}[2]{\oldhref{#1}{\underline{#2}}}%
+}
+
+%% Patch \httplink and \httpslink to handle full URLs
+% The original moderncv macros always prepend http:// or https:// to URLs.
+% This causes issues when the URL already has a protocol (e.g., https://example.com)
+% resulting in malformed URLs like https://https://example.com.
+% This patch checks if the URL already contains "://" and uses it directly if so.
+% Note: We use \str_set:Nx (x-expansion) to expand macros like \@homepage first.
+\ExplSyntaxOn
+\str_new:N \g_yamlresume_url_str
+
+\RenewDocumentCommand{\httpslink}{O{}m}{
+  \str_set:Nx \g_yamlresume_url_str {#2}
+  \str_if_in:NnTF \g_yamlresume_url_str {://}
+    { \url{#2} }
+    { \url{https://#2} }
+}
+
+\RenewDocumentCommand{\httplink}{O{}m}{
+  \str_set:Nx \g_yamlresume_url_str {#2}
+  \str_if_in:NnTF \g_yamlresume_url_str {://}
+    { \url{#2} }
+    { \url{http://#2} }
+}
+\ExplSyntaxOff
+
+\name{陳嘉欣}{}
+\title{客戶成功經理 | SaaS 客戶體驗專家}
+\phone[mobile]{+852 9123 4567}
+\email{ka-yan.chan@example.com}
+\homepage{https://www.linkedin.com/in/kayanchan-csm}
+
+\address{中國香港，香港島，香港，香港中環皇后大道中 99 號}{}{}
+
+\extrainfo{{\small \faLinkedin}\ \href{https://www.linkedin.com/in/kayanchan-csm}{@kayanchan-csm} {} {} {} • {} {} {} 
+{\small \faMedium}\ \href{https://medium.com/@kayanchan}{@kayanchan}}
+
+\begin{document}
+
+\maketitle
+
+\section{簡介}
+
+\cvline{}{\begin{itemize}
+\item 擁有超過 8 年客戶成功及客戶關係管理經驗，專注於 SaaS 及金融科技行業
+\item 擅長制定客戶成功策略，提升客戶留存率及終身價值
+\item 具備優秀的跨部門協作能力，能與產品、銷售及技術團隊緊密合作
+\item 熟悉數據分析，能以數據驅動客戶健康度管理及主動服務
+\item 精通粵語、英語及普通話，能服務香港及大中華區客戶
+\end{itemize}}
+\section{教育背景}
+
+\cventry{2011年9月–2015年7月}
+        {學士，工商管理學學士（市場學），成績：3.6}
+        {香港大學}
+        {\url{https://www.hku.hk}}
+        {}
+        {\begin{itemize}
+\item 主修市場學，副修資訊系統
+\item 曾獲院長榮譽榜及多項獎學金
+\item 積極參與商業個案比賽，獲得校際亞軍
+\end{itemize}
+\textbf{課程}：市場營銷原理、消費者行為、商業統計、組織行為學、財務管理、策略管理}
+
+\cventry{2018年9月–2020年6月}
+        {碩士，資訊系統管理碩士，成績：3.8}
+        {香港科技大學}
+        {\url{https://www.ust.hk}}
+        {}
+        {\begin{itemize}
+\item 在職進修，專注於企業資訊系統與數據分析
+\item 畢業論文探討客戶成功管理系統對 B2B 企業績效的影響
+\end{itemize}
+\textbf{課程}：企業資源規劃、數據庫管理、商業智能與分析、項目管理、數位轉型策略}
+\section{工作經歷}
+
+\cventry{2021年3月至今}
+        {高級客戶成功經理}
+        {香港雲端方案有限公司}
+        {\url{https://www.hkcloudsolutions.example.com}}
+        {}
+        {\begin{itemize}
+\item 管理超過 50 間企業客戶，年度經常性收入（ARR）超過 2,000 萬港元
+\item 制定並執行客戶成功計劃，將客戶留存率由 85\% 提升至 94\%
+\item 建立客戶健康度評分模型，主動識別流失風險並制定挽留策略
+\item 領導 5 人客戶成功團隊，負責招聘、培訓及績效管理
+\item 與產品團隊合作，將客戶反饋轉化為產品路線圖優先事項
+\item 推動客戶追加銷售及交叉銷售，年度擴展收入增長 30\%
+\end{itemize}
+\textbf{關鍵字}：客戶留存、客戶健康度、團隊領導、追加銷售、SaaS、數據分析}
+
+\cventry{2017年6月–2021年2月}
+        {客戶成功經理}
+        {亞洲金融科技集團}
+        {\url{https://www.asiafintech.example.com}}
+        {}
+        {\begin{itemize}
+\item 負責金融科技產品之客戶導入、培訓及續約管理
+\item 為超過 200 間中小企業客戶提供技術支援及最佳實踐建議
+\item 設計客戶入門流程，將價值實現時間由 45 天縮短至 20 天
+\item 分析客戶使用數據，制定個人化服務方案，提升客戶滿意度至 92\%
+\item 與銷售團隊緊密合作，識別升級銷售機會，達成 120\% 配額
+\end{itemize}
+\textbf{關鍵字}：客戶導入、續約管理、金融科技、客戶滿意度、數據驅動}
+
+\cventry{2015年8月–2017年5月}
+        {客戶服務主任}
+        {香港電訊數碼}
+        {\url{https://www.hkt.example.com}}
+        {}
+        {\begin{itemize}
+\item 處理企業客戶的服務查詢及技術問題，確保快速有效解決
+\item 協調內部技術團隊，跟進個案至完全解決，客戶滿意度達 90\%
+\item 編寫客戶服務指南及常見問題，提升團隊效率 25\%
+\item 識別客戶痛點並向產品團隊提出改善建議
+\end{itemize}
+\textbf{關鍵字}：客戶服務、問題解決、電訊、跨部門協作}
+\section{語言}
+
+\cvline{粵語}{母語或雙語水平 \hfill \textbf{關鍵字}：母語}
+\cvline{英語}{完全專業水平 \hfill \textbf{關鍵字}：IELTS 8.0、商業寫作}
+\cvline{普通話}{完全專業水平 \hfill \textbf{關鍵字}：普通話水平測試二級甲等}
+\section{專業技能}
+
+\cvline{客戶成功管理}{專家 \hfill \textbf{關鍵字}：客戶留存、客戶滿意度、客戶健康度、客戶旅程、續約管理、追加銷售}
+\cvline{數據分析}{高級 \hfill \textbf{關鍵字}：Salesforce、Tableau、SQL、Excel、Power BI、Google Analytics}
+\cvline{項目管理}{高級 \hfill \textbf{關鍵字}：Jira、Asana、Agile、Scrum、跨部門協作}
+\cvline{溝通與談判}{專家 \hfill \textbf{關鍵字}：粵語、英語、普通話、簡報技巧、衝突處理}
+\section{榮譽}
+
+\cventry{2023年12月}
+        {香港雲端方案有限公司}
+        {年度最佳客戶成功經理}
+        {}
+        {}
+        {表揚在客戶留存、滿意度及團隊領導方面的卓越表現，帶領團隊達成 94\% 客戶留存率。}
+
+\cventry{2020年1月}
+        {亞洲金融科技集團}
+        {總裁卓越獎}
+        {}
+        {}
+        {因成功提升客戶滿意度至 92\% 及超額完成銷售配額而獲頒總裁卓越獎。}
+\section{證書}
+
+\cventry{2022年3月}
+        {SuccessCOACHING}
+        {Certified Customer Success Manager (CCSM)}
+        {\url{https://www.successcoaching.com/certification}}
+        {}
+        {}
+
+\cventry{2021年8月}
+        {Salesforce}
+        {Salesforce Certified Administrator}
+        {\url{https://trailhead.salesforce.com/credentials/administrator}}
+        {}
+        {}
+
+\cventry{2019年11月}
+        {PMI}
+        {項目管理專業人士 (PMP)}
+        {\url{https://www.pmi.org/certifications/project-management-pmp}}
+        {}
+        {}
+\section{出版刊物}
+
+\cventry{2023年6月}
+        {以數據驅動客戶成功：香港 SaaS 市場的實踐指南}
+        {香港客戶成功協會}
+        {\url{https://www.hkcsa.example.com/publications/data-driven-customer-success}}
+        {}
+        {\begin{itemize}
+\item 探討如何利用客戶健康度指標預測流失風險
+\item 分享香港 SaaS 企業的客戶成功案例與最佳實踐
+\item 提供建立客戶成功團隊的框架與關鍵績效指標
+\end{itemize}}
+
+\cventry{2022年9月}
+        {提升 B2B 客戶留存率的五大策略}
+        {亞洲商業評論}
+        {\url{https://www.asianbusinessreview.example.com/retention-strategies}}
+        {}
+        {\begin{itemize}
+\item 分析 B2B 客戶留存的核心驅動因素
+\item 提出從入門到續約的五大實用策略
+\item 引用亞太區企業數據支持論點
+\end{itemize}}
+\section{引薦}
+
+\cventry{\emaillink[chi-ming.wong@hkcloudsolutions.example.com]{chi-ming.wong@hkcloudsolutions.example.com}}
+        {香港雲端方案有限公司 營運總監}
+        {黃志明}
+        {+852 9876 5432}
+        {}
+        {陳嘉欣在客戶成功領域表現卓越，具備出色的策略思維及團隊領導能力，能有效提升客戶留存及滿意度，是任何企業都不可多得的人才。}
+\section{項目}
+
+\cventry{2022年1月–2022年8月}
+        {為企業客戶開發的實時客戶健康度監控平台}
+        {客戶健康度儀表板}
+        {\url{https://www.hkcloudsolutions.example.com/projects/health-dashboard}}
+        {}
+        {\begin{itemize}
+\item 整合 Salesforce、產品使用數據及支援工單，建立 360 度客戶視圖
+\item 設計健康度評分演算法，準確預測 90\% 的流失風險客戶
+\item 儀表板上線後，客戶成功團隊主動跟進效率提升 40\%
+\end{itemize}
+\textbf{關鍵字}：客戶健康度、Tableau、Salesforce、數據可視化}
+
+\cventry{2021年3月–2021年12月}
+        {標準化新客戶入門流程，縮短價值實現時間}
+        {客戶成功入門計劃}
+        {\url{https://www.hkcloudsolutions.example.com/projects/onboarding}}
+        {}
+        {\begin{itemize}
+\item 設計 30-60-90 天入門框架，涵蓋培訓、設定及成功指標
+\item 自動化入門溝通郵件及任務提醒，減少人手 50\%
+\item 新客戶首 90 天滿意度由 80\% 提升至 93\%
+\end{itemize}
+\textbf{關鍵字}：入門流程、客戶旅程、自動化、滿意度}
+\section{興趣愛好}
+
+\cvline{專業發展}{客戶成功、SaaS、數據分析、人工智能}
+\cvline{社區服務}{青年導師、義工、環保}
+\cvline{個人興趣}{遠足、攝影、閱讀、咖啡}
+\section{志願服務}
+
+\cventry{2021年9月至今}
+        {客戶成功導師}
+        {香港青年創業家協會}
+        {\url{https://www.hkyea.example.com}}
+        {}
+        {\begin{itemize}
+\item 為青年創業者提供客戶成功及客戶關係管理指導
+\item 協助制定客戶獲取及留存策略，參與每月導師聚會
+\item 分享 SaaS 行業經驗，幫助初創企業建立可持續增長模式
+\end{itemize}}
+    
+
+\cventry{2020年1月–2021年12月}
+        {活動籌委}
+        {香港客戶成功協會}
+        {\url{https://www.hkcsa.example.com}}
+        {}
+        {\begin{itemize}
+\item 籌辦年度客戶成功研討會及工作坊，吸引超過 300 名參與者
+\item 負責講者邀請、議程設計及場地協調
+\item 促進香港客戶成功專業社群交流與知識分享
+\end{itemize}}
+    
+\end{document}

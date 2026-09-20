@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="generator" content="YAMLResume (https://yamlresume.dev)">
+
+
+  <title>Laura Jiménez Morales Resume</title>
+  <style>
+    :root {
+      --text-font-size: 16px;
+      --text-font-family: var(--text-default-font-family);
+      --line-height: 1.5;
+    }
+
+    /* Modified from: https://www.joshwcomeau.com/css/custom-css-reset/ */
+
+    /* 1. Use a more-intuitive box-sizing model */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    /* 2. Remove default margin */
+    *:not(dialog) {
+      margin: 0;
+    }
+
+    body {
+      /* 3. Improve text rendering */
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    :root {
+      --border-color: #d0d0d0;
+
+      /* text colors */
+      --text-color-primary: #000000;
+      --text-color-secondary: #333333;
+
+      /* spacing */
+      --spacing-xss: 2px;
+      --spacing-xs: 4px;
+      --spacing-sm: 8px;
+      --spacing-md: 12px;
+      --spacing-lg: 16px;
+      --spacing-xl: 24px;
+      --spacing-xxl: 40px;
+      --spacing-xxxl: 80px;
+
+      /* font sizes */
+      --font-size-xs: 0.8rem;
+      --font-size-sm: 0.9rem;
+      --font-size-md: 1rem;
+      --font-size-lg: 1.1rem;
+      --font-size-xl: 1.25rem;
+      --font-size-xxl: 2.5rem;
+
+      /* layout */
+      --page-max-width: 900px;
+
+      /* typography */
+      --text-default-font-family:
+        -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu,
+        Cantarell, sans-serif;
+    }
+
+    html {
+      font-size: var(--text-font-size);
+    }
+
+    body {
+      /* font & text */
+      color: var(--text-color-primary);
+      font-family: var(--text-font-family);
+      /* this variable is defined by `typography.fontSize` in resume html layout */
+      text-autospace: normal;
+
+      /* layout */
+      line-height: var(--line-height);
+      max-width: var(--page-max-width);
+      margin: 0 auto;
+      padding: var(--spacing-xxxl) var(--spacing-xxl) var(--spacing-xxl);
+    }
+
+    /* header */
+    .resume-header {
+      margin-bottom: var(--spacing-xxl);
+      text-align: center;
+    }
+
+    .resume-name {
+      font-size: var(--font-size-xxl);
+      font-weight: 600;
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .resume-headline {
+      font-size: var(--font-size-lg);
+      margin-bottom: var(--spacing-md);
+    }
+
+    /* contact info */
+    .resume-contact-info {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      column-gap: var(--spacing-lg);
+      row-gap: var(--spacing-xs);
+      margin-top: var(--spacing-sm);
+    }
+
+    .resume-contact-icon,
+    .resume-contact-label {
+      margin-right: var(--spacing-sm);
+      vertical-align: middle;
+    }
+
+    /* links: modern typographic style */
+    a {
+      color: var(--text-color-primary);
+      text-decoration: underline;
+      text-decoration-color: var(--border-color);
+      text-underline-offset: 3px;
+      text-decoration-thickness: 1px;
+      text-decoration-skip-ink: auto;
+      transition: text-decoration-color 0.2s;
+    }
+
+    a:hover {
+      text-decoration-color: var(--text-color-primary);
+    }
+
+    /* sections */
+    .resume-section {
+      margin-bottom: var(--spacing-xl);
+    }
+
+    .resume-section-title {
+      font-size: var(--font-size-xl);
+      font-weight: 500;
+      margin-bottom: var(--spacing-md);
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: var(--spacing-xs);
+    }
+
+    /* entries */
+    .resume-entry {
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .resume-entry:last-child {
+      margin-bottom: 0;
+    }
+
+    .resume-entry-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .resume-entry-title {
+      font-weight: 500;
+      margin-bottom: var(--spacing-xss);
+    }
+
+    .resume-entry-summary p,
+    .resume-summary-content p {
+      margin-bottom: var(--spacing-xs);
+    }
+
+    /* lists */
+    .resume-entry-summary ul,
+    .resume-entry-summary ol,
+    .resume-summary-content ul,
+    .resume-summary-content ol {
+      padding-left: var(--spacing-lg);
+      list-style-type: circle;
+    }
+
+    /* labeled lists (courses, keywords, etc.) */
+    .resume-labeled-list span {
+      font-weight: 500;
+    }
+
+    /* skills grid */
+    .resume-skill-item,
+    .resume-language-item {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .resume-skill-name,
+    .resume-language-name {
+      font-weight: 500;
+    }
+
+    .resume-skill-level,
+    .resume-language-fluency {
+      font-weight: 400;
+    }
+
+    /* mobile */
+    @media (max-width: 768px) {
+      body {
+        padding: var(--spacing-xl);
+      }
+
+      .resume-header {
+        margin-bottom: var(--spacing-xl);
+      }
+
+      .resume-contact-info {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .resume-entry-header {
+        flex-wrap: wrap;
+      }
+    }
+
+    /* footer */
+    .resume-footer {
+      margin-top: var(--spacing-xxl);
+      padding-top: var(--spacing-xl);
+      border-top: 1px solid var(--border-color);
+      font-size: var(--font-size-sm);
+      color: var(--text-color-secondary);
+    }
+
+    @media print {
+      .resume-footer {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="resume-header">
+    <h1 class="resume-name">Laura Jiménez Morales</h1>
+    <p class="resume-headline">Gerente de Marketing Digital y Estrategia de Marca</p>
+    <div class="resume-contact-info">
+      <span class="resume-contact-item"><span class="resume-contact-icon">📧</span><a href="mailto:laura.jimenez@example.com" class="resume-contact-link">laura.jimenez@example.com</a></span>
+      <span class="resume-contact-item"><span class="resume-contact-icon">📞</span>+34 612 345 678</span>
+      <span class="resume-contact-item"><span class="resume-contact-icon">🔗</span><a href="https://www.laurajimenezmarketing.com" class="resume-contact-link">https://www.laurajimenezmarketing.com</a></span>
+    </div>
+    <div class="resume-contact-info resume-location-info">
+      <span class="resume-contact-item"><span class="resume-contact-icon">📍</span>Calle Gran Vía 45, Madrid, Comunidad de Madrid, España, 28013</span>
+    </div>
+    <div class="resume-contact-info resume-profiles-info">
+      <span class="resume-contact-item"><span class="resume-contact-label">LinkedIn</span>: <a href="https://www.linkedin.com/in/laurajimenez" class="resume-contact-link">@laurajimenez</a></span>
+      <span class="resume-contact-item"><span class="resume-contact-label">Twitter</span>: <a href="https://twitter.com/laurajimenez" class="resume-contact-link">@laurajimenez</a></span>
+    </div>
+  </header>
+  <section class="resume-section" id="summary" data-section="summary">
+    <h2 class="resume-section-title">Información básica</h2>
+    <div class="resume-section-content">
+      <div class="resume-summary-content">
+        <ul>
+          <li>
+            <p>Gerente de Marketing con más de 8 años de experiencia en desarrollo de estrategias digitales y campañas omnicanal.</p>
+          </li>
+          <li>
+            <p>Especializada en posicionamiento de marca, generación de leads y análisis de métricas para optimizar el ROI.</p>
+          </li>
+          <li>
+            <p>Liderazgo de equipos multidisciplinares y gestión de presupuestos superiores a 1M€.</p>
+          </li>
+          <li>
+            <p>Apasionada por la innovación, el marketing basado en datos y la experiencia del cliente.</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="education" data-section="education">
+    <h2 class="resume-section-title">Educación</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="education-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.ucm.es">Universidad Complutense de Madrid</a></div>
+            <div class="resume-entry-organization">Licenciatura, Marketing y Comunicación, Puntuación: 8.5</div>
+          </div>
+          <div class="resume-entry-date">sept 2010–jul 2014</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Formación sólida en estrategias de marketing y comunicación empresarial.</p>
+            </li>
+            <li>
+              <p>Participación en proyectos reales con empresas locales.</p>
+            </li>
+            <li>
+              <p>Miembro activo de la asociación de estudiantes de marketing.</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Cursos</span>: Fundamentos de Marketing, Comportamiento del Consumidor, Marketing Digital, Gestión de Marca, Análisis de Datos para Marketing, Comunicación Corporativa</div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="work" data-section="work">
+    <h2 class="resume-section-title">Experiencia laboral</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="work-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.innovaretail.com">Innova Retail Group</a></div>
+            <div class="resume-entry-organization">Gerente de Marketing</div>
+          </div>
+          <div class="resume-entry-date">ene 2020 hasta la fecha</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Lidero el equipo de marketing digital y tradicional, gestionando un presupuesto anual de 1.2M€.</p>
+            </li>
+            <li>
+              <p>Desarrollé e implementé la estrategia de marca que aumentó el reconocimiento en un 35% en dos años.</p>
+            </li>
+            <li>
+              <p>Coordiné campañas omnicanal que generaron un incremento del 25% en leads cualificados.</p>
+            </li>
+            <li>
+              <p>Implementé herramientas de automatización y análisis (HubSpot, Google Analytics) para optimizar el ROI.</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Palabras clave</span>: Estrategia de Marca, Marketing Digital, Liderazgo, ROI, Omnicanalidad</div>
+      </div>
+      <div class="resume-entry" id="work-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.solucionesdigitales.es">Soluciones Digitales S.L.</a></div>
+            <div class="resume-entry-organization">Especialista en Marketing Digital</div>
+          </div>
+          <div class="resume-entry-date">sept 2016–dic 2019</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Diseñé y ejecuté campañas de SEM y redes sociales, logrando un CTR un 20% superior a la media del sector.</p>
+            </li>
+            <li>
+              <p>Gestioné el contenido del blog corporativo, aumentando el tráfico orgánico en un 150% en 18 meses.</p>
+            </li>
+            <li>
+              <p>Realicé informes mensuales de rendimiento y presenté recomendaciones a la dirección.</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Palabras clave</span>: SEM, SEO, Redes Sociales, Contenidos, Analytics</div>
+      </div>
+      <div class="resume-entry" id="work-3">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.agenciacreativabcn.com">Agencia Creativa Barcelona</a></div>
+            <div class="resume-entry-organization">Asistente de Marketing</div>
+          </div>
+          <div class="resume-entry-date">sept 2014–ago 2016</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Apoyé en la creación de campañas publicitarias para clientes de diversos sectores.</p>
+            </li>
+            <li>
+              <p>Colaboré en la organización de eventos y ferias comerciales.</p>
+            </li>
+            <li>
+              <p>Realicé estudios de mercado y análisis de la competencia.</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Palabras clave</span>: Publicidad, Eventos, Investigación de Mercado</div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="languages" data-section="languages">
+    <h2 class="resume-section-title">Idiomas</h2>
+    <div class="resume-section-content">
+      <div class="resume-languages-list">
+        <div class="resume-language-item">
+          <div class="resume-language-name">Español<span class="resume-language-fluency">: Competencia nativa o bilingüe</span></div>
+          <div>
+            <div class="resume-labeled-list"><span>Palabras clave</span>: DELE C2</div>
+          </div>
+        </div>
+        <div class="resume-language-item">
+          <div class="resume-language-name">Inglés<span class="resume-language-fluency">: Competencia profesional plena</span></div>
+          <div>
+            <div class="resume-labeled-list"><span>Palabras clave</span>: TOEIC 950</div>
+          </div>
+        </div>
+        <div class="resume-language-item">
+          <div class="resume-language-name">Francés<span class="resume-language-fluency">: Competencia limitada de trabajo</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="skills" data-section="skills">
+    <h2 class="resume-section-title">Competencias</h2>
+    <div class="resume-section-content">
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">Marketing Digital<span class="resume-skill-level">: Experto</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>Palabras clave</span>: SEO/SEM, Google Analytics, HubSpot, Email Marketing, Redes Sociales</div>
+        </div>
+      </div>
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">Gestión de Proyectos<span class="resume-skill-level">: Avanzado</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>Palabras clave</span>: Agile, Scrum, Jira, Presupuestos</div>
+        </div>
+      </div>
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">Análisis de Datos<span class="resume-skill-level">: Avanzado</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>Palabras clave</span>: Google Data Studio, SQL, Excel Avanzado, Tableau</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="awards" data-section="awards">
+    <h2 class="resume-section-title">Premios</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="awards-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title">Premio a la Mejor Campaña Digital</div>
+            <div class="resume-entry-organization">Asociación Española de Marketing</div>
+          </div>
+          <div class="resume-entry-date">nov 2022</div>
+        </div>
+        <div class="resume-entry-summary">
+          <p>Reconocimiento por la campaña &quot;Navidad Sostenible&quot; que incrementó las ventas online en un 40%.</p>
+        </div>
+      </div>
+      <div class="resume-entry" id="awards-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title">Employee of the Year</div>
+            <div class="resume-entry-organization">Innova Retail Group</div>
+          </div>
+          <div class="resume-entry-date">dic 2021</div>
+        </div>
+        <div class="resume-entry-summary">
+          <p>Otorgado por liderazgo excepcional y resultados sobresalientes en marketing.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="certificates" data-section="certificates">
+    <h2 class="resume-section-title">Certificados</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="certificates-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://skillshop.exceedlms.com/student/path/2939-google-analytics-certification">Google Analytics Certified Professional</a></div>
+            <div class="resume-entry-organization">Google</div>
+          </div>
+          <div class="resume-entry-date">mar 2021</div>
+        </div>
+      </div>
+      <div class="resume-entry" id="certificates-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://academy.hubspot.com/courses/inbound-marketing">HubSpot Inbound Marketing Certification</a></div>
+            <div class="resume-entry-organization">HubSpot Academy</div>
+          </div>
+          <div class="resume-entry-date">jun 2020</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="publications" data-section="publications">
+    <h2 class="resume-section-title">Publicaciones</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="publications-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.marketingnews.es/articulo/tendencias">Tendencias del Marketing de Influencers en España</a></div>
+            <div class="resume-entry-organization">Revista Marketing News</div>
+          </div>
+          <div class="resume-entry-date">oct 2022</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Análisis del impacto de los influencers en las decisiones de compra de los millennials.</p>
+            </li>
+            <li>
+              <p>Estudio de caso de campañas exitosas en el sector retail.</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="projects" data-section="projects">
+    <h2 class="resume-section-title">Proyectos</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="projects-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.madridsostenible.es">Campaña &quot;Madrid Sostenible&quot;</a></div>
+            <div class="resume-entry-description">Campaña integral de marketing para promover el consumo responsable en Madrid.</div>
+          </div>
+          <div class="resume-entry-date">mar 2021–sept 2021</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Diseñé la estrategia creativa y coordiné la producción de contenidos.</p>
+            </li>
+            <li>
+              <p>Gestioné alianzas con influencers locales y medios de comunicación.</p>
+            </li>
+            <li>
+              <p>La campaña alcanzó 2 millones de impresiones y un 15% de aumento en la intención de compra.</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Palabras clave</span>: Sostenibilidad, Campaña, Influencers</div>
+      </div>
+      <div class="resume-entry" id="projects-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.solucionesdigitales.es">Rediseño del Sitio Web Corporativo</a></div>
+            <div class="resume-entry-description">Proyecto de renovación completa del sitio web de Soluciones Digitales S.L.</div>
+          </div>
+          <div class="resume-entry-date">ene 2019–jun 2019</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Lideré la definición de la arquitectura de información y la experiencia de usuario.</p>
+            </li>
+            <li>
+              <p>Coordiné el equipo de diseño y desarrollo.</p>
+            </li>
+            <li>
+              <p>El nuevo sitio mejoró la tasa de conversión en un 30%.</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Palabras clave</span>: UX, Web, Conversión</div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="interests" data-section="interests">
+    <h2 class="resume-section-title">Intereses</h2>
+    <div class="resume-section-content">
+      <div class="resume-interest-item"><span class="resume-interest-name">Deportes</span>: Running, Yoga, Senderismo</div>
+      <div class="resume-interest-item"><span class="resume-interest-name">Cultura</span>: Lectura, Cine, Fotografía</div>
+    </div>
+  </section>
+  <section class="resume-section" id="volunteer" data-section="volunteer">
+    <h2 class="resume-section-title">Voluntariado</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="volunteer-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.fundacionintegra.org">Fundación Integra</a></div>
+            <div class="resume-entry-organization">Mentora de Marketing</div>
+          </div>
+          <div class="resume-entry-date">feb 2020–dic 2022</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Asesoré a emprendedores sociales en la creación de estrategias de marketing digital.</p>
+            </li>
+            <li>
+              <p>Impartí talleres sobre redes sociales y posicionamiento de marca.</p>
+            </li>
+            <li>
+              <p>Ayudé a varias startups a definir su propuesta de valor.</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer class="resume-footer">Generated by <a href="https://yamlresume.dev">YAMLResume</a></footer>
+</body>
+
+</html>

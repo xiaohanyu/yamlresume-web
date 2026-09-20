@@ -1,0 +1,261 @@
+\documentclass[a4paper, serif, 10pt]{moderncv}
+
+%% moderncv
+% style and color
+\moderncvstyle{banking}
+\moderncvcolor{black}
+
+%% page layout/margins
+\usepackage[top=2.5cm, bottom=2.5cm, left=1.5cm, right=1.5cm]{geometry}
+
+\nopagenumbers{}
+
+%% Babel config for Norwegian language
+% ref:
+% - https://latex3.github.io/babel/guides/locale-norwegian.html
+\usepackage[norsk]{babel}
+
+%% fontspec
+\usepackage{fontspec}
+
+\IfFontExistsTF{Linux Libertine}{
+  \setmainfont[Ligatures={TeX, Common}, Numbers=OldStyle]{Linux Libertine}
+}{}
+\IfFontExistsTF{Linux Libertine O}{
+  \setmainfont[Ligatures={TeX, Common}, Numbers=OldStyle]{Linux Libertine O}
+}{}
+
+%% CTeX
+% CJK support, used to show CJK characters in the resume
+%
+% - fontset=none: disable builtin fontset but instead set the CJK font manually
+% - heading=false: disable ctex heading
+% - punct=kaiming: use kaiming punctuations styles for CJK
+% - scheme=plain: use plain scheme, do not override \normalsize font size
+% - space=auto: space settings for CJK characters
+%
+% ref:
+% - http://ctan.mirrorcatalogs.com/language/chinese/ctex/ctex.pdf
+\usepackage[UTF8, heading=false, punct=kaiming, scheme=plain, space=auto]{ctex}
+
+\IfFontExistsTF{Noto Serif CJK SC}{
+  \setCJKmainfont{Noto Serif CJK SC}
+}{}
+\IfFontExistsTF{Noto Sans CJK SC}{
+  \setCJKsansfont{Noto Sans CJK SC}
+}{}
+
+%% line spacing
+\usepackage{setspace}
+\setstretch{1.125}
+
+%% URL styling - use normal text instead of monospace
+\urlstyle{same}
+
+% Auto-underline all links
+% Defer until \begin{document} so hyperref is already loaded
+\AtBeginDocument{%
+  \let\oldhref\href
+  \renewcommand{\href}[2]{\oldhref{#1}{\underline{#2}}}%
+}
+
+%% Patch \httplink and \httpslink to handle full URLs
+% The original moderncv macros always prepend http:// or https:// to URLs.
+% This causes issues when the URL already has a protocol (e.g., https://example.com)
+% resulting in malformed URLs like https://https://example.com.
+% This patch checks if the URL already contains "://" and uses it directly if so.
+% Note: We use \str_set:Nx (x-expansion) to expand macros like \@homepage first.
+\ExplSyntaxOn
+\str_new:N \g_yamlresume_url_str
+
+\RenewDocumentCommand{\httpslink}{O{}m}{
+  \str_set:Nx \g_yamlresume_url_str {#2}
+  \str_if_in:NnTF \g_yamlresume_url_str {://}
+    { \url{#2} }
+    { \url{https://#2} }
+}
+
+\RenewDocumentCommand{\httplink}{O{}m}{
+  \str_set:Nx \g_yamlresume_url_str {#2}
+  \str_if_in:NnTF \g_yamlresume_url_str {://}
+    { \url{#2} }
+    { \url{http://#2} }
+}
+\ExplSyntaxOff
+
+\name{Ingrid Solberg}{}
+\title{Kundesuksessansvarlig}
+\phone[mobile]{+47 22 33 44 55}
+\email{ingrid.solberg@example.com}
+\homepage{https://www.ingridsolberg.no}
+
+\address{Storgata 45, Oslo, Oslo, Norge, 0182}{}{}
+
+\extrainfo{{\small \faLinkedin}\ \href{https://www.linkedin.com/in/ingridsolberg}{@ingridsolberg} {} {} {} • {} {} {} 
+{\small \faGithub}\ \href{https://github.com/ingridsolberg}{@ingridsolberg}}
+
+\begin{document}
+
+\maketitle
+
+\section{Grunnleggende informasjon}
+
+\cvline{}{Resultatorientert kundesuksessansvarlig med over 6 års erfaring fra SaaS- og teknologibransjen. Jeg brenner for å bygge sterke kundeforhold, øke kundetilfredshet og redusere churn gjennom proaktiv oppfølging og datadrevne innsikter.
+%
+\begin{itemize}
+\item Dokumentert suksess med å øke netto opprettholdelse (NRR) og kundelivstidsverdi (LTV)
+\item Sterk kompetanse innen onboarding, opplæring og strategisk rådgivning
+\item Erfaren med CRM-verktøy som Salesforce, HubSpot og Gainsight
+\item Flytende i norsk og engelsk, med gode kommunikasjons- og presentasjonsevner
+\end{itemize}}
+\section{Utdanning}
+
+\cventry{aug. 2016–juni 2018}
+        {Master, Økonomi og administrasjon, Poeng: 4.6}
+        {Universitetet i Oslo}
+        {\url{https://www.uio.no}}
+        {}
+        {\begin{itemize}
+\item Spesialisering innen strategi, markedsføring og organisasjonsutvikling
+\item Gjennomførte flere prosjekter med fokus på kundeinnsikt og forretningsvekst
+\item Utviklet sterke analytiske ferdigheter og evne til å formidle komplekse sammenhenger
+\end{itemize}
+\textbf{Kurs}: Strategisk markedsføring, Organisasjonspsykologi, Forretningsutvikling, Dataanalyse for beslutningstaking, Prosjektledelse, Kundeadferd og relasjonsledelse}
+
+\cventry{aug. 2013–juni 2016}
+        {Bachelor, Markedsføring og merkevareledelse, Poeng: 4.2}
+        {Handelshøyskolen BI}
+        {\url{https://www.bi.no}}
+        {}
+        {\begin{itemize}
+\item Grunnleggende forståelse for markedsføring, salg og kundeadferd
+\item Deltok i studentorganisasjoner og arrangerte karrieredager
+\end{itemize}
+\textbf{Kurs}: Markedsføringsledelse, Forbrukeratferd, Salgsledelse, Statistikk, Kommunikasjon og presentasjonsteknikk}
+\section{Arbeidserfaring}
+
+\cventry{mars 2021–Nå}
+        {Kundesuksessansvarlig}
+        {Visma}
+        {\url{https://www.visma.no}}
+        {}
+        {\begin{itemize}
+\item Ansvarlig for en portefølje på over 40 B2B-kunder innen SaaS-løsninger for HR og lønn
+\item Økte netto opprettholdelse (NRR) fra 92 \% til 108 \% gjennom proaktiv rådgivning og verdiskapende oppfølging
+\item Ledet onboarding av nye kunder, inkludert opplæring, implementering og milepælsplaner
+\item Reduserte churn med 25 \% ved å etablere tidlige varslingssystemer og regelmessige helsesjekker
+\item Fungerte som bindeledd mellom kunder og produktteam for å sikre kundedrevet produktutvikling
+\end{itemize}
+\textbf{Nøkkelord}: Kundeoppfølging, Onboarding, SaaS, Churn, Salesforce}
+
+\cventry{jan. 2019–feb. 2021}
+        {Kundesuksessspesialist}
+        {Kahoot!}
+        {\url{https://kahoot.com}}
+        {}
+        {\begin{itemize}
+\item Håndterte kundehenvendelser og support for over 200 skoler og bedrifter i Norden
+\item Utviklet og gjennomførte opplæringswebinarer som økte produktadopsjonen med 35 \%
+\item Bidro til å bygge opp en kundesuksessavdeling fra grunnen av, med fokus på skalerbare prosesser
+\item Brukte HubSpot til å spore kundeinteraksjoner og identifisere oppsalgspotensial
+\end{itemize}
+\textbf{Nøkkelord}: Kundestøtte, Webinarer, HubSpot, Adopsjon, Norden}
+
+\cventry{juni 2017–jan. 2019}
+        {Kundebehandler}
+        {Telenor}
+        {\url{https://www.telenor.no}}
+        {}
+        {\begin{itemize}
+\item Betjente bedriftskunder i telefon og e-post, med fokus på rask og profesjonell problemløsning
+\item Oppnådde en kundetilfredshetscore (CSAT) på 4,8 av 5 i snitt
+\item Identifiserte behov for tilleggstjenester og videreformidlet salgsmuligheter til selgerteamet
+\end{itemize}
+\textbf{Nøkkelord}: Kundeservice, CSAT, Bedriftsmarked, Problemløsning}
+\section{Språk}
+
+\cvline{Norsk}{Morsmål eller tospråklig nivå \hfill \textbf{Nøkkelord}: Morsmål}
+\cvline{Engelsk}{Fullt profesjonelt nivå \hfill \textbf{Nøkkelord}: Forretningsflyt, TOEFL 105}
+\section{Ferdigheter}
+
+\cvline{Kundesuksess}{Ekspert \hfill \textbf{Nøkkelord}: Onboarding, Kundereiser, Churn-analyse, Oppsalg, Helseundersøkelser}
+\cvline{CRM og verktøy}{Avansert \hfill \textbf{Nøkkelord}: Salesforce, HubSpot, Gainsight, Zendesk, Looker}
+\cvline{Kommunikasjon}{Ekspert \hfill \textbf{Nøkkelord}: Presentasjoner, Forhandlinger, Workshop, Relasjonsbygging}
+\cvline{Dataanalyse}{Avansert \hfill \textbf{Nøkkelord}: Excel, SQL, Dashboard, KPI-oppfølging, Segmentering}
+\section{Utmerkelser}
+
+\cventry{des. 2023}
+        {Visma}
+        {Årets Kundesuksessansatt}
+        {}
+        {}
+        {Tildelt for eksepsjonell innsats med å øke kundetilfredshet og opprettholdelse i et krevende marked.}
+\section{Sertifikater}
+
+\cventry{mai 2022}
+        {SuccessCoaching}
+        {Certified Customer Success Manager (CCSM)}
+        {\url{https://www.successcoaching.com/certification}}
+        {}
+        {}
+
+\cventry{okt. 2021}
+        {Salesforce}
+        {Salesforce Certified Administrator}
+        {\url{https://trailhead.salesforce.com}}
+        {}
+        {}
+\section{Publikasjoner}
+
+\cventry{apr. 2023}
+        {Hvordan bruke kundedata til å drive lønnsom vekst}
+        {Magma – Tidsskrift for økonomi og ledelse}
+        {\url{https://www.magma.no}}
+        {}
+        {\begin{itemize}
+\item Artikkelen utforsker hvordan SaaS-selskaper kan bruke kundedata for å forbedre opprettholdelse og øke omsetning.
+\item Presenterer en modell for proaktiv kundeoppfølging basert på helsescore og bruksmønstre.
+\end{itemize}}
+\section{Prosjekter}
+
+\cventry{sep. 2022–feb. 2023}
+        {Utviklet et dashboard for å visualisere kundehelse og identifisere churn-risiko i sanntid.}
+        {Kundehelse-dashboard}
+        {\url{https://www.ingridsolberg.no/prosjekter/kundehelse}}
+        {}
+        {\begin{itemize}
+\item Integrerte data fra Salesforce og produktbruk for å lage en helhetlig kundehelsescore
+\item Automatiserte varsler til kundesuksessansvarlige ved fall i engasjement
+\item Reduserte tiden brukt på manuell rapportering med 60 \%
+\end{itemize}
+\textbf{Nøkkelord}: Dashboard, Kundehelse, Automatisering}
+
+\cventry{juni 2021–jan. 2022}
+        {Redesignet onboardingprogrammet for nye kunder for å øke tid-til-verdi.}
+        {Onboarding 2.0}
+        {\url{https://www.ingridsolberg.no/prosjekter/onboarding}}
+        {}
+        {\begin{itemize}
+\item Kartla kundereisen og identifiserte flaskehalser i implementeringsfasen
+\item Utviklet nye maler, sjekklister og opplæringsvideoer
+\item Kortet ned gjennomsnittlig onboardingtid fra 45 til 28 dager
+\end{itemize}
+\textbf{Nøkkelord}: Onboarding, Prosessforbedring, Tid-til-verdi}
+\section{Interesser}
+
+\cvline{Friluftsliv}{Fjellturer, Ski, Kajakk}
+\cvline{Samfunn}{Mentorskap, Bærekraft, Teknologi}
+\section{Frivillig arbeid}
+
+\cventry{sep. 2020–Nå}
+        {Mentor}
+        {Ungt Entreprenørskap Norge}
+        {\url{https://www.ue.no}}
+        {}
+        {\begin{itemize}
+\item Veiledet unge gründere i utvikling av forretningsideer og kundeforståelse
+\item Holdt workshops i kundesegmentering og verdivurdering
+\item Bidro til å styrke studenters presentasjons- og samarbeidsevner
+\end{itemize}}
+    
+\end{document}

@@ -1,0 +1,235 @@
+\documentclass[a4paper, serif, 10pt]{moderncv}
+
+%% moderncv
+% style and color
+\moderncvstyle{banking}
+\moderncvcolor{black}
+
+%% page layout/margins
+\usepackage[top=2.5cm, bottom=2.5cm, left=1.5cm, right=1.5cm]{geometry}
+
+\nopagenumbers{}
+
+%% Babel config for French language
+% ref:
+% - https://latex3.github.io/babel/guides/locale-french.html
+\usepackage[french]{babel}
+
+%% fontspec
+\usepackage{fontspec}
+
+\IfFontExistsTF{Linux Libertine}{
+  \setmainfont[Ligatures={TeX, Common}, Numbers=OldStyle]{Linux Libertine}
+}{}
+\IfFontExistsTF{Linux Libertine O}{
+  \setmainfont[Ligatures={TeX, Common}, Numbers=OldStyle]{Linux Libertine O}
+}{}
+
+%% CTeX
+% CJK support, used to show CJK characters in the resume
+%
+% - fontset=none: disable builtin fontset but instead set the CJK font manually
+% - heading=false: disable ctex heading
+% - punct=kaiming: use kaiming punctuations styles for CJK
+% - scheme=plain: use plain scheme, do not override \normalsize font size
+% - space=auto: space settings for CJK characters
+%
+% ref:
+% - http://ctan.mirrorcatalogs.com/language/chinese/ctex/ctex.pdf
+\usepackage[UTF8, heading=false, punct=kaiming, scheme=plain, space=auto]{ctex}
+
+\IfFontExistsTF{Noto Serif CJK SC}{
+  \setCJKmainfont{Noto Serif CJK SC}
+}{}
+\IfFontExistsTF{Noto Sans CJK SC}{
+  \setCJKsansfont{Noto Sans CJK SC}
+}{}
+
+%% line spacing
+\usepackage{setspace}
+\setstretch{1.125}
+
+%% URL styling - use normal text instead of monospace
+\urlstyle{same}
+
+% Auto-underline all links
+% Defer until \begin{document} so hyperref is already loaded
+\AtBeginDocument{%
+  \let\oldhref\href
+  \renewcommand{\href}[2]{\oldhref{#1}{\underline{#2}}}%
+}
+
+%% Patch \httplink and \httpslink to handle full URLs
+% The original moderncv macros always prepend http:// or https:// to URLs.
+% This causes issues when the URL already has a protocol (e.g., https://example.com)
+% resulting in malformed URLs like https://https://example.com.
+% This patch checks if the URL already contains "://" and uses it directly if so.
+% Note: We use \str_set:Nx (x-expansion) to expand macros like \@homepage first.
+\ExplSyntaxOn
+\str_new:N \g_yamlresume_url_str
+
+\RenewDocumentCommand{\httpslink}{O{}m}{
+  \str_set:Nx \g_yamlresume_url_str {#2}
+  \str_if_in:NnTF \g_yamlresume_url_str {://}
+    { \url{#2} }
+    { \url{https://#2} }
+}
+
+\RenewDocumentCommand{\httplink}{O{}m}{
+  \str_set:Nx \g_yamlresume_url_str {#2}
+  \str_if_in:NnTF \g_yamlresume_url_str {://}
+    { \url{#2} }
+    { \url{http://#2} }
+}
+\ExplSyntaxOff
+
+\name{Camille Laurent}{}
+\title{Responsable de la réussite client}
+\phone[mobile]{+33 1 44 55 66 77}
+\email{camille.laurent@example.fr}
+\homepage{https://www.camille-laurent.fr}
+
+\address{12 Rue de la Paix, Paris, Île-de-France, France, 75002}{}{}
+
+\extrainfo{{\small \faLinkedin}\ \href{https://www.linkedin.com/in/camillelaurent}{@camillelaurent} {} {} {} • {} {} {} 
+{\small \faTwitter}\ \href{https://twitter.com/camillelaurent}{@camillelaurent}}
+
+\begin{document}
+
+\maketitle
+
+\section{Informations de base}
+
+\cvline{}{Responsable de la réussite client avec plus de 6 ans d'expérience dans le secteur SaaS, spécialisée dans l'accompagnement des clients grands comptes.
+%
+\begin{itemize}
+\item Expertise en gestion de portefeuille client, onboarding, et fidélisation.
+\item Forte capacité à établir des relations de confiance et à identifier les opportunités de croissance.
+\item Solide compréhension des enjeux techniques et métier, permettant de traduire les besoins clients en solutions concrètes.
+\end{itemize}}
+\section{Formation}
+
+\cventry{sept. 2014–juin 2016}
+        {Master, Management et Stratégie d'Entreprise, Score : Mention Bien}
+        {Université Paris-Dauphine}
+        {\url{https://www.dauphine.psl.eu/}}
+        {}
+        {\begin{itemize}
+\item Formation spécialisée en management et stratégie, avec un focus sur la relation client et le développement commercial.
+\item Projet de fin d'études sur l'optimisation de l'expérience client dans le secteur SaaS.
+\end{itemize}
+\textbf{Cours} : Stratégie d'entreprise, Marketing B2B, Négociation commerciale, Gestion de la relation client, Analyse financière}
+
+\cventry{sept. 2011–juin 2014}
+        {Licence, Économie et Gestion, Score : Mention Assez Bien}
+        {Université Paris 1 Panthéon-Sorbonne}
+        {\url{https://www.pantheonsorbonne.fr/}}
+        {}
+        {\begin{itemize}
+\item Solide base en économie et gestion, avec une introduction aux techniques de vente et de négociation.
+\end{itemize}
+\textbf{Cours} : Microéconomie, Macroéconomie, Comptabilité, Statistiques, Marketing}
+\section{Expérience professionnelle}
+
+\cventry{janv. 2021–Present}
+        {Responsable de la réussite client}
+        {SaaSify}
+        {\url{https://www.saasify.fr}}
+        {}
+        {\begin{itemize}
+\item Gestion d'un portefeuille de 50 clients grands comptes, représentant un revenu annuel récurrent de 5M€.
+\item Élaboration et mise en œuvre de plans de réussite client personnalisés, augmentant le taux de rétention de 15\%.
+\item Collaboration étroite avec les équipes produit et ventes pour identifier les opportunités d'upsell et de cross-sell.
+\item Animation de revues trimestrielles avec les clients pour suivre les indicateurs de performance et aligner les objectifs.
+\end{itemize}
+\textbf{Mots-clés} : Gestion de portefeuille, Onboarding, Fidélisation, SaaS, Négociation}
+
+\cventry{mars 2019–déc. 2020}
+        {Responsable de la réussite client}
+        {CloudNext}
+        {\url{https://www.cloudnext.com}}
+        {}
+        {\begin{itemize}
+\item Suivi de 30 clients PME/ETI, avec un focus sur l'adoption produit et la satisfaction client.
+\item Mise en place d'un programme d'onboarding structuré, réduisant le time-to-value de 30\%.
+\item Analyse des données d'utilisation pour anticiper les risques de churn et proposer des actions correctives.
+\end{itemize}
+\textbf{Mots-clés} : Adoption produit, Satisfaction client, Analyse de données, Onboarding}
+
+\cventry{sept. 2016–févr. 2019}
+        {Chargé de clientèle}
+        {TechSolutions}
+        {\url{https://www.techsolutions.fr}}
+        {}
+        {\begin{itemize}
+\item Gestion d'un portefeuille de 100 clients TPE/PME dans le secteur des logiciels.
+\item Développement des ventes additionnelles et suivi de la satisfaction client.
+\item Collaboration avec l'équipe support pour résoudre les problèmes clients dans les délais impartis.
+\end{itemize}
+\textbf{Mots-clés} : Vente, Relation client, Support}
+\section{Langues}
+
+\cvline{Français}{Niveau natif ou bilingue}
+\cvline{Anglais}{Niveau professionnel complet \hfill \textbf{Mots-clés} : TOEIC 950, TOEFL 110}
+\cvline{Espagnol}{Niveau élémentaire}
+\section{Compétences}
+
+\cvline{Gestion de la relation client}{Expert \hfill \textbf{Mots-clés} : Salesforce, HubSpot, Zendesk, Gainsight}
+\cvline{Analyse de données}{Avancé \hfill \textbf{Mots-clés} : Excel, SQL, Tableau, Google Analytics}
+\cvline{Gestion de projet}{Avancé \hfill \textbf{Mots-clés} : Jira, Asana, Méthodologies Agile}
+\cvline{Communication}{Expert \hfill \textbf{Mots-clés} : Présentations, Négociation, Rédaction}
+\section{Récompenses}
+
+\cventry{déc. 2022}
+        {SaaSify}
+        {Prix de l'Excellence Client}
+        {}
+        {}
+        {Récompense décernée pour la meilleure performance en matière de satisfaction client et de rétention sur l'année 2022.}
+\section{Certificats}
+
+\cventry{mars 2020}
+        {SuccessCo}
+        {Certification Customer Success Manager}
+        {\url{https://www.successco.com/certification}}
+        {}
+        {}
+\section{Publications}
+
+\cventry{juin 2021}
+        {L'importance de l'onboarding client dans le SaaS}
+        {Revue du SaaS}
+        {\url{https://www.revuedusaas.fr/onboarding-client}}
+        {}
+        {Article analysant les meilleures pratiques pour structurer un programme d'onboarding efficace et améliorer la rétention client.}
+\section{Projets}
+
+\cventry{janv. 2022–juin 2022}
+        {Mise en place d'un parcours d'onboarding standardisé pour les nouveaux clients de SaaSify.}
+        {Programme d'onboarding client}
+        {\url{https://www.saasify.fr/onboarding}}
+        {}
+        {\begin{itemize}
+\item Conception et déploiement d'un programme d'onboarding en 4 étapes.
+\item Réduction du time-to-value de 40\% et augmentation de la satisfaction client de 20 points.
+\item Formation des équipes internes à la nouvelle méthodologie.
+\end{itemize}
+\textbf{Mots-clés} : Onboarding, Expérience client, SaaS}
+\section{Centres d'intérêt}
+
+\cvline{Sports}{Course à pied, Natation, Yoga}
+\cvline{Voyages}{Asie, Europe, Amérique du Sud}
+\cvline{Lecture}{Romans, Biographies, Essais}
+\section{Bénévolat}
+
+\cventry{sept. 2017–juin 2023}
+        {Mentor}
+        {Association des Anciens de Dauphine}
+        {\url{https://www.dauphine-alumni.org}}
+        {}
+        {\begin{itemize}
+\item Accompagnement de jeunes diplômés dans leur insertion professionnelle.
+\item Organisation d'ateliers de préparation aux entretiens et de développement du réseau.
+\end{itemize}}
+    
+\end{document}

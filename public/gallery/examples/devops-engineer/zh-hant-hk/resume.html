@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="zh-hant-hk">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="generator" content="YAMLResume (https://yamlresume.dev)">
+
+
+  <title>陳嘉俊 Resume</title>
+  <style>
+    :root {
+      --text-font-size: 16px;
+      --text-font-family: var(--text-default-font-family);
+      --line-height: 1.5;
+    }
+
+    /* Modified from: https://www.joshwcomeau.com/css/custom-css-reset/ */
+
+    /* 1. Use a more-intuitive box-sizing model */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    /* 2. Remove default margin */
+    *:not(dialog) {
+      margin: 0;
+    }
+
+    body {
+      /* 3. Improve text rendering */
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    :root {
+      --border-color: #d0d0d0;
+
+      /* text colors */
+      --text-color-primary: #000000;
+      --text-color-secondary: #333333;
+
+      /* spacing */
+      --spacing-xss: 2px;
+      --spacing-xs: 4px;
+      --spacing-sm: 8px;
+      --spacing-md: 12px;
+      --spacing-lg: 16px;
+      --spacing-xl: 24px;
+      --spacing-xxl: 40px;
+      --spacing-xxxl: 80px;
+
+      /* font sizes */
+      --font-size-xs: 0.8rem;
+      --font-size-sm: 0.9rem;
+      --font-size-md: 1rem;
+      --font-size-lg: 1.1rem;
+      --font-size-xl: 1.25rem;
+      --font-size-xxl: 2.5rem;
+
+      /* layout */
+      --page-max-width: 900px;
+
+      /* typography */
+      --text-default-font-family:
+        -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu,
+        Cantarell, sans-serif;
+    }
+
+    html {
+      font-size: var(--text-font-size);
+    }
+
+    body {
+      /* font & text */
+      color: var(--text-color-primary);
+      font-family: var(--text-font-family);
+      /* this variable is defined by `typography.fontSize` in resume html layout */
+      text-autospace: normal;
+
+      /* layout */
+      line-height: var(--line-height);
+      max-width: var(--page-max-width);
+      margin: 0 auto;
+      padding: var(--spacing-xxxl) var(--spacing-xxl) var(--spacing-xxl);
+    }
+
+    /* header */
+    .resume-header {
+      margin-bottom: var(--spacing-xxl);
+      text-align: center;
+    }
+
+    .resume-name {
+      font-size: var(--font-size-xxl);
+      font-weight: 600;
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .resume-headline {
+      font-size: var(--font-size-lg);
+      margin-bottom: var(--spacing-md);
+    }
+
+    /* contact info */
+    .resume-contact-info {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      column-gap: var(--spacing-lg);
+      row-gap: var(--spacing-xs);
+      margin-top: var(--spacing-sm);
+    }
+
+    .resume-contact-icon,
+    .resume-contact-label {
+      margin-right: var(--spacing-sm);
+      vertical-align: middle;
+    }
+
+    /* links: modern typographic style */
+    a {
+      color: var(--text-color-primary);
+      text-decoration: underline;
+      text-decoration-color: var(--border-color);
+      text-underline-offset: 3px;
+      text-decoration-thickness: 1px;
+      text-decoration-skip-ink: auto;
+      transition: text-decoration-color 0.2s;
+    }
+
+    a:hover {
+      text-decoration-color: var(--text-color-primary);
+    }
+
+    /* sections */
+    .resume-section {
+      margin-bottom: var(--spacing-xl);
+    }
+
+    .resume-section-title {
+      font-size: var(--font-size-xl);
+      font-weight: 500;
+      margin-bottom: var(--spacing-md);
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: var(--spacing-xs);
+    }
+
+    /* entries */
+    .resume-entry {
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .resume-entry:last-child {
+      margin-bottom: 0;
+    }
+
+    .resume-entry-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .resume-entry-title {
+      font-weight: 500;
+      margin-bottom: var(--spacing-xss);
+    }
+
+    .resume-entry-summary p,
+    .resume-summary-content p {
+      margin-bottom: var(--spacing-xs);
+    }
+
+    /* lists */
+    .resume-entry-summary ul,
+    .resume-entry-summary ol,
+    .resume-summary-content ul,
+    .resume-summary-content ol {
+      padding-left: var(--spacing-lg);
+      list-style-type: circle;
+    }
+
+    /* labeled lists (courses, keywords, etc.) */
+    .resume-labeled-list span {
+      font-weight: 500;
+    }
+
+    /* skills grid */
+    .resume-skill-item,
+    .resume-language-item {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .resume-skill-name,
+    .resume-language-name {
+      font-weight: 500;
+    }
+
+    .resume-skill-level,
+    .resume-language-fluency {
+      font-weight: 400;
+    }
+
+    /* mobile */
+    @media (max-width: 768px) {
+      body {
+        padding: var(--spacing-xl);
+      }
+
+      .resume-header {
+        margin-bottom: var(--spacing-xl);
+      }
+
+      .resume-contact-info {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .resume-entry-header {
+        flex-wrap: wrap;
+      }
+    }
+
+    /* footer */
+    .resume-footer {
+      margin-top: var(--spacing-xxl);
+      padding-top: var(--spacing-xl);
+      border-top: 1px solid var(--border-color);
+      font-size: var(--font-size-sm);
+      color: var(--text-color-secondary);
+    }
+
+    @media print {
+      .resume-footer {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="resume-header">
+    <h1 class="resume-name">陳嘉俊</h1>
+    <p class="resume-headline">資深 DevOps 工程師 | 雲端架構與自動化交付專家</p>
+    <div class="resume-contact-info">
+      <span class="resume-contact-item"><span class="resume-contact-icon">📧</span><a href="mailto:kachun.chan@example.com" class="resume-contact-link">kachun.chan@example.com</a></span>
+      <span class="resume-contact-item"><span class="resume-contact-icon">📞</span>+852 9123 4567</span>
+      <span class="resume-contact-item"><span class="resume-contact-icon">🔗</span><a href="https://kachunchan.dev" class="resume-contact-link">https://kachunchan.dev</a></span>
+    </div>
+    <div class="resume-contact-info resume-location-info">
+      <span class="resume-contact-item"><span class="resume-contact-icon">📍</span>中國香港，九龍，香港，香港九龍觀塘鴻圖道 88 號創紀大廈 12 樓</span>
+    </div>
+    <div class="resume-contact-info resume-profiles-info">
+      <span class="resume-contact-item"><span class="resume-contact-label">GitHub</span>: <a href="https://github.com/kachunchan" class="resume-contact-link">@kachunchan</a></span>
+      <span class="resume-contact-item"><span class="resume-contact-label">LinkedIn</span>: <a href="https://www.linkedin.com/in/kachunchan" class="resume-contact-link">@kachunchan</a></span>
+      <span class="resume-contact-item"><span class="resume-contact-label">Stack Overflow</span>: <a href="https://stackoverflow.com/users/1842371/kachunchan" class="resume-contact-link">@kachunchan</a></span>
+    </div>
+  </header>
+  <section class="resume-section" id="summary" data-section="summary">
+    <h2 class="resume-section-title">簡介</h2>
+    <div class="resume-section-content">
+      <div class="resume-summary-content">
+        <ul>
+          <li>
+            <p>8 年雲端基礎架構與 DevOps 經驗，專注於大規模容器化平台、CI/CD 自動化與可觀測性建設</p>
+          </li>
+          <li>
+            <p>主導單體式系統重構為 Kubernetes 微服務架構，部署頻率由每月 2 次提升至每日 10 次以上</p>
+          </li>
+          <li>
+            <p>以 Terraform 與 Ansible 全面實踐基礎架構即程式碼（IaC），環境建置時間由 3 個工作日縮短至 45 分鐘</p>
+          </li>
+          <li>
+            <p>建立 Prometheus、Grafana 與 ELK 監控堆疊，平均故障恢復時間（MTTR）下降 70%，系統可用率達 99.98%</p>
+          </li>
+          <li>
+            <p>雲端成本治理經驗豐富，透過資源調度與預留實例策略，每年節省逾 180 萬港元雲端支出</p>
+          </li>
+        </ul>
+        <p>熱衷推動 DevOps 文化與 blameless 事後檢討機制，擅長跨部門溝通協作，並定期主持內部技術工作坊與新人培訓。</p>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="education" data-section="education">
+    <h2 class="resume-section-title">教育背景</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="education-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.ust.hk">香港科技大學</a></div>
+            <div class="resume-entry-organization">學士，計算機科學，成績：3.6</div>
+          </div>
+          <div class="resume-entry-date">2012年9月–2016年6月</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>主修計算機科學，成績位列全系前 15%，連續三年獲院長嘉許名單</p>
+            </li>
+            <li>
+              <p>畢業專題為以容器技術建置校園課程排程系統，獲得學系最佳專題獎</p>
+            </li>
+            <li>
+              <p>擔任計算機學會幹事，籌辦校內黑客松與技術講座</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>課程</span>：資料結構與演算法、作業系統、電腦網絡、資料庫系統、分散式系統、雲端運算導論、資訊安全基礎</div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="work" data-section="work">
+    <h2 class="resume-section-title">工作經歷</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="work-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.cloudhorizon.com.hk">雲際科技（香港）有限公司</a></div>
+            <div class="resume-entry-organization">資深 DevOps 工程師</div>
+          </div>
+          <div class="resume-entry-date">2021年4月至今</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>帶領 5 人平台工程小組，負責 12 條產品線的 Kubernetes（Amazon EKS）多集群架構設計、升級與維運</p>
+            </li>
+            <li>
+              <p>以 Terraform 模組化管理 AWS 資源（VPC、EKS、RDS、IAM、S3），將新環境交付時間由 3 個工作日縮短至 45 分鐘</p>
+            </li>
+            <li>
+              <p>建置 GitLab CI 與 Argo CD 的 GitOps 流水線，實現每日 10 次以上零停機部署，回滾時間少於 3 分鐘</p>
+            </li>
+            <li>
+              <p>導入 Prometheus、Grafana、Loki 與 OpenTelemetry，建立 SLO 告警與錯誤預算機制，MTTR 由 90 分鐘降至 25 分鐘</p>
+            </li>
+            <li>
+              <p>推動雲端成本治理（FinOps），透過 Karpenter 自動擴縮與 Savings Plans 規劃，年度雲端支出下降 32%</p>
+            </li>
+            <li>
+              <p>主持每月內部技術工作坊及事故事後檢討，推動知識文件化與值班輪替制度</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>關鍵字</span>：Kubernetes、Terraform、GitOps、Observability、FinOps</div>
+      </div>
+      <div class="resume-entry" id="work-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.apacdata.com.hk">亞太數據服務有限公司</a></div>
+            <div class="resume-entry-organization">DevOps 工程師</div>
+          </div>
+          <div class="resume-entry-date">2018年7月–2021年3月</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>將單體式 Java 應用拆分為 20 個微服務並容器化部署至 Kubernetes，發佈週期由季度縮短至雙週</p>
+            </li>
+            <li>
+              <p>以 Jenkins 與 Ansible 建立自動化建置、測試與部署流程，人工操作步驟減少 85%</p>
+            </li>
+            <li>
+              <p>設計香港與新加坡多區域災難復原架構，RTO 由 8 小時降至 30 分鐘，RPO 控制在 5 分鐘內</p>
+            </li>
+            <li>
+              <p>導入 HashiCorp Vault 集中管理密鑰與憑證，消除設定檔中的明文密碼與共用帳號</p>
+            </li>
+            <li>
+              <p>與開發團隊協作推行測試自動化與品質閘門，單元測試覆蓋率由 42% 提升至 81%</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>關鍵字</span>：Jenkins、Ansible、Docker、Vault、Disaster Recovery</div>
+      </div>
+      <div class="resume-entry" id="work-3">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.kaidata-its.com">凱達資訊科技顧問有限公司</a></div>
+            <div class="resume-entry-organization">系統運維工程師</div>
+          </div>
+          <div class="resume-entry-date">2016年8月–2018年6月</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>負責 200 多台 Linux 伺服器的日常維運、效能調校、修補管理與容量規劃</p>
+            </li>
+            <li>
+              <p>建置 Zabbix 與 Nagios 監控告警系統，將被動故障處理轉為主動預警</p>
+            </li>
+            <li>
+              <p>撰寫 Shell 與 Python 自動化腳本，將例行備份與巡檢工作壓縮至每日 15 分鐘內完成</p>
+            </li>
+            <li>
+              <p>協助三家客戶完成 AWS EC2 與 RDS 遷移，平均節省 40% 自建機房維運成本</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>關鍵字</span>：Linux、Shell、Python、Zabbix</div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="languages" data-section="languages">
+    <h2 class="resume-section-title">語言</h2>
+    <div class="resume-section-content">
+      <div class="resume-languages-list">
+        <div class="resume-language-item">
+          <div class="resume-language-name">粵語<span class="resume-language-fluency">：母語或雙語水平</span></div>
+          <div>
+            <div class="resume-labeled-list"><span>關鍵字</span>：母語</div>
+          </div>
+        </div>
+        <div class="resume-language-item">
+          <div class="resume-language-name">英語<span class="resume-language-fluency">：完全專業水平</span></div>
+          <div>
+            <div class="resume-labeled-list"><span>關鍵字</span>：IELTS 7.5、商務書信與技術簡報</div>
+          </div>
+        </div>
+        <div class="resume-language-item">
+          <div class="resume-language-name">普通話<span class="resume-language-fluency">：完全專業水平</span></div>
+          <div>
+            <div class="resume-labeled-list"><span>關鍵字</span>：普通話水平測試二級甲等</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="skills" data-section="skills">
+    <h2 class="resume-section-title">專業技能</h2>
+    <div class="resume-section-content">
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">雲端平台<span class="resume-skill-level">：專家</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>關鍵字</span>：AWS、Google Cloud、Azure、Amazon EKS、Lambda</div>
+        </div>
+      </div>
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">容器與編排<span class="resume-skill-level">：專家</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>關鍵字</span>：Docker、Kubernetes、Helm、Istio、Karpenter</div>
+        </div>
+      </div>
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">基礎架構即程式碼<span class="resume-skill-level">：高級</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>關鍵字</span>：Terraform、Ansible、Pulumi、CloudFormation</div>
+        </div>
+      </div>
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">CI/CD 與 GitOps<span class="resume-skill-level">：高級</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>關鍵字</span>：GitLab CI、Jenkins、GitHub Actions、Argo CD</div>
+        </div>
+      </div>
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">監控與可觀測性<span class="resume-skill-level">：高級</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>關鍵字</span>：Prometheus、Grafana、Loki、OpenTelemetry、ELK Stack</div>
+        </div>
+      </div>
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">程式語言與腳本<span class="resume-skill-level">：高級</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>關鍵字</span>：Python、Go、Bash、SQL</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="awards" data-section="awards">
+    <h2 class="resume-section-title">榮譽</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="awards-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title">年度卓越工程團隊獎</div>
+            <div class="resume-entry-organization">雲際科技（香港）有限公司</div>
+          </div>
+          <div class="resume-entry-date">2023年12月</div>
+        </div>
+        <div class="resume-entry-summary">
+          <p>表揚在雲端成本治理專案中的傑出表現，透過自動擴縮與資源調度策略，於 12 個月內為公司節省逾 180 萬港元雲端支出，同時維持服務可用率 99.98%。</p>
+        </div>
+      </div>
+      <div class="resume-entry" id="awards-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title">最佳自動化專案獎</div>
+            <div class="resume-entry-organization">亞太數據服務有限公司</div>
+          </div>
+          <div class="resume-entry-date">2020年1月</div>
+        </div>
+        <div class="resume-entry-summary">
+          <p>肯定在 CI/CD 自動化改造專案中的貢獻，將部署流程由人工操作轉為全自動流水線，發佈失誤率下降 76%。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="certificates" data-section="certificates">
+    <h2 class="resume-section-title">證書</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="certificates-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.cncf.io/certification/cka/">Certified Kubernetes Administrator (CKA)</a></div>
+            <div class="resume-entry-organization">Cloud Native Computing Foundation</div>
+          </div>
+          <div class="resume-entry-date">2022年3月</div>
+        </div>
+      </div>
+      <div class="resume-entry" id="certificates-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.cncf.io/certification/cks/">Certified Kubernetes Security Specialist (CKS)</a></div>
+            <div class="resume-entry-organization">Cloud Native Computing Foundation</div>
+          </div>
+          <div class="resume-entry-date">2023年8月</div>
+        </div>
+      </div>
+      <div class="resume-entry" id="certificates-3">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://aws.amazon.com/certification/">AWS Certified DevOps Engineer – Professional</a></div>
+            <div class="resume-entry-organization">Amazon Web Services</div>
+          </div>
+          <div class="resume-entry-date">2021年11月</div>
+        </div>
+      </div>
+      <div class="resume-entry" id="certificates-4">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.hashicorp.com/certification">HashiCorp Certified: Terraform Associate</a></div>
+            <div class="resume-entry-organization">HashiCorp</div>
+          </div>
+          <div class="resume-entry-date">2023年5月</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="publications" data-section="publications">
+    <h2 class="resume-section-title">出版刊物</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="publications-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.cloudnativehk.org/journal/2023/gitops-multi-cluster">以 GitOps 實現多集群 Kubernetes 的零停機交付</a></div>
+            <div class="resume-entry-organization">香港雲端原生技術年刊 2023</div>
+          </div>
+          <div class="resume-entry-date">2023年8月</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>探討以 Argo CD 與 ApplicationSet 管理跨區域多集群部署的實務模式</p>
+            </li>
+            <li>
+              <p>比較 push-based 與 pull-based 交付流程在合規與安全層面的差異</p>
+            </li>
+            <li>
+              <p>分享將回滾時間由 20 分鐘壓縮至 3 分鐘的具體調校經驗</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="references" data-section="references">
+    <h2 class="resume-section-title">引薦</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="references-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="mailto:wendy.lee@example.com">李婉婷</a></div>
+            <div class="resume-entry-organization">雲際科技（香港）有限公司 平台工程總監</div>
+          </div>
+          <div>+852 2765 4321</div>
+        </div>
+        <div class="resume-entry-summary">
+          <p>嘉俊在任職期間主導了我們整個 Kubernetes 平台的現代化工程，他不僅技術紮實，更具備難得的推動力與溝通能力，能將複雜的架構議題轉化為團隊可執行的路線圖，是任何工程組織都值得擁有的人才。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="projects" data-section="projects">
+    <h2 class="resume-section-title">項目</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="projects-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://github.com/kachunchan/kubesaver">KubeSaver</a></div>
+            <div class="resume-entry-description">開源的 Kubernetes 資源使用率分析與成本優化工具，協助團隊找出閒置工作負載並提出調整建議</div>
+          </div>
+          <div class="resume-entry-date">2022年3月至今</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>以 Go 語言開發，定期抓取 Prometheus 指標並計算每個命名空間的成本分攤</p>
+            </li>
+            <li>
+              <p>提供 CLI 與網頁儀表板，可輸出建議的 requests/limits 調整清單</p>
+            </li>
+            <li>
+              <p>累積超過 1,200 個 GitHub Star，並獲多間香港初創企業採用於內部成本治理</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>關鍵字</span>： Kubernetes、FinOps、Go、Prometheus</div>
+      </div>
+      <div class="resume-entry" id="projects-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://github.com/kachunchan/pipeline-templates">CICD 樣板庫</a></div>
+            <div class="resume-entry-description">為公司內部 30 多個專案提供一致化的 CI/CD 樣板與安全掃描閘門</div>
+          </div>
+          <div class="resume-entry-date">2021年9月–2022年6月</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>整合 Trivy、Semgrep 與 SBOM 產生流程，於流水線中自動攔截高風險漏洞</p>
+            </li>
+            <li>
+              <p>將新專案導入 CI/CD 的時間由 2 日縮短至 30 分鐘內完成</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>關鍵字</span>： GitLab CI、DevSecOps、Trivy</div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="interests" data-section="interests">
+    <h2 class="resume-section-title">興趣愛好</h2>
+    <div class="resume-section-content">
+      <div class="resume-interest-item"><span class="resume-interest-name">運動</span>：長跑、龍舟、游泳</div>
+      <div class="resume-interest-item"><span class="resume-interest-name">個人興趣</span>：攝影、開源社群、手沖咖啡</div>
+    </div>
+  </section>
+  <section class="resume-section" id="volunteer" data-section="volunteer">
+    <h2 class="resume-section-title">志願服務</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="volunteer-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.cloudnativehk.org">香港雲端原生社群</a></div>
+            <div class="resume-entry-organization">講者及工作坊導師</div>
+          </div>
+          <div class="resume-entry-date">2021年3月至今</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>每季主持 Kubernetes、CI/CD 及可觀測性主題工作坊，累計參與人數超過 600 人</p>
+            </li>
+            <li>
+              <p>協助籌辦年度香港 DevOps 年會，負責議程規劃、講者邀請與現場技術支援</p>
+            </li>
+            <li>
+              <p>為初創團隊提供雲端架構諮詢，協助其在有限預算下建立可靠的自動化交付流程</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer class="resume-footer">Generated by <a href="https://yamlresume.dev">YAMLResume</a></footer>
+</body>
+
+</html>

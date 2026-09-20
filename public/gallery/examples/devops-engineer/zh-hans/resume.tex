@@ -1,0 +1,316 @@
+\documentclass[a4paper, serif, 10pt]{moderncv}
+
+%% moderncv
+% style and color
+\moderncvstyle{banking}
+\moderncvcolor{black}
+
+% renew moderncv command to adapt for CJK colon
+\renewcommand*{\cvitem}[3][.25em]{%
+  \ifstrempty{#2}{}{\hintstyle{#2}：}{#3}%
+  \par\addvspace{#1}}
+
+\renewcommand*{\cvitemwithcomment}[4][.25em]{%
+  \savebox{\cvitemwithcommentmainbox}{\ifstrempty{#2}{}{\hintstyle{#2}：}#3}%
+  \setlength{\cvitemwithcommentmainlength}{\widthof{\usebox{\cvitemwithcommentmainbox}}}%
+  \setlength{\cvitemwithcommentcommentlength}{\maincolumnwidth-\separatorcolumnwidth-\cvitemwithcommentmainlength}%
+  \begin{minipage}[t]{\cvitemwithcommentmainlength}\usebox{\cvitemwithcommentmainbox}\end{minipage}%
+  \hfill% fill of \separatorcolumnwidth
+  \begin{minipage}[t]{\cvitemwithcommentcommentlength}\raggedleft\small\itshape#4\end{minipage}%
+  \par\addvspace{#1}}
+
+%% page layout/margins
+\usepackage[top=2.5cm, bottom=2.5cm, left=1.5cm, right=1.5cm]{geometry}
+
+\nopagenumbers{}
+
+%% Babel config for English language
+\usepackage[english]{babel}
+
+%% fontspec
+\usepackage{fontspec}
+
+\IfFontExistsTF{Linux Libertine}{
+  \setmainfont[Ligatures={TeX, Common}, Numbers=Lining, ItalicFont=Linux Libertine]{Linux Libertine}
+}{}
+\IfFontExistsTF{Linux Libertine O}{
+  \setmainfont[Ligatures={TeX, Common}, Numbers=Lining, ItalicFont=Linux Libertine O]{Linux Libertine O}
+}{}
+
+%% CTeX
+% CJK support, used to show CJK characters in the resume
+%
+% - fontset=none: disable builtin fontset but instead set the CJK font manually
+% - heading=false: disable ctex heading
+% - punct=kaiming: use kaiming punctuations styles for CJK
+% - scheme=plain: use plain scheme, do not override \normalsize font size
+% - space=auto: space settings for CJK characters
+%
+% ref:
+% - http://ctan.mirrorcatalogs.com/language/chinese/ctex/ctex.pdf
+\usepackage[UTF8, heading=false, punct=kaiming, scheme=plain, space=auto]{ctex}
+
+\IfFontExistsTF{Noto Serif CJK SC}{
+  \setCJKmainfont{Noto Serif CJK SC}
+}{}
+\IfFontExistsTF{Noto Sans CJK SC}{
+  \setCJKsansfont{Noto Sans CJK SC}
+}{}
+
+%% line spacing
+\usepackage{setspace}
+\setstretch{1.125}
+
+%% URL styling - use normal text instead of monospace
+\urlstyle{same}
+
+% Auto-underline all links
+% Defer until \begin{document} so hyperref is already loaded
+\AtBeginDocument{%
+  \let\oldhref\href
+  \renewcommand{\href}[2]{\oldhref{#1}{\underline{#2}}}%
+}
+
+%% Patch \httplink and \httpslink to handle full URLs
+% The original moderncv macros always prepend http:// or https:// to URLs.
+% This causes issues when the URL already has a protocol (e.g., https://example.com)
+% resulting in malformed URLs like https://https://example.com.
+% This patch checks if the URL already contains "://" and uses it directly if so.
+% Note: We use \str_set:Nx (x-expansion) to expand macros like \@homepage first.
+\ExplSyntaxOn
+\str_new:N \g_yamlresume_url_str
+
+\RenewDocumentCommand{\httpslink}{O{}m}{
+  \str_set:Nx \g_yamlresume_url_str {#2}
+  \str_if_in:NnTF \g_yamlresume_url_str {://}
+    { \url{#2} }
+    { \url{https://#2} }
+}
+
+\RenewDocumentCommand{\httplink}{O{}m}{
+  \str_set:Nx \g_yamlresume_url_str {#2}
+  \str_if_in:NnTF \g_yamlresume_url_str {://}
+    { \url{#2} }
+    { \url{http://#2} }
+}
+\ExplSyntaxOff
+
+\name{张伟}{}
+\title{DevOps 工程师 | 云原生与自动化运维专家}
+\phone[mobile]{+86 138 0013 8000}
+\email{zhangwei.devops@example.com}
+\homepage{https://zhangwei.devops.example.com}
+
+\address{中国，北京，北京，北京市海淀区中关村大街 27 号，100085}{}{}
+
+\extrainfo{{\small \faGithub}\ \href{https://github.com/zhangwei-devops}{@zhangwei-devops} {} {} {} • {} {} {} 
+{\small \faLinkedin}\ \href{https://www.linkedin.com/in/zhangwei-devops}{@zhangwei-devops} {} {} {} • {} {} {} 
+{\small \faZhihu}\ \href{https://www.zhihu.com/people/zhangwei-devops}{@zhangwei-devops}}
+
+\begin{document}
+
+\maketitle
+
+\section{简介}
+
+\cvline{}{\begin{itemize}
+\item 5 年以上 DevOps 与云原生领域经验，擅长构建高可用、可扩展的 CI/CD 流水线和基础设施自动化平台
+\item 精通 Kubernetes、Docker、Terraform、Ansible 等工具，具备大规模集群运维与故障排查能力
+\item 熟悉 AWS、阿里云等云平台，能够设计并实施多云架构下的持续交付与监控告警方案
+\item 具备良好的团队协作与沟通能力，推动 DevOps 文化落地，提升研发效能与系统稳定性
+\end{itemize}}
+\section{教育背景}
+
+\cventry{2017年9月–2020年7月}
+        {硕士，计算机科学与技术，成绩：3.9/4.0}
+        {清华大学}
+        {\url{https://www.tsinghua.edu.cn}}
+        {}
+        {\begin{itemize}
+\item 研究方向为云原生计算与自动化运维，参与多项实验室科研项目
+\item 荣获清华大学优秀研究生称号，多次获得学业奖学金
+\end{itemize}
+\textbf{课程}：分布式系统、云计算与虚拟化、高级操作系统、计算机网络、数据库系统、软件工程}
+
+\cventry{2013年9月–2017年7月}
+        {学士，软件工程，成绩：3.7/4.0}
+        {北京邮电大学}
+        {\url{https://www.bupt.edu.cn}}
+        {}
+        {\begin{itemize}
+\item 系统学习计算机科学与软件工程核心课程，奠定扎实的编程与系统设计基础
+\item 担任班级学习委员，组织多次技术分享与编程竞赛
+\end{itemize}
+\textbf{课程}：数据结构与算法、操作系统、计算机网络、数据库原理、软件测试、编译原理}
+\section{工作经历}
+
+\cventry{2022年12月至今}
+        {高级 DevOps 工程师}
+        {字节跳动}
+        {\url{https://www.bytedance.com}}
+        {}
+        {\begin{itemize}
+\item 负责公司级云原生平台的建设与维护，支撑数千个微服务的持续交付与稳定运行
+\item 设计并落地基于 Kubernetes 的多集群管理方案，实现跨可用区的高可用部署与弹性伸缩
+\item 主导 CI/CD 流水线优化，将平均构建部署时间从 25 分钟降低至 8 分钟，显著提升研发效率
+\item 推动基础设施即代码（IaC）实践，使用 Terraform 和 Ansible 管理云资源，确保环境一致性
+\item 建立全面的监控告警体系，基于 Prometheus、Grafana 和 Alertmanager 实现秒级故障发现与响应
+\item 指导初级工程师，组织内部技术分享，推动 DevOps 最佳实践在团队内落地
+\end{itemize}
+\textbf{关键字}：Kubernetes、云原生、CI/CD、Terraform、监控告警}
+
+\cventry{2020年7月–2022年12月}
+        {DevOps 工程师}
+        {阿里巴巴集团}
+        {\url{https://www.alibabagroup.com}}
+        {}
+        {\begin{itemize}
+\item 参与电商核心系统的持续集成与持续部署平台开发，服务数百个业务团队
+\item 使用 Jenkins 和 GitLab CI 构建自动化流水线，集成代码扫描、单元测试和自动化部署
+\item 维护基于 Docker 和 Kubernetes 的容器化环境，优化资源利用率与调度策略
+\item 搭建 ELK 日志收集与分析平台，帮助开发团队快速定位线上问题
+\item 参与双十一大促保障，完成容量规划、压测和应急预案演练，确保系统平稳运行
+\end{itemize}
+\textbf{关键字}：Jenkins、GitLab CI、Docker、ELK、阿里云}
+
+\cventry{2018年7月–2020年6月}
+        {运维开发工程师}
+        {腾讯科技}
+        {\url{https://www.tencent.com}}
+        {}
+        {\begin{itemize}
+\item 负责游戏业务服务器的自动化运维与监控，保障 7x24 小时稳定运行
+\item 开发自动化运维脚本和工具，使用 Python 和 Shell 实现批量部署、配置管理和日志分析
+\item 参与构建内部 CMDB 和发布系统，提升运维操作的标准化与效率
+\item 协助处理线上故障，参与 root cause 分析并推动改进措施落地
+\end{itemize}
+\textbf{关键字}：Python、Shell、自动化运维、CMDB、监控}
+\section{语言}
+
+\cvline{中文}{母语或双语水平 \hfill \textbf{关键字}：普通话二级甲等}
+\cvline{英语}{完全专业水平 \hfill \textbf{关键字}：CET-6、TOEFL 105}
+\cvline{日语}{初级水平 \hfill \textbf{关键字}：JLPT N4}
+\section{专业技能}
+
+\cvline{容器与编排}{专家 \hfill \textbf{关键字}：Kubernetes、Docker、Helm、Istio、Containerd}
+\cvline{云平台}{高级 \hfill \textbf{关键字}：AWS、阿里云、腾讯云、Azure、多云架构}
+\cvline{CI/CD}{高级 \hfill \textbf{关键字}：Jenkins、GitLab CI、Argo CD、GitHub Actions、Tekton}
+\cvline{基础设施即代码}{高级 \hfill \textbf{关键字}：Terraform、Ansible、Pulumi、CloudFormation}
+\cvline{监控与日志}{中级 \hfill \textbf{关键字}：Prometheus、Grafana、ELK、Loki、Alertmanager}
+\cvline{编程语言}{高级 \hfill \textbf{关键字}：Python、Go、Shell、Java、SQL}
+\section{荣誉}
+
+\cventry{2024年1月}
+        {字节跳动}
+        {年度优秀员工}
+        {}
+        {}
+        {表彰在云原生平台建设中展现出的卓越技术领导力与跨团队协作能力，推动研发效能显著提升。}
+
+\cventry{2021年12月}
+        {阿里巴巴集团}
+        {技术创新奖}
+        {}
+        {}
+        {因在 CI/CD 流水线优化和容器化改造中的突出贡献，获得部门技术创新奖。}
+\section{证书}
+
+\cventry{2023年3月}
+        {Amazon Web Services}
+        {AWS Certified DevOps Engineer – Professional}
+        {\url{https://aws.amazon.com/certification/certified-devops-engineer-professional/}}
+        {}
+        {}
+
+\cventry{2021年8月}
+        {Cloud Native Computing Foundation}
+        {Certified Kubernetes Administrator (CKA)}
+        {\url{https://www.cncf.io/certification/cka/}}
+        {}
+        {}
+
+\cventry{2019年11月}
+        {Red Hat}
+        {Red Hat Certified Engineer (RHCE)}
+        {\url{https://www.redhat.com/en/services/certification/rhce}}
+        {}
+        {}
+\section{出版刊物}
+
+\cventry{2023年6月}
+        {基于 Kubernetes 的云原生持续交付实践}
+        {中国 DevOps 社区}
+        {\url{https://www.devopschina.org/publications/cloud-native-cd}}
+        {}
+        {\begin{itemize}
+\item 探讨如何利用 Kubernetes 和 Argo CD 构建高效的持续交付流水线
+\item 分享多集群管理、灰度发布和自动化回滚的实践经验
+\item 分析云原生时代下 DevOps 团队面临的挑战与应对策略
+\end{itemize}}
+\section{项目}
+
+\cventry{2023年1月至今}
+        {基于 Kubernetes 和 Argo CD 的企业级持续集成与持续交付平台}
+        {云原生 CI/CD 平台}
+        {\url{https://github.com/zhangwei-devops/cloud-native-cicd}}
+        {}
+        {\begin{itemize}
+\item 设计并实现面向多团队的 CI/CD 平台，支持自动化构建、测试、镜像打包和部署
+\item 集成 Kubernetes、Argo CD、Harbor 和 SonarQube，提供端到端的持续交付能力
+\item 平台上线后支撑日均 2000+ 次构建部署，研发交付效率提升 40\%
+\end{itemize}
+\textbf{关键字}：Kubernetes、Argo CD、CI/CD、云原生}
+
+\cventry{2022年3月–2022年12月}
+        {面向大规模微服务的可观测性平台，提供指标、日志和告警能力}
+        {微服务监控告警系统}
+        {\url{https://github.com/zhangwei-devops/microservice-monitoring}}
+        {}
+        {\begin{itemize}
+\item 构建基于 Prometheus Operator 的监控体系，覆盖 500+ 微服务实例
+\item 设计自定义指标与告警规则，实现业务指标与基础设施指标的统一采集
+\item 接入 Grafana 统一看板和 Alertmanager 告警分发，故障平均发现时间缩短 70\%
+\end{itemize}
+\textbf{关键字}：Prometheus、Grafana、可观测性、微服务}
+
+\cventry{2020年9月–2021年8月}
+        {基于 Ansible 的自动化运维管理平台}
+        {自动化运维平台}
+        {\url{https://github.com/zhangwei-devops/autoops-platform}}
+        {}
+        {\begin{itemize}
+\item 开发自动化运维平台，集成资产管理和批量执行功能
+\item 使用 Ansible 和 Python 实现配置管理、应用部署和巡检任务自动化
+\item 平台上线后减少 60\% 的人工操作，提升运维效率与准确性
+\end{itemize}
+\textbf{关键字}：Ansible、Python、自动化运维、CMDB}
+\section{兴趣爱好}
+
+\cvline{开源}{Kubernetes、Prometheus、Terraform}
+\cvline{运动}{跑步、游泳、骑行}
+\cvline{摄影}{风光摄影、人像摄影}
+\section{志愿服务}
+
+\cventry{2021年3月至今}
+        {社区讲师}
+        {中国开源软件推进联盟}
+        {\url{https://www.copu.org.cn}}
+        {}
+        {\begin{itemize}
+\item 定期在社区分享云原生与 DevOps 技术实践，累计举办 10+ 场线上讲座
+\item 参与开源项目文档翻译与代码贡献，推动国内开源生态发展
+\item 担任技术大会志愿者，协助组织 DevOps 主题分论坛
+\end{itemize}}
+    
+
+\cventry{2019年6月–2021年2月}
+        {志愿者}
+        {北京 DevOps 社区}
+        {\url{https://www.devopsbeijing.org}}
+        {}
+        {\begin{itemize}
+\item 协助组织月度技术沙龙，负责活动策划、嘉宾邀请和现场协调
+\item 运营社区技术微信群，解答成员问题并整理分享资料
+\end{itemize}}
+    
+\end{document}

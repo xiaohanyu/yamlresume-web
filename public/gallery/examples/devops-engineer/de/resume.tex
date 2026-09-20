@@ -1,0 +1,276 @@
+\documentclass[a4paper, serif, 10pt]{moderncv}
+
+%% moderncv
+% style and color
+\moderncvstyle{banking}
+\moderncvcolor{black}
+
+%% page layout/margins
+\usepackage[top=2.5cm, bottom=2.5cm, left=1.5cm, right=1.5cm]{geometry}
+
+\nopagenumbers{}
+
+%% Babel config for German language
+% ref:
+% - https://latex3.github.io/babel/guides/locale-german.html
+\usepackage[ngerman]{babel}
+
+%% fontspec
+\usepackage{fontspec}
+
+\IfFontExistsTF{Linux Libertine}{
+  \setmainfont[Ligatures={TeX, Common}, Numbers=OldStyle]{Linux Libertine}
+}{}
+\IfFontExistsTF{Linux Libertine O}{
+  \setmainfont[Ligatures={TeX, Common}, Numbers=OldStyle]{Linux Libertine O}
+}{}
+
+%% CTeX
+% CJK support, used to show CJK characters in the resume
+%
+% - fontset=none: disable builtin fontset but instead set the CJK font manually
+% - heading=false: disable ctex heading
+% - punct=kaiming: use kaiming punctuations styles for CJK
+% - scheme=plain: use plain scheme, do not override \normalsize font size
+% - space=auto: space settings for CJK characters
+%
+% ref:
+% - http://ctan.mirrorcatalogs.com/language/chinese/ctex/ctex.pdf
+\usepackage[UTF8, heading=false, punct=kaiming, scheme=plain, space=auto]{ctex}
+
+\IfFontExistsTF{Noto Serif CJK SC}{
+  \setCJKmainfont{Noto Serif CJK SC}
+}{}
+\IfFontExistsTF{Noto Sans CJK SC}{
+  \setCJKsansfont{Noto Sans CJK SC}
+}{}
+
+%% line spacing
+\usepackage{setspace}
+\setstretch{1.125}
+
+%% URL styling - use normal text instead of monospace
+\urlstyle{same}
+
+% Auto-underline all links
+% Defer until \begin{document} so hyperref is already loaded
+\AtBeginDocument{%
+  \let\oldhref\href
+  \renewcommand{\href}[2]{\oldhref{#1}{\underline{#2}}}%
+}
+
+%% Patch \httplink and \httpslink to handle full URLs
+% The original moderncv macros always prepend http:// or https:// to URLs.
+% This causes issues when the URL already has a protocol (e.g., https://example.com)
+% resulting in malformed URLs like https://https://example.com.
+% This patch checks if the URL already contains "://" and uses it directly if so.
+% Note: We use \str_set:Nx (x-expansion) to expand macros like \@homepage first.
+\ExplSyntaxOn
+\str_new:N \g_yamlresume_url_str
+
+\RenewDocumentCommand{\httpslink}{O{}m}{
+  \str_set:Nx \g_yamlresume_url_str {#2}
+  \str_if_in:NnTF \g_yamlresume_url_str {://}
+    { \url{#2} }
+    { \url{https://#2} }
+}
+
+\RenewDocumentCommand{\httplink}{O{}m}{
+  \str_set:Nx \g_yamlresume_url_str {#2}
+  \str_if_in:NnTF \g_yamlresume_url_str {://}
+    { \url{#2} }
+    { \url{http://#2} }
+}
+\ExplSyntaxOff
+
+\name{Lena Hoffmann}{}
+\title{DevOps Engineer | Cloud-Infrastruktur \& Automatisierung}
+\phone[mobile]{+49 30 98765432}
+\email{lena.hoffmann@example.de}
+\homepage{https://www.lena-hoffmann.dev}
+
+\address{Musterstraße 12, Berlin, Berlin, Deutschland, 10115}{}{}
+
+\extrainfo{{\small \faGithub}\ \href{https://github.com/lhoffmann-devops}{@lhoffmann-devops} {} {} {} • {} {} {} 
+{\small \faLinkedin}\ \href{https://www.linkedin.com/in/lena-hoffmann-devops}{@lena-hoffmann-devops}}
+
+\begin{document}
+
+\maketitle
+
+\section{Basisinformationen}
+
+\cvline{}{\begin{itemize}
+\item DevOps Engineer mit 7+ Jahren Erfahrung in der Automatisierung, Bereitstellung und dem Betrieb skalierbarer Cloud-Infrastrukturen.
+\item Spezialisiert auf Kubernetes, Terraform, AWS und CI/CD-Pipelines; starke Kenntnisse in Infrastructure as Code und Monitoring.
+\item Erfolgreiche Zusammenarbeit mit Entwicklungsteams zur Steigerung der Deployment-Frequenz und Reduzierung von Ausfallzeiten.
+\item Analytisches Denken, Teamfähigkeit und Leidenschaft für Open-Source-Technologien.
+\end{itemize}}
+\section{Ausbildung}
+
+\cventry{Okt. 2015–Sept. 2017}
+        {Master, Informatik, Punkte: 1,5}
+        {Technische Universität Berlin}
+        {\url{https://www.tu.berlin}}
+        {}
+        {\begin{itemize}
+\item Schwerpunkt auf verteilten Systemen und Cloud-Infrastrukturen
+\item Masterarbeit über automatisierte Skalierung von Microservices in Kubernetes
+\end{itemize}
+\textbf{Kurse}: Verteilte Systeme, Cloud Computing, Betriebssysteme, Netzwerksicherheit, Datenbanktechnologie, Software-Architektur}
+
+\cventry{Okt. 2012–Sept. 2015}
+        {Bachelor, Angewandte Informatik, Punkte: 1,8}
+        {Hochschule für Technik und Wirtschaft Berlin}
+        {\url{https://www.htw-berlin.de}}
+        {}
+        {\begin{itemize}
+\item Grundlagen in Softwareentwicklung und Systemadministration
+\item Praktische Projekte zu Automatisierung und Scripting
+\end{itemize}
+\textbf{Kurse}: Programmierung, Algorithmen und Datenstrukturen, Rechnernetze, Linux-Systemadministration}
+\section{Berufserfahrung}
+
+\cventry{Apr. 2022–Heute}
+        {Senior DevOps Engineer}
+        {CloudOps GmbH}
+        {\url{https://www.cloudops.example}}
+        {}
+        {\begin{itemize}
+\item Konzeption und Betrieb einer Multi-Account-AWS-Landschaft mit Terraform und Terragrunt für über 40 Teams
+\item Aufbau und Weiterentwicklung von GitOps-Pipelines mit Argo CD, Helm und Kubernetes zur automatisierten Bereitstellung
+\item Einführung von OpenTelemetry und Prometheus/Grafana zur ganzheitlichen Observability, Reduzierung der MTTR um 35 \%
+\item Mentoring von vier Junior-Engineers und Etablierung von Best Practices für Infrastructure as Code
+\item Durchführung von Kostenoptimierungen durch Reserved Instances, Spot-Nutzung und Rechte-Zusammenfassung
+\end{itemize}
+\textbf{Schlüsselwörter}: AWS, Terraform, Kubernetes, GitOps, Observability}
+
+\cventry{Juli 2019–März 2022}
+        {DevOps Engineer}
+        {DataForge AG}
+        {\url{https://www.dataforge.example}}
+        {}
+        {\begin{itemize}
+\item Automatisierung von Build-, Test- und Deployment-Prozessen mit Jenkins, GitLab CI und Docker
+\item Migration von monolithischen Anwendungen in containerisierte Microservices auf Kubernetes
+\item Implementierung von Security-Scans und Policy-as-Code mit OPA/Gatekeeper und Trivy
+\item Aufbau von Infrastructure as Code mit Terraform und Ansible für AWS und On-Premises-Systeme
+\item Sicherstellung der Einhaltung von SLAs durch proaktives Monitoring und Incident-Response
+\end{itemize}
+\textbf{Schlüsselwörter}: Jenkins, Docker, Kubernetes, Terraform, Ansible}
+
+\cventry{Sept. 2017–Juni 2019}
+        {Junior DevOps Engineer}
+        {WebWerk Solutions}
+        {\url{https://www.webwerk.example}}
+        {}
+        {\begin{itemize}
+\item Betreuung von Linux-Servern (Debian, Ubuntu) und Automatisierung wiederkehrender Aufgaben mit Bash und Python
+\item Aufbau zentraler Logging-Lösung mit ELK Stack für über 50 Anwendungen
+\item Unterstützung bei der Einführung von CI/CD mit GitLab und automatisierten Tests
+\item Erstellung von Monitoring-Dashboards und Alarmen mit Nagios und Icinga
+\end{itemize}
+\textbf{Schlüsselwörter}: Linux, Bash, Python, ELK, CI/CD}
+\section{Sprachen}
+
+\cvline{Deutsch}{Muttersprache oder zweisprachig \hfill \textbf{Schlüsselwörter}: Muttersprache}
+\cvline{Englisch}{Verhandlungssichere Kenntnisse \hfill \textbf{Schlüsselwörter}: TOEFL iBT 110, Technisches Englisch}
+\cvline{Französisch}{Gute Kenntnisse \hfill \textbf{Schlüsselwörter}: Grundkenntnisse}
+\section{Fähigkeiten}
+
+\cvline{Cloud \& Infrastruktur}{Experte \hfill \textbf{Schlüsselwörter}: AWS, Azure, Terraform, CloudFormation, Pulumi}
+\cvline{Container \& Orchestrierung}{Experte \hfill \textbf{Schlüsselwörter}: Kubernetes, Docker, Helm, Argo CD, Istio}
+\cvline{CI/CD \& Automatisierung}{Erfahren \hfill \textbf{Schlüsselwörter}: GitLab CI, Jenkins, GitHub Actions, Ansible, Argo Workflows}
+\cvline{Monitoring \& Observability}{Erfahren \hfill \textbf{Schlüsselwörter}: Prometheus, Grafana, OpenTelemetry, ELK Stack, Datadog}
+\cvline{Programmierung \& Scripting}{Erfahren \hfill \textbf{Schlüsselwörter}: Python, Go, Bash, YAML, SQL}
+\section{Auszeichnungen}
+
+\cventry{Dez. 2023}
+        {CloudOps GmbH}
+        {DevOps Excellence Award}
+        {}
+        {}
+        {Auszeichnung für die herausragende Automatisierung der Cloud-Infrastruktur und die Reduzierung der Betriebskosten um 25 \%.}
+
+\cventry{Okt. 2017}
+        {Technische Universität Berlin}
+        {Beste Masterarbeit}
+        {}
+        {}
+        {Prämierung der Masterarbeit zur automatisierten Skalierung von Microservices in Kubernetes.}
+\section{Zertifikate}
+
+\cventry{Mai 2023}
+        {Amazon Web Services}
+        {AWS Certified DevOps Engineer – Professional}
+        {\url{https://aws.amazon.com/certification/}}
+        {}
+        {}
+
+\cventry{Feb. 2022}
+        {Cloud Native Computing Foundation}
+        {Certified Kubernetes Administrator (CKA)}
+        {\url{https://www.cncf.io/certification/cka/}}
+        {}
+        {}
+
+\cventry{Nov. 2021}
+        {HashiCorp}
+        {HashiCorp Certified: Terraform Associate}
+        {\url{https://www.hashicorp.com/certification/terraform-associate}}
+        {}
+        {}
+\section{Veröffentlichungen}
+
+\cventry{Sept. 2023}
+        {Effiziente Kubernetes-Skalierung durch adaptive Metriken}
+        {DevOps-Konferenz Berlin 2023}
+        {\url{https://www.devops-konferenz-berlin.example/vortraege}}
+        {}
+        {\begin{itemize}
+\item Vortrag über die Nutzung von Custom Metrics und KEDA zur automatisierten Skalierung von Workloads
+\item Praxisbericht zur Reduzierung von Overprovisioning und Steigerung der Ressourceneffizienz
+\end{itemize}}
+\section{Projekte}
+
+\cventry{Jan. 2023–Dez. 2023}
+        {Eine interne Plattform zur Bereitstellung standardisierter Cloud-Umgebungen via Terraform und Kubernetes.}
+        {Self-Service-Infrastrukturplattform}
+        {\url{https://github.com/lhoffmann-devops/self-service-infra}}
+        {}
+        {\begin{itemize}
+\item Entwicklung eines Backstage-Plugins für Self-Service-Deployments
+\item Integration von Terraform-Modulen und GitOps-Workflows
+\item Reduzierung der Bereitstellungszeit neuer Umgebungen von Tagen auf unter 30 Minuten
+\end{itemize}
+\textbf{Schlüsselwörter}: Terraform, Backstage, Kubernetes, GitOps}
+
+\cventry{März 2022–Aug. 2022}
+        {Benchmark und Optimierung des Kubernetes Cluster-Autoscalers für gemischte Workloads.}
+        {Cluster-Autoscaler-Optimierung}
+        {\url{https://github.com/lhoffmann-devops/cluster-autoscaler-benchmark}}
+        {}
+        {\begin{itemize}
+\item Analyse von Skalierungsverhalten unter Last und Implementierung von PriorityClasses
+\item Senkung der AWS-Kosten um 18 \% bei gleichbleibender Performance
+\end{itemize}
+\textbf{Schlüsselwörter}: Kubernetes, AWS, Autoscaling, Kostenoptimierung}
+\section{Interessen}
+
+\cvline{Open Source}{Kubernetes, Terraform, Prometheus}
+\cvline{Sport}{Laufen, Klettern, Radfahren}
+\cvline{Musik}{Klavier, Konzerte}
+\section{Ehrenamtliche Tätigkeiten}
+
+\cventry{Jan. 2021–Dez. 2023}
+        {Mentorin für DevOps}
+        {Open Source Helpdesk Berlin}
+        {\url{https://www.oss-helpdesk-berlin.example}}
+        {}
+        {\begin{itemize}
+\item Unterstützung von Einsteigern bei der Einrichtung von CI/CD-Pipelines und Kubernetes-Clustern
+\item Organisation monatlicher Workshops zu Infrastructure as Code und Cloud-Sicherheit
+\item Beratung von gemeinnützigen Organisationen bei der Migration in die Cloud
+\end{itemize}}
+    
+\end{document}

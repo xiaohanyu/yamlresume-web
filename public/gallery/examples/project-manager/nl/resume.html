@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="generator" content="YAMLResume (https://yamlresume.dev)">
+
+
+  <title>Maarten van der Meer Resume</title>
+  <style>
+    :root {
+      --text-font-size: 16px;
+      --text-font-family: var(--text-default-font-family);
+      --line-height: 1.5;
+    }
+
+    /* Modified from: https://www.joshwcomeau.com/css/custom-css-reset/ */
+
+    /* 1. Use a more-intuitive box-sizing model */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    /* 2. Remove default margin */
+    *:not(dialog) {
+      margin: 0;
+    }
+
+    body {
+      /* 3. Improve text rendering */
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    :root {
+      --border-color: #d0d0d0;
+
+      /* text colors */
+      --text-color-primary: #000000;
+      --text-color-secondary: #333333;
+
+      /* spacing */
+      --spacing-xss: 2px;
+      --spacing-xs: 4px;
+      --spacing-sm: 8px;
+      --spacing-md: 12px;
+      --spacing-lg: 16px;
+      --spacing-xl: 24px;
+      --spacing-xxl: 40px;
+      --spacing-xxxl: 80px;
+
+      /* font sizes */
+      --font-size-xs: 0.8rem;
+      --font-size-sm: 0.9rem;
+      --font-size-md: 1rem;
+      --font-size-lg: 1.1rem;
+      --font-size-xl: 1.25rem;
+      --font-size-xxl: 2.5rem;
+
+      /* layout */
+      --page-max-width: 900px;
+
+      /* typography */
+      --text-default-font-family:
+        -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu,
+        Cantarell, sans-serif;
+    }
+
+    html {
+      font-size: var(--text-font-size);
+    }
+
+    body {
+      /* font & text */
+      color: var(--text-color-primary);
+      font-family: var(--text-font-family);
+      /* this variable is defined by `typography.fontSize` in resume html layout */
+      text-autospace: normal;
+
+      /* layout */
+      line-height: var(--line-height);
+      max-width: var(--page-max-width);
+      margin: 0 auto;
+      padding: var(--spacing-xxxl) var(--spacing-xxl) var(--spacing-xxl);
+    }
+
+    /* header */
+    .resume-header {
+      margin-bottom: var(--spacing-xxl);
+      text-align: center;
+    }
+
+    .resume-name {
+      font-size: var(--font-size-xxl);
+      font-weight: 600;
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .resume-headline {
+      font-size: var(--font-size-lg);
+      margin-bottom: var(--spacing-md);
+    }
+
+    /* contact info */
+    .resume-contact-info {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      column-gap: var(--spacing-lg);
+      row-gap: var(--spacing-xs);
+      margin-top: var(--spacing-sm);
+    }
+
+    .resume-contact-icon,
+    .resume-contact-label {
+      margin-right: var(--spacing-sm);
+      vertical-align: middle;
+    }
+
+    /* links: modern typographic style */
+    a {
+      color: var(--text-color-primary);
+      text-decoration: underline;
+      text-decoration-color: var(--border-color);
+      text-underline-offset: 3px;
+      text-decoration-thickness: 1px;
+      text-decoration-skip-ink: auto;
+      transition: text-decoration-color 0.2s;
+    }
+
+    a:hover {
+      text-decoration-color: var(--text-color-primary);
+    }
+
+    /* sections */
+    .resume-section {
+      margin-bottom: var(--spacing-xl);
+    }
+
+    .resume-section-title {
+      font-size: var(--font-size-xl);
+      font-weight: 500;
+      margin-bottom: var(--spacing-md);
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: var(--spacing-xs);
+    }
+
+    /* entries */
+    .resume-entry {
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .resume-entry:last-child {
+      margin-bottom: 0;
+    }
+
+    .resume-entry-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .resume-entry-title {
+      font-weight: 500;
+      margin-bottom: var(--spacing-xss);
+    }
+
+    .resume-entry-summary p,
+    .resume-summary-content p {
+      margin-bottom: var(--spacing-xs);
+    }
+
+    /* lists */
+    .resume-entry-summary ul,
+    .resume-entry-summary ol,
+    .resume-summary-content ul,
+    .resume-summary-content ol {
+      padding-left: var(--spacing-lg);
+      list-style-type: circle;
+    }
+
+    /* labeled lists (courses, keywords, etc.) */
+    .resume-labeled-list span {
+      font-weight: 500;
+    }
+
+    /* skills grid */
+    .resume-skill-item,
+    .resume-language-item {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .resume-skill-name,
+    .resume-language-name {
+      font-weight: 500;
+    }
+
+    .resume-skill-level,
+    .resume-language-fluency {
+      font-weight: 400;
+    }
+
+    /* mobile */
+    @media (max-width: 768px) {
+      body {
+        padding: var(--spacing-xl);
+      }
+
+      .resume-header {
+        margin-bottom: var(--spacing-xl);
+      }
+
+      .resume-contact-info {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .resume-entry-header {
+        flex-wrap: wrap;
+      }
+    }
+
+    /* footer */
+    .resume-footer {
+      margin-top: var(--spacing-xxl);
+      padding-top: var(--spacing-xl);
+      border-top: 1px solid var(--border-color);
+      font-size: var(--font-size-sm);
+      color: var(--text-color-secondary);
+    }
+
+    @media print {
+      .resume-footer {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="resume-header">
+    <h1 class="resume-name">Maarten van der Meer</h1>
+    <p class="resume-headline">Senior Projectmanager met 10+ jaar ervaring in digitale transformatie</p>
+    <div class="resume-contact-info">
+      <span class="resume-contact-item"><span class="resume-contact-icon">📧</span><a href="mailto:m.vandermeer@example.com" class="resume-contact-link">m.vandermeer@example.com</a></span>
+      <span class="resume-contact-item"><span class="resume-contact-icon">📞</span>+31 6 12345678</span>
+      <span class="resume-contact-item"><span class="resume-contact-icon">🔗</span><a href="https://www.maartenvandermeer.nl" class="resume-contact-link">https://www.maartenvandermeer.nl</a></span>
+    </div>
+    <div class="resume-contact-info resume-location-info">
+      <span class="resume-contact-item"><span class="resume-contact-icon">📍</span>Keizersgracht 123, Amsterdam, Noord-Holland, Nederland, 1015 CJ</span>
+    </div>
+    <div class="resume-contact-info resume-profiles-info">
+      <span class="resume-contact-item"><span class="resume-contact-label">LinkedIn</span>: <a href="https://www.linkedin.com/in/maarten-van-der-meer" class="resume-contact-link">@maarten-van-der-meer</a></span>
+      <span class="resume-contact-item"><span class="resume-contact-label">Medium</span>: <a href="https://medium.com/@maartenvandermeer" class="resume-contact-link">@maartenvandermeer</a></span>
+    </div>
+  </header>
+  <section class="resume-section" id="summary" data-section="summary">
+    <h2 class="resume-section-title">Basis Informatie</h2>
+    <div class="resume-section-content">
+      <div class="resume-summary-content">
+        <p>Ervaren projectmanager met meer dan 10 jaar ervaring in het leiden van complexe, multidisciplinaire projecten. Gespecialiseerd in digitale transformatie, agile methodieken en belanghebbendenmanagement.</p>
+        <ul>
+          <li>
+            <p>Leidt projecten van initiatie tot oplevering, binnen scope, budget en tijd.</p>
+          </li>
+          <li>
+            <p>Sterk in het verbinden van business en IT, met oog voor mens en resultaat.</p>
+          </li>
+          <li>
+            <p>Gecertificeerd in PRINCE2, PMP en Scrum, en bedreven in Jira, Confluence en MS Project.</p>
+          </li>
+          <li>
+            <p>Coacht en motiveert teams om gezamenlijke doelen te behalen.</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="education" data-section="education">
+    <h2 class="resume-section-title">Opleidingen</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="education-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.tudelft.nl">Technische Universiteit Delft</a></div>
+            <div class="resume-entry-organization">Master, Technische Bestuurskunde, Score: 8.2</div>
+          </div>
+          <div class="resume-entry-date">sep 2008–jul 2014</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Afgestudeerd met specialisatie in project- en programmamanagement.</p>
+            </li>
+            <li>
+              <p>Ontwikkelde vaardigheden in kwantitatieve analyse, besluitvorming en procesverbetering.</p>
+            </li>
+            <li>
+              <p>Thesis over de invloed van agile werken op publieke projecten.</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Cursussen</span>: Projectmanagement, Risicomanagement, Operations Research, Financieel Management, Verandermanagement, Systeemkunde</div>
+      </div>
+      <div class="resume-entry" id="education-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.uva.nl">Universiteit van Amsterdam</a></div>
+            <div class="resume-entry-organization">Bachelor, Bestuurskunde, Score: 7.8</div>
+          </div>
+          <div class="resume-entry-date">sep 2004–jun 2008</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Basis gelegd in bestuurskunde, organisatiekunde en beleidsanalyse.</p>
+            </li>
+            <li>
+              <p>Actief in studievereniging en organisatie van congressen.</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Cursussen</span>: Bestuur en Politiek, Organisatietheorie, Methoden van Onderzoek, Economie</div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="work" data-section="work">
+    <h2 class="resume-section-title">Werkervaring</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="work-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.ing.com">ING</a></div>
+            <div class="resume-entry-organization">Senior Projectmanager</div>
+          </div>
+          <div class="resume-entry-date">mrt 2020–Heden</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Verantwoordelijk voor een portfolio van digitale transformatieprojecten met een totale waarde van EUR 8 miljoen.</p>
+            </li>
+            <li>
+              <p>Leidt multidisciplinaire teams van 15+ professionals, waaronder ontwikkelaars, data-analisten en zakelijke consultants.</p>
+            </li>
+            <li>
+              <p>Implementeerde een agile manier van werken, wat leidde tot 30% snellere oplevering en hogere klanttevredenheid.</p>
+            </li>
+            <li>
+              <p>Beheert risico&#39;s, budgetten en planningen, en rapporteert aan de stuurgroep.</p>
+            </li>
+            <li>
+              <p>Zorgt voor heldere communicatie en afstemming tussen business, IT en externe leveranciers.</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Trefwoorden</span>: Agile, Scrum, Digitaal, Belanghebbenden, Risicobeheer</div>
+      </div>
+      <div class="resume-entry" id="work-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.philips.com">Philips</a></div>
+            <div class="resume-entry-organization">Projectmanager</div>
+          </div>
+          <div class="resume-entry-date">jan 2016–feb 2020</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Leidde productontwikkelingsprojecten in de gezondheidszorgtechnologie, van concept tot marktlancering.</p>
+            </li>
+            <li>
+              <p>Werkte samen met R&amp;D, marketing en regelgevende zaken om naleving en tijdige oplevering te waarborgen.</p>
+            </li>
+            <li>
+              <p>Introduceerde Scrum en verbeterde de voorspelbaarheid van opleveringen met 25%.</p>
+            </li>
+            <li>
+              <p>Beheerde een projectbudget van EUR 3 miljoen en een team van 10 projectleden.</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Trefwoorden</span>: Productontwikkeling, Gezondheidszorg, Scrum, Budgetbeheer</div>
+      </div>
+      <div class="resume-entry" id="work-3">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.kpn.com">KPN</a></div>
+            <div class="resume-entry-organization">Junior Projectmanager</div>
+          </div>
+          <div class="resume-entry-date">sep 2014–dec 2015</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Ondersteunde senior projectmanagers bij telecom-infrastructuurprojecten.</p>
+            </li>
+            <li>
+              <p>Coördineerde planningen, vergaderingen en rapportages voor interne en externe belanghebbenden.</p>
+            </li>
+            <li>
+              <p>Droeg bij aan de uitrol van glasvezelnetwerken in Noord-Holland.</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Trefwoorden</span>: Telecom, Planning, Rapportage, Glasvezel</div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="languages" data-section="languages">
+    <h2 class="resume-section-title">Talen</h2>
+    <div class="resume-section-content">
+      <div class="resume-languages-list">
+        <div class="resume-language-item">
+          <div class="resume-language-name">Nederlands<span class="resume-language-fluency">: Moedertaal of tweetalige vaardigheid</span></div>
+        </div>
+        <div class="resume-language-item">
+          <div class="resume-language-name">Engels<span class="resume-language-fluency">: Volledige professionele vaardigheid</span></div>
+          <div>
+            <div class="resume-labeled-list"><span>Trefwoorden</span>: IELTS 8.0, Zakelijk vloeiend</div>
+          </div>
+        </div>
+        <div class="resume-language-item">
+          <div class="resume-language-name">Duits<span class="resume-language-fluency">: Beperkte werkvaardigheid</span></div>
+          <div>
+            <div class="resume-labeled-list"><span>Trefwoorden</span>: Goethe B1, Basiskennis</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="skills" data-section="skills">
+    <h2 class="resume-section-title">Vaardigheden</h2>
+    <div class="resume-section-content">
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">Projectmanagement<span class="resume-skill-level">: Expert</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>Trefwoorden</span>: Agile, Scrum, PRINCE2, Waterval, Jira, MS Project</div>
+        </div>
+      </div>
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">Belanghebbendenmanagement<span class="resume-skill-level">: Geavanceerd</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>Trefwoorden</span>: Communicatie, Onderhandelen, Rapportage, Workshops, Verandermanagement</div>
+        </div>
+      </div>
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">Technisch<span class="resume-skill-level">: Geavanceerd</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>Trefwoorden</span>: SQL, Python, Power BI, Confluence, Azure DevOps</div>
+        </div>
+      </div>
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">Leiderschap<span class="resume-skill-level">: Expert</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>Trefwoorden</span>: Coaching, Teambuilding, Motiveren, Conflicthantering</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="awards" data-section="awards">
+    <h2 class="resume-section-title">Onderscheidingen</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="awards-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title">Projectmanager van het Jaar</div>
+            <div class="resume-entry-organization">PMI Netherlands Chapter</div>
+          </div>
+          <div class="resume-entry-date">nov 2022</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Erkend voor uitmuntend leiderschap en innovatie in projectmanagement.</p>
+            </li>
+            <li>
+              <p>Bijzondere vermelding voor het succesvol opleveren van een complex digitaal transformatieprogramma.</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="resume-entry" id="awards-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title">Beste Innovatieproject</div>
+            <div class="resume-entry-organization">ING</div>
+          </div>
+          <div class="resume-entry-date">jun 2021</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Toegekend voor de ontwikkeling van een realtime klantdashboard dat de Net Promoter Score met 15 punten verhoogde.</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="certificates" data-section="certificates">
+    <h2 class="resume-section-title">Certificaten</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="certificates-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.axelos.com/certifications/prince2">PRINCE2 Practitioner</a></div>
+            <div class="resume-entry-organization">AXELOS</div>
+          </div>
+          <div class="resume-entry-date">mei 2018</div>
+        </div>
+      </div>
+      <div class="resume-entry" id="certificates-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.pmi.org/certifications/project-management-pmp">Projectmanagement Professional (PMP)</a></div>
+            <div class="resume-entry-organization">Project Management Institute</div>
+          </div>
+          <div class="resume-entry-date">sep 2020</div>
+        </div>
+      </div>
+      <div class="resume-entry" id="certificates-3">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.scrumalliance.org/get-certified/scrum-master-track/certified-scrummaster">Gecertificeerd ScrumMaster</a></div>
+            <div class="resume-entry-organization">Scrum Alliance</div>
+          </div>
+          <div class="resume-entry-date">mrt 2017</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="publications" data-section="publications">
+    <h2 class="resume-section-title">Publicaties</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="publications-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.managementenorganisatie.nl/agile-publieke-sector">Agile projectmatig werken in de publieke sector</a></div>
+            <div class="resume-entry-organization">Management &amp; Organisatie</div>
+          </div>
+          <div class="resume-entry-date">apr 2021</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Onderzoek naar de toepassing van agile methodieken binnen overheidsprojecten.</p>
+            </li>
+            <li>
+              <p>Biedt praktische handvatten voor projectmanagers in een politiek-bestuurlijke context.</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="projects" data-section="projects">
+    <h2 class="resume-section-title">Projecten</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="projects-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title">Digitale Transformatie ING</div>
+            <div class="resume-entry-description">Een organisatiebreed programma om de digitale dienstverlening van ING te moderniseren en te versnellen.</div>
+          </div>
+          <div class="resume-entry-date">feb 2021–dec 2022</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Leidde de implementatie van een nieuw digitaal klantplatform voor 2 miljoen klanten.</p>
+            </li>
+            <li>
+              <p>Verantwoordelijk voor planning, budget, risicobeheer en afstemming met belanghebbenden.</p>
+            </li>
+            <li>
+              <p>Resultaat: 30% snellere klantinteracties en 20% lagere operationele kosten.</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Trefwoorden</span>: Digitale Transformatie, Klantplatform, Agile</div>
+      </div>
+      <div class="resume-entry" id="projects-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title">Duurzaamheidsmonitor Philips</div>
+            <div class="resume-entry-description">Een data-gedreven dashboard voor het meten en rapporteren van duurzaamheidsprestaties.</div>
+          </div>
+          <div class="resume-entry-date">mei 2019–nov 2019</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Ontwikkelde een monitor om de CO2-uitstoot van productielocaties direct te volgen.</p>
+            </li>
+            <li>
+              <p>Werkte samen met duurzaamheidsteam en data-ingenieurs.</p>
+            </li>
+            <li>
+              <p>Resultaat: inzicht in 15% reductie van energieverbruik.</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Trefwoorden</span>: Duurzaamheid, Data, Dashboard</div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="interests" data-section="interests">
+    <h2 class="resume-section-title">Interesses</h2>
+    <div class="resume-section-content">
+      <div class="resume-interest-item"><span class="resume-interest-name">Sport</span>: Hardlopen, Wielrennen, Zwemmen</div>
+      <div class="resume-interest-item"><span class="resume-interest-name">Cultuur</span>: Musea, Literatuur, Reizen</div>
+    </div>
+  </section>
+  <section class="resume-section" id="volunteer" data-section="volunteer">
+    <h2 class="resume-section-title">Vrijwilligerswerk</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="volunteer-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.pmi-netherlands-chapter.org">PMI Netherlands Chapter</a></div>
+            <div class="resume-entry-organization">Mentor</div>
+          </div>
+          <div class="resume-entry-date">sep 2017–Heden</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Begeleidt startende projectmanagers bij hun professionele ontwikkeling.</p>
+            </li>
+            <li>
+              <p>Organiseert maandelijkse netwerkbijeenkomsten en workshops over projectmanagement.</p>
+            </li>
+            <li>
+              <p>Geeft presentaties over agile leiderschap en belanghebbendenmanagement.</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer class="resume-footer">Generated by <a href="https://yamlresume.dev">YAMLResume</a></footer>
+</body>
+
+</html>

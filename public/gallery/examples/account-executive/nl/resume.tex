@@ -1,0 +1,235 @@
+\documentclass[a4paper, serif, 10pt]{moderncv}
+
+%% moderncv
+% style and color
+\moderncvstyle{banking}
+\moderncvcolor{black}
+
+%% page layout/margins
+\usepackage[top=2.5cm, bottom=2.5cm, left=1.5cm, right=1.5cm]{geometry}
+
+\nopagenumbers{}
+
+%% Babel config for Dutch language
+% ref:
+% - https://latex3.github.io/babel/guides/locale-dutch.html
+\usepackage[dutch]{babel}
+
+%% fontspec
+\usepackage{fontspec}
+
+\IfFontExistsTF{Linux Libertine}{
+  \setmainfont[Ligatures={TeX, Common}, Numbers=OldStyle]{Linux Libertine}
+}{}
+\IfFontExistsTF{Linux Libertine O}{
+  \setmainfont[Ligatures={TeX, Common}, Numbers=OldStyle]{Linux Libertine O}
+}{}
+
+%% CTeX
+% CJK support, used to show CJK characters in the resume
+%
+% - fontset=none: disable builtin fontset but instead set the CJK font manually
+% - heading=false: disable ctex heading
+% - punct=kaiming: use kaiming punctuations styles for CJK
+% - scheme=plain: use plain scheme, do not override \normalsize font size
+% - space=auto: space settings for CJK characters
+%
+% ref:
+% - http://ctan.mirrorcatalogs.com/language/chinese/ctex/ctex.pdf
+\usepackage[UTF8, heading=false, punct=kaiming, scheme=plain, space=auto]{ctex}
+
+\IfFontExistsTF{Noto Serif CJK SC}{
+  \setCJKmainfont{Noto Serif CJK SC}
+}{}
+\IfFontExistsTF{Noto Sans CJK SC}{
+  \setCJKsansfont{Noto Sans CJK SC}
+}{}
+
+%% line spacing
+\usepackage{setspace}
+\setstretch{1.125}
+
+%% URL styling - use normal text instead of monospace
+\urlstyle{same}
+
+% Auto-underline all links
+% Defer until \begin{document} so hyperref is already loaded
+\AtBeginDocument{%
+  \let\oldhref\href
+  \renewcommand{\href}[2]{\oldhref{#1}{\underline{#2}}}%
+}
+
+%% Patch \httplink and \httpslink to handle full URLs
+% The original moderncv macros always prepend http:// or https:// to URLs.
+% This causes issues when the URL already has a protocol (e.g., https://example.com)
+% resulting in malformed URLs like https://https://example.com.
+% This patch checks if the URL already contains "://" and uses it directly if so.
+% Note: We use \str_set:Nx (x-expansion) to expand macros like \@homepage first.
+\ExplSyntaxOn
+\str_new:N \g_yamlresume_url_str
+
+\RenewDocumentCommand{\httpslink}{O{}m}{
+  \str_set:Nx \g_yamlresume_url_str {#2}
+  \str_if_in:NnTF \g_yamlresume_url_str {://}
+    { \url{#2} }
+    { \url{https://#2} }
+}
+
+\RenewDocumentCommand{\httplink}{O{}m}{
+  \str_set:Nx \g_yamlresume_url_str {#2}
+  \str_if_in:NnTF \g_yamlresume_url_str {://}
+    { \url{#2} }
+    { \url{http://#2} }
+}
+\ExplSyntaxOff
+
+\name{Lars van den Berg}{}
+\title{Account Executive met 7+ jaar ervaring in B2B SaaS}
+\phone[mobile]{+31 6 12345678}
+\email{lars.vandenberg@example.nl}
+\homepage{https://www.larsvandenberg.nl}
+
+\address{Keizersgracht 123, Amsterdam, Noord-Holland, Nederland, 1015 CJ}{}{}
+
+\extrainfo{{\small \faLinkedin}\ \href{https://www.linkedin.com/in/larsvandenberg}{@larsvandenberg} {} {} {} • {} {} {} 
+{\small \faTwitter}\ \href{https://twitter.com/larsvdb}{@larsvdb}}
+
+\begin{document}
+
+\maketitle
+
+\section{Basis Informatie}
+
+\cvline{}{\begin{itemize}
+\item Ervaren Account Executive met een bewezen trackrecord in het sluiten van complexe B2B-deals binnen de SaaS- en technologiesector.
+\item Sterk in het opbouwen van langdurige klantrelaties, van leadgeneratie tot contractonderhandeling en accountmanagement.
+\item Data-gedreven en resultaatgericht, met expertise in CRM-systemen (Salesforce, HubSpot) en verkoopmethodologieën zoals MEDDIC en SPIN Selling.
+\item Teamspeler die nauw samenwerkt met marketing, product en customer success om omzetdoelen te overtreffen.
+\end{itemize}}
+\section{Opleidingen}
+
+\cventry{sep 2014–jul 2016}
+        {Master, Bedrijfskunde, Score: 8.5}
+        {Universiteit van Amsterdam}
+        {\url{https://www.uva.nl}}
+        {}
+        {\begin{itemize}
+\item Afgestudeerd met specialisatie in Strategic Sales \& Account Management.
+\item Thesis over datagedreven verkoopstrategieën in de SaaS-sector.
+\end{itemize}
+\textbf{Cursussen}: Strategisch Management, Marketingmanagement, Salesmanagement, Bedrijfsanalytiek, Organisatiegedrag, Financiële Administratie}
+
+\cventry{sep 2010–jul 2014}
+        {Bachelor, Commerciële Economie, Score: 8.0}
+        {Hogeschool van Amsterdam}
+        {\url{https://www.hva.nl}}
+        {}
+        {\begin{itemize}
+\item Actieve deelname aan commerciële projecten en stages.
+\item Minor in International Business aan de Universiteit van Barcelona.
+\end{itemize}
+\textbf{Cursussen}: Sales \& Marketing, Onderhandelen, Marktonderzoek, Projectmanagement, Bedrijfseconomie}
+\section{Werkervaring}
+
+\cventry{mrt 2021–Heden}
+        {Senior Account Executive}
+        {CloudSales B.V.}
+        {\url{https://www.cloudsales.nl}}
+        {}
+        {\begin{itemize}
+\item Verantwoordelijk voor het volledige verkoopproces van enterprise SaaS-oplossingen voor klanten in de Benelux.
+\item Jaarlijks gemiddeld 135\% van het persoonlijke omzetdoel behaald, met deals tot €500.000.
+\item Opgebouwd en onderhouden van een pijplijn van €2,5 miljoen aan gekwalificeerde kansen.
+\item Samengewerkt met SDR's, marketing en productteams om proposities te verfijnen en klantbehoeften te vertalen naar oplossingen.
+\item Onderhandeld over meerjarige contracten en SLA's, met focus op wederzijdse waarde en klantbehoud.
+\end{itemize}
+\textbf{Trefwoorden}: Enterprise Sales, SaaS, Onderhandelen, MEDDIC, Accountmanagement}
+
+\cventry{jan 2018–feb 2021}
+        {Account Executive}
+        {TechConnect Nederland}
+        {\url{https://www.techconnect.nl}}
+        {}
+        {\begin{itemize}
+\item Beheerde een portfolio van 50+ MKB- en enterprise-accounts in de technologiesector.
+\item Genereerde nieuwe business via outbound prospecting, netwerkevenementen en partnerkanalen.
+\item Realiseerde een omzetgroei van 40\% in twee jaar door cross- en upselling.
+\item Voerde onderhandelingen over raamcontracten en verlengingen, met een klanttevredenheidsscore van 9,2.
+\end{itemize}
+\textbf{Trefwoorden}: B2B Sales, Leadgeneratie, CRM, Salesforce, Groei}
+
+\cventry{sep 2016–dec 2017}
+        {Junior Account Executive}
+        {SalesPro Solutions}
+        {\url{https://www.salespro.nl}}
+        {}
+        {\begin{itemize}
+\item Ondersteunde senior accountmanagers bij het opstellen van voorstellen en offertes.
+\item Verzorgde de eerste klantcontacten en kwalificatie van inkomende leads.
+\item Droeg bij aan de implementatie van een nieuw CRM-systeem (HubSpot) en het optimaliseren van verkoopprocessen.
+\end{itemize}
+\textbf{Trefwoorden}: HubSpot, Sales Support, Prospectie, Klantrelaties}
+\section{Talen}
+
+\cvline{Nederlands}{Moedertaal of tweetalige vaardigheid \hfill \textbf{Trefwoorden}: Moedertaal}
+\cvline{Engels}{Volledige professionele vaardigheid \hfill \textbf{Trefwoorden}: C1, TOEFL 110}
+\cvline{Duits}{Beperkte werkvaardigheid \hfill \textbf{Trefwoorden}: B1, Zakelijk Duits}
+\section{Vaardigheden}
+
+\cvline{Sales \& Bedrijfsontwikkeling}{Expert \hfill \textbf{Trefwoorden}: Enterprise Sales, B2B, SaaS, Leadgeneratie, Pipeline Management}
+\cvline{Onderhandelen \& Accountmanagement}{Geavanceerd \hfill \textbf{Trefwoorden}: Contractonderhandeling, MEDDIC, SPIN Selling, Klantbehoud, Upselling}
+\cvline{CRM \& Systemen}{Geavanceerd \hfill \textbf{Trefwoorden}: Salesforce, HubSpot, LinkedIn Sales Navigator, Outreach, ZoomInfo}
+\section{Onderscheidingen}
+
+\cventry{dec 2022}
+        {CloudSales B.V.}
+        {Salespersoon van het Jaar}
+        {}
+        {}
+        {Uitgereikt aan de account executive met de hoogste omzetgroei en beste klanttevredenheid in 2022.}
+\section{Certificaten}
+
+\cventry{jun 2021}
+        {Salesforce}
+        {Salesforce Certified Administrator}
+        {\url{https://www.salesforce.com/certification}}
+        {}
+        {}
+
+\cventry{mrt 2020}
+        {MEDDIC Academy}
+        {MEDDIC Sales Certification}
+        {\url{https://www.meddicacademy.com}}
+        {}
+        {}
+\section{Projecten}
+
+\cventry{jan 2022–jun 2022}
+        {Implementatie van Salesforce voor het volledige salesteam.}
+        {Implementatie nieuw CRM-systeem}
+        {\url{https://www.cloudsales.nl/projecten/crm}}
+        {}
+        {\begin{itemize}
+\item Leidde de migratie van HubSpot naar Salesforce voor 25 gebruikers.
+\item Ontwierp verkoopprocessen en rapportages voor pipeline- en omzetanalyse.
+\item Verzorgde training en adoptie, wat leidde tot 30\% efficiëntiewinst.
+\end{itemize}
+\textbf{Trefwoorden}: Salesforce, CRM, Procesoptimalisatie}
+\section{Interesses}
+
+\cvline{Sport}{Hardlopen, Padel, Zeilen}
+\cvline{Reizen}{Azië, Zuid-Amerika, Stedentrips}
+\section{Vrijwilligerswerk}
+
+\cventry{sep 2019–jun 2023}
+        {Mentor}
+        {Stichting Sales Talent}
+        {\url{https://www.salestalent.nl}}
+        {}
+        {\begin{itemize}
+\item Begeleidde jonge professionals bij het opbouwen van een carrière in sales.
+\item Verzorgde workshops over netwerken, personal branding en onderhandelen.
+\item Droeg bij aan het vergroten van diversiteit in het salesvakgebied.
+\end{itemize}}
+    
+\end{document}

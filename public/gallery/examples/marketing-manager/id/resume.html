@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="generator" content="YAMLResume (https://yamlresume.dev)">
+
+
+  <title>Dewi Anggraini Resume</title>
+  <style>
+    :root {
+      --text-font-size: 16px;
+      --text-font-family: var(--text-default-font-family);
+      --line-height: 1.5;
+    }
+
+    /* Modified from: https://www.joshwcomeau.com/css/custom-css-reset/ */
+
+    /* 1. Use a more-intuitive box-sizing model */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    /* 2. Remove default margin */
+    *:not(dialog) {
+      margin: 0;
+    }
+
+    body {
+      /* 3. Improve text rendering */
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    :root {
+      --border-color: #d0d0d0;
+
+      /* text colors */
+      --text-color-primary: #000000;
+      --text-color-secondary: #333333;
+
+      /* spacing */
+      --spacing-xss: 2px;
+      --spacing-xs: 4px;
+      --spacing-sm: 8px;
+      --spacing-md: 12px;
+      --spacing-lg: 16px;
+      --spacing-xl: 24px;
+      --spacing-xxl: 40px;
+      --spacing-xxxl: 80px;
+
+      /* font sizes */
+      --font-size-xs: 0.8rem;
+      --font-size-sm: 0.9rem;
+      --font-size-md: 1rem;
+      --font-size-lg: 1.1rem;
+      --font-size-xl: 1.25rem;
+      --font-size-xxl: 2.5rem;
+
+      /* layout */
+      --page-max-width: 900px;
+
+      /* typography */
+      --text-default-font-family:
+        -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu,
+        Cantarell, sans-serif;
+    }
+
+    html {
+      font-size: var(--text-font-size);
+    }
+
+    body {
+      /* font & text */
+      color: var(--text-color-primary);
+      font-family: var(--text-font-family);
+      /* this variable is defined by `typography.fontSize` in resume html layout */
+      text-autospace: normal;
+
+      /* layout */
+      line-height: var(--line-height);
+      max-width: var(--page-max-width);
+      margin: 0 auto;
+      padding: var(--spacing-xxxl) var(--spacing-xxl) var(--spacing-xxl);
+    }
+
+    /* header */
+    .resume-header {
+      margin-bottom: var(--spacing-xxl);
+      text-align: center;
+    }
+
+    .resume-name {
+      font-size: var(--font-size-xxl);
+      font-weight: 600;
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .resume-headline {
+      font-size: var(--font-size-lg);
+      margin-bottom: var(--spacing-md);
+    }
+
+    /* contact info */
+    .resume-contact-info {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      column-gap: var(--spacing-lg);
+      row-gap: var(--spacing-xs);
+      margin-top: var(--spacing-sm);
+    }
+
+    .resume-contact-icon,
+    .resume-contact-label {
+      margin-right: var(--spacing-sm);
+      vertical-align: middle;
+    }
+
+    /* links: modern typographic style */
+    a {
+      color: var(--text-color-primary);
+      text-decoration: underline;
+      text-decoration-color: var(--border-color);
+      text-underline-offset: 3px;
+      text-decoration-thickness: 1px;
+      text-decoration-skip-ink: auto;
+      transition: text-decoration-color 0.2s;
+    }
+
+    a:hover {
+      text-decoration-color: var(--text-color-primary);
+    }
+
+    /* sections */
+    .resume-section {
+      margin-bottom: var(--spacing-xl);
+    }
+
+    .resume-section-title {
+      font-size: var(--font-size-xl);
+      font-weight: 500;
+      margin-bottom: var(--spacing-md);
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: var(--spacing-xs);
+    }
+
+    /* entries */
+    .resume-entry {
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .resume-entry:last-child {
+      margin-bottom: 0;
+    }
+
+    .resume-entry-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .resume-entry-title {
+      font-weight: 500;
+      margin-bottom: var(--spacing-xss);
+    }
+
+    .resume-entry-summary p,
+    .resume-summary-content p {
+      margin-bottom: var(--spacing-xs);
+    }
+
+    /* lists */
+    .resume-entry-summary ul,
+    .resume-entry-summary ol,
+    .resume-summary-content ul,
+    .resume-summary-content ol {
+      padding-left: var(--spacing-lg);
+      list-style-type: circle;
+    }
+
+    /* labeled lists (courses, keywords, etc.) */
+    .resume-labeled-list span {
+      font-weight: 500;
+    }
+
+    /* skills grid */
+    .resume-skill-item,
+    .resume-language-item {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .resume-skill-name,
+    .resume-language-name {
+      font-weight: 500;
+    }
+
+    .resume-skill-level,
+    .resume-language-fluency {
+      font-weight: 400;
+    }
+
+    /* mobile */
+    @media (max-width: 768px) {
+      body {
+        padding: var(--spacing-xl);
+      }
+
+      .resume-header {
+        margin-bottom: var(--spacing-xl);
+      }
+
+      .resume-contact-info {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .resume-entry-header {
+        flex-wrap: wrap;
+      }
+    }
+
+    /* footer */
+    .resume-footer {
+      margin-top: var(--spacing-xxl);
+      padding-top: var(--spacing-xl);
+      border-top: 1px solid var(--border-color);
+      font-size: var(--font-size-sm);
+      color: var(--text-color-secondary);
+    }
+
+    @media print {
+      .resume-footer {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="resume-header">
+    <h1 class="resume-name">Dewi Anggraini</h1>
+    <p class="resume-headline">Manajer Pemasaran dengan pengalaman 8+ tahun dalam strategi digital dan manajemen merek.</p>
+    <div class="resume-contact-info">
+      <span class="resume-contact-item"><span class="resume-contact-icon">📧</span><a href="mailto:dewi.anggraini@email.com" class="resume-contact-link">dewi.anggraini@email.com</a></span>
+      <span class="resume-contact-item"><span class="resume-contact-icon">📞</span>+62 812-3456-7890</span>
+      <span class="resume-contact-item"><span class="resume-contact-icon">🔗</span><a href="https://www.dewianggraini.com" class="resume-contact-link">https://www.dewianggraini.com</a></span>
+    </div>
+    <div class="resume-contact-info resume-location-info">
+      <span class="resume-contact-item"><span class="resume-contact-icon">📍</span>Jl. Jenderal Sudirman No. 45, SCBD, Jakarta, DKI Jakarta, Indonesia, 12190</span>
+    </div>
+    <div class="resume-contact-info resume-profiles-info">
+      <span class="resume-contact-item"><span class="resume-contact-label">LinkedIn</span>: <a href="https://www.linkedin.com/in/dewianggraini" class="resume-contact-link">@dewianggraini</a></span>
+      <span class="resume-contact-item"><span class="resume-contact-label">Twitter</span>: <a href="https://twitter.com/dewianggraini" class="resume-contact-link">@dewianggraini</a></span>
+      <span class="resume-contact-item"><span class="resume-contact-label">Instagram</span>: <a href="https://www.instagram.com/dewianggraini" class="resume-contact-link">@dewianggraini</a></span>
+    </div>
+  </header>
+  <section class="resume-section" id="summary" data-section="summary">
+    <h2 class="resume-section-title">Informasi Dasar</h2>
+    <div class="resume-section-content">
+      <div class="resume-summary-content">
+        <ul>
+          <li>
+            <p>Manajer Pemasaran dengan pengalaman lebih dari 8 tahun di industri ritel dan teknologi, terbukti meningkatkan pendapatan melalui strategi omni-channel.</p>
+          </li>
+          <li>
+            <p>Ahli dalam pemasaran digital, riset pasar, dan manajemen merek; memimpin tim lintas fungsi untuk kampanye yang berdampak.</p>
+          </li>
+          <li>
+            <p>Terbiasa bekerja dengan data untuk mengoptimalkan ROI, serta membangun hubungan kuat dengan mitra dan pelanggan.</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="education" data-section="education">
+    <h2 class="resume-section-title">Pendidikan</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="education-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.ui.ac.id">Universitas Indonesia</a></div>
+            <div class="resume-entry-organization">Sarjana, Ilmu Komunikasi, Nilai: 3.75</div>
+          </div>
+          <div class="resume-entry-date">Sep 2010–Jul 2014</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Lulus dengan predikat cum laude, aktif dalam organisasi kemahasiswaan dan kompetisi pemasaran.</p>
+            </li>
+            <li>
+              <p>Mengembangkan keterampilan analitis dan kreatif melalui proyek kampanye sosial dan bisnis.</p>
+            </li>
+            <li>
+              <p>Menjadi asisten dosen untuk mata kuliah Riset Pemasaran selama satu semester.</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Mata Kuliah</span>: Manajemen Pemasaran, Perilaku Konsumen, Riset Pemasaran, Komunikasi Massa, Public Relations, Strategi Branding, Periklanan, Statistik Sosial</div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="work" data-section="work">
+    <h2 class="resume-section-title">Pengalaman Kerja</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="work-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.majubersama.co.id">PT Maju Bersama</a></div>
+            <div class="resume-entry-organization">Manajer Pemasaran</div>
+          </div>
+          <div class="resume-entry-date">Jan 2020–Sekarang</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Memimpin tim pemasaran 12 orang, mengelola anggaran tahunan Rp15 miliar, dan meningkatkan pendapatan 35% YoY.</p>
+            </li>
+            <li>
+              <p>Merancang dan mengeksekusi strategi omni-channel (digital, offline, CRM) yang meningkatkan akuisisi pelanggan 40%.</p>
+            </li>
+            <li>
+              <p>Mengembangkan kampanye brand awareness yang meraih 3 penghargaan industri dan meningkatkan brand recall 25%.</p>
+            </li>
+            <li>
+              <p>Menganalisis data pasar dan kompetitor untuk mengidentifikasi peluang baru serta mengoptimalkan bauran pemasaran.</p>
+            </li>
+            <li>
+              <p>Membangun kemitraan strategis dengan influencer dan media, menghasilkan liputan senilai Rp2 miliar.</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Kata Kunci</span>: Strategi Pemasaran, Omni-channel, Manajemen Anggaran, Brand Awareness, CRM, Analitik Pemasaran, Kepemimpinan Tim</div>
+      </div>
+      <div class="resume-entry" id="work-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.kreatifdigital.com">PT Kreatif Digital</a></div>
+            <div class="resume-entry-organization">Asisten Manajer Pemasaran</div>
+          </div>
+          <div class="resume-entry-date">Mar 2016–Des 2019</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Mengelola kampanye digital untuk 20+ klien, dengan rata-rata peningkatan ROI 150%.</p>
+            </li>
+            <li>
+              <p>Mengoptimalkan SEO/SEM dan media sosial, meningkatkan traffic organik 200% dalam 18 bulan.</p>
+            </li>
+            <li>
+              <p>Menyusun laporan kinerja bulanan dan memberikan rekomendasi berbasis data kepada manajemen.</p>
+            </li>
+            <li>
+              <p>Berkolaborasi dengan tim kreatif dan teknologi untuk meluncurkan situs web dan aplikasi mobile.</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Kata Kunci</span>: Digital Marketing, SEO, SEM, Media Sosial, Google Analytics, Content Marketing, ROI</div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="languages" data-section="languages">
+    <h2 class="resume-section-title">Bahasa</h2>
+    <div class="resume-section-content">
+      <div class="resume-languages-list">
+        <div class="resume-language-item">
+          <div class="resume-language-name">Indonesia<span class="resume-language-fluency">: Bahasa Ibu / Bilingual</span></div>
+        </div>
+        <div class="resume-language-item">
+          <div class="resume-language-name">Inggris<span class="resume-language-fluency">: Tingkat Profesional Penuh</span></div>
+          <div>
+            <div class="resume-labeled-list"><span>Kata Kunci</span>: TOEFL 110, IELTS 8.0</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="skills" data-section="skills">
+    <h2 class="resume-section-title">Keahlian</h2>
+    <div class="resume-section-content">
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">Pemasaran Digital<span class="resume-skill-level">: Ahli</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>Kata Kunci</span>: SEO/SEM, Media Sosial, Email Marketing, Content Strategy, Google Ads, Meta Ads, Analytics</div>
+        </div>
+      </div>
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">Manajemen Merek<span class="resume-skill-level">: Mahir</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>Kata Kunci</span>: Brand Strategy, Positioning, Consumer Insight, Kampanye Integratif, Public Relations</div>
+        </div>
+      </div>
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">Analitik &amp; Riset<span class="resume-skill-level">: Mahir</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>Kata Kunci</span>: Google Analytics, Tableau, SPSS, A/B Testing, Riset Pasar, Segmentasi</div>
+        </div>
+      </div>
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">Kepemimpinan<span class="resume-skill-level">: Ahli</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>Kata Kunci</span>: Manajemen Tim, Mentoring, Presentasi, Negosiasi, Manajemen Proyek</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="awards" data-section="awards">
+    <h2 class="resume-section-title">Penghargaan</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="awards-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title">Marketer of the Year 2022</div>
+            <div class="resume-entry-organization">Asosiasi Pemasaran Indonesia</div>
+          </div>
+          <div class="resume-entry-date">Des 2022</div>
+        </div>
+        <div class="resume-entry-summary">
+          <p>Diberikan kepada manajer pemasaran yang menunjukkan inovasi luar biasa dalam kampanye digital dan kontribusi signifikan terhadap pertumbuhan industri.</p>
+        </div>
+      </div>
+      <div class="resume-entry" id="awards-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title">Best Digital Campaign</div>
+            <div class="resume-entry-organization">Digital Marketing Awards</div>
+          </div>
+          <div class="resume-entry-date">Nov 2021</div>
+        </div>
+        <div class="resume-entry-summary">
+          <p>Menghargai kampanye #BanggaLokal yang berhasil meningkatkan keterlibatan pelanggan sebesar 300% dan penjualan 50% dalam 6 bulan.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="certificates" data-section="certificates">
+    <h2 class="resume-section-title">Sertifikat</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="certificates-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.coursera.org/professional-certificates/google-digital-marketing-ecommerce">Google Digital Marketing &amp; E-commerce Professional Certificate</a></div>
+            <div class="resume-entry-organization">Google</div>
+          </div>
+          <div class="resume-entry-date">Mei 2022</div>
+        </div>
+      </div>
+      <div class="resume-entry" id="certificates-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://academy.hubspot.com/courses/content-marketing">HubSpot Content Marketing Certification</a></div>
+            <div class="resume-entry-organization">HubSpot Academy</div>
+          </div>
+          <div class="resume-entry-date">Agu 2021</div>
+        </div>
+      </div>
+      <div class="resume-entry" id="certificates-3">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.facebook.com/business/learn/certification">Meta Certified Digital Marketing Associate</a></div>
+            <div class="resume-entry-organization">Meta</div>
+          </div>
+          <div class="resume-entry-date">Feb 2023</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="publications" data-section="publications">
+    <h2 class="resume-section-title">Publikasi</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="publications-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.jurnalpemasaran.id/artikel/tren-2023">Tren Pemasaran Digital di Indonesia 2023: Strategi Omni-channel untuk UMKM</a></div>
+            <div class="resume-entry-organization">Jurnal Pemasaran Indonesia</div>
+          </div>
+          <div class="resume-entry-date">Jun 2023</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Menganalisis adopsi strategi omni-channel oleh UMKM di Indonesia.</p>
+            </li>
+            <li>
+              <p>Menyajikan studi kasus dari 50 bisnis yang berhasil meningkatkan pendapatan melalui integrasi digital dan offline.</p>
+            </li>
+            <li>
+              <p>Merekomendasikan kerangka kerja untuk pemasaran yang berkelanjutan dan berbasis data.</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="projects" data-section="projects">
+    <h2 class="resume-section-title">Proyek</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="projects-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.banggalokal.id">Kampanye #BanggaLokal</a></div>
+            <div class="resume-entry-description">Kampanye pemasaran terintegrasi untuk mendorong konsumsi produk lokal.</div>
+          </div>
+          <div class="resume-entry-date">Jan 2022–Des 2022</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Merancang dan memimpin kampanye multi-channel yang melibatkan 100+ influencer dan 50 media nasional.</p>
+            </li>
+            <li>
+              <p>Meningkatkan penjualan produk lokal sebesar 50% dan engagement media sosial 300%.</p>
+            </li>
+            <li>
+              <p>Meraih penghargaan Best Digital Campaign 2021 dan menjadi studi kasus di universitas.</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Kata Kunci</span>: Kampanye Integratif, Influencer Marketing, Media Sosial, Brand Lokal</div>
+      </div>
+      <div class="resume-entry" id="projects-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.belanjamudah.id">Peluncuran Aplikasi Mobile BelanjaMudah</a></div>
+            <div class="resume-entry-description">Peluncuran aplikasi belanja online untuk pasar Indonesia.</div>
+          </div>
+          <div class="resume-entry-date">Mar 2021–Sep 2021</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Mengoordinasikan tim pemasaran, produk, dan teknologi untuk peluncuran aplikasi.</p>
+            </li>
+            <li>
+              <p>Mencapai 100.000 unduhan dalam 3 bulan pertama melalui strategi user acquisition.</p>
+            </li>
+            <li>
+              <p>Mengelola anggaran peluncuran Rp5 miliar dengan ROI 200%.</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Kata Kunci</span>: Product Launch, User Acquisition, Mobile Marketing, ROI</div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="interests" data-section="interests">
+    <h2 class="resume-section-title">Minat</h2>
+    <div class="resume-section-content">
+      <div class="resume-interest-item"><span class="resume-interest-name">Fotografi</span>: Street Photography, Portrait, Landscape</div>
+      <div class="resume-interest-item"><span class="resume-interest-name">Membaca</span>: Buku Bisnis, Fiksi, Sejarah</div>
+      <div class="resume-interest-item"><span class="resume-interest-name">Olahraga</span>: Yoga, Berlari, Bersepeda</div>
+    </div>
+  </section>
+  <section class="resume-section" id="volunteer" data-section="volunteer">
+    <h2 class="resume-section-title">Kegiatan Sukarela</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="volunteer-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.ypai.org">Yayasan Pendidikan Anak Indonesia</a></div>
+            <div class="resume-entry-organization">Relawan Pemasaran</div>
+          </div>
+          <div class="resume-entry-date">Feb 2019–Des 2021</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Membantu mengembangkan strategi pemasaran digital untuk meningkatkan donasi dan kesadaran publik.</p>
+            </li>
+            <li>
+              <p>Mengelola kampanye media sosial yang berhasil mengumpulkan dana Rp500 juta untuk beasiswa anak kurang mampu.</p>
+            </li>
+            <li>
+              <p>Melatih staf yayasan dalam penggunaan alat digital untuk komunikasi dan penggalangan dana.</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="resume-entry" id="volunteer-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.marketingjakarta.org">Komunitas Pemasaran Jakarta</a></div>
+            <div class="resume-entry-organization">Koordinator Acara</div>
+          </div>
+          <div class="resume-entry-date">Jan 2018–Jan 2020</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Mengorganisir seminar dan workshop bulanan untuk 200+ profesional pemasaran.</p>
+            </li>
+            <li>
+              <p>Menghubungkan pembicara ahli dan sponsor untuk mendukung pengembangan karier anggota.</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer class="resume-footer">Generated by <a href="https://yamlresume.dev">YAMLResume</a></footer>
+</body>
+
+</html>

@@ -1,0 +1,293 @@
+\documentclass[a4paper, serif, 10pt]{moderncv}
+
+%% moderncv
+% style and color
+\moderncvstyle{banking}
+\moderncvcolor{black}
+
+% renew moderncv command to adapt for CJK colon
+\renewcommand*{\cvitem}[3][.25em]{%
+  \ifstrempty{#2}{}{\hintstyle{#2}：}{#3}%
+  \par\addvspace{#1}}
+
+\renewcommand*{\cvitemwithcomment}[4][.25em]{%
+  \savebox{\cvitemwithcommentmainbox}{\ifstrempty{#2}{}{\hintstyle{#2}：}#3}%
+  \setlength{\cvitemwithcommentmainlength}{\widthof{\usebox{\cvitemwithcommentmainbox}}}%
+  \setlength{\cvitemwithcommentcommentlength}{\maincolumnwidth-\separatorcolumnwidth-\cvitemwithcommentmainlength}%
+  \begin{minipage}[t]{\cvitemwithcommentmainlength}\usebox{\cvitemwithcommentmainbox}\end{minipage}%
+  \hfill% fill of \separatorcolumnwidth
+  \begin{minipage}[t]{\cvitemwithcommentcommentlength}\raggedleft\small\itshape#4\end{minipage}%
+  \par\addvspace{#1}}
+
+%% page layout/margins
+\usepackage[top=2.5cm, bottom=2.5cm, left=1.5cm, right=1.5cm]{geometry}
+
+\nopagenumbers{}
+
+%% Babel config for English language
+\usepackage[english]{babel}
+
+%% fontspec
+\usepackage{fontspec}
+
+\IfFontExistsTF{Linux Libertine}{
+  \setmainfont[Ligatures={TeX, Common}, Numbers=Lining, ItalicFont=Linux Libertine]{Linux Libertine}
+}{}
+\IfFontExistsTF{Linux Libertine O}{
+  \setmainfont[Ligatures={TeX, Common}, Numbers=Lining, ItalicFont=Linux Libertine O]{Linux Libertine O}
+}{}
+
+%% CTeX
+% CJK support, used to show CJK characters in the resume
+%
+% - fontset=none: disable builtin fontset but instead set the CJK font manually
+% - heading=false: disable ctex heading
+% - punct=kaiming: use kaiming punctuations styles for CJK
+% - scheme=plain: use plain scheme, do not override \normalsize font size
+% - space=auto: space settings for CJK characters
+%
+% ref:
+% - http://ctan.mirrorcatalogs.com/language/chinese/ctex/ctex.pdf
+\usepackage[UTF8, heading=false, punct=kaiming, scheme=plain, space=auto]{ctex}
+
+\IfFontExistsTF{Noto Serif CJK SC}{
+  \setCJKmainfont{Noto Serif CJK SC}
+}{}
+\IfFontExistsTF{Noto Sans CJK SC}{
+  \setCJKsansfont{Noto Sans CJK SC}
+}{}
+
+%% line spacing
+\usepackage{setspace}
+\setstretch{1.125}
+
+%% URL styling - use normal text instead of monospace
+\urlstyle{same}
+
+% Auto-underline all links
+% Defer until \begin{document} so hyperref is already loaded
+\AtBeginDocument{%
+  \let\oldhref\href
+  \renewcommand{\href}[2]{\oldhref{#1}{\underline{#2}}}%
+}
+
+%% Patch \httplink and \httpslink to handle full URLs
+% The original moderncv macros always prepend http:// or https:// to URLs.
+% This causes issues when the URL already has a protocol (e.g., https://example.com)
+% resulting in malformed URLs like https://https://example.com.
+% This patch checks if the URL already contains "://" and uses it directly if so.
+% Note: We use \str_set:Nx (x-expansion) to expand macros like \@homepage first.
+\ExplSyntaxOn
+\str_new:N \g_yamlresume_url_str
+
+\RenewDocumentCommand{\httpslink}{O{}m}{
+  \str_set:Nx \g_yamlresume_url_str {#2}
+  \str_if_in:NnTF \g_yamlresume_url_str {://}
+    { \url{#2} }
+    { \url{https://#2} }
+}
+
+\RenewDocumentCommand{\httplink}{O{}m}{
+  \str_set:Nx \g_yamlresume_url_str {#2}
+  \str_if_in:NnTF \g_yamlresume_url_str {://}
+    { \url{#2} }
+    { \url{http://#2} }
+}
+\ExplSyntaxOff
+
+\name{陳嘉欣}{}
+\title{市場營銷經理 | 數碼品牌策略及增長專家}
+\phone[mobile]{+852 9123 4567}
+\email{ka-yan.chan@example.com}
+\homepage{https://www.kayanchan.com}
+
+\address{中國香港，香港島，香港，香港中環德輔道中 88 號}{}{}
+
+\extrainfo{{\small \faLinkedin}\ \href{https://www.linkedin.com/in/kayanchan}{@kayanchan} {} {} {} • {} {} {} 
+{\small \faMedium}\ \href{https://medium.com/@kayanchan}{@kayanchan} {} {} {} • {} {} {} 
+{\small \faInstagram}\ \href{https://www.instagram.com/kayan.marketing}{@kayan.marketing}}
+
+\begin{document}
+
+\maketitle
+
+\section{簡介}
+
+\cvline{}{擁有超過 8 年市場營銷經驗的專業經理，專注於數碼品牌策略、內容營銷及數據驅動增長。擅長策劃跨渠道營銷活動，提升品牌知名度與客戶轉化率，並善於以數據驗證營銷投資回報。
+%
+\begin{itemize}
+\item 成功領導多個大型營銷項目，平均提升網站流量 120\%，社交媒體互動率 85\%
+\item 精通搜尋引擎優化、關鍵字廣告、社交媒體廣告、內容營銷及營銷自動化工具
+\item 具備團隊管理經驗，曾帶領 10 人跨職能團隊，協調設計、內容及數據分析工作
+\item 熟悉香港及大灣區市場，能制定本地化營銷策略並達成業務目標
+\end{itemize}}
+\section{教育背景}
+
+\cventry{2013年9月–2017年7月}
+        {學士，市場學，成績：3.6}
+        {香港中文大學}
+        {\url{https://www.cuhk.edu.hk}}
+        {}
+        {\begin{itemize}
+\item 主修市場學，副修心理學，深入理解消費者決策過程
+\item 曾參與大學品牌策劃比賽，獲得亞軍
+\item 活躍於市場學系學會，協助籌辦業界講座及企業參觀
+\end{itemize}
+\textbf{課程}：消費者行為、市場研究、品牌管理、數碼營銷、整合營銷傳播、策略管理}
+\section{工作經歷}
+
+\cventry{2021年3月至今}
+        {高級市場營銷經理}
+        {星創科技有限公司}
+        {\url{https://www.starcreativetech.hk}}
+        {}
+        {\begin{itemize}
+\item 制定並執行集團整體數碼營銷策略，管理年度營銷預算逾港幣 1,200 萬元
+\item 帶領 10 人跨職能團隊，涵蓋內容創作、社交媒體、搜尋引擎優化及數據分析
+\item 重新設計品牌網站及內容架構，令自然搜尋流量於 12 個月內增長 120\%
+\item 建立營銷自動化流程，將潛在客戶轉化率由 3.1\% 提升至 7.4\%
+\item 與產品及銷售團隊緊密協作，主導每季度市場推廣活動的定位與執行
+\end{itemize}
+\textbf{關鍵字}：品牌策略、數碼營銷、團隊管理、營銷預算}
+
+\cventry{2017年8月–2021年2月}
+        {市場營銷主任}
+        {匯達廣告有限公司}
+        {\url{https://www.huidaglobal.com.hk}}
+        {}
+        {\begin{itemize}
+\item 為零售及金融行業客戶策劃整合營銷活動，平均提升客戶品牌知名度 45\%
+\item 負責關鍵字廣告及社交媒體廣告投放，控制每次獲取成本並優化廣告回報率
+\item 撰寫中英文營銷文案、新聞稿及社交媒體內容，每月產出超過 30 篇素材
+\item 定期製作營銷成效報告，向客戶管理層匯報數據洞察及優化建議
+\item 協助培訓新入職同事，建立團隊內部內容審核及品質標準流程
+\end{itemize}
+\textbf{關鍵字}：整合營銷、廣告投放、內容創作、數據分析}
+
+\cventry{2016年7月–2017年7月}
+        {市場推廣助理}
+        {藍海市場顧問有限公司}
+        {\url{https://www.blueoceanmarketing.hk}}
+        {}
+        {\begin{itemize}
+\item 支援各類線下推廣活動的籌備與執行，包括展覽、路演及產品發佈會
+\item 協助管理社交媒體帳號，維護品牌形象並回覆客戶查詢
+\item 收集市場及競爭對手資料，整理成月報供團隊參考
+\item 與供應商及場地單位協調，確保活動物資及預算符合計劃
+\end{itemize}
+\textbf{關鍵字}：活動策劃、社交媒體、市場研究}
+\section{語言}
+
+\cvline{粵語}{母語或雙語水平 \hfill \textbf{關鍵字}：母語}
+\cvline{普通話}{完全專業水平 \hfill \textbf{關鍵字}：普通話水平測試二級甲等}
+\cvline{英語}{完全專業水平 \hfill \textbf{關鍵字}：IELTS 7.5}
+\section{專業技能}
+
+\cvline{數碼營銷}{專家 \hfill \textbf{關鍵字}：搜尋引擎優化、關鍵字廣告、社交媒體廣告、內容營銷}
+\cvline{數據與分析}{高級 \hfill \textbf{關鍵字}：Google Analytics 4、Looker Studio、A/B 測試、數據視覺化}
+\cvline{營銷工具}{高級 \hfill \textbf{關鍵字}：HubSpot、Mailchimp、Salesforce、Meta Business Suite}
+\cvline{品牌與傳訊}{高級 \hfill \textbf{關鍵字}：品牌定位、公關傳訊、文案撰寫、危機處理}
+\cvline{管理與協作}{高級 \hfill \textbf{關鍵字}：團隊領導、預算管理、跨部門協作、供應商談判}
+\section{榮譽}
+
+\cventry{2023年11月}
+        {香港廣告客戶協會}
+        {年度最佳營銷團隊大獎}
+        {}
+        {}
+        {帶領團隊為旗下金融科技產品策劃的整合營銷活動，於年度評選中擊敗逾 60 個參賽項目獲得金獎。}
+
+\cventry{2022年9月}
+        {亞太營銷傳播協會}
+        {亞太數碼營銷卓越獎（銅獎）}
+        {}
+        {}
+        {憑藉以數據驅動的社交媒體內容策略，成功提升品牌互動率及客戶留存，獲評審團肯定。}
+\section{證書}
+
+\cventry{2023年2月}
+        {Google}
+        {Google Analytics 4 Certification}
+        {\url{https://skillshop.exceedlms.com/student/catalog}}
+        {}
+        {}
+
+\cventry{2021年6月}
+        {HubSpot Academy}
+        {HubSpot Inbound Marketing Certification}
+        {\url{https://academy.hubspot.com/courses}}
+        {}
+        {}
+
+\cventry{2022年10月}
+        {Meta}
+        {Meta Certified Digital Marketing Associate}
+        {\url{https://www.facebook.com/business/learn/certification}}
+        {}
+        {}
+\section{出版刊物}
+
+\cventry{2023年5月}
+        {香港零售品牌的內容營銷突圍策略}
+        {亞洲營銷評論}
+        {\url{https://www.asiamarketingreview.com}}
+        {}
+        {\begin{itemize}
+\item 分析本地零售品牌如何在內容飽和的環境中建立差異化敘事
+\item 提出以客戶旅程為本的內容矩陣框架，並附上實際數據案例
+\item 探討人工智能工具在內容生產流程中的應用與限制
+\end{itemize}}
+\section{項目}
+
+\cventry{2023年1月–2023年8月}
+        {為本地環保生活品牌進行的全面品牌重塑及數碼推廣項目}
+        {「城巿綠行」品牌重塑計劃}
+        {\url{https://www.citygreenwalk.hk}}
+        {}
+        {\begin{itemize}
+\item 重新定義品牌定位與視覺識別，統一線上線下傳訊語言
+\item 策劃為期六個月的內容營銷日曆，涵蓋社交媒體、電子報及短片
+\item 項目結束時品牌網站流量增長 140\%，社交媒體追蹤人數增加 2.3 倍
+\end{itemize}
+\textbf{關鍵字}：品牌重塑、內容營銷、可持續發展}
+
+\cventry{2022年3月–2022年11月}
+        {針對電商客戶設計的分層自動化再營銷流程與成效追蹤系統}
+        {會員再營銷自動化系統}
+        {\url{https://www.example.com/crm-automation}}
+        {}
+        {\begin{itemize}
+\item 依據購買行為及互動紀錄將會員劃分為五個生命週期階段
+\item 設計對應的電郵及短訊觸發流程，並持續以 A/B 測試優化文案
+\item 帶動回購率上升 28\%，並將每次轉化成本降低 19\%
+\end{itemize}
+\textbf{關鍵字}：營銷自動化、客戶分層、成效追蹤}
+\section{興趣愛好}
+
+\cvline{內容創作}{專欄寫作、攝影、短片剪輯}
+\cvline{運動與生活}{越野跑、瑜伽、咖啡沖煮}
+\section{志願服務}
+
+\cventry{2019年9月至今}
+        {義務導師}
+        {香港青年營銷協會}
+        {\url{https://www.hkyma.org.hk}}
+        {}
+        {\begin{itemize}
+\item 為大專院校學生提供營銷職涯指導，分享行業趨勢及求職準備經驗
+\item 協助籌辦年度數碼營銷工作坊，累計服務超過 400 名青年參加者
+\item 擔任模擬廣告企劃比賽評審，向參賽隊伍提供專業回饋
+\end{itemize}}
+    
+
+\cventry{2021年3月–2022年12月}
+        {社區推廣義工}
+        {綠惜地球}
+        {\url{https://www.greenearth.org.hk}}
+        {}
+        {\begin{itemize}
+\item 策劃社區環保推廣活動的社交媒體宣傳，提升公眾參與度
+\item 協助撰寫活動新聞稿及宣傳文案，並協調媒體採訪安排
+\end{itemize}}
+    
+\end{document}

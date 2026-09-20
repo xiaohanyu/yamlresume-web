@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="generator" content="YAMLResume (https://yamlresume.dev)">
+
+
+  <title>Camille Dubois Resume</title>
+  <style>
+    :root {
+      --text-font-size: 16px;
+      --text-font-family: var(--text-default-font-family);
+      --line-height: 1.5;
+    }
+
+    /* Modified from: https://www.joshwcomeau.com/css/custom-css-reset/ */
+
+    /* 1. Use a more-intuitive box-sizing model */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    /* 2. Remove default margin */
+    *:not(dialog) {
+      margin: 0;
+    }
+
+    body {
+      /* 3. Improve text rendering */
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    :root {
+      --border-color: #d0d0d0;
+
+      /* text colors */
+      --text-color-primary: #000000;
+      --text-color-secondary: #333333;
+
+      /* spacing */
+      --spacing-xss: 2px;
+      --spacing-xs: 4px;
+      --spacing-sm: 8px;
+      --spacing-md: 12px;
+      --spacing-lg: 16px;
+      --spacing-xl: 24px;
+      --spacing-xxl: 40px;
+      --spacing-xxxl: 80px;
+
+      /* font sizes */
+      --font-size-xs: 0.8rem;
+      --font-size-sm: 0.9rem;
+      --font-size-md: 1rem;
+      --font-size-lg: 1.1rem;
+      --font-size-xl: 1.25rem;
+      --font-size-xxl: 2.5rem;
+
+      /* layout */
+      --page-max-width: 900px;
+
+      /* typography */
+      --text-default-font-family:
+        -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu,
+        Cantarell, sans-serif;
+    }
+
+    html {
+      font-size: var(--text-font-size);
+    }
+
+    body {
+      /* font & text */
+      color: var(--text-color-primary);
+      font-family: var(--text-font-family);
+      /* this variable is defined by `typography.fontSize` in resume html layout */
+      text-autospace: normal;
+
+      /* layout */
+      line-height: var(--line-height);
+      max-width: var(--page-max-width);
+      margin: 0 auto;
+      padding: var(--spacing-xxxl) var(--spacing-xxl) var(--spacing-xxl);
+    }
+
+    /* header */
+    .resume-header {
+      margin-bottom: var(--spacing-xxl);
+      text-align: center;
+    }
+
+    .resume-name {
+      font-size: var(--font-size-xxl);
+      font-weight: 600;
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .resume-headline {
+      font-size: var(--font-size-lg);
+      margin-bottom: var(--spacing-md);
+    }
+
+    /* contact info */
+    .resume-contact-info {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      column-gap: var(--spacing-lg);
+      row-gap: var(--spacing-xs);
+      margin-top: var(--spacing-sm);
+    }
+
+    .resume-contact-icon,
+    .resume-contact-label {
+      margin-right: var(--spacing-sm);
+      vertical-align: middle;
+    }
+
+    /* links: modern typographic style */
+    a {
+      color: var(--text-color-primary);
+      text-decoration: underline;
+      text-decoration-color: var(--border-color);
+      text-underline-offset: 3px;
+      text-decoration-thickness: 1px;
+      text-decoration-skip-ink: auto;
+      transition: text-decoration-color 0.2s;
+    }
+
+    a:hover {
+      text-decoration-color: var(--text-color-primary);
+    }
+
+    /* sections */
+    .resume-section {
+      margin-bottom: var(--spacing-xl);
+    }
+
+    .resume-section-title {
+      font-size: var(--font-size-xl);
+      font-weight: 500;
+      margin-bottom: var(--spacing-md);
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: var(--spacing-xs);
+    }
+
+    /* entries */
+    .resume-entry {
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .resume-entry:last-child {
+      margin-bottom: 0;
+    }
+
+    .resume-entry-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .resume-entry-title {
+      font-weight: 500;
+      margin-bottom: var(--spacing-xss);
+    }
+
+    .resume-entry-summary p,
+    .resume-summary-content p {
+      margin-bottom: var(--spacing-xs);
+    }
+
+    /* lists */
+    .resume-entry-summary ul,
+    .resume-entry-summary ol,
+    .resume-summary-content ul,
+    .resume-summary-content ol {
+      padding-left: var(--spacing-lg);
+      list-style-type: circle;
+    }
+
+    /* labeled lists (courses, keywords, etc.) */
+    .resume-labeled-list span {
+      font-weight: 500;
+    }
+
+    /* skills grid */
+    .resume-skill-item,
+    .resume-language-item {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .resume-skill-name,
+    .resume-language-name {
+      font-weight: 500;
+    }
+
+    .resume-skill-level,
+    .resume-language-fluency {
+      font-weight: 400;
+    }
+
+    /* mobile */
+    @media (max-width: 768px) {
+      body {
+        padding: var(--spacing-xl);
+      }
+
+      .resume-header {
+        margin-bottom: var(--spacing-xl);
+      }
+
+      .resume-contact-info {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .resume-entry-header {
+        flex-wrap: wrap;
+      }
+    }
+
+    /* footer */
+    .resume-footer {
+      margin-top: var(--spacing-xxl);
+      padding-top: var(--spacing-xl);
+      border-top: 1px solid var(--border-color);
+      font-size: var(--font-size-sm);
+      color: var(--text-color-secondary);
+    }
+
+    @media print {
+      .resume-footer {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="resume-header">
+    <h1 class="resume-name">Camille Dubois</h1>
+    <p class="resume-headline">Ingénieur DevOps / SRE</p>
+    <div class="resume-contact-info">
+      <span class="resume-contact-item"><span class="resume-contact-icon">📧</span><a href="mailto:camille.dubois@protonmail.com" class="resume-contact-link">camille.dubois@protonmail.com</a></span>
+      <span class="resume-contact-item"><span class="resume-contact-icon">📞</span>+33 6 12 34 56 78</span>
+      <span class="resume-contact-item"><span class="resume-contact-icon">🔗</span><a href="https://camilledubois.dev" class="resume-contact-link">https://camilledubois.dev</a></span>
+    </div>
+    <div class="resume-contact-info resume-location-info">
+      <span class="resume-contact-item"><span class="resume-contact-icon">📍</span>12 rue de la Roquette, Paris, Île-de-France, France, 75011</span>
+    </div>
+    <div class="resume-contact-info resume-profiles-info">
+      <span class="resume-contact-item"><span class="resume-contact-label">GitHub</span>: <a href="https://github.com/camilledubois" class="resume-contact-link">@camilledubois</a></span>
+      <span class="resume-contact-item"><span class="resume-contact-label">LinkedIn</span>: <a href="https://www.linkedin.com/in/camille-dubois-devops" class="resume-contact-link">@camille-dubois-devops</a></span>
+    </div>
+  </header>
+  <section class="resume-section" id="summary" data-section="summary">
+    <h2 class="resume-section-title">Informations de base</h2>
+    <div class="resume-section-content">
+      <div class="resume-summary-content">
+        <p>Ingénieur DevOps avec plus de 5 ans d&#39;expérience dans la conception, l&#39;automatisation et l&#39;exploitation de plateformes cloud natives. Passionné par la fiabilité, l&#39;observabilité et l&#39;amélioration continue.</p>
+        <ul>
+          <li>
+            <p>Expertise en Kubernetes, Terraform et CI/CD sur AWS et Azure</p>
+          </li>
+          <li>
+            <p>Réduction des coûts cloud de 30 % grâce à l&#39;optimisation des ressources et au rightsizing</p>
+          </li>
+          <li>
+            <p>Mise en place de pipelines de déploiement sans interruption pour plus de 200 microservices</p>
+          </li>
+          <li>
+            <p>Solide culture SRE : SLO, gestion des incidents, post-mortems et ingénierie du chaos</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="education" data-section="education">
+    <h2 class="resume-section-title">Formation</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="education-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.universite-paris-saclay.fr">Université Paris-Saclay</a></div>
+            <div class="resume-entry-organization">Master, Informatique - Systèmes distribués et cloud, Score : Mention Très Bien</div>
+          </div>
+          <div class="resume-entry-date">sept. 2019–juil. 2021</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Spécialisation en systèmes distribués, cloud computing et automatisation</p>
+            </li>
+            <li>
+              <p>Projet de fin d&#39;études : orchestration Kubernetes multi-cloud avec Terraform</p>
+            </li>
+            <li>
+              <p>Major de promotion en architecture cloud et sécurité</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Cours</span> : Architectures cloud et virtualisation, Systèmes distribués et tolérance aux pannes, Sécurité des infrastructures, Automatisation et Infrastructure as Code, Observabilité et performance</div>
+      </div>
+      <div class="resume-entry" id="education-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.univ-lille.fr">Université de Lille</a></div>
+            <div class="resume-entry-organization">Licence, Informatique, Score : Mention Bien</div>
+          </div>
+          <div class="resume-entry-date">sept. 2016–juin 2019</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Acquisition des fondamentaux en développement, réseaux et systèmes d&#39;exploitation</p>
+            </li>
+            <li>
+              <p>Premier contact avec les pratiques DevOps lors de projets universitaires</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Cours</span> : Algorithmique et structures de données, Réseaux et protocoles, Administration système Linux, Programmation Python et Bash</div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="work" data-section="work">
+    <h2 class="resume-section-title">Expérience professionnelle</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="work-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.cloudnova.fr">CloudNova</a></div>
+            <div class="resume-entry-organization">Ingénieur DevOps Senior</div>
+          </div>
+          <div class="resume-entry-date">janv. 2023–Present</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Conception et maintien d&#39;une plateforme Kubernetes multi-tenant sur AWS (EKS) pour 200+ microservices</p>
+            </li>
+            <li>
+              <p>Automatisation complète du provisionnement avec Terraform et Ansible, réduisant le time-to-market de 40 %</p>
+            </li>
+            <li>
+              <p>Mise en place de pipelines GitLab CI/CD avec tests automatisés, scans de sécurité et déploiements canary</p>
+            </li>
+            <li>
+              <p>Définition et suivi des SLO/SLI, animation des astreintes et des post-mortems</p>
+            </li>
+            <li>
+              <p>Optimisation des coûts cloud de 30 % via rightsizing, spot instances et politiques de rétention</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Mots-clés</span> : Kubernetes, Terraform, AWS, GitLab CI, SRE, Observabilité</div>
+      </div>
+      <div class="resume-entry" id="work-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.payflow.fr">PayFlow</a></div>
+            <div class="resume-entry-organization">Ingénieur DevOps</div>
+          </div>
+          <div class="resume-entry-date">sept. 2021–déc. 2022</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Migration d&#39;une application monolithique vers une architecture de microservices conteneurisés</p>
+            </li>
+            <li>
+              <p>Création de charts Helm et de pipelines Jenkins pour des déploiements reproductibles</p>
+            </li>
+            <li>
+              <p>Mise en place de la supervision avec Prometheus, Grafana et Alertmanager</p>
+            </li>
+            <li>
+              <p>Participation à la rotation d&#39;astreinte et à la réduction du MTTR de 50 %</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Mots-clés</span> : Docker, Helm, Jenkins, Prometheus, Grafana</div>
+      </div>
+      <div class="resume-entry" id="work-3">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.startupfactory.fr">Startup Factory</a></div>
+            <div class="resume-entry-organization">Administrateur Systèmes et Réseaux</div>
+          </div>
+          <div class="resume-entry-date">juil. 2019–août 2021</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Administration de serveurs Linux (Debian/Ubuntu) et gestion des sauvegardes</p>
+            </li>
+            <li>
+              <p>Automatisation des tâches récurrentes avec Bash et Python</p>
+            </li>
+            <li>
+              <p>Mise en place de la supervision Nagios et du référencement des incidents</p>
+            </li>
+            <li>
+              <p>Support technique aux équipes de développement et participation aux revues d&#39;architecture</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Mots-clés</span> : Linux, Bash, Python, Nagios, Réseaux</div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="languages" data-section="languages">
+    <h2 class="resume-section-title">Langues</h2>
+    <div class="resume-section-content">
+      <div class="resume-languages-list">
+        <div class="resume-language-item">
+          <div class="resume-language-name">Français<span class="resume-language-fluency"> : Niveau natif ou bilingue</span></div>
+          <div>
+            <div class="resume-labeled-list"><span>Mots-clés</span> : Langue maternelle</div>
+          </div>
+        </div>
+        <div class="resume-language-item">
+          <div class="resume-language-name">Anglais<span class="resume-language-fluency"> : Niveau professionnel complet</span></div>
+          <div>
+            <div class="resume-labeled-list"><span>Mots-clés</span> : TOEIC 950, Anglais technique</div>
+          </div>
+        </div>
+        <div class="resume-language-item">
+          <div class="resume-language-name">Espagnol<span class="resume-language-fluency"> : Niveau de travail limité</span></div>
+          <div>
+            <div class="resume-labeled-list"><span>Mots-clés</span> : Conversation courante</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="skills" data-section="skills">
+    <h2 class="resume-section-title">Compétences</h2>
+    <div class="resume-section-content">
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">Cloud &amp; Infrastructure<span class="resume-skill-level"> : Expert</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>Mots-clés</span> : AWS, Azure, GCP, Terraform, Ansible, Pulumi</div>
+        </div>
+      </div>
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">Conteneurs &amp; Orchestration<span class="resume-skill-level"> : Expert</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>Mots-clés</span> : Kubernetes, Docker, Helm, Istio, EKS, Kustomize</div>
+        </div>
+      </div>
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">CI/CD &amp; Automatisation<span class="resume-skill-level"> : Avancé</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>Mots-clés</span> : GitLab CI, GitHub Actions, Jenkins, ArgoCD, Python, Go</div>
+        </div>
+      </div>
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">Observabilité &amp; SRE<span class="resume-skill-level"> : Avancé</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>Mots-clés</span> : Prometheus, Grafana, ELK, Datadog, SLO/SLI, Ingénierie du chaos</div>
+        </div>
+      </div>
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">Sécurité &amp; Conformité<span class="resume-skill-level"> : Intermédiaire</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>Mots-clés</span> : Vault, Trivy, OPA, RBAC, SOC2, RGPD</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="awards" data-section="awards">
+    <h2 class="resume-section-title">Récompenses</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="awards-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title">Prix de l&#39;innovation DevOps</div>
+            <div class="resume-entry-organization">CloudNova</div>
+          </div>
+          <div class="resume-entry-date">juin 2023</div>
+        </div>
+        <div class="resume-entry-summary">
+          <p>Récompense interne pour la conception d&#39;une plateforme d&#39;auto-scaling prédictif ayant permis une réduction de 25 % des coûts d&#39;infrastructure.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="certificates" data-section="certificates">
+    <h2 class="resume-section-title">Certificats</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="certificates-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://aws.amazon.com/certification/">AWS Certified DevOps Engineer – Professional</a></div>
+            <div class="resume-entry-organization">Amazon Web Services</div>
+          </div>
+          <div class="resume-entry-date">mars 2023</div>
+        </div>
+      </div>
+      <div class="resume-entry" id="certificates-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.cncf.io/certification/cka/">Certified Kubernetes Administrator (CKA)</a></div>
+            <div class="resume-entry-organization">Cloud Native Computing Foundation</div>
+          </div>
+          <div class="resume-entry-date">nov. 2022</div>
+        </div>
+      </div>
+      <div class="resume-entry" id="certificates-3">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.hashicorp.com/certification">HashiCorp Certified: Terraform Associate</a></div>
+            <div class="resume-entry-organization">HashiCorp</div>
+          </div>
+          <div class="resume-entry-date">mai 2022</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="publications" data-section="publications">
+    <h2 class="resume-section-title">Publications</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="publications-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.cloudnova.fr/blog/migration-kubernetes">Retour d&#39;expérience : migration de 200 microservices vers Kubernetes</a></div>
+            <div class="resume-entry-organization">Blog technique de CloudNova</div>
+          </div>
+          <div class="resume-entry-date">avr. 2024</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Présentation des défis rencontrés lors de la migration d&#39;un monolithe vers Kubernetes</p>
+            </li>
+            <li>
+              <p>Bonnes pratiques pour la gestion des secrets, des ressources et des déploiements progressifs</p>
+            </li>
+            <li>
+              <p>Analyse des gains de performance et de fiabilité après migration</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="projects" data-section="projects">
+    <h2 class="resume-section-title">Projets</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="projects-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://github.com/camilledubois/observability-platform">Plateforme d&#39;observabilité interne</a></div>
+            <div class="resume-entry-description">Mise en place d&#39;une stack d&#39;observabilité centralisée pour 200+ microservices</div>
+          </div>
+          <div class="resume-entry-date">févr. 2023–août 2023</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Déploiement de Prometheus, Grafana et Loki sur Kubernetes</p>
+            </li>
+            <li>
+              <p>Création de tableaux de bord SLO et d&#39;alertes basées sur les symptômes</p>
+            </li>
+            <li>
+              <p>Réduction du MTTR de 50 % et amélioration de la visibilité sur les incidents</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Mots-clés</span> : Observabilité, Prometheus, Grafana, Loki, SLO</div>
+      </div>
+      <div class="resume-entry" id="projects-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://github.com/camilledubois/multi-cloud-automation">Automatisation multi-cloud</a></div>
+            <div class="resume-entry-description">Provisionnement automatisé d&#39;environnements éphémères sur AWS et Azure</div>
+          </div>
+          <div class="resume-entry-date">mars 2022–nov. 2022</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Développement de modules Terraform réutilisables et de pipelines GitLab CI</p>
+            </li>
+            <li>
+              <p>Intégration de politiques OPA et de scans de sécurité Trivy</p>
+            </li>
+            <li>
+              <p>Réduction du temps de création d&#39;un environnement de 2 jours à 30 minutes</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Mots-clés</span> : Terraform, AWS, Azure, OPA, GitLab CI</div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="interests" data-section="interests">
+    <h2 class="resume-section-title">Centres d'intérêt</h2>
+    <div class="resume-section-content">
+      <div class="resume-interest-item"><span class="resume-interest-name">Open Source</span> : Kubernetes, Terraform, Prometheus</div>
+      <div class="resume-interest-item"><span class="resume-interest-name">Sport</span> : Course à pied, Escalade</div>
+      <div class="resume-interest-item"><span class="resume-interest-name">Lecture</span> : Essais techniques, Science-fiction</div>
+    </div>
+  </section>
+  <section class="resume-section" id="volunteer" data-section="volunteer">
+    <h2 class="resume-section-title">Bénévolat</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="volunteer-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.meetup.com/devops-paris/">DevOps Paris</a></div>
+            <div class="resume-entry-organization">Mentor</div>
+          </div>
+          <div class="resume-entry-date">sept. 2022–Present</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Accompagnement de développeurs et d&#39;administrateurs dans leur transition vers les pratiques DevOps</p>
+            </li>
+            <li>
+              <p>Animation d&#39;ateliers pratiques sur Kubernetes, Terraform et CI/CD</p>
+            </li>
+            <li>
+              <p>Organisation de rencontres mensuelles et de retours d&#39;expérience</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer class="resume-footer">Generated by <a href="https://yamlresume.dev">YAMLResume</a></footer>
+</body>
+
+</html>

@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="generator" content="YAMLResume (https://yamlresume.dev)">
+
+
+  <title>Carolina Mendes Resume</title>
+  <style>
+    :root {
+      --text-font-size: 16px;
+      --text-font-family: var(--text-default-font-family);
+      --line-height: 1.5;
+    }
+
+    /* Modified from: https://www.joshwcomeau.com/css/custom-css-reset/ */
+
+    /* 1. Use a more-intuitive box-sizing model */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    /* 2. Remove default margin */
+    *:not(dialog) {
+      margin: 0;
+    }
+
+    body {
+      /* 3. Improve text rendering */
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    :root {
+      --border-color: #d0d0d0;
+
+      /* text colors */
+      --text-color-primary: #000000;
+      --text-color-secondary: #333333;
+
+      /* spacing */
+      --spacing-xss: 2px;
+      --spacing-xs: 4px;
+      --spacing-sm: 8px;
+      --spacing-md: 12px;
+      --spacing-lg: 16px;
+      --spacing-xl: 24px;
+      --spacing-xxl: 40px;
+      --spacing-xxxl: 80px;
+
+      /* font sizes */
+      --font-size-xs: 0.8rem;
+      --font-size-sm: 0.9rem;
+      --font-size-md: 1rem;
+      --font-size-lg: 1.1rem;
+      --font-size-xl: 1.25rem;
+      --font-size-xxl: 2.5rem;
+
+      /* layout */
+      --page-max-width: 900px;
+
+      /* typography */
+      --text-default-font-family:
+        -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu,
+        Cantarell, sans-serif;
+    }
+
+    html {
+      font-size: var(--text-font-size);
+    }
+
+    body {
+      /* font & text */
+      color: var(--text-color-primary);
+      font-family: var(--text-font-family);
+      /* this variable is defined by `typography.fontSize` in resume html layout */
+      text-autospace: normal;
+
+      /* layout */
+      line-height: var(--line-height);
+      max-width: var(--page-max-width);
+      margin: 0 auto;
+      padding: var(--spacing-xxxl) var(--spacing-xxl) var(--spacing-xxl);
+    }
+
+    /* header */
+    .resume-header {
+      margin-bottom: var(--spacing-xxl);
+      text-align: center;
+    }
+
+    .resume-name {
+      font-size: var(--font-size-xxl);
+      font-weight: 600;
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .resume-headline {
+      font-size: var(--font-size-lg);
+      margin-bottom: var(--spacing-md);
+    }
+
+    /* contact info */
+    .resume-contact-info {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      column-gap: var(--spacing-lg);
+      row-gap: var(--spacing-xs);
+      margin-top: var(--spacing-sm);
+    }
+
+    .resume-contact-icon,
+    .resume-contact-label {
+      margin-right: var(--spacing-sm);
+      vertical-align: middle;
+    }
+
+    /* links: modern typographic style */
+    a {
+      color: var(--text-color-primary);
+      text-decoration: underline;
+      text-decoration-color: var(--border-color);
+      text-underline-offset: 3px;
+      text-decoration-thickness: 1px;
+      text-decoration-skip-ink: auto;
+      transition: text-decoration-color 0.2s;
+    }
+
+    a:hover {
+      text-decoration-color: var(--text-color-primary);
+    }
+
+    /* sections */
+    .resume-section {
+      margin-bottom: var(--spacing-xl);
+    }
+
+    .resume-section-title {
+      font-size: var(--font-size-xl);
+      font-weight: 500;
+      margin-bottom: var(--spacing-md);
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: var(--spacing-xs);
+    }
+
+    /* entries */
+    .resume-entry {
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .resume-entry:last-child {
+      margin-bottom: 0;
+    }
+
+    .resume-entry-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .resume-entry-title {
+      font-weight: 500;
+      margin-bottom: var(--spacing-xss);
+    }
+
+    .resume-entry-summary p,
+    .resume-summary-content p {
+      margin-bottom: var(--spacing-xs);
+    }
+
+    /* lists */
+    .resume-entry-summary ul,
+    .resume-entry-summary ol,
+    .resume-summary-content ul,
+    .resume-summary-content ol {
+      padding-left: var(--spacing-lg);
+      list-style-type: circle;
+    }
+
+    /* labeled lists (courses, keywords, etc.) */
+    .resume-labeled-list span {
+      font-weight: 500;
+    }
+
+    /* skills grid */
+    .resume-skill-item,
+    .resume-language-item {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .resume-skill-name,
+    .resume-language-name {
+      font-weight: 500;
+    }
+
+    .resume-skill-level,
+    .resume-language-fluency {
+      font-weight: 400;
+    }
+
+    /* mobile */
+    @media (max-width: 768px) {
+      body {
+        padding: var(--spacing-xl);
+      }
+
+      .resume-header {
+        margin-bottom: var(--spacing-xl);
+      }
+
+      .resume-contact-info {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .resume-entry-header {
+        flex-wrap: wrap;
+      }
+    }
+
+    /* footer */
+    .resume-footer {
+      margin-top: var(--spacing-xxl);
+      padding-top: var(--spacing-xl);
+      border-top: 1px solid var(--border-color);
+      font-size: var(--font-size-sm);
+      color: var(--text-color-secondary);
+    }
+
+    @media print {
+      .resume-footer {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="resume-header">
+    <h1 class="resume-name">Carolina Mendes</h1>
+    <p class="resume-headline">Executiva de Contas | Vendas B2B SaaS</p>
+    <div class="resume-contact-info">
+      <span class="resume-contact-item"><span class="resume-contact-icon">📧</span><a href="mailto:carolina.mendes@vendaspro.com.br" class="resume-contact-link">carolina.mendes@vendaspro.com.br</a></span>
+      <span class="resume-contact-item"><span class="resume-contact-icon">📞</span>+55 11 98765-4321</span>
+      <span class="resume-contact-item"><span class="resume-contact-icon">🔗</span><a href="https://www.carolinamendes.com.br" class="resume-contact-link">https://www.carolinamendes.com.br</a></span>
+    </div>
+    <div class="resume-contact-info resume-location-info">
+      <span class="resume-contact-item"><span class="resume-contact-icon">📍</span>Av. Paulista, 1000, Bela Vista, São Paulo, SP, Brasil, 01310-100</span>
+    </div>
+    <div class="resume-contact-info resume-profiles-info">
+      <span class="resume-contact-item"><span class="resume-contact-label">LinkedIn</span>: <a href="https://www.linkedin.com/in/carolinamendes" class="resume-contact-link">@carolinamendes</a></span>
+      <span class="resume-contact-item"><span class="resume-contact-label">Instagram</span>: <a href="https://www.instagram.com/carolmendes.vendas" class="resume-contact-link">@carolmendes.vendas</a></span>
+    </div>
+  </header>
+  <section class="resume-section" id="summary" data-section="summary">
+    <h2 class="resume-section-title">Informações Básicas</h2>
+    <div class="resume-section-content">
+      <div class="resume-summary-content">
+        <p>Executiva de Contas com mais de 8 anos de experiência em vendas B2B de soluções SaaS, especializada em gestão do ciclo completo de vendas, prospecção estratégica e fechamento de contratos de alto valor. Histórico comprovado de superação de metas trimestrais e anuais, com forte habilidade em construir relacionamentos de confiança com clientes C-level. Experiência em CRM (Salesforce, HubSpot), metodologias de vendas (SPIN, MEDDIC) e análise de dados para tomada de decisão. Proficiente em português, inglês e espanhol.</p>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="education" data-section="education">
+    <h2 class="resume-section-title">Formação</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="education-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.usp.br">Universidade de São Paulo</a></div>
+            <div class="resume-entry-organization">Bacharelado, Administração de Empresas, Nota: 8.7</div>
+          </div>
+          <div class="resume-entry-date">fev. de 2010–dez. de 2014</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Formação sólida em administração, com foco em estratégias comerciais e gestão de equipes de vendas.</p>
+            </li>
+            <li>
+              <p>Desenvolvimento de habilidades analíticas e de comunicação por meio de projetos práticos e apresentações.</p>
+            </li>
+            <li>
+              <p>Participação em empresa júnior, atuando em prospecção de clientes e elaboração de propostas comerciais.</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Cursos</span>: Gestão de Vendas, Marketing Estratégico, Negociação Comercial, Comportamento Organizacional, Análise Financeira, Gestão de Projetos</div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="work" data-section="work">
+    <h2 class="resume-section-title">Experiência Profissional</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="work-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.vendamais.com.br">VendaMais Tecnologia</a></div>
+            <div class="resume-entry-organization">Executiva de Contas Sênior</div>
+          </div>
+          <div class="resume-entry-date">mar. de 2019–Atual</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Gerenciei um portfólio de mais de 50 contas estratégicas, com foco em soluções SaaS de gestão de vendas e automação de marketing.</p>
+            </li>
+            <li>
+              <p>Superei a meta anual em 145% em 2023, gerando mais de R$ 4 milhões em receita nova e recorrente.</p>
+            </li>
+            <li>
+              <p>Conduzi negociações complexas com diretores e C-levels, reduzindo o ciclo de vendas em 20% por meio de propostas de valor personalizadas.</p>
+            </li>
+            <li>
+              <p>Implementei cadências de prospecção outbound e inbound, aumentando em 35% a taxa de conversão de leads em oportunidades.</p>
+            </li>
+            <li>
+              <p>Colaborei com as equipes de Customer Success e Produto para garantir a adoção e a expansão das contas.</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Palavras-chave</span>: Vendas B2B, SaaS, CRM, Negociação, Metas</div>
+      </div>
+      <div class="resume-entry" id="work-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.solucoescloud.com.br">Soluções Cloud Brasil</a></div>
+            <div class="resume-entry-organization">Executiva de Contas</div>
+          </div>
+          <div class="resume-entry-date">jan. de 2016–fev. de 2019</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Responsável pelo ciclo completo de vendas de serviços de infraestrutura em nuvem para médias e grandes empresas.</p>
+            </li>
+            <li>
+              <p>Alcancei 130% da meta anual em 2017 e 2018, com ticket médio de R$ 80 mil.</p>
+            </li>
+            <li>
+              <p>Desenvolvi relacionamentos com parceiros de canal, gerando 25% do pipeline qualificado.</p>
+            </li>
+            <li>
+              <p>Realizei análises de necessidades técnicas e apresentações de ROI para áreas de TI e Finanças.</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Palavras-chave</span>: Cloud, Infraestrutura, Pipeline, ROI</div>
+      </div>
+      <div class="resume-entry" id="work-3">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.inovatech.com.br">InovaTech Sistemas</a></div>
+            <div class="resume-entry-organization">Representante de Desenvolvimento de Vendas</div>
+          </div>
+          <div class="resume-entry-date">jul. de 2014–dez. de 2015</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Prospecção ativa de novos clientes por telefone, e-mail e LinkedIn, com média de 60 ligações diárias.</p>
+            </li>
+            <li>
+              <p>Qualificação de leads e agendamento de reuniões para o time de executivos de contas.</p>
+            </li>
+            <li>
+              <p>Manutenção do CRM com dados precisos e relatórios semanais de atividades.</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Palavras-chave</span>: Prospecção, Qualificação, LinkedIn, CRM</div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="languages" data-section="languages">
+    <h2 class="resume-section-title">Idiomas</h2>
+    <div class="resume-section-content">
+      <div class="resume-languages-list">
+        <div class="resume-language-item">
+          <div class="resume-language-name">Português<span class="resume-language-fluency">: Nativo ou Bilíngue</span></div>
+          <div>
+            <div class="resume-labeled-list"><span>Palavras-chave</span>: Nativo</div>
+          </div>
+        </div>
+        <div class="resume-language-item">
+          <div class="resume-language-name">Inglês<span class="resume-language-fluency">: Proficiência Profissional Fluente</span></div>
+          <div>
+            <div class="resume-labeled-list"><span>Palavras-chave</span>: TOEFL iBT 105, Reuniões internacionais</div>
+          </div>
+        </div>
+        <div class="resume-language-item">
+          <div class="resume-language-name">Espanhol<span class="resume-language-fluency">: Proficiência Profissional Limitada</span></div>
+          <div>
+            <div class="resume-labeled-list"><span>Palavras-chave</span>: DELE B1, Negociação básica</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="skills" data-section="skills">
+    <h2 class="resume-section-title">Competências</h2>
+    <div class="resume-section-content">
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">Vendas B2B<span class="resume-skill-level">: Especialista</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>Palavras-chave</span>: Prospecção, Qualificação de Leads, Fechamento de Contratos, Gestão de Pipeline, Negociação</div>
+        </div>
+      </div>
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">Ferramentas de CRM<span class="resume-skill-level">: Avançado</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>Palavras-chave</span>: Salesforce, HubSpot, Pipedrive, LinkedIn Sales Navigator</div>
+        </div>
+      </div>
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">Análise de Dados<span class="resume-skill-level">: Avançado</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>Palavras-chave</span>: Excel Avançado, Power BI, Tableau, Metas e KPIs</div>
+        </div>
+      </div>
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">Comunicação<span class="resume-skill-level">: Especialista</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>Palavras-chave</span>: Apresentações C-level, Storytelling, Escuta Ativa</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="awards" data-section="awards">
+    <h2 class="resume-section-title">Prêmios</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="awards-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title">Vendedora do Ano</div>
+            <div class="resume-entry-organization">VendaMais Tecnologia</div>
+          </div>
+          <div class="resume-entry-date">dez. de 2023</div>
+        </div>
+        <div class="resume-entry-summary">
+          <p>Reconhecimento por superar 150% da meta anual e liderar o ranking de vendas da região Sudeste.</p>
+        </div>
+      </div>
+      <div class="resume-entry" id="awards-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title">Prêmio Excelência em Atendimento</div>
+            <div class="resume-entry-organization">Soluções Cloud Brasil</div>
+          </div>
+          <div class="resume-entry-date">nov. de 2018</div>
+        </div>
+        <div class="resume-entry-summary">
+          <p>Concedido por manter índice de satisfação de clientes acima de 95% e retenção de contratos.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="certificates" data-section="certificates">
+    <h2 class="resume-section-title">Certificados</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="certificates-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.fgv.br">Certificação em Vendas Consultivas</a></div>
+            <div class="resume-entry-organization">Fundação Getulio Vargas</div>
+          </div>
+          <div class="resume-entry-date">jun. de 2021</div>
+        </div>
+      </div>
+      <div class="resume-entry" id="certificates-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://trailhead.salesforce.com">Consultor Certificado Salesforce Sales Cloud</a></div>
+            <div class="resume-entry-organization">Salesforce</div>
+          </div>
+          <div class="resume-entry-date">set. de 2020</div>
+        </div>
+      </div>
+      <div class="resume-entry" id="certificates-3">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://meddic.academy">Metodologia de Vendas MEDDIC</a></div>
+            <div class="resume-entry-organization">MEDDIC Academy</div>
+          </div>
+          <div class="resume-entry-date">mar. de 2019</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="publications" data-section="publications">
+    <h2 class="resume-section-title">Publicações</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="publications-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.revistavendasenegocios.com.br/artigo/prospeccao-saas">Estratégias de Prospecção para Vendas SaaS</a></div>
+            <div class="resume-entry-organization">Revista Vendas &amp; Negócios</div>
+          </div>
+          <div class="resume-entry-date">ago. de 2022</div>
+        </div>
+        <div class="resume-entry-summary">
+          <p>Artigo sobre técnicas de prospecção outbound e inbound para empresas de software como serviço, com foco em personalização e uso de dados.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="projects" data-section="projects">
+    <h2 class="resume-section-title">Projetos</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="projects-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.vendamais.com.br/programa-expansao">Programa de Expansão de Receita</a></div>
+            <div class="resume-entry-description">Iniciativa para aumentar receita recorrente em clientes existentes por meio de upsell e cross-sell.</div>
+          </div>
+          <div class="resume-entry-date">jan. de 2022–dez. de 2023</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Liderança de um programa de expansão que gerou R$ 2,5 milhões em receita adicional em 12 meses.</p>
+            </li>
+            <li>
+              <p>Desenvolvimento de playbooks de upsell e cross-sell para equipe de account management.</p>
+            </li>
+            <li>
+              <p>Implementação de cadência de contato e monitoramento de indicadores no Salesforce.</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Palavras-chave</span>: Upsell, Cross-sell, Receita Recorrente, Customer Success</div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="interests" data-section="interests">
+    <h2 class="resume-section-title">Interesses</h2>
+    <div class="resume-section-content">
+      <div class="resume-interest-item"><span class="resume-interest-name">Corrida</span>: Maratonas, Corrida de rua</div>
+      <div class="resume-interest-item"><span class="resume-interest-name">Leitura</span>: Biografias, Negócios, Psicologia</div>
+    </div>
+  </section>
+  <section class="resume-section" id="volunteer" data-section="volunteer">
+    <h2 class="resume-section-title">Voluntariado</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="volunteer-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.vendasparaobem.org.br">Instituto Vendas para o Bem</a></div>
+            <div class="resume-entry-organization">Mentora de Vendas</div>
+          </div>
+          <div class="resume-entry-date">fev. de 2020–Atual</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Mentoria para jovens em início de carreira comercial, com foco em comunicação, prospecção e ética profissional.</p>
+            </li>
+            <li>
+              <p>Organização de workshops sobre técnicas de vendas e preparação para entrevistas.</p>
+            </li>
+            <li>
+              <p>Apoio na captação de recursos e parcerias com empresas locais.</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer class="resume-footer">Generated by <a href="https://yamlresume.dev">YAMLResume</a></footer>
+</body>
+
+</html>

@@ -1,0 +1,252 @@
+\documentclass[a4paper, serif, 10pt]{moderncv}
+
+%% moderncv
+% style and color
+\moderncvstyle{banking}
+\moderncvcolor{black}
+
+%% page layout/margins
+\usepackage[top=2.5cm, bottom=2.5cm, left=1.5cm, right=1.5cm]{geometry}
+
+\nopagenumbers{}
+
+%% Babel config for English language
+\usepackage[english]{babel}
+
+%% fontspec
+\usepackage{fontspec}
+
+\IfFontExistsTF{Linux Libertine}{
+  \setmainfont[Ligatures={TeX, Common}, Numbers=OldStyle]{Linux Libertine}
+}{}
+\IfFontExistsTF{Linux Libertine O}{
+  \setmainfont[Ligatures={TeX, Common}, Numbers=OldStyle]{Linux Libertine O}
+}{}
+
+%% CTeX
+% CJK support, used to show CJK characters in the resume
+%
+% - fontset=none: disable builtin fontset but instead set the CJK font manually
+% - heading=false: disable ctex heading
+% - punct=kaiming: use kaiming punctuations styles for CJK
+% - scheme=plain: use plain scheme, do not override \normalsize font size
+% - space=auto: space settings for CJK characters
+%
+% ref:
+% - http://ctan.mirrorcatalogs.com/language/chinese/ctex/ctex.pdf
+\usepackage[UTF8, heading=false, punct=kaiming, scheme=plain, space=auto]{ctex}
+
+\IfFontExistsTF{Noto Serif CJK SC}{
+  \setCJKmainfont{Noto Serif CJK SC}
+}{}
+\IfFontExistsTF{Noto Sans CJK SC}{
+  \setCJKsansfont{Noto Sans CJK SC}
+}{}
+
+%% line spacing
+\usepackage{setspace}
+\setstretch{1.125}
+
+%% URL styling - use normal text instead of monospace
+\urlstyle{same}
+
+% Auto-underline all links
+% Defer until \begin{document} so hyperref is already loaded
+\AtBeginDocument{%
+  \let\oldhref\href
+  \renewcommand{\href}[2]{\oldhref{#1}{\underline{#2}}}%
+}
+
+%% Patch \httplink and \httpslink to handle full URLs
+% The original moderncv macros always prepend http:// or https:// to URLs.
+% This causes issues when the URL already has a protocol (e.g., https://example.com)
+% resulting in malformed URLs like https://https://example.com.
+% This patch checks if the URL already contains "://" and uses it directly if so.
+% Note: We use \str_set:Nx (x-expansion) to expand macros like \@homepage first.
+\ExplSyntaxOn
+\str_new:N \g_yamlresume_url_str
+
+\RenewDocumentCommand{\httpslink}{O{}m}{
+  \str_set:Nx \g_yamlresume_url_str {#2}
+  \str_if_in:NnTF \g_yamlresume_url_str {://}
+    { \url{#2} }
+    { \url{https://#2} }
+}
+
+\RenewDocumentCommand{\httplink}{O{}m}{
+  \str_set:Nx \g_yamlresume_url_str {#2}
+  \str_if_in:NnTF \g_yamlresume_url_str {://}
+    { \url{#2} }
+    { \url{http://#2} }
+}
+\ExplSyntaxOff
+
+\name{Jordan A. Ellis}{}
+\title{Senior Account Executive | Enterprise SaaS \& Strategic Partnerships}
+\phone[mobile]{(415) 555-0138}
+\email{jordan.ellis@example.com}
+\homepage{https://www.jordanellis.com}
+
+\address{450 Mission Street, Suite 1200, San Francisco, California, United States, 94105}{}{}
+
+\extrainfo{{\small \faLinkedin}\ \href{https://www.linkedin.com/in/jordanellis}{@jordanellis} {} {} {} • {} {} {} 
+{\small \faTwitter}\ \href{https://twitter.com/jordanellis\_sales}{@jordanellis\_sales}}
+
+\begin{document}
+
+\maketitle
+
+\section{Basics}
+
+\cvline{}{\begin{itemize}
+\item Results-driven Senior Account Executive with 8+ years of experience driving revenue growth in enterprise SaaS and technology solutions.
+\item Consistently exceeded annual quotas by 120\%+ through consultative selling, strategic account planning, and C-level relationship building.
+\item Skilled in full-cycle sales from prospecting to close, with expertise in contract negotiation, pipeline management, and cross-functional collaboration.
+\item Adept at identifying customer pain points, delivering tailored solutions, and expanding accounts through upsell and cross-sell strategies.
+\end{itemize}}
+\section{Education}
+
+\cventry{Sep 2009–Jun 2013}
+        {Bachelor, Business Administration, Score: 3.7}
+        {University of Washington}
+        {\url{https://www.washington.edu}}
+        {}
+        {\begin{itemize}
+\item Graduated with honors and a concentration in sales and marketing.
+\item Led a sales case competition team that placed first among 20 teams.
+\item Completed an internship with a local tech startup, supporting lead generation and market research.
+\end{itemize}
+\textbf{Courses}: Principles of Marketing, Organizational Behavior, Financial Accounting, Business Negotiation, Strategic Management, Consumer Behavior}
+\section{Work}
+
+\cventry{Jan 2021–Present}
+        {Senior Account Executive}
+        {CloudPeak Solutions}
+        {\url{https://www.cloudpeaksolutions.com}}
+        {}
+        {\begin{itemize}
+\item Own full-cycle sales process for enterprise accounts, from prospecting to close, generating \$3.5M+ in annual recurring revenue.
+\item Exceeded annual quota by 125\% in 2022 and 118\% in 2023, consistently ranking in the top 5\% of sales performers.
+\item Built and maintained strong relationships with C-level executives, resulting in a 40\% increase in account expansion.
+\item Negotiated complex multi-year contracts, improving average deal size by 30\% and reducing sales cycle by 15\%.
+\end{itemize}
+\textbf{Keywords}: Enterprise Sales, SaaS, Quota Attainment, C-Level Relationships}
+
+\cventry{Mar 2017–Dec 2020}
+        {Account Executive}
+        {BrightWave Analytics}
+        {\url{https://www.brightwaveanalytics.com}}
+        {}
+        {\begin{itemize}
+\item Managed a portfolio of 50+ mid-market accounts, achieving 110\% of quota in 2018 and 2019.
+\item Developed and executed strategic account plans, resulting in \$1.2M in new business revenue.
+\item Collaborated with marketing and product teams to align solutions with customer needs and drive retention.
+\end{itemize}
+\textbf{Keywords}: Mid-Market Sales, Pipeline Management, Salesforce, Consultative Selling}
+
+\cventry{Jul 2014–Feb 2017}
+        {Business Development Representative}
+        {Nimbus Software}
+        {\url{https://www.nimbussoftware.com}}
+        {}
+        {\begin{itemize}
+\item Prospected and qualified 100+ leads per month through outbound calls, emails, and social selling.
+\item Generated \$800K in qualified pipeline within first year, exceeding target by 130\%.
+\item Supported account executives with research, call preparation, and CRM data management.
+\end{itemize}
+\textbf{Keywords}: Lead Generation, Outbound Sales, CRM, Cold Calling}
+\section{Languages}
+
+\cvline{English}{Native or Bilingual Proficiency \hfill \textbf{Keywords}: TOEFL 115}
+\cvline{Spanish}{Full Professional Proficiency \hfill \textbf{Keywords}: DELE C1}
+\cvline{Mandarin}{Limited Working Proficiency \hfill \textbf{Keywords}: HSK 3}
+\section{Skills}
+
+\cvline{Enterprise Sales}{Expert \hfill \textbf{Keywords}: Full-Cycle Sales, Quota Attainment, Contract Negotiation, Revenue Growth}
+\cvline{Sales Tools \& CRM}{Advanced \hfill \textbf{Keywords}: Salesforce, HubSpot, Outreach.io, LinkedIn Sales Navigator}
+\cvline{Communication \& Leadership}{Expert \hfill \textbf{Keywords}: C-Level Presentations, Cross-Functional Collaboration, Team Mentoring, Strategic Planning}
+\section{Awards}
+
+\cventry{Jan 2023}
+        {CloudPeak Solutions}
+        {Presidents Club}
+        {}
+        {}
+        {Recognized as top 5\% of sales performers for exceeding annual quota and driving enterprise revenue growth.}
+
+\cventry{Dec 2018}
+        {BrightWave Analytics}
+        {Rookie of the Year}
+        {}
+        {}
+        {Awarded for highest new logo acquisition and fastest ramp-up to full quota among new account executives.}
+\section{Certificates}
+
+\cventry{May 2019}
+        {Sales Management Association}
+        {Certified Sales Professional (CSP)}
+        {\url{https://www.salesmanagement.org/csp}}
+        {}
+        {}
+
+\cventry{Aug 2020}
+        {Salesforce}
+        {Salesforce Certified Administrator}
+        {\url{https://trailhead.salesforce.com/en/credentials/administrator}}
+        {}
+        {}
+\section{Publications}
+
+\cventry{Mar 2022}
+        {The Consultative SaaS Sales Playbook}
+        {SalesHacker}
+        {\url{https://www.saleshacker.com/consultative-saas-sales-playbook}}
+        {}
+        {\begin{itemize}
+\item Article outlining a repeatable framework for consultative selling in SaaS.
+\item Covers discovery, solution mapping, objection handling, and closing strategies.
+\item Featured in SalesHacker's top 10 sales articles of 2022.
+\end{itemize}}
+\section{Projects}
+
+\cventry{Feb 2021–Aug 2021}
+        {Led the migration of legacy CRM to Salesforce for enterprise clients.}
+        {Enterprise CRM Migration}
+        {\url{https://www.cloudpeaksolutions.com/case-studies/crm-migration}}
+        {}
+        {\begin{itemize}
+\item Managed cross-functional team of 6 to ensure seamless data migration and user adoption.
+\item Reduced reporting time by 40\% and improved pipeline visibility for sales leadership.
+\item Delivered training sessions to 200+ users across three business units.
+\end{itemize}
+\textbf{Keywords}: CRM Migration, Salesforce, Change Management}
+
+\cventry{Jan 2019–Jun 2019}
+        {Created a repeatable sales playbook for mid-market segment.}
+        {Sales Playbook Development}
+        {}
+        {}
+        {\begin{itemize}
+\item Documented best practices for prospecting, discovery, and objection handling.
+\item Rolled out playbook to 25 account executives, contributing to a 15\% increase in win rate.
+\item Standardized CRM stages and reporting for improved forecasting accuracy.
+\end{itemize}
+\textbf{Keywords}: Sales Playbook, Process Improvement, Training}
+\section{Interests}
+
+\cvline{Sports}{Golf, Tennis, Running}
+\cvline{Personal Development}{Podcasts, Reading, Public Speaking}
+\section{Volunteer}
+
+\cventry{Sep 2019–Present}
+        {Mentor}
+        {Bay Area Sales Mentorship Program}
+        {\url{https://www.bayareasalesmentors.org}}
+        {}
+        {\begin{itemize}
+\item Mentored junior sales professionals on prospecting, negotiation, and career development.
+\item Conducted monthly workshops on consultative selling and account management.
+\item Helped mentees achieve an average 20\% increase in quota attainment.
+\end{itemize}}
+    
+\end{document}

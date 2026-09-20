@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="no">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="generator" content="YAMLResume (https://yamlresume.dev)">
+
+
+  <title>Ingrid Solberg Resume</title>
+  <style>
+    :root {
+      --text-font-size: 16px;
+      --text-font-family: var(--text-default-font-family);
+      --line-height: 1.5;
+    }
+
+    /* Modified from: https://www.joshwcomeau.com/css/custom-css-reset/ */
+
+    /* 1. Use a more-intuitive box-sizing model */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    /* 2. Remove default margin */
+    *:not(dialog) {
+      margin: 0;
+    }
+
+    body {
+      /* 3. Improve text rendering */
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    :root {
+      --border-color: #d0d0d0;
+
+      /* text colors */
+      --text-color-primary: #000000;
+      --text-color-secondary: #333333;
+
+      /* spacing */
+      --spacing-xss: 2px;
+      --spacing-xs: 4px;
+      --spacing-sm: 8px;
+      --spacing-md: 12px;
+      --spacing-lg: 16px;
+      --spacing-xl: 24px;
+      --spacing-xxl: 40px;
+      --spacing-xxxl: 80px;
+
+      /* font sizes */
+      --font-size-xs: 0.8rem;
+      --font-size-sm: 0.9rem;
+      --font-size-md: 1rem;
+      --font-size-lg: 1.1rem;
+      --font-size-xl: 1.25rem;
+      --font-size-xxl: 2.5rem;
+
+      /* layout */
+      --page-max-width: 900px;
+
+      /* typography */
+      --text-default-font-family:
+        -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu,
+        Cantarell, sans-serif;
+    }
+
+    html {
+      font-size: var(--text-font-size);
+    }
+
+    body {
+      /* font & text */
+      color: var(--text-color-primary);
+      font-family: var(--text-font-family);
+      /* this variable is defined by `typography.fontSize` in resume html layout */
+      text-autospace: normal;
+
+      /* layout */
+      line-height: var(--line-height);
+      max-width: var(--page-max-width);
+      margin: 0 auto;
+      padding: var(--spacing-xxxl) var(--spacing-xxl) var(--spacing-xxl);
+    }
+
+    /* header */
+    .resume-header {
+      margin-bottom: var(--spacing-xxl);
+      text-align: center;
+    }
+
+    .resume-name {
+      font-size: var(--font-size-xxl);
+      font-weight: 600;
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .resume-headline {
+      font-size: var(--font-size-lg);
+      margin-bottom: var(--spacing-md);
+    }
+
+    /* contact info */
+    .resume-contact-info {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      column-gap: var(--spacing-lg);
+      row-gap: var(--spacing-xs);
+      margin-top: var(--spacing-sm);
+    }
+
+    .resume-contact-icon,
+    .resume-contact-label {
+      margin-right: var(--spacing-sm);
+      vertical-align: middle;
+    }
+
+    /* links: modern typographic style */
+    a {
+      color: var(--text-color-primary);
+      text-decoration: underline;
+      text-decoration-color: var(--border-color);
+      text-underline-offset: 3px;
+      text-decoration-thickness: 1px;
+      text-decoration-skip-ink: auto;
+      transition: text-decoration-color 0.2s;
+    }
+
+    a:hover {
+      text-decoration-color: var(--text-color-primary);
+    }
+
+    /* sections */
+    .resume-section {
+      margin-bottom: var(--spacing-xl);
+    }
+
+    .resume-section-title {
+      font-size: var(--font-size-xl);
+      font-weight: 500;
+      margin-bottom: var(--spacing-md);
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: var(--spacing-xs);
+    }
+
+    /* entries */
+    .resume-entry {
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .resume-entry:last-child {
+      margin-bottom: 0;
+    }
+
+    .resume-entry-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .resume-entry-title {
+      font-weight: 500;
+      margin-bottom: var(--spacing-xss);
+    }
+
+    .resume-entry-summary p,
+    .resume-summary-content p {
+      margin-bottom: var(--spacing-xs);
+    }
+
+    /* lists */
+    .resume-entry-summary ul,
+    .resume-entry-summary ol,
+    .resume-summary-content ul,
+    .resume-summary-content ol {
+      padding-left: var(--spacing-lg);
+      list-style-type: circle;
+    }
+
+    /* labeled lists (courses, keywords, etc.) */
+    .resume-labeled-list span {
+      font-weight: 500;
+    }
+
+    /* skills grid */
+    .resume-skill-item,
+    .resume-language-item {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .resume-skill-name,
+    .resume-language-name {
+      font-weight: 500;
+    }
+
+    .resume-skill-level,
+    .resume-language-fluency {
+      font-weight: 400;
+    }
+
+    /* mobile */
+    @media (max-width: 768px) {
+      body {
+        padding: var(--spacing-xl);
+      }
+
+      .resume-header {
+        margin-bottom: var(--spacing-xl);
+      }
+
+      .resume-contact-info {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .resume-entry-header {
+        flex-wrap: wrap;
+      }
+    }
+
+    /* footer */
+    .resume-footer {
+      margin-top: var(--spacing-xxl);
+      padding-top: var(--spacing-xl);
+      border-top: 1px solid var(--border-color);
+      font-size: var(--font-size-sm);
+      color: var(--text-color-secondary);
+    }
+
+    @media print {
+      .resume-footer {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="resume-header">
+    <h1 class="resume-name">Ingrid Solberg</h1>
+    <p class="resume-headline">Kundeansvarlig (Account Executive) med spesialisering i B2B-salg og kundevekst</p>
+    <div class="resume-contact-info">
+      <span class="resume-contact-item"><span class="resume-contact-icon">📧</span><a href="mailto:ingrid.solberg@example.no" class="resume-contact-link">ingrid.solberg@example.no</a></span>
+      <span class="resume-contact-item"><span class="resume-contact-icon">📞</span>+47 912 34 567</span>
+      <span class="resume-contact-item"><span class="resume-contact-icon">🔗</span><a href="https://www.ingridsolberg.no" class="resume-contact-link">https://www.ingridsolberg.no</a></span>
+    </div>
+    <div class="resume-contact-info resume-location-info">
+      <span class="resume-contact-item"><span class="resume-contact-icon">📍</span>Karl Johans gate 15, Oslo, Oslo, Norge, 0150</span>
+    </div>
+    <div class="resume-contact-info resume-profiles-info">
+      <span class="resume-contact-item"><span class="resume-contact-label">LinkedIn</span>: <a href="https://www.linkedin.com/in/ingridsolberg" class="resume-contact-link">@ingridsolberg</a></span>
+      <span class="resume-contact-item"><span class="resume-contact-label">Twitter</span>: <a href="https://twitter.com/ingridsolberg" class="resume-contact-link">@ingridsolberg</a></span>
+    </div>
+  </header>
+  <section class="resume-section" id="summary" data-section="summary">
+    <h2 class="resume-section-title">Grunnleggende informasjon</h2>
+    <div class="resume-section-content">
+      <div class="resume-summary-content">
+        <ul>
+          <li>
+            <p>Erfaren kundeansvarlig med dokumenterte resultater innen B2B-salg, SaaS og kundeutvikling</p>
+          </li>
+          <li>
+            <p>Sterk på hele salgssyklusen fra prospecting og behovsanalyse til forhandling og kontrakt</p>
+          </li>
+          <li>
+            <p>Systematisk og datadrevet tilnærming, med god forståelse for CRM, pipeline og prognoser</p>
+          </li>
+          <li>
+            <p>Relasjonsbygger som skaper tillit hos beslutningstakere og samarbeider godt på tvers av fagmiljøer</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="education" data-section="education">
+    <h2 class="resume-section-title">Utdanning</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="education-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.bi.no">Handelshøyskolen BI</a></div>
+            <div class="resume-entry-organization">Bachelor, Markedsføring og salgsledelse, Poeng: 3.9</div>
+          </div>
+          <div class="resume-entry-date">aug. 2015–juni 2018</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Fordypning i B2B-salg, kundeadferd og kommersiell strategi</p>
+            </li>
+            <li>
+              <p>Gjennomførte flere caseoppgaver med fokus på vekst og lønnsomhet</p>
+            </li>
+            <li>
+              <p>Utviklet sterke ferdigheter i presentasjonsteknikk og forhandling</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Kurs</span>: Strategisk markedsføring, Salgsledelse og forhandling, Forretningsforståelse, Digital markedsføring, Kundeinnsikt og analyse, Prosjektledelse</div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="work" data-section="work">
+    <h2 class="resume-section-title">Arbeidserfaring</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="work-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.nordisksky.no">Nordisk Sky AS</a></div>
+            <div class="resume-entry-organization">Senior kundeansvarlig (Account Executive)</div>
+          </div>
+          <div class="resume-entry-date">jan. 2022–Nå</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Forvalter og utvikler en portefølje av mellomstore og store kunder innen SaaS</p>
+            </li>
+            <li>
+              <p>Leder komplekse salgsprosesser fra første kontakt til signert avtale</p>
+            </li>
+            <li>
+              <p>Oppnådde 132 % av kvartalsvis salgsmål i 2023 og 118 % i 2024</p>
+            </li>
+            <li>
+              <p>Bygger og vedlikeholder en sunn pipeline med høy prognosenøyaktighet</p>
+            </li>
+            <li>
+              <p>Samarbeider tett med customer success, produkt og marked for å sikre verdi</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Nøkkelord</span>: B2B SaaS, Salgsstrategi, Forhandling, Pipeline</div>
+      </div>
+      <div class="resume-entry" id="work-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.vekstpartner.no">Vekstpartner AS</a></div>
+            <div class="resume-entry-organization">Kundeansvarlig (Account Executive)</div>
+          </div>
+          <div class="resume-entry-date">aug. 2018–des. 2021</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Ansvarlig for nykundesalg og videreutvikling av eksisterende kunder</p>
+            </li>
+            <li>
+              <p>Gjennomførte behovsanalyser og presenterte skreddersydde løsninger</p>
+            </li>
+            <li>
+              <p>Bygde opp et nettverk av beslutningstakere i norsk næringsliv</p>
+            </li>
+            <li>
+              <p>Bidro til å øke omsetningen i segmentet med 27 % over tre år</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Nøkkelord</span>: Nykundesalg, Kundeutvikling, Behovsanalyse, CRM</div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="languages" data-section="languages">
+    <h2 class="resume-section-title">Språk</h2>
+    <div class="resume-section-content">
+      <div class="resume-languages-list">
+        <div class="resume-language-item">
+          <div class="resume-language-name">Norsk<span class="resume-language-fluency">: Morsmål eller tospråklig nivå</span></div>
+          <div>
+            <div class="resume-labeled-list"><span>Nøkkelord</span>: Morsmål</div>
+          </div>
+        </div>
+        <div class="resume-language-item">
+          <div class="resume-language-name">Engelsk<span class="resume-language-fluency">: Fullt profesjonelt nivå</span></div>
+          <div>
+            <div class="resume-labeled-list"><span>Nøkkelord</span>: Forretningsflyt</div>
+          </div>
+        </div>
+        <div class="resume-language-item">
+          <div class="resume-language-name">Tysk<span class="resume-language-fluency">: Begrenset arbeidskunnskap</span></div>
+          <div>
+            <div class="resume-labeled-list"><span>Nøkkelord</span>: Grunnleggende</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="skills" data-section="skills">
+    <h2 class="resume-section-title">Ferdigheter</h2>
+    <div class="resume-section-content">
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">Salg og forretningsutvikling<span class="resume-skill-level">: Ekspert</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>Nøkkelord</span>: B2B-salg, Salgsstrategi, Forhandling, Pipeline, Prognoser</div>
+        </div>
+      </div>
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">CRM og verktøy<span class="resume-skill-level">: Avansert</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>Nøkkelord</span>: Salesforce, HubSpot, LinkedIn Sales Nav, Excel, Power BI</div>
+        </div>
+      </div>
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">Kommunikasjon og relasjoner<span class="resume-skill-level">: Ekspert</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>Nøkkelord</span>: Presentasjon, Kundeinnsikt, Relasjonsbygging, Tverrfaglig</div>
+        </div>
+      </div>
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">Språk<span class="resume-skill-level">: Avansert</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>Nøkkelord</span>: Norsk, Engelsk, Skandinavisk</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="awards" data-section="awards">
+    <h2 class="resume-section-title">Utmerkelser</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="awards-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title">Årets Salgstalent</div>
+            <div class="resume-entry-organization">Vekstpartner AS</div>
+          </div>
+          <div class="resume-entry-date">nov. 2020</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Tildelt for fremragende resultater og evne til å bygge varige kunderelasjoner</p>
+            </li>
+            <li>
+              <p>Anerkjent for høy aktivitet og systematisk oppfølging av salgsmuligheter</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="certificates" data-section="certificates">
+    <h2 class="resume-section-title">Sertifikater</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="certificates-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.salgsforeningen.no/sertifisering">Sertifisert salgsprofesjonell</a></div>
+            <div class="resume-entry-organization">Norsk Salgsforening</div>
+          </div>
+          <div class="resume-entry-date">mars 2021</div>
+        </div>
+      </div>
+      <div class="resume-entry" id="certificates-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://academy.hubspot.com/courses/sales-software">HubSpot-sertifisering for salg</a></div>
+            <div class="resume-entry-organization">HubSpot</div>
+          </div>
+          <div class="resume-entry-date">sep. 2022</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="publications" data-section="publications">
+    <h2 class="resume-section-title">Publikasjoner</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="publications-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.salgsmagasinet.no/artikler/datadrevet-b2b-salg">Slik lykkes du med datadrevet B2B-salg</a></div>
+            <div class="resume-entry-organization">Salgsmagasinet</div>
+          </div>
+          <div class="resume-entry-date">apr. 2023</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Praktiske råd om bruk av CRM-data for å prioritere riktige kunder</p>
+            </li>
+            <li>
+              <p>Hvordan bygge en forutsigbar salgspipeline i SaaS-selskaper</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="projects" data-section="projects">
+    <h2 class="resume-section-title">Prosjekter</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="projects-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.nordisksky.no/pipeline">Salgspipeline 2.0</a></div>
+            <div class="resume-entry-description">Prosjekt for å forbedre salgsprosessen og øke konverteringsraten</div>
+          </div>
+          <div class="resume-entry-date">feb. 2023–aug. 2023</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Kartla og forenklet salgsfasene i CRM</p>
+            </li>
+            <li>
+              <p>Innførte nye kvalifiseringskriterier og oppfølgingsrutiner</p>
+            </li>
+            <li>
+              <p>Økte konverteringsraten fra kvalifisert lead til møte med 18 %</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Nøkkelord</span>: Salgsprosess, CRM, Konvertering</div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="interests" data-section="interests">
+    <h2 class="resume-section-title">Interesser</h2>
+    <div class="resume-section-content">
+      <div class="resume-interest-item"><span class="resume-interest-name">Friluftsliv</span>: Fjellturer, Ski, Kajakk</div>
+      <div class="resume-interest-item"><span class="resume-interest-name">Samfunn</span>: Entreprenørskap, Bærekraft</div>
+    </div>
+  </section>
+  <section class="resume-section" id="volunteer" data-section="volunteer">
+    <h2 class="resume-section-title">Frivillig arbeid</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="volunteer-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.ue.no">Ungt Entreprenørskap Oslo</a></div>
+            <div class="resume-entry-organization">Mentor</div>
+          </div>
+          <div class="resume-entry-date">sep. 2019–juni 2023</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Veiledet elever i videregående skole gjennom ungdomsbedrift</p>
+            </li>
+            <li>
+              <p>Bidro med råd om salg, markedsføring og forretningsmodell</p>
+            </li>
+            <li>
+              <p>Inspirerte unge til å utforske entreprenørskap og næringsliv</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer class="resume-footer">Generated by <a href="https://yamlresume.dev">YAMLResume</a></footer>
+</body>
+
+</html>

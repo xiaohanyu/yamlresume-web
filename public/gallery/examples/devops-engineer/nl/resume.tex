@@ -1,0 +1,284 @@
+\documentclass[a4paper, serif, 10pt]{moderncv}
+
+%% moderncv
+% style and color
+\moderncvstyle{banking}
+\moderncvcolor{black}
+
+%% page layout/margins
+\usepackage[top=2.5cm, bottom=2.5cm, left=1.5cm, right=1.5cm]{geometry}
+
+\nopagenumbers{}
+
+%% Babel config for Dutch language
+% ref:
+% - https://latex3.github.io/babel/guides/locale-dutch.html
+\usepackage[dutch]{babel}
+
+%% fontspec
+\usepackage{fontspec}
+
+\IfFontExistsTF{Linux Libertine}{
+  \setmainfont[Ligatures={TeX, Common}, Numbers=OldStyle]{Linux Libertine}
+}{}
+\IfFontExistsTF{Linux Libertine O}{
+  \setmainfont[Ligatures={TeX, Common}, Numbers=OldStyle]{Linux Libertine O}
+}{}
+
+%% CTeX
+% CJK support, used to show CJK characters in the resume
+%
+% - fontset=none: disable builtin fontset but instead set the CJK font manually
+% - heading=false: disable ctex heading
+% - punct=kaiming: use kaiming punctuations styles for CJK
+% - scheme=plain: use plain scheme, do not override \normalsize font size
+% - space=auto: space settings for CJK characters
+%
+% ref:
+% - http://ctan.mirrorcatalogs.com/language/chinese/ctex/ctex.pdf
+\usepackage[UTF8, heading=false, punct=kaiming, scheme=plain, space=auto]{ctex}
+
+\IfFontExistsTF{Noto Serif CJK SC}{
+  \setCJKmainfont{Noto Serif CJK SC}
+}{}
+\IfFontExistsTF{Noto Sans CJK SC}{
+  \setCJKsansfont{Noto Sans CJK SC}
+}{}
+
+%% line spacing
+\usepackage{setspace}
+\setstretch{1.125}
+
+%% URL styling - use normal text instead of monospace
+\urlstyle{same}
+
+% Auto-underline all links
+% Defer until \begin{document} so hyperref is already loaded
+\AtBeginDocument{%
+  \let\oldhref\href
+  \renewcommand{\href}[2]{\oldhref{#1}{\underline{#2}}}%
+}
+
+%% Patch \httplink and \httpslink to handle full URLs
+% The original moderncv macros always prepend http:// or https:// to URLs.
+% This causes issues when the URL already has a protocol (e.g., https://example.com)
+% resulting in malformed URLs like https://https://example.com.
+% This patch checks if the URL already contains "://" and uses it directly if so.
+% Note: We use \str_set:Nx (x-expansion) to expand macros like \@homepage first.
+\ExplSyntaxOn
+\str_new:N \g_yamlresume_url_str
+
+\RenewDocumentCommand{\httpslink}{O{}m}{
+  \str_set:Nx \g_yamlresume_url_str {#2}
+  \str_if_in:NnTF \g_yamlresume_url_str {://}
+    { \url{#2} }
+    { \url{https://#2} }
+}
+
+\RenewDocumentCommand{\httplink}{O{}m}{
+  \str_set:Nx \g_yamlresume_url_str {#2}
+  \str_if_in:NnTF \g_yamlresume_url_str {://}
+    { \url{#2} }
+    { \url{http://#2} }
+}
+\ExplSyntaxOff
+
+\name{Thomas de Vries}{}
+\title{DevOps Engineer | Cloudinfrastructuur \& Automatisering}
+\phone[mobile]{+31 20 123 4567}
+\email{thomas.devries@example.com}
+\homepage{https://thomasdevries.dev}
+
+\address{Keizersgracht 123, Amsterdam, Noord-Holland, Nederland, 1015 CJ}{}{}
+
+\extrainfo{{\small \faLinkedin}\ \href{https://www.linkedin.com/in/thomasdevries}{@thomasdevries} {} {} {} • {} {} {} 
+{\small \faGithub}\ \href{https://github.com/thomasdevries}{@thomasdevries} {} {} {} • {} {} {} 
+{\small \faStackOverflow}\ \href{https://stackoverflow.com/users/12345678/thomasdevries}{@thomasdevries}}
+
+\begin{document}
+
+\maketitle
+
+\section{Basis Informatie}
+
+\cvline{}{\begin{itemize}
+\item Ervaren DevOps Engineer met meer dan 8 jaar ervaring in het automatiseren van cloudinfrastructuur en het bouwen van betrouwbare CI/CD-pipelines.
+\item Diepgaande kennis van AWS, Azure, Kubernetes, Terraform en GitOps.
+\item Gepassioneerd door platform engineering, observability en het verhogen van de ontwikkelsnelheid van teams.
+\item Sterke communicatieve vaardigheden en ervaring met het begeleiden van multidisciplinaire teams.
+\end{itemize}
+Ik werk graag aan de snijlijn van infrastructuur en softwareontwikkeling, waarbij ik processen continu verbeter en operationele kosten verlaag zonder in te leveren op betrouwbaarheid.}
+\section{Opleidingen}
+
+\cventry{sep 2016–jul 2018}
+        {Master, Computerwetenschappen, Score: 8.5}
+        {Technische Universiteit Delft}
+        {\url{https://www.tudelft.nl/}}
+        {}
+        {\begin{itemize}
+\item Afstudeerrichting Cloud \& Distributed Systems
+\item Thesis over automatische schaalvergroting van containerplatforms in hybride clouds
+\item Cum laude afgestudeerd
+\end{itemize}
+\textbf{Cursussen}: Gedistribueerde systemen, Cloud computing, Netwerktechnologie, Operationele systemen, Softwarearchitectuur, Beveiliging van informatiesystemen}
+
+\cventry{sep 2012–jun 2016}
+        {Bachelor, Informatica, Score: 8.0}
+        {Hogeschool van Amsterdam}
+        {\url{https://www.hva.nl/}}
+        {}
+        {\begin{itemize}
+\item Minor in Cloud \& Virtualisatie
+\item Stage bij een hostingprovider voor geautomatiseerde deployments
+\end{itemize}
+\textbf{Cursussen}: Programmeren in Python, Linux systeembeheer, Databases, Netwerken, IT-beveiliging}
+\section{Werkervaring}
+
+\cventry{jan 2022–Heden}
+        {Senior DevOps Engineer}
+        {Rabobank}
+        {\url{https://www.rabobank.nl/}}
+        {}
+        {\begin{itemize}
+\item Verantwoordelijk voor het ontwerpen en beheren van een multi-cloud platform op AWS en Azure.
+\item Geautomatiseerde CI/CD-pipelines met GitLab CI en Argo CD, waardoor releases van dagen naar minuten gingen.
+\item Infrastructure as Code met Terraform en Ansible voor meer dan 200 applicaties.
+\item Implementatie van observability met Prometheus, Grafana en Loki.
+\item Begeleiden van een team van 6 DevOps engineers en bevorderen van kennisdeling.
+\end{itemize}
+\textbf{Trefwoorden}: AWS, Azure, Terraform, Kubernetes, GitLab CI, Observability}
+
+\cventry{aug 2018–dec 2021}
+        {DevOps Engineer}
+        {KPN}
+        {\url{https://www.kpn.com/}}
+        {}
+        {\begin{itemize}
+\item Beheerde Kubernetes-clusters en ontwikkelde Helm-charts voor interne microservices.
+\item Bouwde CI/CD-pipelines met Jenkins en later GitHub Actions.
+\item Automatiseerde serverprovisioning met Ansible en Packer.
+\item Verhoogde beschikbaarheid van diensten naar 99,95\% door monitoring en alerting.
+\item Samenwerking met ontwikkelteams om security en compliance te integreren in de pipeline.
+\end{itemize}
+\textbf{Trefwoorden}: Kubernetes, Jenkins, Ansible, Packer, Prometheus}
+
+\cventry{sep 2015–jul 2018}
+        {Systeembeheerder / DevOps}
+        {Info Support}
+        {\url{https://www.infosupport.com/}}
+        {}
+        {\begin{itemize}
+\item Beheer van Linux- en Windows-servers voor zakelijke klanten.
+\item Introductie van geautomatiseerde configuratie met Puppet.
+\item Migratie van on-premises workloads naar AWS.
+\item Opzetten van basis monitoring met Nagios en later Zabbix.
+\end{itemize}
+\textbf{Trefwoorden}: Linux, Windows Server, Puppet, AWS, Nagios}
+\section{Talen}
+
+\cvline{Nederlands}{Moedertaal of tweetalige vaardigheid \hfill \textbf{Trefwoorden}: Moedertaal}
+\cvline{Engels}{Volledige professionele vaardigheid \hfill \textbf{Trefwoorden}: Professioneel werkzaam, TOEIC 950}
+\cvline{Duits}{Beperkte werkvaardigheid \hfill \textbf{Trefwoorden}: Basiskennis, A2}
+\section{Vaardigheden}
+
+\cvline{Cloudplatformen}{Expert \hfill \textbf{Trefwoorden}: AWS, Azure, Google Cloud}
+\cvline{Containers \& Orchestratie}{Expert \hfill \textbf{Trefwoorden}: Kubernetes, Docker, Helm, OpenShift}
+\cvline{Infrastructure as Code}{Geavanceerd \hfill \textbf{Trefwoorden}: Terraform, Ansible, Pulumi, CloudFormation}
+\cvline{CI/CD \& Automatisering}{Expert \hfill \textbf{Trefwoorden}: GitLab CI, Jenkins, GitHub Actions, Argo CD}
+\cvline{Monitoring \& Observability}{Geavanceerd \hfill \textbf{Trefwoorden}: Prometheus, Grafana, Loki, ELK Stack}
+\cvline{Programmeertalen \& Scripting}{Geavanceerd \hfill \textbf{Trefwoorden}: Python, Bash, Go, PowerShell}
+\section{Onderscheidingen}
+
+\cventry{nov 2023}
+        {Rabobank}
+        {DevOps Team van het Jaar}
+        {}
+        {}
+        {\begin{itemize}
+\item Toegekend voor het succesvol migreren van kritische applicaties naar een geautomatiseerd multi-cloud platform.
+\end{itemize}}
+
+\cventry{jul 2018}
+        {Technische Universiteit Delft}
+        {Beste Afstudeerproject}
+        {}
+        {}
+        {\begin{itemize}
+\item Prijs voor onderzoek naar automatische schaalvergroting van containerplatforms.
+\end{itemize}}
+\section{Certificaten}
+
+\cventry{mrt 2023}
+        {AWS}
+        {AWS Certified DevOps Engineer - Professional}
+        {\url{https://aws.amazon.com/certification/certified-devops-engineer-professional/}}
+        {}
+        {}
+
+\cventry{jun 2021}
+        {CNCF}
+        {Certified Kubernetes Administrator (CKA)}
+        {\url{https://www.cncf.io/certification/cka/}}
+        {}
+        {}
+
+\cventry{sep 2022}
+        {HashiCorp}
+        {HashiCorp Certified: Terraform Associate}
+        {\url{https://www.hashicorp.com/certification/terraform-associate}}
+        {}
+        {}
+\section{Publicaties}
+
+\cventry{mei 2023}
+        {Zero Trust in cloud-native omgevingen}
+        {Dutch DevOps Journal}
+        {\url{https://www.dutchdevopsjournal.nl/zero-trust-cloud-native}}
+        {}
+        {\begin{itemize}
+\item Artikel over het implementeren van een Zero Trust-architectuur in Kubernetes-omgevingen.
+\item Gepubliceerd in het vaktijdschrift Dutch DevOps Journal.
+\end{itemize}}
+\section{Projecten}
+
+\cventry{mrt 2022–okt 2023}
+        {Inner source platform voor self-service cloudinfrastructuur}
+        {Platform Engine}
+        {\url{https://github.com/thomasdevries/platform-engine}}
+        {}
+        {\begin{itemize}
+\item Ontwikkelde een self-service platform waarmee ontwikkelteams binnen 10 minuten een productieklare omgeving konden aanvragen.
+\item Gebruikt Terraform, Kubernetes en Crossplane voor infrastructure provisioning.
+\item Verlaagde de doorlooptijd van omgevingen met 70\%.
+\end{itemize}
+\textbf{Trefwoorden}: Platform Engineering, Self-service, Crossplane, Kubernetes}
+
+\cventry{jan 2021–dec 2021}
+        {Migratie van push-based naar pull-based deployments}
+        {GitOps-migratie}
+        {\url{https://github.com/thomasdevries/gitops-migratie}}
+        {}
+        {\begin{itemize}
+\item Introduceerde Argo CD voor declaratieve deployments.
+\item Verhoogde de deployment-frequentie en verlaagde de foutmarge.
+\end{itemize}
+\textbf{Trefwoorden}: GitOps, Argo CD, Kubernetes}
+\section{Interesses}
+
+\cvline{Sport}{Hardlopen, Wielrennen, Zwemmen}
+\cvline{Muziek}{Gitaar, Piano}
+\cvline{Open source}{Kubernetes, Terraform, CNCF}
+\section{Vrijwilligerswerk}
+
+\cventry{jan 2019–Heden}
+        {Community Organizer}
+        {DevOps Nederland}
+        {\url{https://www.devopsnederland.nl/}}
+        {}
+        {\begin{itemize}
+\item Organiseer maandelijkse meetups en workshops over DevOps, cloud en Kubernetes.
+\item Verantwoordelijk voor sprekers, locatie en community-opbouw.
+\item Groei van de community van 300 naar 1200 leden.
+\end{itemize}}
+    
+\end{document}

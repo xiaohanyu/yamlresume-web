@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="generator" content="YAMLResume (https://yamlresume.dev)">
+
+
+  <title>Sanne de Vries Resume</title>
+  <style>
+    :root {
+      --text-font-size: 16px;
+      --text-font-family: var(--text-default-font-family);
+      --line-height: 1.5;
+    }
+
+    /* Modified from: https://www.joshwcomeau.com/css/custom-css-reset/ */
+
+    /* 1. Use a more-intuitive box-sizing model */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    /* 2. Remove default margin */
+    *:not(dialog) {
+      margin: 0;
+    }
+
+    body {
+      /* 3. Improve text rendering */
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    :root {
+      --border-color: #d0d0d0;
+
+      /* text colors */
+      --text-color-primary: #000000;
+      --text-color-secondary: #333333;
+
+      /* spacing */
+      --spacing-xss: 2px;
+      --spacing-xs: 4px;
+      --spacing-sm: 8px;
+      --spacing-md: 12px;
+      --spacing-lg: 16px;
+      --spacing-xl: 24px;
+      --spacing-xxl: 40px;
+      --spacing-xxxl: 80px;
+
+      /* font sizes */
+      --font-size-xs: 0.8rem;
+      --font-size-sm: 0.9rem;
+      --font-size-md: 1rem;
+      --font-size-lg: 1.1rem;
+      --font-size-xl: 1.25rem;
+      --font-size-xxl: 2.5rem;
+
+      /* layout */
+      --page-max-width: 900px;
+
+      /* typography */
+      --text-default-font-family:
+        -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu,
+        Cantarell, sans-serif;
+    }
+
+    html {
+      font-size: var(--text-font-size);
+    }
+
+    body {
+      /* font & text */
+      color: var(--text-color-primary);
+      font-family: var(--text-font-family);
+      /* this variable is defined by `typography.fontSize` in resume html layout */
+      text-autospace: normal;
+
+      /* layout */
+      line-height: var(--line-height);
+      max-width: var(--page-max-width);
+      margin: 0 auto;
+      padding: var(--spacing-xxxl) var(--spacing-xxl) var(--spacing-xxl);
+    }
+
+    /* header */
+    .resume-header {
+      margin-bottom: var(--spacing-xxl);
+      text-align: center;
+    }
+
+    .resume-name {
+      font-size: var(--font-size-xxl);
+      font-weight: 600;
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .resume-headline {
+      font-size: var(--font-size-lg);
+      margin-bottom: var(--spacing-md);
+    }
+
+    /* contact info */
+    .resume-contact-info {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      column-gap: var(--spacing-lg);
+      row-gap: var(--spacing-xs);
+      margin-top: var(--spacing-sm);
+    }
+
+    .resume-contact-icon,
+    .resume-contact-label {
+      margin-right: var(--spacing-sm);
+      vertical-align: middle;
+    }
+
+    /* links: modern typographic style */
+    a {
+      color: var(--text-color-primary);
+      text-decoration: underline;
+      text-decoration-color: var(--border-color);
+      text-underline-offset: 3px;
+      text-decoration-thickness: 1px;
+      text-decoration-skip-ink: auto;
+      transition: text-decoration-color 0.2s;
+    }
+
+    a:hover {
+      text-decoration-color: var(--text-color-primary);
+    }
+
+    /* sections */
+    .resume-section {
+      margin-bottom: var(--spacing-xl);
+    }
+
+    .resume-section-title {
+      font-size: var(--font-size-xl);
+      font-weight: 500;
+      margin-bottom: var(--spacing-md);
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: var(--spacing-xs);
+    }
+
+    /* entries */
+    .resume-entry {
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .resume-entry:last-child {
+      margin-bottom: 0;
+    }
+
+    .resume-entry-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .resume-entry-title {
+      font-weight: 500;
+      margin-bottom: var(--spacing-xss);
+    }
+
+    .resume-entry-summary p,
+    .resume-summary-content p {
+      margin-bottom: var(--spacing-xs);
+    }
+
+    /* lists */
+    .resume-entry-summary ul,
+    .resume-entry-summary ol,
+    .resume-summary-content ul,
+    .resume-summary-content ol {
+      padding-left: var(--spacing-lg);
+      list-style-type: circle;
+    }
+
+    /* labeled lists (courses, keywords, etc.) */
+    .resume-labeled-list span {
+      font-weight: 500;
+    }
+
+    /* skills grid */
+    .resume-skill-item,
+    .resume-language-item {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .resume-skill-name,
+    .resume-language-name {
+      font-weight: 500;
+    }
+
+    .resume-skill-level,
+    .resume-language-fluency {
+      font-weight: 400;
+    }
+
+    /* mobile */
+    @media (max-width: 768px) {
+      body {
+        padding: var(--spacing-xl);
+      }
+
+      .resume-header {
+        margin-bottom: var(--spacing-xl);
+      }
+
+      .resume-contact-info {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .resume-entry-header {
+        flex-wrap: wrap;
+      }
+    }
+
+    /* footer */
+    .resume-footer {
+      margin-top: var(--spacing-xxl);
+      padding-top: var(--spacing-xl);
+      border-top: 1px solid var(--border-color);
+      font-size: var(--font-size-sm);
+      color: var(--text-color-secondary);
+    }
+
+    @media print {
+      .resume-footer {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="resume-header">
+    <h1 class="resume-name">Sanne de Vries</h1>
+    <p class="resume-headline">Senior Marketing Manager | Digitale Strategie &amp; Merkopbouw</p>
+    <div class="resume-contact-info">
+      <span class="resume-contact-item"><span class="resume-contact-icon">📧</span><a href="mailto:sanne.devries@example.com" class="resume-contact-link">sanne.devries@example.com</a></span>
+      <span class="resume-contact-item"><span class="resume-contact-icon">📞</span>+31 6 12345678</span>
+      <span class="resume-contact-item"><span class="resume-contact-icon">🔗</span><a href="https://www.sannedevries.nl" class="resume-contact-link">https://www.sannedevries.nl</a></span>
+    </div>
+    <div class="resume-contact-info resume-location-info">
+      <span class="resume-contact-item"><span class="resume-contact-icon">📍</span>Herengracht 182, Amsterdam, Noord-Holland, Nederland, 1016 BR</span>
+    </div>
+    <div class="resume-contact-info resume-profiles-info">
+      <span class="resume-contact-item"><span class="resume-contact-label">LinkedIn</span>: <a href="https://www.linkedin.com/in/sannedevries" class="resume-contact-link">@sannedevries</a></span>
+      <span class="resume-contact-item"><span class="resume-contact-label">Twitter</span>: <a href="https://twitter.com/sannedevries" class="resume-contact-link">@sannedevries</a></span>
+    </div>
+  </header>
+  <section class="resume-section" id="summary" data-section="summary">
+    <h2 class="resume-section-title">Basis Informatie</h2>
+    <div class="resume-section-content">
+      <div class="resume-summary-content">
+        <p>Ervaren marketingmanager met meer dan 8 jaar ervaring in B2B- en B2C-marketing, digitale strategie en merkopbouw. Ik combineer data-gedreven inzichten met creatieve campagnes om duurzame groei te realiseren.</p>
+        <ul>
+          <li>
+            <p>Leidinggeven aan multidisciplinaire teams van marketeers, contentspecialisten en bureaus</p>
+          </li>
+          <li>
+            <p>Ontwikkelen en uitvoeren van omnichannel-marketingstrategieën met aantoonbare ROI</p>
+          </li>
+          <li>
+            <p>Sterk in marketingautomatisering, SEO/SEA, contentmarketing en merkpositionering</p>
+          </li>
+          <li>
+            <p>Ervaren in het beheren van budgetten tot EUR 1,5 miljoen en het rapporteren aan directie</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="education" data-section="education">
+    <h2 class="resume-section-title">Opleidingen</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="education-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.uva.nl">Universiteit van Amsterdam</a></div>
+            <div class="resume-entry-organization">Master, Bedrijfskunde, specialisatie Marketing, Score: 8.4</div>
+          </div>
+          <div class="resume-entry-date">sep 2014–jul 2016</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Afgestudeerd met specialisatie in digitale marketing en consumentenpsychologie</p>
+            </li>
+            <li>
+              <p>Thesis over de invloed van social proof op online aankoopbeslissingen (cijfer 9,0)</p>
+            </li>
+            <li>
+              <p>Bestuurslid van de studievereniging en organisator van marketingcarrièredag</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Cursussen</span>: Strategisch Marketingmanagement, Consumentengedrag, Marktonderzoek en Data-analyse, Digitale Marketing en Social Media, Brand Management, Marketingcommunicatie</div>
+      </div>
+      <div class="resume-entry" id="education-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.hva.nl">Hogeschool van Amsterdam</a></div>
+            <div class="resume-entry-organization">Bachelor, Commerciële Economie, Score: 7.9</div>
+          </div>
+          <div class="resume-entry-date">sep 2010–jul 2014</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Brede basis in commercie, marketing en bedrijfsvoering</p>
+            </li>
+            <li>
+              <p>Stage bij een reclamebureau in Amsterdam</p>
+            </li>
+            <li>
+              <p>Minor in International Business aan de Universiteit van Barcelona</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Cursussen</span>: Marketingmanagement, Marktonderzoek, Verkoop en Accountmanagement, Communicatie, Bedrijfseconomie</div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="work" data-section="work">
+    <h2 class="resume-section-title">Werkervaring</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="work-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.groenmarkt.nl">GroenMarkt BV</a></div>
+            <div class="resume-entry-organization">Senior Marketing Manager</div>
+          </div>
+          <div class="resume-entry-date">mrt 2021–Heden</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Leiding aan een team van 6 marketingprofessionals en verantwoordelijk voor de jaarlijkse marketingstrategie</p>
+            </li>
+            <li>
+              <p>Ontwikkelde en implementeerde een omnichannel-aanpak die het aantal gekwalificeerde leads met 45% verhoogde</p>
+            </li>
+            <li>
+              <p>Beheerde een marketingbudget van EUR 1,2 miljoen en verlaagde de kosten per lead met 22% door middel van data-analyse</p>
+            </li>
+            <li>
+              <p>Richtte een contentmarketingafdeling op die maandelijks 80.000 organische bezoekers genereert</p>
+            </li>
+            <li>
+              <p>Werkt nauw samen met sales, product en directie om merkpositionering en klantwaarde te versterken</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Trefwoorden</span>: Digitale strategie, Contentmarketing, Leadgeneratie, Teamleiding, Budgetbeheer</div>
+      </div>
+      <div class="resume-entry" id="work-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.dedigitalewerkplaats.nl">De Digitale Werkplaats</a></div>
+            <div class="resume-entry-organization">Marketing Manager</div>
+          </div>
+          <div class="resume-entry-date">jun 2017–feb 2021</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Verantwoordelijk voor de marketingstrategie van een SaaS-platform voor MKB-ondernemers</p>
+            </li>
+            <li>
+              <p>Realiseerde 60% groei in websiteconversies door A/B-testen, landingspagina-optimalisatie en SEO</p>
+            </li>
+            <li>
+              <p>Zette marketingautomatisering op met HubSpot, waardoor 30% minder handmatig werk nodig was</p>
+            </li>
+            <li>
+              <p>Coördineerde externe bureaus voor branding, PR en evenementen</p>
+            </li>
+            <li>
+              <p>Rapporteerde maandelijks aan de directie over KPI&#39;s, ROI en markttrends</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Trefwoorden</span>: SaaS, Marketingautomatisering, SEO, A/B-testen, HubSpot</div>
+      </div>
+      <div class="resume-entry" id="work-3">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.bureauvlam.nl">Bureau Vlam</a></div>
+            <div class="resume-entry-organization">Online Marketing Specialist</div>
+          </div>
+          <div class="resume-entry-date">aug 2014–mei 2017</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Beheerde Google Ads- en socialmediacampagnes voor uiteenlopende klanten in retail en horeca</p>
+            </li>
+            <li>
+              <p>Analyseerde campagneprestaties en optimaliseerde advertenties voor maximaal rendement</p>
+            </li>
+            <li>
+              <p>Schreef SEO-vriendelijke webcontent en beheerde socialmediakanalen</p>
+            </li>
+            <li>
+              <p>Ondersteunde bij de ontwikkeling van merkstrategieën en klantpresentaties</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Trefwoorden</span>: Google Ads, Social Media, SEO, Web analytics, Klantpresentaties</div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="languages" data-section="languages">
+    <h2 class="resume-section-title">Talen</h2>
+    <div class="resume-section-content">
+      <div class="resume-languages-list">
+        <div class="resume-language-item">
+          <div class="resume-language-name">Nederlands<span class="resume-language-fluency">: Moedertaal of tweetalige vaardigheid</span></div>
+          <div>
+            <div class="resume-labeled-list"><span>Trefwoorden</span>: Moedertaal</div>
+          </div>
+        </div>
+        <div class="resume-language-item">
+          <div class="resume-language-name">Engels<span class="resume-language-fluency">: Volledige professionele vaardigheid</span></div>
+          <div>
+            <div class="resume-labeled-list"><span>Trefwoorden</span>: Zakelijk vloeiend, TOEFL 110</div>
+          </div>
+        </div>
+        <div class="resume-language-item">
+          <div class="resume-language-name">Duits<span class="resume-language-fluency">: Beperkte werkvaardigheid</span></div>
+          <div>
+            <div class="resume-labeled-list"><span>Trefwoorden</span>: Basiskennis</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="skills" data-section="skills">
+    <h2 class="resume-section-title">Vaardigheden</h2>
+    <div class="resume-section-content">
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">Marketingstrategie<span class="resume-skill-level">: Expert</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>Trefwoorden</span>: Merkpositionering, Marktanalyse, Go-to-market, Campagnemanagement, Budgettering</div>
+        </div>
+      </div>
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">Digitale Marketing<span class="resume-skill-level">: Expert</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>Trefwoorden</span>: SEO, SEA, Contentmarketing, E-mailmarketing, Social media</div>
+        </div>
+      </div>
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">Data en Analytics<span class="resume-skill-level">: Geavanceerd</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>Trefwoorden</span>: Google Analytics 4, Data Studio, A/B-testen, CRM, KPI-rapportages</div>
+        </div>
+      </div>
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">Leiderschap en Samenwerking<span class="resume-skill-level">: Geavanceerd</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>Trefwoorden</span>: Teamleiding, Agile werken, Stakeholdermanagement, Coaching, Projectmanagement</div>
+        </div>
+      </div>
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">Tools<span class="resume-skill-level">: Geavanceerd</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>Trefwoorden</span>: HubSpot, Salesforce, Google Ads, Meta Ads, Mailchimp</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="awards" data-section="awards">
+    <h2 class="resume-section-title">Onderscheidingen</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="awards-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title">Marketing Excellence Award</div>
+            <div class="resume-entry-organization">Nederlandse Vereniging voor Marketing</div>
+          </div>
+          <div class="resume-entry-date">nov 2023</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Gewonnen voor de succesvolle omnichannel-campagne &quot;Duurzaam Doen&quot; met een ROI van 340%</p>
+            </li>
+            <li>
+              <p>Beoordeeld door een vakjury van senior marketeers en hoogleraren</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="resume-entry" id="awards-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title">Beste Werkgeverscampagne</div>
+            <div class="resume-entry-organization">Stichting Marketing Impact</div>
+          </div>
+          <div class="resume-entry-date">apr 2020</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Erkend voor een employer branding-campagne die het aantal sollicitaties met 55% verhoogde</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="certificates" data-section="certificates">
+    <h2 class="resume-section-title">Certificaten</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="certificates-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://skillshop.exceedlms.com/student/path/508256-google-analytics-4">Google Analytics 4 Certificering</a></div>
+            <div class="resume-entry-organization">Google</div>
+          </div>
+          <div class="resume-entry-date">feb 2023</div>
+        </div>
+      </div>
+      <div class="resume-entry" id="certificates-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://academy.hubspot.com/courses/marketing-automation">HubSpot Marketing Automation Certificering</a></div>
+            <div class="resume-entry-organization">HubSpot Academy</div>
+          </div>
+          <div class="resume-entry-date">sep 2022</div>
+        </div>
+      </div>
+      <div class="resume-entry" id="certificates-3">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.scrum.org/assessments/professional-scrum-master-i-certification">Scrum Master PSM I</a></div>
+            <div class="resume-entry-organization">Scrum.org</div>
+          </div>
+          <div class="resume-entry-date">jan 2021</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="publications" data-section="publications">
+    <h2 class="resume-section-title">Publicaties</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="publications-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.tijdschriftvoormarketing.nl/">De kracht van datagedreven merkstrategie</a></div>
+            <div class="resume-entry-organization">Tijdschrift voor Marketing</div>
+          </div>
+          <div class="resume-entry-date">jun 2023</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Artikel over hoe merken data kunnen inzetten voor authentieke positionering</p>
+            </li>
+            <li>
+              <p>Gepubliceerd in het vakblad voor senior marketingprofessionals</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="resume-entry" id="publications-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.marketingtribune.nl/">AI in marketing: hype of hefboom?</a></div>
+            <div class="resume-entry-organization">MarketingTribune</div>
+          </div>
+          <div class="resume-entry-date">okt 2022</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Verkennend artikel over praktische toepassingen van AI in marketingteams</p>
+            </li>
+            <li>
+              <p>Inclusief interviews met drie marketingdirecteuren</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="projects" data-section="projects">
+    <h2 class="resume-section-title">Projecten</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="projects-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.groenmarkt.nl/duurzaam-doen">Duurzaam Doen campagne</a></div>
+            <div class="resume-entry-description">Omnichannel-campagne om duurzame productlijnen onder de aandacht te brengen bij zakelijke klanten.</div>
+          </div>
+          <div class="resume-entry-date">jan 2023–dec 2023</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Ontwikkelde de strategie, merkpositionering en contentkalender</p>
+            </li>
+            <li>
+              <p>Behaalde 2,4 miljoen vertoningen en 18.000 nieuwe leads</p>
+            </li>
+            <li>
+              <p>Verhoogde de merkbekendheid met 32% in de doelgroep</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Trefwoorden</span>: Omnichannel, Duurzaamheid, B2B, Contentmarketing</div>
+      </div>
+      <div class="resume-entry" id="projects-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.dedigitalewerkplaats.nl/klantverhalen">Klantverhalenplatform</a></div>
+            <div class="resume-entry-description">Online platform met klantcases en video&#39;s om de salesfunnel te ondersteunen.</div>
+          </div>
+          <div class="resume-entry-date">mrt 2019–nov 2020</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Initieerde en beheerde het platform van concept tot lancering</p>
+            </li>
+            <li>
+              <p>Zorgde voor 25% meer marketinggekwalificeerde leads</p>
+            </li>
+            <li>
+              <p>Werd bekroond met een interne innovatieprijs</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Trefwoorden</span>: Content, Video, Leadgeneratie, Sales enablement</div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="interests" data-section="interests">
+    <h2 class="resume-section-title">Interesses</h2>
+    <div class="resume-section-content">
+      <div class="resume-interest-item"><span class="resume-interest-name">Sport</span>: Hardlopen, Yoga, Wielrennen</div>
+      <div class="resume-interest-item"><span class="resume-interest-name">Cultuur</span>: Literatuur, Musea, Reizen</div>
+      <div class="resume-interest-item"><span class="resume-interest-name">Maatschappij</span>: Duurzaamheid, Vrijwilligerswerk, Mentoring</div>
+    </div>
+  </section>
+  <section class="resume-section" id="volunteer" data-section="volunteer">
+    <h2 class="resume-section-title">Vrijwilligerswerk</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="volunteer-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.marketingaanzee.nl">Marketing aan Zee</a></div>
+            <div class="resume-entry-organization">Mentor voor jonge marketeers</div>
+          </div>
+          <div class="resume-entry-date">sep 2019–Heden</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Begeleidt jaarlijks drie jonge marketingprofessionals bij hun carrièreontwikkeling</p>
+            </li>
+            <li>
+              <p>Organiseert workshops over persoonlijk leiderschap en digitale vaardigheden</p>
+            </li>
+            <li>
+              <p>Draagt bij aan een inclusiever netwerk binnen de marketingbranche</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer class="resume-footer">Generated by <a href="https://yamlresume.dev">YAMLResume</a></footer>
+</body>
+
+</html>

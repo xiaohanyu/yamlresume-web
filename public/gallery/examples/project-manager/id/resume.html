@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="generator" content="YAMLResume (https://yamlresume.dev)">
+
+
+  <title>Budi Santoso Resume</title>
+  <style>
+    :root {
+      --text-font-size: 16px;
+      --text-font-family: var(--text-default-font-family);
+      --line-height: 1.5;
+    }
+
+    /* Modified from: https://www.joshwcomeau.com/css/custom-css-reset/ */
+
+    /* 1. Use a more-intuitive box-sizing model */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    /* 2. Remove default margin */
+    *:not(dialog) {
+      margin: 0;
+    }
+
+    body {
+      /* 3. Improve text rendering */
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    :root {
+      --border-color: #d0d0d0;
+
+      /* text colors */
+      --text-color-primary: #000000;
+      --text-color-secondary: #333333;
+
+      /* spacing */
+      --spacing-xss: 2px;
+      --spacing-xs: 4px;
+      --spacing-sm: 8px;
+      --spacing-md: 12px;
+      --spacing-lg: 16px;
+      --spacing-xl: 24px;
+      --spacing-xxl: 40px;
+      --spacing-xxxl: 80px;
+
+      /* font sizes */
+      --font-size-xs: 0.8rem;
+      --font-size-sm: 0.9rem;
+      --font-size-md: 1rem;
+      --font-size-lg: 1.1rem;
+      --font-size-xl: 1.25rem;
+      --font-size-xxl: 2.5rem;
+
+      /* layout */
+      --page-max-width: 900px;
+
+      /* typography */
+      --text-default-font-family:
+        -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu,
+        Cantarell, sans-serif;
+    }
+
+    html {
+      font-size: var(--text-font-size);
+    }
+
+    body {
+      /* font & text */
+      color: var(--text-color-primary);
+      font-family: var(--text-font-family);
+      /* this variable is defined by `typography.fontSize` in resume html layout */
+      text-autospace: normal;
+
+      /* layout */
+      line-height: var(--line-height);
+      max-width: var(--page-max-width);
+      margin: 0 auto;
+      padding: var(--spacing-xxxl) var(--spacing-xxl) var(--spacing-xxl);
+    }
+
+    /* header */
+    .resume-header {
+      margin-bottom: var(--spacing-xxl);
+      text-align: center;
+    }
+
+    .resume-name {
+      font-size: var(--font-size-xxl);
+      font-weight: 600;
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .resume-headline {
+      font-size: var(--font-size-lg);
+      margin-bottom: var(--spacing-md);
+    }
+
+    /* contact info */
+    .resume-contact-info {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      column-gap: var(--spacing-lg);
+      row-gap: var(--spacing-xs);
+      margin-top: var(--spacing-sm);
+    }
+
+    .resume-contact-icon,
+    .resume-contact-label {
+      margin-right: var(--spacing-sm);
+      vertical-align: middle;
+    }
+
+    /* links: modern typographic style */
+    a {
+      color: var(--text-color-primary);
+      text-decoration: underline;
+      text-decoration-color: var(--border-color);
+      text-underline-offset: 3px;
+      text-decoration-thickness: 1px;
+      text-decoration-skip-ink: auto;
+      transition: text-decoration-color 0.2s;
+    }
+
+    a:hover {
+      text-decoration-color: var(--text-color-primary);
+    }
+
+    /* sections */
+    .resume-section {
+      margin-bottom: var(--spacing-xl);
+    }
+
+    .resume-section-title {
+      font-size: var(--font-size-xl);
+      font-weight: 500;
+      margin-bottom: var(--spacing-md);
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: var(--spacing-xs);
+    }
+
+    /* entries */
+    .resume-entry {
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .resume-entry:last-child {
+      margin-bottom: 0;
+    }
+
+    .resume-entry-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .resume-entry-title {
+      font-weight: 500;
+      margin-bottom: var(--spacing-xss);
+    }
+
+    .resume-entry-summary p,
+    .resume-summary-content p {
+      margin-bottom: var(--spacing-xs);
+    }
+
+    /* lists */
+    .resume-entry-summary ul,
+    .resume-entry-summary ol,
+    .resume-summary-content ul,
+    .resume-summary-content ol {
+      padding-left: var(--spacing-lg);
+      list-style-type: circle;
+    }
+
+    /* labeled lists (courses, keywords, etc.) */
+    .resume-labeled-list span {
+      font-weight: 500;
+    }
+
+    /* skills grid */
+    .resume-skill-item,
+    .resume-language-item {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .resume-skill-name,
+    .resume-language-name {
+      font-weight: 500;
+    }
+
+    .resume-skill-level,
+    .resume-language-fluency {
+      font-weight: 400;
+    }
+
+    /* mobile */
+    @media (max-width: 768px) {
+      body {
+        padding: var(--spacing-xl);
+      }
+
+      .resume-header {
+        margin-bottom: var(--spacing-xl);
+      }
+
+      .resume-contact-info {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .resume-entry-header {
+        flex-wrap: wrap;
+      }
+    }
+
+    /* footer */
+    .resume-footer {
+      margin-top: var(--spacing-xxl);
+      padding-top: var(--spacing-xl);
+      border-top: 1px solid var(--border-color);
+      font-size: var(--font-size-sm);
+      color: var(--text-color-secondary);
+    }
+
+    @media print {
+      .resume-footer {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="resume-header">
+    <h1 class="resume-name">Budi Santoso</h1>
+    <p class="resume-headline">Project Manager Berpengalaman di Bidang Teknologi Informasi</p>
+    <div class="resume-contact-info">
+      <span class="resume-contact-item"><span class="resume-contact-icon">📧</span><a href="mailto:budi.santoso@email.com" class="resume-contact-link">budi.santoso@email.com</a></span>
+      <span class="resume-contact-item"><span class="resume-contact-icon">📞</span>+62 812-3456-7890</span>
+      <span class="resume-contact-item"><span class="resume-contact-icon">🔗</span><a href="https://www.budisantoso.id" class="resume-contact-link">https://www.budisantoso.id</a></span>
+    </div>
+    <div class="resume-contact-info resume-location-info">
+      <span class="resume-contact-item"><span class="resume-contact-icon">📍</span>Jl. Jenderal Sudirman No. 52, Jakarta, DKI Jakarta, Indonesia, 12190</span>
+    </div>
+    <div class="resume-contact-info resume-profiles-info">
+      <span class="resume-contact-item"><span class="resume-contact-label">LinkedIn</span>: <a href="https://www.linkedin.com/in/budisantoso" class="resume-contact-link">@budisantoso</a></span>
+      <span class="resume-contact-item"><span class="resume-contact-label">GitHub</span>: <a href="https://github.com/budisantoso" class="resume-contact-link">@budisantoso</a></span>
+    </div>
+  </header>
+  <section class="resume-section" id="summary" data-section="summary">
+    <h2 class="resume-section-title">Informasi Dasar</h2>
+    <div class="resume-section-content">
+      <div class="resume-summary-content">
+        <ul>
+          <li>
+            <p>Project Manager dengan pengalaman lebih dari 8 tahun dalam memimpin proyek teknologi informasi dari perencanaan hingga penyelesaian.</p>
+          </li>
+          <li>
+            <p>Terampil dalam metodologi Agile, Scrum, dan Waterfall, serta memiliki rekam jejak sukses dalam mengelola tim lintas fungsi.</p>
+          </li>
+          <li>
+            <p>Mampu mengelola anggaran, jadwal, dan risiko proyek secara efektif untuk memastikan hasil yang sesuai dengan tujuan bisnis.</p>
+          </li>
+          <li>
+            <p>Berkomitmen pada pengembangan berkelanjutan dan komunikasi yang transparan dengan para pemangku kepentingan.</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="education" data-section="education">
+    <h2 class="resume-section-title">Pendidikan</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="education-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.ui.ac.id">Universitas Indonesia</a></div>
+            <div class="resume-entry-organization">Sarjana, Ilmu Komputer, Nilai: 3.65</div>
+          </div>
+          <div class="resume-entry-date">Sep 2010–Jul 2014</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Memperoleh pemahaman mendalam tentang siklus hidup pengembangan perangkat lunak dan manajemen proyek.</p>
+            </li>
+            <li>
+              <p>Aktif dalam organisasi kemahasiswaan dan memimpin proyek akhir berbasis tim.</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Mata Kuliah</span>: Manajemen Proyek Perangkat Lunak, Rekayasa Perangkat Lunak, Sistem Basis Data, Jaringan Komputer, Algoritma dan Struktur Data</div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="work" data-section="work">
+    <h2 class="resume-section-title">Pengalaman Kerja</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="work-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.teknologimaju.co.id">PT Teknologi Maju</a></div>
+            <div class="resume-entry-organization">Senior Project Manager</div>
+          </div>
+          <div class="resume-entry-date">Jan 2020–Sekarang</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Memimpin proyek pengembangan platform digital berskala enterprise dengan anggaran lebih dari 10 miliar rupiah.</p>
+            </li>
+            <li>
+              <p>Mengelola tim berisi 20+ anggota lintas fungsi, termasuk developer, desainer, dan QA.</p>
+            </li>
+            <li>
+              <p>Menerapkan kerangka kerja Agile dan Scrum untuk meningkatkan kecepatan rilis produk hingga 30%.</p>
+            </li>
+            <li>
+              <p>Berhasil menyelesaikan 15+ proyek tepat waktu dengan tingkat kepuasan pelanggan 95%.</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Kata Kunci</span>: Agile, Scrum, Manajemen Proyek, Kepemimpinan, Enterprise</div>
+      </div>
+      <div class="resume-entry" id="work-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.digitalsolusi.co.id">PT Digital Solusi</a></div>
+            <div class="resume-entry-organization">Project Manager</div>
+          </div>
+          <div class="resume-entry-date">Mar 2017–Des 2019</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Mengelola proyek pengembangan aplikasi mobile dan web untuk klien di sektor perbankan dan ritel.</p>
+            </li>
+            <li>
+              <p>Menyusun rencana proyek, jadwal, dan anggaran, serta memantau kemajuan melalui tools seperti JIRA dan Trello.</p>
+            </li>
+            <li>
+              <p>Berkoordinasi dengan tim internal dan eksternal untuk memastikan kebutuhan klien terpenuhi.</p>
+            </li>
+            <li>
+              <p>Meningkatkan efisiensi proses kerja tim melalui adopsi Kanban dan otomatisasi pelaporan.</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Kata Kunci</span>: Manajemen Proyek, JIRA, Trello, Mobile, Web</div>
+      </div>
+      <div class="resume-entry" id="work-3">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.inovasikreatif.co.id">PT Inovasi Kreatif</a></div>
+            <div class="resume-entry-organization">Junior Project Manager</div>
+          </div>
+          <div class="resume-entry-date">Agu 2014–Feb 2017</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Membantu manajer proyek senior dalam perencanaan dan eksekusi proyek teknologi.</p>
+            </li>
+            <li>
+              <p>Mengelola dokumentasi proyek, laporan status, dan komunikasi dengan pemangku kepentingan.</p>
+            </li>
+            <li>
+              <p>Berkontribusi pada pengembangan metodologi internal untuk manajemen proyek yang lebih terstruktur.</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Kata Kunci</span>: Dokumentasi, Laporan, Komunikasi, Waterfall</div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="languages" data-section="languages">
+    <h2 class="resume-section-title">Bahasa</h2>
+    <div class="resume-section-content">
+      <div class="resume-languages-list">
+        <div class="resume-language-item">
+          <div class="resume-language-name">Indonesia<span class="resume-language-fluency">: Bahasa Ibu / Bilingual</span></div>
+          <div>
+            <div class="resume-labeled-list"><span>Kata Kunci</span>: Bahasa Ibu</div>
+          </div>
+        </div>
+        <div class="resume-language-item">
+          <div class="resume-language-name">Inggris<span class="resume-language-fluency">: Tingkat Profesional Penuh</span></div>
+          <div>
+            <div class="resume-labeled-list"><span>Kata Kunci</span>: TOEFL 110, IELTS 7.5</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="skills" data-section="skills">
+    <h2 class="resume-section-title">Keahlian</h2>
+    <div class="resume-section-content">
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">Manajemen Proyek<span class="resume-skill-level">: Ahli</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>Kata Kunci</span>: Agile, Scrum, Kanban, Waterfall, Manajemen Risiko, Anggaran</div>
+        </div>
+      </div>
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">Tools<span class="resume-skill-level">: Mahir</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>Kata Kunci</span>: JIRA, Trello, MS Project, Asana, Confluence, Slack</div>
+        </div>
+      </div>
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">Kepemimpinan<span class="resume-skill-level">: Mahir</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>Kata Kunci</span>: Motivasi Tim, Delegasi, Negosiasi, Komunikasi, Problem Solving</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="awards" data-section="awards">
+    <h2 class="resume-section-title">Penghargaan</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="awards-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title">Project Manager Terbaik</div>
+            <div class="resume-entry-organization">PT Teknologi Maju</div>
+          </div>
+          <div class="resume-entry-date">Des 2022</div>
+        </div>
+        <div class="resume-entry-summary">
+          <p>Diberikan sebagai pengakuan atas kepemimpinan luar biasa dalam menyelesaikan proyek strategis perusahaan dengan hasil melebihi target.</p>
+        </div>
+      </div>
+      <div class="resume-entry" id="awards-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title">Inovasi Proses Bisnis</div>
+            <div class="resume-entry-organization">PT Digital Solusi</div>
+          </div>
+          <div class="resume-entry-date">Nov 2019</div>
+        </div>
+        <div class="resume-entry-summary">
+          <p>Penghargaan atas kontribusi dalam merancang ulang proses manajemen proyek yang meningkatkan efisiensi tim sebesar 25%.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="certificates" data-section="certificates">
+    <h2 class="resume-section-title">Sertifikat</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="certificates-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.pmi.org/certifications/project-management-pmp">Project Management Professional (PMP)</a></div>
+            <div class="resume-entry-organization">Project Management Institute</div>
+          </div>
+          <div class="resume-entry-date">Jun 2021</div>
+        </div>
+      </div>
+      <div class="resume-entry" id="certificates-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.scrumalliance.org/certifications">Certified ScrumMaster (CSM)</a></div>
+            <div class="resume-entry-organization">Scrum Alliance</div>
+          </div>
+          <div class="resume-entry-date">Mar 2019</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="publications" data-section="publications">
+    <h2 class="resume-section-title">Publikasi</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="publications-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.jmpi.id/artikel/agile-waterfall">Meningkatkan Keberhasilan Proyek TI melalui Kombinasi Agile dan Waterfall</a></div>
+            <div class="resume-entry-organization">Jurnal Manajemen Proyek Indonesia</div>
+          </div>
+          <div class="resume-entry-date">Agu 2020</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Artikel ini membahas pendekatan hybrid dalam manajemen proyek teknologi informasi.</p>
+            </li>
+            <li>
+              <p>Menyajikan studi kasus dari beberapa proyek enterprise di Indonesia.</p>
+            </li>
+            <li>
+              <p>Memberikan rekomendasi praktis untuk manajer proyek dalam memilih metodologi yang tepat.</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="projects" data-section="projects">
+    <h2 class="resume-section-title">Proyek</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="projects-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.teknologimaju.co.id/proyek/ecommerce">Platform E-Commerce Terintegrasi</a></div>
+            <div class="resume-entry-description">Pengembangan platform e-commerce untuk perusahaan ritel besar di Indonesia</div>
+          </div>
+          <div class="resume-entry-date">Jan 2021–Des 2021</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Memimpin tim berisi 15 orang dalam membangun platform e-commerce dari awal.</p>
+            </li>
+            <li>
+              <p>Mengimplementasikan arsitektur microservices dan integrasi dengan sistem pembayaran.</p>
+            </li>
+            <li>
+              <p>Mencapai waktu muat halaman di bawah 2 detik dan meningkatkan konversi penjualan sebesar 40%.</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Kata Kunci</span>: E-Commerce, Microservices, Agile</div>
+      </div>
+      <div class="resume-entry" id="projects-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.digitalsolusi.co.id/proyek/simrs">Sistem Informasi Rumah Sakit</a></div>
+            <div class="resume-entry-description">Sistem manajemen rumah sakit untuk digitalisasi rekam medis dan operasional</div>
+          </div>
+          <div class="resume-entry-date">Mar 2018–Nov 2019</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Mengelola proyek pengembangan SIMRS untuk tiga rumah sakit di Jakarta.</p>
+            </li>
+            <li>
+              <p>Berkoordinasi dengan tenaga medis dan staf administrasi untuk mengumpulkan kebutuhan.</p>
+            </li>
+            <li>
+              <p>Sistem berhasil mengurangi waktu pemrosesan rekam medis hingga 50%.</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>Kata Kunci</span>: Kesehatan, SIMRS, Waterfall</div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="interests" data-section="interests">
+    <h2 class="resume-section-title">Minat</h2>
+    <div class="resume-section-content">
+      <div class="resume-interest-item"><span class="resume-interest-name">Olahraga</span>: Lari, Renang, Bersepeda</div>
+      <div class="resume-interest-item"><span class="resume-interest-name">Teknologi</span>: AI, Blockchain, IoT</div>
+    </div>
+  </section>
+  <section class="resume-section" id="volunteer" data-section="volunteer">
+    <h2 class="resume-section-title">Kegiatan Sukarela</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="volunteer-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.ypt.or.id">Yayasan Pendidikan Teknologi</a></div>
+            <div class="resume-entry-organization">Mentor Manajemen Proyek</div>
+          </div>
+          <div class="resume-entry-date">Jan 2018–Des 2022</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>Menjadi mentor bagi mahasiswa dan profesional muda dalam bidang manajemen proyek teknologi.</p>
+            </li>
+            <li>
+              <p>Mengadakan workshop tentang Agile, Scrum, dan tools manajemen proyek.</p>
+            </li>
+            <li>
+              <p>Membantu peserta mengembangkan keterampilan kepemimpinan dan komunikasi.</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer class="resume-footer">Generated by <a href="https://yamlresume.dev">YAMLResume</a></footer>
+</body>
+
+</html>

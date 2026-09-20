@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="zh-hant-tw">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="generator" content="YAMLResume (https://yamlresume.dev)">
+
+
+  <title>陳昱翰 Resume</title>
+  <style>
+    :root {
+      --text-font-size: 16px;
+      --text-font-family: var(--text-default-font-family);
+      --line-height: 1.5;
+    }
+
+    /* Modified from: https://www.joshwcomeau.com/css/custom-css-reset/ */
+
+    /* 1. Use a more-intuitive box-sizing model */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    /* 2. Remove default margin */
+    *:not(dialog) {
+      margin: 0;
+    }
+
+    body {
+      /* 3. Improve text rendering */
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    :root {
+      --border-color: #d0d0d0;
+
+      /* text colors */
+      --text-color-primary: #000000;
+      --text-color-secondary: #333333;
+
+      /* spacing */
+      --spacing-xss: 2px;
+      --spacing-xs: 4px;
+      --spacing-sm: 8px;
+      --spacing-md: 12px;
+      --spacing-lg: 16px;
+      --spacing-xl: 24px;
+      --spacing-xxl: 40px;
+      --spacing-xxxl: 80px;
+
+      /* font sizes */
+      --font-size-xs: 0.8rem;
+      --font-size-sm: 0.9rem;
+      --font-size-md: 1rem;
+      --font-size-lg: 1.1rem;
+      --font-size-xl: 1.25rem;
+      --font-size-xxl: 2.5rem;
+
+      /* layout */
+      --page-max-width: 900px;
+
+      /* typography */
+      --text-default-font-family:
+        -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu,
+        Cantarell, sans-serif;
+    }
+
+    html {
+      font-size: var(--text-font-size);
+    }
+
+    body {
+      /* font & text */
+      color: var(--text-color-primary);
+      font-family: var(--text-font-family);
+      /* this variable is defined by `typography.fontSize` in resume html layout */
+      text-autospace: normal;
+
+      /* layout */
+      line-height: var(--line-height);
+      max-width: var(--page-max-width);
+      margin: 0 auto;
+      padding: var(--spacing-xxxl) var(--spacing-xxl) var(--spacing-xxl);
+    }
+
+    /* header */
+    .resume-header {
+      margin-bottom: var(--spacing-xxl);
+      text-align: center;
+    }
+
+    .resume-name {
+      font-size: var(--font-size-xxl);
+      font-weight: 600;
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .resume-headline {
+      font-size: var(--font-size-lg);
+      margin-bottom: var(--spacing-md);
+    }
+
+    /* contact info */
+    .resume-contact-info {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      column-gap: var(--spacing-lg);
+      row-gap: var(--spacing-xs);
+      margin-top: var(--spacing-sm);
+    }
+
+    .resume-contact-icon,
+    .resume-contact-label {
+      margin-right: var(--spacing-sm);
+      vertical-align: middle;
+    }
+
+    /* links: modern typographic style */
+    a {
+      color: var(--text-color-primary);
+      text-decoration: underline;
+      text-decoration-color: var(--border-color);
+      text-underline-offset: 3px;
+      text-decoration-thickness: 1px;
+      text-decoration-skip-ink: auto;
+      transition: text-decoration-color 0.2s;
+    }
+
+    a:hover {
+      text-decoration-color: var(--text-color-primary);
+    }
+
+    /* sections */
+    .resume-section {
+      margin-bottom: var(--spacing-xl);
+    }
+
+    .resume-section-title {
+      font-size: var(--font-size-xl);
+      font-weight: 500;
+      margin-bottom: var(--spacing-md);
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: var(--spacing-xs);
+    }
+
+    /* entries */
+    .resume-entry {
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .resume-entry:last-child {
+      margin-bottom: 0;
+    }
+
+    .resume-entry-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .resume-entry-title {
+      font-weight: 500;
+      margin-bottom: var(--spacing-xss);
+    }
+
+    .resume-entry-summary p,
+    .resume-summary-content p {
+      margin-bottom: var(--spacing-xs);
+    }
+
+    /* lists */
+    .resume-entry-summary ul,
+    .resume-entry-summary ol,
+    .resume-summary-content ul,
+    .resume-summary-content ol {
+      padding-left: var(--spacing-lg);
+      list-style-type: circle;
+    }
+
+    /* labeled lists (courses, keywords, etc.) */
+    .resume-labeled-list span {
+      font-weight: 500;
+    }
+
+    /* skills grid */
+    .resume-skill-item,
+    .resume-language-item {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .resume-skill-name,
+    .resume-language-name {
+      font-weight: 500;
+    }
+
+    .resume-skill-level,
+    .resume-language-fluency {
+      font-weight: 400;
+    }
+
+    /* mobile */
+    @media (max-width: 768px) {
+      body {
+        padding: var(--spacing-xl);
+      }
+
+      .resume-header {
+        margin-bottom: var(--spacing-xl);
+      }
+
+      .resume-contact-info {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .resume-entry-header {
+        flex-wrap: wrap;
+      }
+    }
+
+    /* footer */
+    .resume-footer {
+      margin-top: var(--spacing-xxl);
+      padding-top: var(--spacing-xl);
+      border-top: 1px solid var(--border-color);
+      font-size: var(--font-size-sm);
+      color: var(--text-color-secondary);
+    }
+
+    @media print {
+      .resume-footer {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="resume-header">
+    <h1 class="resume-name">陳昱翰</h1>
+    <p class="resume-headline">資深專案經理 | 敏捷開發與跨部門協作</p>
+    <div class="resume-contact-info">
+      <span class="resume-contact-item"><span class="resume-contact-icon">📧</span><a href="mailto:yuhan.chen@example.com" class="resume-contact-link">yuhan.chen@example.com</a></span>
+      <span class="resume-contact-item"><span class="resume-contact-icon">📞</span>+886 912 345 678</span>
+      <span class="resume-contact-item"><span class="resume-contact-icon">🔗</span><a href="https://www.yuhanchen-pm.com" class="resume-contact-link">https://www.yuhanchen-pm.com</a></span>
+    </div>
+    <div class="resume-contact-info resume-location-info">
+      <span class="resume-contact-item"><span class="resume-contact-icon">📍</span>中國臺灣，台北市，台北市，台北市信義區松高路 1 號，110</span>
+    </div>
+    <div class="resume-contact-info resume-profiles-info">
+      <span class="resume-contact-item"><span class="resume-contact-label">LinkedIn</span>: <a href="https://www.linkedin.com/in/yuhan-chen-pm" class="resume-contact-link">@yuhan-chen-pm</a></span>
+      <span class="resume-contact-item"><span class="resume-contact-label">GitHub</span>: <a href="https://github.com/yuhanchen-pm" class="resume-contact-link">@yuhanchen-pm</a></span>
+    </div>
+  </header>
+  <section class="resume-section" id="summary" data-section="summary">
+    <h2 class="resume-section-title">簡介</h2>
+    <div class="resume-section-content">
+      <div class="resume-summary-content">
+        <ul>
+          <li>
+            <p>擁有 8 年以上軟體與數位產品專案管理經驗，擅長從需求訪談、範疇定義到交付驗收的完整生命週期。</p>
+          </li>
+          <li>
+            <p>精通 Agile/Scrum 與 Waterfall 方法論，能依專案特性調整整體節奏與資源配置。</p>
+          </li>
+          <li>
+            <p>具備跨部門溝通與利害關係人管理能力，成功協調工程、設計、行銷與營運團隊達成目標。</p>
+          </li>
+          <li>
+            <p>數據驅動決策，熟悉 Jira、Confluence、Asana 與 Tableau，持續優化流程與交付品質。</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="education" data-section="education">
+    <h2 class="resume-section-title">教育背景</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="education-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.ntu.edu.tw">國立臺灣大學</a></div>
+            <div class="resume-entry-organization">碩士，資訊管理學系，成績：4.0</div>
+          </div>
+          <div class="resume-entry-date">2014年9月–2016年6月</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>碩士論文以「敏捷式專案管理在台灣軟體產業之應用」為題，訪談 12 家企業。</p>
+            </li>
+            <li>
+              <p>擔任資訊管理研究所學會會長，籌辦產學講座與企業參訪。</p>
+            </li>
+            <li>
+              <p>獲選為管理學院優秀研究生，並取得斐陶斐榮譽會員資格。</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>課程</span>：專案管理、資訊系統分析與設計、資料庫管理、企業流程再造、敏捷軟體開發</div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="work" data-section="work">
+    <h2 class="resume-section-title">工作經歷</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="work-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.accton.com.tw">智邦科技股份有限公司</a></div>
+            <div class="resume-entry-organization">資深專案經理</div>
+          </div>
+          <div class="resume-entry-date">2021年3月至今</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>負責企業級網通軟體專案，管理 5 個跨功能團隊、共 40 位成員，年度專案預算達新台幣 8,000 萬元。</p>
+            </li>
+            <li>
+              <p>導入 Scrum 與 Kanban 混合式管理，將版本交付週期由 12 週縮短至 8 週，提升 33% 交付效率。</p>
+            </li>
+            <li>
+              <p>建立標準化風險管理流程，提前識別關鍵風險並制定緩解計畫，降低 25% 專案延遲率。</p>
+            </li>
+            <li>
+              <p>主導與歐美客戶的季度業務審查，協調需求優先級與範疇變更，維持客戶滿意度 95% 以上。</p>
+            </li>
+            <li>
+              <p>輔導 3 位初階專案經理取得 PMP 證照，建立內部專案管理知識庫。</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>關鍵字</span>：敏捷開發、跨部門協作、風險管理、利害關係人溝通、預算控管</div>
+      </div>
+      <div class="resume-entry" id="work-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.trendmicro.com">趨勢科技股份有限公司</a></div>
+            <div class="resume-entry-organization">專案經理</div>
+          </div>
+          <div class="resume-entry-date">2017年7月–2021年2月</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>管理雲端安全產品專案，從需求確認、開發排程到全球發布，年均完成 6 個主要版本。</p>
+            </li>
+            <li>
+              <p>與產品經理合作定義產品路線圖，將客戶回饋轉化為可執行的使用者故事與驗收條件。</p>
+            </li>
+            <li>
+              <p>協調 QA、DevOps 與技術支援團隊，建立自動化測試與持續整合流程，減少 40% 回歸測試時間。</p>
+            </li>
+            <li>
+              <p>每月向高階管理層彙報專案健康度、資源使用與里程碑達成率。</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>關鍵字</span>：雲端安全、產品交付、持續整合、資源規劃</div>
+      </div>
+      <div class="resume-entry" id="work-3">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.iisigroup.com">資拓宏宇國際股份有限公司</a></div>
+            <div class="resume-entry-organization">專案管理師</div>
+          </div>
+          <div class="resume-entry-date">2016年7月–2017年6月</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>參與政府資訊系統標案，負責需求訪談、規格書撰寫與專案進度追蹤。</p>
+            </li>
+            <li>
+              <p>協助導入 Jira 與 Confluence，統一專案文件與問題追蹤流程。</p>
+            </li>
+            <li>
+              <p>支援驗收測試與教育訓練，確保系統順利上線並移交維運團隊。</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>關鍵字</span>：政府標案、需求分析、文件管理、驗收測試</div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="languages" data-section="languages">
+    <h2 class="resume-section-title">語言</h2>
+    <div class="resume-section-content">
+      <div class="resume-languages-list">
+        <div class="resume-language-item">
+          <div class="resume-language-name">中文<span class="resume-language-fluency">：母語或雙語水平</span></div>
+          <div>
+            <div class="resume-labeled-list"><span>關鍵字</span>：母語</div>
+          </div>
+        </div>
+        <div class="resume-language-item">
+          <div class="resume-language-name">英語<span class="resume-language-fluency">：完全專業水平</span></div>
+          <div>
+            <div class="resume-labeled-list"><span>關鍵字</span>：TOEIC 950、商業談判、跨國團隊協作</div>
+          </div>
+        </div>
+        <div class="resume-language-item">
+          <div class="resume-language-name">日語<span class="resume-language-fluency">：有限工作水平</span></div>
+          <div>
+            <div class="resume-labeled-list"><span>關鍵字</span>：JLPT N3、日常會話</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="skills" data-section="skills">
+    <h2 class="resume-section-title">專業技能</h2>
+    <div class="resume-section-content">
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">專案管理<span class="resume-skill-level">：專家</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>關鍵字</span>：Agile、Scrum、Waterfall、風險管理、範疇管理、預算控管</div>
+        </div>
+      </div>
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">工具與平台<span class="resume-skill-level">：高級</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>關鍵字</span>：Jira、Confluence、Asana、Trello、Tableau、MS Project</div>
+        </div>
+      </div>
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">溝通與領導<span class="resume-skill-level">：專家</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>關鍵字</span>：跨部門協調、利害關係人管理、團隊激勵、簡報技巧、衝突解決</div>
+        </div>
+      </div>
+      <div class="resume-skill-item">
+        <div class="resume-skill-name">技術知識<span class="resume-skill-level">：中級</span></div>
+        <div>
+          <div class="resume-labeled-list"><span>關鍵字</span>：SQL、API、CI/CD、雲端服務、資料分析</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="awards" data-section="awards">
+    <h2 class="resume-section-title">榮譽</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="awards-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title">年度最佳專案經理</div>
+            <div class="resume-entry-organization">智邦科技股份有限公司</div>
+          </div>
+          <div class="resume-entry-date">2023年12月</div>
+        </div>
+        <div class="resume-entry-summary">
+          <p>表彰在企業級網通軟體專案中展現卓越領導力、風險管理與跨部門協調能力，並成功將交付週期縮短 33%。</p>
+        </div>
+      </div>
+      <div class="resume-entry" id="awards-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title">專案管理卓越獎</div>
+            <div class="resume-entry-organization">趨勢科技股份有限公司</div>
+          </div>
+          <div class="resume-entry-date">2020年11月</div>
+        </div>
+        <div class="resume-entry-summary">
+          <p>肯定在雲端安全產品全球發布專案中的傑出表現，達成 100% 里程碑並維持客戶滿意度 95% 以上。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="certificates" data-section="certificates">
+    <h2 class="resume-section-title">證書</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="certificates-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.pmi.org/certifications/project-management-pmp">Project Management Professional (PMP)</a></div>
+            <div class="resume-entry-organization">Project Management Institute</div>
+          </div>
+          <div class="resume-entry-date">2018年6月</div>
+        </div>
+      </div>
+      <div class="resume-entry" id="certificates-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.scrumalliance.org/certifications/csm">Certified ScrumMaster (CSM)</a></div>
+            <div class="resume-entry-organization">Scrum Alliance</div>
+          </div>
+          <div class="resume-entry-date">2019年9月</div>
+        </div>
+      </div>
+      <div class="resume-entry" id="certificates-3">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.pmi.org/certifications/agile-acp">PMI Agile Certified Practitioner (PMI-ACP)</a></div>
+            <div class="resume-entry-organization">Project Management Institute</div>
+          </div>
+          <div class="resume-entry-date">2021年4月</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="publications" data-section="publications">
+    <h2 class="resume-section-title">出版刊物</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="publications-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://hdl.handle.net/11296/example">敏捷式專案管理在台灣軟體產業之應用</a></div>
+            <div class="resume-entry-organization">國立臺灣大學資訊管理學系碩士論文</div>
+          </div>
+          <div class="resume-entry-date">2016年6月</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>探討敏捷式方法在台灣軟體公司的導入現況與挑戰。</p>
+            </li>
+            <li>
+              <p>訪談 12 家企業、回收 180 份問卷，提出混合式管理框架。</p>
+            </li>
+            <li>
+              <p>研究結果獲得多家受訪企業採用於內部流程改善。</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="projects" data-section="projects">
+    <h2 class="resume-section-title">項目</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="projects-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.accton.com.tw">企業級網通軟體交付平台</a></div>
+            <div class="resume-entry-description">整合需求管理、測試追蹤與版本發布的內部專案管理平台</div>
+          </div>
+          <div class="resume-entry-date">2022年1月–2023年8月</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>主導平台導入，涵蓋 5 個產品線、超過 40 位使用者。</p>
+            </li>
+            <li>
+              <p>建立自動化儀表板，即時呈現專案健康度與資源負載。</p>
+            </li>
+            <li>
+              <p>縮短 30% 專案狀態彙報時間，並提升資料透明度。</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>關鍵字</span>： 專案管理平台、數據視覺化、流程自動化</div>
+      </div>
+      <div class="resume-entry" id="projects-2">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.trendmicro.com">雲端安全產品全球發布專案</a></div>
+            <div class="resume-entry-description">面向全球企業客戶的雲端安全解決方案發布計畫</div>
+          </div>
+          <div class="resume-entry-date">2019年3月–2020年12月</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>協調台灣、美國、日本與印度團隊，完成 6 個主要版本發布。</p>
+            </li>
+            <li>
+              <p>建立跨時區溝通機制，將決策週期縮短 20%。</p>
+            </li>
+            <li>
+              <p>專案達成率 100%，客戶滿意度維持 95% 以上。</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resume-labeled-list"><span>關鍵字</span>： 全球發布、跨時區協作、雲端安全</div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section" id="interests" data-section="interests">
+    <h2 class="resume-section-title">興趣愛好</h2>
+    <div class="resume-section-content">
+      <div class="resume-interest-item"><span class="resume-interest-name">戶外活動</span>：登山、馬拉松、單車環島</div>
+      <div class="resume-interest-item"><span class="resume-interest-name">閱讀與學習</span>：商業策略、專案管理、人工智慧</div>
+      <div class="resume-interest-item"><span class="resume-interest-name">社群參與</span>：敏捷社群、專案管理協會、技術講座</div>
+    </div>
+  </section>
+  <section class="resume-section" id="volunteer" data-section="volunteer">
+    <h2 class="resume-section-title">志願服務</h2>
+    <div class="resume-section-content">
+      <div class="resume-entry" id="volunteer-1">
+        <div class="resume-entry-header">
+          <div>
+            <div class="resume-entry-title"><a href="https://www.pmi.org.tw">台灣專案管理學會</a></div>
+            <div class="resume-entry-organization">志工講師</div>
+          </div>
+          <div class="resume-entry-date">2019年1月–2023年12月</div>
+        </div>
+        <div class="resume-entry-summary">
+          <ul>
+            <li>
+              <p>擔任敏捷與專案管理課程志工講師，累計授課 30 場、學員超過 600 人。</p>
+            </li>
+            <li>
+              <p>協助籌辦年度專案管理論壇，負責議程規劃與講者邀請。</p>
+            </li>
+            <li>
+              <p>參與偏鄉資訊教育志工活動，指導高中生專題製作與簡報技巧。</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer class="resume-footer">Generated by <a href="https://yamlresume.dev">YAMLResume</a></footer>
+</body>
+
+</html>

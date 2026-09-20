@@ -1,0 +1,256 @@
+\documentclass[a4paper, serif, 10pt]{moderncv}
+
+%% moderncv
+% style and color
+\moderncvstyle{banking}
+\moderncvcolor{black}
+
+%% page layout/margins
+\usepackage[top=2.5cm, bottom=2.5cm, left=1.5cm, right=1.5cm]{geometry}
+
+\nopagenumbers{}
+
+%% Babel config for Spanish language
+% \usepackage[spanish]{babel} has some conflicting issues with moderncv
+% so we have to use enable the following options to make it work
+%
+% ref:
+% - https://tex.stackexchange.com/a/140161/36007
+\usepackage[spanish,es-lcroman]{babel}
+
+%% fontspec
+\usepackage{fontspec}
+
+\IfFontExistsTF{Linux Libertine}{
+  \setmainfont[Ligatures={TeX, Common}, Numbers=OldStyle]{Linux Libertine}
+}{}
+\IfFontExistsTF{Linux Libertine O}{
+  \setmainfont[Ligatures={TeX, Common}, Numbers=OldStyle]{Linux Libertine O}
+}{}
+
+%% CTeX
+% CJK support, used to show CJK characters in the resume
+%
+% - fontset=none: disable builtin fontset but instead set the CJK font manually
+% - heading=false: disable ctex heading
+% - punct=kaiming: use kaiming punctuations styles for CJK
+% - scheme=plain: use plain scheme, do not override \normalsize font size
+% - space=auto: space settings for CJK characters
+%
+% ref:
+% - http://ctan.mirrorcatalogs.com/language/chinese/ctex/ctex.pdf
+\usepackage[UTF8, heading=false, punct=kaiming, scheme=plain, space=auto]{ctex}
+
+\IfFontExistsTF{Noto Serif CJK SC}{
+  \setCJKmainfont{Noto Serif CJK SC}
+}{}
+\IfFontExistsTF{Noto Sans CJK SC}{
+  \setCJKsansfont{Noto Sans CJK SC}
+}{}
+
+%% line spacing
+\usepackage{setspace}
+\setstretch{1.125}
+
+%% URL styling - use normal text instead of monospace
+\urlstyle{same}
+
+% Auto-underline all links
+% Defer until \begin{document} so hyperref is already loaded
+\AtBeginDocument{%
+  \let\oldhref\href
+  \renewcommand{\href}[2]{\oldhref{#1}{\underline{#2}}}%
+}
+
+%% Patch \httplink and \httpslink to handle full URLs
+% The original moderncv macros always prepend http:// or https:// to URLs.
+% This causes issues when the URL already has a protocol (e.g., https://example.com)
+% resulting in malformed URLs like https://https://example.com.
+% This patch checks if the URL already contains "://" and uses it directly if so.
+% Note: We use \str_set:Nx (x-expansion) to expand macros like \@homepage first.
+\ExplSyntaxOn
+\str_new:N \g_yamlresume_url_str
+
+\RenewDocumentCommand{\httpslink}{O{}m}{
+  \str_set:Nx \g_yamlresume_url_str {#2}
+  \str_if_in:NnTF \g_yamlresume_url_str {://}
+    { \url{#2} }
+    { \url{https://#2} }
+}
+
+\RenewDocumentCommand{\httplink}{O{}m}{
+  \str_set:Nx \g_yamlresume_url_str {#2}
+  \str_if_in:NnTF \g_yamlresume_url_str {://}
+    { \url{#2} }
+    { \url{http://#2} }
+}
+\ExplSyntaxOff
+
+\name{Laura Jiménez Morales}{}
+\title{Gerente de Marketing Digital y Estrategia de Marca}
+\phone[mobile]{+34 612 345 678}
+\email{laura.jimenez@example.com}
+\homepage{https://www.laurajimenezmarketing.com}
+
+\address{Calle Gran Vía 45, Madrid, Comunidad de Madrid, España, 28013}{}{}
+
+\extrainfo{{\small \faLinkedin}\ \href{https://www.linkedin.com/in/laurajimenez}{@laurajimenez} {} {} {} • {} {} {} 
+{\small \faTwitter}\ \href{https://twitter.com/laurajimenez}{@laurajimenez}}
+
+\begin{document}
+
+\maketitle
+
+\section{Información básica}
+
+\cvline{}{\begin{itemize}
+\item Gerente de Marketing con más de 8 años de experiencia en desarrollo de estrategias digitales y campañas omnicanal.
+\item Especializada en posicionamiento de marca, generación de leads y análisis de métricas para optimizar el ROI.
+\item Liderazgo de equipos multidisciplinares y gestión de presupuestos superiores a 1M€.
+\item Apasionada por la innovación, el marketing basado en datos y la experiencia del cliente.
+\end{itemize}}
+\section{Educación}
+
+\cventry{sept 2010–jul 2014}
+        {Licenciatura, Marketing y Comunicación, Puntuación: 8.5}
+        {Universidad Complutense de Madrid}
+        {\url{https://www.ucm.es}}
+        {}
+        {\begin{itemize}
+\item Formación sólida en estrategias de marketing y comunicación empresarial.
+\item Participación en proyectos reales con empresas locales.
+\item Miembro activo de la asociación de estudiantes de marketing.
+\end{itemize}
+\textbf{Cursos}: Fundamentos de Marketing, Comportamiento del Consumidor, Marketing Digital, Gestión de Marca, Análisis de Datos para Marketing, Comunicación Corporativa}
+\section{Experiencia laboral}
+
+\cventry{ene 2020 hasta la fecha}
+        {Gerente de Marketing}
+        {Innova Retail Group}
+        {\url{https://www.innovaretail.com}}
+        {}
+        {\begin{itemize}
+\item Lidero el equipo de marketing digital y tradicional, gestionando un presupuesto anual de 1.2M€.
+\item Desarrollé e implementé la estrategia de marca que aumentó el reconocimiento en un 35\% en dos años.
+\item Coordiné campañas omnicanal que generaron un incremento del 25\% en leads cualificados.
+\item Implementé herramientas de automatización y análisis (HubSpot, Google Analytics) para optimizar el ROI.
+\end{itemize}
+\textbf{Palabras clave}: Estrategia de Marca, Marketing Digital, Liderazgo, ROI, Omnicanalidad}
+
+\cventry{sept 2016–dic 2019}
+        {Especialista en Marketing Digital}
+        {Soluciones Digitales S.L.}
+        {\url{https://www.solucionesdigitales.es}}
+        {}
+        {\begin{itemize}
+\item Diseñé y ejecuté campañas de SEM y redes sociales, logrando un CTR un 20\% superior a la media del sector.
+\item Gestioné el contenido del blog corporativo, aumentando el tráfico orgánico en un 150\% en 18 meses.
+\item Realicé informes mensuales de rendimiento y presenté recomendaciones a la dirección.
+\end{itemize}
+\textbf{Palabras clave}: SEM, SEO, Redes Sociales, Contenidos, Analytics}
+
+\cventry{sept 2014–ago 2016}
+        {Asistente de Marketing}
+        {Agencia Creativa Barcelona}
+        {\url{https://www.agenciacreativabcn.com}}
+        {}
+        {\begin{itemize}
+\item Apoyé en la creación de campañas publicitarias para clientes de diversos sectores.
+\item Colaboré en la organización de eventos y ferias comerciales.
+\item Realicé estudios de mercado y análisis de la competencia.
+\end{itemize}
+\textbf{Palabras clave}: Publicidad, Eventos, Investigación de Mercado}
+\section{Idiomas}
+
+\cvline{Español}{Competencia nativa o bilingüe \hfill \textbf{Palabras clave}: DELE C2}
+\cvline{Inglés}{Competencia profesional plena \hfill \textbf{Palabras clave}: TOEIC 950}
+\cvline{Francés}{Competencia limitada de trabajo}
+\section{Competencias}
+
+\cvline{Marketing Digital}{Experto \hfill \textbf{Palabras clave}: SEO/SEM, Google Analytics, HubSpot, Email Marketing, Redes Sociales}
+\cvline{Gestión de Proyectos}{Avanzado \hfill \textbf{Palabras clave}: Agile, Scrum, Jira, Presupuestos}
+\cvline{Análisis de Datos}{Avanzado \hfill \textbf{Palabras clave}: Google Data Studio, SQL, Excel Avanzado, Tableau}
+\section{Premios}
+
+\cventry{nov 2022}
+        {Asociación Española de Marketing}
+        {Premio a la Mejor Campaña Digital}
+        {}
+        {}
+        {Reconocimiento por la campaña "Navidad Sostenible" que incrementó las ventas online en un 40\%.}
+
+\cventry{dic 2021}
+        {Innova Retail Group}
+        {Employee of the Year}
+        {}
+        {}
+        {Otorgado por liderazgo excepcional y resultados sobresalientes en marketing.}
+\section{Certificados}
+
+\cventry{mar 2021}
+        {Google}
+        {Google Analytics Certified Professional}
+        {\url{https://skillshop.exceedlms.com/student/path/2939-google-analytics-certification}}
+        {}
+        {}
+
+\cventry{jun 2020}
+        {HubSpot Academy}
+        {HubSpot Inbound Marketing Certification}
+        {\url{https://academy.hubspot.com/courses/inbound-marketing}}
+        {}
+        {}
+\section{Publicaciones}
+
+\cventry{oct 2022}
+        {Tendencias del Marketing de Influencers en España}
+        {Revista Marketing News}
+        {\url{https://www.marketingnews.es/articulo/tendencias}}
+        {}
+        {\begin{itemize}
+\item Análisis del impacto de los influencers en las decisiones de compra de los millennials.
+\item Estudio de caso de campañas exitosas en el sector retail.
+\end{itemize}}
+\section{Proyectos}
+
+\cventry{mar 2021–sept 2021}
+        {Campaña integral de marketing para promover el consumo responsable en Madrid.}
+        {Campaña "Madrid Sostenible"}
+        {\url{https://www.madridsostenible.es}}
+        {}
+        {\begin{itemize}
+\item Diseñé la estrategia creativa y coordiné la producción de contenidos.
+\item Gestioné alianzas con influencers locales y medios de comunicación.
+\item La campaña alcanzó 2 millones de impresiones y un 15\% de aumento en la intención de compra.
+\end{itemize}
+\textbf{Palabras clave}: Sostenibilidad, Campaña, Influencers}
+
+\cventry{ene 2019–jun 2019}
+        {Proyecto de renovación completa del sitio web de Soluciones Digitales S.L.}
+        {Rediseño del Sitio Web Corporativo}
+        {\url{https://www.solucionesdigitales.es}}
+        {}
+        {\begin{itemize}
+\item Lideré la definición de la arquitectura de información y la experiencia de usuario.
+\item Coordiné el equipo de diseño y desarrollo.
+\item El nuevo sitio mejoró la tasa de conversión en un 30\%.
+\end{itemize}
+\textbf{Palabras clave}: UX, Web, Conversión}
+\section{Intereses}
+
+\cvline{Deportes}{Running, Yoga, Senderismo}
+\cvline{Cultura}{Lectura, Cine, Fotografía}
+\section{Voluntariado}
+
+\cventry{feb 2020–dic 2022}
+        {Mentora de Marketing}
+        {Fundación Integra}
+        {\url{https://www.fundacionintegra.org}}
+        {}
+        {\begin{itemize}
+\item Asesoré a emprendedores sociales en la creación de estrategias de marketing digital.
+\item Impartí talleres sobre redes sociales y posicionamiento de marca.
+\item Ayudé a varias startups a definir su propuesta de valor.
+\end{itemize}}
+    
+\end{document}

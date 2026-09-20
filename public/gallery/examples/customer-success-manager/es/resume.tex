@@ -1,0 +1,264 @@
+\documentclass[a4paper, serif, 10pt]{moderncv}
+
+%% moderncv
+% style and color
+\moderncvstyle{banking}
+\moderncvcolor{black}
+
+%% page layout/margins
+\usepackage[top=2.5cm, bottom=2.5cm, left=1.5cm, right=1.5cm]{geometry}
+
+\nopagenumbers{}
+
+%% Babel config for Spanish language
+% \usepackage[spanish]{babel} has some conflicting issues with moderncv
+% so we have to use enable the following options to make it work
+%
+% ref:
+% - https://tex.stackexchange.com/a/140161/36007
+\usepackage[spanish,es-lcroman]{babel}
+
+%% fontspec
+\usepackage{fontspec}
+
+\IfFontExistsTF{Linux Libertine}{
+  \setmainfont[Ligatures={TeX, Common}, Numbers=OldStyle]{Linux Libertine}
+}{}
+\IfFontExistsTF{Linux Libertine O}{
+  \setmainfont[Ligatures={TeX, Common}, Numbers=OldStyle]{Linux Libertine O}
+}{}
+
+%% CTeX
+% CJK support, used to show CJK characters in the resume
+%
+% - fontset=none: disable builtin fontset but instead set the CJK font manually
+% - heading=false: disable ctex heading
+% - punct=kaiming: use kaiming punctuations styles for CJK
+% - scheme=plain: use plain scheme, do not override \normalsize font size
+% - space=auto: space settings for CJK characters
+%
+% ref:
+% - http://ctan.mirrorcatalogs.com/language/chinese/ctex/ctex.pdf
+\usepackage[UTF8, heading=false, punct=kaiming, scheme=plain, space=auto]{ctex}
+
+\IfFontExistsTF{Noto Serif CJK SC}{
+  \setCJKmainfont{Noto Serif CJK SC}
+}{}
+\IfFontExistsTF{Noto Sans CJK SC}{
+  \setCJKsansfont{Noto Sans CJK SC}
+}{}
+
+%% line spacing
+\usepackage{setspace}
+\setstretch{1.125}
+
+%% URL styling - use normal text instead of monospace
+\urlstyle{same}
+
+% Auto-underline all links
+% Defer until \begin{document} so hyperref is already loaded
+\AtBeginDocument{%
+  \let\oldhref\href
+  \renewcommand{\href}[2]{\oldhref{#1}{\underline{#2}}}%
+}
+
+%% Patch \httplink and \httpslink to handle full URLs
+% The original moderncv macros always prepend http:// or https:// to URLs.
+% This causes issues when the URL already has a protocol (e.g., https://example.com)
+% resulting in malformed URLs like https://https://example.com.
+% This patch checks if the URL already contains "://" and uses it directly if so.
+% Note: We use \str_set:Nx (x-expansion) to expand macros like \@homepage first.
+\ExplSyntaxOn
+\str_new:N \g_yamlresume_url_str
+
+\RenewDocumentCommand{\httpslink}{O{}m}{
+  \str_set:Nx \g_yamlresume_url_str {#2}
+  \str_if_in:NnTF \g_yamlresume_url_str {://}
+    { \url{#2} }
+    { \url{https://#2} }
+}
+
+\RenewDocumentCommand{\httplink}{O{}m}{
+  \str_set:Nx \g_yamlresume_url_str {#2}
+  \str_if_in:NnTF \g_yamlresume_url_str {://}
+    { \url{#2} }
+    { \url{http://#2} }
+}
+\ExplSyntaxOff
+
+\name{Lucía Fernández Gómez}{}
+\title{Customer Success Manager | Especialista en Retención y Crecimiento de Clientes}
+\phone[mobile]{+34 612 345 678}
+\email{lucia.fernandez@example.com}
+\homepage{https://www.luciafernandez.es}
+
+\address{Calle de Serrano 45, Madrid, Comunidad de Madrid, España, 28001}{}{}
+
+\extrainfo{{\small \faLinkedin}\ \href{https://www.linkedin.com/in/lucia-fernandez-csm}{@lucia-fernandez-csm} {} {} {} • {} {} {} 
+{\small \faTwitter}\ \href{https://twitter.com/lucia\_csm}{@lucia\_csm}}
+
+\begin{document}
+
+\maketitle
+
+\section{Información básica}
+
+\cvline{}{Customer Success Manager con más de 8 años de experiencia en empresas SaaS y tecnología, enfocada en la retención, adopción y crecimiento de clientes estratégicos.
+%
+\begin{itemize}
+\item Gestión de carteras de clientes B2B con un NPS superior a 70 y una tasa de retención del 95\%.
+\item Implementación de programas de onboarding que reducen el time-to-value en un 30\%.
+\item Colaboración estrecha con Ventas, Producto y Soporte para identificar oportunidades de upselling y cross-selling.
+\item Comunicación bilingüe (español nativo, inglés profesional) y orientación a resultados.
+\end{itemize}}
+\section{Educación}
+
+\cventry{sept 2012–jul 2016}
+        {Licenciatura, Administración y Dirección de Empresas, Puntuación: 8.5}
+        {Universidad Complutense de Madrid}
+        {\url{https://www.ucm.es}}
+        {}
+        {\begin{itemize}
+\item Formación sólida en gestión empresarial, análisis financiero y estrategia comercial.
+\item Participación en programas de intercambio y proyectos de consultoría para pymes.
+\item Desarrollo de habilidades de comunicación, liderazgo y trabajo en equipo.
+\end{itemize}
+\textbf{Cursos}: Fundamentos de Marketing, Comportamiento Organizacional, Gestión de Recursos Humanos, Contabilidad Financiera, Estadística Aplicada a la Empresa, Sistemas de Información para la Gestión, Negociación y Habilidades Directivas, Estrategia Empresarial}
+\section{Experiencia laboral}
+
+\cventry{ene 2021 hasta la fecha}
+        {Senior Customer Success Manager}
+        {Nexo Cloud Solutions}
+        {\url{https://www.nexocloud.es}}
+        {}
+        {\begin{itemize}
+\item Responsable de una cartera de 45 clientes enterprise con un valor anual contratado (ACV) de 4,5 M€.
+\item Diseñé y ejecuté el plan de éxito del cliente, logrando un aumento del 25\% en la adopción de producto y una reducción del churn del 18\%.
+\item Lideré revisiones trimestrales (QBR) con directivos, alineando métricas de negocio con el valor entregado.
+\item Identifiqué oportunidades de expansión por 1,2 M€ mediante análisis de uso y colaboración con el equipo de Ventas.
+\item Mentoría a dos Customer Success Managers junior, mejorando sus índices de satisfacción y retención.
+\end{itemize}
+\textbf{Palabras clave}: Retención de clientes, Onboarding, QBR, Upselling, SaaS, CRM}
+
+\cventry{mar 2018–dic 2020}
+        {Customer Success Manager}
+        {DataVista Analytics}
+        {\url{https://www.datavista.es}}
+        {}
+        {\begin{itemize}
+\item Gestioné una cartera de 80 clientes pyme y mid-market en el sector de analítica de datos.
+\item Implementé un programa de onboarding automatizado que redujo el tiempo de activación de 30 a 21 días.
+\item Aumenté el NPS de 45 a 68 en 18 meses mediante seguimiento proactivo y resolución de incidencias.
+\item Colaboré con Producto en la priorización de funcionalidades solicitadas por clientes clave.
+\item Realicé formaciones periódicas y webinars para fomentar la adopción de nuevas funcionalidades.
+\end{itemize}
+\textbf{Palabras clave}: Analítica de datos, NPS, Onboarding, Formación, Pyme}
+
+\cventry{sept 2016–feb 2018}
+        {Customer Support Specialist}
+        {Soluciones Ágiles}
+        {\url{https://www.solucionesagiles.com}}
+        {}
+        {\begin{itemize}
+\item Atendí solicitudes de soporte técnico y funcional de más de 200 clientes corporativos.
+\item Resolví incidencias con un índice de satisfacción del 92\% y un tiempo medio de respuesta inferior a 2 horas.
+\item Documenté procedimientos y creé una base de conocimiento que redujo las consultas repetitivas en un 35\%.
+\item Coordiné escalados con los equipos de Ingeniería y Producto para la resolución de bugs críticos.
+\end{itemize}
+\textbf{Palabras clave}: Soporte técnico, Base de conocimiento, SLA, Escalado}
+\section{Idiomas}
+
+\cvline{Español}{Competencia nativa o bilingüe \hfill \textbf{Palabras clave}: Español nativo}
+\cvline{Inglés}{Competencia profesional plena \hfill \textbf{Palabras clave}: C1, TOEIC 950}
+\cvline{Francés}{Competencia elemental \hfill \textbf{Palabras clave}: A2}
+\section{Competencias}
+
+\cvline{Gestión de Customer Success}{Experto \hfill \textbf{Palabras clave}: Retención, Onboarding, QBR, Planes de éxito, Renovaciones}
+\cvline{Herramientas CRM}{Avanzado \hfill \textbf{Palabras clave}: Salesforce, HubSpot, Gainsight, Zendesk}
+\cvline{Análisis de Datos}{Avanzado \hfill \textbf{Palabras clave}: Excel, SQL, Tableau, KPIs}
+\cvline{Comunicación y Liderazgo}{Experto \hfill \textbf{Palabras clave}: Presentaciones, Negociación, Mentoría, Trabajo en equipo}
+\section{Premios}
+
+\cventry{dic 2023}
+        {Nexo Cloud Solutions}
+        {Premio a la Excelencia en Customer Success}
+        {}
+        {}
+        {Reconocimiento anual por lograr la mayor tasa de retención y satisfacción de clientes en la compañía.}
+
+\cventry{jun 2020}
+        {DataVista Analytics}
+        {Innovación en Procesos de Onboarding}
+        {}
+        {}
+        {Galardón por el diseño e implementación de un programa de onboarding que mejoró el time-to-value en un 30\%.}
+\section{Certificados}
+
+\cventry{mar 2021}
+        {SuccessCOACHING}
+        {Certified Customer Success Manager (CCSM)}
+        {\url{https://www.successcoaching.com/certifications}}
+        {}
+        {}
+
+\cventry{sept 2019}
+        {Salesforce}
+        {Salesforce Certified Administrator}
+        {\url{https://trailhead.salesforce.com/certifications}}
+        {}
+        {}
+\section{Publicaciones}
+
+\cventry{may 2022}
+        {Estrategias de retención en SaaS B2B}
+        {Revista Customer Success España}
+        {\url{https://www.revistacustomersuccess.es/articulos/retencion-saas-b2b}}
+        {}
+        {\begin{itemize}
+\item Artículo sobre las mejores prácticas para reducir el churn en empresas de software como servicio.
+\item Incluye casos de éxito y métricas clave para medir el impacto de Customer Success.
+\end{itemize}}
+\section{Proyectos}
+
+\cventry{ene 2022–jun 2022}
+        {Rediseño del proceso de incorporación de clientes para acelerar la adopción y el valor.}
+        {Programa de Onboarding 2.0}
+        {\url{https://www.nexocloud.es/onboarding}}
+        {}
+        {\begin{itemize}
+\item Reestructuré las fases de onboarding con hitos medibles y materiales personalizados por sector.
+\item Integré el programa con el CRM para automatizar seguimientos y alertas tempranas.
+\item Resultado: reducción del tiempo de activación en un 30\% y aumento del 20\% en la adopción de funciones clave.
+\end{itemize}
+\textbf{Palabras clave}: Onboarding, Automatización, Adopción}
+
+\cventry{mar 2021–sept 2021}
+        {Panel interno para monitorizar el riesgo de churn y las oportunidades de expansión.}
+        {Dashboard de Salud del Cliente}
+        {\url{https://www.nexocloud.es/dashboard-salud}}
+        {}
+        {\begin{itemize}
+\item Definí métricas de salud del cliente (uso, tickets, NPS, facturación) y umbrales de alerta.
+\item Desarrollé informes automatizados en Tableau para el equipo de Customer Success.
+\item Permitiió priorizar acciones proactivas y evitar renovaciones en riesgo.
+\end{itemize}
+\textbf{Palabras clave}: Churn, KPIs, Tableau}
+\section{Intereses}
+
+\cvline{Tecnología}{SaaS, Inteligencia artificial, No-code}
+\cvline{Sostenibilidad}{Economía circular, Voluntariado ambiental}
+\cvline{Bienestar}{Yoga, Meditación, Running}
+\section{Voluntariado}
+
+\cventry{sept 2021 hasta la fecha}
+        {Mentor de Customer Success}
+        {Asociación Española de Customer Success}
+        {\url{https://www.aecs.es}}
+        {}
+        {\begin{itemize}
+\item Ejercí como mentora de profesionales junior en la definición de planes de carrera y mejora de habilidades de gestión de clientes.
+\item Participé en jornadas y talleres sobre retención, onboarding y métricas de éxito del cliente.
+\item Colaboré en la creación de una guía de buenas prácticas para equipos de Customer Success en España.
+\end{itemize}}
+    
+\end{document}
