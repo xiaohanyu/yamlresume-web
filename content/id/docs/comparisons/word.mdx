@@ -1,0 +1,249 @@
+---
+title: YAMLResume VS Microsoft Word
+---
+
+[Microsoft Word](https://www.microsoft.com/en-us/microsoft-365/word) adalah cara
+kebanyakan orang di dunia menulis resume. Ini adalah format default untuk
+lamaran pekerjaan, terinstal di ratusan juta komputer, dan galeri
+template-nya menawarkan ribuan desain. Jika seorang recruiter meminta Anda
+untuk "kirimkan resume Anda," sembilan dari sepuluh kali mereka mengharapkan
+`.docx` atau PDF yang diekspor dari Word.
+
+Dari halaman produk Microsoft sendiri:
+
+```markdown
+- Word works across devices—on desktop (Windows and macOS), mobile, tablets
+  (iOS and Android) or online.
+- Word for the web is free for anyone to use online.
+- Real-time collaboration means fewer email attachments and faster feedback.
+```
+
+Hal pentingnya adalah ini: **memilih YAMLResume tidak berarti melepaskan
+output yang kompatibel dengan Word.** YAMLResume memiliki [mesin
+DOCX](/id/docs/layouts/docx) khusus yang membangun dokumen Microsoft Word dari
+sumber YAML Anda dengan satu perintah. Perbandingan yang sebenarnya bukan
+"YAML versus `.docx`"—melainkan **pengeditan dokumen manual versus output
+terstruktur yang dikompilasi**. Perbedaan itu menyentuh kontrol versi,
+validasi, konsistensi, penerbitan multi-format, dan otomatisasi.
+
+Berikut adalah perbandingan kedua alur kerja tersebut:
+
+## Perbandingan Fitur
+
+| Fitur                    | YAMLResume                                                                                                                                                 | Microsoft Word                                                                             |
+| ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
+| **Jenis**                | Compiler resume (toolchain CLI)                                                                                                                            | Pengolah kata serbaguna                                                                    |
+| **Format Penulisan**     | YAML teks biasa                                                                                                                                            | `.docx` biner (ZIP berisi XML)                                                             |
+| **Pemformatan**          | Dihasilkan dari template, sehingga pemformatan tetap konsisten                                                                                             | Manual—gaya, tab stop, dan spasi bergeser seiring waktu                                    |
+| **Validasi Skema**       | [Validasi Zod ketat](/id/docs/compiler/schema) dengan [diagnostik gaya clang](/id/blog/yamlresume-compiler)                                                | Tidak ada untuk struktur—hanya ejaan dan tata bahasa                                       |
+| **Format Output**        | [DOCX](/id/docs/layouts/docx), [HTML](/id/docs/layouts/html), [Markdown](/id/docs/layouts/markdown), [LaTeX/PDF](/id/docs/layouts/latex)                   | `.docx`, PDF (Save As), plus ekspor lossy ke format lain                                   |
+| **Output DOCX**          | [Mesin DOCX](/id/docs/layouts/docx) bawaan dengan template yang dikurasi                                                                                   | Dokumennya sendiri adalah DOCX                                                             |
+| **Template**             | Kumpulan resmi yang dikurasi (`calm` untuk DOCX; lebih banyak untuk [LaTeX](/id/docs/layouts/latex/templates) dan [HTML](/id/docs/layouts/html/templates)) | Ribuan template via Microsoft Create dan pihak ketiga; kualitasnya sangat bervariasi       |
+| **Kontrol Versi**        | Berfungsi dengan Git; diff menunjukkan perubahan nyata                                                                                                     | File biner—diff dan merge praktis tidak berguna                                            |
+| **Penyesuaian**          | File layout dan cabang Git per lamaran                                                                                                                     | Salinan "Save As" yang saling bergeser (`resume_final_v2.docx`)                            |
+| **Internasionalisasi**   | [10 bahasa di 12 kode lokal](/id/docs/locale), plus [terjemahan AI](/id/docs/ai/translate)                                                                 | UI dan pemeriksaan ejaan dalam banyak bahasa; setiap bahasa adalah dokumen manual terpisah |
+| **Teks Kaya**            | Sekumpulan [sintaks Markdown](/id/docs/content/rich-text) terpilih di bidang `summary`                                                                     | Pemformatan penuh di mana-mana                                                             |
+| **Model Data**           | Skema terstruktur yang tetap; interoperabilitas [JSON Resume](/id/docs/comparisons/json-resume)                                                            | Dokumen bebas bentuk                                                                       |
+| **Fitur AI**             | [Generasi](/id/docs/ai/generate) dan [terjemahan](/id/docs/ai/translate) bawaan di CLI                                                                     | Fitur Microsoft 365 Copilot (berlangganan)                                                 |
+| **Kolaborasi**           | Pull request Git dan tinjauan kode pada teks biasa                                                                                                         | Kolaborasi real-time, komentar, dan pelacakan perubahan yang sangat baik                   |
+| **Keamanan ATS**         | Struktur dokumen yang bersih dan dihasilkan; output [Markdown](/id/docs/layouts/markdown) untuk bidang teks                                                | Tergantung pada kedisiplinan template—tabel, kotak teks, dan kolom merusak banyak parser   |
+| **Output Deterministik** | Ya—input yang sama, byte yang sama, di mesin mana pun                                                                                                      | Font dan tata letak bergeser antar mesin dan versi Word                                    |
+| **Mode Dev**             | [`yamlresume dev`](/id/blog/dev-mode) membangun ulang pada setiap simpan                                                                                   | Pengeditan WYSIWYG (langsung, tetapi manual)                                               |
+| **CI/CD & Otomatisasi**  | [GitHub Action](https://github.com/yamlresume/action), [Docker](/id/docs/contributing/docker), [`@yamlresume/node`](/id/docs/ecosystem/node)               | Tidak ada yang bawaan untuk resume                                                         |
+| **Offline**              | Ya, setelah instalasi                                                                                                                                      | Aplikasi desktop ya; Word untuk web membutuhkan konektivitas                               |
+| **Biaya**                | Gratis (open source)                                                                                                                                       | Langganan Microsoft 365; versi web gratis terbatas                                         |
+
+## Perbedaan Kunci Dijelaskan
+
+### Pemformatan Manual vs. Pemformatan yang Dihasilkan
+
+Di Word, pemformatan adalah tugas Anda. Setiap indentasi bullet, setiap tab
+stop tanggal, dan setiap judul pekerjaan yang dicetak tebal adalah keputusan
+yang Anda buat dan terus buat ulang. Selama berbulan-bulan pengeditan,
+dokumen bergeser: spasi menjadi tidak konsisten, entri baru menggunakan
+bullet yang sedikit berbeda, dan "satu perubahan kecil" menghabiskan dua
+puluh menit untuk mengutak-atik. Studi menunjukkan kebanyakan pengguna Word
+tidak pernah menyentuh gaya bernama, sehingga pemformatan berakhir sebagai
+penyetelan inline satu kali yang menyakitkan untuk direvisi.
+
+Di YAMLResume, pemformatan adalah tugas compiler. Konten Anda adalah data;
+[mesin DOCX](/id/docs/layouts/docx) dan [mesin LaTeX](/id/docs/layouts/latex)
+me-render-nya melalui template yang menegakkan konsistensi. Ubah jabatan Anda
+di satu tempat dan setiap format—DOCX, PDF, HTML, Markdown—mengambilnya pada
+build berikutnya. Template membuat setiap keputusan desain satu kali, dan
+melakukannya dengan benar.
+
+### Teks Biasa vs. Biner
+
+File `.docx` adalah arsip ZIP yang penuh dengan XML. Git tidak dapat
+mem-diff-nya dengan cara yang berguna, menggabungkan dua versi resume berarti
+menyalin-tempel dengan tangan, dan "apa yang berubah antara Maret dan Juni?"
+berarti membuka kedua file dan membandingkannya berdampingan. Inilah mengapa
+resume Word menumpuk sebagai `Resume.docx`, `Resume_new.docx`,
+`Resume_newer.docx`, `Resume_FINAL_tracked.docx` dalam folder yang tidak
+berani dibersihkan siapa pun.
+
+File YAMLResume adalah teks biasa. `git diff` menunjukkan dengan tepat apa
+yang berubah:
+
+```diff
+-    position: Senior Software Engineer
++    position: Staff Software Engineer
+     startDate: Jan 2020
+-    endDate: Dec 2024
++    endDate:
+```
+
+Teks biasa membuka peralatan pengembang yang biasa: cabang per lamaran
+pekerjaan, tinjauan pull request terhadap riwayat karier Anda sendiri, build
+otomatis di CI, dan arsip permanen yang dapat dicari dari setiap resume yang
+pernah Anda miliki.
+
+### Validasi: Pemeriksaan Ejaan Bukan Pemeriksaan Struktur
+
+Word akan menggarisbawahi pemberi kerja yang salah eja, tetapi ia akan
+membiarkan Anda menyimpan resume yang tanggal akhirnya mendahului tanggal
+mulai, email tidak memiliki `@`, atau bidang kota hanya berisi satu huruf.
+Tidak satu pun dari itu adalah kesalahan ejaan, jadi tidak satu pun yang
+ditandai.
+
+YAMLResume memvalidasi struktur sebelum me-render apa pun.
+[Compiler](/id/docs/compiler/architecture) memeriksa resume Anda terhadap
+skema Zod yang ketat dan melaporkan [diagnostik gaya
+clang](/id/blog/yamlresume-compiler) dengan nomor baris dan cuplikan sumber,
+sehingga kesalahan tertangkap saat Anda menulis, bukan saat recruiter
+menyadarinya.
+
+### Penyesuaian Tanpa Kekacauan Salinan
+
+Saran karier jelas: sesuaikan resume Anda untuk setiap lamaran. Di Word, itu
+biasanya berarti memilih Save As dan mengedit salinan. Tetapi salinan-salinan
+itu dengan cepat tidak sinkron—perbaiki salah ketik di satu file, lupa yang
+lain, dan sekarang Anda memiliki dua resume berbeda tanpa tahu mana yang
+benar.
+
+Di YAMLResume, file konten Anda tetap menjadi satu sumber kebenaran.
+Penyesuaian terjadi di konfigurasi layout: [alias dan pengurutan
+bagian](/id/docs/layouts/sections/aliases) dapat berubah per varian, dan Git
+melacaknya tepat di samping konten Anda. Sepuluh varian yang disesuaikan
+hanyalah sepuluh file layout kecil yang mengarah ke resume yang sama—bukan
+sepuluh dokumen terpisah yang saling bergeser.
+
+### Internasionalisasi, Dinyatakan dengan Adil
+
+Word bagus dalam hal ini: ia menangani dokumen multibahasa, pemeriksaan
+ejaan, dan aksara kompleks—termasuk Chinese, Japanese, dan Korean—dengan
+sangat baik, dan ia adalah alat standar untuk resume di banyak negara
+non-Inggris. Jika Anda menulis satu resume dalam satu bahasa, dukungan
+multibahasa Word bukan masalah Anda.
+
+YAMLResume bersinar ketika satu karier harus berbicara dalam beberapa bahasa.
+Mengatur kunci `locale` menerjemahkan judul bagian, gelar, tingkat
+keterampilan, dan nama negara; memformat tanggal dan alamat dalam gaya lokal;
+dan menerapkan aturan tanda baca lokal di [10 bahasa dan 12 kode
+lokal](/id/docs/locale). Dikombinasikan dengan [`yamlresume ai
+translate`](/id/docs/ai/translate), varian Inggris-ke-Jepang hanya berjarak
+satu perintah, dihasilkan dari sumber yang sama sehingga keduanya tidak pernah
+bergeser. Di Word, itu berarti dua dokumen dan seorang penerjemah.
+
+### ATS dan Struktur Dokumen
+
+Applicant tracking system mengurai file `.docx` dengan baik—ketika dokumennya
+sederhana. Masalahnya, kebanyakan template resume Word *tidak* sederhana:
+layout dua kolom, tabel, kotak teks, ikon, dan grafik adalah hal-hal yang
+justru membingungkan parser, dan galeri template tidak dapat memberi tahu Anda
+desain mana yang aman. Hasilnya adalah resume yang terlihat indah di Word
+tetapi berubah menjadi omong kosong di ATS.
+
+Output DOCX YAMLResume dihasilkan dari data terstruktur, sehingga dokumen
+yang mendasarinya bersih dan dapat diprediksi. Dan ketika Anda membutuhkan
+teks yang dapat diekstrak dengan andal, [mesin
+Markdown](/id/docs/layouts/markdown) mengeluarkan resume yang sama sebagai
+teks terstruktur murni yang dapat dibaca dengan sempurna oleh parser
+apa pun—atau LLM.
+
+## Ekosistem
+
+### Template
+
+Ekosistem template Microsoft sangat besar: galeri [Microsoft
+Create](https://create.microsoft.com/en-us/templates/resumes) dan situs pihak
+ketiga yang tak terhitung jumlahnya menawarkan ribuan template resume Word,
+gratis dan berbayar, dalam setiap gaya visual. Kekurangannya adalah kualitas
+yang tidak merata—untuk setiap template yang dibangun dengan baik ada lusinan
+yang dibangun dengan tabel dan kotak teks yang mempersulit pengeditan dan
+merusak parser ATS.
+
+YAMLResume mengirimkan kumpulan kecil yang dikurasi: template
+[calm](/id/docs/layouts/docx/templates/calm) untuk output DOCX, ditambah
+template [LaTeX](/id/docs/layouts/latex/templates) dan
+[HTML](/id/docs/layouts/html/templates), semuanya divalidasi terhadap setiap
+lokal yang didukung. Karena template adalah pengaturan mesin daripada dokumen,
+mengganti desain tidak pernah berarti menulis ulang konten.
+
+### Recruiter dan Format `.docx`
+
+Banyak recruiter dan sistem aplikasi secara khusus meminta dokumen
+Word—beberapa pengaturan ATS mengurai `.docx` lebih andal daripada PDF, dan
+agensi sering menghapus detail kontak Anda sebelum meneruskan, yang umum
+terjadi meskipun Anda tidak menyukainya. Inilah tepatnya mengapa YAMLResume
+menyertakan mesin DOCX bawaan. Template
+[calm](/id/docs/layouts/docx/templates/calm) menghasilkan dokumen Word yang
+bersih dari sumber YAML yang sama, dengan opsi
+[halaman](/id/docs/layouts/docx#page),
+[tipografi](/id/docs/layouts/docx#typography), dan opsi lanjutan (URL yang
+dapat diklik, ikon kontak) yang selaras dengan mesin lainnya.
+
+Satu catatan berlaku untuk file DOCX apa pun, dihasilkan atau tidak: font
+harus ada di mesin tempat dokumen dibuka, atau Word menggantinya. Pilih font
+yang tersedia luas untuk layout DOCX Anda, dan jadikan mesin LaTeX/PDF
+sebagai referensi Anda untuk output yang tampil sempurna.
+
+### Otomatisasi
+
+Word memiliki makro; YAMLResume memiliki pipeline. [GitHub
+Action](https://github.com/yamlresume/action) membangun setiap format pada
+setiap push, [gambar Docker](/id/docs/contributing/docker) membangun di mana
+saja tanpa penyiapan lokal, dan [`@yamlresume/node`](/id/docs/ecosystem/node)
+memungkinkan aplikasi membaca, memvalidasi, dan membangun resume secara
+terprogram. Untuk dokumen yang Anda perbarui setahun sekali ini berlebihan;
+untuk resume hidup yang berevolusi bersama karier Anda—dan untuk tim yang
+memelihara resume dalam skala besar—ini mengubah cara Anda memelihara resume.
+
+## Ringkasan
+
+**Microsoft Word** unggul jika Anda menginginkan:
+
+- Format yang berfungsi di mana-mana—setiap recruiter dapat membuka dan mengedit `.docx`
+- Editor WYSIWYG tanpa penyiapan dan tanpa langkah build
+- Kolaborasi yang hebat: kolaborasi real-time, komentar, pelacakan perubahan
+- Galeri template besar yang mencakup setiap industri dan gaya visual
+- Alat yang familier yang sudah Anda miliki dan gunakan untuk segala hal lainnya
+
+**YAMLResume** unggul jika Anda menginginkan:
+
+- Satu file sumber teks biasa di Git, dengan diff nyata, riwayat, dan cabang
+- Pemformatan yang dihasilkan dan konsisten di [DOCX](/id/docs/layouts/docx),
+  [PDF](/id/docs/layouts/latex), [HTML](/id/docs/layouts/html), dan
+  [Markdown](/id/docs/layouts/markdown)
+- [Validasi skema](/id/docs/compiler/schema) yang menangkap [kesalahan
+  struktural](/id/docs/cli#validate) sebelum recruiter menyadarinya
+- [Internasionalisasi](/id/docs/locale) mendalam: [10 bahasa di 12 kode
+  lokal](/id/docs/locale) dengan [terjemahan AI](/id/docs/ai/translate), dari
+  satu sumber kebenaran
+- Output yang aman ATS secara desain, plus [mesin
+  Markdown](/id/docs/layouts/markdown) untuk pipeline teks
+- Otomatisasi: [mode watch](/id/blog/dev-mode), [build
+  CI/CD](/id/docs/ecosystem/action), [Docker](/id/docs/contributing/docker),
+  dan [API Node.js](/id/docs/ecosystem/node)
+- Kompatibilitas Word *tanpa* alur kerja Word, melalui [mesin DOCX
+  bawaan](/id/docs/layouts/docx)
+
+Pilih **Microsoft Word** jika Anda menulis satu resume setahun, berkolaborasi
+dengan orang non-teknis yang hidup di Office, atau sekadar mengutamakan
+kecepatan daripada struktur.
+
+Pilih **YAMLResume** jika resume Anda adalah dokumen yang hidup—diversikan,
+disesuaikan per lamaran, diterbitkan dalam berbagai format dan bahasa, dan
+dipelihara seperti pekerjaan Anda yang lain: sebagai kode. Dan ketika
+recruiter meminta versi Word, `yamlresume build` sudah menanganinya.

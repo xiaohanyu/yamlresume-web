@@ -1,0 +1,232 @@
+---
+title: YAMLResume VS Microsoft Word
+---
+
+[Microsoft Word](https://www.microsoft.com/en-us/microsoft-365/word) is how
+most of the world writes resumes. It is the default format for job
+applications, it is installed on hundreds of millions of computers, and its
+template gallery offers thousands of designs. If a recruiter asks you to "send
+over your resume," nine times out of ten they expect a `.docx` or a PDF
+exported from Word.
+
+From Microsoft's own product page:
+
+```markdown
+- Word works across devices—on desktop (Windows and macOS), mobile, tablets
+  (iOS and Android) or online.
+- Word for the web is free for anyone to use online.
+- Real-time collaboration means fewer email attachments and faster feedback.
+```
+
+The important thing is this: **choosing YAMLResume does not mean giving up
+Word-compatible output.** YAMLResume has a dedicated [DOCX engine](/docs/layouts/docx)
+that builds Microsoft Word documents from your YAML source with one command.
+The real comparison is not "YAML versus `.docx`"—it is **manual document
+editing versus compiled, structured output**. That difference touches
+version control, validation, consistency, multi-format publishing, and
+automation.
+
+Here is how the two workflows compare:
+
+## Feature Comparison
+
+| Feature                  | YAMLResume                                                                                                          | Microsoft Word                                                                              |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
+| **Type**                 | Resume compiler (CLI toolchain)                                                                                     | General-purpose word processor                                                              |
+| **Authoring Format**     | Plain-text YAML                                                                                                     | Binary `.docx` (a ZIP of XML)                                                               |
+| **Formatting**           | Generated from templates, so formatting stays consistent                                                              | Manual—styles, tab stops, and spacing drift over time                                       |
+| **Schema Validation**    | [Strict Zod validation](/docs/compiler/schema) with [clang-style diagnostics](/blog/yamlresume-compiler)            | None for structure—spelling and grammar only                                                |
+| **Output Formats**       | [DOCX](/docs/layouts/docx), [HTML](/docs/layouts/html), [Markdown](/docs/layouts/markdown), [LaTeX/PDF](/docs/layouts/latex) | `.docx`, PDF (Save As), plus lossy exports to other formats                                 |
+| **DOCX Output**          | Built-in [DOCX engine](/docs/layouts/docx) with curated templates                                                     | The document itself is the DOCX                                                             |
+| **Templates**            | Curated official set (`calm` for DOCX; more for [LaTeX](/docs/layouts/latex/templates) and [HTML](/docs/layouts/html/templates)) | Thousands of templates via Microsoft Create and third parties; quality varies widely        |
+| **Version Control**      | Works with Git; diffs show real changes                                                                               | Binary files—diffs and merges are effectively useless                                       |
+| **Tailoring**            | Layout files and Git branches per application                                                                         | "Save As" copies that drift apart (`resume_final_v2.docx`)                                  |
+| **Internationalization** | [10 languages across 12 locale codes](/docs/locale), plus [AI translation](/docs/ai/translate)                      | UI and spellcheck in many languages; each language is a separate manual document            |
+| **Rich Text**            | A selected set of [Markdown syntax](/docs/content/rich-text) in `summary` fields                                    | Full formatting everywhere                                                                  |
+| **Data Model**           | Fixed, structured schema; [JSON Resume](/docs/comparisons/json-resume) interop                                      | Free-form document                                                                          |
+| **AI Features**          | Built-in [generation](/docs/ai/generate) and [translation](/docs/ai/translate) in the CLI                           | Microsoft 365 Copilot features (subscription)                                               |
+| **Collaboration**        | Git pull requests and code review on plain text                                                                     | Excellent real-time co-authoring, comments, and track changes                               |
+| **ATS Safety**           | Clean, generated document structure; [Markdown](/docs/layouts/markdown) output for text fields                      | Depends on template discipline—tables, text boxes, and columns break many parsers          |
+| **Deterministic Output** | Yes—same input, same bytes, on any machine                                                                          | Fonts and layouts shift between machines and Word versions                                  |
+| **Dev Mode**             | [`yamlresume dev`](/blog/dev-mode) rebuilds on every save                                                           | WYSIWYG editing (live, but manual)                                                          |
+| **CI/CD & Automation**   | [GitHub Action](https://github.com/yamlresume/action), [Docker](/docs/contributing/docker), [`@yamlresume/node`](/docs/ecosystem/node) | Nothing built-in for resumes                                                                |
+| **Offline**              | Yes, after installation                                                                                             | Desktop app yes; Word for the web requires connectivity                                     |
+| **Cost**                 | Free (open source)                                                                                                  | Microsoft 365 subscription; limited free web version                                        |
+
+## Key Differences Explained
+
+### Manual Formatting vs. Generated Formatting
+
+In Word, formatting is your job. Every bullet indent, every date tab stop, and
+every bold job title is a decision you make and keep remaking. Over months of
+edits, documents drift: spacing becomes inconsistent, a new entry uses a
+slightly different bullet, and "one tiny change" costs twenty minutes of
+fiddling. Studies show most Word users never touch named styles, so formatting
+ends up as one-off inline tweaks that are painful to revise.
+
+In YAMLResume, formatting is the compiler's job. Your content is data; the
+[DOCX engine](/docs/layouts/docx) and the [LaTeX engine](/docs/layouts/latex)
+render it through templates that enforce consistency. Change your job title in
+one place and every format—DOCX, PDF, HTML, Markdown—picks it up on the next
+build. The template makes each design decision once, and gets it right.
+
+### Plain Text vs. Binary
+
+A `.docx` file is a ZIP archive full of XML. Git cannot diff it in a useful way,
+merging two versions of a resume means copy-pasting by hand, and "what changed
+between March and June?" means opening both files and comparing them side by
+side. This is why Word resumes pile up as `Resume.docx`, `Resume_new.docx`,
+`Resume_newer.docx`, `Resume_FINAL_tracked.docx` in a folder nobody dares to
+clean up.
+
+A YAMLResume file is plain text. `git diff` shows exactly what changed:
+
+```diff
+-    position: Senior Software Engineer
++    position: Staff Software Engineer
+     startDate: Jan 2020
+-    endDate: Dec 2024
++    endDate:
+```
+
+Plain text opens up the usual developer tools: branches per job application,
+pull-request reviews of your own career history, automated builds in CI, and a
+permanent, searchable archive of every resume you have ever had.
+
+### Validation: Spellcheck Is Not Structure Checking
+
+Word will underline a misspelled employer, but it will let you save a resume
+where the end date comes before the start date, the email is missing an `@`,
+or the city field is a single letter. None of those are spelling errors, so
+none of them get flagged.
+
+YAMLResume validates structure before rendering anything. The
+[compiler](/docs/compiler/architecture) checks your resume against a strict
+Zod schema and reports [clang-style
+diagnostics](/blog/yamlresume-compiler) with line numbers and source snippets,
+so errors are caught while you write, not when a recruiter notices them.
+
+### Tailoring Without the Copy Chaos
+
+Career advice is clear: tailor your resume for each application. In Word, that
+usually means choosing Save As and editing a copy. But the copies quickly fall
+out of sync—fix a typo in one file, forget the other, and now you have two
+different resumes and no idea which is right.
+
+In YAMLResume, your content file stays the single source of truth. Tailoring
+happens in layout configs: [section aliases and ordering](/docs/layouts/sections/aliases)
+can change per variant, and Git tracks them right next to your content. Ten
+tailored variants are just ten small layout files pointing to the same
+resume—not ten separate documents drifting apart.
+
+### Internationalization, Fairly Stated
+
+Word is good at this: it handles multilingual documents, spellchecking, and
+complex scripts—including Chinese, Japanese, and Korean—very well, and it is
+the standard tool for resumes in many non-English countries. If you write one
+resume in one language, Word's multilingual support is not your problem.
+
+YAMLResume shines when one career must speak several languages. Setting the
+`locale` key translates section headings, degrees, skill levels, and country
+names; formats dates and addresses in local style; and applies locale
+punctuation rules across [10 languages and 12 locale
+codes](/docs/locale). Combined with [`yamlresume ai
+translate`](/docs/ai/translate), an English-to-Japanese variant is one command
+away, generated from the same source so the two never drift. In Word, that
+means two documents and a translator.
+
+### ATS and Document Structure
+
+Applicant tracking systems parse `.docx` files well—when the document is
+simple. The problem is that most Word resume templates are *not* simple:
+two-column layouts, tables, text boxes, icons, and graphics are exactly the
+things that confuse parsers, and a template gallery cannot tell you which
+designs are safe. The result is a resume that looks beautiful in Word but
+turns into gibberish in the ATS.
+
+YAMLResume's DOCX output is generated from structured data, so the underlying
+document is clean and predictable. And when you need text you can reliably
+extract, the [Markdown engine](/docs/layouts/markdown) emits the same resume as
+pure structured text that any parser—or LLM—reads perfectly.
+
+## Ecosystem
+
+### Templates
+
+Microsoft's template ecosystem is enormous: the
+[Microsoft Create](https://create.microsoft.com/en-us/templates/resumes)
+gallery and countless third-party sites offer thousands of Word resume
+templates, free and paid, in every visual style. The downside is uneven
+quality—for every well-built template there are dozens built with tables and
+text boxes that make editing hard and break ATS parsers.
+
+YAMLResume ships a small curated set: the [calm](/docs/layouts/docx/templates/calm)
+template for DOCX output, plus [LaTeX](/docs/layouts/latex/templates) and
+[HTML](/docs/layouts/html/templates) templates, all validated against every
+supported locale. Because templates are engine settings rather than documents,
+switching designs never means rewriting content.
+
+### Recruiters and the `.docx` Format
+
+Many recruiters and application systems specifically request Word documents—
+some ATS setups parse `.docx` more reliably than PDF, and agencies often
+remove your contact details before forwarding, which is common even if you
+dislike it. This is exactly why YAMLResume includes a built-in DOCX engine.
+The [calm](/docs/layouts/docx/templates/calm) template produces a clean Word
+document from the same YAML source, with [page](/docs/layouts/docx#page),
+[typography](/docs/layouts/docx#typography), and advanced options (clickable
+URLs, contact icons) that match the other engines.
+
+One caveat applies to any DOCX file, generated or not: fonts must exist on the
+machine where the document is opened, or Word substitutes them. Choose widely
+available fonts for your DOCX layout, and keep the LaTeX/PDF engine as your
+reference for perfect-looking output.
+
+### Automation
+
+Word has macros; YAMLResume has a pipeline. The [GitHub
+Action](https://github.com/yamlresume/action) builds every format on every
+push, the [Docker image](/docs/contributing/docker) builds anywhere without
+local setup, and [`@yamlresume/node`](/docs/ecosystem/node) lets applications
+read, validate, and build resumes programmatically. For a document you update
+once a year this is overkill; for a living resume that evolves with your
+career—and for teams maintaining resumes at scale—it changes how you maintain
+resumes.
+
+## Summary
+
+**Microsoft Word** excels if you want:
+
+- A format that works everywhere—every recruiter can open and edit a `.docx`
+- A WYSIWYG editor with zero setup and no build step
+- Great collaboration: real-time co-authoring, comments, track changes
+- A huge template gallery covering every industry and visual style
+- A familiar tool you already own and use for everything else
+
+**YAMLResume** excels if you want:
+
+- One plain-text source file in Git, with real diffs, history, and branches
+- Generated, consistent formatting across [DOCX](/docs/layouts/docx),
+  [PDF](/docs/layouts/latex), [HTML](/docs/layouts/html), and
+  [Markdown](/docs/layouts/markdown)
+- [Schema validation](/docs/compiler/schema) that catches [structural
+  errors](/docs/cli#validate) before recruiters do
+- Deep [internationalization](/docs/locale): [10 languages across 12 locale
+  codes](/docs/locale) with [AI translation](/docs/ai/translate), from a single
+  source of truth
+- ATS-safe output by design, plus a [Markdown engine](/docs/layouts/markdown)
+  for text pipelines
+- Automation: [watch mode](/blog/dev-mode), [CI/CD
+  builds](/docs/ecosystem/action), [Docker](/docs/contributing/docker), and a
+  [Node.js API](/docs/ecosystem/node)
+- Word compatibility *without* the Word workflow, via the [built-in DOCX
+  engine](/docs/layouts/docx)
+
+Choose **Microsoft Word** if you write one resume a year, collaborate with
+non-technical people who live in Office, or simply value immediacy over
+structure.
+
+Choose **YAMLResume** if your resume is a living document—versioned,
+tailored per application, published in multiple formats and languages, and
+maintained like the rest of your work: as code. And when a recruiter asks for
+a Word version, `yamlresume build` has you covered.

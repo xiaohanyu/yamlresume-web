@@ -1,0 +1,254 @@
+---
+title: YAMLResume contre Microsoft Word
+---
+
+[Microsoft Word](https://www.microsoft.com/en-us/microsoft-365/word) est l'outil
+avec lequel la majeure partie du monde rédige ses CV. C'est le format par défaut
+des candidatures, il est installé sur des centaines de millions d'ordinateurs,
+et sa galerie de modèles offre des milliers de designs. Si un recruteur vous
+demande d'« envoyer votre CV », dans neuf cas sur dix il s'attend à un `.docx`
+ou à un PDF exporté depuis Word.
+
+D'après la page produit de Microsoft elle-même :
+
+```markdown
+- Word works across devices—on desktop (Windows and macOS), mobile, tablets
+  (iOS and Android) or online.
+- Word for the web is free for anyone to use online.
+- Real-time collaboration means fewer email attachments and faster feedback.
+```
+
+L'important est le suivant : **choisir YAMLResume ne signifie pas renoncer à
+une sortie compatible Word.** YAMLResume dispose d'un [moteur
+DOCX](/fr/docs/layouts/docx) dédié qui génère des documents Microsoft Word à
+partir de votre source YAML en une seule commande. La vraie comparaison n'est
+pas « YAML contre `.docx` » — c'est **édition manuelle de document contre
+sortie compilée et structurée**. Cette différence touche le contrôle de
+version, la validation, la cohérence, la publication multi-format et
+l'automatisation.
+
+Voici comment les deux flux de travail se comparent :
+
+## Comparaison des fonctionnalités
+
+| Fonctionnalité                       | YAMLResume                                                                                                                                        | Microsoft Word                                                                                                  |
+|--------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------|
+| **Type**                             | Compilateur de CV (chaîne d'outils CLI)                                                                                                           | Traitement de texte généraliste                                                                                 |
+| **Format de rédaction**              | YAML en texte brut                                                                                                                                | `.docx` binaire (un ZIP de XML)                                                                                 |
+| **Mise en forme**                    | Générée à partir de modèles, donc cohérente                                                                                                       | Manuelle — les styles, taquets de tabulation et espacements dérivent avec le temps                              |
+| **Validation du schéma**             | [Validation stricte du schéma Zod](/fr/docs/compiler/schema) avec [diagnostics de style clang](/fr/blog/yamlresume-compiler)                      | Aucune pour la structure — orthographe et grammaire seulement                                                   |
+| **Formats de sortie**                | [DOCX](/fr/docs/layouts/docx), [HTML](/fr/docs/layouts/html), [Markdown](/fr/docs/layouts/markdown), [LaTeX/PDF](/fr/docs/layouts/latex)          | `.docx`, PDF (Enregistrer sous), plus des exports avec perte vers d'autres formats                              |
+| **Sortie DOCX**                      | [Moteur DOCX](/fr/docs/layouts/docx) intégré avec des modèles sélectionnés                                                                        | Le document lui-même est le DOCX                                                                                |
+| **Modèles**                          | Ensemble officiel sélectionné (`calm` pour DOCX ; plus pour [LaTeX](/fr/docs/layouts/latex/templates) et [HTML](/fr/docs/layouts/html/templates)) | Des milliers de modèles via Microsoft Create et des tiers ; qualité très variable                               |
+| **Gestion de versions**              | Fonctionne avec Git ; les diffs montrent les vrais changements                                                                                    | Fichiers binaires — diffs et fusions pratiquement inutiles                                                      |
+| **Personnalisation par candidature** | Fichiers de mise en page et branches Git par candidature                                                                                          | Copies « Enregistrer sous » qui dérivent (`resume_final_v2.docx`)                                               |
+| **Internationalisation**             | [10 langues sur 12 codes de locale](/fr/docs/locale), plus [traduction IA](/fr/docs/ai/translate)                                                 | Interface et vérification orthographique en de nombreuses langues ; chaque langue est un document manuel séparé |
+| **Texte enrichi**                    | Un ensemble sélectionné de [syntaxe Markdown](/fr/docs/content/rich-text) dans les champs `summary`                                               | Formatage complet partout                                                                                       |
+| **Modèle de données**                | Schéma fixe et structuré ; interop [JSON Resume](/fr/docs/comparisons/json-resume)                                                                | Document libre                                                                                                  |
+| **Fonctionnalités IA**               | [Génération](/fr/docs/ai/generate) et [traduction](/fr/docs/ai/translate) intégrées dans la CLI                                                   | Fonctionnalités Microsoft 365 Copilot (abonnement)                                                              |
+| **Collaboration**                    | Pull requests Git et revue de code sur du texte brut                                                                                              | Excellente co-édition en temps réel, commentaires et suivi des modifications                                    |
+| **Compatibilité ATS**                | Structure de document propre et générée ; sortie [Markdown](/fr/docs/layouts/markdown) pour les champs texte                                      | Dépend de la discipline du modèle — tableaux, zones de texte et colonnes cassent de nombreux parseurs           |
+| **Sortie déterministe**              | Oui — même entrée, mêmes octets, sur n'importe quelle machine                                                                                     | Polices et mises en page changent selon les machines et les versions de Word                                    |
+| **Mode dev**                         | [`yamlresume dev`](/fr/blog/dev-mode) reconstruit à chaque sauvegarde                                                                             | Édition WYSIWYG (en direct, mais manuelle)                                                                      |
+| **CI/CD et automatisation**          | [GitHub Action](https://github.com/yamlresume/action), [Docker](/fr/docs/contributing/docker), [`@yamlresume/node`](/fr/docs/ecosystem/node)      | Rien d'intégré pour les CV                                                                                      |
+| **Hors ligne**                       | Oui, après installation                                                                                                                           | Application de bureau oui ; Word pour le web nécessite une connexion                                            |
+| **Coût**                             | Gratuit (open source)                                                                                                                             | Abonnement Microsoft 365 ; version web gratuite limitée                                                         |
+
+## Principales différences expliquées
+
+### Mise en forme manuelle vs mise en forme générée
+
+Dans Word, la mise en forme est votre travail. Chaque retrait de puce, chaque
+taquet de tabulation de date et chaque titre de poste en gras est une décision
+que vous prenez et reprenez sans cesse. Au fil des mois de modifications, les
+documents dérivent : les espacements deviennent incohérents, une nouvelle
+entrée utilise une puce légèrement différente, et « un petit changement »
+coûte vingt minutes d'ajustements. Des études montrent que la plupart des
+utilisateurs de Word n'utilisent jamais les styles nommés, si bien que la mise
+en forme finit en ajustements ponctuels douloureux à réviser.
+
+Dans YAMLResume, la mise en forme est le travail du compilateur. Votre contenu
+est des données ; le [moteur DOCX](/fr/docs/layouts/docx) et le [moteur
+LaTeX](/fr/docs/layouts/latex) le composent via des modèles qui assurent la
+cohérence. Changez votre titre de poste en un seul endroit et chaque format —
+DOCX, PDF, HTML, Markdown — le prend en compte à la prochaine compilation. Le
+modèle prend chaque décision de design une seule fois, et la prend bien.
+
+### Texte brut vs binaire
+
+Un fichier `.docx` est une archive ZIP remplie de XML. Git ne peut pas le
+differ de manière utile, fusionner deux versions d'un CV signifie copier-coller
+à la main, et « qu'est-ce qui a changé entre mars et juin ? » signifie ouvrir
+les deux fichiers et les comparer côte à côte. C'est pourquoi les CV Word
+s'empilent en tant que `Resume.docx`, `Resume_new.docx`, `Resume_newer.docx`,
+`Resume_FINAL_tracked.docx` dans un dossier que personne n'ose nettoyer.
+
+Un fichier YAMLResume est du texte brut. `git diff` montre exactement ce qui a
+changé :
+
+```diff
+-    position: Senior Software Engineer
++    position: Staff Software Engineer
+     startDate: Jan 2020
+-    endDate: Dec 2024
++    endDate:
+```
+
+Le texte brut ouvre les outils développeurs habituels : des branches par
+candidature, des revues par pull request de votre propre historique de
+carrière, des builds automatisés en CI, et une archive permanente et
+cherchable de chaque CV que vous avez jamais eu.
+
+### Validation : l'orthographe n'est pas une vérification structurelle
+
+Word soulignera un employeur mal orthographié, mais il vous laissera
+enregistrer un CV où la date de fin précède la date de début, où l'e-mail
+manque d'un `@`, ou où le champ ville est une seule lettre. Aucune de ces
+erreurs n'est une faute d'orthographe, donc aucune n'est signalée.
+
+YAMLResume valide la structure avant de composer quoi que ce soit. Le
+[compilateur](/fr/docs/compiler/architecture) vérifie votre CV contre un schéma
+Zod strict et rapporte des [diagnostics de style
+clang](/fr/blog/yamlresume-compiler) avec des numéros de ligne et des extraits
+de source, de sorte que les erreurs sont détectées pendant que vous écrivez,
+pas quand un recruteur les remarque.
+
+### Personnalisation sans le chaos des copies
+
+Les conseils de carrière sont clairs : adaptez votre CV à chaque candidature.
+Dans Word, cela signifie généralement choisir Enregistrer sous et modifier une
+copie. Mais les copies se désynchronisent rapidement — corrigez une faute de
+frappe dans un fichier, oubliez l'autre, et vous voilà avec deux CV différents
+sans savoir lequel est le bon.
+
+Dans YAMLResume, votre fichier de contenu reste la source de vérité unique. La
+personnalisation se fait dans les configurations de mise en page : les [alias
+et l'ordre des sections](/fr/docs/layouts/sections/aliases) peuvent changer par
+variante, et Git les suit juste à côté de votre contenu. Dix variantes
+adaptées ne sont que dix petits fichiers de mise en page pointant vers le même
+CV — pas dix documents séparés qui dérivent.
+
+### Internationalisation, en toute honnêteté
+
+Word est bon dans ce domaine : il gère très bien les documents multilingues,
+la vérification orthographique et les écritures complexes — y compris le
+chinois, le japonais et le coréen — et c'est l'outil standard pour les CV dans
+de nombreux pays non anglophones. Si vous rédigez un CV dans une seule langue,
+le support multilingue de Word n'est pas votre problème.
+
+YAMLResume brille quand une carrière doit parler plusieurs langues. La
+définition de la clé `locale` traduit les titres de section, les diplômes, les
+niveaux de compétence et les noms de pays ; formate les dates et les adresses
+selon le style local ; et applique les règles de ponctuation adaptées à la
+locale sur [10 langues et 12 codes de locale](/fr/docs/locale). Combiné avec
+[`yamlresume ai translate`](/fr/docs/ai/translate), une variante de l'anglais
+vers le japonais est à une commande de distance, générée à partir de la même
+source pour que les deux ne dérivent jamais. Dans Word, cela signifie deux
+documents et un traducteur.
+
+### ATS et structure du document
+
+Les systèmes de suivi des candidatures (ATS) analysent bien les fichiers
+`.docx` — quand le document est simple. Le problème est que la plupart des
+modèles de CV Word ne sont *pas* simples : les mises en page à deux colonnes,
+les tableaux, les zones de texte, les icônes et les graphiques sont exactement
+ce qui embrouille les parseurs, et une galerie de modèles ne peut pas vous
+dire quels designs sont sûrs. Le résultat est un CV qui semble magnifique dans
+Word mais qui devient du charabia dans l'ATS.
+
+La sortie DOCX de YAMLResume est générée à partir de données structurées, donc
+le document sous-jacent est propre et prévisible. Et quand vous avez besoin
+d'un texte que vous pouvez extraire de manière fiable, le [moteur
+Markdown](/fr/docs/layouts/markdown) émet le même CV sous forme de texte
+structuré pur que n'importe quel parseur — ou LLM — lit parfaitement.
+
+## Écosystème
+
+### Modèles
+
+L'écosystème de modèles de Microsoft est énorme : la galerie [Microsoft
+Create](https://create.microsoft.com/en-us/templates/resumes) et d'innombrables
+sites tiers offrent des milliers de modèles de CV Word, gratuits et payants,
+dans chaque style visuel. L'inconvénient est la qualité inégale — pour chaque
+modèle bien construit, il y en a des dizaines construits avec des tableaux et
+des zones de texte qui compliquent l'édition et cassent les parseurs ATS.
+
+YAMLResume livre un petit ensemble sélectionné : le modèle
+[calm](/fr/docs/layouts/docx/templates/calm) pour la sortie DOCX, plus des
+modèles [LaTeX](/fr/docs/layouts/latex/templates) et
+[HTML](/fr/docs/layouts/html/templates), tous validés contre chaque locale
+prise en charge. Parce que les modèles sont des réglages de moteur plutôt que
+des documents, changer de design ne signifie jamais réécrire le contenu.
+
+### Les recruteurs et le format `.docx`
+
+De nombreux recruteurs et systèmes de candidature demandent spécifiquement des
+documents Word — certains systèmes ATS analysent le `.docx` de manière plus
+fiable que le PDF, et les agences suppriment souvent vos coordonnées avant de
+transmettre le CV, ce qui est courant même si vous le déplorez. C'est
+exactement pourquoi YAMLResume inclut un moteur DOCX intégré. Le modèle
+[calm](/fr/docs/layouts/docx/templates/calm) produit un document Word propre à
+partir de la même source YAML, avec des options de
+[page](/fr/docs/layouts/docx#page), de
+[typographie](/fr/docs/layouts/docx#typography) et avancées (URL cliquables,
+icônes de contact) qui correspondent aux autres moteurs.
+
+Une mise en garde s'applique à tout fichier DOCX, généré ou non : les polices
+doivent exister sur la machine où le document est ouvert, sinon Word les
+remplace. Choisissez des polices largement disponibles pour votre mise en page
+DOCX, et gardez le moteur LaTeX/PDF comme référence pour une sortie au rendu
+parfait.
+
+### Automatisation
+
+Word a des macros ; YAMLResume a un pipeline. La [GitHub
+Action](https://github.com/yamlresume/action) compile chaque format à chaque
+push, l'[image Docker](/fr/docs/contributing/docker) compile n'importe où sans
+configuration locale, et [`@yamlresume/node`](/fr/docs/ecosystem/node) permet
+aux applications de lire, valider et compiler des CV programmatiquement. Pour
+un document que vous mettez à jour une fois par an, c'est du luxe inutile ;
+pour un CV vivant qui évolue avec votre carrière — et pour les équipes qui
+maintiennent des CV à l'échelle — cela change la façon dont vous maintenez les
+CV.
+
+## Résumé
+
+**Microsoft Word** excelle si vous voulez :
+
+- Un format qui fonctionne partout — chaque recruteur peut ouvrir et modifier
+  un `.docx`
+- Un éditeur WYSIWYG sans configuration et sans étape de compilation
+- Une excellente collaboration : co-édition en temps réel, commentaires,
+  suivi des modifications
+- Une immense galerie de modèles couvrant chaque industrie et chaque style
+  visuel
+- Un outil familier que vous possédez déjà et utilisez pour tout le reste
+
+**YAMLResume** excelle si vous voulez :
+
+- Un fichier source en texte brut dans Git, avec de vrais diffs, un historique
+  et des branches
+- Une mise en forme générée et cohérente sur [DOCX](/fr/docs/layouts/docx),
+  [PDF](/fr/docs/layouts/latex), [HTML](/fr/docs/layouts/html) et
+  [Markdown](/fr/docs/layouts/markdown)
+- Une [validation du schéma](/fr/docs/compiler/schema) qui détecte les
+  [erreurs de structure](/fr/docs/cli#validate) avant les recruteurs
+- Une [internationalisation](/fr/docs/locale) profonde : [10 langues sur 12
+  codes de locale](/fr/docs/locale) avec [traduction IA](/fr/docs/ai/translate),
+  à partir d'une source de vérité unique
+- Une sortie sûre pour les ATS par conception, plus un [moteur
+  Markdown](/fr/docs/layouts/markdown) pour les pipelines texte
+- L'automatisation : [mode surveillance](/fr/blog/dev-mode), [builds
+  CI/CD](/fr/docs/ecosystem/action), [Docker](/fr/docs/contributing/docker), et
+  une [API Node.js](/fr/docs/ecosystem/node)
+- La compatibilité Word *sans* le flux de travail Word, via le [moteur DOCX
+  intégré](/fr/docs/layouts/docx)
+
+Choisissez **Microsoft Word** si vous rédigez un CV par an, collaborez avec des
+personnes non techniques qui vivent dans Office, ou valorisez simplement
+l'immédiateté plus que la structure.
+
+Choisissez **YAMLResume** si votre CV est un document vivant — versionné,
+adapté à chaque candidature, publié dans plusieurs formats et langues, et
+maintenu comme le reste de votre travail : comme du code. Et quand un
+recruteur demande une version Word, `yamlresume build` s'en charge.

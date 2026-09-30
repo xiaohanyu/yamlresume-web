@@ -1,0 +1,199 @@
+---
+title: YAMLResume 与 Microsoft Word 对比
+---
+
+[Microsoft Word](https://www.microsoft.com/en-us/microsoft-365/word) 是全球大多数人编
+写简历的工具。它是求职申请的默认格式，安装在数亿台计算机上，其模板库提供了数千种
+设计。如果招聘人员让你"把简历发过来"，十有八九他们期望收到的是 `.docx` 文件或从
+Word 导出的 PDF。
+
+以下引自微软官方产品页面：
+
+```markdown
+- Word works across devices—on desktop (Windows and macOS), mobile, tablets
+  (iOS and Android) or online.
+- Word for the web is free for anyone to use online.
+- Real-time collaboration means fewer email attachments and faster feedback.
+```
+
+不过有一点很重要：**选择 YAMLResume 并不意味着放弃 Word 兼容的输出。** YAMLResume
+拥有专用的 [DOCX 引擎](/zh-cn/docs/layouts/docx)，只需一条命令即可从你的 YAML 源文
+件构建 Microsoft Word 文档。真正的对比不是"YAML 对阵 `.docx`"——而是**手动编辑文
+档与编译式结构化输出之间的对比**。这一差异体现在版本控制、验证、一致性、多格式发
+布和自动化等方面。
+
+以下是两种工作流的对比：
+
+## 功能对比
+
+| 功能                  | YAMLResume                                                                                                          | Microsoft Word                                                                              |
+| --------------------- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
+| **类型**              | 简历编译器（CLI 工具链）                                                                                            | 通用文字处理器                                                                              |
+| **创作格式**          | 纯文本 YAML                                                                                                         | 二进制 `.docx`（ZIP 压缩的 XML）                                                            |
+| **格式排版**          | 由模板生成，格式始终保持一致                                                                                        | 手动设置——样式、制表位和间距会随时间漂移                                                    |
+| **Schema 验证**       | [严格的 Zod 验证](/zh-cn/docs/compiler/schema)，配合 [clang 风格的诊断信息](/zh-cn/blog/yamlresume-compiler)      | 无结构验证——仅有拼写和语法检查                                                              |
+| **输出格式**          | [DOCX](/zh-cn/docs/layouts/docx)、[HTML](/zh-cn/docs/layouts/html)、[Markdown](/zh-cn/docs/layouts/markdown)、[LaTeX/PDF](/zh-cn/docs/layouts/latex) | `.docx`、PDF（另存为），以及有损导出为其他格式                              |
+| **DOCX 输出**         | 内置 [DOCX 引擎](/zh-cn/docs/layouts/docx)，搭配精选模板                                                            | 文档本身就是 DOCX                                                                           |
+| **模板**              | 精选官方模板集（DOCX 为 `calm`；[LaTeX](/zh-cn/docs/layouts/latex/templates) 和 [HTML](/zh-cn/docs/layouts/html/templates) 模板更多） | 通过 Microsoft Create 和第三方提供数千个模板；质量参差不齐                 |
+| **版本控制**          | 兼容 Git；diff 展示真实的变更                                                                                       | 二进制文件——diff 和合并实际上毫无用处                                                       |
+| **按岗位定制**        | 每个申请使用布局文件和 Git 分支                                                                                     | "另存为"的副本逐渐失同步（`resume_final_v2.docx`）                                          |
+| **国际化**            | [10 种语言、12 个语言区域](/zh-cn/docs/locale)，外加 [AI 翻译](/zh-cn/docs/ai/translate)                            | 界面和拼写检查支持多种语言；每种语言都是一份单独手动维护的文档                              |
+| **富文本**            | 在 `summary` 字段中支持精选的 [Markdown 语法](/zh-cn/docs/content/rich-text)                                        | 任意位置均可使用完整格式                                                                    |
+| **数据模型**          | 固定、结构化的 Schema；兼容 [JSON Resume](/zh-cn/docs/comparisons/json-resume)                                      | 自由格式文档                                                                                |
+| **AI 功能**           | CLI 内置[生成](/zh-cn/docs/ai/generate)与[翻译](/zh-cn/docs/ai/translate)                                          | Microsoft 365 Copilot 功能（订阅制）                                                        |
+| **协作**              | 在纯文本上通过 Git 拉取请求和代码评审协作                                                                           | 出色的实时共同创作、评论和修订跟踪                                                          |
+| **ATS 兼容性**        | 生成的文档结构干净；文本字段可输出 [Markdown](/zh-cn/docs/layouts/markdown)                                       | 取决于模板的使用规范——表格、文本框和多栏布局会破坏许多解析器                                |
+| **确定性输出**        | 是——任何机器上相同输入生成相同字节                                                                                  | 字体和布局会因机器和 Word 版本而变化                                                        |
+| **开发模式**          | [`yamlresume dev`](/zh-cn/blog/dev-mode) 每次保存自动重建                                                           | 所见即所得编辑（实时，但需手动操作）                                                        |
+| **CI/CD 与自动化**    | [GitHub Action](https://github.com/yamlresume/action)、[Docker](/zh-cn/docs/contributing/docker)、[`@yamlresume/node`](/zh-cn/docs/ecosystem/node) | 没有针对简历的内置方案                                                      |
+| **离线使用**          | 是，安装后可用                                                                                                      | 桌面应用支持；网页版 Word 需要联网                                                          |
+| **成本**              | 免费（开源）                                                                                                        | Microsoft 365 订阅；功能有限的免费网页版                                                    |
+
+## 关键差异详解
+
+### 手动排版与生成式排版
+
+在 Word 中，排版是你自己的工作。每个项目符号缩进、每个日期制表位、每个加粗的职
+位名称，都是你要反复做出的决定。经过数月的编辑，文档会逐渐漂移：间距变得不一致，
+新条目使用了略有不同的项目符号，而"改一个小地方"要花二十分钟反复调整。研究表明
+大多数 Word 用户从不使用命名样式，因此排版最终会变成一堆难以修改的一次性临时调
+整。
+
+在 YAMLResume 中，排版是编译器的工作。你的内容是数据；[DOCX 引擎](/zh-cn/docs/layouts/docx)
+和 [LaTeX 引擎](/zh-cn/docs/layouts/latex)通过强制执行一致性的模板来渲染它。在一个
+地方修改职位名称，所有格式——DOCX、PDF、HTML、Markdown——都会在下次构建时自动更
+新。模板把每个设计决策只做一次，并把它做对。
+
+### 纯文本与二进制
+
+`.docx` 文件是一个装满 XML 的 ZIP 压缩包。Git 无法对其进行有意义的 diff，合并简
+历的两个版本意味着手动复制粘贴，而"三月到六月之间改了什么？"意味着打开两个文件
+并排比较。这就是为什么 Word 简历会堆积成 `Resume.docx`、`Resume_new.docx`、
+`Resume_newer.docx`、`Resume_FINAL_tracked.docx`，放在一个没人敢清理的文件夹里。
+
+YAMLResume 文件是纯文本。`git diff` 会精确显示变更内容：
+
+```diff
+-    position: Senior Software Engineer
++    position: Staff Software Engineer
+     startDate: Jan 2020
+-    endDate: Dec 2024
++    endDate:
+```
+
+纯文本让你可以使用开发者常用的工具：为每份求职申请创建分支、对自己的职业历史发
+起拉取请求评审、在 CI 中自动构建，并永久可搜索地存档你写过的每一份简历。
+
+### 验证：拼写检查不等于结构检查
+
+Word 会给拼错的雇主名称画上下划线，但它会允许你保存这样一份简历：结束日期早于开
+始日期、邮箱缺少 `@`、城市字段只有一个字母。这些都不是拼写错误，所以它们不会被
+标记出来。
+
+YAMLResume 在渲染任何内容之前就进行结构验证。[编译器](/zh-cn/docs/compiler/architecture)
+会根据严格的 Zod Schema 检查你的简历，并报告包含行号和源码片段的 [clang 风格诊断
+信息](/zh-cn/blog/yamlresume-compiler)，因此错误在你编写时就能被发现，而不是等到招
+聘人员注意到。
+
+### 按岗位定制，告别副本混乱
+
+求职建议很明确：为每份申请定制简历。在 Word 中，这通常意味着选择"另存为"然后编
+辑副本。但副本很快就会失同步——在一个文件里改了错别字，忘了另一个，现在你有了两
+份不同的简历，却不知道哪份才是对的。
+
+在 YAMLResume 中，你的内容文件始终是唯一事实来源。定制发生在布局配置中：[章节别
+名和排序](/zh-cn/docs/layouts/sections/aliases)可以按变体更改，Git 将它们与内容一并
+跟踪。十个定制变体只是十个指向同一份简历的小型布局文件——而不是十份各自漂移的独
+立文档。
+
+### 国际化：客观地说
+
+Word 在这方面表现出色：它非常好地处理多语言文档、拼写检查和复杂文字——包括中
+文、日文和韩文——而且在许多非英语国家，它是编写简历的标准工具。如果你只用一种语
+言写一份简历，Word 的多语言支持对你来说不是问题。
+
+当一份职业经历需要用多种语言呈现时，YAMLResume 就大放异彩。设置 `locale` 键即可
+翻译章节标题、学位、技能等级和国家名称；按照当地习惯格式化日期和地址；并在
+[10 种语言、12 个语言区域](/zh-cn/docs/locale)中应用语言区域标点规则。配合
+[`yamlresume ai translate`](/zh-cn/docs/ai/translate)，英译日变体只需一条命令即可
+生成，且由于源自同一份源文件，两者永远不会失同步。而在 Word 中，这意味着两份文
+档外加一位翻译。
+
+### ATS 与文档结构
+
+当文档结构简单时，求职者跟踪系统（ATS）能很好地解析 `.docx` 文件。问题在于，大
+多数 Word 简历模板*并不*简单：双栏布局、表格、文本框、图标和图形正是让解析器困
+惑的元素，而模板库无法告诉你哪些设计是安全的。结果就是在 Word 里看起来漂亮的简
+历，到了 ATS 里变成一堆乱码。
+
+YAMLResume 的 DOCX 输出由结构化数据生成，因此底层文档干净且可预测。而当你需要可
+以可靠提取的文本时，[Markdown 引擎](/zh-cn/docs/layouts/markdown)会将同一份简历输
+出为纯结构化文本，任何解析器——或 LLM——都能完美读取。
+
+## 生态系统
+
+### 模板
+
+微软的模板生态系统非常庞大：[Microsoft Create](https://create.microsoft.com/en-us/templates/resumes)
+模板库和无数第三方网站提供了数千个 Word 简历模板，免费和付费的都有，涵盖各种视觉
+风格。缺点是质量参差不齐——每有一个精心构建的模板，就有几十个用表格和文本框搭建
+的模板，它们不仅让编辑变得困难，还会破坏 ATS 解析器。
+
+YAMLResume 提供少量精选模板：用于 DOCX 输出的 [calm](/zh-cn/docs/layouts/docx/templates/calm)
+模板，以及 [LaTeX](/zh-cn/docs/layouts/latex/templates) 和 [HTML](/zh-cn/docs/layouts/html/templates)
+模板，全部针对每个支持的语言区域进行了验证。由于模板是引擎设置而非文档，切换设计
+永远不需要重写内容。
+
+### 招聘人员与 `.docx` 格式
+
+许多招聘人员和申请系统明确要求提供 Word 文档——一些 ATS 配置对 `.docx` 的解析比
+PDF 更可靠，而且猎头公司在转发前通常会删除你的联系方式，尽管你可能不喜欢这种做
+法，但这很常见。这正是 YAMLResume 内置 DOCX 引擎的原因。[calm](/zh-cn/docs/layouts/docx/templates/calm)
+模板从同一份 YAML 源文件生成干净的 Word 文档，其[页面](/zh-cn/docs/layouts/docx#page)、
+[排版](/zh-cn/docs/layouts/docx#typography)和高级选项（可点击 URL、联系信息图标）与
+其他引擎保持一致。
+
+有一点需要注意，适用于任何 DOCX 文件（无论是否生成）：字体必须存在于打开文档的机
+器上，否则 Word 会进行替换。为 DOCX 布局选择广泛可用的字体，并以 LaTeX/PDF 引擎作
+为完美输出效果的参考。
+
+### 自动化
+
+Word 有宏；YAMLResume 有流水线。[GitHub Action](https://github.com/yamlresume/action)
+在每次推送时构建所有格式，[Docker 镜像](/zh-cn/docs/contributing/docker)无需本地配置
+即可在任何地方构建，而 [`@yamlresume/node`](/zh-cn/docs/ecosystem/node) 让应用程序能
+够以编程方式读取、验证和构建简历。对于一年才更新一次的文档来说，这有些大材小用；
+但对于随职业发展不断演进的活文档——以及需要大规模维护简历的团队来说——它改变了你
+维护简历的方式。
+
+## 总结
+
+**Microsoft Word** 适合如果你需要：
+
+- 一种处处可用的格式——每个招聘人员都能打开和编辑 `.docx` 文件
+- 零配置、无构建步骤的所见即所得编辑器
+- 出色的协作能力：实时共同创作、评论、修订跟踪
+- 涵盖每个行业和视觉风格的庞大模板库
+- 一个你已经拥有并用于其他一切事务的熟悉工具
+
+**YAMLResume** 适合如果你需要：
+
+- Git 中的一份纯文本源文件，具备真实的 diff、历史和分支
+- 跨 [DOCX](/zh-cn/docs/layouts/docx)、[PDF](/zh-cn/docs/layouts/latex)、
+  [HTML](/zh-cn/docs/layouts/html) 和 [Markdown](/zh-cn/docs/layouts/markdown)
+  的生成式一致排版
+- [Schema 验证](/zh-cn/docs/compiler/schema)，在招聘人员发现之前捕获[结构性错
+  误](/zh-cn/docs/cli#validate)
+- 深度[国际化](/zh-cn/docs/locale)：[10 种语言、12 个语言区域](/zh-cn/docs/locale)，
+  配合 [AI 翻译](/zh-cn/docs/ai/translate)，全部源自单一事实来源
+- 设计上即保证 ATS 安全，外加用于文本流水线的 [Markdown 引擎](/zh-cn/docs/layouts/markdown)
+- 自动化：[监听模式](/zh-cn/blog/dev-mode)、[CI/CD 构建](/zh-cn/docs/ecosystem/action)、
+  [Docker](/zh-cn/docs/contributing/docker) 和 [Node.js API](/zh-cn/docs/ecosystem/node)
+- 通过[内置 DOCX 引擎](/zh-cn/docs/layouts/docx)实现 Word 兼容，*摆脱* Word 工作流
+
+如果你一年只写一份简历、与常驻 Office 的非技术人员协作，或者只是更看重即时性而非
+结构，请选择 **Microsoft Word**。
+
+如果你的简历是一份活的文档——有版本控制、按申请定制、以多种格式和语言发布、并像
+你其他工作一样以代码方式维护——请选择 **YAMLResume**。当招聘人员索要 Word 版本时，
+`yamlresume build` 会帮你搞定。
