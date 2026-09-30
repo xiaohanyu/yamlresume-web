@@ -1,0 +1,292 @@
+---
+title: YAMLResume VS LaTeX
+---
+
+For decades, [LaTeX](https://www.latex-project.org) has been the de facto way
+for engineers, researchers, and academics to produce a professionally typeset
+resume. Write a `.tex` file, compile it, and get a PDF with typography that
+Word cannot match. A rich template ecosystem grew around this workflow—
+[Awesome-CV](https://github.com/posquit0/Awesome-CV) (20,000+ GitHub stars),
+[moderncv](https://github.com/moderncv/moderncv),
+[Jake's Resume](https://github.com/jakegut/resume),
+[Deedy-Resume](https://github.com/deedy/Deedy-Resume),
+[AltaCV](https://github.com/liantze/AltaCV)—and
+[Overleaf](https://www.overleaf.com/latex/templates/tagged/cv) hosts hundreds
+of CV templates that compile in your browser.
+
+From the official LaTeX project website:
+
+```markdown
+LaTeX is a document preparation system for high-quality typesetting. It is
+most often used for medium-to-large technical or scientific documents but it
+can be used for almost any form of publishing.
+```
+
+Here is the thing, though: **YAMLResume is not an alternative to LaTeX—it is
+built on it.** YAMLResume's [LaTeX engine](/docs/layouts/latex) generates
+`.tex` source from your YAML and compiles it with XeLaTeX, the same engine
+that powers hand-written LaTeX resumes. The real comparison is between two
+*authoring workflows*: writing your resume directly in TeX markup, or writing
+it as structured YAML and letting a compiler generate the TeX for you.
+
+Here is how the two workflows compare:
+
+## Feature Comparison
+
+| Feature                  | YAMLResume                                                                                                        | Hand-written LaTeX                                                                                      |
+| ------------------------ | ----------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
+| **Approach**             | YAML source compiled to LaTeX                                                                                     | Documents authored directly in TeX                                                                      |
+| **Authoring Language**   | YAML (plain text, no markup)                                                                                      | TeX/LaTeX markup                                                                                        |
+| **TeX Knowledge**        | None required                                                                                                     | Proficiency required for customization                                                                  |
+| **Typesetting Engine**   | XeLaTeX                                                                                                           | Your choice: pdfLaTeX, XeLaTeX, LuaLaTeX                                                                |
+| **Output Formats**       | [DOCX](/docs/layouts/docx), [HTML](/docs/layouts/html), [Markdown](/docs/layouts/markdown), [LaTeX/PDF](/docs/layouts/latex) | PDF (pandoc conversions are possible but lossy)                                       |
+| **Generated Source**     | Clean `.tex` emitted alongside the PDF—you can inspect or tweak it                                                | N/A (the hand-written source is all there is)                                                           |
+| **Schema Validation**    | [Strict Zod validation](/docs/compiler/schema) with JSON Schema IDE integration                                   | None—only compile-time TeX errors                                                                       |
+| **Error Reporting**      | [clang-style diagnostics](/docs/cli#validate) with line numbers, columns, and source snippets                     | TeX log: often cryptic cascading errors far from the real cause                                         |
+| **Environment Setup**    | `npm install -g yamlresume`, Homebrew, or Docker with XeTeX pre-installed; `yamlresume doctor` checks fonts       | Multi-gigabyte TeX Live/MacTeX/MiKTeX install, missing-package hunts, manual font setup—or cloud-based Overleaf |
+| **Templates**            | Curated official [LaTeX](/docs/layouts/latex/templates), [HTML](/docs/layouts/html/templates), and [DOCX](/docs/layouts/docx/templates) templates | Thousands of community templates and classes ([Awesome-CV](https://github.com/posquit0/Awesome-CV), [moderncv](https://github.com/moderncv/moderncv), [AltaCV](https://github.com/liantze/AltaCV), [Jake's Resume](https://github.com/jakegut/resume), ...)          |
+| **Design Customization** | [Page](/docs/layouts/latex#page), [typography](/docs/layouts/latex#typography), and sections knobs—theme-encapsulated | Unlimited—anything TeX can typeset                                                                      |
+| **Section Customization** | [Aliases](/docs/layouts/sections/aliases) and [reorder](/docs/layouts/sections/reorder)                          | Arbitrary macros and environments                                                                       |
+| **Internationalization** | [10 languages across 12 locale codes](/docs/locale), automatic babel and CJK package configuration                | Manual: babel/polyglossia, fontspec, ctex/xeCJK/luatexja/kotex                                          |
+| **Rich Text**            | A selected set of [Markdown syntax](/docs/content/rich-text) in `summary` fields                                  | Any TeX markup, anywhere                                                                                |
+| **Data Model**           | Fixed, structured schema; [JSON Resume](/docs/comparisons/json-resume) interop                                    | Free-form document                                                                                      |
+| **AI Workflows**         | Built-in [generation](/docs/ai/generate) and [translation](/docs/ai/translate); Markdown output is LLM-friendly   | Bring-your-own prompting of an LLM                                                                      |
+| **Dev Mode**             | [`yamlresume dev`](/blog/dev-mode) rebuilds on every save                                                         | `latexmk -pvc` or Overleaf auto-compile                                                                 |
+| **Version Control**      | Clean content diffs—only meaningful changes show up                                                               | Diffs mixed with markup churn                                                                           |
+| **CI/CD**                | [Official GitHub Action](https://github.com/yamlresume/action) + [Docker image](/docs/contributing/docker)        | Community actions (e.g. `latex-action`); Overleaf GitHub sync is a paid feature                         |
+| **Collaboration**        | Git pull requests on plain YAML                                                                                   | Overleaf real-time collaboration (paid tiers) or Git on `.tex`                                          |
+| **Deterministic Output** | Yes                                                                                                               | Yes, if you pin the toolchain and packages                                                              |
+| **Cost**                 | Free (open source)                                                                                                | Free self-hosted; Overleaf is freemium                                                                  |
+
+## Key Differences Explained
+
+### Authoring: Content vs. Markup
+
+The most immediate difference is what you look at all day. Here is the same
+job entry, both ways.
+
+In a hand-written Awesome-CV-style resume:
+
+```latex
+\cventry{Jan 2020 -- Present}
+  {Senior Software Engineer}
+  {ACME Inc.}
+  {San Francisco, CA}
+  {
+    \begin{itemize}
+      \item Led a team of 5 engineers building payments infrastructure
+      \item Reduced p95 latency by 40\% via query optimization
+    \end{itemize}
+  }
+```
+
+In YAMLResume:
+
+```yaml
+work:
+  - name: ACME Inc.
+    position: Senior Software Engineer
+    startDate: Jan 2020
+    summary: |
+      - Led a team of 5 engineers building payments infrastructure
+      - Reduced p95 latency by 40% via query optimization
+```
+
+Both produce a professionally typeset entry. But in the LaTeX version, your
+content is wrapped in macros, braces, and environments; in the YAML version,
+your content *is* the file. Anyone—including a non-programmer colleague, a
+recruiter, or your future self on a phone—can read and edit the YAML. And
+because the markup is a compiler's job, you can change how every date in the
+document is rendered by changing zero lines of your content.
+
+### Validation and Debugging
+
+This is where the two workflows diverge most sharply.
+
+With hand-written LaTeX, your only safety net is the compiler. TeX errors are
+famous for being cryptic and cascaded: a stray `&` in your job title can
+surface as `Misplaced \omit` somewhere deep inside a class file, and tracking
+it down requires reading the log carefully. Content errors—a malformed date,
+a misspelled field—are just text to TeX; it will happily typeset `startDtae`.
+
+YAMLResume validates your *data* before a single TeX line is emitted. The
+[compiler](/docs/compiler/architecture) checks your resume against a strict
+Zod schema and reports [clang-style
+diagnostics](/blog/yamlresume-compiler) with line numbers, column numbers, and
+the offending source:
+
+```console
+$ yamlresume validate my-resume.yml
+my-resume.yml:9:12: warning: email is invalid.
+    email: hi@pp
+           ^
+my-resume.yml:38:10: error: city is too short.
+    city: S
+          ^
+```
+
+By the time XeLaTeX runs, the data is known-good, and compile failures become
+rare enough that they are actual news—usually a font or package issue that
+`doctor` already flagged.
+
+### Separation of Content and Presentation
+
+Hand-written LaTeX entangles content and presentation. Every entry is wrapped
+in template-specific macros, which means **switching templates means
+rewriting your resume**. Moving from moderncv to AwesomeCV is not a theme
+change; it is converting every `\cventry` into another macro (or whatever
+the new class expects) and reshuffling arguments.
+
+YAMLResume enforces [separation of
+concerns](https://github.com/yamlresume/yamlresume) as a design principle:
+
+- **`content`**: what your resume says
+- **`locale`**: the language and region it says it in
+- **`layouts`**: how it looks—engine, template, page, typography, section
+  aliases and order
+
+Want to see your resume in the [jake](/docs/layouts/latex/templates/jake)
+style instead of [moderncv-banking](/docs/layouts/latex/templates/moderncv-banking)?
+Change one line in `layouts`; the content file is untouched. This also makes
+per-application tailoring trivial: keep one canonical content file, and check
+in small layout variants that reorder or alias sections.
+
+### One Source, Four Engines
+
+A `.tex` file compiles to PDF. That is the whole pipeline, and for many
+people it is enough—until a recruiter asks for a Word version, or you want
+your resume as a page on your personal site, or you need a plain-text version
+to paste into an ATS form. Pandoc can convert LaTeX to DOCX or HTML, but the
+results are typographically mediocre compared to a purpose-built engine,
+because the conversion has to guess intent from markup.
+
+YAMLResume ships four first-class engines—[DOCX](/docs/layouts/docx),
+[HTML](/docs/layouts/html), [Markdown](/docs/layouts/markdown), and
+[LaTeX](/docs/layouts/latex)—and one `yamlresume build` produces all of them
+from the same source. The [Markdown engine](/docs/layouts/markdown) is
+particularly useful in 2026: it gives LLMs and ATS parsers clean, structured
+text extracted from the same validated data.
+
+### Internationalization
+
+Writing a German or Chinese resume by hand in LaTeX is a project in itself.
+German wants `babel` with `ngerman`, German date strings, and correct
+quotation marks. Chinese requires choosing between ctex, xeCJK, or luatexja,
+installing CJK fonts, and configuring font fallbacks—well-trodden paths for
+TeX veterans, but genuinely days of effort the first time. Every additional
+language multiplies the work, because nothing is shared between documents.
+
+In YAMLResume you set the [`locale`](/docs/locales) key. The compiler translates
+section headings, country names, degrees, skill levels, and fluency levels;
+formats dates and addresses idiomatically; applies locale-appropriate
+punctuation rules (including full-width punctuation for CJK and non-breaking
+spaces before high punctuation in French); and configures
+[babel](https://ctan.org/pkg/babel?lang=en) and the right CJK packages for
+XeLaTeX automatically. And [`yamlresume ai translate`](/docs/ai/translate) can
+produce a structure-preserving translation of your entire resume into any
+supported locale—turning a multi-day typesetting project into a single command.
+
+### The Customization Ceiling
+
+To be fair: hand-written LaTeX wins the control contest, and it is not close.
+Anything TeX can typeset, you can put in a hand-written resume—TikZ diagrams,
+custom macros, precise micro-typographic tweaks, `biblatex` publication lists
+for academic CVs, multi-page layouts, a cover letter sharing the same class.
+If you are a TeX expert who enjoys this, YAMLResume will feel like guardrails.
+
+But that ceiling comes with a cost: everything is your responsibility, forever.
+Every macro conflict, package upgrade, and font edge case is yours to fix.
+YAMLResume trades the infinite ceiling for a high floor: curated templates
+encode professional typography decisions so you cannot make bad ones, while
+still exposing the knobs that matter—[paper size, margins, and page
+numbers](/docs/layouts/latex#page), [font family, size, and line
+spacing](/docs/layouts/latex#typography), and [section aliases and
+ordering](/docs/layouts/sections/aliases).
+
+And if you ever hit the ceiling, there is an escape hatch: the generated
+`.tex` source is emitted alongside your PDF. You can read it to learn, or
+fork it and take over from there. YAMLResume does not hide LaTeX from you; it
+just does not require you.
+
+## Ecosystem
+
+### Templates
+
+The hand-written LaTeX ecosystem's greatest strength is its scale: thousands
+of resume templates across GitHub, [Overleaf's
+gallery](https://www.overleaf.com/latex/templates/tagged/cv), CTAN, and
+curation sites, in every visual style imaginable. The trade-off is quality
+variance—templates range from meticulously maintained classes to one-off
+exports with hardcoded values, outdated package usage, and no validation.
+
+YAMLResume takes the curated approach: a small set of official
+[LaTeX](/docs/layouts/latex/templates) templates (moderncv-classic,
+moderncv-casual, moderncv-banking, jake, etc.), each tested against all 12
+locale codes, so a template switch never silently breaks a localized resume.
+
+### Overleaf
+
+[Overleaf](https://www.overleaf.com) is the closest thing the LaTeX world has
+to a YAMLResume-like experience: zero installation, a template gallery, and
+auto-compile on every keystroke, plus genuinely excellent real-time
+collaboration. If you want to stay in a LaTeX workflow, it is the easiest way
+to do it.
+
+The trade-offs are structural: your project lives in a cloud service;
+features like version history, track changes, and GitHub synchronization sit
+behind paid plans; and you still have a `.tex` document—no structured data, no
+multi-format export, no schema validation, no CLI. YAMLResume gives you
+Overleaf-style iteration speed locally through [`yamlresume
+dev`](/blog/dev-mode), with Git as your version history.
+
+### CI/CD
+
+Both workflows automate. The LaTeX world has community solutions like the
+[latex-action](https://github.com/xu-cheng/latex-action) for GitHub Actions, and
+Overleaf can sync with GitHub as a paid feature. YAMLResume ships an [official
+GitHub Action](https://github.com/yamlresume/action) that validates your resume
+and builds all four formats in one step:
+
+```yaml
+- uses: yamlresume/action@v0.16.1
+  with:
+    resumes: |
+      resume-en.yml
+      resume-zh.yml
+      resume-fr.yml
+```
+
+Because the input is structured YAML, CI can also do things no `.tex`
+pipeline can: fail a pull request that introduces a schema error, diff
+content changes without markup noise, or regenerate all localized variants
+from a single edit.
+
+## Summary
+
+**Hand-written LaTeX** excels if you want:
+
+- Total typographic control—custom macros, TikZ graphics, `biblatex`
+  bibliographies, precise spacing, any layout you can imagine
+- Access to thousands of community templates and classes in every style
+- The same toolchain you already use for papers, theses, and slides
+- A genuinely fun craft, if TeX is a skill you enjoy maintaining
+- Cloud convenience and collaboration through Overleaf
+
+**YAMLResume** excels if you want:
+
+- LaTeX-grade PDF typography—via XeLaTeX—without writing or debugging TeX
+- Structured, validated data with clang-style errors instead of compile logs
+- Extended output formats (DOCX, HTML, Markdown, LaTeX/PDF) from one source file
+- Deep [internationalization](/docs/locales) across 10 languages and 12 locale
+  codes, including automatic CJK setup, with AI-assisted translation
+- Template switching without rewriting content, thanks to strict separation
+  of content, locale, and layouts
+- A developer toolchain: watch mode, environment diagnostics, Docker,
+  Homebrew, and a GitHub Action for CI/CD
+
+Choose **hand-written LaTeX** if you already know TeX, need layouts beyond
+what any structured schema can express, or consider typesetting part of the
+craft.
+
+Choose **YAMLResume** if you want the output LaTeX is famous for, but would
+rather your resume read like data than like a program.

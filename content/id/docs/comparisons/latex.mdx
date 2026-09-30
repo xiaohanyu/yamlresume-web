@@ -1,0 +1,308 @@
+---
+title: YAMLResume VS LaTeX
+---
+
+Selama beberapa dekade, [LaTeX](https://www.latex-project.org) telah menjadi cara
+_de facto_ bagi insinyur, peneliti, dan akademisi untuk membuat resume yang
+ditype dengan profesional. Tulis file `.tex`, kompilasi, dan dapatkan PDF dengan
+tipografi yang tidak dapat ditandingi Word. Ekosistem template yang kaya
+berkembang di sekitar alur kerja ini—
+[Awesome-CV](https://github.com/posquit0/Awesome-CV) (20.000+ bintang GitHub),
+[moderncv](https://github.com/moderncv/moderncv),
+[Jake's Resume](https://github.com/jakegut/resume),
+[Deedy-Resume](https://github.com/deedy/Deedy-Resume),
+[AltaCV](https://github.com/liantze/AltaCV)—dan
+[Overleaf](https://www.overleaf.com/latex/templates/tagged/cv) menyajikan
+ratusan template CV yang dapat dikompilasi di browser.
+
+Dari situs web resmi proyek LaTeX:
+
+```markdown
+LaTeX is a document preparation system for high-quality typesetting. It is
+most often used for medium-to-large technical or scientific documents but it
+can be used for almost any form of publishing.
+```
+
+Namun, begini masalahnya: **YAMLResume bukan alternatif LaTeX—ia dibangun di
+atasnya.** [Mesin LaTeX](/id/docs/layouts/latex) YAMLResume menghasilkan sumber
+`.tex` dari YAML Anda dan mengkompilasinya dengan XeLaTeX, mesin yang sama yang
+menggerakkan resume LaTeX yang ditulis tangan. Perbandingan yang sebenarnya
+adalah antara dua _alur kerja penulisan_: menulis resume Anda langsung dalam
+markup TeX, atau menulisnya sebagai YAML terstruktur dan membiarkan compiler
+menghasilkan TeX untuk Anda.
+
+Berikut adalah perbandingan kedua alur kerja tersebut:
+
+## Perbandingan Fitur
+
+| Fitur                    | YAMLResume                                                                                                        | LaTeX Tangan                                                                                            |
+| ------------------------ | ----------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
+| **Pendekatan**           | Sumber YAML dikompilasi ke LaTeX                                                                                  | Dokumen ditulis langsung dalam TeX                                                                      |
+| **Bahasa Penulisan**     | YAML (teks biasa, tanpa markup)                                                                                   | Markup TeX/LaTeX                                                                                        |
+| **Pengetahuan TeX**      | Tidak diperlukan                                                                                                  | Kemahiran diperlukan untuk kustomisasi                                                                  |
+| **Mesin Typesetting**    | XeLaTeX                                                                                                           | Pilihan Anda: pdfLaTeX, XeLaTeX, LuaLaTeX                                                               |
+| **Format Output**        | [DOCX](/id/docs/layouts/docx), [HTML](/id/docs/layouts/html), [Markdown](/id/docs/layouts/markdown), [LaTeX/PDF](/id/docs/layouts/latex) | PDF (konversi pandoc memungkinkan tetapi mengurangi kualitas)                                           |
+| **Sumber yang Dihasilkan** | `.tex` bersih dikeluarkan bersama PDF—Anda dapat memeriksa atau menyesuaikannya                                   | N/A (sumber yang ditulis tangan adalah satu-satunya yang ada)                                           |
+| **Validasi Skema**       | [Validasi Zod ketat](/id/docs/compiler/schema) dengan integrasi IDE JSON Schema                                   | Tidak ada—hanya kesalahan TeX saat kompilasi                                                            |
+| **Pelaporan Kesalahan**  | [Diagnostik gaya clang](/id/docs/cli#validate) dengan nomor baris, kolom, dan cuplikan sumber                     | Log TeX: seringkali kesalahan _cascading_ yang kriptis jauh dari penyebab sebenarnya                    |
+| **Penyiapan Lingkungan** | `npm install -g yamlresume`, Homebrew, atau Docker dengan XeTeX yang sudah terinstal; `yamlresume doctor` memeriksa font | Instalasi TeX Live/MacTeX/MiKTeX multi-gigabyte, pencarian paket yang hilang, pengaturan font manual—atau Overleaf berbasis cloud |
+| **Template**             | Template resmi yang dikurasi untuk [LaTeX](/id/docs/layouts/latex/templates), [HTML](/id/docs/layouts/html/templates), dan [DOCX](/id/docs/layouts/docx/templates) | Ribuan template dan kelas komunitas ([Awesome-CV](https://github.com/posquit0/Awesome-CV), [moderncv](https://github.com/moderncv/moderncv), [AltaCV](https://github.com/liantze/AltaCV), [Jake's Resume](https://github.com/jakegut/resume), ...) |
+| **Kustomisasi Desain**   | Pengaturan [halaman](/id/docs/layouts/latex#page), [tipografi](/id/docs/layouts/latex#typography), dan bagian—terenkapsulasi dalam tema | Tidak terbatas—apa pun yang dapat di-typeset TeX                                                         |
+| **Kustomisasi Bagian**   | [Alias](/id/docs/layouts/sections/aliases) dan [pengurutan ulang](/id/docs/layouts/sections/reorder)              | Makro dan lingkungan sewenang-wenang                                                                    |
+| **Internasionalisasi**   | [10 bahasa di 12 kode lokal](/id/docs/locale), konfigurasi otomatis babel dan paket CJK                           | Manual: babel/polyglossia, fontspec, ctex/xeCJK/luatexja/kotex                                          |
+| **Teks Kaya**            | Sekumpulan [sintaks Markdown](/id/docs/content/rich-text) di bidang `summary`                                     | Markup TeX apa pun, di mana saja                                                                        |
+| **Model Data**           | Skema tetap dan terstruktur; interoperabilitas [JSON Resume](/id/docs/comparisons/json-resume)                    | Dokumen bebas bentuk                                                                                    |
+| **Alur Kerja AI**        | [Generasi](/id/docs/ai/generate) dan [terjemahan](/id/docs/ai/translate) bawaan; output Markdown ramah LLM       | Gunakan _prompting_ LLM sendiri                                                                         |
+| **Mode Dev**             | [`yamlresume dev`](/id/blog/dev-mode) membangun ulang pada setiap simpan                                          | `latexmk -pvc` atau kompilasi otomatis Overleaf                                                         |
+| **Kontrol Versi**        | Diff konten yang bersih—hanya perubahan yang berarti yang muncul                                                  | Diff yang bercampur dengan perubahan markup                                                             |
+| **CI/CD**                | [GitHub Action resmi](https://github.com/yamlresume/action) + [gambar Docker](/id/docs/contributing/docker)      | Aksi komunitas (mis. `latex-action`); sinkronisasi GitHub Overleaf adalah fitur berbayar                |
+| **Kolaborasi**           | Pull request Git pada YAML biasa                                                                                  | Kolaborasi real-time Overleaf (tingkat berbayar) atau Git pada `.tex`                                   |
+| **Output Deterministik** | Ya                                                                                                                | Ya, jika Anda menyematkan toolchain dan paket                                                           |
+| **Biaya**                | Gratis (open source)                                                                                              | Gratis self-hosted; Overleaf bersifat freemium                                                          |
+
+## Perbedaan Kunci Dijelaskan
+
+### Penulisan: Konten vs. Markup
+
+Perbedaan paling langsung adalah apa yang Anda lihat sepanjang hari. Berikut
+adalah entri pekerjaan yang sama, dengan kedua cara.
+
+Dalam resume bergaya Awesome-CV yang ditulis tangan:
+
+```latex
+\cventry{Jan 2020 -- Present}
+  {Senior Software Engineer}
+  {ACME Inc.}
+  {San Francisco, CA}
+  {
+    \begin{itemize}
+      \item Led a team of 5 engineers building payments infrastructure
+      \item Reduced p95 latency by 40\% via query optimization
+    \end{itemize}
+  }
+```
+
+Di YAMLResume:
+
+```yaml
+work:
+  - name: ACME Inc.
+    position: Senior Software Engineer
+    startDate: Jan 2020
+    summary: |
+      - Led a team of 5 engineers building payments infrastructure
+      - Reduced p95 latency by 40% via query optimization
+```
+
+Keduanya menghasilkan entri yang ditype dengan profesional. Namun dalam versi
+LaTeX, konten Anda dibungkus dalam makro, kurung kurawal, dan lingkungan; dalam
+versi YAML, konten Anda _adalah_ file tersebut. Siapa pun—termasuk rekan
+non-programmer, perekrut, atau diri Anda di masa depan di ponsel—dapat membaca
+dan mengedit YAML. Dan karena markup adalah tugas compiler, Anda dapat mengubah
+cara setiap tanggal dalam dokumen dirender tanpa mengubah satu baris pun dari
+konten Anda.
+
+### Validasi dan Debugging
+
+Di sinilah kedua alur kerja berbeda paling tajam.
+
+Dengan LaTeX yang ditulis tangan, jaring pengaman Anda hanyalah compiler.
+Kesalahan TeX terkenal karena kriptis dan berantai: tanda `&` yang menyasar di
+judul pekerjaan Anda dapat muncul sebagai `Misplaced \omit` di suatu tempat yang
+dalam di file kelas, dan melacaknya memerlukan membaca log dengan cermat.
+Kesalahan konten—tanggal yang salah format, bidang yang salah eja—hanyalah teks
+bagi TeX; ia akan dengan senang hati menypeset `startDtae`.
+
+YAMLResume memvalidasi _data_ Anda sebelum satu baris TeX pun dikeluarkan.
+[Compiler](/id/docs/compiler/architecture) memeriksa resume Anda terhadap skema
+Zod yang ketat dan melaporkan [diagnostik gaya
+clang](/id/blog/yamlresume-compiler) dengan nomor baris, nomor kolom, dan sumber
+yang bermasalah:
+
+```console
+$ yamlresume validate my-resume.yml
+my-resume.yml:9:12: warning: email is invalid.
+    email: hi@pp
+           ^
+my-resume.yml:38:10: error: city is too short.
+    city: S
+          ^
+```
+
+Pada saat XeLaTeX berjalan, data sudah diketahui baik, dan kegagalan kompilasi
+menjadi cukup jarang sehingga menjadi berita yang sebenarnya—biasanya masalah
+font atau paket yang sudah ditandai oleh `doctor`.
+
+### Pemisahan Konten dan Presentasi
+
+LaTeX yang ditulis tangan mempersatukan konten dan presentasi. Setiap entri
+dibungkus dalam makro khusus template, yang berarti **mengganti template berarti
+menulis ulang resume Anda**. Beralih dari moderncv ke AwesomeCV bukan perubahan
+tema; ini adalah mengonversi setiap `\cventry` menjadi makro lain (atau apa pun
+yang diharapkan kelas baru) dan menyusun ulang argumen.
+
+YAMLResume menegakkan [pemisahan
+kepentingan](https://github.com/yamlresume/yamlresume) sebagai prinsip desain:
+
+- **`content`**: apa yang dikatakan resume Anda
+- **`locale`**: bahasa dan wilayah tempatnya mengatakannya
+- **`layouts`**: bagaimana tampilannya—mesin, template, halaman, tipografi, alias
+dan urutan bagian
+
+Ingin melihat resume Anda dalam gaya
+[jake](/id/docs/layouts/latex/templates/jake) alih-alih
+[moderncv-banking](/id/docs/layouts/latex/templates/moderncv-banking)? Ubah satu
+baris di `layouts`; file konten tidak tersentuh. Ini juga membuat penyesuaian
+per aplikasi menjadi sepele: simpan satu file konten kanonikal, dan _check-in_
+varian layout kecil yang menyusun ulang atau mengalias bagian.
+
+### Satu Sumber, Empat Mesin
+
+File `.tex` dikompilasi menjadi PDF. Itulah seluruh pipeline, dan bagi banyak
+orang itu cukup—sampai perekrut meminta versi Word, atau Anda menginginkan
+resume sebagai halaman di situs pribadi Anda, atau Anda membutuhkan versi teks
+biasa untuk menempel ke formulir ATS. Pandoc dapat mengonversi LaTeX ke DOCX
+atau HTML, tetapi hasilnya secara tipografi biasa-biasa saja dibandingkan dengan
+mesin yang dibuat khusus, karena konversi harus menebak maksud dari markup.
+
+YAMLResume mengirimkan empat mesin kelas utama—[DOCX](/id/docs/layouts/docx),
+[HTML](/id/docs/layouts/html), [Markdown](/id/docs/layouts/markdown), dan
+[LaTeX](/id/docs/layouts/latex)—dan satu `yamlresume build` menghasilkan semuanya
+dari sumber yang sama. [Mesin Markdown](/id/docs/layouts/markdown) sangat
+berguna pada tahun 2026: ini memberikan teks bersih dan terstruktur kepada LLM
+dan parser ATS yang diekstrak dari data yang sama yang telah divalidasi.
+
+### Internasionalisasi
+
+Menulis resume Jerman atau Cina secara manual dalam LaTeX adalah sebuah proyek
+tersendiri. Jerman membutuhkan `babel` dengan `ngerman`, string tanggal Jerman,
+dan tanda kutip yang benar. Cina membutuhkan pemilihan antara ctex, xeCJK, atau
+luatexja, menginstal font CJK, dan mengkonfigurasi _fallback_ font—jalur yang
+sudah sering dilalui bagi veteran TeX, tetapi benar-benar membutuhkan usaha
+berhari-hari pertama kali. Setiap bahasa tambahan mengalikan pekerjaan, karena
+tidak ada yang dibagi antar dokumen.
+
+Di YAMLResume Anda menetapkan kunci [`locale`](/id/docs/locales). Compiler
+menerjemahkan judul bagian, nama negara, gelar, tingkat keterampilan, dan
+tingkat kefasihan; memformat tanggal dan alamat secara idiomatis; menerapkan
+aturan tanda baca yang sesuai lokal (termasuk tanda baca lebar penuh untuk CJK
+dan spasi non-breaking sebelum tanda baca tinggi dalam bahasa Prancis); dan
+mengkonfigurasi [babel](https://ctan.org/pkg/babel?lang=en) dan paket CJK yang
+tepat untuk XeLaTeX secara otomatis. Dan
+[`yamlresume ai translate`](/id/docs/ai/translate) dapat menghasilkan terjemahan
+yang mempertahankan struktur dari seluruh resume Anda ke dalam lokal yang
+didukung apa pun—mengubah proyek typesetting multi-hari menjadi satu perintah.
+
+### Batas Kustomisasi
+
+Untuk adil: LaTeX yang ditulis tangan memenangkan kontes kontrol, dan itu bukan
+persaingan yang ketat. Apa pun yang dapat di-typeset TeX, Anda dapat
+memasukkannya ke resume yang ditulis tangan—diagram TikZ, makro kustom,
+penyetelan mikro-tipografi yang presisi, daftar publikasi `biblatex` untuk CV
+akademik, layout multi-halaman, surat lamaran yang berbagi kelas yang sama.
+Jika Anda adalah ahli TeX yang menikmati ini, YAMLResume akan terasa seperti
+pengaman.
+
+Tetapi batas itu datang dengan biaya: segala sesuatu adalah tanggung jawab Anda,
+selamanya. Setiap konflik makro, _upgrade_ paket, dan kasus tepi font adalah
+milik Anda untuk diperbaiki. YAMLResume menukar langit yang tak terbatas dengan
+lantai yang tinggi: template yang dikurasi mengkodekan keputusan tipografi
+profesional sehingga Anda tidak dapat membuat keputusan buruk, sambil tetap
+memaparkan pengaturan yang penting—[ukuran kertas, margin, dan nomor
+halaman](/id/docs/layouts/latex#page), [keluarga font, ukuran, dan jarak
+baris](/id/docs/layouts/latex#typography), serta [alias dan urutan
+bagian](/id/docs/layouts/sections/aliases).
+
+Dan jika Anda pernah mencapai batas, ada jalan keluar: sumber `.tex` yang
+dihasilkan dikeluarkan bersama PDF Anda. Anda dapat membacanya untuk belajar,
+atau mem-_fork_-nya dan mengambil alih dari sana. YAMLResume tidak menyembunyikan
+LaTeX dari Anda; ia hanya tidak memerlukannya.
+
+## Ekosistem
+
+### Template
+
+Kekuatan terbesar ekosistem LaTeX yang ditulis tangan adalah skalanya: ribuan
+template resume di GitHub, [galeri
+Overleaf](https://www.overleaf.com/latex/templates/tagged/cv), CTAN, dan situs
+kurasi, dalam setiap gaya visual yang dapat dibayangkan. Komprominya adalah
+variasi kualitas—template berkisar dari kelas yang dirawat dengan cermat hingga
+ekspor satu kali dengan nilai _hardcoded_, penggunaan paket yang ketinggalan
+zaman, dan tanpa validasi.
+
+YAMLResume mengambil pendekatan yang dikurasi: kumpulan kecil template
+[LaTeX](/id/docs/layouts/latex/templates) resmi (moderncv-classic,
+moderncv-casual, moderncv-banking, jake, dll.), masing-masing diuji terhadap 12
+kode lokal, sehingga pergantian template tidak pernah diam-diam merusak resume
+yang dilokalkan.
+
+### Overleaf
+
+[Overleaf](https://www.overleaf.com) adalah hal terdekat yang dimiliki dunia
+LaTeX dengan pengalaman seperti YAMLResume: tanpa instalasi, galeri template, dan
+kompilasi otomatis pada setiap ketukan tombol, ditambah kolaborasi real-time
+yang benar-benar sangat baik. Jika Anda ingin tetap dalam alur kerja LaTeX, ini
+adalah cara termudah untuk melakukannya.
+
+Komprominya bersifat struktural: proyek Anda berada di layanan cloud; fitur
+seperti riwayat versi, pelacakan perubahan, dan sinkronisasi GitHub berada di
+balik rencana berbayar; dan Anda masih memiliki dokumen `.tex`—tidak ada data
+terstruktur, tidak ada ekspor multi-format, tidak ada validasi skema, tidak ada
+CLI. YAMLResume memberi Anda kecepatan iterasi bergaya Overleaf secara lokal
+melalui [`yamlresume dev`](/id/blog/dev-mode), dengan Git sebagai riwayat versi
+Anda.
+
+### CI/CD
+
+Kedua alur kerja mengotomatiskan. Dunia LaTeX memiliki solusi komunitas seperti
+[latex-action](https://github.com/xu-cheng/latex-action) untuk GitHub Actions,
+dan Overleaf dapat menyinkronkan dengan GitHub sebagai fitur berbayar. YAMLResume
+mengirimkan [GitHub Action
+resmi](https://github.com/yamlresume/action) yang memvalidasi resume Anda dan
+membangun keempat format dalam satu langkah:
+
+```yaml
+- uses: yamlresume/action@v0.16.1
+  with:
+    resumes: |
+      resume-en.yml
+      resume-zh.yml
+      resume-fr.yml
+```
+
+Karena inputnya adalah YAML terstruktur, CI juga dapat melakukan hal-hal yang
+tidak dapat dilakukan pipeline `.tex`: gagalkan pull request yang memperkenalkan
+kesalahan skema, _diff_ perubahan konten tanpa _noise_ markup, atau regenerasi
+semua varian yang dilokalkan dari satu edit.
+
+## Ringkasan
+
+**LaTeX yang ditulis tangan** unggul jika Anda menginginkan:
+
+- Kontrol tipografi total—makro kustom, grafik TikZ, bibliografi `biblatex`,
+  spasi presisi, layout apa pun yang dapat Anda bayangkan
+- Akses ke ribuan template dan kelas komunitas dalam setiap gaya
+- Toolchain yang sama yang sudah Anda gunakan untuk makalah, tesis, dan slide
+- Kerajinan yang benar-benar menyenangkan, jika TeX adalah keterampilan yang
+  Anda nikmati untuk dipelihara
+- Kemudahan dan kolaborasi cloud melalui Overleaf
+
+**YAMLResume** unggul jika Anda menginginkan:
+
+- Tipografi PDF kelas LaTeX—melalui XeLaTeX—tanpa menulis atau men-debug TeX
+- Data terstruktur dan tervalidasi dengan kesalahan gaya clang alih-alih log
+  kompilasi
+- Format output tambahan (DOCX, HTML, Markdown, LaTeX/PDF) dari satu file sumber
+- [Internasionalisasi](/id/docs/locales) mendalam di 10 bahasa dan 12 kode
+  lokal, termasuk penyiapan CJK otomatis, dengan terjemahan berbantuan AI
+- Pergantian template tanpa menulis ulang konten, berkat pemisahan ketat antara
+  konten, lokal, dan layout
+- Toolchain pengembang: mode watch, diagnosis lingkungan, Docker, Homebrew, dan
+  GitHub Action untuk CI/CD
+
+Pilih **LaTeX yang ditulis tangan** jika Anda sudah mengenal TeX, membutuhkan
+layout di luar apa yang dapat diekspresikan oleh skema terstruktur apa pun, atau
+menganggap typesetting sebagai bagian dari kerajinan.
+
+Pilih **YAMLResume** jika Anda menginginkan output yang membuat LaTeX terkenal,
+tetapi lebih suka resume Anda terbaca seperti data daripada seperti program.
