@@ -1,0 +1,386 @@
+---
+title: YAMLResume VS Reactive Resume
+---
+
+[Reactive Resume](https://rxresu.me) is the most popular open-source resume
+builder on GitHub, created by [Amruth Pillai](https://github.com/AmruthPillai).
+It has been around since 2020 and has grown to **43,000+ GitHub stars**, with
+a hosted version at [rxresu.me](https://rxresu.me) that anyone can use for
+free. The codebase is open source under the MIT license, with no tracking, no
+ads, and no paywalls.
+
+From its official repository:
+
+```markdown
+Reactive Resume is a free and open-source resume builder that makes it easy to
+create, update, and share your resume.
+
+- Pick a template, fill in your details, and export to PDF.
+- Basic use needs no account.
+- You own your data. The codebase is open source under the MIT license, with
+  no tracking, no ads, and no hidden costs.
+```
+
+Reactive Resume began as a side project and was first released in early
+2020. It reached v2 later that year, v3 by early 2022, and v4 in late 2023
+with a NestJS and PostgreSQL backend. In January 2026, v5 was released—a
+complete rebuild on TanStack Start (React 19, Vite, TypeScript, PostgreSQL
+with Drizzle ORM) with an AI agent, an MCP server, and a job application
+tracker. Later that year, the stack shifted to TanStack Router with Hono and
+oRPC, and the server-side printer service was replaced by client-side PDF
+rendering with `@react-pdf/renderer`.
+
+Reactive Resume and YAMLResume share the same values—free, open-source,
+privacy-respecting resume tooling—but they embody **opposite workflows**.
+Reactive Resume is a **web application**: you edit your resume in a visual,
+WYSIWYG builder and your data lives in the app (PostgreSQL, or your
+self-hosted instance). YAMLResume is a **file-based toolchain**: your resume
+is a plain-text YAML file that you edit in any editor, version-control with
+Git, and compile to multiple output formats from the command line. Here is
+how they compare:
+
+## Feature Comparison
+
+| Feature                   | YAMLResume                                                                                                                | Reactive Resume                                                                                                          |
+| ------------------------- | ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| **Type**                  | CLI toolchain + file format                                                                                               | Web application (hosted or self-hosted)                                                                                  |
+| **Language**              | TypeScript/Node.js                                                                                                        | TypeScript (TanStack Router, React 19, Hono, Node.js)                                                                    |
+| **License**               | MIT                                                                                                                       | MIT                                                                                                                      |
+| **Data Format**           | Plain-text YAML files                                                                                                     | JSON stored in PostgreSQL, edited via the web UI                                                                         |
+| **Account Required**      | None                                                                                                                      | None for basic use; account for cloud sync                                                                               |
+| **Editing**               | Any text editor + [dev mode](/blog/dev-mode) auto-rebuild                                                                 | WYSIWYG editor with live preview in the browser                                                                          |
+| **Typesetting Engine**    | [Docx](/docs/layouts/docx), [HTML](/docs/layouts/html), [Markdown](/docs/layouts/markdown), [LaTeX/XeTeX](/docs/layouts/latex) | Client-side PDF renderer (@react-pdf/renderer)                                                                         |
+| **Output Formats**        | DOCX, HTML, Markdown, LaTeX/PDF                                                                                           | PDF, DOCX, Markdown, JSON                                                                                                |
+| **Schema Validation**     | [Strict Zod schema validation](/docs/compiler/schema) with [compiler](/docs/compiler/architecture) + IDE integration      | Server-side schema validation with user-facing error messages                                                            |
+| **Error Reporting**       | [clang-style diagnostics](/docs/cli#validate) with line numbers and positional info                                       | Inline form errors and import validation messages                                                                        |
+| **Internationalization**  | [10 languages across 12 locale codes](/docs/locale) with deep content localization                                        | UI translated into 55 locales; RTL PDF mirroring; locale-aware fallback fonts                                            |
+| **Rich Text Support**     | A selected set of [Markdown rich text syntax](/docs/content/rich-text) in `summary` fields                                | WYSIWYG rich text editor across all fields, with highlight colors                                                        |
+| **Font Customization**    | [Font family, font size, line spacing](/docs/layouts/latex#typography), etc                                               | Per-template font family, size, and spacing controls                                                                     |
+| **Color Customization**   | None (theme-dependent)                                                                                                    | Template color palettes plus a Semantic CSS editor with content selectors                                                |
+| **Layout Customization**  | [Page margins, page numbers, paper size](/docs/layouts/latex#page), etc                                                   | A4/Letter, margins, spacing, sidebar width, icon styles, drag-and-drop arrangement                                        |
+| **Section Customization** | [Aliases](/docs/layouts/sections/aliases) and [reorder](/docs/layouts/sections/reorder)                                   | Custom sections with typed fields, drag-and-drop ordering, per-item visibility                                           |
+| **Templates/Themes**      | Multiple official [LaTeX](/docs/layouts/latex/templates), [HTML](/docs/layouts/html/templates), and [DOCX](/docs/layouts/docx/templates) templates | 15 built-in templates (Azurill, Bronzor, Chikorita, Ditto, Gengar, Lapras, Rhyhorn, etc)              |
+| **Custom Styles**         | Template-based (DOCX/HTML/LaTeX source)                                                                                   | Semantic CSS rules portable across templates                                                                             |
+| **Dev Mode**              | [Dev mode](/docs/cli#dev) with auto-rebuild                                                                               | Live preview as you type                                                                                                 |
+| **Version Control**       | Native (plain-text files in Git)                                                                                          | JSON export/import; in-app version history snapshots; no line-level diffs                                                |
+| **Docker Support**        | [Official docker image](/docs/contributing/docker) with LaTeX and YAMLResume pre-installed                                | All-in-one self-host image (Docker Hub and GHCR); one-click Vercel deploy                                                |
+| **GitHub Action**         | [Official GitHub action](https://github.com/yamlresume/action) for CI/CD                                                  | None                                                                                                                     |
+| **Homebrew**              | [Homebrew formula](https://formulae.brew.sh/formula/yamlresume) for easy installation on macOS and Linux                  | None                                                                                                                     |
+| **Web Playground**        | Interactive web-based [playground](/playground)                                                                           | The hosted app at [rxresu.me](https://rxresu.me) itself                                                                  |
+| **AI Integration**        | Built-in [generation](/docs/ai/generate) and [translation](/docs/ai/translate) via CLI and APIs                           | In-app AI agent with OpenAI, Anthropic, Google, OpenRouter, Ollama, and more, ATS check, and PDF/DOCX import             |
+| **Agent Integration**     | Resume files work with any coding agent                                                                                   | [MCP server](https://docs.rxresu.me) with OAuth, plus an OpenAPI REST API                                                |
+| **Sharing**               | Host the [HTML output](/docs/layouts/html) anywhere                                                                       | Public share links with view counts                                                                                      |
+| **Extras**                | Curated sample resumes, [json2yamlresume](/docs/ecosystem/json2yamlresume) converter                                      | Cover letters, job application tracker, Application Copilot (auto-fill, match scoring, tailored copies)                  |
+| **Node.js API**           | [`@yamlresume/node`](/docs/ecosystem/node) for reading, validating, building, watching, generating, and translating files | REST API + MCP (no local library)                                                                                        |
+| **Deterministic Output**  | Yes                                                                                                                       | Yes (client-side PDF renderer)                                                                                           |
+
+## Key Differences Explained
+
+If we have to choose one phrase to summarize the difference between YAMLResume
+and Reactive Resume, it would be **files versus apps**. YAMLResume treats your
+resume as plain-text source code; Reactive Resume treats it as data inside an
+application. Nearly every other difference flows from that decision.
+
+### Files vs. Apps
+
+With YAMLResume, a resume is a YAML file on your disk:
+
+```console
+$ yamlresume build resume.yml
+✔ Generated resume pdf file successfully: resume.pdf
+✔ Generated resume docx file successfully: resume.docx
+✔ Generated resume markdown file successfully: resume.md
+✔ Generated resume html file successfully: resume.html
+```
+
+You can commit it to Git, diff two versions, branch per job application, review
+changes in pull requests, and let CI compile the artifacts. The
+[GitHub Action](https://github.com/yamlresume/action) can build and attach PDFs
+to releases automatically. Nothing runs in the background, and nothing leaves
+your machine except the files you choose to publish.
+
+With Reactive Resume, a resume lives inside the application. You edit through
+the web UI, the data is stored in PostgreSQL (on the hosted service or your
+self-hosted instance), and you export artifacts when you need them. The app
+offers JSON export/import, snapshot-based version history with restore
+(captured at milestones such as imports and AI edits), and full data
+deletion—but there are no line-level diffs or branches; if you want those,
+you must build that workflow yourself on top of JSON exports.
+
+Both approaches are legitimate. The app model removes all setup and is the
+fastest path from zero to a finished PDF; the file model pays off over time as
+your resume accumulates history, variants, and automation.
+
+### Data Model
+
+Unlike [RenderCV](/docs/comparisons/rendercv), which allows arbitrary section
+titles, both YAMLResume and Reactive Resume use a **fixed, structured schema**
+with well-known sections. That makes resumes from either tool predictable and
+machine-readable.
+
+YAMLResume's content model separates three concerns:
+
+- **`content`**: the resume itself (`basics`, `location`, `profiles`, `work`,
+  `education`, `skills`, `projects`, `publications`, `awards`, `certificates`,
+  `volunteer`, `references`, `languages`, `interests`)
+- **`locale`**: the language and region the resume is written for
+- **`layouts`**: presentation settings (template choice, section aliases and
+  ordering, typography, page setup)
+
+Because the data model is fixed and aligned with [JSON Resume](/docs/comparisons/json-resume), YAMLResume can validate it rigorously, normalize values into fixed vocabularies (education degrees, skill levels, language fluency, countries and regions translated into every supported language), and interchange data with the broader JSON Resume ecosystem. The compiler even accepts JSON Resume files directly, and the [json2yamlresume](/docs/ecosystem/json2yamlresume) converter handles full projects.
+
+Reactive Resume's schema covers similar ground (`basics`, `experience`,
+`education`, `skills`, `projects`, `certifications`, `languages`, `interests`,
+`references`, `awards`, `volunteer work`, `publications`, `profiles`) and adds
+capabilities YAMLResume does not have:
+
+- **Custom sections**: define entirely new sections with typed extension
+  fields, useful for portfolios, talks, or patents
+- **Per-item visibility**: hide individual entries without deleting them, so
+  one resume can produce many tailored variants
+- **Pages as artboards**: drag entries between pages and see exactly where page
+  breaks land
+- **Cover letters**: standalone letters styled from a resume, exported to PDF,
+  DOCX, or Markdown
+- **Application tracker**: a job-search pipeline with stages, notes, follow-ups,
+  and attached documents, also reachable through the REST API and MCP tools
+
+Reactive Resume also imports JSON Resume files (with validation that rejects
+impossible dates), so moving between the two ecosystems is possible from both
+sides.
+
+### Editing Experience
+
+Reactive Resume provides a polished WYSIWYG editor: what you see in the
+browser is what lands in the PDF. Every text field supports a rich text editor
+with bold, italic, links, lists, and even highlight colors. For most people
+this is the friendliest possible way to write a resume—no syntax to learn, no
+build step to run.
+
+YAMLResume deliberately trades some of that immediacy for **portability and
+scale**. You write YAML in your own editor, and a constrained set of
+[Markdown syntax](/docs/content/rich-text) (bold, italic, links, lists,
+paragraphs) is supported in `summary` fields. The payoff:
+
+- Your resume is grep-able, scriptable, and diffable
+- [Multi-line YAML strings](https://yaml.org/spec/1.2.2/#8112-block-collection-literals) keep long summaries readable
+- The same content compiles to LaTeX, HTML, DOCX, and Markdown
+- Bulk edits (renaming an employer across ten variants) are a `sed` away
+
+### Layouts and Rendering
+
+The rendering architectures diverge completely.
+
+#### Engines
+
+YAMLResume provides four rendering engines:
+
+- **[DOCX engine](/docs/layouts/docx)**: Microsoft Word documents for easy
+  editing and sharing
+- **[HTML engine](/docs/layouts/html)**: Responsive, web-ready resumes with SEO
+  metadata
+- **[Markdown engine](/docs/layouts/markdown)**: Clean text for LLMs, ATS
+  systems, and static sites
+- **[LaTeX engine](/docs/layouts/latex)**: Pixel-perfect PDFs with professional
+  typography via XeTeX
+
+A single `yamlresume build` command generates all four formats from the same
+source file.
+
+Reactive Resume renders PDFs **in the browser** with `@react-pdf/renderer`
+(v5 launched with a server-side printer service; it was removed in v5.1).
+Exports include PDF, DOCX, Markdown, and JSON. Because the builder preview is
+rendered with pdfjs against the same document tree used for export, output is
+deterministic and page breaks preview exactly as artboards. The trade-off:
+PDF and DOCX are the main document outputs, with Markdown export added in
+v5—there is no LaTeX pipeline and no standalone HTML export.
+
+#### Design customization
+
+Reactive Resume offers the broader visual toolkit:
+
+- **15 templates** (Azurill, Bronzor, Chikorita, Ditgar, Ditto, Gengar,
+  Glalie, Kakuna, Lapras, Leafish, Meowth, Onyx, Pikachu, Rhyhorn, and
+  Scizor), mostly named after Pokémon
+- **Per-template options**: colors, fonts, sizes, spacing, A4 or Letter,
+  sidebar width, full-width pages, icon styles for skill/language indicators
+- **Semantic CSS**: a CSS-like stylesheet language whose selectors describe
+  resume content (`section[type="experience"]`, `field[name="position"]`,
+  `list-marker`) rather than template markup, so styles survive template
+  switches and copy between resumes
+- **Drag-and-drop arrangement** of sections, items, and pages
+
+YAMLResume's LaTeX engine provides
+[page customization](/docs/layouts/latex#page) (paper size, margins, page
+numbers) and [typography controls](/docs/layouts/latex#typography) (font
+family, font size, line spacing), while templates encapsulate the visual
+decisions—per-element color and fine-grained spacing control are intentionally
+absent. If you want to obsess over every pixel of a unique design, Reactive
+Resume gives you more levers. If you want a professionally designed result
+without becoming a typesetter, YAMLResume's constrained approach is the point.
+
+#### Section customization
+
+YAMLResume reshapes structure through [section
+aliases](/docs/layouts/sections/aliases) and [section
+reordering](/docs/layouts/sections/reorder) without touching the data—rename
+`work` to "Employment History" or move `skills` above `education` in a layout
+config.
+
+Reactive Resume achieves similar results interactively: sections can be
+renamed, reordered with drag-and-drop, and extended with custom sections.
+Because it is app data rather than source code, these changes are immediate but
+live outside version control unless you export JSON.
+
+### Internationalization
+
+The two tools localize at different layers.
+
+Reactive Resume **localizes the interface**: the app UI is translated into 55
+locales via Crowdin, and the PDF pipeline handles right-to-left mirroring
+across all templates with locale-aware fallback fonts for Korean, Japanese,
+Chinese, Arabic, Hebrew, and Thai. However, the resume **content** carries no
+localization layer: section headings come from the template, dates follow one
+format, and vocabulary like degrees or skill levels is whatever you type. A
+French resume means writing French content by hand.
+
+YAMLResume **localizes the content**. Setting the `locale` key switches
+section headings, country names, education degrees, skill levels, language
+fluency levels, idiomatic date and address formats, locale-appropriate
+punctuation, and LaTeX babel configuration across [10 languages and 12 locale
+codes](/docs/locale). A single source file can be compiled per language, and
+[`yamlresume ai translate`](/docs/ai/translate) produces structure-preserving
+translations—so maintaining an English and a Chinese resume is one file plus a
+translation step, not two parallel documents drifting apart.
+
+For CJK and complex scripts, YAMLResume's LaTeX engine also brings
+decades of mature typesetting support—ctex for Chinese, luatexja for Japanese,
+kotex for Korean, and xeCJK for XeLaTeX—handling font fallback, full-width
+punctuation compression, CJK-Latin spacing, and locale-aware line breaking.
+
+### AI Workflows
+
+Both projects embraced AI, in characteristically different ways.
+
+Reactive Resume embeds AI **in the app**: bring your own API key from
+providers including OpenAI, Anthropic, Google Gemini, OpenRouter, and Ollama
+(plus any OpenAI-compatible endpoint) and an in-app agent can
+revise content, fix grammar, and adjust tone, with an action history you can
+restore. Its ATS check is deliberately deterministic—evidence-based feedback
+with an optional AI second opinion that returns no score of its own. AI also
+powers resume **import from PDF or DOCX**, reconstructing structured data from
+existing documents. Through the MCP server, agents can manage resumes, cover
+letters, and the application tracker end to end.
+
+YAMLResume embeds AI **in the pipeline**:
+
+- **`yamlresume ai generate`**: bootstrap a complete, schema-validated resume
+  from a job title and locale
+- **`yamlresume ai translate`**: translate a resume while preserving its
+  structure and layout configuration
+
+Both run from the terminal or CI, store nothing server-side, and feed results
+into the same validated file workflow. Combined with the [Markdown
+engine](/docs/layouts/markdown), a YAMLResume file is also one of the most
+LLM-friendly resume formats around—readable context for any coding agent,
+without a dedicated integration.
+
+### APIs and Automation
+
+Reactive Resume exposes a **remote** API surface: an OpenAPI-documented REST
+API, an MCP server with OAuth, passkeys, and two-factor authentication. It is a
+server integration—you authenticate against an instance.
+
+YAMLResume exposes a **local** API: [`@yamlresume/node`](/docs/ecosystem/node)
+reads, validates, builds, watches, generates, and translates files from any
+Node.js application, plus [create-yamlresume](/docs/ecosystem/create-yamlresume)
+to scaffold projects. Combined with the GitHub Action, Docker image, and plain
+files, it automates without standing up a service.
+
+## Ecosystem and Community
+
+### Self-hosting vs. Local-first
+
+Reactive Resume is self-hostable: an
+[all-in-one Docker image](https://github.com/reactive-resume/reactive-resume)
+(Docker Hub `amruthpillai/reactive-resume`, GHCR
+`ghcr.io/reactive-resume/reactive-resume`) and a one-click Vercel deployment
+that provisions Neon PostgreSQL, Upstash Redis, and Vercel Blob storage.
+Self-hosting gives you full control, but you are operating an application:
+database migrations, storage, authentication, and backups are yours to run.
+
+YAMLResume is local-first: everything runs on your machine, and the
+[official Docker image](/docs/contributing/docker) exists only to provide a
+preconfigured build environment (Node.js, XeTeX, fonts). There is no server to
+operate, no database to back up, and no account to secure.
+
+### Distribution
+
+YAMLResume meets developers where they work:
+
+- **npm/pnpm/yarn/bun**: `npm install -g yamlresume`
+- **Homebrew**: `brew install yamlresume` on macOS and Linux
+- **GitHub Action**: build resumes in CI/CD
+- **Docker**: one-command builds anywhere
+
+Reactive Resume distributes as the hosted app plus container images and source;
+there is no CLI, Homebrew formula, or CI integration.
+
+### JSON Resume Interop
+
+Both tools can import [JSON Resume](/docs/comparisons/json-resume) files,
+which lowers the cost of switching in either direction. YAMLResume goes
+further: its compiler accepts JSON Resume natively, the schemas stay aligned,
+and [json2yamlresume](/docs/ecosystem/json2yamlresume) converts whole projects
+including layouts.
+
+### Web Interface
+
+YAMLResume provides an interactive, web-based [playground](/playground) that
+runs entirely in the browser with no server-side rendering—useful for trying
+the format without installing anything.
+
+Reactive Resume's "playground" is the product itself: a polished hosted app at
+[rxresu.me](https://rxresu.me), free without an account for basic use.
+
+## Summary
+
+**Reactive Resume** excels if you want:
+
+- A visual, WYSIWYG resume builder with zero setup and no build step
+- 15 polished templates with deep visual customization, including a Semantic
+  CSS editor and drag-and-drop layout control
+- WYSIWYG rich text editing across every field
+- Public share links with view counts
+- Built-in cover letters and a job application tracker with pipeline stages
+- An in-app AI agent supporting OpenAI, Anthropic, Google, OpenRouter, and
+  Ollama, AI import from PDF/DOCX, and an ATS check
+- Agent and automation integrations through a hosted MCP server and OpenAPI
+  REST API
+- A self-hosted web application you can deploy with one click on Vercel or via
+  Docker
+
+**YAMLResume** excels if you want:
+
+- Your resume as a plain-text YAML file in Git, with native diffing, branching,
+  and code review
+- Four rendering engines (DOCX, HTML, Markdown, LaTeX/PDF) from a single source
+  file
+- Deep content internationalization: 10 languages across 12 locale codes, with
+  translated vocabularies, idiomatic dates and addresses, and CJK-ready LaTeX
+  typography
+- A CLI-first developer experience with watch mode, schema-aware diagnostics,
+  and deterministic builds
+- AI generation and translation that run locally in your terminal or CI
+- Ecosystem tooling built for automation: Homebrew, Docker, GitHub Action, a
+  Node.js API, and an embeddable browser playground
+- No accounts, no servers, no databases—just files
+
+Choose **Reactive Resume** if you prefer a polished visual app that manages
+your resumes, cover letters, and job search in one place, and you want the
+richest template and AI-agent experience without touching a command line.
+
+Choose **YAMLResume** if you think of your resume as source code—versioned,
+reviewable, compilable, and automated—and you want one file to produce a
+pixel-perfect PDF, a Word document, a web page, and an LLM-friendly text
+version, in a dozen locales, on every commit.

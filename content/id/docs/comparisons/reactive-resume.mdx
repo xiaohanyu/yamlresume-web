@@ -1,0 +1,416 @@
+---
+title: YAMLResume VS Reactive Resume
+---
+
+[Reactive Resume](https://rxresu.me) adalah pembuat resume open-source paling
+populer di GitHub, yang dibuat oleh
+[Amruth Pillai](https://github.com/AmruthPillai). Reactive Resume telah ada
+sejak 2020 dan telah berkembang menjadi **lebih dari 43.000 bintang GitHub**,
+dengan versi yang di-host di [rxresu.me](https://rxresu.me) yang dapat digunakan
+siapa saja secara gratis. Kode sumbernya terbuka di bawah lisensi MIT, tanpa
+pelacakan, tanpa iklan, dan tanpa paywall.
+
+Dari repositori resminya:
+
+```markdown
+Reactive Resume is a free and open-source resume builder that makes it easy to
+create, update, and share your resume.
+
+- Pick a template, fill in your details, and export to PDF.
+- Basic use needs no account.
+- You own your data. The codebase is open source under the MIT license, with
+  no tracking, no ads, and no hidden costs.
+```
+
+Reactive Resume dimulai sebagai proyek sampingan dan dirilis pertama kali pada
+awal 2020. Ia mencapai v2 akhir tahun itu, v3 pada awal 2022, dan v4 pada
+akhir 2023 dengan backend NestJS dan PostgreSQL. Pada Januari 2026, v5
+dirilis—sebuah pembangunan ulang lengkap di atas TanStack Start (React 19,
+Vite, TypeScript, PostgreSQL dengan Drizzle ORM) dengan agen AI, server MCP,
+dan pelacak lamaran kerja. Kemudian tahun itu, stack-nya beralih ke TanStack
+Router dengan Hono dan oRPC, dan layanan printer sisi server digantikan oleh
+rendering PDF sisi klien dengan `@react-pdf/renderer`.
+
+Reactive Resume dan YAMLResume memiliki nilai yang sama—alat resume gratis,
+open-source, dan menghormati privasi—tetapi keduanya mewujudkan **alur kerja
+yang berlawanan**. Reactive Resume adalah **aplikasi web**: Anda mengedit
+resume Anda dalam builder visual WYSIWYG dan data Anda disimpan di dalam
+aplikasi (PostgreSQL, atau instance self-hosted Anda). YAMLResume adalah
+**toolchain berbasis file**: resume Anda adalah file YAML teks biasa yang dapat
+Anda edit di editor mana pun, kendalikan versinya dengan Git, dan kompilasikan
+ke beberapa format output dari baris perintah. Berikut perbandingannya:
+
+## Perbandingan Fitur
+
+| Fitur                     | YAMLResume                                                                                                                | Reactive Resume                                                                                                          |
+| ------------------------- | ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| **Jenis**                 | Toolchain CLI + format file                                                                                               | Aplikasi web (hosted atau self-hosted)                                                                                   |
+| **Bahasa**                | TypeScript/Node.js                                                                                                        | TypeScript (TanStack Router, React 19, Hono, Node.js)                                                                    |
+| **Lisensi**               | MIT                                                                                                                       | MIT                                                                                                                      |
+| **Format Data**           | File YAML teks biasa                                                                                                      | JSON yang disimpan di PostgreSQL, diedit melalui UI web                                                                  |
+| **Akun Diperlukan**       | Tidak ada                                                                                                                 | Tidak ada untuk penggunaan dasar; akun untuk sinkronisasi cloud                                                          |
+| **Pengeditan**            | Editor teks apa pun + pembangunan otomatis [mode dev](/id/blog/dev-mode)                                                  | Editor WYSIWYG dengan pratinjau langsung di browser                                                                      |
+| **Mesin Typesetting**     | [Docx](/id/docs/layouts/docx), [HTML](/id/docs/layouts/html), [Markdown](/id/docs/layouts/markdown), [LaTeX/XeTeX](/id/docs/layouts/latex) | Perender PDF sisi klien (@react-pdf/renderer)                                                         |
+| **Format Output**         | DOCX, HTML, Markdown, LaTeX/PDF                                                                                           | PDF, DOCX, Markdown, JSON                                                                                                |
+| **Validasi Skema**        | [Validasi skema Zod ketat](/id/docs/compiler/schema) dengan [compiler](/id/docs/compiler/architecture) + integrasi IDE    | Validasi skema sisi server dengan pesan kesalahan yang dapat dipahami pengguna                                           |
+| **Pelaporan Kesalahan**   | [Diagnostik gaya clang](/id/docs/cli#validate) dengan nomor baris dan info posisional                                     | Kesalahan formulir inline dan pesan validasi impor                                                                       |
+| **Internasionalisasi**    | [10 bahasa dalam 12 kode lokal](/id/docs/locale) dengan pelokalan konten mendalam                                         | UI diterjemahkan ke 55 lokal; pemantulan PDF RTL; font fallback yang sadar lokal                                         |
+| **Dukungan Teks Kaya**    | Sekumpulan [sintaks teks kaya Markdown](/id/docs/content/rich-text) di bidang `summary`                                   | Editor teks kaya WYSIWYG di semua bidang, dengan warna highlight                                                         |
+| **Kustomisasi Font**      | [Keluarga font, ukuran font, jarak baris](/id/docs/layouts/latex#typography), dll                                         | Kontrol keluarga font, ukuran, dan jarak per-template                                                                    |
+| **Kustomisasi Warna**     | Tidak ada (tergantung tema)                                                                                               | Palet warna template plus editor Semantic CSS dengan selektor konten                                                     |
+| **Kustomisasi Tata Letak** | [Margin halaman, nomor halaman, ukuran kertas](/id/docs/layouts/latex#page), dll                                          | A4/Letter, margin, jarak, lebar sidebar, gaya ikon, pengaturan drag-and-drop                                             |
+| **Kustomisasi Bagian**    | [Alias](/id/docs/layouts/sections/aliases) dan [pengurutan ulang](/id/docs/layouts/sections/reorder)                      | Bagian kustom dengan bidang bertipe, pengurutan drag-and-drop, visibilitas per item                                      |
+| **Template/Tema**         | Beberapa template [LaTeX](/id/docs/layouts/latex/templates), [HTML](/id/docs/layouts/html/templates), dan [DOCX](/id/docs/layouts/docx/templates) resmi | 15 template bawaan (Azurill, Bronzor, Chikorita, Ditto, Gengar, Lapras, Rhyhorn, dll)     |
+| **Gaya Kustom**           | Berbasis template (sumber DOCX/HTML/LaTeX)                                                                                | Aturan Semantic CSS yang portabel antar-template                                                                         |
+| **Mode Dev**              | [Mode dev](/id/docs/cli#dev) dengan pembangunan otomatis                                                                  | Pratinjau langsung saat Anda mengetik                                                                                    |
+| **Kendali Versi**         | Native (file teks biasa di Git)                                                                                           | Ekspor/impor JSON; snapshot riwayat versi dalam aplikasi; tanpa diff tingkat baris                                       |
+| **Dukungan Docker**       | [Gambar docker resmi](/id/docs/contributing/docker) dengan LaTeX dan YAMLResume yang sudah terinstal                      | Gambar self-host all-in-one (Docker Hub dan GHCR); deployment Vercel sekali klik                                         |
+| **GitHub Action**         | [GitHub action resmi](https://github.com/yamlresume/action) untuk CI/CD                                                   | Tidak ada                                                                                                                |
+| **Homebrew**              | [Formula Homebrew](https://formulae.brew.sh/formula/yamlresume) untuk instalasi mudah di macOS dan Linux                  | Tidak ada                                                                                                                |
+| **Taman Bermain Web**     | [Taman bermain](/id/playground) berbasis web interaktif                                                                   | Aplikasi yang di-host di [rxresu.me](https://rxresu.me) itu sendiri                                                      |
+| **Integrasi AI**          | [Generasi](/id/docs/ai/generate) dan [terjemahan](/id/docs/ai/translate) bawaan melalui CLI dan API                       | Agen AI dalam aplikasi dengan OpenAI, Anthropic, Google, OpenRouter, Ollama, dan lainnya, pemeriksaan ATS, serta impor PDF/DOCX |
+| **Integrasi Agen**        | File resume bekerja dengan agen pengkodean apa pun                                                                        | [Server MCP](https://docs.rxresu.me) dengan OAuth, plus REST API OpenAPI                                                 |
+| **Berbagi**               | Host [output HTML](/id/docs/layouts/html) di mana saja                                                                    | Tautan berbagi publik dengan jumlah tampilan                                                                             |
+| **Ekstra**                | Resume contoh yang dikurasi, konverter [json2yamlresume](/id/docs/ecosystem/json2yamlresume)                              | Surat lamaran, pelacak lamaran kerja, Application Copilot (auto-fill, skor kecocokan, salinan yang disesuaikan)          |
+| **Node.js API**           | [`@yamlresume/node`](/id/docs/ecosystem/node) untuk membaca, memvalidasi, membangun, memantau, menggenerasi, dan menerjemahkan file | REST API + MCP (tanpa library lokal)                                                                    |
+| **Output Deterministik**  | Ya                                                                                                                        | Ya (perender PDF sisi klien)                                                                                             |
+
+## Perbedaan Kunci Dijelaskan
+
+Jika kita harus memilih satu frasa untuk merangkum perbedaan antara YAMLResume
+dan Reactive Resume, frasa itu adalah **file versus aplikasi**. YAMLResume
+memperlakukan resume Anda sebagai kode sumber teks biasa; Reactive Resume
+memperlakukannya sebagai data di dalam sebuah aplikasi. Hampir semua perbedaan
+lain mengalir dari keputusan itu.
+
+### File vs. Aplikasi
+
+Dengan YAMLResume, resume adalah file YAML di disk Anda:
+
+```console
+$ yamlresume build resume.yml
+✔ Generated resume pdf file successfully: resume.pdf
+✔ Generated resume docx file successfully: resume.docx
+✔ Generated resume markdown file successfully: resume.md
+✔ Generated resume html file successfully: resume.html
+```
+
+Anda dapat melakukan commit ke Git, membandingkan dua versi, membuat cabang
+per lamaran kerja, meninjau perubahan dalam pull request, dan membiarkan CI
+mengkompilasi artefaknya. [GitHub Action](https://github.com/yamlresume/action)
+dapat membangun dan melampirkan PDF ke rilis secara otomatis. Tidak ada apa
+pun yang berjalan di latar belakang, dan tidak ada apa pun yang meninggalkan
+mesin Anda kecuali file yang Anda pilih untuk terbitkan.
+
+Dengan Reactive Resume, resume berada di dalam aplikasi. Anda mengedit melalui
+UI web, data disimpan di PostgreSQL (di layanan yang di-host atau instance
+self-hosted Anda), dan Anda mengekspor artefak saat membutuhkannya. Aplikasi
+ini menawarkan ekspor/impor JSON, riwayat versi berbasis snapshot dengan
+pemulihan (ditangkap pada tonggak seperti impor dan pengeditan AI), dan
+penghapusan data penuh—tetapi tidak ada diff tingkat baris atau cabang; jika
+Anda menginginkannya, Anda harus membangun alur kerja itu sendiri di atas
+ekspor JSON.
+
+Kedua pendekatan sah. Model aplikasi menghilangkan semua pengaturan dan
+merupakan jalur tercepat dari nol ke PDF yang selesai; model file membuahkan
+hasil seiring waktu saat resume Anda mengakumulasikan riwayat, varian, dan
+otomatisasi.
+
+### Model Data
+
+Berbeda dengan [RenderCV](/id/docs/comparisons/rendercv), yang mengizinkan
+judul bagian sewenang-wenang, baik YAMLResume maupun Reactive Resume
+menggunakan **skema terstruktur yang tetap** dengan bagian-bagian yang
+terdefinisi dengan baik. Itu membuat resume dari kedua alat dapat diprediksi
+dan dapat dibaca mesin.
+
+Model konten YAMLResume memisahkan tiga hal:
+
+- **`content`**: resume itu sendiri (`basics`, `location`, `profiles`,
+  `work`, `education`, `skills`, `projects`, `publications`, `awards`,
+  `certificates`, `volunteer`, `references`, `languages`, `interests`)
+- **`locale`**: bahasa dan wilayah untuk siapa resume ditulis
+- **`layouts`**: pengaturan presentasi (pilihan template, alias dan pengurutan
+  bagian, tipografi, pengaturan halaman)
+
+Karena model datanya tetap dan selaras dengan
+[JSON Resume](/id/docs/comparisons/json-resume), YAMLResume dapat
+memvalidasinya secara ketat, menormalkan nilai ke dalam kosakata tetap (gelar
+pendidikan, tingkat keterampilan, kefasihan bahasa, negara dan wilayah yang
+diterjemahkan ke setiap bahasa yang didukung), dan menukar data dengan
+ekosistem JSON Resume yang lebih luas. Compiler bahkan menerima file JSON
+Resume secara langsung, dan konverter
+[json2yamlresume](/id/docs/ecosystem/json2yamlresume) menangani proyek secara
+lengkap.
+
+Skema Reactive Resume mencakup bidang serupa (`basics`, `experience`,
+`education`, `skills`, `projects`, `certifications`, `languages`, `interests`,
+`references`, `awards`, `volunteer work`, `publications`, `profiles`) dan
+menambahkan kemampuan yang tidak dimiliki YAMLResume:
+
+- **Bagian kustom**: menentukan bagian baru sepenuhnya dengan bidang ekstensi
+  bertipe, berguna untuk portofolio, ceramah, atau paten
+- **Visibilitas per item**: menyembunyikan entri individual tanpa menghapusnya,
+  sehingga satu resume dapat menghasilkan banyak varian yang disesuaikan
+- **Halaman sebagai artboard**: menyeret entri antar halaman dan melihat dengan
+  tepat di mana page break berada
+- **Surat lamaran**: surat mandiri yang digaya dari sebuah resume, diekspor ke
+  PDF, DOCX, atau Markdown
+- **Pelacak lamaran**: pipeline pencarian kerja dengan tahap, catatan, tindak
+  lanjut, dan dokumen terlampir, juga dapat diakses melalui REST API dan
+  tool MCP
+
+Reactive Resume juga mengimpor file JSON Resume (dengan validasi yang
+menolak tanggal yang mustahil), sehingga berpindah antara kedua ekosistem
+dimungkinkan dari kedua sisi.
+
+### Pengalaman Pengeditan
+
+Reactive Resume menyediakan editor WYSIWYG yang dipoles: apa yang Anda lihat
+di browser adalah apa yang muncul di PDF. Setiap bidang teks mendukung editor
+teks kaya dengan tebal, miring, tautan, daftar, dan bahkan warna highlight.
+Bagi kebanyakan orang, ini adalah cara paling ramah untuk menulis resume—tidak
+ada sintaks untuk dipelajari, tidak ada langkah build untuk dijalankan.
+
+YAMLResume dengan sengaja mengorbankan sebagian kemudahan langsung itu demi
+**portabilitas dan skala**. Anda menulis YAML di editor Anda sendiri, dan
+sekumpulan [sintaks Markdown](/id/docs/content/rich-text) yang terbatas (tebal,
+miring, tautan, daftar, paragraf) didukung di bidang `summary`. Imbal
+baliknya:
+
+- Resume Anda dapat dicari dengan grep, dapat di-*script*, dan dapat di-diff
+- [String YAML multi-baris](https://yaml.org/spec/1.2.2/#8112-block-collection-literals) menjaga ringkasan panjang tetap terbaca
+- Konten yang sama dikompilasi ke LaTeX, HTML, DOCX, dan Markdown
+- Pengeditan massal (mengganti nama pemberi kerja di sepuluh varian) hanya
+  satu `sed` saja
+
+### Tata Letak dan Rendering
+
+Arsitektur rendering keduanya berbeda secara menyeluruh.
+
+#### Mesin
+
+YAMLResume menyediakan empat mesin rendering:
+
+- **[Mesin DOCX](/id/docs/layouts/docx)**: Dokumen Microsoft Word untuk
+  pengeditan dan berbagi yang mudah
+- **[Mesin HTML](/id/docs/layouts/html)**: Resume responsif dan siap web
+  dengan metadata SEO
+- **[Mesin Markdown](/id/docs/layouts/markdown)**: Teks bersih untuk LLM,
+  sistem ATS, dan situs statis
+- **[Mesin LaTeX](/id/docs/layouts/latex)**: PDF yang sempurna secara piksel
+  dengan tipografi profesional melalui XeTeX
+
+Satu perintah `yamlresume build` menghasilkan keempat format dari file sumber
+yang sama.
+
+Reactive Resume merender PDF **di browser** dengan `@react-pdf/renderer`
+(v5 diluncurkan dengan layanan printer sisi server; layanan itu dihapus di
+v5.1). Ekspor mencakup PDF, DOCX, Markdown, dan JSON. Karena pratinjau builder
+dirender dengan pdfjs terhadap pohon dokumen yang sama yang digunakan untuk
+ekspor, output bersifat deterministik dan page break tampil persis seperti
+artboard. Komprominya: PDF dan DOCX adalah output dokumen utama, dengan ekspor
+Markdown yang ditambahkan di v5—tidak ada pipeline LaTeX dan tidak ada ekspor
+HTML mandiri.
+
+#### Kustomisasi Desain
+
+Reactive Resume menawarkan peralatan visual yang lebih luas:
+
+- **15 template** (Azurill, Bronzor, Chikorita, Ditgar, Ditto, Gengar,
+  Glalie, Kakuna, Lapras, Leafish, Meowth, Onyx, Pikachu, Rhyhorn, dan
+  Scizor), sebagian besar dinamai menurut Pokémon
+- **Opsi per template**: warna, font, ukuran, jarak, A4 atau Letter, lebar
+  sidebar, halaman lebar penuh, gaya ikon untuk indikator keterampilan/bahasa
+- **Semantic CSS**: bahasa stylesheet mirip CSS yang selektornya mendeskripsikan
+  konten resume (`section[type="experience"]`, `field[name="position"]`,
+  `list-marker`) dan bukan markup template, sehingga gaya bertahan saat ganti
+  template dan tersalin antar resume
+- **Pengaturan drag-and-drop** bagian, item, dan halaman
+
+Mesin LaTeX YAMLResume menyediakan
+[kustomisasi halaman](/id/docs/layouts/latex#page) (ukuran kertas, margin,
+nomor halaman) dan [kontrol tipografi](/id/docs/layouts/latex#typography)
+(keluarga font, ukuran font, jarak baris), sementara template mengenkapsulasi
+keputusan visual—kontrol warna per elemen dan jarak yang halus secara sengaja
+tidak ada. Jika Anda ingin terobsesi pada setiap piksel desain yang unik,
+Reactive Resume memberi Anda lebih banyak tuas. Jika Anda menginginkan hasil
+yang dirancang secara profesional tanpa menjadi seorang typesetter, pendekatan
+terbatas YAMLResume memang itulah tujuannya.
+
+#### Kustomisasi Bagian
+
+YAMLResume membentuk ulang struktur melalui
+[alias bagian](/id/docs/layouts/sections/aliases) dan
+[pengurutan ulang bagian](/id/docs/layouts/sections/reorder) tanpa menyentuh
+data—ganti nama `work` menjadi "Employment History" atau pindahkan `skills`
+di atas `education` dalam konfigurasi layout.
+
+Reactive Resume mencapai hasil serupa secara interaktif: bagian dapat diganti
+namanya, diurutkan ulang dengan drag-and-drop, dan diperluas dengan bagian
+kustom. Karena itu data aplikasi dan bukan kode sumber, perubahan ini langsung
+berlaku tetapi berada di luar kendali versi kecuali Anda mengekspor JSON.
+
+### Internasionalisasi
+
+Kedua alat melokalisasi pada lapisan yang berbeda.
+
+Reactive Resume **melokalisasi antarmuka**: UI aplikasi diterjemahkan ke 55
+lokal via Crowdin, dan pipeline PDF menangani pemantulan right-to-left di
+semua template dengan font fallback yang sadar lokal untuk Korean, Japanese,
+Chinese, Arabic, Hebrew, dan Thai. Namun, **konten** resume tidak membawa
+lapisan pelokalan: judul bagian berasal dari template, tanggal mengikuti satu
+format, dan kosakata seperti gelar atau tingkat keterampilan adalah apa pun
+yang Anda ketik. Resume bahasa Prancis berarti menulis konten Prancis dengan
+tangan.
+
+YAMLResume **melokalisasi konten**. Mengatur kunci `locale` mengganti judul
+bagian, nama negara, gelar pendidikan, tingkat keterampilan, tingkat kefasihan
+bahasa, format tanggal dan alamat idiomatis, tanda baca yang sesuai lokal, dan
+konfigurasi LaTeX babel di
+[10 bahasa dan 12 kode lokal](/id/docs/locale). Satu file sumber dapat
+dikompilasi per bahasa, dan
+[`yamlresume ai translate`](/id/docs/ai/translate) menghasilkan terjemahan
+yang mempertahankan struktur—sehingga memelihara resume bahasa Inggris dan
+bahasa Tionghoa adalah satu file plus satu langkah terjemahan, bukan dua
+dokumen paralel yang saling menjauh.
+
+Untuk CJK dan aksara kompleks, mesin LaTeX YAMLResume juga menghadirkan
+dukungan typesetting matang berusia puluhan tahun—ctex untuk Chinese,
+luatexja untuk Japanese, kotex untuk Korean, dan xeCJK untuk XeLaTeX—menangani
+fallback font, kompresi tanda baca lebar penuh, jarak CJK-Latin, dan
+pemenggalan baris yang sadar lokal.
+
+### Alur Kerja AI
+
+Kedua proyek merangkul AI, dengan cara yang khas berbeda.
+
+Reactive Resume menyematkan AI **di dalam aplikasi**: bawa kunci API Anda
+sendiri dari penyedia termasuk OpenAI, Anthropic, Google Gemini, OpenRouter,
+dan Ollama (plus endpoint kompatibel OpenAI apa pun) dan agen dalam aplikasi
+dapat merevisi konten, memperbaiki tata bahasa, dan menyesuaikan nada, dengan
+riwayat tindakan yang dapat Anda pulihkan. Pemeriksaan ATS-nya secara sengaja
+deterministik—umpan balik berbasis bukti dengan pendapat kedua AI opsional yang
+tidak mengembalikan skor apa pun. AI juga menggerakkan **impor resume dari PDF
+atau DOCX**, merekonstruksi data terstruktur dari dokumen yang ada. Melalui
+server MCP, agen dapat mengelola resume, surat lamaran, dan pelacak lamaran
+kerja secara menyeluruh.
+
+YAMLResume menyematkan AI **di dalam pipeline**:
+
+- **`yamlresume ai generate`**: mem-bootstrap resume lengkap dan tervalidasi
+  skema dari judul pekerjaan dan lokal
+- **`yamlresume ai translate`**: menerjemahkan resume sambil mempertahankan
+  struktur dan konfigurasi tata letaknya
+
+Keduanya berjalan dari terminal atau CI, tidak menyimpan apa pun di sisi
+server, dan memberi hasil ke alur kerja file tervalidasi yang sama.
+Dikombinasikan dengan [mesin Markdown](/id/docs/layouts/markdown), file
+YAMLResume juga merupakan salah satu format resume paling ramah LLM—konteks
+yang terbaca untuk agen pengkodean apa pun, tanpa integrasi khusus.
+
+### API dan Otomatisasi
+
+Reactive Resume mengekspos permukaan API **jarak jauh**: REST API
+berdokumentasi OpenAPI, server MCP dengan OAuth, passkey, dan autentikasi dua
+faktor. Ini integrasi server—Anda mengautentikasi terhadap sebuah instance.
+
+YAMLResume mengekspos API **lokal**: [`@yamlresume/node`](/id/docs/ecosystem/node)
+membaca, memvalidasi, membangun, memantau, menggenerasi, dan menerjemahkan
+file dari aplikasi Node.js apa pun, plus
+[create-yamlresume](/id/docs/ecosystem/create-yamlresume) untuk scaffolding
+proyek. Dikombinasikan dengan GitHub Action, gambar Docker, dan file polos,
+ia mengotomatiskan tanpa harus mendirikan layanan.
+
+## Ekosistem dan Komunitas
+
+### Self-hosting vs. Lokal-pertama
+
+Reactive Resume dapat di-self-host:
+[gambar Docker all-in-one](https://github.com/reactive-resume/reactive-resume)
+(Docker Hub `amruthpillai/reactive-resume`, GHCR
+`ghcr.io/reactive-resume/reactive-resume`) dan deployment Vercel sekali klik
+yang menyediakan Neon PostgreSQL, Upstash Redis, dan penyimpanan Vercel Blob.
+Self-hosting memberi Anda kontrol penuh, tetapi Anda mengoperasikan sebuah
+aplikasi: migrasi database, penyimpanan, autentikasi, dan backup adalah
+tanggung jawab Anda.
+
+YAMLResume adalah lokal-pertama: semuanya berjalan di mesin Anda, dan
+[gambar Docker resmi](/id/docs/contributing/docker) hanya ada untuk
+menyediakan lingkungan build yang sudah dikonfigurasi (Node.js, XeTeX, font).
+Tidak ada server untuk dioperasikan, tidak ada database untuk dicadangkan, dan
+tidak ada akun untuk diamankan.
+
+### Distribusi
+
+YAMLResume menjumpai developer tempat mereka bekerja:
+
+- **npm/pnpm/yarn/bun**: `npm install -g yamlresume`
+- **Homebrew**: `brew install yamlresume` di macOS dan Linux
+- **GitHub Action**: bangun resume dalam CI/CD
+- **Docker**: build satu perintah di mana saja
+
+Reactive Resume didistribusikan sebagai aplikasi yang di-host plus gambar
+container dan kode sumber; tidak ada CLI, formula Homebrew, atau integrasi CI.
+
+### Interop JSON Resume
+
+Kedua alat dapat mengimpor file [JSON Resume](/id/docs/comparisons/json-resume),
+yang menurunkan biaya berpindah ke arah mana pun. YAMLResume melangkah lebih
+jauh: compiler-nya menerima JSON Resume secara native, skema tetap selaras, dan
+[json2yamlresume](/id/docs/ecosystem/json2yamlresume) mengonversi seluruh
+proyek termasuk tata letak.
+
+### Antarmuka Web
+
+YAMLResume menyediakan [taman bermain](/id/playground) berbasis web interaktif
+yang berjalan sepenuhnya di browser tanpa rendering sisi server—berguna untuk
+mencoba format tanpa menginstal apa pun.
+
+"Taman bermain" Reactive Resume adalah produknya sendiri: aplikasi yang
+di-host yang dipoles di [rxresu.me](https://rxresu.me), gratis tanpa akun
+untuk penggunaan dasar.
+
+## Ringkasan
+
+**Reactive Resume** unggul jika Anda menginginkan:
+
+- Builder resume visual WYSIWYG tanpa pengaturan dan tanpa langkah build
+- 15 template yang dipoles dengan kustomisasi visual mendalam, termasuk editor
+  Semantic CSS dan kontrol tata letak drag-and-drop
+- Pengeditan teks kaya WYSIWYG di setiap bidang
+- Tautan berbagi publik dengan jumlah tampilan
+- Surat lamaran bawaan dan pelacak lamaran kerja dengan tahap pipeline
+- Agen AI dalam aplikasi yang mendukung OpenAI, Anthropic, Google, OpenRouter,
+  dan Ollama, impor AI dari PDF/DOCX, dan pemeriksaan ATS
+- Integrasi agen dan otomatisasi melalui server MCP yang di-host dan REST API
+  OpenAPI
+- Aplikasi web self-hosted yang dapat Anda deploy dengan satu klik di Vercel
+  atau via Docker
+
+**YAMLResume** unggul jika Anda menginginkan:
+
+- Resume Anda sebagai file YAML teks biasa di Git, dengan diff, percabangan,
+  dan tinjauan kode secara native
+- Empat mesin rendering (DOCX, HTML, Markdown, LaTeX/PDF) dari satu file
+  sumber
+- Internasionalisasi konten mendalam: 10 bahasa dalam 12 kode lokal, dengan
+  kosakata terjemahan, tanggal dan alamat idiomatis, dan tipografi LaTeX siap
+  CJK
+- Pengalaman developer CLI-pertama dengan mode watch, diagnostik yang sadar
+  skema, dan build deterministik
+- Generasi dan terjemahan AI yang berjalan lokal di terminal atau CI Anda
+- Peralatan ekosistem yang dibangun untuk otomatisasi: Homebrew, Docker,
+  GitHub Action, API Node.js, dan taman bermain browser yang dapat disematkan
+- Tanpa akun, tanpa server, tanpa database—hanya file
+
+Pilih **Reactive Resume** jika Anda lebih suka aplikasi visual yang dipoles
+yang mengelola resume, surat lamaran, dan pencarian kerja Anda di satu tempat,
+dan Anda menginginkan pengalaman template dan agen AI terkaya tanpa menyentuh
+baris perintah.
+
+Pilih **YAMLResume** jika Anda menganggap resume Anda sebagai kode
+sumber—terversi, dapat ditinjau, dapat dikompilasi, dan terotomasi—dan Anda
+menginginkan satu file untuk menghasilkan PDF yang sempurna secara piksel,
+dokumen Word, halaman web, dan versi teks yang ramah LLM, dalam selusin lokal,
+di setiap commit.

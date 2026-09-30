@@ -1,0 +1,386 @@
+---
+title: YAMLResume と Reactive Resume の比較
+---
+
+[Reactive Resume](https://rxresu.me) は、GitHub で最も人気のあるオープンソースの
+履歴書ビルダーであり、[Amruth Pillai](https://github.com/AmruthPillai) によっ
+て作成されました。2020 年から存在し、**43,000 以上の GitHub スター** にまで成長
+し、誰でも無料で利用できる [rxresu.me](https://rxresu.me) のホスティング版もあ
+ります。コードベースは MIT ライセンスの下でオープンソースであり、トラッキング
+も広告もペイウォールもありません。
+
+公式リポジトリからの引用です：
+
+```markdown
+Reactive Resume is a free and open-source resume builder that makes it easy to
+create, update, and share your resume.
+
+- Pick a template, fill in your details, and export to PDF.
+- Basic use needs no account.
+- You own your data. The codebase is open source under the MIT license, with
+  no tracking, no ads, and no hidden costs.
+```
+
+Reactive Resume はサイドプロジェクトとして始まり、2020 年初頭に最初のリリース
+が行われました。その年の後半に v2、2022 年初頭までに v3、2023 年末に NestJS と
+PostgreSQL バックエンドを備えた v4 に到達しました。2026 年 1 月には v5 がリリー
+スされ、AI エージェント、MCP サーバー、求職活動トラッカーを備えた TanStack
+Start（React 19、Vite、TypeScript、Drizzle ORM を使用した PostgreSQL）への完全
+な再構築でした。その後、スタックは Hono と oRPC を使用した TanStack Router に移
+行し、サーバーサイドのプリンターサービスは `@react-pdf/renderer` を用いたクライ
+アントサイド PDF レンダリングに置き換えられました。
+
+Reactive Resume と YAMLResume は同じ価値観——無料で、オープンソースで、プライ
+バシーを尊重する履歴書ツール——を共有していますが、**対照的なワークフロー**を
+体現しています。Reactive Resume は **Web アプリケーション**です：ビジュアルな
+WYSIWYG ビルダーで履歴書を編集し、データはアプリ内（PostgreSQL、またはセルフ
+ホストのインスタンス）に保存されます。一方、YAMLResume は **ファイルベースの
+ツールチェーン**です：履歴書はプレーンテキストの YAML ファイルであり、任意のエ
+ディターで編集し、Git でバージョン管理し、コマンドラインから複数の出力形式にコ
+ンパイルできます。以下に両者の比較を示します：
+
+## 機能比較
+
+| 機能                       | YAMLResume                                                                                                                | Reactive Resume                                                                                                          |
+| -------------------------- | ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| **種類**                   | CLI ツールチェーン + ファイル形式                                                                                         | Web アプリケーション（ホスティングまたはセルフホスト）                                                                   |
+| **言語**                   | TypeScript/Node.js                                                                                                        | TypeScript（TanStack Router、React 19、Hono、Node.js）                                                                   |
+| **ライセンス**             | MIT                                                                                                                       | MIT                                                                                                                      |
+| **データ形式**             | プレーンテキストの YAML ファイル                                                                                          | Web UI で編集される PostgreSQL に保存された JSON                                                                         |
+| **アカウントが必要**       | なし                                                                                                                      | 基本的な利用では不要；クラウド同期にはアカウント                                                                         |
+| **編集**                   | 任意のテキストエディター + [Dev モード](/ja/blog/dev-mode) の自動リビルド                                                 | ブラウザでライブプレビューする WYSIWYG エディター                                                                        |
+| **組版エンジン**           | [DOCX](/ja/docs/layouts/docx)、[HTML](/ja/docs/layouts/html)、[Markdown](/ja/docs/layouts/markdown)、[LaTeX/XeTeX](/ja/docs/layouts/latex) | クライアントサイド PDF レンダラー（@react-pdf/renderer）                                                                 |
+| **出力形式**               | DOCX、HTML、Markdown、LaTeX/PDF                                                                                           | PDF、DOCX、Markdown、JSON                                                                                                |
+| **スキーマ検証**           | [コンパイラ](/ja/docs/compiler/architecture) + IDE 統合による [厳格な Zod スキーマ検証](/ja/docs/compiler/schema)         | ユーザー向けエラーメッセージを伴うサーバーサイドのスキーマ検証                                                           |
+| **エラー報告**             | 行番号と位置情報を含む [clang スタイルの診断](/ja/docs/cli#validate)                                                      | インラインのフォームエラーとインポート検証メッセージ                                                                     |
+| **国際化（i18n）**         | 深いコンテンツローカリゼーションを備えた [12 ロケールコードで 10 言語](/ja/docs/locale)                                  | UI は 55 のロケールに翻訳；RTL の PDF ミラーリング；ロケールを認識したフォールバックフォント                           |
+| **リッチテキストサポート** | `summary` フィールドでの選択的な [Markdown リッチテキスト構文](/ja/docs/content/rich-text) サポート                       | すべてのフィールドでハイライトカラーを備えた WYSIWYG リッチテキストエディター                                          |
+| **フォントカスタマイズ**   | [フォントファミリー、フォントサイズ、行間](/ja/docs/layouts/latex#typography) など                                        | テンプレートごとのフォントファミリー、サイズ、間隔の制御                                                                 |
+| **カラーカスタマイズ**     | なし（テーマ依存）                                                                                                        | テンプレートのカラーパレットに加え、コンテンツセレクターを備えた Semantic CSS エディター                               |
+| **レイアウトカスタマイズ** | [ページ余白、ページ番号、用紙サイズ](/ja/docs/layouts/latex#page) など                                                    | A4/Letter、余白、間隔、サイドバー幅、アイコンスタイル、ドラッグ＆ドロップによる配置                                     |
+| **セクションカスタマイズ** | [エイリアス](/ja/docs/layouts/sections/aliases) と [並べ替え](/ja/docs/layouts/sections/reorder)                           | 型付きフィールドを持つカスタムセクション、ドラッグ＆ドロップでの並べ替え、項目ごとの可視性                               |
+| **テンプレート/テーマ**    | 複数の公式 [LaTeX](/ja/docs/layouts/latex/templates)、[HTML](/ja/docs/layouts/html/templates)、[DOCX](/ja/docs/layouts/docx/templates) テンプレート | 15 の組み込みテンプレート（Azurill、Bronzor、Chikorita、Ditto、Gengar、Lapras、Rhyhorn など）        |
+| **カスタムスタイル**       | テンプレートベース（DOCX/HTML/LaTeX ソース）                                                                              | テンプレート間で移植可能な Semantic CSS ルール                                                                           |
+| **Dev モード**             | 自動リビルド付き [Dev モード](/ja/docs/cli#dev)                                                                           | 入力と同時にライブプレビュー                                                                                             |
+| **バージョン管理**         | ネイティブ対応（Git 内のプレーンテキストファイル）                                                                        | JSON エクスポート/インポート；アプリ内のバージョン履歴スナップショット；行レベルの差分なし                               |
+| **Docker サポート**        | LaTeX と YAMLResume がプリインストールされた [公式 Docker イメージ](/ja/docs/contributing/docker)                         | オールインワンのセルフホスト用イメージ（Docker Hub と GHCR）；ワンクリックの Vercel デプロイ                             |
+| **GitHub Action**          | CI/CD 用の [公式 GitHub Action](https://github.com/yamlresume/action)                                                     | なし                                                                                                                     |
+| **Homebrew**               | macOS および Linux での簡単なインストールのための [Homebrew 公式パッケージ](https://formulae.brew.sh/formula/yamlresume) | なし                                                                                                                     |
+| **Web プレイグラウンド**   | インタラクティブな Web ベースの [プレイグラウンド](/ja/playground)                                                        | [rxresu.me](https://rxresu.me) のホスティング版アプリそのもの                                                            |
+| **AI 統合**                | CLI と API による内蔵の [生成](/ja/docs/ai/generate) と [翻訳](/ja/docs/ai/translate)                                     | OpenAI、Anthropic、Google、OpenRouter、Ollama などに対応したアプリ内 AI エージェント、ATS チェック、PDF/DOCX インポート |
+| **エージェント統合**       | 履歴書ファイルはあらゆるコーディングエージェントで動作                                                                    | OAuth を備えた [MCP サーバー](https://docs.rxresu.me) に加え、OpenAPI REST API                                            |
+| **共有**                   | [HTML 出力](/ja/docs/layouts/html) を任意の場所でホスティング                                                             | ビューカウント付きの公開共有リンク                                                                                       |
+| **その他**                 | 厳選されたサンプル履歴書、[json2yamlresume](/ja/docs/ecosystem/json2yamlresume) コンバーター                              | カバーレター、求職活動トラッカー、Application Copilot（自動入力、マッチスコアリング、カスタマイズ版作成）               |
+| **Node.js API**            | ファイルの読み込み、検証、ビルド、監視、生成、翻訳のための [`@yamlresume/node`](/ja/docs/ecosystem/node)                  | REST API + MCP（ローカルライブラリなし）                                                                                 |
+| **決定論的出力**           | はい                                                                                                                      | はい（クライアントサイド PDF レンダラー）                                                                                |
+
+## 主な違いの解説
+
+YAMLResume と Reactive Resume の違いを一言で表すとすれば、それは **ファイル対
+アプリ** という言葉になるでしょう。YAMLResume は履歴書をプレーンテキストのソー
+スコードとして扱います；Reactive Resume はそれをアプリケーション内のデータとし
+て扱います。その他のほぼすべての違いは、その決定から生じています。
+
+### ファイル対アプリ
+
+YAMLResume では、履歴書はディスク上の YAML ファイルです：
+
+```console
+$ yamlresume build resume.yml
+✔ Generated resume pdf file successfully: resume.pdf
+✔ Generated resume docx file successfully: resume.docx
+✔ Generated resume markdown file successfully: resume.md
+✔ Generated resume html file successfully: resume.html
+```
+
+Git にコミットでき、2 つのバージョンを差分比較でき、求人応募ごとにブランチを切
+り、プルリクエストで変更をレビューでき、CI に成果物のコンパイルを任せることが
+できます。[GitHub Action](https://github.com/yamlresume/action) は、PDF をビル
+ドしてリリースに自動で添付できます。バックグラウンドで動くものは何もなく、公
+開したいファイル以外は何もあなたのマシンから出ていきません。
+
+Reactive Resume では、履歴書はアプリケーション内に存在します。Web UI を通じて
+編集し、データは PostgreSQL（ホスティングサービス、またはセルフホストのインス
+タンス）に保存され、必要なときに成果物をエクスポートします。このアプリは
+JSON エクスポート/インポート、復元可能なスナップショットベースのバージョン履
+歴（インポートや AI による編集などのマイルストーンでキャプチャ）、および完全な
+データ削除を提供しますが、行レベルの差分やブランチはありません。それらが必要な
+場合は、JSON エクスポートの上にそのワークフローを自分で構築する必要があります。
+
+両方のアプローチとも正当です。アプリモデルはセットアップを一切排除し、ゼロか
+ら完成した PDF への最速の経路です。ファイルモデルは、履歴書が履歴、バリアン
+ト、自動化を蓄積するにつれて時間とともに報われます。
+
+### データモデル
+
+任意のセクションタイトルを許可する [RenderCV](/ja/docs/comparisons/rendercv)
+とは異なり、YAMLResume と Reactive Resume の両方とも、よく知られたセクションを
+持つ **固定された構造化スキーマ** を使用します。そのため、どちらのツールからの
+履歴書も予測可能で機械可読です。
+
+YAMLResume のコンテンツモデルは 3 つの関心事を分離します：
+
+- **`content`**：履歴書自体（`basics`、`location`、`profiles`、`work`、
+  `education`、`skills`、`projects`、`publications`、`awards`、`certificates`、
+  `volunteer`、`references`、`languages`、`interests`）
+- **`locale`**：履歴書が書かれる言語と地域
+- **`layouts`**：プレゼンテーション設定（テンプレートの選択、セクションのエイ
+  リアスと順序、タイポグラフィ、ページ設定）
+
+データモデルが固定され、[JSON Resume](/ja/docs/comparisons/json-resume) と整合
+しているため、YAMLResume は厳密に検証を行い、値を固定された語彙（学位、スキル
+レベル、言語の流暢さ、すべてのサポート言語に翻訳された国や地域）に正規化し、よ
+り広範な JSON Resume エコシステムとデータを相互運用できます。コンパイラは
+JSON Resume ファイルを直接受け入れ、[json2yamlresume](/ja/docs/ecosystem/json2yamlresume) コンバーターはプロジェクト全体を処理します。
+
+Reactive Resume のスキーマは似た領域（`basics`、`experience`、`education`、
+`skills`、`projects`、`certifications`、`languages`、`interests`、`references`、
+`awards`、`volunteer work`、`publications`、`profiles`）をカバーし、YAMLResume
+にない機能を追加します：
+
+- **カスタムセクション**：型付きの拡張フィールドを持つ完全に新しいセクションを
+  定義でき、ポートフォリオ、講演、特許などに役立ちます
+- **項目ごとの可視性**：個々のエントリを削除せずに非表示にでき、1 つの履歴書か
+  ら多数のカスタマイズ版を作成できます
+- **アートボードとしてのページ**：エントリをページ間でドラッグし、改ページが正
+  確にどこに入るかを確認できます
+- **カバーレター**：履歴書からスタイルを引き継いだ独立したレターで、PDF、
+  DOCX、Markdown にエクスポート可能
+- **求職活動トラッカー**：ステージ、メモ、フォローアップ、添付文書を備えた求職
+  パイプライン。REST API と MCP ツール経由でも利用可能
+
+Reactive Resume は JSON Resume ファイルもインポートできる（不可能な日付を拒否
+する検証付き）ため、両方のエコシステム間をどちらの方向にも移行できます。
+
+### 編集体験
+
+Reactive Resume は洗練された WYSIWYG エディターを提供します：ブラウザで見え
+るものが、そのまま PDF に出力されます。すべてのテキストフィールドは、太字、斜
+体、リンク、リスト、さらにはハイライトカラーに対応したリッチテキストエディター
+をサポートします。ほとんどの人にとって、これは構文を学ぶこともビルドステップ
+を実行することもない、最も使いやすい履歴書の書き方です。
+
+YAMLResume は、その即時性の一部を意図的に **移植性とスケール** と引き換えにし
+ています。自分のエディターで YAML を書き、`summary` フィールドでは限定された
+[Markdown 構文](/ja/docs/content/rich-text)（太字、斜体、リンク、リスト、段落）
+がサポートされます。その見返りは次の通りです：
+
+- 履歴書は grep 可能で、スクリプト可能で、差分比較可能
+- [複数行 YAML 文字列](https://yaml.org/spec/1.2.2/#8112-block-collection-literals) により、長いサマリーも読みやすく保たれる
+- 同じコンテンツが LaTeX、HTML、DOCX、Markdown にコンパイルされる
+- 一括編集（10 のバリアント全体で雇用主名を変更するなど）は `sed` ひとつで済む
+
+### レイアウトとレンダリング
+
+レンダリングアーキテクチャは完全に異なります。
+
+#### エンジン
+
+YAMLResume は 4 つのレンダリングエンジンを提供します：
+
+- **[DOCX エンジン](/ja/docs/layouts/docx)**：簡単な編集と共有が可能な Microsoft
+  Word 文書
+- **[HTML エンジン](/ja/docs/layouts/html)**：SEO メタデータを持つレスポンシブで
+  Web 対応の履歴書
+- **[Markdown エンジン](/ja/docs/layouts/markdown)**：LLM、ATS システム、静的サ
+  イト向けのクリーンなテキスト
+- **[LaTeX エンジン](/ja/docs/layouts/latex)**：XeTeX によるプロフェッショナルな
+  タイポグラフィのピクセルパーフェクトな PDF
+
+単一の `yamlresume build` コマンドで、同じソースファイルから 4 つの形式すべてを
+生成できます。
+
+Reactive Resume は `@react-pdf/renderer` を使用して PDF を **ブラウザ内で** レ
+ンダリングします（v5 はサーバーサイドのプリンターサービスとともにローンチされ
+ましたが、v5.1 で削除されました）。エクスポートには PDF、DOCX、Markdown、JSON
+が含まれます。ビルダーのプレビューは、エクスポートに使用されるのと同じドキュ
+メントツリーに対して pdfjs でレンダリングされるため、出力は決定論的で、改ペー
+ジはアートボードとまったく同じようにプレビューされます。トレードオフは：
+PDF と DOCX が主要な文書出力であり、Markdown エクスポートは v5 で追加されま
+したが、LaTeX パイプラインもスタンドアロンの HTML エクスポートも存在しません。
+
+#### デザインカスタマイズ
+
+Reactive Resume はより広範なビジュアルツールキットを提供します：
+
+- **15 のテンプレート**（Azurill、Bronzor、Chikorita、Ditgar、Ditto、Gengar、
+  Glalie、Kakuna、Lapras、Leafish、Meowth、Onyx、Pikachu、Rhyhorn、および
+  Scizor）。ほとんどがポケモンにちなんで命名
+- **テンプレートごとのオプション**：カラー、フォント、サイズ、間隔、A4 または
+  Letter、サイドバー幅、全幅ページ、スキル/言語インジケーターのアイコンスタイル
+- **Semantic CSS**：セレクターがテンプレートのマークアップではなく履歴書のコン
+  テンツ（`section[type="experience"]`、`field[name="position"]`、
+  `list-marker`）を記述する、CSS のようなスタイルシート言語。そのため、スタイル
+  はテンプレートの切り替えを生き延び、履歴書間でコピーできる
+- セクション、項目、ページの **ドラッグ＆ドロップによる配置**
+
+YAMLResume の LaTeX エンジン
+は、[ページカスタマイズ](/ja/docs/layouts/latex#page)（用紙サイズ、余白、ページ
+番号）と [タイポグラフィ制御](/ja/docs/layouts/latex#typography)（フォントファミ
+リー、フォントサイズ、行間）を提供し、テンプレートがビジュアル上の決定をカプ
+セル化します。要素ごとのカラーやきめ細かな間隔制御は意図的に存在しません。ユニ
+ークなデザインのあらゆるピクセルにこだわりたい場合は、Reactive Resume の方が
+多くのレバーを提供します。組版工になることなくプロフェッショナルにデザインされ
+た結果が欲しい場合は、YAMLResume の制約されたアプローチがその意図の核心です。
+
+#### セクションカスタマイズ
+
+YAMLResume は、データに触れることな
+く、[セクションエイリアス](/ja/docs/layouts/sections/aliases) と
+[セクションの並べ替え](/ja/docs/layouts/sections/reorder) により構造を再形成でき
+ます。`work` を "Employment History" にリネームしたり、レイアウト設定で
+`skills` を `education` の上に移動したりできます。
+
+Reactive Resume は対話的に同様の結果を達成します：セクションのリネーム、ドラッ
+グ＆ドロップでの並べ替え、カスタムセクションによる拡張が可能です。ソースコード
+ではなくアプリのデータであるため、これらの変更は即時に反映されますが、JSON を
+エクスポートしない限りバージョン管理の対象外です。
+
+### ロケール（i18n）
+
+両ツールは異なるレイヤーでローカライズします。
+
+Reactive Resume は **インターフェースをローカライズ** します：アプリの UI は
+Crowdin 経由で 55 のロケールに翻訳され、PDF パイプラインはすべてのテンプレー
+トで右から左へのミラーリングを処理し、韓国語、日本語、中国語、アラビア語、ヘブ
+ライ語、タイ語向けにロケールを認識したフォールバックフォントを提供します。し
+かし、履歴書の **コンテンツ** にはローカライズ層がありません：セクション見出し
+はテンプレート由来、日付は 1 つの形式に従い、学位やスキルレベルなどの語彙は入
+力したままです。フランス語の履歴書とは、フランス語のコンテンツを手書きで書く
+ことを意味します。
+
+YAMLResume は **コンテンツをローカライズ** します。`locale` キーを設定するだ
+けで、セクション見出し、国名、学位、スキルレベル、言語の流暢さレベル、慣用的な
+日付と住所の形式、ロケールに適した句読点、LaTeX babel 設定が [12 ロケールコー
+ドで 10 言語](/ja/docs/locale) にわたって切り替わります。単一のソースファイル
+を言語ごとにコンパイルでき、[`yamlresume ai translate`](/ja/docs/ai/translate)
+は構造を保持した翻訳を生成します。つまり、英語版と中国語版の履歴書のメンテナン
+スは、2 つの並行したドキュメントが乖離していくのではなく、1 つのファイルと翻
+訳ステップで済みます。
+
+CJK や複雑なスクリプト向けには、YAMLResume の LaTeX エンジンは数十年にわたる
+成熟した組版サポートも備えています。中国語用の ctex、日本語用の luatexja、韓
+国語用の kotex、XeLaTeX 用の xeCJK です。これらは、フォントフォールバック、全
+角句読点の圧縮、CJK-Latin の間隔、ロケールを認識した改行を処理します。
+
+### AI ワークフロー
+
+両プロジェクトとも AI を取り入れていますが、それぞれの特徴的な方法で。
+
+Reactive Resume は AI を **アプリ内に** 埋め込んでいます：OpenAI、Anthropic、
+Google Gemini、OpenRouter、Ollama（および OpenAI 互換の任意のエンドポイント）
+などのプロバイダーから自分の API キーを持ち込むと、アプリ内エージェントがコン
+テンツの改訂、文法の修正、トーンの調整を行え、復元可能なアクション履歴が残りま
+す。ATS チェックは意図的に決定論的で、独自のスコアを返さないオプションの AI に
+よる二次評価を伴う、エビデンスベースのフィードバックです。AI は **PDF や
+DOCX からの履歴書インポート** も支え、既存の文書から構造化データを再構成しま
+す。MCP サーバー経由で、エージェントは履歴書、カバーレター、求職活動トラッカ
+ーをエンドツーエンドで管理できます。
+
+YAMLResume は AI を **パイプライン内に** 埋め込んでいます：
+
+- **`yamlresume ai generate`**：職種名とロケールから、完全でスキーマ検証済みの
+  履歴書をブートストラップ
+- **`yamlresume ai translate`**：構造とレイアウト設定を保持しながら履歴書を翻訳
+
+両方ともターミナルまたは CI から実行され、サーバーサイドには何も保存せず、結果
+を同じ検証済みファイルワークフローに供給します。[Markdown
+エンジン](/ja/docs/layouts/markdown) と組み合わせると、YAMLResume ファイルは最も
+LLM フレンドリーな履歴書形式の一つでもあります。専用の統合なしに、あらゆるコー
+ディングエージェントにとって読みやすいコンテキストです。
+
+### API と自動化
+
+Reactive Resume は **リモート** の API サーフェスを公開します：OpenAPI で文書
+化された REST API、OAuth を備えた MCP サーバー、パスキー、二要素認証。これはサ
+ーバー統合であり、インスタンスに対して認証を行います。
+
+YAMLResume は **ローカル** API を公開します：[`@yamlresume/node`](/ja/docs/ecosystem/node) が、あらゆる Node.js アプリケーションからファイルの読み込み、検証、ビルド、監視、生成、翻訳を行い、さらにプロジェクトの足場を作る [create-yamlresume](/ja/docs/ecosystem/create-yamlresume) も提供します。GitHub Action、Docker イメージ、プレインファイルと組み合わせれば、サービスを立ち上げることなく自動化できます。
+
+## エコシステムとコミュニティ
+
+### セルフホスティング vs ローカルファースト
+
+Reactive Resume はセルフホスティングが可能です：
+[オールインワンの Docker イメージ](https://github.com/reactive-resume/reactive-resume)（Docker Hub `amruthpillai/reactive-resume`、GHCR
+`ghcr.io/reactive-resume/reactive-resume`）と、Neon PostgreSQL、Upstash
+Redis、Vercel Blob ストレージをプロビジョニングするワンクリックの Vercel
+デプロイメントです。セルフホスティングにより完全な制御権が得られますが、運用す
+るのはアプリケーションです：データベースのマイグレーション、ストレージ、認証、
+バックアップはすべて自分で運用する必要があります。
+
+YAMLResume はローカルファーストです：すべてがあなたのマシン上で動作し、
+[公式 Docker イメージ](/ja/docs/contributing/docker) は、あらかじめ構成されたビ
+ルド環境（Node.js、XeTeX、フォント）を提供するためだけに存在します。運用するサ
+ーバーも、バックアップするデータベースも、セキュアにするアカウントもありません。
+
+### 配布
+
+YAMLResume は、開発者が働く場所で開発者に届きます：
+
+- **npm/pnpm/yarn/bun**：`npm install -g yamlresume`
+- **Homebrew**：macOS および Linux で `brew install yamlresume`
+- **GitHub Action**：CI/CD で履歴書をビルド
+- **Docker**：どこでもワンコマンドでビルド
+
+Reactive Resume は、ホスティング版アプリとコンテナイメージ、ソースコードとし
+て配布されます。CLI、Homebrew 公式パッケージ、CI 統合はありません。
+
+### JSON Resume 相互運用
+
+両ツールとも [JSON Resume](/ja/docs/comparisons/json-resume) ファイルをインポ
+ートでき、どちらの方向への切り替えコストも下げます。YAMLResume はさらに一歩進
+みます：コンパイラは JSON Resume をネイティブに受け入れ、スキーマは整合を保
+ち、[json2yamlresume](/ja/docs/ecosystem/json2yamlresume) はレイアウトを含む
+プロジェクト全体を変換します。
+
+### Web インターフェース
+
+YAMLResume は、サーバーサイドレンダリングなしに完全にブラウザ内で動作する、
+インタラクティブな Web ベースの [プレイグラウンド](/ja/playground) を提供しま
+す。何もインストールせずに形式を試すのに便利です。
+
+Reactive Resume の「プレイグラウンド」は製品そのものです：
+[rxresu.me](https://rxresu.me) で提供される洗練されたホスティングアプリで、基本
+的な利用であればアカウントなしで無料です。
+
+## まとめ
+
+**Reactive Resume** は、以下を求める場合に優れています：
+
+- セットアップゼロでビルドステップなしの、ビジュアルな WYSIWYG 履歴書ビルダー
+- Semantic CSS エディターとドラッグ＆ドロップによるレイアウト制御を含む、深い
+  ビジュアルカスタマイズを備えた 15 の洗練されたテンプレート
+- すべてのフィールドで WYSIWYG リッチテキスト編集
+- ビューカウント付きの公開共有リンク
+- パイプラインステージを備えた内蔵のカバーレターと求職活動トラッカー
+- OpenAI、Anthropic、Google、OpenRouter、Ollama に対応したアプリ内 AI エージェ
+  ント、PDF/DOCX からの AI インポート、ATS チェック
+- ホスティングされた MCP サーバーと OpenAPI REST API によるエージェントおよび自
+  動化統合
+- Vercel でワンクリック、または Docker でデプロイできるセルフホスト型 Web アプ
+  リケーション
+
+**YAMLResume** は、以下を求める場合に優れています：
+
+- Git 内のプレーンテキスト YAML ファイルとしての履歴書。ネイティブな差分比較、
+  ブランチ、コードレビューに対応
+- 単一のソースファイルから 4 つのレンダリングエンジン（DOCX、HTML、
+  Markdown、LaTeX/PDF）を出力
+- 深いコンテンツ国際化：12 ロケールコードで 10 言語、翻訳された語彙、慣用的な
+  日付と住所、CJK 対応の LaTeX タイポグラフィ
+- ウォッチモード、スキーマを認識した診断、決定論的ビルドを備えた CLI ファース
+  トの開発者体験
+- ターミナルや CI でローカルに実行される AI による生成と翻訳
+- 自動化のためのエコシステムツール：Homebrew、Docker、GitHub Action、
+  Node.js API、埋め込み可能なブラウザプレイグラウンド
+- アカウントもサーバーもデータベースもなし。ただのファイル
+
+ポリッシュされたビジュアルアプリで履歴書、カバーレター、求職活動を一か所で管
+理し、コマンドラインに触れることなく最も豊富なテンプレートと AI エージェント
+の体験が欲しい場合は、**Reactive Resume** を選びましょう。
+
+履歴書をソースコード——バージョン管理され、レビュー可能で、コンパイル可能で、
+自動化されたもの——と考えており、1 つのファイルから、すべてのコミットで、12 の
+ロケールにわたって、ピクセルパーフェクトな PDF、Word 文書、Web ページ、
+LLM フレンドリーなテキスト版を生成したい場合は、**YAMLResume** を選びましょう。
