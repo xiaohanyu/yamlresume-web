@@ -1,0 +1,794 @@
+---
+title: "Jake's Resume, reconstruido a la manera de YAMLResume"
+description:
+  "YAMLResume es totalmente compatible con la clásica plantilla LaTeX Jake's
+  Resume: el mismo aspecto limpio y apto para ATS, pero respaldado por
+  contenido YAML estructurado, validación de esquema, 12 idiomas, resúmenes en
+  markdown y una personalización profunda del diseño."
+author: Xiao Hanyu
+profile: https://x.com/xiaohanyu1988
+date: 2026-10-03
+---
+
+[Jake's Resume](https://github.com/jakegut/resume) es una de las plantillas de
+currículum en LaTeX más populares jamás creadas. Creada por Jake Gutierrez a
+partir del [currículum de sb2nov](https://github.com/sb2nov/resume), ha
+obtenido más de 2 800 estrellas en GitHub y se ha convertido en una
+recomendación por defecto en las comunidades de currículums gracias a su
+diseño limpio, de una sola columna y apto para ATS.
+
+YAMLResume adoptó Jake's Resume como plantilla LaTeX oficial en
+[v0.12](/es/blog/v0.12). En esta publicación te mostraremos cómo luce Jake's
+Resume en YAMLResume y —lo más importante— qué mejora YAMLResume respecto a la
+plantilla original.
+
+## El Jake's Resume original
+
+La plantilla original es un único archivo `resume.tex`. Antes de escribir una
+sola palabra de contenido, debes atravesar unas 100 líneas de preámbulo:
+paquetes, trucos de márgenes, formato de secciones y una familia de macros
+personalizadas como `\resumeSubheading`, `\resumeItem` y
+`\resumeProjectHeading`.
+
+El contenido se escribe luego directamente en LaTeX:
+
+```latex
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Southwestern University}{Georgetown, TX}
+      {Bachelor of Arts in Computer Science, Minor in Business}{Aug. 2018 -- May 2021}
+  \resumeSubHeadingListEnd
+```
+
+![El Jake's Resume original](/static/images/blog/jakes-resume/original-jakes-resume.png)
+
+El resultado es hermoso, pero la experiencia de redacción es LaTeX puro:
+escribes a mano cada rango de fechas, escapas cada carácter especial (`Texas
+A\&M University`) y depuras las llaves desbalanceadas a través de los
+célebremente crípticos registros de errores de LaTeX. ¿Quieres otra fuente?
+Comenta y descomenta líneas de `\usepackage`. ¿Quieres un segundo idioma?
+Reescribe el archivo.
+
+Para los curiosos, aquí está el código fuente completo de `resume.tex` (218
+líneas):
+
+<details>
+<summary>Jake's Resume original — código fuente LaTeX completo (218 líneas)</summary>
+
+```latex
+%-------------------------
+% Resume in Latex
+% Author : Jake Gutierrez
+% Based off of: https://github.com/sb2nov/resume
+% License : MIT
+%------------------------
+
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\input{glyphtounicode}
+
+
+%----------FONT OPTIONS----------
+% sans-serif
+% \usepackage[sfdefault]{FiraSans}
+% \usepackage[sfdefault]{roboto}
+% \usepackage[sfdefault]{noto-sans}
+% \usepackage[default]{sourcesanspro}
+
+% serif
+% \usepackage{CormorantGaramond}
+% \usepackage{charter}
+
+
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.5in}
+\addtolength{\textheight}{1.0in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+% Ensure that generate pdf is machine readable/ATS parsable
+\pdfgentounicode=1
+
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubSubheading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \textit{\small#1} & \textit{\small #2} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & #2 \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+%-------------------------------------------
+%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+%----------HEADING----------
+% \begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
+%   \textbf{\href{http://sourabhbajaj.com/}{\Large Sourabh Bajaj}} & Email : \href{mailto:sourabh@sourabhbajaj.com}{sourabh@sourabhbajaj.com}\\
+%   \href{http://sourabhbajaj.com/}{http://www.sourabhbajaj.com} & Mobile : +1-123-456-7890 \\
+% \end{tabular*}
+
+\begin{center}
+    \textbf{\Huge \scshape Jake Ryan} \\ \vspace{1pt}
+    \small 123-456-7890 $|$ \href{mailto:x@x.com}{\underline{jake@su.edu}} $|$
+    \href{https://linkedin.com/in/...}{\underline{linkedin.com/in/jake}} $|$
+    \href{https://github.com/...}{\underline{github.com/jake}}
+\end{center}
+
+
+%-----------EDUCATION-----------
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Southwestern University}{Georgetown, TX}
+      {Bachelor of Arts in Computer Science, Minor in Business}{Aug. 2018 -- May 2021}
+    \resumeSubheading
+      {Blinn College}{Bryan, TX}
+      {Associate's in Liberal Arts}{Aug. 2014 -- May 2018}
+  \resumeSubHeadingListEnd
+
+
+%-----------EXPERIENCE-----------
+\section{Experience}
+  \resumeSubHeadingListStart
+
+    \resumeSubheading
+      {Undergraduate Research Assistant}{June 2020 -- Present}
+      {Texas A\&M University}{College Station, TX}
+      \resumeItemListStart
+        \resumeItem{Developed a REST API using FastAPI and PostgreSQL to store data from learning management systems}
+        \resumeItem{Developed a full-stack web application using Flask, React, PostgreSQL and Docker to analyze GitHub data}
+        \resumeItem{Explored ways to visualize GitHub collaboration in a classroom setting}
+      \resumeItemListEnd
+
+% -----------Multiple Positions Heading-----------
+%    \resumeSubSubheading
+%     {Software Engineer I}{Oct 2014 - Sep 2016}
+%     \resumeItemListStart
+%        \resumeItem{Apache Beam}
+%          {Apache Beam is a unified model for defining both batch and streaming data-parallel processing pipelines}
+%     \resumeItemListEnd
+%    \resumeSubHeadingListEnd
+%-------------------------------------------
+
+    \resumeSubheading
+      {Information Technology Support Specialist}{Sep. 2018 -- Present}
+      {Southwestern University}{Georgetown, TX}
+      \resumeItemListStart
+        \resumeItem{Communicate with managers to set up campus computers used on campus}
+        \resumeItem{Assess and troubleshoot computer problems brought by students, faculty and staff}
+        \resumeItem{Maintain upkeep of computers, classroom equipment, and 200 printers across campus}
+    \resumeItemListEnd
+
+    \resumeSubheading
+      {Artificial Intelligence Research Assistant}{May 2019 -- July 2019}
+      {Southwestern University}{Georgetown, TX}
+      \resumeItemListStart
+        \resumeItem{Explored methods to generate video game dungeons based off of \emph{The Legend of Zelda}}
+        \resumeItem{Developed a game in Java to test the generated dungeons}
+        \resumeItem{Contributed 50K+ lines of code to an established codebase via Git}
+        \resumeItem{Conducted  a human subject study to determine which video game dungeon generation technique is enjoyable}
+        \resumeItem{Wrote an 8-page paper and gave multiple presentations on-campus}
+        \resumeItem{Presented virtually to the World Conference on Computational Intelligence}
+      \resumeItemListEnd
+
+  \resumeSubHeadingListEnd
+
+
+%-----------PROJECTS-----------
+\section{Projects}
+    \resumeSubHeadingListStart
+      \resumeProjectHeading
+          {\textbf{Gitlytics} $|$ \emph{Python, Flask, React, PostgreSQL, Docker}}{June 2020 -- Present}
+          \resumeItemListStart
+            \resumeItem{Developed a full-stack web application using with Flask serving a REST API with React as the frontend}
+            \resumeItem{Implemented GitHub OAuth to get data from user’s repositories}
+            \resumeItem{Visualized GitHub data to show collaboration}
+            \resumeItem{Used Celery and Redis for asynchronous tasks}
+          \resumeItemListEnd
+      \resumeProjectHeading
+          {\textbf{Simple Paintball} $|$ \emph{Spigot API, Java, Maven, TravisCI, Git}}{May 2018 -- May 2020}
+          \resumeItemListStart
+            \resumeItem{Developed a Minecraft server plugin to entertain kids during free time for a previous job}
+            \resumeItem{Published plugin to websites gaining 2K+ downloads and an average 4.5/5-star review}
+            \resumeItem{Implemented continuous delivery using TravisCI to build the plugin upon new a release}
+            \resumeItem{Collaborated with Minecraft server administrators to suggest features and get feedback about the plugin}
+          \resumeItemListEnd
+    \resumeSubHeadingListEnd
+
+
+
+%
+%-----------PROGRAMMING SKILLS-----------
+\section{Technical Skills}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{Languages}{: Java, Python, C/C++, SQL (Postgres), JavaScript, HTML/CSS, R} \\
+     \textbf{Frameworks}{: React, Node.js, Flask, JUnit, WordPress, Material-UI, FastAPI} \\
+     \textbf{Developer Tools}{: Git, Docker, TravisCI, Google Cloud Platform, VS Code, Visual Studio, PyCharm, IntelliJ, Eclipse} \\
+     \textbf{Libraries}{: pandas, NumPy, Matplotlib}
+    }}
+ \end{itemize}
+
+
+%-------------------------------------------
+\end{document}
+```
+
+</details>
+
+## Jake's Resume en YAMLResume
+
+En YAMLResume, el mismo currículum es YAML puro y estructurado. Aquí está el
+currículum de Jake Ryan, reescrito:
+
+```yml lineNumbers title="resume.yml"
+# yaml-language-server: $schema=https://yamlresume.dev/schema.json
+
+---
+content:
+  basics:
+    name: Jake Ryan
+    phone: 123-456-7890
+    email: jake@su.edu
+  profiles:
+    - network: LinkedIn
+      url: https://linkedin.com/in/jake
+      username: linkedin.com/in/jake
+    - network: GitHub
+      url: https://github.com/jake
+      username: github.com/jake
+  education:
+    - institution: Southwestern University
+      degree: Bachelor
+      area: Computer Science, Minor in Business
+      startDate: Aug 2018
+      endDate: May 2021
+    - institution: Blinn College
+      degree: Associate
+      area: Liberal Arts
+      startDate: Aug 2014
+      endDate: May 2018
+  work:
+    - name: Texas A&M University
+      position: Undergraduate Research Assistant
+      startDate: Jun 2020
+      summary: |
+        - Developed a REST API using **FastAPI** and **PostgreSQL** to store data from learning management systems
+        - Developed a full-stack web application using Flask, React, PostgreSQL and Docker to analyze GitHub data
+        - Explored ways to visualize GitHub collaboration in a classroom setting
+    - name: Southwestern University
+      position: Information Technology Support Specialist
+      startDate: Sep 2018
+      summary: |
+        - Communicate with managers to set up campus computers used on campus
+        - Assess and troubleshoot computer problems brought by students, faculty and staff
+        - Maintain upkeep of computers, classroom equipment, and 200 printers across campus
+    - name: Southwestern University
+      position: Artificial Intelligence Research Assistant
+      startDate: May 2019
+      endDate: Jul 2019
+      summary: |
+        - Explored methods to generate video game dungeons based off of *The Legend of Zelda*
+        - Developed a game in Java to test the generated dungeons
+        - Contributed 50K+ lines of code to an established codebase via Git
+        - Conducted a human subject study to determine which video game dungeon generation technique is enjoyable
+        - Wrote an 8-page paper and gave multiple presentations on-campus
+        - Presented virtually to the World Conference on Computational Intelligence
+  projects:
+    - name: Gitlytics
+      description: Python, Flask, React, PostgreSQL, Docker
+      startDate: Jun 2020
+      summary: |
+        - Developed a full-stack web application with Flask serving a REST API and React as the frontend
+        - Implemented GitHub OAuth to get data from user repositories
+        - Visualized GitHub data to show collaboration
+        - Used Celery and Redis for asynchronous tasks
+    - name: Simple Paintball
+      description: Spigot API, Java, Maven, TravisCI, Git
+      startDate: May 2018
+      endDate: May 2020
+      summary: |
+        - Developed a Minecraft server plugin to entertain kids during free time for a previous job
+        - Published plugin to websites gaining 2K+ downloads and an average 4.5/5-star review
+        - Implemented continuous delivery using TravisCI to build the plugin upon a new release
+        - Collaborated with Minecraft server administrators to suggest features and get feedback about the plugin
+  skills:
+    - name: Languages
+      keywords: [Java, Python, C/C++, SQL (Postgres), JavaScript, HTML/CSS, R]
+    - name: Frameworks
+      keywords: [React, Node.js, Flask, JUnit, WordPress, Material-UI, FastAPI]
+    - name: Developer Tools
+      keywords: [Git, Docker, TravisCI, Google Cloud Platform, VS Code, Visual Studio, PyCharm, IntelliJ, Eclipse]
+    - name: Libraries
+      keywords: [pandas, NumPy, Matplotlib]
+
+locale:
+  language: en
+
+layouts:
+  - engine: latex
+    template: jake
+```
+
+Luego compílalo:
+
+```console
+$ yamlresume build resume.yml
+```
+
+![Jake's Resume renderizado por YAMLResume](/static/images/blog/jakes-resume/yamlresume-jakes-resume.png)
+
+Obtienes el aspecto característico de Jake's Resume —el nombre centrado, la
+línea de contacto separada por `$|$`, los encabezados de sección con línea
+horizontal, los rangos de fechas alineados— sin escribir una sola línea de
+LaTeX. También puedes ver un ejemplo en vivo en nuestra [galería de
+plantillas](/es/gallery/templates/latex/jake) y leer la [documentación de la
+plantilla](/es/docs/layouts/latex/templates/jake).
+
+A modo de comparación, aquí está el código fuente LaTeX completo que
+YAMLResume genera a partir del YAML anterior. Nunca escribes ni editas este
+archivo a mano: se regenera desde tu YAML en cada compilación:
+
+<details>
+<summary>Jake's Resume generado por YAMLResume — código fuente LaTeX completo (185 líneas)</summary>
+
+```latex
+\documentclass[a4paper,10pt]{article}
+
+\usepackage{changepage}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{enumitem}
+\IfFileExists{fontawesome7.sty}{%
+  \usepackage{fontawesome7}%
+}{%
+  \usepackage{fontawesome5}%
+}
+\usepackage[hidelinks]{hyperref}
+\usepackage{titlesec}
+
+%% page layout/margins
+\usepackage[top=2.5cm, bottom=2.5cm, left=1.5cm, right=1.5cm]{geometry}
+
+% Disable page numbers
+\pagenumbering{gobble}
+
+%% Babel config for English language
+\usepackage[english]{babel}
+
+%% fontspec
+\usepackage{fontspec}
+
+\IfFontExistsTF{Linux Libertine}{
+  \setmainfont[Ligatures={TeX, Common}, Numbers=OldStyle]{Linux Libertine}
+}{}
+\IfFontExistsTF{Linux Libertine O}{
+  \setmainfont[Ligatures={TeX, Common}, Numbers=OldStyle]{Linux Libertine O}
+}{}
+
+%% CTeX
+% CJK support, used to show CJK characters in the resume
+%
+% - fontset=none: disable builtin fontset but instead set the CJK font manually
+% - heading=false: disable ctex heading
+% - punct=kaiming: use kaiming punctuations styles for CJK
+% - scheme=plain: use plain scheme, do not override \normalsize font size
+% - space=auto: space settings for CJK characters
+%
+% ref:
+% - http://ctan.mirrorcatalogs.com/language/chinese/ctex/ctex.pdf
+\usepackage[UTF8, heading=false, punct=kaiming, scheme=plain, space=auto]{ctex}
+
+\IfFontExistsTF{Noto Serif CJK SC}{
+  \setCJKmainfont{Noto Serif CJK SC}
+}{}
+\IfFontExistsTF{Noto Sans CJK SC}{
+  \setCJKsansfont{Noto Sans CJK SC}
+}{}
+
+%% line spacing
+\usepackage{setspace}
+\setstretch{1.125}
+
+%% URL styling - use normal text instead of monospace
+\urlstyle{same}
+
+% Auto-underline all links
+% Defer until \begin{document} so hyperref is already loaded
+\AtBeginDocument{%
+  \let\oldhref\href
+  \renewcommand{\href}[2]{\oldhref{#1}{\underline{#2}}}%
+}
+
+%% PDF metadata
+\hypersetup{
+  pdfauthor={Jake Ryan},
+  pdftitle={Jake Ryan},
+  pdfkeywords={Languages, Frameworks, Developer Tools, Libraries},
+  pdfsubject={Résumé of Jake Ryan},
+  pdfcreator={YAMLResume (https://yamlresume.dev)},
+}
+
+% global itemize spacing
+\setlist[itemize]{nosep}
+\setlength{\parindent}{0pt}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+% Custom commands
+\newcommand{\resumeSubheading}[4]{
+  \begin{tabular*}{\textwidth}[t]{l@{\extracolsep{\fill}}r}
+    \textbf{#1} & #2 \\
+    \textit{#3} & \textit{#4} \\
+  \end{tabular*}
+}
+
+
+\begin{document}
+
+\begin{center}
+\textbf{\Huge \scshape Jake Ryan}\vspace{2pt}
+
+{\Large }
+
+{\small \faPhoneVolume}~\href{tel:123-456-7890}{123-456-7890} $|$ {\small \faEnvelope[regular]}~\href{mailto:jake@su.edu}{jake@su.edu}
+
+
+
+{\small \faLinkedin}\ \href{https://linkedin.com/in/jake}{linkedin.com/in/jake} $|$ {\small \faGithub}\ \href{https://github.com/jake}{github.com/jake}
+\end{center}
+
+\section{Education}
+\resumeSubheading
+{Southwestern University}{}
+{Bachelor, Computer Science, Minor in Business}{Aug 2018–May 2021}
+
+\resumeSubheading
+{Blinn College}{}
+{Associate, Liberal Arts}{Aug 2014–May 2018}
+\section{Work}
+\resumeSubheading
+{Undergraduate Research Assistant}{Jun 2020–Present}
+{Texas A\&M University}{}
+\begin{adjustwidth}{6pt}{6pt}
+\begin{itemize}
+\item Developed a REST API using \textbf{FastAPI} and \textbf{PostgreSQL} to store data from learning management systems
+\item Developed a full-stack web application using Flask, React, PostgreSQL and Docker to analyze GitHub data
+\item Explored ways to visualize GitHub collaboration in a classroom setting
+\end{itemize}
+\end{adjustwidth}
+
+\resumeSubheading
+{Information Technology Support Specialist}{Sep 2018–Present}
+{Southwestern University}{}
+\begin{adjustwidth}{6pt}{6pt}
+\begin{itemize}
+\item Communicate with managers to set up campus computers used on campus
+\item Assess and troubleshoot computer problems brought by students, faculty and staff
+\item Maintain upkeep of computers, classroom equipment, and 200 printers across campus
+\end{itemize}
+\end{adjustwidth}
+
+\resumeSubheading
+{Artificial Intelligence Research Assistant}{May 2019–Jul 2019}
+{Southwestern University}{}
+\begin{adjustwidth}{6pt}{6pt}
+\begin{itemize}
+\item Explored methods to generate video game dungeons based off of \textit{The Legend of Zelda}
+\item Developed a game in Java to test the generated dungeons
+\item Contributed 50K+ lines of code to an established codebase via Git
+\item Conducted a human subject study to determine which video game dungeon generation technique is enjoyable
+\item Wrote an 8-page paper and gave multiple presentations on-campus
+\item Presented virtually to the World Conference on Computational Intelligence
+\end{itemize}
+\end{adjustwidth}
+\section{Skills}
+\begin{adjustwidth}{6pt}{6pt}
+\textbf{Languages} \hfill \textbf{Keywords}: Java, Python, C/C++, SQL (Postgres), JavaScript, HTML/CSS, R
+
+\textbf{Frameworks} \hfill \textbf{Keywords}: React, Node.js, Flask, JUnit, WordPress, Material-UI, FastAPI
+
+\textbf{Developer Tools} \hfill \textbf{Keywords}: Git, Docker, TravisCI, Google Cloud Platform, VS Code, Visual Studio, PyCharm, IntelliJ, Eclipse
+
+\textbf{Libraries} \hfill \textbf{Keywords}: pandas, NumPy, Matplotlib
+\end{adjustwidth}
+\section{Projects}
+\resumeSubheading
+{Gitlytics}{Jun 2020–Present}
+{Python, Flask, React, PostgreSQL, Docker}{}
+\begin{adjustwidth}{6pt}{6pt}
+\begin{itemize}
+\item Developed a full-stack web application with Flask serving a REST API and React as the frontend
+\item Implemented GitHub OAuth to get data from user repositories
+\item Visualized GitHub data to show collaboration
+\item Used Celery and Redis for asynchronous tasks
+\end{itemize}
+\end{adjustwidth}
+
+\resumeSubheading
+{Simple Paintball}{May 2018–May 2020}
+{Spigot API, Java, Maven, TravisCI, Git}{}
+\begin{adjustwidth}{6pt}{6pt}
+\begin{itemize}
+\item Developed a Minecraft server plugin to entertain kids during free time for a previous job
+\item Published plugin to websites gaining 2K+ downloads and an average 4.5/5-star review
+\item Implemented continuous delivery using TravisCI to build the plugin upon a new release
+\item Collaborated with Minecraft server administrators to suggest features and get feedback about the plugin
+\end{itemize}
+\end{adjustwidth}
+\end{document}
+```
+
+</details>
+
+## Lo que conservamos
+
+Preservamos deliberadamente el ADN de diseño que hace que Jake's Resume sea
+Jake's Resume. De hecho, tras adaptar la plantilla a la arquitectura de
+YAMLResume, solo dos piezas del preámbulo original sobrevivieron:
+
+```latex
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+% Custom commands
+\newcommand{\resumeSubheading}[4]{
+  \begin{tabular*}{\textwidth}[t]{l@{\extracolsep{\fill}}r}
+    \textbf{#1} & #2 \\
+    \textit{#3} & \textit{#4} \\
+  \end{tabular*}
+}
+```
+
+- `\titleformat` — el encabezado de sección en versalitas con una línea
+  horizontal
+- `\resumeSubheading` — el encabezado de entrada de dos filas con fechas
+  alineadas a la derecha, usado para experiencia laboral, educación, proyectos
+  y todas las demás secciones con fechas
+
+Junto con el encabezado centrado, el separador de contacto ` $|$ ` y las
+listas `itemize` compactas con `nosep`, estos elementos cargan con toda la
+identidad visual de la plantilla. Todo lo demás —cerca de una docena de
+paquetes y una página de macros— fue reemplazado por el pipeline de
+renderizado compartido de YAMLResume.
+
+## Lo que mejoramos
+
+Conservar el aspecto fue la parte fácil. El verdadero valor es todo lo que
+YAMLResume añade a su alrededor.
+
+### Contenido, por fin separado de la presentación
+
+En la plantilla original, tu currículum *es* código LaTeX. En YAMLResume, tu
+currículum son datos. Cambiar de plantilla es un cambio de una línea:
+
+```yml lineNumbers
+layouts:
+  - engine: latex
+    template: jake                  # or moderncv-banking, moderncv-casual, ...
+```
+
+Y como `layouts` es una lista, un solo archivo YAML puede producir un PDF con
+Jake's Resume, una [página HTML](/es/docs/layouts/html) lista para la web y
+una copia en [Markdown](/es/docs/layouts/markdown) para formularios de texto
+plano, todo en un único `yamlresume build`.
+
+### Datos estructurados con validación de esquema
+
+Cada campo está definido en un [esquema JSON](/es/docs/compiler/schema)
+público. Con la directiva `yaml-language-server` al inicio de tu archivo, tu
+editor ofrece autocompletado, documentación en línea y validación mientras
+escribes. Los títulos, los niveles de fluidez de idiomas, los niveles de
+habilidades y las redes de perfiles son enumeraciones: los errores tipográficos
+se detectan antes de compilar, no después de un registro de errores de LaTeX
+de 40 líneas.
+
+### Se acabó el escape manual
+
+La plantilla original te obliga a escribir `Texas A\&M University`. En
+YAMLResume escribes `Texas A&M University`: el escape de LaTeX se aplica
+automáticamente en el momento del renderizado, en todas partes y de forma
+consistente.
+
+### Fechas estructuradas y localizadas
+
+Las fechas son datos (`startDate: Aug 2018`), no cadenas incrustadas en
+macros. YAMLResume las formatea de manera consistente en todo el documento, y
+un `endDate` vacío se renderiza como "Present" —traducido al idioma de tu
+currículum.
+
+### Internacionalización real
+
+La plantilla original está atada al inglés. YAMLResume admite [12 idiomas
+regionales](/es/docs/locale): inglés, chino (simplificado, tradicional HK,
+tradicional TW), español, francés, noruego, neerlandés, japonés, alemán,
+indonesio y portugués brasileño. Los títulos de sección, los títulos
+académicos, los niveles de fluidez y los formatos de fecha se traducen
+automáticamente, con configuración de `babel` por idioma y una composición
+tipográfica CJK adecuada mediante `ctex` y las fuentes Noto.
+
+### Resúmenes en markdown
+
+Cada campo `summary` acepta un subconjunto práctico de markdown —**negrita**,
+*cursiva*, listas y [enlaces](https://yamlresume.dev)— que se convierte a
+LaTeX correcto. En la plantilla original escribes a mano `\textbf{}` y los
+entornos `itemize` en línea.
+
+### Controles de tipografía y diseño
+
+Lo que en la plantilla original requiere editar el preámbulo, aquí es una
+opción de configuración:
+
+```yml lineNumbers
+layouts:
+  - engine: latex
+    template: jake
+    page:
+      paperSize: a4            # a4 | letter
+      showPageNumbers: true
+      margins:
+        top: 2.5cm
+        bottom: 2.5cm
+        left: 1.5cm
+        right: 1.5cm
+    typography:
+      fontSize: 11pt           # 10pt | 11pt | 12pt
+      lineSpacing: relaxed     # tight | snug | normal | relaxed | loose
+      fontFamily: Linux Libertine O
+    advanced:
+      showIcons: true
+      showUrls: true
+```
+
+Los márgenes los gestiona el paquete `geometry` en lugar de los trucos de
+márgenes negativos con `\addtolength` del original, y las fuentes se resuelven
+con respaldos de `\IfFontExistsTF` en lugar de la ruleta de comentar y
+descomentar.
+
+### Alias de secciones y reordenación
+
+Renombra cualquier título de sección o cambia el orden de las secciones sin
+tocar LaTeX —por ejemplo, coloca Projects antes de Work, o renombra "Work" a
+"Experience":
+
+```yml lineNumbers
+layouts:
+  - engine: latex
+    template: jake
+    sections:
+      aliases:
+        work: Experience
+      order:
+        - projects
+        - work
+```
+
+Consulta los [alias de sección](/es/docs/layouts/sections/aliases) y la
+[reordenación de secciones](/es/docs/layouts/sections/reorder) para más
+detalles.
+
+### Enlaces modernos, iconos y metadatos de PDF
+
+La línea de contacto del encabezado obtiene enlaces `tel:` y `mailto:`
+clicables, `\href` subrayados con bordes de enlace ocultos e iconos
+FontAwesome opcionales (con un respaldo automático de `fontawesome7` →
+`fontawesome5`). El PDF generado también incluye metadatos adecuados —autor,
+título y palabras clave derivadas de tus habilidades— que la plantilla
+original nunca establece.
+
+### Probado y mantenido
+
+El renderizador de Jake se distribuye con más de 700 líneas de pruebas
+unitarias que cubren el preámbulo, cada sección y cada opción de diseño, y
+está construido sobre la misma base compartida `LatexRenderer` que nuestras
+plantillas moderncv, por lo que las mejoras del pipeline llegan a Jake's
+Resume automáticamente.
+
+## De un vistazo
+
+|                             | Jake's Resume original      | YAMLResume `template: jake`         |
+|-----------------------------|-----------------------------|-------------------------------------|
+| Formato de redacción        | LaTeX en crudo              | YAML estructurado                   |
+| Validación                  | Errores de compilación LaTeX | Esquema JSON + autocompletado IDE  |
+| Caracteres especiales       | Escape manual               | Automático                          |
+| Fechas                      | Cadenas escritas a mano     | Estructuradas y localizadas         |
+| Idiomas                     | Solo inglés                 | 12 idiomas regionales, listo para CJK |
+| Texto enriquecido           | Macros LaTeX en línea       | Resúmenes en markdown               |
+| Plantillas                  | Un archivo, un diseño       | Una línea para cambiar              |
+| Formatos de salida          | Solo PDF                    | PDF, HTML, Markdown                 |
+| Personalización del diseño  | Editar el preámbulo         | Opciones de configuración           |
+| Renombrar/reordenar secciones | Reescribir macros         | Opciones de configuración           |
+
+## Pruébalo hoy
+
+```console
+$ npm install -g yamlresume
+$ yamlresume new resume.yml
+# edit resume.yml, set `template: jake`
+$ yamlresume build resume.yml
+```
+
+O abre el [playground](/es/playground) y cambia la plantilla a `jake` para
+verlo en vivo en tu navegador.
+
+## Créditos
+
+Todo el crédito por el diseño original es para [Jake
+Gutierrez](https://github.com/jakegut) y
+[sb2nov](https://github.com/sb2nov), quienes publicaron sus plantillas bajo la
+licencia MIT y regalaron a la comunidad un clásico moderno. Nuestra adaptación
+se siguió en los issues
+[#88](https://github.com/yamlresume/yamlresume/issues/88) y
+[#179](https://github.com/yamlresume/yamlresume/issues/179), y se publicó en
+[YAMLResume
+v0.12](https://github.com/yamlresume/yamlresume/releases/tag/v0.12.0).
+
+Como siempre, agradecemos tus comentarios y contribuciones en
+[GitHub](https://github.com/yamlresume/yamlresume). ¡Feliz creación!
